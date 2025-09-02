@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bck4sy6x58mj2"]
+[gd_scene load_steps=10 format=3 uid="uid://bck4sy6x58mj2"]
 
-[ext_resource type="Script" uid="uid://332o24o22ksb" path="res://game/game.gd" id="1_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="2_dxrkv"]
 [ext_resource type="Texture2D" uid="uid://b3rjj1bmqtiok" path="res://addons/versatile-mobile-joystick/default_textures/BaseJoystickTest.png" id="3_dakft"]
+[ext_resource type="PackedScene" uid="uid://htuftvnpan0c" path="res://game/levels/001.tscn" id="4_dxrkv"]
 [ext_resource type="Texture2D" uid="uid://dlgmq4q7t23o8" path="res://addons/versatile-mobile-joystick/default_textures/TipJoystickTest.png" id="4_u5opy"]
+[ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/Player.tscn" id="5_dxrkv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p57ef"]
 
@@ -17,8 +18,7 @@ size = Vector2(1080, 1920)
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
 
-[node name="Game" type="Node2D"]
-script = ExtResource("1_4fuuu")
+[node name="Game" type="Node3D"]
 
 [node name="TouchJoystickOverlay" type="CanvasLayer" parent="."]
 
@@ -46,3 +46,10 @@ left_movement = "left"
 right_movement = "right"
 up_movement = "up"
 down_movement = "down"
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="001" parent="Level" instance=ExtResource("4_dxrkv")]
+
+[node name="Player" parent="Level" instance=ExtResource("5_dxrkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95291, 0, 0)
