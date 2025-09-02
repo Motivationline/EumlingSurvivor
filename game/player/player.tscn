@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=5 format=3 uid="uid://i26vdjehm6ll"]
 
+[ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
@@ -9,6 +10,7 @@
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 17
+script = ExtResource("1_b2mth")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
