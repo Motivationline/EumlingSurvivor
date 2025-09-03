@@ -1,0 +1,41 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://1ok17tiq8155"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_cyyjf"]
+[ext_resource type="Texture2D" uid="uid://br0bhoxcqqgih" path="res://assets/characters/eumling/Eumling_Survivor_ColorPalette.png" id="2_er615"]
+
+[sub_resource type="Gradient" id="Gradient_4v8t3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.0501139)
+colors = PackedColorArray(0.0807833, 0.0807833, 0.0807833, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yea8q"]
+gradient = SubResource("Gradient_4v8t3")
+
+[sub_resource type="Gradient" id="Gradient_5su4i"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.425968, 0.649203)
+colors = PackedColorArray(0, 0, 0, 1, 0.295867, 0.295866, 0.295866, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2lygm"]
+gradient = SubResource("Gradient_5su4i")
+
+[sub_resource type="Gradient" id="Gradient_k6n24"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6g3nx"]
+gradient = SubResource("Gradient_k6n24")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_cyyjf")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_er615")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_yea8q")
+shader_parameter/specular_ramp = SubResource("GradientTexture1D_6g3nx")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_2lygm")
+shader_parameter/shininess = 128.0
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true
