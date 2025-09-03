@@ -1,9 +1,9 @@
 [gd_scene load_steps=32 format=3 uid="uid://bov1hcmo0on0h"]
 
 [ext_resource type="Texture2D" uid="uid://bu8auxyk3gmp4" path="res://assets/vfx/fireball/flare.png" id="1_8jqi8"]
-[ext_resource type="Script" uid="uid://cxyxs1f5fx1dx" path="res://game/vfx/firehit/fire_hit.gd" id="1_srjhc"]
 [ext_resource type="Texture2D" uid="uid://ds50bevv057ww" path="res://assets/vfx/fireball/cross.png" id="2_srjhc"]
 [ext_resource type="Texture2D" uid="uid://dno25gc2sf2m3" path="res://assets/vfx/fireball/shockwave.png" id="3_1pus3"]
+[ext_resource type="PackedScene" uid="uid://wqhqib0voc53" path="res://game/vfx/particle_manager_component/particle_manager_component.tscn" id="5_1pus3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i1lo"]
 transparency = 1
@@ -168,9 +168,7 @@ scale_curve = SubResource("CurveXYZTexture_3rsc0")
 color = Color(1, 0.968, 0.68, 1)
 alpha_curve = SubResource("CurveTexture_6yn2o")
 
-[node name="fire_hit" type="Node3D" node_paths=PackedStringArray("particles")]
-script = ExtResource("1_srjhc")
-particles = [NodePath("Flare"), NodePath("Cross"), NodePath("Shockwave"), NodePath("Sparkles")]
+[node name="fire_hit" type="Node3D"]
 
 [node name="Flare" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_8i1lo")
@@ -212,3 +210,8 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_erigt")
 draw_pass_1 = SubResource("QuadMesh_fye1k")
+
+[node name="particle_manager_component" parent="." node_paths=PackedStringArray("particles_to_start", "node_to_kill") instance=ExtResource("5_1pus3")]
+kill_time = 0.6
+particles_to_start = [NodePath("../Flare"), NodePath("../Cross"), NodePath("../Shockwave"), NodePath("../Sparkles")]
+node_to_kill = NodePath("..")
