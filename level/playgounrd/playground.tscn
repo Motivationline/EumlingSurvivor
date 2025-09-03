@@ -1,12 +1,35 @@
-[gd_scene load_steps=47 format=3 uid="uid://dfq06fb00g8c6"]
+[gd_scene load_steps=31 format=3 uid="uid://dfq06fb00g8c6"]
 
 [ext_resource type="ArrayMesh" uid="uid://cjqlj2x4koa3e" path="res://assets/models/grass/grass.res" id="1_3o88o"]
-[ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="2_t06oh"]
-[ext_resource type="Texture2D" uid="uid://chn7hct0cj373" path="res://assets/vfx/fireball/spirtesheet.png" id="3_3ikhb"]
-[ext_resource type="Texture2D" uid="uid://bu8auxyk3gmp4" path="res://assets/vfx/fireball/flare.png" id="4_a1kad"]
-[ext_resource type="Texture2D" uid="uid://ds50bevv057ww" path="res://assets/vfx/fireball/cross.png" id="5_t06oh"]
-[ext_resource type="Texture2D" uid="uid://dno25gc2sf2m3" path="res://assets/vfx/fireball/shockwave.png" id="6_3ikhb"]
-[ext_resource type="Material" uid="uid://dkqym2ic8iexs" path="res://game/shared/cel_shader_material.tres" id="7_a1kad"]
+[ext_resource type="Material" uid="uid://bsdu16dwj28sf" path="res://assets/models/grass/grass.tres" id="1_a1kad"]
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="2_a1kad"]
+[ext_resource type="PackedScene" uid="uid://bov1hcmo0on0h" path="res://game/vfx/firehit/fire_hit.tscn" id="3_w1uii"]
+[ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/Player.tscn" id="7_a1kad"]
+[ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="8_8i1lo"]
+[ext_resource type="Texture2D" uid="uid://b3rjj1bmqtiok" path="res://addons/versatile-mobile-joystick/default_textures/BaseJoystickTest.png" id="9_tlppe"]
+[ext_resource type="Texture2D" uid="uid://dlgmq4q7t23o8" path="res://addons/versatile-mobile-joystick/default_textures/TipJoystickTest.png" id="10_xuf8i"]
+
+[sub_resource type="Environment" id="Environment_yobsg"]
+background_mode = 1
+background_color = Color(0.2772, 0.67144, 0.77, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.424135, 0.803699, 0.903677, 1)
+tonemap_mode = 4
+glow_enabled = true
+glow_strength = 0.74
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.51
+
+[sub_resource type="BoxMesh" id="BoxMesh_yobsg"]
+size = Vector3(1, 1, 15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12vvt"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.399893, 0.653263, 0.27553, 1)
+roughness = 0.03
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltby3"]
 albedo_color = Color(0.151861, 0.343831, 0.120458, 1)
@@ -14,6 +37,8 @@ albedo_color = Color(0.151861, 0.343831, 0.120458, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_ry31x"]
 material = SubResource("StandardMaterial3D_ltby3")
 size = Vector2(15, 15)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1uii"]
 
 [sub_resource type="MultiMesh" id="MultiMesh_yobsg"]
 transform_format = 1
@@ -32,333 +57,141 @@ rim_tint = 0.53
 
 [sub_resource type="BoxMesh" id="BoxMesh_ry31x"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12vvt"]
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.399893, 0.653263, 0.27553, 1)
-roughness = 0.03
+[sub_resource type="Gradient" id="Gradient_w1uii"]
+offsets = PackedFloat32Array(0.477327, 0.665871)
 
-[sub_resource type="BoxMesh" id="BoxMesh_yobsg"]
-size = Vector3(1, 1, 15)
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u6xew"]
+gradient = SubResource("Gradient_w1uii")
 
-[sub_resource type="Environment" id="Environment_yobsg"]
-background_mode = 1
-background_color = Color(0.2772, 0.67144, 0.77, 1)
-ambient_light_source = 2
-ambient_light_color = Color(0.424135, 0.803699, 0.903677, 1)
-tonemap_mode = 4
-glow_enabled = true
-glow_strength = 0.74
-glow_blend_mode = 1
-adjustment_enabled = true
-adjustment_contrast = 1.1
-adjustment_saturation = 1.51
+[sub_resource type="Gradient" id="Gradient_u6xew"]
+offsets = PackedFloat32Array(0, 0.696897)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1uii"]
-transparency = 2
-alpha_scissor_threshold = 0.568
-alpha_antialiasing_mode = 0
-cull_mode = 2
-depth_draw_mode = 2
-shading_mode = 0
-diffuse_mode = 3
-albedo_texture = ExtResource("3_3ikhb")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 10
-particles_anim_v_frames = 1
-particles_anim_loop = true
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8i1lo"]
+gradient = SubResource("Gradient_u6xew")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_u6xew"]
-orientation = 2
+[sub_resource type="Gradient" id="Gradient_tlppe"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0, 0, 1, 0.103744, 0.103744, 0.103744, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i1lo"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 2
-no_depth_test = true
-shading_mode = 0
-disable_ambient_light = true
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_a1kad")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xuf8i"]
+gradient = SubResource("Gradient_tlppe")
 
-[sub_resource type="Curve" id="Curve_a1kad"]
-_data = [Vector2(0, 1), 0.0, -1.00001, 0, 1, Vector2(0.99999, 0), -1.1928, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_u6xew"]
-curve = SubResource("Curve_a1kad")
-
-[sub_resource type="Curve" id="Curve_3ikhb"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_a1kad"]
-curve = SubResource("Curve_3ikhb")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7toyi"]
-gravity = Vector3(0, 0, 0)
-scale_min = 2.0
-scale_max = 2.0
-scale_curve = SubResource("CurveTexture_a1kad")
-color = Color(1, 0.966667, 0, 0.607843)
-alpha_curve = SubResource("CurveTexture_u6xew")
-
-[sub_resource type="QuadMesh" id="QuadMesh_fye1k"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3o88o"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 2
-no_depth_test = true
-shading_mode = 0
-disable_ambient_light = true
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("5_t06oh")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_8i1lo"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_tlppe"]
-curve = SubResource("Curve_8i1lo")
-
-[sub_resource type="Curve" id="Curve_778i0"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), -0.121633, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_w1uii"]
-curve = SubResource("Curve_778i0")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t06oh"]
-angle_min = -180.0
-angle_max = 180.0
-gravity = Vector3(0, 0, 0)
-scale_max = 1.1
-scale_curve = SubResource("CurveTexture_w1uii")
-color = Color(1, 0.960667, 0.41, 1)
-alpha_curve = SubResource("CurveTexture_tlppe")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xuf8i"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 2
-no_depth_test = true
-shading_mode = 0
-disable_ambient_light = true
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("6_3ikhb")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_obhcr"]
-_data = [Vector2(0, 0.702988), 0.0, -1.61296, 0, 0, Vector2(1, 0), 0.0422768, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_7toyi"]
-curve = SubResource("Curve_obhcr")
-
-[sub_resource type="Curve" id="Curve_fye1k"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_cvwag"]
-curve = SubResource("Curve_fye1k")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cvu1h"]
-angle_min = -180.0
-angle_max = 180.0
-gravity = Vector3(0, 0, 0)
-scale_min = 1.5
-scale_max = 2.0
-scale_curve = SubResource("CurveTexture_cvwag")
-color = Color(0.61, 0.565267, 0.488, 1)
-alpha_curve = SubResource("CurveTexture_7toyi")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sqipd"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 2
-no_depth_test = true
-shading_mode = 0
-disable_ambient_light = true
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_a1kad")
-billboard_keep_scale = true
-
-[sub_resource type="Curve" id="Curve_bm3fl"]
-_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_6yn2o"]
-curve = SubResource("Curve_bm3fl")
-
-[sub_resource type="Curve" id="Curve_4abpq"]
-_data = [Vector2(0, 0.0975395), 0.0, 0.0, 0, 0, Vector2(1, 0.108963), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_7clbl"]
-_limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0, 0.632689), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_wy122"]
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_3rsc0"]
-curve_x = SubResource("Curve_4abpq")
-curve_y = SubResource("Curve_7clbl")
-curve_z = SubResource("Curve_wy122")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_erigt"]
-particle_flag_align_y = true
-direction = Vector3(0, 1, 0)
-spread = 180.0
-initial_velocity_min = 2.0
-initial_velocity_max = 3.0
-gravity = Vector3(0, 0, 0)
-scale_min = 0.2
-scale_max = 0.5
-scale_curve = SubResource("CurveXYZTexture_3rsc0")
-color = Color(1, 0.968, 0.68, 1)
-alpha_curve = SubResource("CurveTexture_6yn2o")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8i1lo"]
+render_priority = 0
+shader = ExtResource("2_a1kad")
+shader_parameter/albedo_color = Color(0.45294, 0.254932, 0.174078, 1)
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_u6xew")
+shader_parameter/specular_ramp = SubResource("GradientTexture1D_xuf8i")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_8i1lo")
+shader_parameter/shininess = 128.0
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_3ikhb"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8i1lo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tlppe"]
+radius = 50.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xuf8i"]
+size = Vector2(1080, 1920)
+
+[sub_resource type="Curve" id="Curve_7toyi"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
 [node name="Playground" type="Node3D"]
 
-[node name="Plane" type="MeshInstance3D" parent="."]
+[node name="GlobalLights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="GlobalLights"]
+transform = Transform3D(0.820511, -0.488843, -0.296299, 0, -0.518341, 0.855174, -0.57163, -0.70168, -0.425305, -5.2903, 7.71908, -5.02786)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="GlobalLights"]
+environment = SubResource("Environment_yobsg")
+
+[node name="Room" type="Node3D" parent="."]
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94498, 0.159871, -0.0437433)
+mesh = SubResource("BoxMesh_yobsg")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_12vvt")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.82558, 0.159871, -0.0437433)
+mesh = SubResource("BoxMesh_yobsg")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_12vvt")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0.0185633, 0.159871, -7.79206)
+mesh = SubResource("BoxMesh_yobsg")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_12vvt")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0.0185633, 0.159871, 7.95893)
+mesh = SubResource("BoxMesh_yobsg")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_12vvt")
+
+[node name="Plane" type="MeshInstance3D" parent="Room"]
 mesh = SubResource("PlaneMesh_ry31x")
+skeleton = NodePath("../..")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
 visible = false
+material_override = SubResource("ShaderMaterial_w1uii")
+material_overlay = ExtResource("1_a1kad")
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_yobsg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 11.4416, 12.2875)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 21.5665, 22.0378)
 fov = 25.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.820511, -0.488844, -0.296299, 0, -0.518341, 0.855174, -0.57163, -0.70168, -0.425304, -5.2903, 7.71908, -5.02786)
-shadow_enabled = true
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95845, 1.07365, 0.0209643)
-mesh = SubResource("SphereMesh_ltby3")
-surface_material_override/0 = SubResource("StandardMaterial3D_yobsg")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.342085, 0.559097, -1.77154)
-mesh = SubResource("BoxMesh_ry31x")
-surface_material_override/0 = SubResource("StandardMaterial3D_12vvt")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.94498, 0.159871, -0.0437433)
-mesh = SubResource("BoxMesh_yobsg")
-surface_material_override/0 = SubResource("StandardMaterial3D_12vvt")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.82558, 0.159871, -0.0437433)
-mesh = SubResource("BoxMesh_yobsg")
-surface_material_override/0 = SubResource("StandardMaterial3D_12vvt")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0.0185633, 0.159871, -7.79206)
-mesh = SubResource("BoxMesh_yobsg")
-surface_material_override/0 = SubResource("StandardMaterial3D_12vvt")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0.0185633, 0.159871, 7.95893)
-mesh = SubResource("BoxMesh_yobsg")
-surface_material_override/0 = SubResource("StandardMaterial3D_12vvt")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_yobsg")
-
-[node name="Eumling_Survivor" parent="." instance=ExtResource("2_t06oh")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.962581, 0, 0.00426471)
-
-[node name="FireballCPU" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7198, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_w1uii")
-mesh = SubResource("PlaneMesh_u6xew")
-particle_flag_align_y = true
-direction = Vector3(0, 1, 0)
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 1.0
-initial_velocity_max = 5.0
-angle_min = 90.0
-angle_max = 90.0
-scale_amount_min = 0.2
-scale_amount_max = 0.7
-hue_variation_max = 0.21
-anim_speed_min = 0.5
-anim_speed_max = 0.5
-anim_offset_max = 0.5
-
-[node name="BulletHit" type="Node3D" parent="."]
+[node name="FireHit" parent="." instance=ExtResource("3_w1uii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03841, 0, 0.23463)
 
-[node name="Flare" type="GPUParticles3D" parent="BulletHit"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.142898, 0)
-material_override = SubResource("StandardMaterial3D_8i1lo")
-emitting = false
-amount = 1
-lifetime = 0.2
-one_shot = true
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_7toyi")
-draw_pass_1 = SubResource("QuadMesh_fye1k")
+[node name="CustomObject" type="Node3D" parent="."]
 
-[node name="Cross" type="GPUParticles3D" parent="BulletHit"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.142898, 0)
-material_override = SubResource("StandardMaterial3D_3o88o")
-emitting = false
-amount = 1
-lifetime = 0.3
-one_shot = true
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_t06oh")
-draw_pass_1 = SubResource("QuadMesh_fye1k")
+[node name="Ball2" type="MeshInstance3D" parent="CustomObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95845, 1.07365, 0.0209643)
+mesh = SubResource("SphereMesh_ltby3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_yobsg")
 
-[node name="Shockwave" type="GPUParticles3D" parent="BulletHit"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.142898, 0)
-material_override = SubResource("StandardMaterial3D_xuf8i")
-emitting = false
-amount = 1
-lifetime = 0.6
-one_shot = true
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_cvu1h")
-draw_pass_1 = SubResource("QuadMesh_fye1k")
+[node name="Square" type="MeshInstance3D" parent="CustomObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.342085, 0.559097, -1.77154)
+mesh = SubResource("BoxMesh_ry31x")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_8i1lo")
 
-[node name="Sparkles" type="GPUParticles3D" parent="BulletHit"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.142898, 0)
-material_override = SubResource("StandardMaterial3D_sqipd")
-emitting = false
-amount = 5
-lifetime = 0.6
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_erigt")
-draw_pass_1 = SubResource("QuadMesh_fye1k")
-
-[node name="ToonBall" type="MeshInstance3D" parent="."]
+[node name="ToonBall" type="MeshInstance3D" parent="CustomObject"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4793, 0.864869, -3.02588)
-material_override = ExtResource("7_a1kad")
 mesh = SubResource("SphereMesh_3ikhb")
+skeleton = NodePath("../..")
+
+[node name="Player" parent="." instance=ExtResource("7_a1kad")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.073735, 0.292423, -0.22213)
+visible = false
+
+[node name="JoystickController2" parent="." instance=ExtResource("8_8i1lo")]
+position = Vector2(535, 957)
+base_texture = ExtResource("9_tlppe")
+tip_texture = ExtResource("10_xuf8i")
+deadzone_circle = SubResource("CircleShape2D_8i1lo")
+tip_limit_circle = SubResource("CircleShape2D_tlppe")
+touch_detection_region = SubResource("RectangleShape2D_xuf8i")
+strength_curve = SubResource("Curve_7toyi")
+visibility_mode = 1
+left_movement = "left"
+right_movement = "right"
+up_movement = "up"
+down_movement = "down"
