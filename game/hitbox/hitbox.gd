@@ -4,19 +4,16 @@ class_name HitBox
 
 var damage: float
 
-enum HITBOX {NONE = 0, PLAYER = 3, ENEMY = 6}
-enum HURTBOX {NONE = 0, PLAYER = 4, ENEMY = 7}
-
 signal hit(hurtbox: HurtBox)
 
-@export var attached_to: HITBOX = HITBOX.NONE:
+@export var attached_to: Enum.HITBOX = Enum.HITBOX.NONE:
 	set(_hitbox):
 		if (attached_to > 0): set_collision_layer_value(attached_to, false)
 		attached_to = _hitbox
 		if (attached_to > 0): set_collision_layer_value(attached_to, true)
 		update_configuration_warnings()
 
-@export var can_hit: HURTBOX = HURTBOX.NONE:
+@export var can_hit: Enum.HURTBOX = Enum.HURTBOX.NONE:
 	set(_hurtbox):
 		if (can_hit > 0): set_collision_mask_value(can_hit, false)
 		can_hit = _hurtbox
@@ -25,11 +22,11 @@ signal hit(hurtbox: HurtBox)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
-	if (attached_to == HITBOX.NONE):
+	if (attached_to == Enum.HITBOX.NONE):
 		warnings.push_back("Attached To must be set to either Player or Enemy.")
-	if (can_hit == HURTBOX.NONE):
+	if (can_hit == Enum.HURTBOX.NONE):
 		warnings.push_back("Can Hit must be set to either Player or Enemy.")
-	if ((attached_to == HITBOX.PLAYER && can_hit == HURTBOX.PLAYER) || (attached_to == HITBOX.ENEMY && can_hit == HURTBOX.ENEMY)):
+	if ((attached_to == Enum.HITBOX.PLAYER && can_hit == Enum.HURTBOX.PLAYER) || (attached_to == Enum.HITBOX.ENEMY && can_hit == Enum.HURTBOX.ENEMY)):
 		warnings.push_back("Attached To and Can Hit probably shouldn't have the same value.")
 	
 	return warnings
