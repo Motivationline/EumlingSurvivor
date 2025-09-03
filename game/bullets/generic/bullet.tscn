@@ -27,7 +27,11 @@ lifetime = 1.0
 shape = SubResource("BoxShape3D_j1spr")
 
 [node name="HitBox" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 64
 script = ExtResource("2_c5m0e")
+attached_to = 3
+can_hit = 7
 metadata/_custom_type_script = "uid://bb6m3hglcrhmq"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]

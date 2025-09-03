@@ -7,6 +7,10 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hoxgt"]
 bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o76um"]
 bg_color = Color(1, 1, 1, 1)
@@ -15,25 +19,24 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxu8y"]
 bg_color = Color(0.314275, 0.632136, 0.343566, 1)
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
 
 [node name="Healthbar3D" type="Node3D"]
 script = ExtResource("1_o76um")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 texture = SubResource("ViewportTexture_o76um")
 
 [node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(321, 32)
+size = Vector2i(328, 40)
 
 [node name="Control" type="Control" parent="SubViewport"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 44.0
 
 [node name="DamageBar" type="ProgressBar" parent="SubViewport/Control"]
 z_index = 10
@@ -58,7 +61,7 @@ value = 50.0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.4
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
