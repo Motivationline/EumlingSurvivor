@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://hpf1ls8vm18b"]
+
+[ext_resource type="Script" uid="uid://bygod7vsyeqt8" path="res://game/healthbar/healthbar_3d.gd" id="1_o76um"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_o76um"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hoxgt"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o76um"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fanj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxu8y"]
+bg_color = Color(0.314275, 0.632136, 0.343566, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="Healthbar3D" type="Node3D"]
+script = ExtResource("1_o76um")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = SubResource("ViewportTexture_o76um")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(321, 32)
+
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DamageBar" type="ProgressBar" parent="SubViewport/Control"]
+z_index = 10
+layout_mode = 1
+offset_right = 320.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hoxgt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o76um")
+value = 70.0
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="SubViewport/Control"]
+z_index = 10
+layout_mode = 1
+offset_right = 320.0
+offset_bottom = 32.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_2fanj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sxu8y")
+value = 50.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
