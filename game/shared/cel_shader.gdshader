@@ -1,6 +1,9 @@
 shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back;
 
+uniform vec4 albedo_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform sampler2D albedo_texture : source_color, filter_linear, repeat_disable;
+
 uniform sampler2D diffuse_ramp : filter_nearest, repeat_disable;
 uniform sampler2D specular_ramp : filter_nearest, repeat_disable;
 uniform sampler2D rim_ramp : filter_nearest, repeat_disable;
@@ -13,6 +16,12 @@ uniform bool use_specular_smooth_attenuation = true;
 
 float ramp(sampler2D ramp, float x) {
 	return texture(ramp, vec2(x, 0)).r;
+}
+
+void fragment() {
+    vec4 color = texture(albedo_texture, UV);
+    ALBEDO = (color * albedo_color).rgb;
+    ALPHA = (color * albedo_color).a;
 }
 
 void light() {
