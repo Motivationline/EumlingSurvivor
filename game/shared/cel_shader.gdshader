@@ -19,9 +19,8 @@ float ramp(sampler2D ramp, float x) {
 }
 
 void fragment() {
-    vec4 color = texture(albedo_texture, UV);
-    ALBEDO = (color * albedo_color).rgb;
-    ALPHA = (color * albedo_color).a;
+    vec4 color = texture(albedo_texture, UV) * albedo_color;
+    ALBEDO = color.rgb;
 }
 
 void light() {
