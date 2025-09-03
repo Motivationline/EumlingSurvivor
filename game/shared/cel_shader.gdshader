@@ -8,7 +8,8 @@ uniform sampler2D rim_ramp : filter_nearest, repeat_disable;
 uniform float shininess = 128.0;
 
 uniform bool use_HDR = true;
-uniform bool use_smooth_attenuation = true;
+uniform bool use_diffuse_smooth_attenuation = true;
+uniform bool use_specular_smooth_attenuation = true;
 
 float ramp(sampler2D ramp, float x) {
 	return texture(ramp, vec2(x, 0)).r;
@@ -28,7 +29,7 @@ void light() {
 	vec3 rim = light_color * rim_factor * diffuse_factor;
 
 	diffuse = diffuse + rim;
-	if (use_smooth_attenuation)
+	if (use_diffuse_smooth_attenuation)
 		diffuse = diffuse * ATTENUATION;
 
 	if (!use_HDR)
@@ -39,7 +40,10 @@ void light() {
 	// specular
 	float specular_factor = pow(max(dot(NORMAL, normalize(LIGHT + VIEW)), 0.0), shininess) * ATTENUATION;
 	specular_factor = ramp(specular_ramp, specular_factor);
-    vec3 specular = light_color * specular_factor * diffuse_factor;
+    vec3 specular = light_color * specular_factor;
+
+	if (use_specular_smooth_attenuation)
+		specular = specular * ATTENUATION;
 
 	if (!use_HDR)
 		specular = min(specular, 1.0);
