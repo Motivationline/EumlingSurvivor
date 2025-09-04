@@ -150,9 +150,10 @@ alpha_curve = SubResource("CurveTexture_tlppe")
 transparency = 1
 cull_mode = 2
 depth_draw_mode = 2
-shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("5_8i1lo")
+emission_enabled = true
+emission = Color(0.651793, 0.912421, 0.998395, 1)
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -225,7 +226,7 @@ multimesh = SubResource("MultiMesh_yobsg")
 [node name="CustomObject" type="Node3D" parent="."]
 
 [node name="Ball2" type="MeshInstance3D" parent="CustomObject"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95845, 1.07365, 0.0209643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34476, 1.07365, 0.0209643)
 mesh = SubResource("SphereMesh_ltby3")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_yobsg")
@@ -237,11 +238,12 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_8i1lo")
 
 [node name="ToonBall" type="MeshInstance3D" parent="CustomObject"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4793, 0.864869, -3.02588)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84103, 0.864869, -2.02168)
 mesh = SubResource("SphereMesh_3ikhb")
 skeleton = NodePath("../..")
 
 [node name="Player" parent="." instance=ExtResource("7_a1kad")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.073735, 0.292423, -0.22213)
