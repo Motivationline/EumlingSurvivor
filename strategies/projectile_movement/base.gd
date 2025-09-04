@@ -1,0 +1,2 @@
+extends Strategy
+class_name ProjectileMovementStrategy
