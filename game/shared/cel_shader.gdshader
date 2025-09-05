@@ -31,18 +31,18 @@ void light() {
 	float attenuation_clamped = min(ATTENUATION, 1.0);
 	float n_dot_l = dot(NORMAL, LIGHT);
 	float n_dot_l_clamped = max(dot(NORMAL, LIGHT), 0.0);
+	float n_dot_l_remapped = n_dot_l * 0.5 + 0.5; // remap from [-1, 1] to [0, 1]
 	
 	// diffuse
-	float diffuse_factor = n_dot_l_clamped * attenuation_clamped;
+	float diffuse_factor = n_dot_l_remapped * attenuation_clamped;
 
 	vec3 diffuse_ramp_color = ramp(diffuse_ramp, diffuse_factor);
 	vec3 diffuse_color = min(light_color * diffuse_ramp_color, 1.0);
 
 	// rim
 	float rim_fresnel = 1.0 - dot(NORMAL, VIEW);
-	float rim_coverage = n_dot_l * 0.5 + 0.5; // remap from [-1, 1] to [0, 1]
 	//float rim_mask_pow = pow(rim_coverage, exp2(rim_focus_pow / 0.05));
-	float rim_mask = smoothstep(rim_focus, 1.0, rim_coverage);
+	float rim_mask = smoothstep(rim_focus, 1.0, n_dot_l_remapped);
 	float rim_factor = rim_fresnel * rim_mask * attenuation_clamped;
 
 	vec3 rim_ramp_color = ramp(rim_ramp, rim_factor);
