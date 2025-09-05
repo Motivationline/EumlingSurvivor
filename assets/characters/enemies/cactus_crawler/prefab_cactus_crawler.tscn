@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c15isytvugu5r"]
+
+[ext_resource type="PackedScene" uid="uid://cju58wdf0n8vk" path="res://assets/characters/enemies/cactus_crawler/cactus_crawler.glb" id="1_s6wx2"]
+
+[node name="cactus_crawler" instance=ExtResource("1_s6wx2")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/position = Vector3(8.03508e-25, -7.66381e-09, 0.121423)
+bones/2/rotation = Quaternion(0.684866, -3.15949e-19, 3.1593e-19, 0.728669)
+bones/2/scale = Vector3(1.00163, 0.999461, 1.00163)
+bones/3/position = Vector3(5.94613e-18, 0.0298649, 0.604839)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "run"

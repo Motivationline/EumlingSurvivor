@@ -1,0 +1,42 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://clqmr7xrvevy"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_5akox"]
+[ext_resource type="Material" uid="uid://c7uld4xyf5ur8" path="res://assets/characters/enemies/cactus_crawler/outline_cactus.tres" id="1_ulbho"]
+
+[sub_resource type="Gradient" id="Gradient_gmvvw"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.751708, 0.856492)
+colors = PackedColorArray(0, 0, 0, 1, 0.355314, 0.355314, 0.355314, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tfggn"]
+gradient = SubResource("Gradient_gmvvw")
+
+[sub_resource type="Gradient" id="Gradient_5akox"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.800443)
+colors = PackedColorArray(0, 0, 0, 1, 0.825207, 0.000411422, 0.797394, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ulbho"]
+gradient = SubResource("Gradient_5akox")
+
+[sub_resource type="Gradient" id="Gradient_tfggn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.443459)
+colors = PackedColorArray(0, 0, 0, 1, 0.933495, 0.000411614, 0.871472, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fw33x"]
+gradient = SubResource("Gradient_tfggn")
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_ulbho")
+shader = ExtResource("1_5akox")
+shader_parameter/albedo_color = Color(0.325613, 0.105794, 0.324547, 1)
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_tfggn")
+shader_parameter/specular_ramp = SubResource("GradientTexture1D_fw33x")
+shader_parameter/specular_focus = 0.46
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_ulbho")
+shader_parameter/rim_focus = 0.0
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true

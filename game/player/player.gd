@@ -12,6 +12,7 @@ func _physics_process(_delta: float) -> void:
 	var direction_3d = Vector3(direction.x, 0, direction.y)
 	velocity = direction_3d * speed
 	move_and_slide()
+
 	
 	if(!direction.is_zero_approx()):
 		look_at(global_position + direction_3d)
