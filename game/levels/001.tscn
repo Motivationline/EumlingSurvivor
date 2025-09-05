@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://htuftvnpan0c"]
+[gd_scene load_steps=4 format=3 uid="uid://htuftvnpan0c"]
 
 [ext_resource type="PackedScene" uid="uid://qg612spvu7xn" path="res://game/enemies/example.tscn" id="1_fnkxu"]
-[ext_resource type="Script" uid="uid://dre7niujnmlsh" path="res://strategies/enemy_movement/base.gd" id="2_aiw0i"]
-[ext_resource type="Script" uid="uid://clwi68ef4hc5" path="res://strategies/enemy_movement/random.gd" id="3_uile8"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0s0fg"]
 vertices = PackedVector3Array(-9.5, 0.5, -3.75, -5, 0.5, -3.75, -4.75, 0.5, -5, -2.75, 0.5, -5, -2.75, 0.5, -9.5, -9.5, 0.5, -9.5, 3.25, 0.5, -5, 3.25, 0.5, -9.5, 5.25, 0.5, -5, 5.5, 0.5, -3.75, 9.5, 0.5, -3.75, 9.5, 0.5, -9.5, -1, 0.5, -0.75, 0.25, 0.5, -1, 0.25, 0.5, -2.75, -4.75, 0.5, -2.75, 0, 0.5, 3.5, 0, 0.5, 1.25, -1, 0.5, 1, -4.75, 0.5, 3.5, -9.5, 0.5, 4.5, -5, 0.5, 4.5, 1.25, 0.5, -0.75, 5.25, 0.5, -2.75, 1.25, 0.5, 0.75, 5.25, 0.5, 3.5, 5.5, 0.5, 4.5, 9.5, 0.5, 4.5, -3.5, 0.5, 9.5, -3.25, 0.5, 5.75, -4.75, 0.5, 5.75, -9.5, 0.5, 9.5, 5.25, 0.5, 5.75, 3.75, 0.5, 5.75, 4, 0.5, 9.5, 9.5, 0.5, 9.5)
@@ -10,13 +8,6 @@ polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(4, 3, 2), PackedInt32Arr
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnkxu"]
 albedo_color = Color(0.185273, 0.627928, 0.462023, 1)
-
-[sub_resource type="Resource" id="Resource_24fts"]
-script = ExtResource("3_uile8")
-speed = 5.0
-wait_time = 1.0
-debug_show_path = true
-metadata/_custom_type_script = "uid://clwi68ef4hc5"
 
 [node name="001" type="Node3D"]
 
@@ -57,4 +48,3 @@ transform = Transform3D(1, 0, 0, 0, 0.713593, 0.700561, 0, -0.700561, 0.713593, 
 
 [node name="Enemy" parent="." instance=ExtResource("1_fnkxu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.77407, 0.505035, 0)
-movement = Array[ExtResource("2_aiw0i")]([SubResource("Resource_24fts")])

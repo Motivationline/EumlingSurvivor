@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 @export var speed := 5.0
-const BULLET = preload("res://game/bullets/generic/bullet.tscn")
+const BULLET = preload("res://game/projectiles/example_bullet/example_bullet.tscn")
 
 func _ready() -> void:
 	add_to_group("Player")

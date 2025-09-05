@@ -1,5 +1,4 @@
 extends CharacterBody3D
-
 class_name Enemy
 
 @export_category("Base Values")
@@ -18,13 +17,19 @@ class_name Enemy
 
 @export_category("Extended Functionality")
 @export var movement: Array[EnemyMovementStrategy]
+var movement_local
 @export var attacks: Array[AttackStrategy]
+var attacks_local
 @export var upgrades: Array[UpgradeStrategy]
+var upgrades_local
 
 @export_category("Event Listeners")
 @export var on_death: Array[EventStrategy]
+var on_death_local
 @export var on_hit: Array[EventStrategy]
+var on_hit_local
 @export var on_hurt: Array[EventStrategy]
+var on_hurt_local
 
 var max_health: float
 
@@ -34,15 +39,14 @@ func _ready() -> void:
 	if (hitbox): hitbox.hit.connect(_hit)
 	if (hurtbox): hurtbox.hurt_by.connect(_hurt_by)
 
-	init_strategies(movement)
-	init_strategies(attacks)
-	init_strategies(upgrades)
+	movement_local = Strategy.setupArray(movement, self)
+	attacks_local = Strategy.setupArray(attacks, self)
+	upgrades_local = Strategy.setupArray(upgrades, self)
+	on_death_local = Strategy.setupArray(on_death, self)
+	on_hit_local = Strategy.setupArray(on_hit, self)
+	on_hurt_local = Strategy.setupArray(on_hurt, self)
 
 	add_to_group("Enemy")
-
-func init_strategies(strategies: Array):
-	for s in strategies:
-		if (s && s is Strategy): s._setup(self)
 
 func _hit(_attacker: HurtBox):
 	pass
@@ -52,7 +56,7 @@ func _hurt_by(_attackee: HitBox):
 
 func _physics_process(_delta: float) -> void:
 	var direction := Vector3.ZERO
-	for mov in movement:
+	for mov in movement_local:
 		direction = mov.get_movement_direction(direction)
 	velocity = direction
 	move_and_slide()

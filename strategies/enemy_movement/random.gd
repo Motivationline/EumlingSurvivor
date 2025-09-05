@@ -3,7 +3,7 @@ class_name RandomEnemyMovementStrategy
 
 @export var speed: float = 1
 @export var wait_time: float = 1
-
+# TODO add area inside of which the random values can be picked.
 
 @export_category("Debug")
 @export var debug_show_path: bool
@@ -30,7 +30,7 @@ func find_new_target():
 	random_position.x = randf_range(-10, 10)
 	random_position.z = randf_range(-10, 10)
 	nav_agent.target_position = random_position
-	print(random_position)
+	#print(random_position)
 
 func target_reached():
 	await node.get_tree().create_timer(wait_time).timeout
