@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://qg612spvu7xn"]
+
+[ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_1kd2t"]
+[ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="2_b4nw2"]
+[ext_resource type="Script" uid="uid://dre7niujnmlsh" path="res://strategies/enemy_movement/base.gd" id="2_muinq"]
+[ext_resource type="Script" uid="uid://clwi68ef4hc5" path="res://strategies/enemy_movement/random.gd" id="3_uda04"]
+
+[sub_resource type="Resource" id="Resource_k0yxv"]
+script = ExtResource("3_uda04")
+speed = 5.0
+wait_time = 1.0
+debug_show_path = false
+metadata/_custom_type_script = "uid://clwi68ef4hc5"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b4nw2"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qymtj"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muinq"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("healthbar")]
+script = ExtResource("1_1kd2t")
+health = 20.0
+healthbar = NodePath("Healthbar3D")
+movement = Array[ExtResource("2_muinq")]([SubResource("Resource_k0yxv")])
+metadata/_custom_type_script = "uid://ywmn15exh3c6"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_b4nw2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_qymtj")
+surface_material_override/0 = SubResource("StandardMaterial3D_muinq")
+
+[node name="Healthbar3D" parent="." instance=ExtResource("2_b4nw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.772543, -0.499374)

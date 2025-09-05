@@ -10,9 +10,9 @@ class_name Bullet
 @onready var hit_box: HitBox = $HitBox
 
 var current_lifetime: float = 0
+var upgrades: Array[UpgradeStrategy] = []
 
-
-func setup(_owner: Enum.GROUP, pos: Vector3, rot: Vector3):
+func setup(_owner: Enum.GROUP, pos: Vector3, rot: Vector3, upgrds: Array[UpgradeStrategy] = []):
 	if (_owner == Enum.GROUP.PLAYER):
 		hit_box.can_hit = Enum.HURTBOX.ENEMY
 		hit_box.attached_to = Enum.HITBOX.PLAYER
@@ -23,6 +23,7 @@ func setup(_owner: Enum.GROUP, pos: Vector3, rot: Vector3):
 	global_position.y = 1
 	global_rotation = rot
 	hit_box.damage = damage
+	upgrades = upgrds
 
 func _ready() -> void:
 	await get_tree().create_timer(lifetime).timeout
@@ -37,3 +38,6 @@ func _physics_process(delta: float) -> void:
 	move_and_collide(velocity)
 
 func _before_removal(): pass
+
+
+# TODO: by default, fly through everything
