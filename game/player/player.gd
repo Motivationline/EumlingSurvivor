@@ -23,4 +23,4 @@ func _input(event: InputEvent) -> void:
 func spawn_bullet():
 	var instance = BULLET.instantiate()
 	get_parent().add_child(instance)
-	instance.setup(Enum.GROUP.PLAYER, global_position, global_rotation)
+	instance.setup(Enum.GROUP.PLAYER, global_position, global_rotation, global_position + basis.z * -5)

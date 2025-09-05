@@ -16,7 +16,7 @@ static func setupOne(s: Strategy, _attached_to: Node) -> Strategy:
 	return clone
 
 func copy() -> Strategy:
-	return duplicate()
+	return duplicate(true)
 
 ## Adds all functionality that needs to be set up for this strategy to function properly
 func _setup(_attached_to: Node) -> void:

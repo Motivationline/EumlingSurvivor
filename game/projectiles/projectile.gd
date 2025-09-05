@@ -28,8 +28,10 @@ var upgrades_instance
 @export var on_end_of_life: Array[EventStrategy]
 
 var current_lifetime: float = 0
+var target_position: Vector3
 
-func setup(_owner: Enum.GROUP, pos: Vector3, rot: Vector3, _upgrades: Array[UpgradeStrategy] = []):
+func setup(_owner: Enum.GROUP, pos: Vector3, rot: Vector3, target_pos: Vector3, _upgrades: Array[UpgradeStrategy] = []):
+	target_position = target_pos
 	if (hit_box):
 		hit_box.damage = damage
 		hit_box.hit.connect(_hit_box_hit)
