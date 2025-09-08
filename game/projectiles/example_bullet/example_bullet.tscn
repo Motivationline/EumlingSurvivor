@@ -1,39 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://ct6208g338yln"]
+[gd_scene load_steps=11 format=3 uid="uid://ct6208g338yln"]
 
 [ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_sv6nk"]
-[ext_resource type="Script" uid="uid://4b15b4thke46" path="res://strategies/projectile_movement/base.gd" id="2_2qh0o"]
-[ext_resource type="Script" uid="uid://bb6m3hglcrhmq" path="res://game/hitbox/hitbox.gd" id="2_c5m0e"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="3_ok6tv"]
-[ext_resource type="Script" uid="uid://d3ikpji4y1ipa" path="res://strategies/projectile_movement/rotation.gd" id="4_ok6tv"]
-
-[sub_resource type="Curve" id="Curve_2qh0o"]
-_limits = [-45.0, 45.0, 0.0, 1.0]
-_data = [Vector2(0, -0.978256), 0.0, 0.0, 0, 0, Vector2(0.245059, 45), 0.0, 0.0, 0, 0, Vector2(0.509881, -45), 0.0, 0.0, 0, 0, Vector2(0.747036, 45), 0.0, 0.0, 0, 0, Vector2(1, -2.93478), 0.0, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="Resource" id="Resource_ok6tv"]
-script = ExtResource("4_ok6tv")
-rotation_over_lifetime = SubResource("Curve_2qh0o")
-metadata/_custom_type_script = "uid://d3ikpji4y1ipa"
-
-[sub_resource type="Curve" id="Curve_ok6tv"]
-_limits = [0.0, 20.0, 0.0, 1.0]
-_data = [Vector2(0, 9.78261), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_pr6ia"]
-script = ExtResource("3_ok6tv")
-speed_over_lifetime = SubResource("Curve_ok6tv")
-metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
-
-[sub_resource type="Curve" id="Curve_pr6ia"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_t2qms"]
-script = ExtResource("3_ok6tv")
-speed_over_lifetime = SubResource("Curve_pr6ia")
-metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+[ext_resource type="Script" uid="uid://d3ikpji4y1ipa" path="res://strategies/projectile_movement/rotation.gd" id="4_2qh0o"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="5_ok6tv"]
+[ext_resource type="Script" uid="uid://c6fcpkn103ijr" path="res://strategies/event/projectile/turn_around.gd" id="5_pr6ia"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j1spr"]
 size = Vector3(0.25, 0.25, 0.5)
@@ -44,25 +15,25 @@ albedo_color = Color(0.219608, 0.392157, 1, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ja52y"]
 albedo_color = Color(0.720288, 0.284462, 0.531922, 1)
 
-[node name="Bullet" type="CharacterBody3D" node_paths=PackedStringArray("hit_box")]
+[sub_resource type="Curve" id="Curve_xx56b"]
+_limits = [0.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 10.2267), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_ok6tv"]
+_limits = [-45.0, 45.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 45), 0.0, 0.0, 0, 0, Vector2(0.75, -45), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="Bullet" type="CharacterBody3D" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision")]
 collision_layer = 0
 script = ExtResource("1_sv6nk")
-lifetime = 1.0
-hit_box = NodePath("HitBox")
-movement = Array[ExtResource("2_2qh0o")]([SubResource("Resource_ok6tv"), SubResource("Resource_pr6ia"), SubResource("Resource_t2qms")])
+hit_box = NodePath("Hitbox")
+movement = [NodePath("Movement/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("Events/WallHit/TurnAroundEventStrategy")]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_j1spr")
-
-[node name="HitBox" type="Area3D" parent="."]
-collision_layer = 4
-collision_mask = 64
-script = ExtResource("2_c5m0e")
-attached_to = 3
-can_hit = 7
-metadata/_custom_type_script = "uid://bb6m3hglcrhmq"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(0.999981, -0.00262398, 0.00563495, 0.00262978, 0.999996, -0.00102195, -0.00563225, 0.00103675, 0.999984, 0, 0, 0)
 shape = SubResource("BoxShape3D_j1spr")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -73,3 +44,28 @@ size = Vector3(0.25, 0.25, 0.5)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.223057)
 material_override = SubResource("StandardMaterial3D_ja52y")
 size = Vector3(0.1, 0.5, 0.5)
+
+[node name="Hitbox" parent="." instance=ExtResource("5_ok6tv")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("BoxShape3D_j1spr")
+
+[node name="Movement" type="Node" parent="."]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="Movement"]
+script = ExtResource("3_ok6tv")
+speed_over_lifetime = SubResource("Curve_xx56b")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="RotationProjectileMovementStrategy" type="Node" parent="Movement"]
+script = ExtResource("4_2qh0o")
+rotation_over_lifetime = SubResource("Curve_ok6tv")
+metadata/_custom_type_script = "uid://d3ikpji4y1ipa"
+
+[node name="Events" type="Node" parent="."]
+
+[node name="WallHit" type="Node" parent="Events"]
+
+[node name="TurnAroundEventStrategy" type="Node" parent="Events/WallHit"]
+script = ExtResource("5_pr6ia")
+metadata/_custom_type_script = "uid://c6fcpkn103ijr"

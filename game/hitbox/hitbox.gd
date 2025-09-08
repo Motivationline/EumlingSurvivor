@@ -4,6 +4,8 @@ class_name HitBox
 
 var damage: float
 
+# TODO damage tick rate
+
 signal hit(hurtbox: HurtBox)
 
 @export var attached_to: Enum.HITBOX = Enum.HITBOX.NONE:

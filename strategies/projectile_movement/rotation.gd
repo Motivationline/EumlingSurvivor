@@ -11,6 +11,6 @@ func _setup(_attached_to: Node):
 	start_rotation = (_attached_to as Node3D).rotation_degrees.y
 
 
-func apply_movement(_projectile: Projectile, _lifetime: float):
+func apply_movement(_delta: float , _lifetime: float):
 	var current_rotation = rotation_over_lifetime.sample(_lifetime)
-	_projectile.rotation_degrees.y = current_rotation + start_rotation
+	parent.rotation_degrees.y = current_rotation + start_rotation

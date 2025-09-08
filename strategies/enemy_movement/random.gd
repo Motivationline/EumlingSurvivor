@@ -13,7 +13,7 @@ var nav_agent: NavigationAgent3D
 func _setup(_attached_to: Node):
 	super._setup(_attached_to)
 	nav_agent = NavigationAgent3D.new()
-	node.add_child(nav_agent)
+	add_child(nav_agent)
 	nav_agent.navigation_finished.connect(target_reached)
 	nav_agent.debug_enabled = debug_show_path
 	find_new_target()
@@ -21,7 +21,7 @@ func _setup(_attached_to: Node):
 func get_movement_direction(old_direction: Vector3) -> Vector3:
 	if (nav_agent.is_navigation_finished()): return old_direction
 	var destination = nav_agent.get_next_path_position()
-	var local_destination = destination - node.global_position
+	var local_destination = destination - parent.global_position
 	var direction = local_destination.normalized()
 	return old_direction + direction * speed
 
@@ -33,5 +33,5 @@ func find_new_target():
 	#print(random_position)
 
 func target_reached():
-	await node.get_tree().create_timer(wait_time).timeout
+	await get_tree().create_timer(wait_time).timeout
 	find_new_target()
