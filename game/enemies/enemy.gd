@@ -15,8 +15,8 @@ class_name Enemy
 @export var hitbox: HitBox
 @export var hurtbox: HurtBox
 
-@export_category("Extended Functionality")
-@export var movement: Array[EnemyMovementStrategy]
+@export_category("Behavior")
+@export var state_machine: StateMachine
 # @export var upgrades: Array[UpgradeStrategy]
 
 @export_category("Event Listeners")
@@ -32,7 +32,8 @@ func _ready() -> void:
 	if (hitbox): hitbox.hit.connect(_hit)
 	if (hurtbox): hurtbox.hurt_by.connect(_hurt_by)
 
-	Strategy._setup_array(movement, self)
+	if (state_machine): state_machine.setup(self)
+
 	Strategy._setup_array(on_death, self)
 	Strategy._setup_array(on_hit, self)
 	Strategy._setup_array(on_hurt, self)
@@ -45,9 +46,8 @@ func _hit(_attacker: HurtBox):
 func _hurt_by(_attackee: HitBox):
 	pass
 
-func _physics_process(_delta: float) -> void:
-	var direction := Vector3.ZERO
-	for mov in movement:
-		direction = mov.get_movement_direction(direction)
-	velocity = direction
-	move_and_slide()
+func _process(delta: float) -> void:
+	if (state_machine): state_machine.process(delta)
+
+func _physics_process(delta: float) -> void:
+	if (state_machine): state_machine.physics_process(delta)
