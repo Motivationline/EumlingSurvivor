@@ -1,5 +1,6 @@
 extends EventStrategy
 class_name TurnAroundEventStrategy
 
-func execute():
-	parent.rotate_y(PI)
+func execute(_collision: KinematicCollision3D):
+	#parent.rotate_y(PI)
+	pass

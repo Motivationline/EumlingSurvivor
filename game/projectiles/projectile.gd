@@ -71,18 +71,16 @@ func _physics_process(delta: float) -> void:
 	var collision: KinematicCollision3D = move_and_collide(velocity)
 	if (collision):
 		for coll in on_world_collision:
-			coll.execute()
+			coll.execute(collision)
 
 
 func _end_of_lifetime():
 	for strat in on_end_of_life:
-		await strat.execute()
+		await strat.execute(null)
 
 func _hit_box_hit(_area):
 	for ev in on_hit:
-		ev.execute()
+		ev.execute(_area)
 func _hurt_box_hurt(_area):
 	for ev in on_hurt:
-		ev.execute()
-
-# TODO: by default, fly through everything
+		ev.execute(_area)
