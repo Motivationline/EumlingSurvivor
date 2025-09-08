@@ -40,7 +40,9 @@ func find_new_target():
 	random_position.z = randf_range(-10, 10)
 	nav_agent.target_position = random_position
 	done = false
+	nav_agent.debug_enabled = debug_show_path
 
 func target_reached():
+	nav_agent.debug_enabled = false
 	await get_tree().create_timer(wait_time).timeout
 	done = true

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://qg612spvu7xn"]
+[gd_scene load_steps=10 format=3 uid="uid://qg612spvu7xn"]
 
 [ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_1kd2t"]
 [ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="2_b4nw2"]
 [ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="4_rkgy4"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="5_hr1xj"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="5_rkgy4"]
+[ext_resource type="Script" uid="uid://b0ivg6djt5ima" path="res://state_machine/enemy/wait_for_entity_distance.gd" id="6_hr1xj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b4nw2"]
 radius = 0.25
@@ -46,12 +47,18 @@ shape = SubResource("CapsuleShape3D_b4nw2")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_rkgy4")
-initial_state = NodePath("MoveRandomOnNavMeshState")
+initial_state = NodePath("WaitForEntityToBeAtDistanceState")
 metadata/_custom_type_script = "uid://cio21hucnk80k"
 
 [node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_hr1xj")
 speed = 5.0
 debug_show_path = true
-next_state = NodePath(".")
+next_state = NodePath("../WaitForEntityToBeAtDistanceState")
+repeat_self = 2
 metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="WaitForEntityToBeAtDistanceState" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_hr1xj")
+min_distance = 0.1
+next_state = NodePath("../MoveRandomOnNavMeshState")
