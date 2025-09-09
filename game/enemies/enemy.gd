@@ -40,11 +40,11 @@ func _ready() -> void:
 
 	add_to_group("Enemy")
 
-func _hit(_attacker: HurtBox):
+func _hit(_attackee: HurtBox):
 	pass
 
-func _hurt_by(_attackee: HitBox):
-	pass
+func _hurt_by(_attacker: HitBox):
+	health -= _attacker.damage
 
 func _process(delta: float) -> void:
 	if (state_machine): state_machine.process(delta)
