@@ -20,32 +20,36 @@ signal spawn_finished
 @export var time_between_bursts: float = 0
 @export var amount_of_bursts: int = 1
 
-func spawn(_parent: Node3D):
+func spawn(_relative_to: Node3D, _as_child_of: Node3D):
 	for b in amount_of_bursts:
 		if (b != 0 && time_between_bursts > 0):
 			await get_tree().create_timer(time_between_bursts).timeout
-		await burst(_parent)
+		await burst(_relative_to, _as_child_of)
 	
 	spawn_finished.emit()
 
-func burst(_parent: Node3D):
+func burst(_relative_to: Node3D, _as_child_of: Node3D):
 	for i in amount_of_spawns:
 		if (i != 0 && time_between_entities > 0):
 			await get_tree().create_timer(time_between_entities).timeout
-		spawn_entity(_parent, i, amount_of_spawns)
+		spawn_entity(_relative_to, _as_child_of, i, amount_of_spawns)
 	burst_finished.emit()
 
-func spawn_entity(_parent: Node3D, _current: int, _total: int):
+func spawn_entity(_relative_to: Node3D, _as_child_of: Node3D, _current: int, _total: int):
 		var instance = entity_to_spawn.instantiate() as Node3D
-		_parent.add_child(instance)
+		_as_child_of.add_child(instance)
 		
-		instance.global_position = global_position
-		instance.rotation = target_strategy.get_target_direction(self) if (target_strategy) else global_rotation
+		instance.global_position = _relative_to.global_position
+		instance.rotation = _relative_to.global_rotation
+		if (target_strategy): 
+			var target_position = target_strategy.get_target_position(_relative_to)
+			target_position.y = _relative_to.global_position.y
+			instance.look_at(target_position)
 		if (rotation_strategy): rotation_strategy.apply_rotation(instance, _current, _total)
 
 		instance.translate(Vector3.FORWARD * offset_distance)
 
 		if (instance is Projectile):
 			instance.setup(
-				target_strategy.get_target_position(self) if (target_strategy) else global_position + basis.z
+				target_strategy.get_target_position(_relative_to) if (target_strategy) else _relative_to.global_position + basis.z
 			)
