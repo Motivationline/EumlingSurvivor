@@ -25,6 +25,7 @@ class_name Enemy
 @export var on_hurt: Array[EventStrategy]
 
 var max_health: float
+var reset_timer: Timer # TODO this is for testing purposes, remove this
 
 func _ready() -> void:
 	max_health = health
@@ -40,14 +41,22 @@ func _ready() -> void:
 
 	add_to_group("Enemy")
 
+	reset_timer = Timer.new()
+	add_child(reset_timer)
+	reset_timer.timeout.connect(reset_health)
+
 func _hit(_attackee: HurtBox):
 	pass
 
 func _hurt_by(_attacker: HitBox):
 	health -= _attacker.damage
+	reset_timer.start(3)
 
 func _process(delta: float) -> void:
 	if (state_machine): state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
 	if (state_machine): state_machine.physics_process(delta)
+
+func reset_health():
+	health = max_health
