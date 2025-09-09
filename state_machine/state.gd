@@ -17,21 +17,27 @@ var current_iteration: int = 0
 
 var parent: CharacterBody3D
 
+## Called once when the state machine is first initialized 
 func setup(_parent: CharacterBody3D) -> void:
 	parent = _parent
 
+## Called every time the state is set to be the active state
 func enter() -> void:
 	pass
 
+## Called every time the state is no longer the active state
 func exit() -> void:
 	pass
 
+## While active, this is called with the parents regular _process() function
 func process(_delta: float) -> State:
 	return null
 
+## While active, this is called with the parents regular _physics_process() function
 func physics_process(_delta: float) -> State:
 	return null
 
+## Returns the next state, taking [repeat_self] into account
 func return_next() -> State:
 	current_iteration += 1
 	if (current_iteration >= repeat_self):
