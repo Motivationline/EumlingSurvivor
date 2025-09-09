@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=9 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
+[ext_resource type="PackedScene" uid="uid://ct6208g338yln" path="res://game/projectiles/example_bullet/example_bullet.tscn" id="4_a4w0n"]
+[ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="5_5fytw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.25
@@ -11,10 +14,17 @@ height = 1.0
 radius = 0.25
 height = 1.0
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
+[sub_resource type="Resource" id="Resource_4ste8"]
+script = ExtResource("5_5fytw")
+max_negative = -45.0
+max_positive = 45.0
+metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("spawner") groups=["Player"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_b2mth")
+spawner = NodePath("EntitySpawner")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -37,3 +47,12 @@ collision_mask = 32
 shape = SubResource("CapsuleShape3D_wv0h6")
 
 [node name="Eumling_Survivor" parent="." instance=ExtResource("1_wv0h6")]
+
+[node name="EntitySpawner" type="Node3D" parent="."]
+script = ExtResource("3_a4w0n")
+entity_to_spawn = ExtResource("4_a4w0n")
+amount_of_spawns = 20
+time_between_entities = 1.0
+offset_distance = 0.1
+rotation_strategy = SubResource("Resource_4ste8")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"

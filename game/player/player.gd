@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var speed := 5.0
 const BULLET = preload("res://game/projectiles/example_bullet/example_bullet.tscn")
+@export var spawner: EntitySpawner
 
 func _ready() -> void:
 	add_to_group("Player")
@@ -22,6 +23,7 @@ func _input(event: InputEvent) -> void:
 		spawn_bullet()
 
 func spawn_bullet():
-	var instance = BULLET.instantiate()
-	get_parent().add_child(instance)
-	instance.setup(Enum.GROUP.PLAYER, global_position, global_rotation, global_position + basis.z * -5)
+	# var instance = BULLET.instantiate()
+	# get_parent().add_child(instance)
+	# instance.setup(Enum.GROUP.PLAYER, global_position, global_rotation, global_position + basis.z * -5)
+	spawner.spawn(get_parent())

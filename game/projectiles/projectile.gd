@@ -29,27 +29,13 @@ class_name Projectile
 var current_lifetime: float = 0
 var target_position: Vector3
 
-func setup(_owner: Enum.GROUP, pos: Vector3, rot: Vector3, target_pos: Vector3, _upgrades: Array[UpgradeStrategy] = []):
+func setup(target_pos: Vector3, _upgrades: Array[UpgradeStrategy] = []):
 	target_position = target_pos
 	if (hit_box):
 		hit_box.damage = damage
 		hit_box.hit.connect(_hit_box_hit)
-		if (_owner == Enum.GROUP.PLAYER):
-			hit_box.can_hit = Enum.HURTBOX.ENEMY
-			hit_box.attached_to = Enum.HITBOX.PLAYER
-		elif (_owner == Enum.GROUP.ENEMY):
-			hit_box.can_hit = Enum.HURTBOX.PLAYER
-			hit_box.attached_to = Enum.HITBOX.ENEMY
 	if (hurt_box):
 		hurt_box.hurt_by.connect(_hurt_box_hurt)
-		if (_owner == Enum.GROUP.PLAYER):
-			hurt_box.attached_to = Enum.HURTBOX.PLAYER
-			hurt_box.can_be_hit_by = Enum.HITBOX.ENEMY
-		elif (_owner == Enum.GROUP.ENEMY):
-			hurt_box.attached_to = Enum.HURTBOX.ENEMY
-			hurt_box.can_be_hit_by = Enum.HITBOX.PLAYER
-	global_position = pos
-	global_rotation = rot
 
 	Strategy._setup_array(movement, self)
 	Strategy._setup_array(on_world_collision, self)

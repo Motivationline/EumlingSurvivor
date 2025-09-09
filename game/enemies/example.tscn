@@ -60,5 +60,6 @@ metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 
 [node name="WaitForEntityToBeAtDistanceState" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_hr1xj")
-min_distance = 0.1
+max_distance = 2.0
+group = "Player"
 next_state = NodePath("../MoveRandomOnNavMeshState")
