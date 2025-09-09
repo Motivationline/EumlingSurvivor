@@ -1,12 +1,13 @@
-[gd_scene load_steps=56 format=3 uid="uid://dfq06fb00g8c6"]
+[gd_scene load_steps=57 format=3 uid="uid://dfq06fb00g8c6"]
 
 [ext_resource type="ArrayMesh" uid="uid://cjqlj2x4koa3e" path="res://assets/models/grass/grass.res" id="1_3o88o"]
+[ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog.tscn" id="1_7toyi"]
 [ext_resource type="Material" uid="uid://bsdu16dwj28sf" path="res://assets/models/grass/grass.tres" id="1_a1kad"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="2_a1kad"]
 [ext_resource type="PackedScene" uid="uid://bov1hcmo0on0h" path="res://game/vfx/firehit/fire_hit.tscn" id="3_w1uii"]
 [ext_resource type="Texture2D" uid="uid://bdd38btcwm48u" path="res://assets/vfx/social/garlic.png" id="5_8i1lo"]
 [ext_resource type="Texture2D" uid="uid://dswk8y7pooxop" path="res://assets/vfx/social/garlic_ring.png" id="6_tlppe"]
-[ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/Player.tscn" id="7_a1kad"]
+[ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/player.tscn" id="7_a1kad"]
 [ext_resource type="Texture2D" uid="uid://cueqfe6sxlfwf" path="res://assets/vfx/social/bla.png" id="7_tlppe"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="8_8i1lo"]
 [ext_resource type="Texture2D" uid="uid://b3rjj1bmqtiok" path="res://addons/versatile-mobile-joystick/default_textures/BaseJoystickTest.png" id="9_tlppe"]
@@ -19,7 +20,7 @@
 background_mode = 1
 background_color = Color(0.2772, 0.67144, 0.77, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.424135, 0.803699, 0.903677, 1)
+ambient_light_color = Color(0.774, 0.8727, 0.9, 1)
 tonemap_mode = 4
 glow_enabled = true
 glow_blend_mode = 1
@@ -258,11 +259,14 @@ point_count = 2
 [node name="GlobalLights" type="Node3D" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="GlobalLights"]
-transform = Transform3D(0.820511, -0.488843, -0.296299, 0, -0.518341, 0.855174, -0.57163, -0.70168, -0.425305, -5.2903, 7.71908, -5.02786)
+transform = Transform3D(0.802373, -0.579826, 0.141416, 0.0617642, 0.316347, 0.946631, -0.593617, -0.750817, 0.289641, -5.2903, 7.71908, -5.02786)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="GlobalLights"]
 environment = SubResource("Environment_yobsg")
+
+[node name="cactushog" parent="GlobalLights" instance=ExtResource("1_7toyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11882, 0, 2.28621)
 
 [node name="Room" type="Node3D" parent="."]
 

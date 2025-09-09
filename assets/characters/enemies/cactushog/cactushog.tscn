@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://el7nans1vkam"]
+
+[ext_resource type="PackedScene" uid="uid://b6s55jlxw1j4x" path="res://assets/characters/enemies/cactushog/cactushog.glb" id="1_skip5"]
+
+[node name="cactushog" instance=ExtResource("1_skip5")]
+
+[node name="Skeleton3D" parent="HogAramture" index="0"]
+bones/1/position = Vector3(0, -1.49012e-08, -5.29396e-23)
+bones/2/rotation = Quaternion(0.707107, 0, 0, 0.707107)
+bones/3/position = Vector3(3.20539e-24, 1.49012e-08, 0.484384)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "idle_hog"

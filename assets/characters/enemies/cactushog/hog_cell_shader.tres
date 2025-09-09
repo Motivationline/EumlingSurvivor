@@ -1,0 +1,38 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://83vywe1d4268"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_vhibj"]
+[ext_resource type="Texture2D" uid="uid://dbrhvyvo6kah" path="res://assets/characters/enemies/cactushog/cactushog_Hog_Base_color.png" id="2_vhibj"]
+
+[sub_resource type="Gradient" id="Gradient_y1yp5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.517084)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_quy0k"]
+gradient = SubResource("Gradient_y1yp5")
+
+[sub_resource type="Gradient" id="Gradient_v3mi3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.738359)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y2dqo"]
+gradient = SubResource("Gradient_v3mi3")
+
+[sub_resource type="Gradient" id="Gradient_dfift"]
+interpolation_mode = 1
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y4su3"]
+gradient = SubResource("Gradient_dfift")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vhibj")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_vhibj")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_quy0k")
+shader_parameter/specular_ramp = SubResource("GradientTexture1D_y4su3")
+shader_parameter/specular_focus = 0.5
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_y2dqo")
+shader_parameter/rim_focus = 0.397
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true
