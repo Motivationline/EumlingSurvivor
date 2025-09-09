@@ -13,8 +13,8 @@ signal spawn_finished
 @export var offset_distance: float = 0
 
 @export_category("Targeting")
-@export var rotation_strategy: RotationStrategy
 @export var target_strategy: TargetStrategy
+@export var rotation_strategy: RotationStrategy
 
 @export_category("Multi Burst")
 @export var time_between_bursts: float = 0
