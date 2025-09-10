@@ -8,6 +8,8 @@ class_name Enemy
 	set(new_value):
 		health = new_value
 		if (healthbar): healthbar.health = health
+		if (health <= 0 && !cannot_die):
+			queue_free()
 		# TODO: add damage number popup
 
 ## How fast this entity moves when it moves
@@ -27,8 +29,12 @@ class_name Enemy
 @export var on_hit: Array[EventStrategy]
 @export var on_hurt: Array[EventStrategy]
 
+@export_category("Debug Stuff")
+@export var cannot_die: bool = false
+@export var heal_back_to_full: bool = false
+
 var max_health: float
-var reset_timer: Timer # TODO this is for testing purposes, remove this
+var reset_timer: Timer
 
 func _ready() -> void:
 	max_health = health
@@ -53,7 +59,7 @@ func _hit(_attackee: HurtBox):
 
 func _hurt_by(_attacker: HitBox):
 	health -= _attacker.damage
-	reset_timer.start(3)
+	if (heal_back_to_full): reset_timer.start(3)
 
 func _process(delta: float) -> void:
 	if (state_machine): state_machine.process(delta)
@@ -62,4 +68,5 @@ func _physics_process(delta: float) -> void:
 	if (state_machine): state_machine.physics_process(delta)
 
 func reset_health():
-	health = max_health
+	if (heal_back_to_full):
+		health = max_health
