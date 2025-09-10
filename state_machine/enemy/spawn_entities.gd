@@ -19,7 +19,8 @@ var spawner: EntitySpawner
 var done: bool = false
 
 func _ready() -> void:
-	child_order_changed.connect(_find_child)
+	if (Engine.is_editor_hint()):
+		child_order_changed.connect(_find_child)
 
 func _find_child():
 	spawner = null

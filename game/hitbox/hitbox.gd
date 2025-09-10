@@ -41,17 +41,20 @@ func _get_configuration_warnings() -> PackedStringArray:
 var overlapping: Array = []
 
 func _on_area_entered(area: Area3D) -> void:
+	if (Engine.is_editor_hint()): return
 	if (area is HurtBox):
 		if (overlapping.find(func (_obj): return _obj.area == area) < 0):
 			overlapping.append({area = area, counter = 1, cooldown = -1.0})
 
 func _on_area_exited(area: Area3D) -> void:
+	if (Engine.is_editor_hint()): return
 	if (area is HurtBox):
 		var index = overlapping.find_custom(func (_obj): return _obj.area == area)
 		overlapping.remove_at(index)
 
 
 func _physics_process(delta: float) -> void:
+	if (Engine.is_editor_hint()): return
 	for obj in overlapping:
 		if (individual_hit_limit > 0 && obj.counter >= individual_hit_limit):
 			continue

@@ -23,7 +23,8 @@ func setup(_parent: CharacterBody3D):
 	switch_to_state(initial_state)
 
 func _ready():
-	child_order_changed.connect(update_configuration_warnings)
+	if (Engine.is_editor_hint()):
+		child_order_changed.connect(update_configuration_warnings)
 
 func process(delta: float):
 	if (current_state): switch_to_state(current_state.process(delta))

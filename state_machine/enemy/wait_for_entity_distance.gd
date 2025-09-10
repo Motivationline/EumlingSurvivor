@@ -27,6 +27,7 @@ var min_squared: float
 var max_squared: float
 
 func _ready() -> void:
+	if (Engine.is_editor_hint()): return
 	min_squared = min_distance * min_distance
 	max_squared = max_distance * max_distance
 
