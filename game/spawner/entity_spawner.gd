@@ -8,8 +8,8 @@ signal spawn_finished
 
 @export_category("Burst")
 @export var entity_to_spawn: PackedScene
-@export_range(0,100) var amount_of_spawns: int = 1
-@export_range(0,60,0.1) var time_between_entities: float = 0
+@export_range(0, 100) var amount_of_spawns: int = 1
+@export_range(0, 60, 0.1) var time_between_entities: float = 0
 @export var offset_distance: float = 0
 
 @export_category("Targeting")
@@ -17,8 +17,8 @@ signal spawn_finished
 @export var rotation_strategy: RotationStrategy
 
 @export_category("Multi Burst")
-@export_range(0,60,0.1) var time_between_bursts: float = 0
-@export_range(0,100) var amount_of_bursts: int = 1
+@export_range(0, 60, 0.1) var time_between_bursts: float = 0
+@export_range(0, 100) var amount_of_bursts: int = 1
 
 func spawn(_relative_to: Node3D, _as_child_of: Node3D):
 	for b in amount_of_bursts:
@@ -36,20 +36,23 @@ func burst(_relative_to: Node3D, _as_child_of: Node3D):
 	burst_finished.emit()
 
 func spawn_entity(_relative_to: Node3D, _as_child_of: Node3D, _current: int, _total: int):
-		var instance = entity_to_spawn.instantiate() as Node3D
-		_as_child_of.add_child(instance)
-		
-		instance.global_position = _relative_to.global_position
-		instance.rotation = _relative_to.global_rotation
-		if (target_strategy): 
-			var target_position = target_strategy.get_target_position(_relative_to)
-			target_position.y = _relative_to.global_position.y
-			instance.look_at(target_position)
-		if (rotation_strategy): rotation_strategy.apply_rotation(instance, _current, _total)
+	if (!entity_to_spawn):
+		printerr("%s attached to %s tried to spawn nothing" % [name, _relative_to.name])
+		return
+	var instance = entity_to_spawn.instantiate() as Node3D
+	_as_child_of.add_child(instance)
+	
+	instance.global_position = _relative_to.global_position
+	instance.rotation = _relative_to.global_rotation
+	if (target_strategy):
+		var target_position = target_strategy.get_target_position(_relative_to)
+		target_position.y = _relative_to.global_position.y
+		instance.look_at(target_position)
+	if (rotation_strategy): rotation_strategy.apply_rotation(instance, _current, _total)
 
-		instance.translate(Vector3.FORWARD * offset_distance)
+	instance.translate(Vector3.FORWARD * offset_distance)
 
-		if (instance is Projectile):
-			instance.setup(
-				target_strategy.get_target_position(_relative_to) if (target_strategy) else _relative_to.global_position + basis.z
-			)
+	if (instance is Projectile):
+		instance.setup(
+			target_strategy.get_target_position(_relative_to) if (target_strategy) else _relative_to.global_position + basis.z
+		)
