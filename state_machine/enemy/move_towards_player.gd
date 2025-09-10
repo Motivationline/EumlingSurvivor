@@ -10,6 +10,8 @@ class_name MoveTowardsPlayerState
 @export var wait_time: float = 1
 ## distance to the Player where this State ends
 @export var stop_distance: float = 100
+## amount to rotate when directions change
+@export_range(0.0,20.0,0.1) var rotation_speed: float = 5
 
 @export_group("Overrides")
 ## Movement Speed Override
@@ -48,12 +50,13 @@ func physics_process(_delta: float) -> State:
 	
 	update_target_location()
 	
-	parent.look_at(nav_agent.get_next_path_position())
+	#parent.look_at(nav_agent.get_next_path_position())
 	var destination = nav_agent.get_next_path_position()
 	var local_destination = destination - parent.global_position
 	var direction = local_destination.normalized()
 	var speed = speed_override if (speed_override_active) else parent.speed
 	parent.velocity = direction * speed
+	parent.rotation.y = lerp_angle(parent.rotation.y,atan2(-parent.velocity.x,-parent.velocity.z),_delta* rotation_speed)
 	
 	parent.move_and_slide()
 	#check if the player is closer than stopping distance
