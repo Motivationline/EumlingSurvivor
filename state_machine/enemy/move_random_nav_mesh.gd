@@ -7,15 +7,19 @@ class_name MoveRandomOnNavMeshState
 
 # TODO: add controls over where we're going, e.g. values or an area or something
 
-## How fast to move
-@export var speed: float = 1:
-	set(new_value):
-		speed = max(new_value, 0)
-		update_configuration_warnings()
 ## How long to wait [b]after[/b] reaching the target location before proceeding to the next state 
 @export var wait_time: float = 1:
 	set(new_value):
 		wait_time = max(new_value, 0)
+
+@export_group("Overrides")
+## Movement Speed Override
+@export_range(0, 100, 0.1) var speed_override: float = 1:
+	set(new_value):
+		speed_override = max(new_value, 0)
+		update_configuration_warnings()
+# Whether to apply the speed override
+@export var speed_override_active: bool = false
 
 @export_group("Debug")
 ## Show the paths during gameplay
@@ -24,7 +28,7 @@ class_name MoveRandomOnNavMeshState
 var nav_agent: NavigationAgent3D
 var done: bool = false
 
-func setup(_parent: Node):
+func setup(_parent: Enemy):
 	super (_parent)
 	nav_agent = NavigationAgent3D.new()
 	parent.add_child(nav_agent)
@@ -40,6 +44,7 @@ func physics_process(_delta: float) -> State:
 	var destination = nav_agent.get_next_path_position()
 	var local_destination = destination - parent.global_position
 	var direction = local_destination.normalized()
+	var speed = speed_override if (speed_override_active) else parent.speed
 	parent.velocity = direction * speed
 
 	parent.move_and_slide()
@@ -64,5 +69,5 @@ func target_reached():
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := super ()
-	if (speed == 0): warnings.insert(0, "Using a speed of 0 means this node will never reach its target.")
+	if (speed_override == 0): warnings.insert(0, "Using a speed of 0 means this node will never reach its target.")
 	return warnings

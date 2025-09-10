@@ -10,6 +10,9 @@ class_name Enemy
 		if (healthbar): healthbar.health = health
 		# TODO: add damage number popup
 
+## How fast this entity moves when it moves
+@export_range(0, 100, 0.1) var speed: float = 1
+
 @export_category("Base Functionality")
 @export var healthbar: Healthbar3D
 @export var hitbox: HitBox

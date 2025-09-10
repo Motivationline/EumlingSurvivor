@@ -18,10 +18,10 @@ class_name State
 		update_configuration_warnings()
 var current_iteration: int = 0
 
-var parent: CharacterBody3D
+var parent: Enemy
 
 ## Called once when the state machine is first initialized 
-func setup(_parent: CharacterBody3D) -> void:
+func setup(_parent: Enemy) -> void:
 	parent = _parent
 
 ## Called every time the state is set to be the active state
