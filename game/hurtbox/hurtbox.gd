@@ -2,6 +2,8 @@
 extends Area3D
 class_name HurtBox
 
+# TODO: add invul frames?
+
 signal hurt_by(hitbox: HitBox)
 
 @export var attached_to: Enum.HURTBOX = Enum.HURTBOX.NONE:
@@ -29,6 +31,5 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 
-func _on_area_entered(area: Area3D) -> void:
-	if (area is HitBox):
-		hurt_by.emit(area)
+func hurt(by: HitBox) -> void:
+	hurt_by.emit(by)

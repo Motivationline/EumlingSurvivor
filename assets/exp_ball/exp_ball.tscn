@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://daovrergayaq6"]
+
+[ext_resource type="Material" uid="uid://cxcvfxl03vw6o" path="res://assets/exp_ball/cell_sahder_exp_ball.tres" id="1_5qn5w"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_4feva"]
+radius = 0.05
+height = 0.1
+
+[node name="Exp Ball" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0513931, 0)
+mesh = SubResource("SphereMesh_4feva")
+surface_material_override/0 = ExtResource("1_5qn5w")

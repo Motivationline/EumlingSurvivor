@@ -1,19 +1,23 @@
 @tool
 extends State
+
+## Detects an entity of a configurable group in a set radius. 
+##
+## Ends when the Entity is in the desired distance.
 class_name WaitForEntityToBeAtDistanceState
 
-## How [b]close[/b] does the entity need to be at least before it's considered detected?
+## How far does the entity need to be at least before it's [b]considered detected[/b]?
 @export var min_distance: float = 0:
 	set(new_value):
 		min_distance = new_value
 		update_configuration_warnings()
-## How [b]far[/b] does the entity need to be before it's considered not detected?
+## How far does the entity need to be before it's [b]considered not detected[/b]?
 @export var max_distance: float = 0:
 	set(new_value):
 		max_distance = new_value
 		update_configuration_warnings()
 
-## Should be either "Enemy" or "Player"
+## Which group of entities to check for. Can be either "Enemy" or "Player"
 @export_enum("Enemy", "Player") var group: String:
 	set(new_value):
 		group = new_value

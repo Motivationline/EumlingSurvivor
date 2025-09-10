@@ -46,6 +46,10 @@ material_override = SubResource("StandardMaterial3D_ja52y")
 size = Vector3(0.1, 0.5, 0.5)
 
 [node name="Hitbox" parent="." instance=ExtResource("5_ok6tv")]
+collision_mask = 64
+individual_hit_limit = 0
+damage_cooldown = 0.5
+can_hit = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("BoxShape3D_j1spr")
