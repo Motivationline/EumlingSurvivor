@@ -1,26 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=7 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
 [ext_resource type="PackedScene" uid="uid://ct6208g338yln" path="res://game/projectiles/example_bullet/example_bullet.tscn" id="4_a4w0n"]
-[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="5_4ste8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
-[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_anr75"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.25
 height = 1.0
-
-[sub_resource type="Resource" id="Resource_epvkq"]
-script = ExtResource("5_4ste8")
-mode = "global"
-direction = Vector3(0, 0, 1)
-metadata/_custom_type_script = "uid://yd5ytc70xwp6"
-
-[sub_resource type="Resource" id="Resource_anr75"]
-script = ExtResource("6_anr75")
-metadata/_custom_type_script = "uid://pv70hoylokg6"
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("spawner") groups=["Player"]]
 collision_layer = 2
@@ -39,8 +27,6 @@ script = ExtResource("3_a4w0n")
 entity_to_spawn = ExtResource("4_a4w0n")
 amount_of_spawns = 4
 offset_distance = 0.1
-target_strategy = SubResource("Resource_epvkq")
-rotation_strategy = SubResource("Resource_anr75")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Hurtbox" parent="." instance=ExtResource("6_4ste8")]

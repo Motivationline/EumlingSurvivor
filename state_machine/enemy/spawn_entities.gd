@@ -5,7 +5,9 @@ extends State
 ## Ends when the Spawner finished spawning all Bursts.
 class_name SpawnEntitiesState
 
+## How long to wait before starting the spawner
 @export var start_delay: float
+## How long to wait after the spawner was finished to proceed to the next state
 @export var end_delay: float
 
 func _get_configuration_warnings() -> PackedStringArray:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://htuftvnpan0c"]
 
-[ext_resource type="PackedScene" uid="uid://qg612spvu7xn" path="res://game/enemies/example.tscn" id="1_fnkxu"]
+[ext_resource type="PackedScene" uid="uid://hfymkokrjnpv" path="res://game/enemies/example_enemy.tscn" id="1_fnkxu"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0s0fg"]
 vertices = PackedVector3Array(-9.5, 0.5, -3.75, -5, 0.5, -3.75, -4.75, 0.5, -5, -2.75, 0.5, -5, -2.75, 0.5, -9.5, -9.5, 0.5, -9.5, 3.25, 0.5, -5, 3.25, 0.5, -9.5, 5.25, 0.5, -5, 5.5, 0.5, -3.75, 9.5, 0.5, -3.75, 9.5, 0.5, -9.5, -1, 0.5, -0.75, 0.25, 0.5, -1, 0.25, 0.5, -2.75, -4.75, 0.5, -2.75, 0, 0.5, 3.5, 0, 0.5, 1.25, -1, 0.5, 1, -4.75, 0.5, 3.5, -9.5, 0.5, 4.5, -5, 0.5, 4.5, 1.25, 0.5, -0.75, 5.25, 0.5, -2.75, 1.25, 0.5, 0.75, 5.25, 0.5, 3.5, 5.5, 0.5, 4.5, 9.5, 0.5, 4.5, -3.5, 0.5, 9.5, -3.25, 0.5, 5.75, -4.75, 0.5, 5.75, -9.5, 0.5, 9.5, 5.25, 0.5, 5.75, 3.75, 0.5, 5.75, 4, 0.5, 9.5, 9.5, 0.5, 9.5)
@@ -46,5 +46,5 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20,
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.713593, 0.700561, 0, -0.700561, 0.713593, 0, 4.44658, 0)
 
-[node name="Enemy" parent="." instance=ExtResource("1_fnkxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.77407, 0.505035, 0)
+[node name="BaseEnemy" parent="." instance=ExtResource("1_fnkxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 0)

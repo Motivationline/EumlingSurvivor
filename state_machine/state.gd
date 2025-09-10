@@ -1,4 +1,5 @@
 @tool
+@icon("state.svg")
 extends Node
 
 ## [color=red]Do not add to your scene![/color] This is the base class for States and does nothing by itself.
@@ -10,10 +11,10 @@ class_name State
 		next_state = new_value
 		update_configuration_warnings()
 
-## How often should this state run before it activates the Next State
+## How often should this state run before it activates the [member State.next_state]. Might be ignored if not applicable. Must be 1 or above.
 @export var repeat_self: int = 1:
 	set(new_value):
-		repeat_self = new_value
+		repeat_self = max(new_value, 1)
 		update_configuration_warnings()
 var current_iteration: int = 0
 
@@ -51,4 +52,5 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
 	if (!next_state): warnings.append("Needs a Next State")
 	if (repeat_self <= 0): warnings.append("Repeat self must be 1 or above")
+	if (next_state == self): warnings.append("The next state has been set to this node, which will lead to an infinite loop of this state.\nThis is supported, so all good if it's intended.")
 	return warnings
