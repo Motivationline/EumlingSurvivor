@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5hdpq54o462t"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_c2tdt"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_xfdg2"]
+[ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="5_leyq8"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_0es7d"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_g5j0o"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aprxc"]
+radius = 0.271826
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3m8wi"]
+radius = 0.211186
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bht06"]
+radius = 0.294908
+height = 0.782061
+
+[node name="CactusHog" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_c2tdt")]
+health = 5.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+
+[node name="Healthbar3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.841265, 0.225484)
+hide_when_full_after = 0.5
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveTowardsPlayer")
+
+[node name="MoveTowardsPlayer" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_xfdg2")
+wait_time = 0.0
+stop_distance = -0.1
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="cactushog" parent="." index="3" instance=ExtResource("5_leyq8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("6_0es7d")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.257471, -0.0230474)
+shape = SubResource("SphereShape3D_aprxc")
+
+[node name="Hitbox" parent="." index="5" instance=ExtResource("7_g5j0o")]
+collision_layer = 32
+collision_mask = 8
+damage = 1.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.197845, -0.0194751)
+shape = SubResource("SphereShape3D_3m8wi")
+debug_color = Color(0.686648, 0.0638954, 0.198134, 0.42)
+
+[node name="Collider" type="CollisionShape3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.360086, 0)
+shape = SubResource("CapsuleShape3D_bht06")
+debug_color = Color(0.358393, 0.60428, 0.373735, 0.42)

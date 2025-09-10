@@ -1,11 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://htuftvnpan0c"]
+[gd_scene load_steps=7 format=3 uid="uid://htuftvnpan0c"]
+
+[ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="1_fnkxu"]
+[ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0s0fg"]
 vertices = PackedVector3Array(-9.5, 0.5, -3.75, -5, 0.5, -3.75, -4.75, 0.5, -5, -2.75, 0.5, -5, -2.75, 0.5, -9.5, -9.5, 0.5, -9.5, 3.25, 0.5, -5, 3.25, 0.5, -9.5, 5.25, 0.5, -5, 5.5, 0.5, -3.75, 9.5, 0.5, -3.75, 9.5, 0.5, -9.5, -1, 0.5, -0.75, 0.25, 0.5, -1, 0.25, 0.5, -2.75, -4.75, 0.5, -2.75, 0, 0.5, 3.5, 0, 0.5, 1.25, -1, 0.5, 1, -4.75, 0.5, 3.5, -9.5, 0.5, 4.5, -5, 0.5, 4.5, 1.25, 0.5, -0.75, 5.25, 0.5, -2.75, 1.25, 0.5, 0.75, 5.25, 0.5, 3.5, 5.5, 0.5, 4.5, 9.5, 0.5, 4.5, -3.5, 0.5, 9.5, -3.25, 0.5, 5.75, -4.75, 0.5, 5.75, -9.5, 0.5, 9.5, 5.25, 0.5, 5.75, 3.75, 0.5, 5.75, 4, 0.5, 9.5, 9.5, 0.5, 9.5)
 polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(4, 3, 2), PackedInt32Array(0, 5, 2), PackedInt32Array(2, 5, 4), PackedInt32Array(4, 7, 3), PackedInt32Array(3, 7, 6), PackedInt32Array(10, 9, 8), PackedInt32Array(8, 6, 7), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 7), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(0, 1, 15), PackedInt32Array(12, 18, 15), PackedInt32Array(15, 18, 19), PackedInt32Array(15, 19, 20), PackedInt32Array(15, 20, 0), PackedInt32Array(20, 19, 21), PackedInt32Array(13, 14, 22), PackedInt32Array(22, 14, 23), PackedInt32Array(17, 24, 16), PackedInt32Array(16, 24, 25), PackedInt32Array(27, 26, 25), PackedInt32Array(10, 23, 9), PackedInt32Array(22, 23, 24), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 10), PackedInt32Array(25, 10, 27), PackedInt32Array(30, 29, 28), PackedInt32Array(20, 21, 30), PackedInt32Array(20, 30, 31), PackedInt32Array(31, 30, 28), PackedInt32Array(34, 33, 32), PackedInt32Array(32, 26, 27), PackedInt32Array(27, 35, 32), PackedInt32Array(32, 35, 34), PackedInt32Array(29, 33, 28), PackedInt32Array(28, 33, 34)]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j48a7"]
+albedo_color = Color(0, 0.29, 0.0145, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnkxu"]
 albedo_color = Color(0.185273, 0.627928, 0.462023, 1)
+
+[sub_resource type="Environment" id="Environment_j48a7"]
+background_mode = 1
+background_color = Color(0.2772, 0.67144, 0.77, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.774, 0.8727, 0.9, 1)
+tonemap_mode = 4
+glow_enabled = true
+glow_intensity = 0.2
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.51
 
 [node name="001" type="Node3D"]
 
@@ -14,6 +33,7 @@ navigation_mesh = SubResource("NavigationMesh_0s0fg")
 
 [node name="Floor" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_j48a7")
 use_collision = true
 collision_mask = 0
 size = Vector3(20, 1, 20)
@@ -39,7 +59,34 @@ collision_mask = 0
 size = Vector3(9.3125, 1, 1)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.104352, 12.5917, 7.49343)
+fov = 45.0
+script = ExtResource("1_j48a7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.713593, 0.700561, 0, -0.700561, 0.713593, 0, 4.44658, 0)
+
+[node name="CactusHog" parent="." instance=ExtResource("1_fnkxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127601, 0.00175114, -7.78256)
+
+[node name="CactusHog2" parent="." instance=ExtResource("1_fnkxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.78397, 0.00175114, 6.94914)
+
+[node name="CactusHog3" parent="." instance=ExtResource("1_fnkxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.10543, 0.00175114, 6.94106)
+
+[node name="CactusHog4" parent="." instance=ExtResource("1_fnkxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.83088, 0.00175114, -8.11628)
+
+[node name="CactusHog5" parent="." instance=ExtResource("1_fnkxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.51395, 0.00175114, -7.76142)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(0.802373, -0.579826, 0.141416, 0.0617642, 0.316347, 0.946631, -0.593617, -0.750817, 0.289641, -5.2903, 7.71908, -5.02786)
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
+environment = SubResource("Environment_j48a7")

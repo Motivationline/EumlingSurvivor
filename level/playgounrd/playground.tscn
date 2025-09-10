@@ -1,13 +1,13 @@
 [gd_scene load_steps=58 format=3 uid="uid://dfq06fb00g8c6"]
 
 [ext_resource type="ArrayMesh" uid="uid://cjqlj2x4koa3e" path="res://assets/models/grass/grass.res" id="1_3o88o"]
-[ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog.tscn" id="1_7toyi"]
+[ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="1_7toyi"]
 [ext_resource type="Material" uid="uid://bsdu16dwj28sf" path="res://assets/models/grass/grass.tres" id="1_a1kad"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="2_a1kad"]
 [ext_resource type="PackedScene" uid="uid://bov1hcmo0on0h" path="res://game/vfx/firehit/fire_hit.tscn" id="3_w1uii"]
 [ext_resource type="Texture2D" uid="uid://bdd38btcwm48u" path="res://assets/vfx/social/garlic.png" id="5_8i1lo"]
 [ext_resource type="Texture2D" uid="uid://dswk8y7pooxop" path="res://assets/vfx/social/garlic_ring.png" id="6_tlppe"]
-[ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/player.tscn" id="7_a1kad"]
+[ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/Player.tscn" id="7_a1kad"]
 [ext_resource type="Texture2D" uid="uid://cueqfe6sxlfwf" path="res://assets/vfx/social/bla.png" id="7_tlppe"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="8_8i1lo"]
 [ext_resource type="Texture2D" uid="uid://b3rjj1bmqtiok" path="res://addons/versatile-mobile-joystick/default_textures/BaseJoystickTest.png" id="9_tlppe"]
@@ -222,8 +222,8 @@ angular_velocity_max = 79.49
 gravity = Vector3(0, 0, 0)
 damping_min = 0.05
 damping_max = 0.07
-scale_min = 0.3
-scale_max = 0.4
+scale_min = 0.05
+scale_max = 0.1
 scale_curve = SubResource("CurveTexture_xuf8i")
 color = Color(0.257776, 0.585237, 0.746936, 1)
 alpha_curve = SubResource("CurveTexture_tlppe")
@@ -382,15 +382,15 @@ down_movement = "down"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40297, 0.605096, 1.22579)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10.7602, 11.2315)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10.7602, 7.77631)
 current = true
-fov = 25.0
+fov = 45.0
+size = 10.0
 script = ExtResource("12_778i0")
 player = NodePath("../Player")
 
 [node name="momument" parent="." instance=ExtResource("12_xuf8i")]
 transform = Transform3D(2.75102, -0.684987, -2.16933, 0.862519, 3.46401, 2.44388e-08, 2.10506, -0.524148, 2.83501, -1.48205, -0.105666, -0.716049)
-visible = false
 
 [node name="momument2" parent="." instance=ExtResource("12_xuf8i")]
 transform = Transform3D(-2.43717, 0.606841, -2.53678, 0.862519, 3.46401, 3.89583e-08, 2.46162, -0.61293, -2.51158, 1.43476, -0.105667, -1.14954)
@@ -414,4 +414,3 @@ visible = false
 
 [node name="cactushog" parent="." instance=ExtResource("1_7toyi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11882, 0, 2.28621)
-visible = false

@@ -1,0 +1,84 @@
+[gd_scene load_steps=15 format=3 uid="uid://ck0cf6ywrf78g"]
+
+[ext_resource type="Shader" uid="uid://5lep1if814ha" path="res://assets/vfx/projectile_realistic/shader_vfx_realistic.tres" id="1_78vvl"]
+[ext_resource type="ArrayMesh" uid="uid://b3xkjd0m1y6lw" path="res://assets/vfx/hull/hull_mesh.res" id="1_px52a"]
+[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="3_7luxw"]
+[ext_resource type="Texture2D" uid="uid://bu8auxyk3gmp4" path="res://assets/vfx/fireball/flare.png" id="4_ou15j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_78vvl"]
+render_priority = 1
+shader = ExtResource("1_78vvl")
+shader_parameter/Final_Color = Color(1, 0.363667, 0.17, 1)
+shader_parameter/fire_speed = Vector2(2.2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdkhy"]
+render_priority = 0
+shader = ExtResource("3_7luxw")
+shader_parameter/ball_color = Color(1, 0.509333, 0.08, 1)
+shader_parameter/frensel_power = 6.17
+
+[sub_resource type="SphereMesh" id="SphereMesh_cjhj8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6x47f"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("4_ou15j")
+
+[sub_resource type="Gradient" id="Gradient_v0qei"]
+colors = PackedColorArray(2, 2, 1, 1, 1, 0.0333334, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_papi2"]
+gradient = SubResource("Gradient_v0qei")
+
+[sub_resource type="Curve" id="Curve_irtki"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.58519, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v8uex"]
+curve = SubResource("Curve_irtki")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a0p0g"]
+particle_flag_align_y = true
+emission_shape = 2
+emission_sphere_radius = 0.2
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+radial_velocity_min = 0.499978
+radial_velocity_max = 0.999978
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_v8uex")
+color_ramp = SubResource("GradientTexture1D_papi2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_7it6j"]
+size = Vector2(0.1, 0.5)
+
+[node name="vfx_projectile" type="Node3D"]
+
+[node name="Hull" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_78vvl")
+cast_shadow = 0
+mesh = ExtResource("1_px52a")
+
+[node name="Ball" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0.0957722, 0, 0)
+material_override = SubResource("ShaderMaterial_qdkhy")
+mesh = SubResource("SphereMesh_cjhj8")
+
+[node name="smallsparks" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_6x47f")
+amount = 1
+lifetime = 0.2
+explosiveness = 0.1
+process_material = SubResource("ParticleProcessMaterial_a0p0g")
+draw_pass_1 = SubResource("QuadMesh_7it6j")
