@@ -25,14 +25,14 @@ func init_health(_health: float):
 func _set_health(value: float):
 	var prev_health = health
 	health = value
-	health_bar.value = health
+	if (health_bar): health_bar.value = health
 	
 	if (health > prev_health):
-		damage_bar.value = health
+		if (damage_bar): damage_bar.value = health
 	else:
 		timer.start()
 	
-	if (health_bar.max_value == health && hide_when_full_after >= 0):
+	if (health_bar && health_bar.max_value == health && hide_when_full_after >= 0):
 		await get_tree().create_timer(hide_when_full_after).timeout
 		if (health_bar.max_value == health && hide_when_full_after >= 0):
 			visible = false
