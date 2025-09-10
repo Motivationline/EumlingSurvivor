@@ -12,6 +12,8 @@ class_name MoveTowardsPlayer
 @export var wait_time: float = 1
 ## distance to the Player where this State ends
 @export var stop_distance: float = 100
+#
+var proximity: float = 0.1
 
 @export_category("Debug")
 @export var debug_show_path: bool
@@ -22,6 +24,7 @@ var player: CharacterBody3D
 
 func setup(_parent: Node):
 	super (_parent)
+	parent = _parent
 	nav_agent = NavigationAgent3D.new()
 	parent.add_child(nav_agent)
 	nav_agent.navigation_finished.connect(target_reached)
@@ -43,8 +46,8 @@ func physics_process(_delta: float) -> State:
 	parent.velocity = direction * speed
 	
 	parent.move_and_slide()
-	#check if the player is closer than stopping distance TODO: find better way to get current position TODO: add proximity distance
-	if (player.position - get_parent().get_parent().position).length() <= stop_distance:
+	#check if the player is closer than stopping distance
+	if (player.position - parent.position).length() <= (stop_distance + proximity):
 		target_reached()
 	return null
 
