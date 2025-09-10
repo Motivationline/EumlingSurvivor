@@ -38,31 +38,26 @@ func _get_configuration_warnings() -> PackedStringArray:
 	
 	return warnings
 
-var hurt_counter_tracker: Dictionary[HurtBox, int] = {}
-var hurt_cooldown_tracker: Dictionary[HurtBox, float] = {}
-var overlapping: Array[HurtBox]
+var overlapping: Array = []
 
 func _on_area_entered(area: Area3D) -> void:
 	if (area is HurtBox):
-		if (!hurt_cooldown_tracker.has(area)):
-			hurt_cooldown_tracker.set(area, -1)
-		if (!hurt_counter_tracker.has(area)):
-			hurt_counter_tracker.set(area, 0)
+		if (overlapping.find(func (_obj): return _obj.area == area) < 0):
+			overlapping.append({area = area, counter = 1, cooldown = -1.0})
 
 func _on_area_exited(area: Area3D) -> void:
 	if (area is HurtBox):
-		if (hurt_cooldown_tracker.has(area)):
-			hurt_cooldown_tracker.erase(area)
+		var index = overlapping.find_custom(func (_obj): return _obj.area == area)
+		overlapping.remove_at(index)
+
 
 func _physics_process(delta: float) -> void:
-	for area in hurt_cooldown_tracker:
-		if (individual_hit_limit > 0 && hurt_counter_tracker.get(area) >= individual_hit_limit):
+	for obj in overlapping:
+		if (individual_hit_limit > 0 && obj.counter >= individual_hit_limit):
 			continue
-		var current_cooldown = hurt_cooldown_tracker.get(area)
-		current_cooldown -= delta
-		if (current_cooldown <= 0):
-			hit.emit(area)
-			area.hurt(self)
-			current_cooldown = damage_cooldown
-		hurt_cooldown_tracker.set(area, current_cooldown)
-	pass
+		obj.cooldown -= delta
+		if (obj.cooldown <= 0):
+			hit.emit(obj.area)
+			obj.area.hurt(self)
+			obj.counter += 1
+			obj.cooldown = damage_cooldown
