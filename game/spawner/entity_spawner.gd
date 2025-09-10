@@ -8,8 +8,8 @@ signal spawn_finished
 
 @export_category("Burst")
 @export var entity_to_spawn: PackedScene
-@export var amount_of_spawns: int = 1
-@export var time_between_entities: float = 0
+@export_range(0,100) var amount_of_spawns: int = 1
+@export_range(0,60,0.1) var time_between_entities: float = 0
 @export var offset_distance: float = 0
 
 @export_category("Targeting")
@@ -17,8 +17,8 @@ signal spawn_finished
 @export var rotation_strategy: RotationStrategy
 
 @export_category("Multi Burst")
-@export var time_between_bursts: float = 0
-@export var amount_of_bursts: int = 1
+@export_range(0,60,0.1) var time_between_bursts: float = 0
+@export_range(0,100) var amount_of_bursts: int = 1
 
 func spawn(_relative_to: Node3D, _as_child_of: Node3D):
 	for b in amount_of_bursts:

@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://b5hdpq54o462t"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_h5wij"]
+[ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog.tscn" id="2_bht06"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_v2b8a"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_rc8k6"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_v2b8a"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_aprxc"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_rc8k6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aprxc"]
+radius = 0.271826
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3m8wi"]
+radius = 0.211186
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bht06"]
+radius = 0.294908
+height = 0.782061
+
+[node name="CactusHog" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_h5wij")]
+health = 5.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+
+[node name="Healthbar3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.841265, 0.225484)
+hide_when_full_after = 0.5
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveRandomOnNavMeshState")
+
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_v2b8a")
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_rc8k6")
+next_state = NodePath("../MoveRandomOnNavMeshState")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0"]
+script = ExtResource("4_aprxc")
+entity_to_spawn = null
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="cactushog" parent="." index="3" instance=ExtResource("2_bht06")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("3_v2b8a")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.257471, -0.0230474)
+shape = SubResource("SphereShape3D_aprxc")
+
+[node name="Hitbox" parent="." index="5" instance=ExtResource("4_rc8k6")]
+collision_layer = 32
+collision_mask = 8
+damage = 1.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.197845, -0.0194751)
+shape = SubResource("SphereShape3D_3m8wi")
+debug_color = Color(0.686648, 0.0638954, 0.198134, 0.42)
+
+[node name="Collider" type="CollisionShape3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.360086, 0)
+shape = SubResource("CapsuleShape3D_bht06")
+debug_color = Color(0.358393, 0.60428, 0.373735, 0.42)
