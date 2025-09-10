@@ -1,5 +1,8 @@
 @tool
 extends State
+## Uses the levels NavMesh to move the Enemy to a random point inside the level
+## 
+## Ends when the point is reached.
 class_name MoveRandomOnNavMeshState
 
 # TODO: add controls over where we're going, e.g. values or an area or something

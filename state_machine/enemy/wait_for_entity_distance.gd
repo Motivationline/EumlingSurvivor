@@ -1,5 +1,9 @@
 @tool
 extends State
+
+## Detects an entity of a configurable group in a set radius. 
+##
+## Ends when the Entity is in the desired distance.
 class_name WaitForEntityToBeAtDistanceState
 
 ## How [b]close[/b] does the entity need to be at least before it's considered detected?

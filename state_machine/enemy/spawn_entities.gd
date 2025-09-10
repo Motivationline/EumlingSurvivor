@@ -1,5 +1,8 @@
 @tool
 extends State
+## Activates a child [EntitySpawner]
+##
+## Ends when the Spawner finished spawning all Bursts.
 class_name SpawnEntitiesState
 
 @export var start_delay: float

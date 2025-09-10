@@ -1,5 +1,7 @@
 @tool
 extends Node
+
+## [color=red]Do not add to your scene![/color] This is the base class for States and does nothing by itself.
 class_name State
 
 ## What state should be activated after this one?

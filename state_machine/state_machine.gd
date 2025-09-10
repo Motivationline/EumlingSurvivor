@@ -1,5 +1,7 @@
 @tool
 extends Node
+
+## The controller for [State] Nodes
 class_name StateMachine
 
 ## The state this state machine starts with initially
