@@ -4,7 +4,7 @@ extends State
 ## Moves the Entity towards the Player 
 ##
 ## Ends when the distance from Entity to Player is less than stop_distance
-class_name MoveTowardsPlayer
+class_name MoveTowardsPlayerState
 
 ## Movement Speed
 @export var speed: float = 1
