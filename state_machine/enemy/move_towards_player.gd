@@ -6,13 +6,21 @@ extends State
 ## Ends when the distance from Entity to Player is less than stop_distance
 class_name MoveTowardsPlayerState
 
-## Movement Speed
-@export var speed: float = 1
 ## pause time after the destination was reached
 @export var wait_time: float = 1
 ## distance to the Player where this State ends
 @export var stop_distance: float = 100
-#
+
+@export_group("Overrides")
+## Movement Speed Override
+@export_range(0, 100, 0.1) var speed_override: float = 1:
+	set(new_value):
+		speed_override = max(new_value, 0)
+		update_configuration_warnings()
+# Whether to apply the speed override
+@export var speed_override_active: bool = false
+
+# proximity value to stop_distance: ensures that the State will eventually end
 var proximity: float = 0.1
 
 @export_category("Debug")
@@ -40,9 +48,11 @@ func physics_process(_delta: float) -> State:
 	
 	update_target_location()
 	
+	parent.look_at(nav_agent.get_next_path_position())
 	var destination = nav_agent.get_next_path_position()
 	var local_destination = destination - parent.global_position
 	var direction = local_destination.normalized()
+	var speed = speed_override if (speed_override_active) else parent.speed
 	parent.velocity = direction * speed
 	
 	parent.move_and_slide()
