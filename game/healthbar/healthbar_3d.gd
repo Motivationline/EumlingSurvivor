@@ -10,6 +10,7 @@ class_name Healthbar3D
 ## Whether to hide the healthbar initially
 @export var hide_initially: bool = true
 
+
 var health: float = 0:
 	set = _set_health
 
@@ -25,7 +26,10 @@ func init_health(_health: float):
 func _set_health(value: float):
 	var prev_health = health
 	health = value
-	if (health_bar): health_bar.value = health
+	if (health_bar): 
+		var health_tween = create_tween()
+		await health_tween.tween_property(health_bar,"value",health,0.05)
+		#health_bar.value = health
 	
 	if (health > prev_health):
 		if (damage_bar): damage_bar.value = health
@@ -40,4 +44,5 @@ func _set_health(value: float):
 		visible = true
 
 func _on_timer_timeout() -> void:
-	damage_bar.value = health
+	var damage_tween = create_tween()
+	await damage_tween.tween_property(damage_bar,"value",health,0.1)

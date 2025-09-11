@@ -1,33 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://hpf1ls8vm18b"]
+[gd_scene load_steps=9 format=3 uid="uid://hpf1ls8vm18b"]
 
 [ext_resource type="Script" uid="uid://bygod7vsyeqt8" path="res://game/healthbar/healthbar_3d.gd" id="1_o76um"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2fanj"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxu8y"]
+resource_local_to_scene = true
+transparency = 1
+depth_draw_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_2fanj")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_o76um"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hoxgt"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.0648083, 0.11, 0.0165, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 expand_margin_left = 4.0
 expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o76um"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(1, 0.64, 0.1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fanj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxu8y"]
-bg_color = Color(0.314275, 0.632136, 0.343566, 1)
+bg_color = Color(0.24495, 0.69, 0.069, 1)
 
 [node name="Healthbar3D" type="Node3D"]
 script = ExtResource("1_o76um")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_sxu8y")
+pixel_size = 0.003
 texture = SubResource("ViewportTexture_o76um")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
 size = Vector2i(328, 40)
 
 [node name="Control" type="Control" parent="SubViewport"]
