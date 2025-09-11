@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://drtoi8fygioae"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_5rk5k"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_c3oc6"]
+[ext_resource type="PackedScene" uid="uid://cgtlnuch0nmwm" path="res://assets/characters/enemies/tortoise/tortoise_prefab.tscn" id="2_s8eqa"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_c3oc6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kafm"]
+radius = 0.439081
+height = 0.955451
+
+[node name="TortoiseEnemy" node_paths=PackedStringArray("hitbox") instance=ExtResource("1_5rk5k")]
+health = 500.0
+speed = 0.5
+hitbox = NodePath("Hitbox")
+
+[node name="Healthbar3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919, 0)
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveRandomOnNavMeshState")
+
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_c3oc6")
+wait_time = 0.0
+debug_show_path = true
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="tortoise" parent="." index="3" instance=ExtResource("2_s8eqa")]
+
+[node name="Hitbox" parent="." index="4" instance=ExtResource("4_c3oc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35191, 0)
+collision_layer = 32
+attached_to = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.066589, 0)
+shape = SubResource("CapsuleShape3D_4kafm")

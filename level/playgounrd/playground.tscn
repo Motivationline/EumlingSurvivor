@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dfq06fb00g8c6"]
+[gd_scene load_steps=59 format=3 uid="uid://dfq06fb00g8c6"]
 
 [ext_resource type="ArrayMesh" uid="uid://cjqlj2x4koa3e" path="res://assets/models/grass/grass.res" id="1_3o88o"]
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="1_7toyi"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bkff3bbbcyrcj" path="res://assets/models/momument/prefab_monument.tscn" id="12_xuf8i"]
 [ext_resource type="PackedScene" uid="uid://c15isytvugu5r" path="res://assets/characters/enemies/cactus_crawler/prefab_cactus_crawler.tscn" id="14_obhcr"]
 [ext_resource type="PackedScene" uid="uid://daovrergayaq6" path="res://assets/exp_ball/exp_ball.tscn" id="16_fye1k"]
+[ext_resource type="PackedScene" uid="uid://cgtlnuch0nmwm" path="res://assets/characters/enemies/tortoise/tortoise_prefab.tscn" id="17_cvwag"]
 
 [sub_resource type="Environment" id="Environment_yobsg"]
 background_mode = 1
@@ -414,3 +415,6 @@ visible = false
 
 [node name="cactushog" parent="." instance=ExtResource("1_7toyi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11882, 0, 2.28621)
+
+[node name="tortoise" parent="." instance=ExtResource("17_cvwag")]
+transform = Transform3D(-0.86877, 0, -0.495216, 0, 1, 0, 0.495216, 0, -0.86877, -2.26785, 0, 1.33748)

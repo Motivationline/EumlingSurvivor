@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://chix8l7g8xad8"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_qpakq"]
+[ext_resource type="Texture2D" uid="uid://w3tlek73urb4" path="res://assets/characters/enemies/tortoise/tortoise_Tortoise_Base_color.png" id="2_57671"]
+
+[sub_resource type="Gradient" id="Gradient_qpakq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.564987)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_57671"]
+gradient = SubResource("Gradient_qpakq")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qpakq")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_57671")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_57671")
+shader_parameter/specular_focus = 0.5
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true

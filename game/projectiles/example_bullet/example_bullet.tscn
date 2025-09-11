@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ct6208g338yln"]
+[gd_scene load_steps=10 format=3 uid="uid://ct6208g338yln"]
 
 [ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_sv6nk"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="3_ok6tv"]
 [ext_resource type="Script" uid="uid://d3ikpji4y1ipa" path="res://strategies/projectile_movement/rotation.gd" id="4_2qh0o"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="5_ok6tv"]
 [ext_resource type="Script" uid="uid://c6fcpkn103ijr" path="res://strategies/event/projectile/turn_around.gd" id="5_pr6ia"]
-[ext_resource type="PackedScene" uid="uid://ck0cf6ywrf78g" path="res://assets/vfx/projectile_realistic/vfx_realistic.tscn" id="6_pr6ia"]
+[ext_resource type="PackedScene" uid="uid://ck0cf6ywrf78g" path="res://game/vfx/fire_hull/vfx_realistic.tscn" id="6_pr6ia"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j1spr"]
 size = Vector3(0.25, 0.25, 0.5)
@@ -15,16 +15,6 @@ albedo_color = Color(0.219608, 0.392157, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ja52y"]
 albedo_color = Color(0.720288, 0.284462, 0.531922, 1)
-
-[sub_resource type="Curve" id="Curve_xx56b"]
-_limits = [0.0, 20.0, 0.0, 1.0]
-_data = [Vector2(0, 10.2267), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Curve" id="Curve_ok6tv"]
-_limits = [-45.0, 45.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 45), 0.0, 0.0, 0, 0, Vector2(0.75, -45), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
 
 [node name="Bullet" type="CharacterBody3D" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision")]
 collision_layer = 0
@@ -57,12 +47,10 @@ shape = SubResource("BoxShape3D_j1spr")
 
 [node name="SpeedProjectileMovementStrategy" type="Node" parent="Movement"]
 script = ExtResource("3_ok6tv")
-speed_over_lifetime = SubResource("Curve_xx56b")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
 [node name="RotationProjectileMovementStrategy" type="Node" parent="Movement"]
 script = ExtResource("4_2qh0o")
-rotation_over_lifetime = SubResource("Curve_ok6tv")
 metadata/_custom_type_script = "uid://d3ikpji4y1ipa"
 
 [node name="Events" type="Node" parent="."]
