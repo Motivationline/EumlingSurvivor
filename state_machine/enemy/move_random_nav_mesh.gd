@@ -32,6 +32,8 @@ func setup(_parent: Enemy):
 	super (_parent)
 	nav_agent = NavigationAgent3D.new()
 	parent.add_child(nav_agent)
+	# anti-schwebe-zeugs - ist bisschen unklar, warum muss ich das auf 2x cell height setzen damit es richtig funktioniert? :shrug:
+	nav_agent.path_height_offset = ProjectSettings.get_setting("navigation/3d/default_cell_height", 0.25) * 2
 	nav_agent.navigation_finished.connect(target_reached)
 	nav_agent.debug_enabled = debug_show_path
 
