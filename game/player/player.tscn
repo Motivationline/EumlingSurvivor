@@ -1,14 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=9 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
 [ext_resource type="PackedScene" uid="uid://ct6208g338yln" path="res://game/projectiles/example_bullet/example_bullet.tscn" id="4_a4w0n"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
+[ext_resource type="PackedScene" uid="uid://bdn15pg1arjhl" path="res://game/aoes/example_aoe.tscn" id="6_anr75"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.25
 height = 1.0
+
+[sub_resource type="Curve" id="Curve_4ste8"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1.02267), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("spawner") groups=["Player"]]
 collision_layer = 2
@@ -37,3 +43,10 @@ can_be_hit_by = 6
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape3D_ct7j0")
+
+[node name="AOE" parent="." instance=ExtResource("6_anr75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+never_expire = true
+duration = 2.0
+size_scaler = SubResource("Curve_4ste8")
+scale_affects = Vector3(1, 0, 1)
