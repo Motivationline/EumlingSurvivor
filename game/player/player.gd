@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name Player
 
 @export var speed := 5.0
 const BULLET = preload("res://game/projectiles/example_bullet/example_bullet.tscn")
@@ -15,7 +15,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 	
-	if(!direction.is_zero_approx()):
+	if (!direction.is_zero_approx()):
 		look_at(global_position + direction_3d)
 
 func _input(event: InputEvent) -> void:

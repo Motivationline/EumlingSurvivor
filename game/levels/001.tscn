@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://htuftvnpan0c"]
+[gd_scene load_steps=9 format=3 uid="uid://htuftvnpan0c"]
 
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="1_fnkxu"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
-[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/tortoise/tortoise_enemy.tscn" id="3_aiw0i"]
+[ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_uile8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
+size = Vector3(5, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0s0fg"]
 vertices = PackedVector3Array(-9.5, 0.5, -3.75, -5, 0.5, -3.75, -4.75, 0.5, -5, -2.75, 0.5, -5, -2.75, 0.5, -9.5, -9.5, 0.5, -9.5, 3.25, 0.5, -5, 3.25, 0.5, -9.5, 5.25, 0.5, -5, 5.5, 0.5, -3.75, 9.5, 0.5, -3.75, 9.5, 0.5, -9.5, -1, 0.5, -0.75, 0.25, 0.5, -1, 0.25, 0.5, -2.75, -4.75, 0.5, -2.75, 0, 0.5, 3.5, 0, 0.5, 1.25, -1, 0.5, 1, -4.75, 0.5, 3.5, -9.5, 0.5, 4.5, -5, 0.5, 4.5, 1.25, 0.5, -0.75, 5.25, 0.5, -2.75, 1.25, 0.5, 0.75, 5.25, 0.5, 3.5, 5.5, 0.5, 4.5, 9.5, 0.5, 4.5, -3.5, 0.5, 9.5, -3.25, 0.5, 5.75, -4.75, 0.5, 5.75, -9.5, 0.5, 9.5, 5.25, 0.5, 5.75, 3.75, 0.5, 5.75, 4, 0.5, 9.5, 9.5, 0.5, 9.5)
@@ -28,7 +31,21 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 1.51
 
-[node name="001" type="Node3D"]
+[node name="001" type="Node3D" node_paths=PackedStringArray("player_spawn", "goal_area")]
+script = ExtResource("1_uile8")
+player_spawn = NodePath("PlayerSpawnMarker")
+goal_area = NodePath("Area3D")
+
+[node name="PlayerSpawnMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.53351)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.0378246)
+shape = SubResource("BoxShape3D_uile8")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0s0fg")
@@ -92,6 +109,3 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
 environment = SubResource("Environment_j48a7")
-
-[node name="TortoiseEnemy" parent="." instance=ExtResource("3_aiw0i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.51448, 0.610096, -1.54618)
