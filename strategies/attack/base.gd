@@ -1,2 +1,0 @@
-extends Strategy
-class_name AttackStrategy

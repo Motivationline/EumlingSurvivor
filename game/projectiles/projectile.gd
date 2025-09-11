@@ -52,21 +52,21 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	current_lifetime += delta
 	for mov in movement:
-		mov.apply_movement(delta, current_lifetime / lifetime)
+		mov.apply_movement(delta, current_lifetime, lifetime)
 	velocity *= delta
 	var collision: KinematicCollision3D = move_and_collide(velocity)
 	if (collision):
 		for coll in on_world_collision:
-			coll.execute(collision)
+			coll.event_triggered(collision)
 
 
 func _end_of_lifetime():
 	for strat in on_end_of_life:
-		await strat.execute(null)
+		await strat.event_triggered(null)
 
 func _hit_box_hit(_area):
 	for ev in on_hit:
-		ev.execute(_area)
+		ev.event_triggered(_area)
 func _hurt_box_hurt(_area):
 	for ev in on_hurt:
-		ev.execute(_area)
+		ev.event_triggered(_area)

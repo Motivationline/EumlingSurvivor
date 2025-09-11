@@ -1,4 +1,6 @@
+@icon("strategy.svg")
 extends Node
+## Base class for all strategies. [color=red]Do not add, doesn't do anything.[/color]
 class_name Strategy
 
 var parent: CharacterBody3D
@@ -7,6 +9,7 @@ var parent: CharacterBody3D
 func _setup(_parent: Node) -> void:
 	parent = _parent
 
+## Helper function to set up all strategies in an array
 static func _setup_array(_arr: Array, _parent: Node):
 	for s in _arr:
 		if (s && s is Strategy): s._setup(_parent)
