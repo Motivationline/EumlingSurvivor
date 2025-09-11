@@ -14,10 +14,6 @@ class_name AOE
 	set(new_value):
 		duration = max(new_value, 0)
 		update_configuration_warnings()
-## How the size should change over time. Can be left empty for no scaling.
-@export var size_scaler: Curve
-## How much each axis of the visuals is affected by scaling. 0 - 1 is supported.
-@export var scale_affects: Vector3 = Vector3.ONE
 
 ## The shape of the hitbox. [color=red]This will overwrite whatever you set inside the Hitbox![/color]
 @export var shape: Shape3D:
@@ -26,6 +22,14 @@ class_name AOE
 		if (collsion_shape):
 			collsion_shape.shape = shape
 		update_configuration_warnings()
+
+@export_group("Scaling")
+## How the size should change over time. Can be left empty for no scaling.
+@export var size_scaler: Curve
+## Ignores the max_domain of the curve and assumes it describes the entire lifetime.
+@export var normalize_to_lifetime: bool = true
+## How much each axis of the visuals is affected by scaling. 0 - 1 is supported.
+@export var scale_affects: Vector3 = Vector3.ONE
 
 @export_group("No Touchy")
 ## The collision shape of the hitbox
@@ -38,7 +42,9 @@ var original_size # no type hint because it can be different things
 var original_scale: Vector3
 
 func _ready() -> void:
-	if (Engine.is_editor_hint()): child_order_changed.connect(update_configuration_warnings)
+	if (Engine.is_editor_hint()): 
+		child_order_changed.connect(update_configuration_warnings)
+		return
 	save_initial_size()
 	original_scale = visuals.scale
 
@@ -50,7 +56,9 @@ func _physics_process(delta: float) -> void:
 		return
 
 	if (size_scaler):
-		var current_size: float = size_scaler.sample(fmod((current_duration / duration), size_scaler.max_domain))
+		var sample_point = (current_duration / duration) * size_scaler.max_domain if(normalize_to_lifetime) else current_duration
+		sample_point = fmod(sample_point, size_scaler.max_domain)
+		var current_size: float = size_scaler.sample(sample_point)
 		adjust_size_visuals(current_size)
 		adjust_size_shape(current_size)
 
