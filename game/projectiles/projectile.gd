@@ -45,6 +45,7 @@ func setup(target_pos: Vector3, _upgrades: Array[UpgradeStrategy] = []):
 	Strategy._setup_array(on_remove, self)
 
 func _ready() -> void:
+	tree_exiting.connect(_on_remove)
 	await get_tree().create_timer(lifetime).timeout
 	await _end_of_lifetime()
 	queue_free()
@@ -63,6 +64,10 @@ func _physics_process(delta: float) -> void:
 func _end_of_lifetime():
 	for strat in on_end_of_life:
 		await strat.event_triggered(null)
+
+func _on_remove():
+	for strat in on_remove:
+		strat.event_triggered(null)
 
 func _hit_box_hit(_area):
 	for ev in on_hit:

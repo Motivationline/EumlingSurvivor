@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg5ap3nmd46eb"]
+
+[ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_73ff5"]
+
+[node name="Projectile" type="CharacterBody3D"]
+collision_layer = 128
+script = ExtResource("1_73ff5")
+
+[node name="MovementStrategies" type="Node" parent="."]
+
+[node name="EventStrategies" type="Node" parent="."]
+
+[node name="OnWorldCollision" type="Node" parent="EventStrategies"]
+
+[node name="OnHit" type="Node" parent="EventStrategies"]
+
+[node name="OnHurt" type="Node" parent="EventStrategies"]
+
+[node name="OnEndOfLife" type="Node" parent="EventStrategies"]
+
+[node name="OnRemove" type="Node" parent="EventStrategies"]
