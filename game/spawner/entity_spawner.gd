@@ -5,7 +5,7 @@ class_name EntitySpawner
 signal burst_finished
 signal spawn_finished
 
-## If set, spawns the entity as a child of the relevant parent, to the level otherwise
+## If set, spawns the entity as a child of the relevant parent, to the level otherwise. [color=red]Does not affect the position or rotation, only the parent[/color]
 @export var spawn_local: bool = false
 
 @export_category("Burst")
