@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://htuftvnpan0c"]
+[gd_scene load_steps=10 format=3 uid="uid://htuftvnpan0c"]
 
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="1_fnkxu"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_uile8"]
+[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/tortoise/tortoise_enemy.tscn" id="4_uile8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
 size = Vector3(5, 1, 1)
@@ -34,16 +35,16 @@ adjustment_saturation = 1.51
 [node name="001" type="Node3D" node_paths=PackedStringArray("player_spawn", "goal_area")]
 script = ExtResource("1_uile8")
 player_spawn = NodePath("PlayerSpawnMarker")
-goal_area = NodePath("Area3D")
+goal_area = NodePath("LeaveArea")
 
 [node name="PlayerSpawnMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="LeaveArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.53351)
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeaveArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.0378246)
 shape = SubResource("BoxShape3D_uile8")
 
@@ -109,3 +110,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
 environment = SubResource("Environment_j48a7")
+
+[node name="TortoiseEnemy" parent="." instance=ExtResource("4_uile8")]
+transform = Transform3D(-0.909149, 0, -0.416471, 0, 1, 0, 0.416471, 0, -0.909149, 1.15106, 0.360095, 0.531064)
