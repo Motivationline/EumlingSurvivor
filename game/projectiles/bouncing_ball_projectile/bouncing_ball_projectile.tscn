@@ -86,11 +86,11 @@ radius = 0.0764546
 [sub_resource type="SphereShape3D" id="SphereShape3D_uy0k7"]
 radius = 0.0909121
 
-[node name="bouncing_ball_projectile" node_paths=PackedStringArray("hit_box", "movement", "on_hit", "on_end_of_life") instance=ExtResource("1_l26gs")]
-collision_mask = 0
+[node name="bouncing_ball_projectile" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_end_of_life") instance=ExtResource("1_l26gs")]
 damage = 0.1
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnHit/RemoveEventStrategy")]
 on_hit = [NodePath("EventStrategies/OnHit/RemoveEventStrategy"), NodePath("EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy")]
 on_end_of_life = [NodePath("EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy")]
 
