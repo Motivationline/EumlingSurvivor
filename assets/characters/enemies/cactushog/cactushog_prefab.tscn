@@ -1,14 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://el7nans1vkam"]
+[gd_scene load_steps=8 format=3 uid="uid://el7nans1vkam"]
 
 [ext_resource type="PackedScene" uid="uid://b6s55jlxw1j4x" path="res://assets/characters/enemies/cactushog/cactushog.glb" id="1_guqsc"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_guqsc"]
+animation = &"idle_hog"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rn35m"]
+animation = &"run_hog"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gekiq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_46rdp"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e5xn7"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2twxx"]
+states/End/position = Vector2(722, 140)
+states/Start/position = Vector2(275, 140)
+states/idle_hog/node = SubResource("AnimationNodeAnimation_guqsc")
+states/idle_hog/position = Vector2(428, 140)
+states/run_hog/node = SubResource("AnimationNodeAnimation_rn35m")
+states/run_hog/position = Vector2(428, 29)
+transitions = ["Start", "idle_hog", SubResource("AnimationNodeStateMachineTransition_gekiq"), "idle_hog", "run_hog", SubResource("AnimationNodeStateMachineTransition_46rdp"), "run_hog", "idle_hog", SubResource("AnimationNodeStateMachineTransition_e5xn7")]
+graph_offset = Vector2(-334, -85)
 
 [node name="cactushog" instance=ExtResource("1_guqsc")]
 
 [node name="Skeleton3D" parent="HogAramture" index="0"]
 bones/1/position = Vector3(0, -1.49012e-08, -5.29396e-23)
-bones/2/rotation = Quaternion(0.681166, 0.0282035, -0.0282035, 0.731042)
-bones/2/scale = Vector3(0.966393, 1.07076, 0.966393)
-bones/3/position = Vector3(0.0413155, 0.0365316, 0.515719)
+bones/2/rotation = Quaternion(0.707107, 0, 0, 0.707107)
+bones/2/scale = Vector3(1.01712, 0.96662, 1.01712)
+bones/3/position = Vector3(3.06373e-24, 1.37813e-08, 0.468215)
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "run_hog"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_2twxx")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/idle = false
+parameters/conditions/walk = false
