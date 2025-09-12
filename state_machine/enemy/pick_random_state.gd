@@ -10,7 +10,10 @@ class_name PickRandomState
 		
 @export_category("States")
 ## Add State pool inside this Array
-@export var states: Array[State]
+@export var states: Array[State]:
+	set(new_value):
+		states = new_value
+		update_configuration_warnings()
 
 var done: bool = false
 
@@ -20,24 +23,29 @@ func setup(_parent: Enemy, _animation_tree: AnimationTree):
 	next_state = self
 
 func enter():
-	super()
+	super ()
 	done = false
 	next_state = self
 	pick_random_state()
 
 func physics_process(_delta: float) -> State:
-	if(done) : return return_next()
+	if (done): return return_next()
 	return null
 
 func pick_random_state():
-	#var states: Array[Node] = get_parent().get_children()
-	#while next_state is PickRandomState:
-	var selector = randi_range(0, len(states)-1)
+	var selector = randi_range(0, len(states) - 1)
 	next_state = states[selector]
-	#print(next_state)
 	await get_tree().create_timer(wait_time).timeout
 	done = true
-	
+
+func get_possible_next_states() -> Array[State]:
+	return states
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := super ()
+	# remove parent warning about next state
+	var index = warnings.find("Needs a Next State")
+	if (index >= 0): warnings.remove_at(index)
+
+	if(states.size() <= 0): warnings.append("Needs at least one state to transition to.")
 	return warnings

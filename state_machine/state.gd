@@ -61,3 +61,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if (repeat_self <= 0): warnings.append("Repeat self must be 1 or above")
 	if (next_state == self): warnings.append("The next state has been set to this node, which will lead to an infinite loop of this state.\nThis is supported, so all good if it's intended.")
 	return warnings
+
+func get_possible_next_states() -> Array[State]:
+	return [next_state]

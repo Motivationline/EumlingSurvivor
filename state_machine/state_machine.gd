@@ -47,7 +47,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if (!initial_state): warnings.append("Needs an initial state.")
 	else:
 		var uncalled := _get_uncalled_states()
-		if(uncalled.size() > 0):
+		if (uncalled.size() > 0):
 			var state_list: String = ""
 			for state in uncalled:
 				state_list += state.name + ", "
@@ -55,12 +55,19 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 func _get_uncalled_states() -> Array[State]:
-	var states := _get_all_states(self)
-	var next_state = initial_state
-	while (states.has(next_state)):
-		states.remove_at(states.find(next_state))
-		next_state = next_state.next_state
-	return states
+	var uncalled_states := _get_all_states(self)
+	var states_to_check: Array[State] = [initial_state]
+	while (states_to_check.size() > 0):
+		var state_to_check: State = states_to_check.pop_back()
+		if (!state_to_check): continue
+		uncalled_states.remove_at(uncalled_states.find(state_to_check))
+
+		var next_states: Array[State] = state_to_check.get_possible_next_states()
+		for next_state in next_states:
+			if (uncalled_states.has(next_state) && !states_to_check.has(next_state)):
+				states_to_check.append(next_state)
+
+	return uncalled_states
 
 func _get_all_states(_node: Node) -> Array[State]:
 	var states: Array[State] = []
