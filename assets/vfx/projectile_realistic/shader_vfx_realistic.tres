@@ -1,9 +1,14 @@
-[gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://5lep1if814ha"]
+[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://5lep1if814ha"]
 
 [ext_resource type="Texture2D" uid="uid://1583oa3cnkm" path="res://assets/vfx/projectile_realistic/Swirl 11 - 256x256.png" id="1_4okp4"]
 
 [sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_jsosg"]
 parameter_name = "fire_speed"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_4okp4"]
+parameter_name = "visibilty"
+default_value_enabled = true
+default_value = 1.0
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_w6qba"]
 parameter_name = "Final_Color"
@@ -47,6 +52,7 @@ uniform vec4 Final_Color : source_color;
 uniform vec2 fire_speed;
 uniform sampler2D tex_frg_3 : source_color;
 uniform sampler2D tex_frg_4 : source_color;
+uniform float visibilty = 1.0;
 
 
 
@@ -85,10 +91,13 @@ void fragment() {
 	float n_out5p0 = n_out3p1 - n_out4p0.x;
 
 
+// FloatParameter:11
+	float n_out11p0 = visibilty;
+
+
 // Clamp:6
 	float n_in6p1 = 0.00000;
-	float n_in6p2 = 1.00000;
-	float n_out6p0 = clamp(n_out5p0, n_in6p1, n_in6p2);
+	float n_out6p0 = clamp(n_out5p0, n_in6p1, n_out11p0);
 
 
 // Output:0
@@ -98,6 +107,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-710.793, 145.785)
 modes/cull = 2
 flags/unshaded = true
 flags/shadows_disabled = true
@@ -111,7 +121,7 @@ nodes/fragment/4/position = Vector2(-600, 620)
 nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_ha45s")
 nodes/fragment/5/position = Vector2(-320, 460)
 nodes/fragment/6/node = SubResource("VisualShaderNodeClamp_sbkps")
-nodes/fragment/6/position = Vector2(-140, 460)
+nodes/fragment/6/position = Vector2(-40, 440)
 nodes/fragment/7/node = SubResource("VisualShaderNodeUVFunc_x3u8p")
 nodes/fragment/7/position = Vector2(-1040, 320)
 nodes/fragment/8/node = SubResource("VisualShaderNodeInput_r8q3w")
@@ -120,4 +130,6 @@ nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_5mg56")
 nodes/fragment/9/position = Vector2(-1320, 380)
 nodes/fragment/10/node = SubResource("VisualShaderNodeVec2Parameter_jsosg")
 nodes/fragment/10/position = Vector2(-1680, 500)
-nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 1, 5, 0, 4, 0, 5, 1, 5, 0, 6, 0, 6, 0, 0, 1, 7, 0, 3, 0, 8, 0, 9, 0, 9, 0, 7, 2, 10, 0, 9, 1)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatParameter_4okp4")
+nodes/fragment/11/position = Vector2(-140, 800)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 1, 5, 0, 4, 0, 5, 1, 5, 0, 6, 0, 6, 0, 0, 1, 7, 0, 3, 0, 8, 0, 9, 0, 9, 0, 7, 2, 10, 0, 9, 1, 11, 0, 6, 2)

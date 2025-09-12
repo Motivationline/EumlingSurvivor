@@ -1,14 +1,11 @@
-[gd_scene load_steps=59 format=3 uid="uid://dfq06fb00g8c6"]
+[gd_scene load_steps=42 format=3 uid="uid://dfq06fb00g8c6"]
 
 [ext_resource type="ArrayMesh" uid="uid://cjqlj2x4koa3e" path="res://assets/models/grass/grass.res" id="1_3o88o"]
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="1_7toyi"]
 [ext_resource type="Material" uid="uid://bsdu16dwj28sf" path="res://assets/models/grass/grass.tres" id="1_a1kad"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="2_a1kad"]
 [ext_resource type="PackedScene" uid="uid://bov1hcmo0on0h" path="res://game/vfx/firehit/fire_hit.tscn" id="3_w1uii"]
-[ext_resource type="Texture2D" uid="uid://bdd38btcwm48u" path="res://assets/vfx/social/garlic.png" id="5_8i1lo"]
-[ext_resource type="Texture2D" uid="uid://dswk8y7pooxop" path="res://assets/vfx/social/garlic_ring.png" id="6_tlppe"]
 [ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/player.tscn" id="7_a1kad"]
-[ext_resource type="Texture2D" uid="uid://cueqfe6sxlfwf" path="res://assets/vfx/social/bla.png" id="7_tlppe"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="8_8i1lo"]
 [ext_resource type="Texture2D" uid="uid://b3rjj1bmqtiok" path="res://addons/versatile-mobile-joystick/default_textures/BaseJoystickTest.png" id="9_tlppe"]
 [ext_resource type="Texture2D" uid="uid://dlgmq4q7t23o8" path="res://addons/versatile-mobile-joystick/default_textures/TipJoystickTest.png" id="10_xuf8i"]
@@ -135,117 +132,6 @@ rim_tint = 0.53
 
 [sub_resource type="SphereMesh" id="SphereMesh_3ikhb"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_xuf8i"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_778i0"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0, 0.766667, 1, 0.266667)
-albedo_texture = ExtResource("5_8i1lo")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_obhcr"]
-size = Vector2(1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7toyi"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 2
-albedo_color = Color(0, 0.8, 1, 0.282353)
-albedo_texture = ExtResource("6_tlppe")
-emission = Color(1, 0.41, 0.41, 1)
-emission_energy_multiplier = 6.76
-emission_texture = ExtResource("6_tlppe")
-
-[sub_resource type="Curve" id="Curve_8i1lo"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.297921, 1), 0.0, 0.0, 0, 0, Vector2(0.628175, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_tlppe"]
-curve = SubResource("Curve_8i1lo")
-
-[sub_resource type="Curve" id="Curve_tlppe"]
-_data = [Vector2(0, 0), 0.0, 0.698111, 0, 1, Vector2(0.810624, 0.565905), 0.0, 0.0, 0, 0, Vector2(0.882217, 1), 6.06333, 0.0, 1, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_xuf8i"]
-curve = SubResource("Curve_tlppe")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xuf8i"]
-emission_shape = 6
-emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 0.05
-emission_ring_radius = 0.49
-emission_ring_inner_radius = 0.3
-emission_ring_cone_angle = 90.0
-direction = Vector3(0, 1, 0)
-spread = 5.0
-initial_velocity_min = 0.1
-initial_velocity_max = 0.1
-gravity = Vector3(0, 0, 0)
-damping_min = 0.05
-damping_max = 0.07
-scale_min = 0.05
-scale_max = 0.05
-scale_curve = SubResource("CurveTexture_xuf8i")
-color = Color(0.257776, 0.585237, 0.746936, 1)
-alpha_curve = SubResource("CurveTexture_tlppe")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obhcr"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("5_8i1lo")
-emission_enabled = true
-emission = Color(0.651793, 0.912421, 0.998395, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_7toyi"]
-material = SubResource("StandardMaterial3D_obhcr")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_778i0"]
-emission_shape = 6
-emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 0.05
-emission_ring_radius = 0.49
-emission_ring_inner_radius = 0.3
-emission_ring_cone_angle = 90.0
-direction = Vector3(0, 1, 0)
-spread = 5.0
-initial_velocity_min = 0.1
-initial_velocity_max = 0.1
-angular_velocity_min = -67.26
-angular_velocity_max = 79.49
-gravity = Vector3(0, 0, 0)
-damping_min = 0.05
-damping_max = 0.07
-scale_min = 0.05
-scale_max = 0.1
-scale_curve = SubResource("CurveTexture_xuf8i")
-color = Color(0.257776, 0.585237, 0.746936, 1)
-alpha_curve = SubResource("CurveTexture_tlppe")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fye1k"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("7_tlppe")
-emission_enabled = true
-emission = Color(0.651793, 0.912421, 0.998395, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_cvwag"]
-material = SubResource("StandardMaterial3D_fye1k")
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_8i1lo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tlppe"]
@@ -328,42 +214,8 @@ mesh = SubResource("SphereMesh_3ikhb")
 skeleton = NodePath("../..")
 
 [node name="Player" parent="." instance=ExtResource("7_a1kad")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.528722, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.0119701, 0)
 speed = 2.0
-
-[node name="SocialVFX" type="Node3D" parent="Player"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.536416, 0)
-
-[node name="InnerRing" type="MeshInstance3D" parent="Player/SocialVFX"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.01, 0)
-layers = 512
-mesh = SubResource("QuadMesh_xuf8i")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_778i0")
-
-[node name="OuterRing" type="MeshInstance3D" parent="Player/SocialVFX/InnerRing"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -4.37114e-10, 0.01)
-layers = 512
-sorting_offset = 0.55
-mesh = SubResource("PlaneMesh_obhcr")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_7toyi")
-
-[node name="BubbleParticles" type="GPUParticles3D" parent="Player/SocialVFX/InnerRing"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.28218e-09, 0.0293328)
-amount = 1
-explosiveness = 0.5
-randomness = 0.44
-process_material = SubResource("ParticleProcessMaterial_xuf8i")
-draw_pass_1 = SubResource("QuadMesh_7toyi")
-
-[node name="BlaParticles" type="GPUParticles3D" parent="Player/SocialVFX/InnerRing"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.28218e-09, 0.0293328)
-amount = 2
-explosiveness = 0.5
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_778i0")
-draw_pass_1 = SubResource("QuadMesh_cvwag")
 
 [node name="JoystickController2" parent="." instance=ExtResource("8_8i1lo")]
 position = Vector2(535, 957)

@@ -1,0 +1,137 @@
+[gd_scene load_steps=20 format=3 uid="uid://cjpt5ms0ud5r"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_l26gs"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_mju7s"]
+[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="2_x14uw"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_2pdrq"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="3_40aqw"]
+[ext_resource type="Shader" uid="uid://5lep1if814ha" path="res://assets/vfx/projectile_realistic/shader_vfx_realistic.tres" id="3_mju7s"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_uy0k7"]
+[ext_resource type="PackedScene" uid="uid://bwmrw7fyqaxui" path="res://game/aoes/explosion/explosion_aoe.tscn" id="5_2pdrq"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_uy0k7"]
+
+[sub_resource type="Curve" id="Curve_xss42"]
+_limits = [0.0, 6.0, 0.0, 1.0]
+_data = [Vector2(0, 6), 0.0, 0.0, 0, 0, Vector2(1, 0), -13.5307, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_xss42"]
+radius = 0.1
+height = 0.2
+radial_segments = 32
+rings = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pdrq"]
+albedo_color = Color(0.41, 0.803333, 1, 0)
+emission_enabled = true
+emission = Color(0.3479, 0.691895, 0.71, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40aqw"]
+render_priority = -1
+next_pass = SubResource("StandardMaterial3D_2pdrq")
+shader = ExtResource("2_x14uw")
+shader_parameter/ball_color = Color(0, 0.966667, 1, 1)
+shader_parameter/frensel_power = 3.1
+shader_parameter/visibility = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uy0k7"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_40aqw")
+shader = ExtResource("3_mju7s")
+shader_parameter/Final_Color = Color(0.206667, 0.15, 1, 1)
+shader_parameter/fire_speed = Vector2(0.5, 0.5)
+shader_parameter/visibilty = 1.0
+
+[sub_resource type="Animation" id="Animation_2pdrq"]
+resource_name = "bounce"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.1, 0), Vector3(0, 0.519479, 0), Vector3(0, 0.519479, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7ghxt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.25291, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ujxw"]
+_data = {
+&"RESET": SubResource("Animation_7ghxt"),
+&"bounce": SubResource("Animation_2pdrq")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l26gs"]
+radius = 0.0764546
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uy0k7"]
+radius = 0.0909121
+
+[node name="bouncing_ball_projectile" node_paths=PackedStringArray("hit_box", "movement", "on_hit", "on_end_of_life") instance=ExtResource("1_l26gs")]
+collision_mask = 0
+damage = 0.1
+hit_box = NodePath("Hitbox")
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_hit = [NodePath("EventStrategies/OnHit/RemoveEventStrategy"), NodePath("EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy")]
+on_end_of_life = [NodePath("EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy")]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
+script = ExtResource("2_mju7s")
+speed = SubResource("Curve_xss42")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
+script = ExtResource("3_2pdrq")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnEndOfLife" index="0"]
+script = ExtResource("3_40aqw")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy" index="0"]
+script = ExtResource("4_uy0k7")
+entity_to_spawn = ExtResource("5_2pdrq")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25291, 0)
+mesh = SubResource("SphereMesh_xss42")
+surface_material_override/0 = SubResource("ShaderMaterial_uy0k7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_2ujxw")
+}
+autoplay = "bounce"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258256, 0)
+shape = SubResource("SphereShape3D_l26gs")
+
+[node name="Hitbox" parent="." index="5" instance=ExtResource("8_uy0k7")]
+collision_layer = 4
+collision_mask = 64
+attached_to = 3
+can_hit = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+shape = SubResource("SphereShape3D_uy0k7")
