@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ct6208g338yln"]
+[gd_scene load_steps=16 format=3 uid="uid://ct6208g338yln"]
 
 [ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_sv6nk"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="3_ok6tv"]
@@ -22,14 +22,19 @@ albedo_color = Color(0.720288, 0.284462, 0.531922, 1)
 
 [sub_resource type="Curve" id="Curve_bysd3"]
 _limits = [0.0, 20.0, 0.0, 1.0]
-_data = [Vector2(0, 5.42334), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 2.1599), 0.0, 0.0, 0, 0]
 point_count = 1
+
+[sub_resource type="Curve" id="Curve_fmsp7"]
+_limits = [0.0, 45.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 45), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Bullet" type="CharacterBody3D" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision")]
 collision_layer = 0
 script = ExtResource("1_sv6nk")
 hit_box = NodePath("Hitbox")
-movement = [NodePath("Movement/SpeedProjectileMovementStrategy")]
+movement = [NodePath("Movement/SpeedProjectileMovementStrategy"), NodePath("Movement/RotationProjectileMovementStrategy")]
 on_world_collision = [NodePath("Events/RemoveEventStrategy"), NodePath("Events/SpawnEntitiesEventStrategy")]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
@@ -63,6 +68,8 @@ metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
 [node name="RotationProjectileMovementStrategy" type="Node" parent="Movement"]
 script = ExtResource("4_2qh0o")
+mode = "add"
+rotation = SubResource("Curve_fmsp7")
 metadata/_custom_type_script = "uid://d3ikpji4y1ipa"
 
 [node name="Events" type="Node" parent="."]
