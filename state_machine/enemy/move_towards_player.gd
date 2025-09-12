@@ -22,7 +22,7 @@ class_name MoveTowardsPlayerState
 # Whether to apply the speed override
 @export var speed_override_active: bool = false
 
-# proximity value to stop_distance: ensures that the State will eventually end
+# proximity value to stop_distance: ensures that the State will eventually end TODO: check if this is necessary
 var proximity: float = 0.1
 
 @export_category("Debug")
