@@ -1,11 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://ct6208g338yln"]
+[gd_scene load_steps=15 format=3 uid="uid://ct6208g338yln"]
 
 [ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_sv6nk"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="3_ok6tv"]
 [ext_resource type="Script" uid="uid://d3ikpji4y1ipa" path="res://strategies/projectile_movement/rotation.gd" id="4_2qh0o"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="5_ok6tv"]
 [ext_resource type="Script" uid="uid://c6fcpkn103ijr" path="res://strategies/event/projectile/turn_around.gd" id="5_pr6ia"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="6_bysd3"]
 [ext_resource type="PackedScene" uid="uid://ck0cf6ywrf78g" path="res://game/vfx/fire_hull/vfx_realistic.tscn" id="6_pr6ia"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_fmsp7"]
+[ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="8_q4516"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="9_iiwdq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j1spr"]
 size = Vector3(0.25, 0.25, 0.5)
@@ -16,12 +20,17 @@ albedo_color = Color(0.219608, 0.392157, 1, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ja52y"]
 albedo_color = Color(0.720288, 0.284462, 0.531922, 1)
 
+[sub_resource type="Curve" id="Curve_bysd3"]
+_limits = [0.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 5.42334), 0.0, 0.0, 0, 0]
+point_count = 1
+
 [node name="Bullet" type="CharacterBody3D" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision")]
 collision_layer = 0
 script = ExtResource("1_sv6nk")
 hit_box = NodePath("Hitbox")
 movement = [NodePath("Movement/SpeedProjectileMovementStrategy")]
-on_world_collision = [NodePath("Events/WallHit/TurnAroundEventStrategy")]
+on_world_collision = [NodePath("Events/RemoveEventStrategy"), NodePath("Events/SpawnEntitiesEventStrategy")]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.999981, -0.00262398, 0.00563495, 0.00262978, 0.999996, -0.00102195, -0.00563225, 0.00103675, 0.999984, 0, 0, 0)
@@ -37,7 +46,9 @@ material_override = SubResource("StandardMaterial3D_ja52y")
 size = Vector3(0.1, 0.5, 0.5)
 
 [node name="Hitbox" parent="." instance=ExtResource("5_ok6tv")]
+collision_layer = 4
 collision_mask = 64
+attached_to = 3
 can_hit = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
@@ -47,6 +58,7 @@ shape = SubResource("BoxShape3D_j1spr")
 
 [node name="SpeedProjectileMovementStrategy" type="Node" parent="Movement"]
 script = ExtResource("3_ok6tv")
+speed = SubResource("Curve_bysd3")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
 [node name="RotationProjectileMovementStrategy" type="Node" parent="Movement"]
@@ -60,6 +72,18 @@ metadata/_custom_type_script = "uid://d3ikpji4y1ipa"
 [node name="TurnAroundEventStrategy" type="Node" parent="Events/WallHit"]
 script = ExtResource("5_pr6ia")
 metadata/_custom_type_script = "uid://c6fcpkn103ijr"
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="Events"]
+script = ExtResource("6_bysd3")
+
+[node name="EntitySpawner" type="Node3D" parent="Events/SpawnEntitiesEventStrategy"]
+script = ExtResource("7_fmsp7")
+entity_to_spawn = ExtResource("8_q4516")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="RemoveEventStrategy" type="Node" parent="Events"]
+script = ExtResource("9_iiwdq")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
 [node name="vfx_projectile" parent="." instance=ExtResource("6_pr6ia")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.00266897, 0, -0.0215909)

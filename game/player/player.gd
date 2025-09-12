@@ -26,4 +26,4 @@ func spawn_bullet():
 	# var instance = BULLET.instantiate()
 	# get_parent().add_child(instance)
 	# instance.setup(Enum.GROUP.PLAYER, global_position, global_rotation, global_position + basis.z * -5)
-	spawner.spawn(self, get_parent())
+	spawner.spawn(self)
