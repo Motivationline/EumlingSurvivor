@@ -21,6 +21,7 @@ func _ready() -> void:
 	if (Engine.is_editor_hint()):
 		child_order_changed.connect(update_configuration_warnings)
 		return
+	add_to_group("Level")
 	if(goal_area):
 		goal_area.set_collision_mask_value(2, true)
 
