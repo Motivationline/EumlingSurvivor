@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ct6208g338yln"]
+[gd_scene load_steps=15 format=3 uid="uid://ct6208g338yln"]
 
 [ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_sv6nk"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="3_ok6tv"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="5_ok6tv"]
 [ext_resource type="Script" uid="uid://c6fcpkn103ijr" path="res://strategies/event/projectile/turn_around.gd" id="5_pr6ia"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="6_bysd3"]
-[ext_resource type="PackedScene" uid="uid://ck0cf6ywrf78g" path="res://game/vfx/fire_hull/vfx_realistic.tscn" id="6_pr6ia"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_fmsp7"]
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="8_q4516"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="9_iiwdq"]
@@ -91,6 +90,3 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 [node name="RemoveEventStrategy" type="Node" parent="Events"]
 script = ExtResource("9_iiwdq")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
-
-[node name="vfx_projectile" parent="." instance=ExtResource("6_pr6ia")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.00266897, 0, -0.0215909)

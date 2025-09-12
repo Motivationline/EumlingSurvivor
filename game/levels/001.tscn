@@ -1,9 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://htuftvnpan0c"]
+[gd_scene load_steps=15 format=3 uid="uid://htuftvnpan0c"]
 
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="1_fnkxu"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_uile8"]
 [ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/tortoise/tortoise_enemy.tscn" id="4_uile8"]
+[ext_resource type="PackedScene" uid="uid://dd5npkf3gb428" path="res://level/playgounrd/weapon_switch/weapon_switch.tscn" id="5_u3pwt"]
+[ext_resource type="PackedScene" uid="uid://cjpt5ms0ud5r" path="res://game/projectiles/bouncing_ball_projectile/bouncing_ball_projectile.tscn" id="6_geo0b"]
+[ext_resource type="PackedScene" uid="uid://bovt68803h33n" path="res://game/projectiles/boomerang_projectile/boomerang_projectile.tscn" id="7_geo0b"]
+[ext_resource type="PackedScene" uid="uid://cjqhostf8f0eq" path="res://game/projectiles/curve_projectile/curve_left_projectile.tscn" id="8_crm5u"]
+[ext_resource type="PackedScene" uid="uid://ct6208g338yln" path="res://game/projectiles/example_bullet/example_bullet.tscn" id="9_cf6nt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
 size = Vector3(5, 1, 1)
@@ -113,3 +118,23 @@ environment = SubResource("Environment_j48a7")
 
 [node name="TortoiseEnemy" parent="." instance=ExtResource("4_uile8")]
 transform = Transform3D(-0.909149, 0, -0.416471, 0, 1, 0, 0.416471, 0, -0.909149, -0.169102, 0.22096, -1.89922)
+
+[node name="WeaponSwitch" parent="." instance=ExtResource("5_u3pwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30828, 0.0963982, 6.28064)
+weapon = ExtResource("6_geo0b")
+weapon_name = "Bouncing Ball"
+
+[node name="WeaponSwitch2" parent="." instance=ExtResource("5_u3pwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34403, 0.0963982, 6.28064)
+weapon = ExtResource("7_geo0b")
+weapon_name = "Boomerang"
+
+[node name="WeaponSwitch3" parent="." instance=ExtResource("5_u3pwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.707872, 0.0963982, 6.28064)
+weapon = ExtResource("8_crm5u")
+weapon_name = "curve projectile"
+
+[node name="WeaponSwitch4" parent="." instance=ExtResource("5_u3pwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64899, 0.0963982, 6.28064)
+weapon = ExtResource("9_cf6nt")
+weapon_name = "example bullet"

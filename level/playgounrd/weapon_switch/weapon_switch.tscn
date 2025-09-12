@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dd5npkf3gb428"]
+
+[ext_resource type="Script" uid="uid://c7esl4mntqfp5" path="res://level/playgounrd/weapon_switch/weapon_switch.gd" id="1_il2at"]
+[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="2_uhecj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_il2at"]
+radius = 0.641457
+
+[sub_resource type="SphereMesh" id="SphereMesh_j8dro"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ntqtl"]
+render_priority = 0
+shader = ExtResource("2_uhecj")
+shader_parameter/ball_color = Color(1, 0.881667, 0.29, 1)
+shader_parameter/frensel_power = 3.305
+shader_parameter/visibility = 1.0
+
+[node name="WeaponSwitch" type="Node3D"]
+script = ExtResource("1_il2at")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.059883, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_il2at")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862297, 0)
+billboard = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_j8dro")
+surface_material_override/0 = SubResource("ShaderMaterial_ntqtl")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
