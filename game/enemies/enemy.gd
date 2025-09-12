@@ -22,6 +22,7 @@ class_name Enemy
 
 @export_category("Behavior")
 @export var state_machine: StateMachine
+@export var node_with_animation_tree: Node3D
 # @export var upgrades: Array[UpgradeStrategy]
 
 @export_category("Event Listeners")
@@ -42,7 +43,7 @@ func _ready() -> void:
 	if (hitbox): hitbox.hit.connect(_hit)
 	if (hurtbox): hurtbox.hurt_by.connect(_hurt_by)
 
-	if (state_machine): state_machine.setup(self)
+	if (state_machine): state_machine.setup(self, find_first_animation_tree(node_with_animation_tree if(node_with_animation_tree) else self))
 
 	Strategy._setup_array(on_death, self)
 	Strategy._setup_array(on_hit, self)
@@ -53,6 +54,15 @@ func _ready() -> void:
 	reset_timer = Timer.new()
 	add_child(reset_timer)
 	reset_timer.timeout.connect(reset_health)
+
+func find_first_animation_tree(node: Node3D) -> AnimationTree:
+	if (!node): return null
+	for child in node.get_children():
+		if (child is AnimationTree): return child
+		if (child.get_child_count() > 0 && child is Node3D):
+			var tree = find_first_animation_tree(child)
+			if (tree && tree is AnimationTree): return tree
+	return null
 
 func _hit(_attackee: HurtBox):
 	pass

@@ -18,18 +18,25 @@ class_name State
 		update_configuration_warnings()
 var current_iteration: int = 0
 
+## Set up a trigger for your animation transition here and it will get triggered when this state starts.
+@export var animation_trigger: String
+
 var parent: Enemy
+var anim_player: AnimationTree
 
 ## Called once when the state machine is first initialized 
-func setup(_parent: Enemy) -> void:
+func setup(_parent: Enemy, _animation: AnimationTree) -> void:
 	parent = _parent
+	anim_player = _animation
 
 ## Called every time the state is set to be the active state
 func enter() -> void:
+	if (anim_player): anim_player.set("parameters/conditions/" + animation_trigger, true)
 	pass
 
 ## Called every time the state is no longer the active state
 func exit() -> void:
+	if (anim_player): anim_player.set("parameters/conditions/" + animation_trigger, false)
 	pass
 
 ## While active, this is called with the parents regular _process() function

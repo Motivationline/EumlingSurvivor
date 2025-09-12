@@ -15,11 +15,11 @@ var current_state: State
 
 var parent: CharacterBody3D
 
-func setup(_parent: CharacterBody3D):
+func setup(_parent: CharacterBody3D, _animation_tree: AnimationTree):
 	parent = _parent
 	for child in get_children():
 		if (child is State):
-			child.setup(parent)
+			child.setup(parent, _animation_tree)
 	switch_to_state(initial_state)
 
 func _ready():

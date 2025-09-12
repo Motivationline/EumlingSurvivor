@@ -32,8 +32,8 @@ var nav_agent: NavigationAgent3D
 var done: bool = false
 var player: CharacterBody3D
 
-func setup(_parent: Node):
-	super (_parent)
+func setup(_parent: Enemy, _animation_tree: AnimationTree):
+	super (_parent, _animation_tree)
 	parent = _parent
 	nav_agent = NavigationAgent3D.new()
 	parent.add_child(nav_agent)
@@ -44,6 +44,7 @@ func setup(_parent: Node):
 	player = get_tree().get_nodes_in_group("Player")[0]
 
 func enter():
+	super()
 	update_target_location()
 
 func physics_process(_delta: float) -> State:

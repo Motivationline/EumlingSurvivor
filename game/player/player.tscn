@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=8 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
@@ -11,11 +11,6 @@
 radius = 0.25
 height = 1.0
 
-[sub_resource type="Curve" id="Curve_4ste8"]
-_limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1.02267), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("spawner") groups=["Player"]]
 collision_layer = 2
 collision_mask = 17
@@ -23,12 +18,13 @@ script = ExtResource("1_b2mth")
 spawner = NodePath("EntitySpawner")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
 [node name="Eumling_Survivor" parent="." instance=ExtResource("1_wv0h6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="EntitySpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458658, 0)
 script = ExtResource("3_a4w0n")
 entity_to_spawn = ExtResource("4_epvkq")
 amount_of_spawns = 4
@@ -42,12 +38,11 @@ attached_to = 4
 can_be_hit_by = 6
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
 [node name="AOE" parent="." instance=ExtResource("6_anr75")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 never_expire = true
 duration = 2.0
-size_scaler = SubResource("Curve_4ste8")
 normalize_to_lifetime = true
 scale_affects = Vector3(1, 0, 1)

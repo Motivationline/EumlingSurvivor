@@ -28,8 +28,8 @@ class_name MoveRandomOnNavMeshState
 var nav_agent: NavigationAgent3D
 var done: bool = false
 
-func setup(_parent: Enemy):
-	super (_parent)
+func setup(_parent: Enemy, _animation_tree: AnimationTree):
+	super (_parent, _animation_tree)
 	nav_agent = NavigationAgent3D.new()
 	parent.add_child(nav_agent)
 	# anti-schwebe-zeugs - ist bisschen unklar, warum muss ich das auf 2x cell height setzen damit es richtig funktioniert? :shrug:
@@ -38,6 +38,7 @@ func setup(_parent: Enemy):
 	nav_agent.debug_enabled = debug_show_path
 
 func enter():
+	super()
 	find_new_target()
 
 func physics_process(_delta: float) -> State:

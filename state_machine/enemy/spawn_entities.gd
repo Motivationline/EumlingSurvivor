@@ -30,11 +30,12 @@ func _find_child():
 			break
 	update_configuration_warnings()
 
-func setup(_parent):
-	super(_parent)
+func setup(_parent: Enemy, _animation_tree: AnimationTree):
+	super (_parent, _animation_tree)
 	_find_child()
 
 func enter() -> void:
+	super()
 	done = false
 	if (start_delay > 0): await get_tree().create_timer(start_delay).timeout
 	if (spawner): await spawner.spawn(parent, parent.get_parent())
