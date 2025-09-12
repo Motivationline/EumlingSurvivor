@@ -12,6 +12,11 @@ class_name MoveRandomOnNavMeshState
 	set(new_value):
 		wait_time = max(new_value, 0)
 
+## How far away from the current position is the minimum distance to walk to
+@export var min_distance: float = 1
+## How far away from the current position is the maximum distance to walk to
+@export var max_distance: float = 5
+
 @export_group("Overrides")
 ## Movement Speed Override
 @export_range(0, 100, 0.1) var speed_override: float = 1:
@@ -59,9 +64,10 @@ func physics_process(_delta: float) -> State:
 
 func find_new_target():
 	var random_position := Vector3.ZERO
-	random_position.x = randf_range(-10, 10)
-	random_position.z = randf_range(-10, 10)
-	nav_agent.target_position = random_position
+	random_position.x = randf_range(-1, 1)
+	random_position.z = randf_range(-1, 1)
+	random_position = random_position.normalized() * randf_range(min_distance, max_distance)
+	nav_agent.target_position = random_position + parent.global_position
 	done = false
 	nav_agent.debug_enabled = debug_show_path
 
@@ -72,5 +78,6 @@ func target_reached():
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := super ()
-	if (speed_override == 0): warnings.insert(0, "Using a speed of 0 means this node will never reach its target.")
+	if (speed_override == 0 && speed_override_active): warnings.insert(0, "Using a speed of 0 means this node will never reach its target.")
+	if (min_distance > max_distance): warnings.insert(0, "Min Distance cannot be larger than Max Distance")
 	return warnings
