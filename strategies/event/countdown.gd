@@ -15,6 +15,7 @@ var happened: bool = false
 
 func _setup(_parent: Node):
 	super (_parent)
+	event._setup(_parent)
 	current_count = count
 
 func event_triggered(_data):
