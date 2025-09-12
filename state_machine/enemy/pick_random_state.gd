@@ -1,12 +1,16 @@
 @tool
 extends State
-## Picks a random State from all StateMachine Childs, self excluded
+## Picks a random State from the given States Array
 class_name PickRandomState
 
 ## optional wait Time until the next State starts
 @export var wait_time: float = 0:
 	set(new_value):
 		wait_time = max(new_value, 0)
+		
+@export_category("States")
+## Add State pool inside this Array
+@export var states: Array[State]
 
 var done: bool = false
 
@@ -26,10 +30,10 @@ func physics_process(_delta: float) -> State:
 	return null
 
 func pick_random_state():
-	var states: Array[Node] = get_parent().get_children()
-	while next_state is PickRandomState:
-		var selector = randi_range(0, len(states)-1)
-		next_state = states[selector]
+	#var states: Array[Node] = get_parent().get_children()
+	#while next_state is PickRandomState:
+	var selector = randi_range(0, len(states)-1)
+	next_state = states[selector]
 	#print(next_state)
 	await get_tree().create_timer(wait_time).timeout
 	done = true

@@ -13,10 +13,10 @@ class_name WaitForTimeX
 
 @export var random: bool = false
 
-## default 0
-@export var min: float = 0
-## default 1
-@export var max: float = 1
+## minimum wait time
+@export var min_wait_time: float = 0
+## maximum wait time
+@export var max_wait_time: float = 1
 
 var done: bool = false
 
@@ -35,7 +35,7 @@ func physics_process(_delta: float) -> State:
 
 func wait():
 	if random:
-		wait_time = randf_range(min, max)
+		wait_time = randf_range(min_wait_time, max_wait_time)
 	await get_tree().create_timer(wait_time).timeout
 	done = true
 	
