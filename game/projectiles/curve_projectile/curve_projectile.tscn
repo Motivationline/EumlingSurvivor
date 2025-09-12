@@ -11,15 +11,16 @@ _data = [Vector2(0, 8), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Curve" id="Curve_67cxf"]
-_limits = [0.0, 8.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.0223357, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(1, 8), 17.725, 0.0, 0, 0]
-point_count = 3
+_limits = [0.0, 45.0, 0.0, 1.0]
+_data = [Vector2(0, 1.70577), 0.0, 0.0, 0, 1]
+point_count = 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jogt0"]
 radius = 0.126734
 
 [node name="Projectile" node_paths=PackedStringArray("movement") instance=ExtResource("1_15r4a")]
-movement = [NodePath("MovementStrategies/RotationProjectileMovementStrategy")]
+collision_mask = 0
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy"), NodePath("MovementStrategies/RotationProjectileMovementStrategy")]
 
 [node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
 script = ExtResource("2_v737x")
@@ -28,7 +29,7 @@ metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
 [node name="RotationProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1"]
 script = ExtResource("3_623as")
-normalize_to_lifetime = false
+mode = "add"
 rotation = SubResource("Curve_67cxf")
 metadata/_custom_type_script = "uid://d3ikpji4y1ipa"
 

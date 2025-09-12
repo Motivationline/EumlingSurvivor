@@ -22,32 +22,33 @@ signal spawn_finished
 @export_range(0, 60, 0.1) var time_between_bursts: float = 0
 @export_range(0, 100) var amount_of_bursts: int = 1
 
-func spawn(_relative_to: Node3D):
+func spawn(_parent: Node3D, _relative_to: Node3D = null):
+	if (!_relative_to): _relative_to = _parent
 	for b in amount_of_bursts:
 		if (b != 0 && time_between_bursts > 0):
 			await get_tree().create_timer(time_between_bursts).timeout
-		await burst(_relative_to)
+		await burst(_parent, _relative_to)
 	
 	spawn_finished.emit()
 
-func burst(_relative_to: Node3D):
+func burst(_parent: Node3D, _relative_to: Node3D):
 	for i in amount_of_spawns:
 		if (i != 0 && time_between_entities > 0):
 			await get_tree().create_timer(time_between_entities).timeout
-		spawn_entity(_relative_to, i, amount_of_spawns)
+		spawn_entity(_parent, _relative_to, i, amount_of_spawns)
 	burst_finished.emit()
 
-func spawn_entity(_relative_to: Node3D, _current: int, _total: int):
+func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: int):
 	if (!entity_to_spawn):
-		printerr("%s attached to %s tried to spawn nothing" % [name, _relative_to.name])
+		printerr("%s attached to %s tried to spawn nothing" % [name, _parent.name])
 		return
 	var instance = entity_to_spawn.instantiate() as Node3D
-	if (spawn_local): _relative_to.add_child(instance)
+	if (spawn_local): _parent.add_child(instance)
 	else:
-		var level = _relative_to.get_tree().get_nodes_in_group("Level")[0]
+		var level = _parent.get_tree().get_nodes_in_group("Level")[0]
 		if (level): level.add_child(instance)
 		else:
-			printerr("%s attached to %s tried to spawn on the level but level not found." % [name, _relative_to.name])
+			printerr("%s attached to %s tried to spawn on the level but level not found." % [name, _parent.name])
 			return
 	
 	instance.global_position = _relative_to.global_position
