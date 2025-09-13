@@ -1,17 +1,22 @@
 @tool
 extends State
 
-## Moves the Entity towards the Player 
+## Moves the Entity away from the Player 
 ##
-## Ends when the distance from Entity to Player is less than stop_distance
-class_name MoveTowardsPlayerState
+## Ends when the Entity reached the targeted fleeing distance
+class_name FleeFromPlayerState
 
 ## pause time after the destination was reached
 @export var wait_time: float = 1
 ## distance to the Player where this State ends
-@export var stop_distance: float = 100
+@export var flee_distance: float = 10
 ## amount to rotate when directions change
 @export_range(0.0,20.0,0.1) var rotation_speed: float = 5
+@export_category("Time Based Fleeing")
+## toggle time based flee behavior
+@export var time_based: bool = false
+## for how long the Entity flees from the player
+@export var target_flee_time: float = 10
 
 @export_group("Overrides")
 ## Movement Speed Override
@@ -28,6 +33,8 @@ class_name MoveTowardsPlayerState
 var nav_agent: NavigationAgent3D
 var done: bool = false
 var player: CharacterBody3D
+# for how long this entity has been fleeing
+var time_fleeing: float = 0
 
 func setup(_parent: Enemy, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
@@ -43,6 +50,7 @@ func setup(_parent: Enemy, _animation_tree: AnimationTree):
 func enter():
 	super()
 	update_target_location()
+	time_fleeing = 0
 
 func physics_process(_delta: float) -> State:
 	if (done): return return_next()
@@ -59,13 +67,20 @@ func physics_process(_delta: float) -> State:
 	parent.rotation.y = lerp_angle(parent.rotation.y,atan2(-parent.velocity.x,-parent.velocity.z),_delta* rotation_speed)
 	
 	parent.move_and_slide()
-	#check if the player is closer than stopping distance
-	if (player.position - parent.position).length() <= (stop_distance):
+	#check if the player is farther than flee_distance or the target fleeing time has been reached
+	if !time_based && (player.position - parent.position).length() >= (flee_distance):
 		target_reached()
+	elif time_fleeing >= target_flee_time:
+		target_reached()
+	time_fleeing += _delta
 	return null
 
 func update_target_location():
-	var target_position = player.position - ((player.position - parent.position).normalized() * stop_distance)
+	var target_position
+	if(!time_based):
+		target_position = parent.position + ((parent.position - player.position).normalized() * (flee_distance - (parent.position - player.position).length()))
+	else :
+		target_position = parent.position + ((parent.position - player.position).normalized() * ((target_flee_time - time_fleeing) * parent.speed))
 	nav_agent.target_position = target_position
 	done = false
 	nav_agent.debug_enabled = debug_show_path

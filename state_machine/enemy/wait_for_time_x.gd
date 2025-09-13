@@ -1,7 +1,7 @@
 @tool
 extends State
 ## Let The Entity wait
-class_name WaitForTimeX
+class_name WaitForTimeXState
 
 ## Wait Time, default 1 sec
 @export var wait_time: float = 1:

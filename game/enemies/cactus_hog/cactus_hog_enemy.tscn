@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5hdpq54o462t"]
+[gd_scene load_steps=13 format=3 uid="uid://b5hdpq54o462t"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_c2tdt"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_xfdg2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_eagit"]
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="5_leyq8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_0es7d"]
+[ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="6_sm38j"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_g5j0o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_aprxc"]
@@ -36,7 +37,8 @@ initial_state = NodePath("WaitForTimeX")
 [node name="MoveTowardsPlayer" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_xfdg2")
 wait_time = 0.0
-stop_distance = -0.1
+stop_distance = 0.1
+debug_show_path = true
 next_state = NodePath("../PickRandomState")
 animation_trigger = "walk"
 metadata/_custom_type_script = "uid://dmskxets4soyo"
@@ -48,7 +50,7 @@ metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 
 [node name="PickRandomState" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("states", "next_state")]
 script = ExtResource("4_eagit")
-states = [NodePath("../WaitForTimeX"), NodePath("../MoveRandomOnNavMeshState"), NodePath("../MoveTowardsPlayer")]
+states = [NodePath("../MoveTowardsPlayer"), NodePath("../FleeFromPlayerState")]
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://cp33buoo5xtgx"
 
@@ -57,6 +59,15 @@ script = ExtResource("5_eagit")
 random = true
 next_state = NodePath("../PickRandomState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="FleeFromPlayerState" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_sm38j")
+flee_distance = 5.0
+time_based = true
+target_flee_time = 5.0
+debug_show_path = true
+next_state = NodePath("../PickRandomState")
+metadata/_custom_type_script = "uid://mycfudgv475a"
 
 [node name="cactushog" parent="." index="3" instance=ExtResource("5_leyq8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
