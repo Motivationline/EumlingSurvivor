@@ -1,10 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5hdpq54o462t"]
+[gd_scene load_steps=10 format=3 uid="uid://b5hdpq54o462t"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_c2tdt"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_xfdg2"]
-[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_c2tdt"]
-[ext_resource type="Script" uid="uid://cp33buoo5xtgx" path="res://state_machine/enemy/pick_random_state.gd" id="4_eagit"]
-[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_eagit"]
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="5_leyq8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_0es7d"]
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="6_sm38j"]
@@ -32,41 +29,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928938, -0.0283241)
 hide_when_full_after = 0.5
 
 [node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("WaitForTimeX")
+initial_state = NodePath("MoveTowardsPlayer")
 
 [node name="MoveTowardsPlayer" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_xfdg2")
 wait_time = 0.0
-stop_distance = 0.1
+stop_distance = 3.0
 debug_show_path = true
-next_state = NodePath("../PickRandomState")
+next_state = NodePath("../FleeFromPlayerState")
 animation_trigger = "walk"
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
-script = ExtResource("3_c2tdt")
-next_state = NodePath("../PickRandomState")
-metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
-
-[node name="PickRandomState" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("states", "next_state")]
-script = ExtResource("4_eagit")
-states = [NodePath("../MoveTowardsPlayer"), NodePath("../FleeFromPlayerState")]
-next_state = NodePath(".")
-metadata/_custom_type_script = "uid://cp33buoo5xtgx"
-
-[node name="WaitForTimeX" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("next_state")]
-script = ExtResource("5_eagit")
-random = true
-next_state = NodePath("../PickRandomState")
-metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="FleeFromPlayerState" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("next_state")]
+[node name="FleeFromPlayerState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_sm38j")
+wait_time = 0.0
 flee_distance = 5.0
-time_based = true
 target_flee_time = 5.0
 debug_show_path = true
-next_state = NodePath("../PickRandomState")
+next_state = NodePath("../MoveTowardsPlayer")
 metadata/_custom_type_script = "uid://mycfudgv475a"
 
 [node name="cactushog" parent="." index="3" instance=ExtResource("5_leyq8")]

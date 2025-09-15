@@ -36,7 +36,8 @@ func setup(_parent: Enemy, _animation_tree: AnimationTree):
 	parent.add_child(nav_agent)
 	# anti-schwebe-zeugs - ist bisschen unklar, warum muss ich das auf 2x cell height setzen damit es richtig funktioniert? :shrug:
 	nav_agent.path_height_offset = ProjectSettings.get_setting("navigation/3d/default_cell_height", 0.25) * 2
-	nav_agent.navigation_finished.connect(target_reached)
+	nav_agent.target_reached.connect(target_reached)
+	nav_agent.target_desired_distance = 0.1
 	nav_agent.debug_enabled = debug_show_path
 	player = get_tree().get_nodes_in_group("Player")[0]
 
