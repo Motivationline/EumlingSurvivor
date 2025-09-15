@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bneq1sfddtees"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_hl6xb"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_xfpcy"]
+[ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="7_ogkd3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ovj8p"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xfpcy"]
+size = Vector3(0.6, 0.1, 0.5)
+
+[node name="Turnwheeler" instance=ExtResource("1_hl6xb")]
+
+[node name="Healthbar3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0212426, 1.30468, -0.0114209)
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveTowardsPlayerState")
+
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_xfpcy")
+wait_time = 0.0
+stop_distance = 2.0
+rotation_speed = 20.0
+next_state = NodePath("../FleeFromPlayerState")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="FleeFromPlayerState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_ogkd3")
+wait_time = 0.0
+flee_distance = 2.0
+speed_override = 3.0
+speed_override_active = true
+debug_show_path = true
+next_state = NodePath("../MoveTowardsPlayerState")
+metadata/_custom_type_script = "uid://mycfudgv475a"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502256, 0)
+mesh = SubResource("BoxMesh_ovj8p")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.244536, -0.109799)
+mesh = SubResource("BoxMesh_xfpcy")
+skeleton = NodePath("../..")

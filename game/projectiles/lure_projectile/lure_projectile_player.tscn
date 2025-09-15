@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://dpij4pds4lqgx"]
 
-[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_8tiwe"]
-[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="3_cgb8i"]
-[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_x3fq1"]
-[ext_resource type="PackedScene" uid="uid://bwmrw7fyqaxui" path="res://game/aoes/explosion/explosion_aoe.tscn" id="5_pbind"]
-[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="6_cgb8i"]
-[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_xbxjr"]
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_55etv"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="2_igd2n"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_x82ux"]
+[ext_resource type="PackedScene" uid="uid://bwmrw7fyqaxui" path="res://game/aoes/explosion/explosion_aoe.tscn" id="4_d5qcg"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="5_0wj5t"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_uhieh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jay8e"]
 radius = 0.276126
@@ -18,26 +18,26 @@ height = 0.25
 [sub_resource type="SphereShape3D" id="SphereShape3D_pbind"]
 radius = 0.226072
 
-[node name="Lure_Proectile" node_paths=PackedStringArray("hurt_box", "on_hurt") instance=ExtResource("1_8tiwe")]
+[node name="Lure_Proectile" node_paths=PackedStringArray("hurt_box", "on_hurt") instance=ExtResource("1_55etv")]
 damage = 0.0
 lifetime = 8.0
 hurt_box = NodePath("Hurtbox")
 on_hurt = [NodePath("EventStrategies/OnHurt/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnHurt/RemoveEventStrategy")]
 
 [node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnHurt" index="0"]
-script = ExtResource("3_cgb8i")
+script = ExtResource("2_igd2n")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
 [node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnHurt/SpawnEntitiesEventStrategy" index="0"]
-script = ExtResource("4_x3fq1")
-entity_to_spawn = ExtResource("5_pbind")
+script = ExtResource("3_x82ux")
+entity_to_spawn = ExtResource("4_d5qcg")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHurt" index="1"]
-script = ExtResource("6_cgb8i")
+script = ExtResource("5_0wj5t")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="Hurtbox" parent="." index="2" instance=ExtResource("6_xbxjr")]
+[node name="Hurtbox" parent="." index="2" instance=ExtResource("6_uhieh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1479, 0)
 collision_layer = 8
 collision_mask = 32
