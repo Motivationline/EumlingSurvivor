@@ -3,19 +3,20 @@
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
-[ext_resource type="PackedScene" uid="uid://bovt68803h33n" path="res://game/projectiles/boomerang_projectile/boomerang_projectile.tscn" id="4_4ste8"]
+[ext_resource type="PackedScene" uid="uid://dpij4pds4lqgx" path="res://game/projectiles/lure_projectile/lure_projectile.tscn" id="4_4ste8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.25
 height = 1.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("spawner") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("spawner", "eumling_visuals") groups=["Player"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_b2mth")
 speed = 4.0
 spawner = NodePath("EntitySpawner")
+eumling_visuals = NodePath("Eumling_Survivor")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
