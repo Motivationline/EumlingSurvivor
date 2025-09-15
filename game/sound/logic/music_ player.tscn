@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://uyyg1ut65j1"]
+
+[ext_resource type="AudioStream" uid="uid://byfdnm5xd5k28" path="res://game/sound/music/Puzzle_intro.ogg" id="1_0mnli"]
+[ext_resource type="AudioStream" uid="uid://ds6vf8g8h2h6h" path="res://game/sound/music/Puzzle_loop.ogg" id="1_mnvcu"]
+[ext_resource type="Script" uid="uid://cgdd38d2p7id8" path="res://game/sound/logic/music_player.gd" id="3_2bvub"]
+[ext_resource type="AudioStream" uid="uid://bp8ypixhc4mkc" path="res://game/sound/music/Puzzle_tail.ogg" id="3_r7t64"]
+[ext_resource type="AudioStream" uid="uid://djqo3hu22b3tv" path="res://game/sound/music/BossCombat_intro.ogg" id="4_fg342"]
+[ext_resource type="AudioStream" uid="uid://d1qyvqcqnqo03" path="res://game/sound/music/BossCombat_loop.ogg" id="5_bc5l5"]
+[ext_resource type="AudioStream" uid="uid://cjssvovu08m7i" path="res://game/sound/music/BossCombat_tail.ogg" id="6_u8k67"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_mm6rf"]
+stream_count = 2
+stream_0/stream = ExtResource("1_mnvcu")
+stream_0/volume = -9.28
+stream_1/stream = ExtResource("3_r7t64")
+stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ehp35"]
+stream_count = 2
+stream_0/stream = ExtResource("5_bc5l5")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("6_u8k67")
+stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_pff77"]
+clip_count = 4
+clip_0/name = &"Puzzle Intro"
+clip_0/stream = ExtResource("1_0mnli")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Puzzle Loop"
+clip_1/stream = SubResource("AudioStreamSynchronized_mm6rf")
+clip_1/auto_advance = 0
+clip_2/name = &"Boss Intro"
+clip_2/stream = ExtResource("4_fg342")
+clip_2/auto_advance = 1
+clip_2/next_clip = 3
+clip_3/name = &"Boss Loop"
+clip_3/stream = SubResource("AudioStreamSynchronized_ehp35")
+clip_3/auto_advance = 0
+_transitions = {
+Vector2i(1, 2): {
+"fade_beats": 0.1,
+"fade_mode": 2,
+"from_time": 2,
+"to_time": 1
+},
+Vector2i(3, 0): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+}
+}
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+stream = SubResource("AudioStreamInteractive_pff77")
+bus = &"Music"
+playback_type = 2
+script = ExtResource("3_2bvub")
+debug = true
+
+[node name="DebugUI" type="GridContainer" parent="."]
+offset_right = 409.0
+offset_bottom = 359.0
+
+[node name="DebugSelector" type="ItemList" parent="DebugUI"]
+clip_contents = false
+custom_minimum_size = Vector2(400, 800)
+layout_mode = 2
+size_flags_horizontal = 6
+item_count = 5
+item_0/text = "Puzzle"
+item_1/text = "Combat"
+item_2/text = "Boss"
+item_3/text = "Chase"
+item_4/text = "Parkour"
+
+[connection signal="item_clicked" from="DebugUI/DebugSelector" to="." method="_on_debug_list_item_clicked"]
