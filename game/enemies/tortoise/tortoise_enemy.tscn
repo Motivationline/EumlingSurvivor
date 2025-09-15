@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drtoi8fygioae"]
+[gd_scene load_steps=10 format=3 uid="uid://drtoi8fygioae"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_5rk5k"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_c3oc6"]
@@ -14,11 +14,15 @@ height = 0.955451
 [sub_resource type="SphereShape3D" id="SphereShape3D_a57xe"]
 radius = 0.39281
 
-[node name="TortoiseEnemy" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_5rk5k")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_fgitk"]
+radius = 0.437599
+
+[node name="TortoiseEnemy" node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_5rk5k")]
 health = 100.0
 speed = 0.5
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+node_with_animation_tree = NodePath("tortoise")
 
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919, 0)
@@ -36,8 +40,6 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("3_a57xe")
-min_distance = null
-max_distance = null
 metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 
 [node name="tortoise" parent="." index="3" instance=ExtResource("2_s8eqa")]
@@ -45,7 +47,9 @@ metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 [node name="Hitbox" parent="." index="4" instance=ExtResource("4_c3oc6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35191, 0)
 collision_layer = 32
+collision_mask = 8
 attached_to = 6
+can_hit = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.066589, 0)
@@ -61,3 +65,7 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
 shape = SubResource("SphereShape3D_a57xe")
 debug_color = Color(0.883413, 0.262783, 0.530975, 0.42)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388744, 0)
+shape = SubResource("SphereShape3D_fgitk")

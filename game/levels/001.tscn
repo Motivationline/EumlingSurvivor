@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://htuftvnpan0c"]
+[gd_scene load_steps=18 format=3 uid="uid://htuftvnpan0c"]
 
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="1_fnkxu"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cjqhostf8f0eq" path="res://game/projectiles/curve_projectile/curve_left_projectile.tscn" id="8_crm5u"]
 [ext_resource type="PackedScene" uid="uid://ct6208g338yln" path="res://game/projectiles/example_bullet/example_bullet.tscn" id="9_cf6nt"]
 [ext_resource type="PackedScene" uid="uid://bhfncjfyvm7a2" path="res://game/projectiles/dragster_projectile/dragster_projectile.tscn" id="10_36van"]
+[ext_resource type="PackedScene" uid="uid://dpij4pds4lqgx" path="res://game/projectiles/lure_projectile/lure_projectile.tscn" id="11_v0tj5"]
+[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/bomber/bomber_enemy.tscn" id="12_s51n4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
 size = Vector3(5, 1, 1)
@@ -147,3 +149,11 @@ weapon_name = "example bullet"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.48525, 0.0963982, -0.00215626)
 weapon = ExtResource("10_36van")
 weapon_name = "dragster projectile"
+
+[node name="WeaponSwitch6" parent="Weapons" instance=ExtResource("5_u3pwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.49825, 0.0963982, -0.00215626)
+weapon = ExtResource("11_v0tj5")
+weapon_name = "mine "
+
+[node name="Bomber" parent="." instance=ExtResource("12_s51n4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23522, 0.00150748, 5.23188)
