@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://ct6208g338yln"]
+[gd_scene load_steps=16 format=3 uid="uid://ct6208g338yln"]
 
 [ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_sv6nk"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="3_ok6tv"]
 [ext_resource type="Script" uid="uid://d3ikpji4y1ipa" path="res://strategies/projectile_movement/rotation.gd" id="4_2qh0o"]
+[ext_resource type="Script" uid="uid://c1blpxxkte8o3" path="res://strategies/projectile_movement/parent_speed.gd" id="5_bysd3"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="5_ok6tv"]
 [ext_resource type="Script" uid="uid://c6fcpkn103ijr" path="res://strategies/event/projectile/turn_around.gd" id="5_pr6ia"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="6_bysd3"]
@@ -20,8 +21,7 @@ albedo_color = Color(0.219608, 0.392157, 1, 1)
 albedo_color = Color(0.720288, 0.284462, 0.531922, 1)
 
 [sub_resource type="Curve" id="Curve_bysd3"]
-_limits = [0.0, 20.0, 0.0, 1.0]
-_data = [Vector2(0, 2.1599), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Curve" id="Curve_fmsp7"]
@@ -33,7 +33,7 @@ point_count = 2
 collision_layer = 0
 script = ExtResource("1_sv6nk")
 hit_box = NodePath("Hitbox")
-movement = [NodePath("Movement/SpeedProjectileMovementStrategy"), NodePath("Movement/RotationProjectileMovementStrategy")]
+movement = [NodePath("Movement/AddParentsVelocityAtTimeOfSpawnProjectileMovementStrategy"), NodePath("Movement/SpeedProjectileMovementStrategy")]
 on_world_collision = [NodePath("Events/RemoveEventStrategy"), NodePath("Events/SpawnEntitiesEventStrategy")]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
@@ -70,6 +70,10 @@ script = ExtResource("4_2qh0o")
 mode = "add"
 rotation = SubResource("Curve_fmsp7")
 metadata/_custom_type_script = "uid://d3ikpji4y1ipa"
+
+[node name="AddParentsVelocityAtTimeOfSpawnProjectileMovementStrategy" type="Node" parent="Movement"]
+script = ExtResource("5_bysd3")
+metadata/_custom_type_script = "uid://c1blpxxkte8o3"
 
 [node name="Events" type="Node" parent="."]
 

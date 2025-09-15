@@ -29,20 +29,24 @@ class_name Projectile
 var current_lifetime: float = 0
 var target_position: Vector3
 
-func setup(target_pos: Vector3, _upgrades: Array[UpgradeStrategy] = []):
+var obj_that_spawned_this: Node3D
+
+func setup(target_pos: Vector3, _owner: Node3D, _upgrades: Array[UpgradeStrategy] = []):
 	target_position = target_pos
 	if (hit_box):
 		hit_box.damage = damage
 		hit_box.hit.connect(_hit_box_hit)
 	if (hurt_box):
 		hurt_box.hurt_by.connect(_hurt_box_hurt)
+	
+	obj_that_spawned_this = _owner
 
-	Strategy._setup_array(movement, self)
-	Strategy._setup_array(on_world_collision, self)
-	Strategy._setup_array(on_hit, self)
-	Strategy._setup_array(on_hurt, self)
-	Strategy._setup_array(on_end_of_life, self)
-	Strategy._setup_array(on_remove, self)
+	Strategy._setup_array(movement, self, _owner)
+	Strategy._setup_array(on_world_collision, self, _owner)
+	Strategy._setup_array(on_hit, self, _owner)
+	Strategy._setup_array(on_hurt, self, _owner)
+	Strategy._setup_array(on_end_of_life, self, _owner)
+	Strategy._setup_array(on_remove, self, _owner)
 
 func _ready() -> void:
 	tree_exiting.connect(_on_remove)

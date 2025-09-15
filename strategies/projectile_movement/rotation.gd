@@ -14,8 +14,8 @@ class_name RotationProjectileMovementStrategy
 
 var start_rotation: float
 
-func _setup(_attached_to: Node):
-	super._setup(_attached_to)
+func _setup(_attached_to: Node, _owner: Node):
+	super._setup(_attached_to, _owner)
 	start_rotation = (_attached_to as Node3D).rotation_degrees.y
 
 

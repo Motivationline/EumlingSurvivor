@@ -6,10 +6,10 @@ class_name Strategy
 var parent: CharacterBody3D
 
 ## Adds all functionality that needs to be set up for this strategy to function properly
-func _setup(_parent: Node) -> void:
+func _setup(_parent: Node, _owner: Node) -> void:
 	parent = _parent
 
 ## Helper function to set up all strategies in an array
-static func _setup_array(_arr: Array, _parent: Node):
+static func _setup_array(_arr: Array, _parent: Node, _owner: Node):
 	for s in _arr:
-		if (s && s is Strategy): s._setup(_parent)
+		if (s && s is Strategy): s._setup(_parent, _owner)

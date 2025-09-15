@@ -45,9 +45,9 @@ func _ready() -> void:
 
 	if (state_machine): state_machine.setup(self, find_first_animation_tree(node_with_animation_tree if(node_with_animation_tree) else self))
 
-	Strategy._setup_array(on_death, self)
-	Strategy._setup_array(on_hit, self)
-	Strategy._setup_array(on_hurt, self)
+	Strategy._setup_array(on_death, self, self)
+	Strategy._setup_array(on_hit, self, self)
+	Strategy._setup_array(on_hurt, self, self)
 
 	add_to_group("Enemy")
 

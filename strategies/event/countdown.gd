@@ -15,9 +15,9 @@ var current_count: int
 @export var once: bool = false
 var happened: bool = false
 
-func _setup(_parent: Node):
-	super (_parent)
-	event._setup(_parent)
+func _setup(_parent: Node, _owner: Node):
+	super (_parent, _owner)
+	event._setup(_parent, _owner)
 	current_count = count
 
 func event_triggered(_data):
