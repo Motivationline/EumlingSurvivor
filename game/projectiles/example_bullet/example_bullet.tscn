@@ -32,9 +32,10 @@ point_count = 2
 [node name="Bullet" type="CharacterBody3D" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision")]
 collision_layer = 0
 script = ExtResource("1_sv6nk")
+lifetime = 3.0
 hit_box = NodePath("Hitbox")
-movement = [NodePath("Movement/AddParentsVelocityAtTimeOfSpawnProjectileMovementStrategy"), NodePath("Movement/SpeedProjectileMovementStrategy")]
-on_world_collision = [NodePath("Events/RemoveEventStrategy"), NodePath("Events/SpawnEntitiesEventStrategy")]
+movement = [NodePath("Movement/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("Events/RemoveEventStrategy")]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.999981, -0.00262398, 0.00563495, 0.00262978, 0.999996, -0.00102195, -0.00563225, 0.00103675, 0.999984, 0, 0, 0)
@@ -50,10 +51,10 @@ material_override = SubResource("StandardMaterial3D_ja52y")
 size = Vector3(0.1, 0.5, 0.5)
 
 [node name="Hitbox" parent="." instance=ExtResource("5_ok6tv")]
-collision_layer = 4
-collision_mask = 64
-attached_to = 3
-can_hit = 7
+collision_layer = 32
+collision_mask = 8
+attached_to = 6
+can_hit = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("BoxShape3D_j1spr")

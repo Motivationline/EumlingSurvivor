@@ -1,10 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://hfymkokrjnpv"]
+[gd_scene load_steps=18 format=3 uid="uid://hfymkokrjnpv"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_cwq3f"]
-[ext_resource type="Script" uid="uid://b0ivg6djt5ima" path="res://state_machine/enemy/wait_for_entity_distance.gd" id="2_d5lp2"]
-[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_fgmx3"]
+[ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="2_3v4v4"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="3_wn5ve"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_6hmvo"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_jenlb"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_0j7li"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="5_hwqec"]
+[ext_resource type="PackedScene" uid="uid://ct6208g338yln" path="res://game/projectiles/example_bullet/example_bullet.tscn" id="6_v5eku"]
+[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="7_ur57y"]
+[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="8_3jlmu"]
+[ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="9_85rxk"]
+
+[sub_resource type="Resource" id="Resource_2kfiv"]
+script = ExtResource("7_ur57y")
+metadata/_custom_type_script = "uid://yd5ytc70xwp6"
+
+[sub_resource type="Resource" id="Resource_yelrx"]
+script = ExtResource("8_3jlmu")
+metadata/_custom_type_script = "uid://pv70hoylokg6"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s6jag"]
 radius = 0.25
@@ -28,20 +42,39 @@ hurtbox = NodePath("Hurtbox")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.5)
 
 [node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("WaitForEntityToBeAtDistanceState")
+initial_state = NodePath("MultistateState")
 
-[node name="WaitForEntityToBeAtDistanceState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
-script = ExtResource("2_d5lp2")
-max_distance = 2.0
-group = "Player"
-next_state = NodePath("../MoveRandomOnNavMeshState")
-metadata/_custom_type_script = "uid://b0ivg6djt5ima"
+[node name="MultistateState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+script = ExtResource("2_3v4v4")
+states_to_execute = [NodePath("MoveTowardsPlayerState"), NodePath("SpawnEntitiesState")]
+states_that_need_to_finish = [NodePath("MoveTowardsPlayerState")]
+next_state = NodePath("../FleeFromPlayerState")
+metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
 
-[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
-script = ExtResource("3_fgmx3")
-wait_time = 0.0
-next_state = NodePath("../WaitForEntityToBeAtDistanceState")
-metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/MultistateState" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_wn5ve")
+stop_distance = 2.0
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_6hmvo")
+end_delay = 1.0
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0"]
+script = ExtResource("5_0j7li")
+entity_to_spawn = ExtResource("6_v5eku")
+amount_of_spawns = 4
+target_strategy = SubResource("Resource_2kfiv")
+rotation_strategy = SubResource("Resource_yelrx")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="FleeFromPlayerState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("9_85rxk")
+next_state = NodePath("../MultistateState")
+metadata/_custom_type_script = "uid://mycfudgv475a"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

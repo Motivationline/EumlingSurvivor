@@ -31,12 +31,12 @@ func setup(_parent: Enemy, _animation: AnimationTree) -> void:
 
 ## Called every time the state is set to be the active state
 func enter() -> void:
-	if (anim_player): anim_player.set("parameters/conditions/" + animation_trigger, true)
+	if (anim_player && animation_trigger): anim_player.set("parameters/conditions/" + animation_trigger, true)
 	pass
 
 ## Called every time the state is no longer the active state
 func exit() -> void:
-	if (anim_player): anim_player.set("parameters/conditions/" + animation_trigger, false)
+	if (anim_player && animation_trigger): anim_player.set("parameters/conditions/" + animation_trigger, false)
 	pass
 
 ## While active, this is called with the parents regular _process() function
@@ -59,7 +59,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
 	if (!next_state): warnings.append("Needs a Next State")
 	if (repeat_self <= 0): warnings.append("Repeat self must be 1 or above")
-	if (next_state == self): warnings.append("The next state has been set to this node, which will lead to an infinite loop of this state.\nThis is supported, so all good if it's intended.")
+	if (next_state == self): warnings.append("The next state has been set to this node, which will lead to an infinite loop of this state meaning it will never end.\nThis is supported, so all good if it's intended.")
 	return warnings
 
 func get_possible_next_states() -> Array[State]:

@@ -45,7 +45,11 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 	var instance = entity_to_spawn.instantiate() as Node3D
 	if (spawn_local): _parent.add_child(instance)
 	else:
-		var level = _parent.get_tree().get_nodes_in_group("Level")[0]
+		var levels = _parent.get_tree().get_nodes_in_group("Level")
+		if (!levels || levels.size() <= 0):
+			printerr("%s attached to %s tried to spawn on the level but level not found." % [name, _parent.name])
+			return
+		var level = levels[0]
 		if (level): level.add_child(instance)
 		else:
 			printerr("%s attached to %s tried to spawn on the level but level not found." % [name, _parent.name])
@@ -56,7 +60,7 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 	if (target_strategy):
 		var target_position = target_strategy.get_target_position(_relative_to)
 		target_position.y = _relative_to.global_position.y
-		instance.look_at(target_position)
+		if (!instance.global_position.is_equal_approx(target_position)): instance.look_at(target_position)
 	if (rotation_strategy): rotation_strategy.apply_rotation(instance, _current, _total)
 
 	instance.translate(Vector3.FORWARD * offset_distance)
