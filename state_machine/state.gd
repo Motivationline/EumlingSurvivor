@@ -1,4 +1,5 @@
 @tool
+@abstract
 @icon("state.svg")
 extends Node
 

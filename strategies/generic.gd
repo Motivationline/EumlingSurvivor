@@ -1,4 +1,5 @@
 @icon("strategy.svg")
+@abstract
 extends Node
 ## Base class for all strategies. [color=red]Do not add, doesn't do anything.[/color]
 class_name Strategy
