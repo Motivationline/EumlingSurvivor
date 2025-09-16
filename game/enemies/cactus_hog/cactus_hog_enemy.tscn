@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5hdpq54o462t"]
+[gd_scene load_steps=11 format=3 uid="uid://b5hdpq54o462t"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_c2tdt"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_xfdg2"]
+[ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="4_c2tdt"]
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="5_leyq8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_0es7d"]
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="6_sm38j"]
@@ -46,8 +47,14 @@ wait_time = 0.0
 flee_distance = 5.0
 target_flee_time = 5.0
 debug_show_path = true
-next_state = NodePath("../MoveTowardsPlayer")
+next_state = NodePath("../KillSelfState")
 metadata/_custom_type_script = "uid://mycfudgv475a"
+
+[node name="KillSelfState" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_c2tdt")
+wait_time = 1.0
+next_state = NodePath("../MoveTowardsPlayer")
+metadata/_custom_type_script = "uid://dj632w22te1th"
 
 [node name="cactushog" parent="." index="3" instance=ExtResource("5_leyq8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

@@ -70,7 +70,6 @@ func physics_process(_delta: float) -> State:
 	parent.move_and_slide()
 	#check if the player is farther than flee_distance or the target fleeing time has been reached
 	if !time_based && (player.position - parent.position).length() >= flee_distance:
-		print((player.position - parent.position).length())
 		target_reached()
 	elif time_fleeing >= target_flee_time:
 		target_reached()
@@ -89,7 +88,6 @@ func update_target_location():
 	nav_agent.debug_enabled = debug_show_path
 
 func target_reached():
-	print("target reached")
 	nav_agent.debug_enabled = false
 	await get_tree().create_timer(wait_time).timeout
 	done = true
