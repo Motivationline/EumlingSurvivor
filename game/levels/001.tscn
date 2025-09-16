@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://ct6208g338yln" path="res://game/projectiles/example_bullet/example_bullet.tscn" id="9_cf6nt"]
 [ext_resource type="PackedScene" uid="uid://bhfncjfyvm7a2" path="res://game/projectiles/dragster_projectile/dragster_projectile_player.tscn" id="10_36van"]
 [ext_resource type="PackedScene" uid="uid://dpij4pds4lqgx" path="res://game/projectiles/lure_projectile/lure_projectile_player.tscn" id="11_v0tj5"]
-[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/bomber/bomber_enemy.tscn" id="12_s51n4"]
 [ext_resource type="PackedScene" uid="uid://bneq1sfddtees" path="res://game/enemies/turnwheeler/turnwheeler.tscn" id="13_kkyc8"]
+[ext_resource type="PackedScene" uid="uid://blwxy4ejulewc" path="res://game/enemies/peacock/peacock_enemy.tscn" id="14_dc784"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
 size = Vector3(5, 1, 1)
@@ -157,8 +157,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.49825, 0.0963982, -0.002156
 weapon = ExtResource("11_v0tj5")
 weapon_name = "mine "
 
-[node name="Bomber" parent="." instance=ExtResource("12_s51n4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23522, 0.00150748, 5.23188)
-
 [node name="Turnwheeler" parent="." instance=ExtResource("13_kkyc8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.64626, 0, 3.04685)
+
+[node name="Peacock" parent="." instance=ExtResource("14_dc784")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9917521, 0, 5.9203153)

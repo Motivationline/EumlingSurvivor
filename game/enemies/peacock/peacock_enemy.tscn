@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://blwxy4ejulewc"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_3su6m"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_ut6xv"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_dg07b"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_7a53i"]
+[ext_resource type="PackedScene" uid="uid://dtxcbfvali8ib" path="res://assets/characters/enemies/peacock/peacock_prefab.tscn" id="5_5ot81"]
+[ext_resource type="PackedScene" uid="uid://c3ksp1n3yrx3o" path="res://game/aoes/peacock_aoe_attack/peacock_aoe.tscn" id="5_dg07b"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ut6xv"]
+radius = 0.10912138
+
+[node name="Peacock" instance=ExtResource("1_3su6m")]
+collision_layer = 64
+collision_mask = 64
+
+[node name="Healthbar3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6338918, -0.01400128)
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveTowardsPlayerState")
+
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ut6xv")
+wait_time = 0.0
+stop_distance = 1.0
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_dg07b")
+start_delay = 0.4
+end_delay = 0.85
+next_state = NodePath("../MoveTowardsPlayerState")
+animation_trigger = "attack"
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.592237)
+script = ExtResource("4_7a53i")
+entity_to_spawn = ExtResource("5_dg07b")
+offset_distance = 0.5
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="peacock" parent="." index="3" instance=ExtResource("5_5ot81")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19598463, 0)
+shape = SubResource("SphereShape3D_ut6xv")
