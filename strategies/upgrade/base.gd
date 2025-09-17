@@ -1,17 +1,21 @@
-extends Strategy
-class_name UpgradeStrategy
-
-enum METHOD {ABSOLUTE, MULTIPLIER}
+extends Resource
+class_name Upgrade
 
 @export var type: Enum.UPGRADE
-@export var method: METHOD 
+@export var method: Enum.UPGRADE_METHOD 
 @export var value: float
+
+func _init(_type: Enum.UPGRADE, _method: Enum.UPGRADE_METHOD, _value: float) -> void:
+	type = _type
+	method = _method
+	_value = value
 
 func apply(_value: float) -> float:
 	match method:
-		METHOD.ABSOLUTE:
+		Enum.UPGRADE_METHOD.ABSOLUTE:
 			return _value + value
-		METHOD.MULTIPLIER:
+		Enum.UPGRADE_METHOD.MULTIPLIER:
 			return _value * value
 	
 	return _value
+	
