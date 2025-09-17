@@ -6,7 +6,9 @@ class_name Enemy
 ## How much (max)health this entity has. May be modified by upgrades.
 @export var health: float:
 	set(new_value):
-		health = clampf(new_value, 0, max_health)
+		health = new_value
+		if (max_health > 0):
+			health = clampf(new_value, 0, max_health)
 		if (healthbar): healthbar.health = health
 		if (health <= 0 && !cannot_die):
 			queue_free()
