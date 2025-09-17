@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://c3ksp1n3yrx3o" path="res://game/aoes/peacock_aoe_attack/peacock_aoe.tscn" id="5_dg07b"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ut6xv"]
-radius = 0.10912138
+radius = 0.14032024
 
 [node name="Peacock" instance=ExtResource("1_3su6m")]
 collision_layer = 64
-collision_mask = 64
+collision_mask = 65
 
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6338918, -0.01400128)
@@ -24,6 +24,7 @@ initial_state = NodePath("MoveTowardsPlayerState")
 script = ExtResource("2_ut6xv")
 wait_time = 0.0
 stop_distance = 1.0
+debug_show_path = true
 next_state = NodePath("../SpawnEntitiesState")
 animation_trigger = "walk"
 metadata/_custom_type_script = "uid://dmskxets4soyo"
