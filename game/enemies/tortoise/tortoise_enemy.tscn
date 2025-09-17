@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://drtoi8fygioae"]
+[gd_scene load_steps=13 format=3 uid="uid://drtoi8fygioae"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_5rk5k"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_c3oc6"]
 [ext_resource type="PackedScene" uid="uid://cgtlnuch0nmwm" path="res://assets/characters/enemies/tortoise/tortoise_prefab.tscn" id="2_s8eqa"]
-[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_a57xe"]
+[ext_resource type="Script" path="res://state_machine/enemy/multistate.gd" id="2_yflun"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_c3oc6"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_eq0kn"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="5_4kafm"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_lwqy1"]
+[ext_resource type="PackedScene" uid="uid://car1cywfxg1b3" path="res://game/aoes/heal/heal_aoe.tscn" id="6_yflun"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kafm"]
 radius = 0.439081
@@ -30,9 +33,15 @@ node_with_animation_tree = NodePath("tortoise")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919, 0)
 
 [node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("MoveTowardsPlayerState")
+initial_state = NodePath("MultistateState")
 
-[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="MultistateState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+script = ExtResource("2_yflun")
+states_to_execute = [NodePath("../MoveTowardsPlayerState"), NodePath("../SpawnEntitiesState")]
+states_that_need_to_finish = [NodePath("../SpawnEntitiesState")]
+next_state = NodePath(".")
+
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_c3oc6")
 stop_distance = 0.0
 rotation_speed = 1.0
@@ -40,9 +49,17 @@ next_state = NodePath(".")
 animation_trigger = "walk"
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="1"]
-script = ExtResource("3_a57xe")
-metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_eq0kn")
+start_delay = 10.0
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0"]
+script = ExtResource("5_lwqy1")
+spawn_local = true
+entity_to_spawn = ExtResource("6_yflun")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="tortoise" parent="." index="3" instance=ExtResource("2_s8eqa")]
 
