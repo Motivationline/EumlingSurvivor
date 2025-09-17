@@ -19,6 +19,9 @@ class_name Projectile
 @export var movement: Array[ProjectileMovementStrategy]
 # @export var upgrades: Array[UpgradeStrategy]
 
+@export_category("Event Managers")
+@export var timeout_event_managers: Array[TimeoutEventManager]
+
 @export_category("Event Listeners")
 @export var on_world_collision: Array[EventStrategy]
 @export var on_hit: Array[EventStrategy]
@@ -31,7 +34,7 @@ var target_position: Vector3
 
 var obj_that_spawned_this: Node3D
 
-func setup(target_pos: Vector3, _owner: Node3D, _upgrades: Array[UpgradeStrategy] = []):
+func setup(target_pos: Vector3, _owner: Node3D, _upgrades: Array[Upgrade] = []):
 	target_position = target_pos
 	if (hit_box):
 		hit_box.damage = damage
@@ -47,6 +50,9 @@ func setup(target_pos: Vector3, _owner: Node3D, _upgrades: Array[UpgradeStrategy
 	Strategy._setup_array(on_hurt, self, _owner)
 	Strategy._setup_array(on_end_of_life, self, _owner)
 	Strategy._setup_array(on_remove, self, _owner)
+
+	for t in timeout_event_managers:
+		t._setup(self, _owner)
 
 func _ready() -> void:
 	tree_exiting.connect(_on_remove)
