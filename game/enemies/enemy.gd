@@ -6,7 +6,7 @@ class_name Enemy
 ## How much (max)health this entity has. May be modified by upgrades.
 @export var health: float:
 	set(new_value):
-		health = new_value
+		health = clampf(new_value, 0, max_health)
 		if (healthbar): healthbar.health = health
 		if (health <= 0 && !cannot_die):
 			queue_free()
@@ -43,7 +43,7 @@ func _ready() -> void:
 	if (hitbox): hitbox.hit.connect(_hit)
 	if (hurtbox): hurtbox.hurt_by.connect(_hurt_by)
 
-	if (state_machine): state_machine.setup(self, find_first_animation_tree(node_with_animation_tree if(node_with_animation_tree) else self))
+	if (state_machine): state_machine.setup(self, find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self))
 
 	Strategy._setup_array(on_death, self, self)
 	Strategy._setup_array(on_hit, self, self)
