@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://htuftvnpan0c"]
+[gd_scene load_steps=33 format=3 uid="uid://htuftvnpan0c"]
 
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="1_fnkxu"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
@@ -16,6 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://bneq1sfddtees" path="res://game/enemies/turnwheeler/turnwheeler.tscn" id="13_kkyc8"]
 [ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="13_kudwh"]
 [ext_resource type="PackedScene" uid="uid://blwxy4ejulewc" path="res://game/enemies/peacock/peacock_enemy.tscn" id="14_dc784"]
+[ext_resource type="PackedScene" uid="uid://ihojlm6krm5d" path="res://assets/models/beach/stone1_prefab.tscn" id="17_ii2cc"]
+[ext_resource type="PackedScene" uid="uid://cjvkgf8fotduv" path="res://assets/models/beach/stone3_prefab.tscn" id="18_2lc4n"]
+[ext_resource type="PackedScene" uid="uid://dlv00p3o5xd2j" path="res://assets/models/beach/stone4_prefab.tscn" id="19_vlj6n"]
+[ext_resource type="PackedScene" uid="uid://xuwqosnwo8qw" path="res://assets/models/beach/palm3_prefab.tscn" id="20_h41g6"]
+[ext_resource type="PackedScene" uid="uid://m0e7gij3jvvt" path="res://assets/models/beach/palm2_prefab.tscn" id="21_lxhlw"]
+[ext_resource type="Shader" uid="uid://cad0ilir1nvs7" path="res://game/shared/water_shader.tres" id="22_lxhlw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
 size = Vector3(5, 1, 1)
@@ -53,6 +59,23 @@ script = ExtResource("13_kudwh")
 max_negative = -5.0
 max_positive = 5.0
 metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qbpv8"]
+size = Vector2(50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxhlw"]
+transparency = 1
+albedo_color = Color(0.23429999, 0.5038633, 0.71, 0.34509805)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0xsf"]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_lxhlw")
+shader = ExtResource("22_lxhlw")
+shader_parameter/UV_Scale = 4.0
+shader_parameter/direction1 = Vector2(0.01, -0.01)
+shader_parameter/direction2 = Vector2(0.03, 0.03)
+shader_parameter/highlight_threshold = 0.394000018715
+shader_parameter/main_threshhold = 0.2090000099275
 
 [node name="001" type="Node3D" node_paths=PackedStringArray("player_spawn", "goal_area")]
 script = ExtResource("1_uile8")
@@ -193,9 +216,10 @@ time_between_entities = 0.1
 rotation_strategy = SubResource("Resource_5dbsf")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="WeaponSwitch6" parent="Weapons" instance=ExtResource("5_u3pwt")]
+[node name="WeaponSwitch6" parent="Weapons" node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.49825, 0.0963982, -0.00215626)
 weapon_name = "mine "
+weapon = NodePath("mineweapon")
 
 [node name="mineweapon" type="Node3D" parent="Weapons/WeaponSwitch6"]
 script = ExtResource("6_cf6nt")
@@ -207,3 +231,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.64626, 0, 3.04685)
 
 [node name="Peacock" parent="." instance=ExtResource("14_dc784")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8919325, 0, -1.7254148)
+
+[node name="Env" type="Node3D" parent="."]
+
+[node name="stone_v1" parent="Env" instance=ExtResource("17_ii2cc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.109216, -0.6396028, 9.44035)
+
+[node name="stone_v2" parent="Env" instance=ExtResource("17_ii2cc")]
+transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, -10.195754, -1.1358854, 8.231095)
+
+[node name="stone_v5" parent="Env" instance=ExtResource("17_ii2cc")]
+transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, -10.431433, -1.1358854, 3.178257)
+
+[node name="stone_v6" parent="Env" instance=ExtResource("17_ii2cc")]
+transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, -9.890802, -1.1358854, -2.7068777)
+
+[node name="stone_v3" parent="Env" instance=ExtResource("18_2lc4n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.061667, -0.24051285, 10.247597)
+
+[node name="stone_v4" parent="Env" instance=ExtResource("19_vlj6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.317868, -0.4551401, 10.158905)
+
+[node name="stone_v7" parent="Env" instance=ExtResource("19_vlj6n")]
+transform = Transform3D(0.012383909, -0.0015361324, -0.99992216, 0.12309919, 0.9923944, 0, 0.99231714, -0.12308961, 0.012478818, -10.252767, -1.0899086, -9.629076)
+
+[node name="palm_v3" parent="Env" instance=ExtResource("20_h41g6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.866741, 0, 8.225116)
+
+[node name="palm_v2" parent="Env" instance=ExtResource("21_lxhlw")]
+transform = Transform3D(0.9898805, 0, 0.14190331, 0, 1, 0, -0.14190331, 0, 0.9898805, -11.420147, 9.536743e-07, 2.491084)
+
+[node name="Water" type="MeshInstance3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40004253, 0)
+mesh = SubResource("PlaneMesh_qbpv8")
+surface_material_override/0 = SubResource("ShaderMaterial_d0xsf")
