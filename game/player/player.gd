@@ -99,6 +99,6 @@ func get_upgrades_for(type: Enum.UPGRADE) -> Array[Upgrade]:
 	return active_upgrades.get(type)
 
 func get_possible_upgrades() -> Array[Upgrade]:
-	var upgrades = weapon.get_possible_upgrades()
+	var upgrades = weapon.get_possible_upgrades().duplicate()
 	upgrades.append_array(possible_upgrades)
 	return upgrades

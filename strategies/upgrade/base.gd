@@ -20,6 +20,9 @@ func apply(_value: float) -> float:
 	return _value
 
 
+func _to_string() -> String:
+	return "%s, %s, %s" % [Enum.UPGRADE.keys()[type], Enum.UPGRADE_METHOD.keys()[method], value]
+
 static func apply_all(_value: float, all: Array[Upgrade]) -> float:
 	for upgrade in all:
 		_value = upgrade.apply(_value)

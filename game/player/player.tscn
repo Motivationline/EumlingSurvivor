@@ -17,11 +17,12 @@ height = 1.0
 script = ExtResource("5_4ste8")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("weapon", "eumling_visuals", "spawner") groups=["Player"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_b2mth")
 base_speed = 1.0
+weapon = NodePath("Realistic")
 eumling_visuals = NodePath("Eumling_Survivor")
 spawner = NodePath("EntitySpawner")
 
