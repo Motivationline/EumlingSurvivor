@@ -13,8 +13,11 @@ var finished: bool = false
 var ends: bool = false
 var player: Player
 
+## level done condition completed
 signal level_cleared
+## level visual completed, ready to end
 signal level_finished
+## player entered endzone, we're ending now.
 signal level_ended
 
 func _ready() -> void:
