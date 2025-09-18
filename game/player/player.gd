@@ -32,12 +32,12 @@ func spawn_bullet():
 	# instance.setup(Enum.GROUP.PLAYER, global_position, global_rotation, global_position + basis.z * -5)
 	spawner.spawn(self, eumling_visuals)
 
-func add_upgrade(upgrade: UpgradeStrategy):
+func add_upgrade(upgrade: Upgrade):
 	var upgrades = get_upgrades_for(upgrade.type)
 	upgrades.append(upgrade)
 	active_upgrades.set(upgrade.type, upgrades)
 	upgrade_added.emit(upgrade)
 
-func get_upgrades_for(type: Enum.UPGRADE) -> Array[UpgradeStrategy]:
+func get_upgrades_for(type: Enum.UPGRADE) -> Array[Upgrade]:
 	if (!active_upgrades.has(type)): return []
 	return active_upgrades.get(type)
