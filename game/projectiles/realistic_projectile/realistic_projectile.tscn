@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmjn2csxoum5t"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_25de7"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_hgol8"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_6rkhr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5h5ko"]
+size = Vector3(0.22460938, 0.21972656, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7rvt"]
+albedo_color = Color(0.6604635, 0.49708986, 0.04421266, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rkhr"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqng7"]
+albedo_color = Color(0.24313726, 0.21568628, 0, 1)
+
+[node name="RealisticProjectile" node_paths=PackedStringArray("hit_box", "on_world_collision") instance=ExtResource("1_25de7")]
+hit_box = NodePath("Hitbox")
+on_world_collision = [NodePath("EventStrategies/RemoveEventStrategy")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+shape = SubResource("BoxShape3D_5h5ko")
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="5"]
+script = ExtResource("3_6rkhr")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="Hitbox" parent="." index="3" instance=ExtResource("2_hgol8")]
+collision_layer = 4
+collision_mask = 64
+individual_hit_limit = 1
+attached_to = 3
+can_hit = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+shape = SubResource("BoxShape3D_5h5ko")
+
+[node name="tmp_visuals" type="Node3D" parent="." index="4"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="tmp_visuals" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+radius = 0.05
+height = 1.0
+material = SubResource("StandardMaterial3D_g7rvt")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="tmp_visuals" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.41186523)
+size = Vector3(0.2, 0.2, 0.176)
+material = SubResource("StandardMaterial3D_6rkhr")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="tmp_visuals" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.40161133)
+size = Vector3(0.25, 0.01, 0.197)
+material = SubResource("StandardMaterial3D_xqng7")

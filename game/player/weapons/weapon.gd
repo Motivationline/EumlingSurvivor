@@ -13,6 +13,7 @@ var player: Player
 
 func setup(_player: Player):
 	player = _player
+	player.upgrade_added.connect(upgrade_added)
 
 @abstract
 func get_playstyle_upgrades() -> Array[Enum.EUMLING_TYPE]
@@ -20,3 +21,7 @@ func get_playstyle_upgrades() -> Array[Enum.EUMLING_TYPE]
 func get_possible_upgrades() -> Array[Upgrade]
 @abstract
 func physics_process(delta: float) -> void
+@abstract
+func process(delta: float) -> void
+@abstract
+func upgrade_added(_upgrade: Upgrade) -> void

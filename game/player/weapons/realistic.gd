@@ -3,15 +3,17 @@ extends Weapon
 class_name Realistic
 
 ## in attacks per second
-@export var base_attack_speed: float
-@export var base_range: float
-@export var base_damage: float
-@export var base_projectile_amount: int
-@export var base_projectile_speed: int
-@export var base_piercing: int
+@export var base_attack_speed: float = 1
+@export var base_range: float = 5
+@export var base_damage: float = 1
+@export var base_projectile_amount: int = 1
+@export var base_projectile_speed: float = 2
+@export var base_piercing: int = 0
 
 
 @onready var entity_spawner: EntitySpawner = $EntitySpawner
+@onready var attack_timer: Timer = $AttackTimer
+@onready var spawn_anchor: Marker3D = $SpawnAnchor
 
 func _ready() -> void:
 	base_type = Enum.EUMLING_TYPE.REALISTIC
@@ -29,15 +31,38 @@ func _ready() -> void:
 		Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 1),
 		Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 2),
 		Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 5),
-		Upgrade.new(Enum.UPGRADE.SIZE, Enum.UPGRADE_METHOD.MULTIPLIER, 1.1),
-		Upgrade.new(Enum.UPGRADE.SIZE, Enum.UPGRADE_METHOD.MULTIPLIER, 1.2),
-		Upgrade.new(Enum.UPGRADE.SIZE, Enum.UPGRADE_METHOD.MULTIPLIER, 1.5),
 		Upgrade.new(Enum.UPGRADE.PROJECTILE_AMOUNT, Enum.UPGRADE_METHOD.ABSOLUTE, 1),
 		Upgrade.new(Enum.UPGRADE.PROJECTILE_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 1.1),
 		Upgrade.new(Enum.UPGRADE.PROJECTILE_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 1.2),
 		Upgrade.new(Enum.UPGRADE.PROJECTILE_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 1.5),
 		Upgrade.new(Enum.UPGRADE.PIERCING, Enum.UPGRADE_METHOD.ABSOLUTE, 1),
 	]
+
+
+func setup(_player: Player):
+	super (_player)
+
+	# pass through and set up relevant variables
+	entity_spawner.amount_of_spawns = base_projectile_amount
+	attack_timer.wait_time = 1 / base_attack_speed
+	_player.add_upgrade(Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, base_damage))
+	_player.add_upgrade(Upgrade.new(Enum.UPGRADE.RANGE, Enum.UPGRADE_METHOD.ABSOLUTE, base_range))
+	_player.add_upgrade(Upgrade.new(Enum.UPGRADE.PROJECTILE_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, base_projectile_speed))
+	_player.add_upgrade(Upgrade.new(Enum.UPGRADE.PIERCING, Enum.UPGRADE_METHOD.ABSOLUTE, base_piercing))
+
+	# setup listeners
+	attack_timer.timeout.connect(attack)
+
+func attack():
+	entity_spawner.spawn(player, spawn_anchor)
+
+func upgrade_added(_upgrade: Upgrade) -> void:
+	match _upgrade.type:
+		Enum.UPGRADE.ATTACK_SPEED:
+			attack_timer.wait_time = 1 / Upgrade.apply_all(base_attack_speed, player.get_upgrades_for(Enum.UPGRADE.ATTACK_SPEED))
+		Enum.UPGRADE.PROJECTILE_AMOUNT:
+			prints(base_projectile_amount, Upgrade.apply_all(base_projectile_amount, player.get_upgrades_for(Enum.UPGRADE.PROJECTILE_AMOUNT)))
+			entity_spawner.amount_of_spawns = int(Upgrade.apply_all(base_projectile_amount, player.get_upgrades_for(Enum.UPGRADE.PROJECTILE_AMOUNT)))
 
 func get_playstyle_upgrades():
 	return []
@@ -46,4 +71,6 @@ func get_possible_upgrades():
 	return possible_upgrades
 
 func physics_process(_delta: float) -> void:
+	pass
+func process(_delta: float) -> void:
 	pass
