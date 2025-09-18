@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0yad0h6ygru5"]
+
+[ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_5kvap"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_ovv8p"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="3_2x25j"]
+[ext_resource type="Script" uid="uid://dyqkij0tfqb8h" path="res://strategies/projectile_movement/homing.gd" id="4_5235h"]
+[ext_resource type="Script" uid="uid://c1blpxxkte8o3" path="res://strategies/projectile_movement/parent_speed.gd" id="5_if6j5"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="10_x0c7d"]
+
+[sub_resource type="Curve" id="Curve_pk467"]
+_limits = [0.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 10.112361), 0.0, 1.5074207e-06, 0, 0, Vector2(1, 0), -27.685394, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j1spr"]
+size = Vector3(0.25, 0.25, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5m0e"]
+albedo_color = Color(0.219608, 0.392157, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ja52y"]
+albedo_color = Color(0.720288, 0.284462, 0.531922, 1)
+
+[node name="Bullet" type="CharacterBody3D" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_hurt", "on_end_of_life")]
+collision_layer = 0
+script = ExtResource("1_5kvap")
+lifetime = 3.0
+hit_box = NodePath("Hitbox")
+movement = [NodePath("Movement/AddParentsVelocityAtTimeOfSpawnProjectileMovementStrategy"), NodePath("Movement/SpeedProjectileMovementStrategy"), NodePath("Movement/HomingProjectileMovementStrategy")]
+on_world_collision = [NodePath("Events/OnHit/RemoveEventStrategy")]
+on_hit = [NodePath("Events/OnHit/RemoveEventStrategy")]
+on_hurt = [NodePath("Events/OnHurt/RemoveEventStrategy")]
+on_end_of_life = [NodePath("Events/OnEndOfLife/RemoveEventStrategy")]
+
+[node name="Movement" type="Node" parent="."]
+
+[node name="AddParentsVelocityAtTimeOfSpawnProjectileMovementStrategy" type="Node" parent="Movement"]
+script = ExtResource("5_if6j5")
+metadata/_custom_type_script = "uid://c1blpxxkte8o3"
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="Movement"]
+script = ExtResource("3_2x25j")
+speed = SubResource("Curve_pk467")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="HomingProjectileMovementStrategy" type="Node" parent="Movement"]
+script = ExtResource("4_5235h")
+metadata/_custom_type_script = "uid://dyqkij0tfqb8h"
+
+[node name="Events" type="Node" parent="."]
+
+[node name="OnHit" type="Node" parent="Events"]
+
+[node name="RemoveEventStrategy" type="Node" parent="Events/OnHit"]
+script = ExtResource("10_x0c7d")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="OnHurt" type="Node" parent="Events"]
+
+[node name="RemoveEventStrategy" type="Node" parent="Events/OnHurt"]
+script = ExtResource("10_x0c7d")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="OnEndOfLife" type="Node" parent="Events"]
+
+[node name="RemoveEventStrategy" type="Node" parent="Events/OnEndOfLife"]
+script = ExtResource("10_x0c7d")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="OnRemove" type="Node" parent="Events"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.999981, -0.00262398, 0.00563495, 0.00262978, 0.999996, -0.00102195, -0.00563225, 0.00103675, 0.999984, 0, 0, 0)
+shape = SubResource("BoxShape3D_j1spr")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_c5m0e")
+size = Vector3(0.25, 0.25, 0.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.223057)
+material_override = SubResource("StandardMaterial3D_ja52y")
+size = Vector3(0.1, 0.5, 0.5)
+
+[node name="Hitbox" parent="." instance=ExtResource("2_ovv8p")]
+collision_layer = 4
+collision_mask = 64
+attached_to = 3
+can_hit = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("BoxShape3D_j1spr")
