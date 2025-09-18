@@ -14,6 +14,14 @@ class_name Realistic
 @onready var entity_spawner: EntitySpawner = $EntitySpawner
 @onready var attack_timer: Timer = $AttackTimer
 @onready var spawn_anchor: Marker3D = $SpawnAnchor
+# custom stuff for custom upgrades
+@onready var entity_spawner_backwards: EntitySpawner = $EntitySpawnerBackwards
+
+var possible_unique_upgrades: Array[Upgrade] = [
+	CustomUpgrade.new("shoot_backwards"),
+]
+
+var active_unique_upgrades: Array[String] = []
 
 func _ready() -> void:
 	base_type = Enum.EUMLING_TYPE.REALISTIC
@@ -55,6 +63,8 @@ func setup(_player: Player):
 
 func attack():
 	entity_spawner.spawn(player, spawn_anchor)
+	if (active_unique_upgrades.has("shoot_backwards")):
+		entity_spawner_backwards.spawn(player, spawn_anchor)
 
 func upgrade_added(_upgrade: Upgrade) -> void:
 	match _upgrade.type:
@@ -63,12 +73,23 @@ func upgrade_added(_upgrade: Upgrade) -> void:
 		Enum.UPGRADE.PROJECTILE_AMOUNT:
 			prints(base_projectile_amount, Upgrade.apply_all(base_projectile_amount, player.get_upgrades_for(Enum.UPGRADE.PROJECTILE_AMOUNT)))
 			entity_spawner.amount_of_spawns = int(Upgrade.apply_all(base_projectile_amount, player.get_upgrades_for(Enum.UPGRADE.PROJECTILE_AMOUNT)))
+		Enum.UPGRADE.CUSTOM:
+			if (_upgrade is CustomUpgrade):
+				custom_upgrade_added(_upgrade)
+
+func custom_upgrade_added(_upgrade: CustomUpgrade):
+	if (!possible_unique_upgrades.has(_upgrade)): return
+	
+	possible_unique_upgrades.remove_at(possible_unique_upgrades.find(_upgrade))
+	active_unique_upgrades.append(_upgrade.custom)
 
 func get_playstyle_upgrades():
 	return []
 
 func get_possible_upgrades():
-	return possible_upgrades
+	var upgrades = possible_upgrades.duplicate()
+	upgrades.append_array(possible_unique_upgrades)
+	return upgrades
 
 func physics_process(_delta: float) -> void:
 	pass
