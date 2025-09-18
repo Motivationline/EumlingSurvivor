@@ -16,9 +16,11 @@ class_name Realistic
 @onready var spawn_anchor: Marker3D = $SpawnAnchor
 # custom stuff for custom upgrades
 @onready var entity_spawner_backwards: EntitySpawner = $EntitySpawnerBackwards
+const REALISTIC_PROJECTILE_WITH_AOE = preload("uid://bxtdvm2y2dpcx")
 
 var possible_unique_upgrades: Array[Upgrade] = [
 	CustomUpgrade.new("shoot_backwards"),
+	CustomUpgrade.new("aoe_arrows"),
 ]
 
 var active_unique_upgrades: Array[String] = []
@@ -82,6 +84,11 @@ func custom_upgrade_added(_upgrade: CustomUpgrade):
 	
 	possible_unique_upgrades.remove_at(possible_unique_upgrades.find(_upgrade))
 	active_unique_upgrades.append(_upgrade.custom)
+
+	match _upgrade.custom:
+		"aoe_arrows":
+			entity_spawner.entity_to_spawn = REALISTIC_PROJECTILE_WITH_AOE
+			entity_spawner_backwards.entity_to_spawn = REALISTIC_PROJECTILE_WITH_AOE
 
 func get_playstyle_upgrades():
 	return []
