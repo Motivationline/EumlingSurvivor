@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmc2la5fkmscu"]
+
+[ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_wbp8f"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
+agent_max_climb = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wbp8f"]
+
+[node name="Level" type="Node3D" node_paths=PackedStringArray("player_spawn", "goal_area")]
+script = ExtResource("1_wbp8f")
+player_spawn = NodePath("PlayerSpawnMarker")
+goal_area = NodePath("GoalArea")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_wbp8f")
+
+[node name="PlayerSpawnMarker" type="Marker3D" parent="."]
+
+[node name="GoalArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_wbp8f")
