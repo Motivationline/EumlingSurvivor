@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="1_fnkxu"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_uile8"]
+[ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="2_qbpv8"]
 [ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/tortoise/tortoise_enemy.tscn" id="4_uile8"]
 [ext_resource type="PackedScene" uid="uid://dd5npkf3gb428" path="res://level/playgounrd/weapon_switch/weapon_switch.tscn" id="5_u3pwt"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_cf6nt"]
@@ -22,9 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://xuwqosnwo8qw" path="res://assets/models/beach/palm3_prefab.tscn" id="20_h41g6"]
 [ext_resource type="PackedScene" uid="uid://m0e7gij3jvvt" path="res://assets/models/beach/palm2_prefab.tscn" id="21_lxhlw"]
 [ext_resource type="Shader" uid="uid://cad0ilir1nvs7" path="res://game/shared/water_shader.tres" id="22_lxhlw"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
-size = Vector3(5, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0s0fg"]
 vertices = PackedVector3Array(-9.5, 0.5, -3.75, -5, 0.5, -3.75, -4.75, 0.5, -5, -2.75, 0.5, -5, -2.75, 0.5, -9.5, -9.5, 0.5, -9.5, 3.25, 0.5, -5, 3.25, 0.5, -9.5, 5.25, 0.5, -5, 5.5, 0.5, -3.75, 9.5, 0.5, -3.75, 9.5, 0.5, -9.5, -1, 0.5, -0.75, 0.25, 0.5, -1, 0.25, 0.5, -2.75, -4.75, 0.5, -2.75, 0, 0.5, 3.5, 0, 0.5, 1.25, -1, 0.5, 1, -4.75, 0.5, 3.5, -9.5, 0.5, 4.5, -5, 0.5, 4.5, 1.25, 0.5, -0.75, 5.25, 0.5, -2.75, 1.25, 0.5, 0.75, 5.25, 0.5, 3.5, 5.5, 0.5, 4.5, 9.5, 0.5, 4.5, -3.5, 0.5, 9.5, -3.25, 0.5, 5.75, -4.75, 0.5, 5.75, -9.5, 0.5, 9.5, 5.25, 0.5, 5.75, 3.75, 0.5, 5.75, 4, 0.5, 9.5, 9.5, 0.5, 9.5)
@@ -85,13 +83,8 @@ goal_area = NodePath("LeaveArea")
 [node name="PlayerSpawnMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
-[node name="LeaveArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.53351)
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LeaveArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.0378246)
-shape = SubResource("BoxShape3D_uile8")
+[node name="LeaveArea" parent="." instance=ExtResource("2_qbpv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.71369)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0s0fg")

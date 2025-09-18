@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bml0rn4uxx07g"]
+
+[ext_resource type="PackedScene" uid="uid://b14a85qcl4ypo" path="res://assets/models/exit_trunk/exit_trunk.glb" id="1_tkqdu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
+size = Vector3(2.2646484, 1.980957, 1)
+
+[node name="ExitArea" type="Area3D"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9904785, 0.48971936)
+shape = SubResource("BoxShape3D_uile8")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7737691, 0.55471736)
+light_color = Color(0.94, 0.5574201, 0.2444, 1)
+light_energy = 5.0
+omni_range = 1.6048713
+
+[node name="exit_trunk" parent="Visuals" instance=ExtResource("1_tkqdu")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
