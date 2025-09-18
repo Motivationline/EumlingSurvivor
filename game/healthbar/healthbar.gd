@@ -12,6 +12,8 @@ class_name Healthbar
 
 var health: float = 0:
 	set = _set_health
+var max_health: float = 0:
+	set = _set_max_health
 
 func _set_health(value: float):
 	var prev_health = health
@@ -33,15 +35,19 @@ func _set_health(value: float):
 	else:
 		visible = true
 
+func _set_max_health(value: float):
+	max_health = value
+	damage_bar.max_value = value
+	health_bar.max_value = value
+
 func _on_timer_timeout() -> void:
 	var damage_tween = create_tween()
 	damage_tween.tween_property(damage_bar, "value", health, 0.1)
 
 func init_health(_health: float):
 	health = _health
-	damage_bar.max_value = _health
 	damage_bar.value = _health
-	health_bar.max_value = _health
 	health_bar.value = _health
+	max_health = _health
 	if (hide_initially):
 		visible = false

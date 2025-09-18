@@ -44,7 +44,7 @@ func _on_area_entered(area: Area3D) -> void:
 	if (Engine.is_editor_hint()): return
 	if (area is HurtBox):
 		if (overlapping.find(func (_obj): return _obj.area == area) < 0):
-			overlapping.append({area = area, counter = 1, cooldown = -1.0})
+			overlapping.append({area = area, counter = 0, cooldown = -1.0})
 
 func _on_area_exited(area: Area3D) -> void:
 	if (Engine.is_editor_hint()): return

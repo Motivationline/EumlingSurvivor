@@ -4,6 +4,7 @@ var player_scene: PackedScene = preload("res://game/player/player.tscn")
 var player: Player
 @onready var level_wrapper: Node3D = $Level
 @onready var scene_fade_animation_player: AnimationPlayer = $SceneFadeOverlay/AnimationPlayer
+@onready var upgrade_view: CanvasLayer = $UpgradeView
 
 func _ready() -> void:
 	player = player_scene.instantiate()
@@ -39,3 +40,7 @@ func load_level(level_id: String):
 
 func level_ended():
 	load_level(choose_next_level())
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("upgrade"):
+		upgrade_view.show_upgrades(player)
