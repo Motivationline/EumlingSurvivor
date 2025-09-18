@@ -71,8 +71,8 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("test")):
-		# spawn_bullet()
-		add_upgrade(Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 2))
+		spawn_bullet()
+		# add_upgrade(Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 2))
 
 func spawn_bullet():
 	spawner.spawn(self, eumling_visuals)
