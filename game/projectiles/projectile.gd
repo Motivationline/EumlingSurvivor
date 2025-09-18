@@ -34,7 +34,7 @@ var target_position: Vector3
 
 var obj_that_spawned_this: Node3D
 
-func setup(target_pos: Vector3, _owner: Node3D, _upgrades: Array[Upgrade] = []):
+func setup(target_pos: Vector3, _owner: Node3D):
 	target_position = target_pos
 	if (hit_box):
 		hit_box.damage = damage
@@ -44,6 +44,10 @@ func setup(target_pos: Vector3, _owner: Node3D, _upgrades: Array[Upgrade] = []):
 	
 	obj_that_spawned_this = _owner
 
+	if (_owner is Player): # we need to copy all those relevant upgrades
+		setup_player(_owner)
+
+	# init strategies
 	Strategy._setup_array(movement, self, _owner)
 	Strategy._setup_array(on_world_collision, self, _owner)
 	Strategy._setup_array(on_hit, self, _owner)
@@ -54,11 +58,42 @@ func setup(target_pos: Vector3, _owner: Node3D, _upgrades: Array[Upgrade] = []):
 	for t in timeout_event_managers:
 		t._setup(self, _owner)
 
+func setup_player(player: Player):
+	# speed
+	var speed_upgrades = player.get_upgrades_for(Enum.UPGRADE.PROJECTILE_SPEED)
+	var speed_upgrade_strategy = SpeedUpgradesProjectileMovementStrategy.new()
+	speed_upgrade_strategy.upgrades = speed_upgrades
+	movement.append(speed_upgrade_strategy)
+
+	# damage
+	damage = Upgrade.apply_all(0, player.get_upgrades_for(Enum.UPGRADE.DAMAGE))
+
+	# range / lifetime
+	lifetime = Upgrade.apply_all(0, player.get_upgrades_for(Enum.UPGRADE.RANGE))
+	restart_timer()
+
+	# piercing
+	var piercing_amount = Upgrade.apply_all(0, player.get_upgrades_for(Enum.UPGRADE.PIERCING))
+	var piercing_strat = CountdownEventStrategy.new()
+	piercing_strat.count = piercing_amount + 1
+	on_hit.append(piercing_strat)
+	piercing_strat.event = RemoveEventStrategy.new()
+
+
 func _ready() -> void:
 	tree_exiting.connect(_on_remove)
-	await get_tree().create_timer(lifetime).timeout
-	await _end_of_lifetime()
-	queue_free()
+	start_timer()
+
+var timer: Timer
+func start_timer():
+	timer = Timer.new()
+	add_child(timer)
+	timer.timeout.connect(_end_of_lifetime)
+	timer.start(lifetime)
+
+func restart_timer():
+	if (!timer): return
+	timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
 	current_lifetime += delta
@@ -74,6 +109,7 @@ func _physics_process(delta: float) -> void:
 func _end_of_lifetime():
 	for strat in on_end_of_life:
 		await strat.event_triggered(null)
+	queue_free()
 
 func _on_remove():
 	for strat in on_remove:
