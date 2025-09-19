@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://hfymkokrjnpv"]
+[gd_scene load_steps=19 format=3 uid="uid://hfymkokrjnpv"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_cwq3f"]
 [ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="2_3v4v4"]
@@ -11,6 +11,11 @@
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="7_ur57y"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="8_3jlmu"]
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="9_85rxk"]
+[ext_resource type="PackedScene" uid="uid://bdn15pg1arjhl" path="res://game/aoes/example_aoe.tscn" id="12_wn5ve"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s6jag"]
+radius = 0.25
+height = 1.0
 
 [sub_resource type="Resource" id="Resource_2kfiv"]
 script = ExtResource("7_ur57y")
@@ -19,10 +24,6 @@ metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 [sub_resource type="Resource" id="Resource_yelrx"]
 script = ExtResource("8_3jlmu")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s6jag"]
-radius = 0.25
-height = 1.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3v4v4"]
 radius = 0.25
@@ -34,14 +35,18 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwq3f"]
 albedo_color = Color(0.376471, 1, 1, 1)
 
-[node name="BaseEnemy" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_cwq3f")]
+[node name="ExampleEnemy" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_cwq3f")]
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
-[node name="Healthbar3D" parent="." index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_s6jag")
+
+[node name="Healthbar3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.5)
 
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MultistateState")
 
 [node name="MultistateState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
@@ -73,25 +78,11 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="FleeFromPlayerState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
 script = ExtResource("9_85rxk")
+flee_distance = 5.0
 next_state = NodePath("../MultistateState")
 metadata/_custom_type_script = "uid://mycfudgv475a"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("CapsuleShape3D_s6jag")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("CapsuleMesh_3v4v4")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_wn5ve")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="MeshInstance3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335418, -0.219698)
-size = Vector3(0.373047, 0.0585938, 0.207031)
-material = SubResource("StandardMaterial3D_cwq3f")
-
-[node name="Hurtbox" parent="." index="5" instance=ExtResource("4_jenlb")]
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("4_jenlb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 64
 collision_mask = 4
@@ -101,7 +92,7 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
 shape = SubResource("CapsuleShape3D_s6jag")
 
-[node name="Hitbox" parent="." index="6" instance=ExtResource("5_hwqec")]
+[node name="Hitbox" parent="." index="5" instance=ExtResource("5_hwqec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 32
 collision_mask = 8
@@ -112,4 +103,16 @@ can_hit = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
 shape = SubResource("CapsuleShape3D_s6jag")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="7"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CapsuleMesh_3v4v4")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_wn5ve")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/MeshInstance3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335418, -0.219698)
+size = Vector3(0.373047, 0.0585938, 0.207031)
+material = SubResource("StandardMaterial3D_cwq3f")
+
+[node name="AOE" parent="." index="7" instance=ExtResource("12_wn5ve")]
+never_expire = true
