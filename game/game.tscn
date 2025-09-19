@@ -66,6 +66,7 @@ signal level_chosen(level: String)
 func setup():
 	show()
 	line_edit.text = \"\"
+	line_edit.grab_focus()
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
 	confirm_text()
