@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmjn2csxoum5t"]
+[gd_scene load_steps=9 format=3 uid="uid://bmjn2csxoum5t"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_25de7"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_hgol8"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_6rkhr"]
+[ext_resource type="Script" uid="uid://bmq6jlknuf4wy" path="res://strategies/event/timer.gd" id="3_g7rvt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5h5ko"]
 size = Vector3(0.22460938, 0.21972656, 1)
@@ -18,7 +19,7 @@ albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 
 [node name="RealisticProjectile" node_paths=PackedStringArray("hit_box", "on_world_collision") instance=ExtResource("1_25de7")]
 hit_box = NodePath("Hitbox")
-on_world_collision = [NodePath("EventStrategies/RemoveEventStrategy")]
+on_world_collision = [NodePath("EventStrategies/TimerEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_5h5ko")
@@ -26,6 +27,11 @@ shape = SubResource("BoxShape3D_5h5ko")
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="5"]
 script = ExtResource("3_6rkhr")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="TimerEventStrategy" type="Node" parent="EventStrategies" index="6" node_paths=PackedStringArray("event")]
+script = ExtResource("3_g7rvt")
+event = NodePath("../RemoveEventStrategy")
+metadata/_custom_type_script = "uid://bmq6jlknuf4wy"
 
 [node name="Hitbox" parent="." index="3" instance=ExtResource("2_hgol8")]
 collision_layer = 4

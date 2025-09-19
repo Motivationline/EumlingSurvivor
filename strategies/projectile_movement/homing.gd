@@ -1,9 +1,7 @@
 extends ProjectileMovementStrategy
-## Controls the projectiles speed over its lifetime
+## Controls the projectiles direction
 class_name HomingProjectileMovementStrategy
 
-## Ignores the max_domain of the curve and assumes it describes the entire lifetime.
-#@export var normalize_to_lifetime: bool = true
 ## the range in that the projectile registers Enemies
 @export var homing_range = 2
 ## amount to rotate when directions change
