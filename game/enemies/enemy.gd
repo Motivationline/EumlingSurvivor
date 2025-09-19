@@ -11,7 +11,7 @@ class_name Enemy
 			health = clampf(new_value, 0, max_health)
 		if (healthbar): healthbar.health = health
 		if (health <= 0 && !cannot_die):
-			queue_free()
+			_die()
 		# TODO: add damage number popup
 
 ## How fast this entity moves when it moves
@@ -67,11 +67,19 @@ func find_first_animation_tree(node: Node3D) -> AnimationTree:
 	return null
 
 func _hit(_attackee: HurtBox):
-	pass
+	for ev in on_hit:
+		ev.event_triggered(_attackee)
 
 func _hurt_by(_attacker: HitBox):
 	health -= _attacker.damage
+	for ev in on_hurt:
+		ev.event_triggered(_attacker)
 	if (heal_back_to_full): reset_timer.start(3)
+
+func _die():
+	for ev in on_death:
+		ev.event_triggered(null)
+	queue_free()
 
 func _process(delta: float) -> void:
 	if (state_machine): state_machine.process(delta)
