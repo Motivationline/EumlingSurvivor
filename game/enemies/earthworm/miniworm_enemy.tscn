@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://t5qw0io6lo16"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_f4f4c"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_7kq3x"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_34ff0"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_kvjby"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0d62p"]
+size = Vector3(0.76660156, 0.6621094, 0.78515625)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4spmw"]
+size = Vector3(0.9003906, 0.7060547, 0.890625)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71cmv"]
+size = Vector3(0.84277344, 0.6279297, 0.88061523)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7kq3x"]
+
+[node name="Miniworm" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_f4f4c")]
+health = 2.0
+speed = 1.5
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveTowardsPlayerState")
+
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_7kq3x")
+wait_time = 0.0
+stop_distance = 0.0
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16894531, 0)
+shape = SubResource("BoxShape3D_0d62p")
+
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("3_34ff0")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19683838, 0)
+shape = SubResource("BoxShape3D_4spmw")
+
+[node name="Hitbox" parent="." index="5" instance=ExtResource("4_kvjby")]
+collision_layer = 32
+collision_mask = 8
+damage = 1.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18603516, 0)
+shape = SubResource("BoxShape3D_71cmv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="6"]
+transform = Transform3D(0.6498289, 0, 0, 0, 0.6319603, 0, 0, 0, 0.78585756, 0, 0.13590205, 0)
+mesh = SubResource("BoxMesh_7kq3x")
