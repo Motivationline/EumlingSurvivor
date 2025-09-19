@@ -20,7 +20,8 @@ func physics_process(_delta: float) -> State:
 
 func kill():
 	#play animation before deletion
-	parent.queue_free()
+	# set health to 0 and not just call queue_free for better control over events and such
+	parent.health = 0
 	done = true
 	
 func _get_configuration_warnings() -> PackedStringArray:

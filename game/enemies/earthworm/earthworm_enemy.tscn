@@ -1,0 +1,63 @@
+[gd_scene load_steps=12 format=3 uid="uid://drsq25puk6q7p"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_prtti"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_ie17u"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="2_ot7mc"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="3_ie17u"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_3pdm0"]
+[ext_resource type="PackedScene" uid="uid://t5qw0io6lo16" path="res://game/enemies/earthworm/miniworm_enemy.tscn" id="6_3pdm0"]
+[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="7_3pdm0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c62ug"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ot7mc"]
+
+[sub_resource type="Resource" id="Resource_2f0bl"]
+script = ExtResource("7_3pdm0")
+metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lo2dp"]
+
+[node name="Earthworm" node_paths=PackedStringArray("hurtbox", "on_death") instance=ExtResource("1_prtti")]
+health = 4.0
+hurtbox = NodePath("Hurtbox")
+on_death = [NodePath("SpawnEntitiesEventStrategy")]
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveTowardsPlayerState")
+
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ie17u")
+wait_time = 0.0
+stop_distance = 0.0
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="Hitbox" type="CollisionShape3D" parent="." index="3"]
+shape = SubResource("SphereShape3D_c62ug")
+
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("2_ot7mc")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+shape = SubResource("SphereShape3D_ot7mc")
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="." index="5"]
+script = ExtResource("3_ie17u")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="SpawnEntitiesEventStrategy" index="0"]
+script = ExtResource("4_3pdm0")
+entity_to_spawn = ExtResource("6_3pdm0")
+amount_of_spawns = 2
+offset_distance = 0.4
+rotation_strategy = SubResource("Resource_2f0bl")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.3474458, 0, 0, 0, 1, 0, 0.13029361, 0)
+mesh = SubResource("CapsuleMesh_lo2dp")
+skeleton = NodePath("../..")

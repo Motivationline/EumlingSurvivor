@@ -65,7 +65,7 @@ func physics_process(_delta: float) -> State:
 	var direction = local_destination.normalized()
 	var speed = speed_override if (speed_override_active) else parent.speed
 	parent.velocity = direction * speed
-	parent.rotation.y = lerp_angle(parent.rotation.y,atan2(-parent.velocity.x,-parent.velocity.z),_delta* rotation_speed)
+	parent.visuals.rotation.y = lerp_angle(parent.visuals.rotation.y,atan2(-parent.velocity.x,-parent.velocity.z),_delta* rotation_speed)
 	
 	parent.move_and_slide()
 	#check if the player is farther than flee_distance or the target fleeing time has been reached
