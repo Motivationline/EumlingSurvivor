@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_5rk5k"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_c3oc6"]
 [ext_resource type="PackedScene" uid="uid://cgtlnuch0nmwm" path="res://assets/characters/enemies/tortoise/tortoise_prefab.tscn" id="2_s8eqa"]
-[ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="2_yflun"]
+[ext_resource type="Script" path="res://state_machine/enemy/multistate.gd" id="2_yflun"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_c3oc6"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_eq0kn"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="5_4kafm"]
@@ -27,7 +27,7 @@ health = 100.0
 speed = 0.5
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
-node_with_animation_tree = NodePath("tortoise")
+node_with_animation_tree = NodePath("Visuals/tortoise")
 
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919, 0)
@@ -61,9 +61,7 @@ spawn_local = true
 entity_to_spawn = ExtResource("6_yflun")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="tortoise" parent="." index="3" instance=ExtResource("2_s8eqa")]
-
-[node name="Hitbox" parent="." index="4" instance=ExtResource("4_c3oc6")]
+[node name="Hitbox" parent="." index="3" instance=ExtResource("4_c3oc6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35191, 0)
 collision_layer = 32
 collision_mask = 8
@@ -74,7 +72,7 @@ can_hit = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.066589, 0)
 shape = SubResource("CapsuleShape3D_4kafm")
 
-[node name="Hurtbox" parent="." index="5" instance=ExtResource("5_4kafm")]
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("5_4kafm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.334121, 0)
 collision_layer = 64
 collision_mask = 4
@@ -85,6 +83,8 @@ can_be_hit_by = 3
 shape = SubResource("SphereShape3D_a57xe")
 debug_color = Color(0.883413, 0.262783, 0.530975, 0.42)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388744, 0)
 shape = SubResource("SphereShape3D_fgitk")
+
+[node name="tortoise" parent="Visuals" index="0" instance=ExtResource("2_s8eqa")]

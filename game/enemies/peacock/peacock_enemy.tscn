@@ -12,12 +12,13 @@
 radius = 0.14032024
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5ot81"]
-radius = 0.3637435
+radius = 0.23595114
 
-[node name="Peacock" node_paths=PackedStringArray("hurtbox") instance=ExtResource("1_3su6m")]
+[node name="Peacock" node_paths=PackedStringArray("hurtbox", "node_with_animation_tree") instance=ExtResource("1_3su6m")]
 collision_layer = 64
 collision_mask = 65
 hurtbox = NodePath("Hurtbox")
+node_with_animation_tree = NodePath("Visuals/peacock")
 
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6338918, -0.01400128)
@@ -49,13 +50,11 @@ entity_to_spawn = ExtResource("5_dg07b")
 offset_distance = 0.5
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="peacock" parent="." index="3" instance=ExtResource("5_5ot81")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19598463, 0)
 shape = SubResource("SphereShape3D_ut6xv")
 
-[node name="Hurtbox" parent="." index="5" instance=ExtResource("7_7a53i")]
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("7_7a53i")]
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
@@ -64,3 +63,5 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26399428, 0)
 shape = SubResource("SphereShape3D_5ot81")
+
+[node name="peacock" parent="Visuals" index="0" instance=ExtResource("5_5ot81")]
