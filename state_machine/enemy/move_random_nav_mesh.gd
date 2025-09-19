@@ -58,7 +58,7 @@ func physics_process(_delta: float) -> State:
 	parent.move_and_slide()
 
 	if (!direction.is_zero_approx()):
-		parent.look_at(parent.global_position + direction)
+		parent.visuals.look_at(parent.global_position + direction)
 
 	return null
 

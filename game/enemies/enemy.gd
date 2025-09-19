@@ -36,6 +36,9 @@ class_name Enemy
 @export var cannot_die: bool = false
 @export var heal_back_to_full: bool = false
 
+
+@onready var visuals: Node3D = $Visuals
+
 var max_health: float
 var reset_timer: Timer
 

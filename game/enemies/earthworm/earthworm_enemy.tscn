@@ -8,8 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://t5qw0io6lo16" path="res://game/enemies/earthworm/miniworm_enemy.tscn" id="6_3pdm0"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="7_3pdm0"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_lo2dp"]
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_c62ug"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ot7mc"]
@@ -17,6 +15,8 @@
 [sub_resource type="Resource" id="Resource_2f0bl"]
 script = ExtResource("7_3pdm0")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lo2dp"]
 
 [node name="Earthworm" node_paths=PackedStringArray("hurtbox", "on_death") instance=ExtResource("1_prtti")]
 health = 4.0
@@ -33,14 +33,10 @@ stop_distance = 0.0
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 0.3474458, 0, 0, 0, 1, 0, 0.13029361, 0)
-mesh = SubResource("CapsuleMesh_lo2dp")
-
-[node name="Hitbox" type="CollisionShape3D" parent="." index="4"]
+[node name="Hitbox" type="CollisionShape3D" parent="." index="3"]
 shape = SubResource("SphereShape3D_c62ug")
 
-[node name="Hurtbox" parent="." index="5" instance=ExtResource("2_ot7mc")]
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("2_ot7mc")]
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
@@ -49,7 +45,7 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
 shape = SubResource("SphereShape3D_ot7mc")
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="." index="6"]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="." index="5"]
 script = ExtResource("3_ie17u")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
@@ -60,3 +56,8 @@ amount_of_spawns = 2
 offset_distance = 0.4
 rotation_strategy = SubResource("Resource_2f0bl")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.3474458, 0, 0, 0, 1, 0, 0.13029361, 0)
+mesh = SubResource("CapsuleMesh_lo2dp")
+skeleton = NodePath("../..")
