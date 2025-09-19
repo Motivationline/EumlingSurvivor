@@ -16,7 +16,7 @@ class_name Realistic
 @onready var spawn_anchor: Marker3D = $SpawnAnchor
 # custom stuff for custom upgrades
 @onready var entity_spawner_backwards: EntitySpawner = $EntitySpawnerBackwards
-const REALISTIC_PROJECTILE_WITH_AOE = preload("uid://bxtdvm2y2dpcx")
+const REALISTIC_PROJECTILE_WITH_AOE = preload("uid://d0e5duwfn6vh4")
 
 var possible_unique_upgrades: Array[Upgrade] = [
 	CustomUpgrade.new("shoot_backwards"),

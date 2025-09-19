@@ -42,6 +42,21 @@ shader_parameter/Final_Color = Color(0.206667, 0.15, 1, 1)
 shader_parameter/fire_speed = Vector2(0.5, 0.5)
 shader_parameter/visibilty = 1.0
 
+[sub_resource type="Animation" id="Animation_7ghxt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.25291, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_2pdrq"]
 resource_name = "bounce"
 length = 0.5
@@ -57,21 +72,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0.1, 0), Vector3(0, 0.519479, 0), Vector3(0, 0.519479, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_7ghxt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.25291, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ujxw"]
