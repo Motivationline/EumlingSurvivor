@@ -1,0 +1,273 @@
+[gd_scene load_steps=21 format=3 uid="uid://vlcyo0twxfoa"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_ajyhn"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="2_7dp76"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_k47aw"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_aeabt"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_k52ci"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jblxu"]
+size = Vector3(0.7595215, 0.54003906, 0.6855469)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ajyhn"]
+
+[sub_resource type="Animation" id="Animation_np4hh"]
+resource_name = "bat_idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WIP-Model/AnchorL:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.26666665, 0.8),
+"transitions": PackedFloat32Array(1, 1, 2.0000002, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.31768483), Vector3(0, 0, 1.5524703), Vector3(0, 0, 1.7470746), Vector3(0, 0, -0.31768483)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WIP-Model/AnchorR:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.26666665, 0.8),
+"transitions": PackedFloat32Array(1, 1, 2.0000005, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.28105038), Vector3(0, 0, -1.6387768), Vector3(0, 0, -1.834341), Vector3(0, 0, 0.28105038)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WIP-Model:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.22000001, 0.43333334, 0.8),
+"transitions": PackedFloat32Array(1, 0.32987702, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2972275, 0), Vector3(0, 0.2972275, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WIP-Model:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 5.118512, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7dp76"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WIP-Model/AnchorL:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WIP-Model/AnchorR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WIP-Model:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WIP-Model:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ajyhn"]
+resource_name = "bat_move"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WIP-Model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WIP-Model/AnchorL:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.64184487)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WIP-Model/AnchorR:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.70958114)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aeabt"]
+_data = {
+&"RESET": SubResource("Animation_7dp76"),
+&"bat_idle": SubResource("Animation_np4hh"),
+&"bat_move": SubResource("Animation_ajyhn")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k47aw"]
+size = Vector3(1, 0.7116699, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k52ci"]
+size = Vector3(0.9082031, 0.63391113, 0.90625)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xsawn"]
+animation = &"bat_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jd4ft"]
+animation = &"bat_move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mtfc5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6vxa8"]
+advance_mode = 2
+advance_condition = &"Move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qof4c"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vw2kb"]
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5i0bo"]
+states/Start/position = Vector2(192, 100)
+states/bat_idle/node = SubResource("AnimationNodeAnimation_xsawn")
+states/bat_idle/position = Vector2(419, 79)
+states/bat_move/node = SubResource("AnimationNodeAnimation_jd4ft")
+states/bat_move/position = Vector2(655, 197)
+transitions = ["Start", "bat_idle", SubResource("AnimationNodeStateMachineTransition_mtfc5"), "bat_idle", "bat_move", SubResource("AnimationNodeStateMachineTransition_6vxa8"), "bat_move", "End", SubResource("AnimationNodeStateMachineTransition_qof4c"), "bat_move", "bat_idle", SubResource("AnimationNodeStateMachineTransition_vw2kb")]
+graph_offset = Vector2(-92, -37)
+
+[node name="Bat" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_ajyhn")]
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("WaitForTimeXState")
+
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_k47aw")
+max_distance = 2.0
+next_state = NodePath("../WaitForTimeXState")
+animation_trigger = "Move"
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_k52ci")
+next_state = NodePath("../MoveRandomOnNavMeshState")
+animation_trigger = "Idle"
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22998047, 0)
+shape = SubResource("BoxShape3D_jblxu")
+
+[node name="WIP-Model" type="Node3D" parent="." index="4"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="AnchorL" type="Node3D" parent="WIP-Model" index="0"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WIP-Model/AnchorL" index="0"]
+transform = Transform3D(0.5247923, 0.034504924, 0, -0.43891892, 0.041255713, 0, 0, 0, 0.8404983, -0.2808959, 0.21510965, 0)
+mesh = SubResource("BoxMesh_ajyhn")
+skeleton = NodePath("../../..")
+
+[node name="AnchorR" type="Node3D" parent="WIP-Model" index="1"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WIP-Model/AnchorR" index="0"]
+transform = Transform3D(-0.5247922, -0.03450492, 0, -0.43891892, 0.041255713, 0, 2.9802322e-08, 5.5879354e-09, -0.84049827, 0.2718755, 0.21510965, 0)
+mesh = SubResource("BoxMesh_ajyhn")
+skeleton = NodePath("../../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WIP-Model" index="2"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_aeabt")
+}
+
+[node name="Hurtbox" parent="." index="5" instance=ExtResource("2_7dp76")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258667, 0)
+shape = SubResource("BoxShape3D_k47aw")
+
+[node name="Hitbox" parent="." index="6" instance=ExtResource("3_aeabt")]
+collision_layer = 32
+collision_mask = 8
+damage = 1.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25201416, 0)
+shape = SubResource("BoxShape3D_k52ci")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
+tree_root = SubResource("AnimationNodeStateMachine_5i0bo")
+anim_player = NodePath("../WIP-Model/AnimationPlayer")
+parameters/conditions/Idle = false
+parameters/conditions/Move = false
