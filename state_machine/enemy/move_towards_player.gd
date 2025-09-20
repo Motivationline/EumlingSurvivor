@@ -47,7 +47,6 @@ func enter():
 
 func physics_process(_delta: float) -> State:
 	if (done): return return_next()
-	if (nav_agent.is_navigation_finished()): return null
 	
 	update_target_location()
 	
