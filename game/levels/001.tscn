@@ -1,10 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://htuftvnpan0c"]
+[gd_scene load_steps=30 format=3 uid="uid://htuftvnpan0c"]
 
-[ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="1_fnkxu"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_uile8"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="2_qbpv8"]
-[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/tortoise/tortoise_enemy.tscn" id="4_uile8"]
 [ext_resource type="PackedScene" uid="uid://dd5npkf3gb428" path="res://level/playgounrd/weapon_switch/weapon_switch.tscn" id="5_u3pwt"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_cf6nt"]
 [ext_resource type="PackedScene" uid="uid://cjpt5ms0ud5r" path="res://game/projectiles/bouncing_ball_projectile/bouncing_ball_projectile_player.tscn" id="6_geo0b"]
@@ -14,16 +12,14 @@
 [ext_resource type="Script" uid="uid://fy4gl1qypbeh" path="res://game/spawner/strategies/target/target_closest_entity.gd" id="9_v0tj5"]
 [ext_resource type="PackedScene" uid="uid://bhfncjfyvm7a2" path="res://game/projectiles/dragster_projectile/dragster_projectile_player.tscn" id="10_36van"]
 [ext_resource type="PackedScene" uid="uid://dpij4pds4lqgx" path="res://game/projectiles/lure_projectile/lure_projectile_player.tscn" id="11_v0tj5"]
-[ext_resource type="PackedScene" uid="uid://bneq1sfddtees" path="res://game/enemies/turnwheeler/turnwheeler.tscn" id="13_kkyc8"]
 [ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="13_kudwh"]
-[ext_resource type="PackedScene" uid="uid://blwxy4ejulewc" path="res://game/enemies/peacock/peacock_enemy.tscn" id="14_dc784"]
 [ext_resource type="PackedScene" uid="uid://ihojlm6krm5d" path="res://assets/models/beach/stone1_prefab.tscn" id="17_ii2cc"]
 [ext_resource type="PackedScene" uid="uid://cjvkgf8fotduv" path="res://assets/models/beach/stone3_prefab.tscn" id="18_2lc4n"]
 [ext_resource type="PackedScene" uid="uid://dlv00p3o5xd2j" path="res://assets/models/beach/stone4_prefab.tscn" id="19_vlj6n"]
 [ext_resource type="PackedScene" uid="uid://xuwqosnwo8qw" path="res://assets/models/beach/palm3_prefab.tscn" id="20_h41g6"]
 [ext_resource type="PackedScene" uid="uid://m0e7gij3jvvt" path="res://assets/models/beach/palm2_prefab.tscn" id="21_lxhlw"]
 [ext_resource type="Shader" uid="uid://cad0ilir1nvs7" path="res://game/shared/water_shader.tres" id="22_lxhlw"]
-[ext_resource type="PackedScene" uid="uid://drsq25puk6q7p" path="res://game/enemies/earthworm/earthworm_enemy.tscn" id="24_d0xsf"]
+[ext_resource type="PackedScene" uid="uid://dgr2h5l5eveyh" path="res://game/enemies/beatle/beatle_enemy.tscn" id="26_8pjjy"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0s0fg"]
 vertices = PackedVector3Array(-9.5, 0.5, -3.75, -5, 0.5, -3.75, -4.75, 0.5, -5, -2.75, 0.5, -5, -2.75, 0.5, -9.5, -9.5, 0.5, -9.5, 3.25, 0.5, -5, 3.25, 0.5, -9.5, 5.25, 0.5, -5, 5.5, 0.5, -3.75, 9.5, 0.5, -3.75, 9.5, 0.5, -9.5, -1, 0.5, -0.75, 0.25, 0.5, -1, 0.25, 0.5, -2.75, -4.75, 0.5, -2.75, 0, 0.5, 3.5, 0, 0.5, 1.25, -1, 0.5, 1, -4.75, 0.5, 3.5, -9.5, 0.5, 4.5, -5, 0.5, 4.5, 1.25, 0.5, -0.75, 5.25, 0.5, -2.75, 1.25, 0.5, 0.75, 5.25, 0.5, 3.5, 5.5, 0.5, 4.5, 9.5, 0.5, 4.5, -3.5, 0.5, 9.5, -3.25, 0.5, 5.75, -4.75, 0.5, 5.75, -9.5, 0.5, 9.5, 5.25, 0.5, 5.75, 3.75, 0.5, 5.75, 4, 0.5, 9.5, 9.5, 0.5, 9.5)
@@ -94,6 +90,7 @@ navigation_mesh = SubResource("NavigationMesh_0s0fg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("StandardMaterial3D_j48a7")
 use_collision = true
+collision_layer = 0
 collision_mask = 0
 size = Vector3(20, 1, 20)
 
@@ -124,18 +121,6 @@ script = ExtResource("1_j48a7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.713593, 0.700561, 0, -0.700561, 0.713593, 0, 4.44658, 0)
-
-[node name="CactusHog" parent="." instance=ExtResource("1_fnkxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2935, 0.00175114, -0.397552)
-
-[node name="CactusHog2" parent="." instance=ExtResource("1_fnkxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.376671, 0, 3.9420676)
-
-[node name="CactusHog3" parent="." instance=ExtResource("1_fnkxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9284253, 0, 7.8095245)
-
-[node name="CactusHog4" parent="." instance=ExtResource("1_fnkxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.875485, 9.536743e-07, 1.9873304)
 
 [node name="Lights" type="Node3D" parent="."]
 
@@ -217,12 +202,6 @@ script = ExtResource("6_cf6nt")
 entity_to_spawn = ExtResource("11_v0tj5")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="Turnwheeler" parent="." instance=ExtResource("13_kkyc8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.64626, 0, 3.04685)
-
-[node name="Peacock" parent="." instance=ExtResource("14_dc784")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8919325, 0, -1.7254148)
-
 [node name="Env" type="Node3D" parent="."]
 
 [node name="stone_v1" parent="Env" instance=ExtResource("17_ii2cc")]
@@ -257,8 +236,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40004253, 0)
 mesh = SubResource("PlaneMesh_qbpv8")
 surface_material_override/0 = SubResource("ShaderMaterial_d0xsf")
 
-[node name="BaseEnemy" parent="." instance=ExtResource("24_d0xsf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3856468, -9.536743e-07, 6.454048)
-
-[node name="TortoiseEnemy" parent="." instance=ExtResource("4_uile8")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -1.3742933, 0.0029870672, -1.2745895)
+[node name="Beatle" parent="." instance=ExtResource("26_8pjjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.574474, 0.04018952, 5.701327)

@@ -11,7 +11,7 @@ class_name MoveTowardsPlayerState
 ## distance to the Player where this State ends
 @export var stop_distance: float = 100
 ## amount to rotate when directions change
-@export_range(0.0,20.0,0.1) var rotation_speed: float = 5
+@export_range(0.0,50.0,0.1) var rotation_speed: float = 5
 
 @export_group("Overrides")
 ## Movement Speed Override
@@ -52,7 +52,7 @@ func physics_process(_delta: float) -> State:
 	
 	#parent.look_at(nav_agent.get_next_path_position())
 	var destination = nav_agent.get_next_path_position()
-	var local_destination = destination - parent.global_position
+	var local_destination =  destination- parent.global_position 
 	var direction = local_destination.normalized()
 	var speed = speed_override if (speed_override_active) else parent.speed
 	parent.velocity = direction * speed

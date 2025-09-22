@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_bghrv"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_5qkpy"]
-[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="3_rdo5s"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_rdo5s"]
 [ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="4_rbowq"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="5_rwiy8"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="6_0xs35"]
@@ -23,21 +23,19 @@ hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("LookAtPlayer")
+initial_state = NodePath("LookAtPlayerState")
 
-[node name="LookAtPlayer" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
-script = ExtResource("3_rdo5s")
-wait_time = 0.5
-stop_distance = 10.0
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_rdo5s")
 rotation_speed = 20.0
-speed_override = 0.1
+speed_override = 70.5
 speed_override_active = true
-debug_show_path = true
 next_state = NodePath("../Wait(Charging)")
-metadata/_custom_type_script = "uid://dmskxets4soyo"
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="Wait(Charging)" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_5qkpy")
+wait_time = 0.2
 next_state = NodePath("../ChargeAttack")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
@@ -45,18 +43,19 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("4_rbowq")
 max_distance = 20.0
 max_time = 1.0
-speed_override = 10.0
+stop_when_running_into_something = false
+speed_override = 5.0
 speed_override_active = true
 next_state = NodePath("../Wait(Stunned)")
 metadata/_custom_type_script = "uid://cjkeo3brnvde2"
 
 [node name="Wait(Stunned)" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_5qkpy")
-next_state = NodePath("../LookAtPlayer")
+next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
-transform = Transform3D(0.4514425, 0, 0, 0, -4.2719705e-08, 0.5626625, 0, -0.9773129, -2.4594758e-08, 0, 0.24114174, -0.07334371)
+transform = Transform3D(0.4514425, 0, 0, 0, -4.2719705e-08, 0.5626625, 0, -0.9773129, -2.4594758e-08, 0, 0.2828154, -0.07334371)
 mesh = SubResource("PrismMesh_431lo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
