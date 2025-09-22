@@ -1,5 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4k2p7lo2xaey"]
+[gd_scene load_steps=3 format=3 uid="uid://d4k2p7lo2xaey"]
 
 [ext_resource type="PackedScene" uid="uid://buaeqphorstgl" path="res://assets/models/beach/stone_v2.glb" id="1_pxw4f"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_7viq3"]
+radius = 0.66938406
+
 [node name="stone_v2" instance=ExtResource("1_pxw4f")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07861668, 0.39405167, 0)
+shape = SubResource("SphereShape3D_7viq3")
