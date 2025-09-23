@@ -18,6 +18,7 @@ albedo_color = Color(0, 0, 0, 1)
 albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 
 [node name="RealisticProjectile" node_paths=PackedStringArray("hit_box", "on_world_collision") instance=ExtResource("1_25de7")]
+collision_mask = 257
 hit_box = NodePath("Hitbox")
 on_world_collision = [NodePath("EventStrategies/TimerEventStrategy")]
 

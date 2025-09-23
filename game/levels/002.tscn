@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ca1d4hdexrjh6"]
+[gd_scene load_steps=16 format=3 uid="uid://ca1d4hdexrjh6"]
 
 [ext_resource type="PackedScene" uid="uid://bmc2la5fkmscu" path="res://game/levels/base_level.tscn" id="1_dqrpd"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="2_esbnm"]
@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://m0e7gij3jvvt" path="res://assets/models/beach/palm2_prefab.tscn" id="7_cg8yi"]
 [ext_resource type="Shader" uid="uid://cad0ilir1nvs7" path="res://game/shared/water_shader.tres" id="8_f022y"]
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="9_3fmnc"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_3fmnc"]
+vertices = PackedVector3Array(0.75, 0.5, -0.75, 1, 0.5, 0, 4.5, 0.5, 0, 4.5, 0.5, -4.5, -4.5, 0.5, 0, -0.75, 0.5, 0, -0.5, 0.5, -0.75, -4.5, 0.5, -4.5, 0.5, 0.5, 1, 4.5, 0.5, 4.5, -0.5, 0.5, 1, -4.5, 0.5, 4.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(0, 6, 3), PackedInt32Array(3, 6, 7), PackedInt32Array(1, 2, 8), PackedInt32Array(8, 2, 9), PackedInt32Array(5, 10, 4), PackedInt32Array(4, 10, 11), PackedInt32Array(8, 9, 10), PackedInt32Array(10, 9, 11)]
+agent_max_climb = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36g76"]
 albedo_color = Color(0, 0.29, 0.0145, 1)
@@ -35,6 +40,9 @@ shader_parameter/main_threshhold = 0.2090000099275
 
 [node name="Level" instance=ExtResource("1_dqrpd")]
 
+[node name="NavigationRegion3D" parent="." index="0"]
+navigation_mesh = SubResource("NavigationMesh_3fmnc")
+
 [node name="Floor" type="CSGBox3D" parent="NavigationRegion3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("StandardMaterial3D_36g76")
@@ -50,7 +58,12 @@ use_collision = true
 collision_mask = 0
 size = Vector3(0.5, 0.5, 0.5)
 
-[node name="WallRight" type="CSGBox3D" parent="NavigationRegion3D" index="2"]
+[node name="PlayerSpawnMarker" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5663033)
+
+[node name="Walls" type="Node" parent="." index="2"]
+
+[node name="WallRight" type="CSGBox3D" parent="Walls" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, 0)
 visible = false
 layers = 0
@@ -59,7 +72,7 @@ collision_layer = 16
 collision_mask = 0
 size = Vector3(1, 4, 10)
 
-[node name="WallLeft" type="CSGBox3D" parent="NavigationRegion3D" index="3"]
+[node name="WallLeft" type="CSGBox3D" parent="Walls" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, 0)
 visible = false
 layers = 0
@@ -68,7 +81,7 @@ collision_layer = 16
 collision_mask = 0
 size = Vector3(1, 4, 10)
 
-[node name="WallBack" type="CSGBox3D" parent="NavigationRegion3D" index="4"]
+[node name="WallBack" type="CSGBox3D" parent="Walls" index="2"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 5.5)
 visible = false
 layers = 0
@@ -77,7 +90,7 @@ collision_layer = 16
 collision_mask = 0
 size = Vector3(1, 4, 10)
 
-[node name="WallFrontR" type="CSGBox3D" parent="NavigationRegion3D" index="5"]
+[node name="WallFrontR" type="CSGBox3D" parent="Walls" index="3"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 1, -5.5)
 visible = false
 layers = 0
@@ -86,7 +99,7 @@ collision_layer = 16
 collision_mask = 0
 size = Vector3(1, 4, 4)
 
-[node name="WallFrontL" type="CSGBox3D" parent="NavigationRegion3D" index="6"]
+[node name="WallFrontL" type="CSGBox3D" parent="Walls" index="4"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 1, -5.5)
 visible = false
 layers = 0
@@ -95,7 +108,7 @@ collision_layer = 16
 collision_mask = 0
 size = Vector3(1, 4, 4)
 
-[node name="WallFrontExit" type="CSGBox3D" parent="NavigationRegion3D" index="7"]
+[node name="WallFrontExit" type="CSGBox3D" parent="Walls" index="5"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, -6)
 visible = false
 layers = 0
@@ -104,13 +117,10 @@ collision_layer = 16
 collision_mask = 0
 size = Vector3(1, 4, 4)
 
-[node name="PlayerSpawnMarker" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5663033)
-
-[node name="GoalArea" parent="." index="2"]
+[node name="GoalArea" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.75)
 
-[node name="LeaveArea" parent="." index="3" instance=ExtResource("2_esbnm")]
+[node name="LeaveArea" parent="." index="4" instance=ExtResource("2_esbnm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.5)
 
 [node name="Floor" type="CSGBox3D" parent="LeaveArea" index="2"]
@@ -121,7 +131,7 @@ collision_layer = 0
 collision_mask = 0
 size = Vector3(2, 1, 2)
 
-[node name="Env" type="Node3D" parent="." index="7"]
+[node name="Env" type="Node3D" parent="." index="8"]
 
 [node name="stone_v1" parent="Env" index="0" instance=ExtResource("3_thqnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.955557, -0.6396028, 4.7766905)
@@ -155,11 +165,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40004253, 0)
 mesh = SubResource("PlaneMesh_6hwer")
 surface_material_override/0 = SubResource("ShaderMaterial_2mejl")
 
-[node name="CactusHog" parent="." index="8" instance=ExtResource("9_3fmnc")]
+[node name="CactusHog" parent="." index="9" instance=ExtResource("9_3fmnc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.179452, 0, 2.653471)
 
-[node name="CactusHog2" parent="." index="9" instance=ExtResource("9_3fmnc")]
+[node name="CactusHog2" parent="." index="10" instance=ExtResource("9_3fmnc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2150273, 0, -2.633893)
 
-[node name="CactusHog3" parent="." index="10" instance=ExtResource("9_3fmnc")]
+[node name="CactusHog3" parent="." index="11" instance=ExtResource("9_3fmnc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9443603, 0, -1.9024715)
