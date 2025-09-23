@@ -80,8 +80,9 @@ goal_area = NodePath("LeaveArea")
 [node name="PlayerSpawnMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
-[node name="LeaveArea" parent="." instance=ExtResource("2_qbpv8")]
+[node name="LeaveArea" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("2_qbpv8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.71369)
+parent = NodePath("..")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0s0fg")

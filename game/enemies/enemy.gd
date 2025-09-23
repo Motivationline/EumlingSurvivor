@@ -18,6 +18,8 @@ class_name Enemy
 @export_range(0, 100, 0.1) var speed: float = 1
 
 @export_category("Base Functionality")
+## ignores enemy when for level finish
+@export var ignore_enemy_in_level: bool
 @export var healthbar: Healthbar3D
 @export var hitbox: HitBox
 @export var hurtbox: HurtBox
@@ -53,8 +55,9 @@ func _ready() -> void:
 	Strategy._setup_array(on_death, self, self)
 	Strategy._setup_array(on_hit, self, self)
 	Strategy._setup_array(on_hurt, self, self)
-
-	add_to_group("Enemy")
+	
+	if !ignore_enemy_in_level:
+		add_to_group("Enemy")
 
 	reset_timer = Timer.new()
 	add_child(reset_timer)
