@@ -120,8 +120,9 @@ size = Vector3(1, 4, 4)
 [node name="GoalArea" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.75)
 
-[node name="LeaveArea" parent="." index="4" instance=ExtResource("2_esbnm")]
+[node name="LeaveArea" parent="." index="4" node_paths=PackedStringArray("parent") instance=ExtResource("2_esbnm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.5)
+parent = NodePath("..")
 
 [node name="Floor" type="CSGBox3D" parent="LeaveArea" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.5)

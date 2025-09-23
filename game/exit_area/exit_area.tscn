@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bml0rn4uxx07g"]
+[gd_scene load_steps=9 format=3 uid="uid://bml0rn4uxx07g"]
 
-[ext_resource type="PackedScene" uid="uid://b14a85qcl4ypo" path="res://assets/models/exit_trunk/exit_trunk.glb" id="1_tkqdu"]
+[ext_resource type="Script" uid="uid://ct7skgiecn1pc" path="res://game/exit_area/exit_area.gd" id="1_47e78"]
+[ext_resource type="PackedScene" uid="uid://be1fw7kjvhpof" path="res://game/exit_area/exit_trunk.tscn" id="1_tkqdu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
 size = Vector3(2.2646484, 1.980957, 1)
@@ -9,19 +10,263 @@ size = Vector3(2.2646484, 1.980957, 1)
 size = Vector3(0.42266846, 2.0351563, 3.0703125)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdd0d"]
-size = Vector3(1.3156738, 0.4050293, 0.17437744)
+size = Vector3(1.3156738, 0.5444336, 1.0525208)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_47e78"]
-size = Vector3(1.8616943, 0.44274902, 0.20466614)
+[sub_resource type="Animation" id="Animation_tkqdu"]
+resource_name = "exit_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/exit_trunk/Plane_011:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 1),
+"transitions": PackedFloat32Array(1.8025012, 1),
+"update": 0,
+"values": [Vector3(0.932077, -2.8693814, 1.8010651), Vector3(0.9584069, -2.7865562, 0.47680125)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/exit_trunk/Plane_011:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1),
+"transitions": PackedFloat32Array(1.8025012, 1),
+"update": 0,
+"values": [Vector3(0.79999983, 0.8, 0.7999999), Vector3(0.19999999, 0.19999997, 0.19999993)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/exit_trunk/Plane_011:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 1),
+"transitions": PackedFloat32Array(1.8025012, 1),
+"update": 0,
+"values": [Vector3(0.8571949, 1.542643, -1.1739992), Vector3(0.6760168, 1.542643, -1.0559853)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/exit_trunk/Plane_010:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.8933334),
+"transitions": PackedFloat32Array(1.8660663, 1),
+"update": 0,
+"values": [Vector3(0.95282936, 2.2474284, 0.2198565), Vector3(0.69011104, 2.099602, 0.21985652)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/exit_trunk/Plane_010:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.8933334),
+"transitions": PackedFloat32Array(1.8660663, 1),
+"update": 0,
+"values": [Vector3(-0.1672439, 3.0464702, 1.6670525), Vector3(-0.13439035, 3.0455995, 0.34906584)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visuals/exit_trunk/Plane_010:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 0.8933334),
+"transitions": PackedFloat32Array(1.8660663, 1),
+"update": 0,
+"values": [Vector3(0.6279332, 0.6279332, 0.62793326), Vector3(0.2, 0.19999999, 0.2)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/exit_trunk/Plane_012:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.79333335),
+"transitions": PackedFloat32Array(2.2191393, 1),
+"update": 0,
+"values": [Vector3(0.93766713, 0.9047636, 1.4619656), Vector3(0.6935626, 0.9047636, 1.2674558)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visuals/exit_trunk/Plane_012:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.79333335),
+"transitions": PackedFloat32Array(2.2191393, 1),
+"update": 0,
+"values": [Vector3(-1.4375056, 2.2222006, 2.5455775), Vector3(-1.4816746, 2.2304893, 1.163212)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visuals/exit_trunk/Plane_012:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.79333335),
+"transitions": PackedFloat32Array(2.2191393, 1),
+"update": 0,
+"values": [Vector3(0.6279331, 0.62793314, 0.6279334), Vector3(0.20000002, 0.2, 0.2)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visuals/exit_trunk/DoorLock/CollisionShape3D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.43, 0.56666666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_b71t5"]
-size = Vector3(0.51171875, 0.5545044, 0.8709297)
+[sub_resource type="Animation" id="Animation_rdd0d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/exit_trunk/Plane_011:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.932077, -2.8693814, 1.8010651)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/exit_trunk/Plane_011:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.79999983, 0.8, 0.7999999)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/exit_trunk/Plane_011:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.8571949, 1.542643, -1.1739992)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/exit_trunk/Plane_010:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.95282936, 2.2474284, 0.2198565)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/exit_trunk/Plane_010:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.1672439, 3.0464702, 1.6670525)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visuals/exit_trunk/Plane_010:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6279332, 0.6279332, 0.62793326)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/exit_trunk/Plane_012:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.93766713, 0.9047636, 1.4619656)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visuals/exit_trunk/Plane_012:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.4375056, 2.2222006, 2.5455775)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visuals/exit_trunk/Plane_012:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6279331, 0.62793314, 0.6279334)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visuals/exit_trunk/DoorLock/CollisionShape3D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tinj2"]
-size = Vector3(0.9658203, 0.5545044, 0.24316406)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_47e78"]
+_data = {
+&"RESET": SubResource("Animation_rdd0d"),
+&"exit_open": SubResource("Animation_tkqdu")
+}
 
 [node name="ExitArea" type="Area3D"]
 collision_mask = 0
+script = ExtResource("1_47e78")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9904785, 0.48971936)
@@ -38,6 +283,24 @@ omni_range = 1.6048713
 [node name="exit_trunk" parent="Visuals" instance=ExtResource("1_tkqdu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
+[node name="Plane_010" parent="Visuals/exit_trunk" index="13"]
+transform = Transform3D(0.050194215, 0.62315506, 0.058808398, 0.6163057, -0.059507128, 0.10452913, 0.1093068, 0.049363825, -0.6163728, 0.95282936, 2.2474284, 0.2198565)
+
+[node name="Plane_011" parent="Visuals/exit_trunk" index="14"]
+transform = Transform3D(0.0077394233, 0.7896185, -0.12822941, 0.46434546, -0.10885508, -0.64228785, -0.6514009, -0.06821479, -0.45937285, 0.8571949, 1.542643, -1.1739992)
+
+[node name="Plane_012" parent="Visuals/exit_trunk" index="15"]
+transform = Transform3D(0.037249293, 0.62330455, 0.06636227, 0.04684461, -0.06906152, 0.62236357, 0.62507445, -0.031968188, -0.0505961, 0.93766713, 0.9047636, 1.4619656)
+
+[node name="DoorLock" type="StaticBody3D" parent="Visuals/exit_trunk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9585117, 0, 0.2774157)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/exit_trunk/DoorLock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26622462, 0.9660523, -0.29638672)
+shape = SubResource("BoxShape3D_tkqdu")
+debug_fill = false
+
 [node name="RightWall" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 collision_mask = 0
@@ -45,6 +308,7 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26622462, 0.9660523, -0.29638672)
 shape = SubResource("BoxShape3D_tkqdu")
+debug_fill = false
 
 [node name="LeftWall" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
@@ -53,23 +317,19 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2595942, 0.9660523, -0.29638672)
 shape = SubResource("BoxShape3D_tkqdu")
+debug_fill = false
 
 [node name="Roots" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1.4077355)
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Roots"]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.15783691, 0.017700195, 0.075042725)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.15783691, 0.08740234, -0.36402893)
 shape = SubResource("BoxShape3D_rdd0d")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Roots"]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.43084717, 0.03656006, -0.78522885)
-shape = SubResource("BoxShape3D_47e78")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_47e78")
+}
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Roots"]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0.22645533, 0.092437744, -0.44903266)
-shape = SubResource("BoxShape3D_b71t5")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Roots"]
-transform = Transform3D(0.91483283, 0, -0.40383273, 0, 1, 0, 0.40383273, 0, 0.91483295, -0.38718605, 0.092437744, -0.59817916)
-shape = SubResource("BoxShape3D_tinj2")
+[editable path="Visuals/exit_trunk"]
