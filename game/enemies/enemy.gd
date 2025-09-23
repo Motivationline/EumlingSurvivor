@@ -19,7 +19,7 @@ class_name Enemy
 
 @export_category("Base Functionality")
 ## ignores enemy when for level finish
-@export var ignore_enemy_in_level: bool
+@export var ignore_enemy_in_level: bool = false
 @export var healthbar: Healthbar3D
 @export var hitbox: HitBox
 @export var hurtbox: HurtBox
