@@ -15,7 +15,10 @@ func _ready() -> void:
 	
 func find_particles() -> Array:
 	var particles: Array
-	var children = get_parent().get_children()
+	var parent = get_parent()
+	var children = parent.get_children()
+	if parent is GPUParticles3D or parent is CPUParticles3D:
+		particles.append(parent)
 	for child in children:
 		if child is GPUParticles3D or child is CPUParticles3D:
 			particles.append(child)

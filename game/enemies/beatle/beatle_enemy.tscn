@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dgr2h5l5eveyh"]
+[gd_scene load_steps=18 format=3 uid="uid://dgr2h5l5eveyh"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_bghrv"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_5qkpy"]
@@ -12,10 +12,12 @@
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="6_n4sta"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_fs8yq"]
 [ext_resource type="PackedScene" uid="uid://bu3a5g7w20saj" path="res://game/enemies/beatle/dummy_attack_visual_enemy.tscn" id="8_n4sta"]
+[ext_resource type="PackedScene" uid="uid://cnvxyg3ysg7tf" path="res://game/enemies/beatle/pol_vfx.tscn" id="10_fs8yq"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_431lo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n4sta"]
+radius = 0.20846683
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fs8yq"]
 
@@ -23,6 +25,8 @@
 radius = 0.54914546
 
 [node name="Beatle" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_bghrv")]
+collision_layer = 80
+collision_mask = 65
 health = 30.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
@@ -50,7 +54,6 @@ animation_trigger = "buckleup"
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine/MultistateState" index="0" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_rdo5s")
-infinite = null
 wait_time = 2.0
 speed_override = 70.5
 speed_override_active = true
@@ -81,16 +84,33 @@ max_distance = 20.0
 max_time = 1.0
 speed_override = 5.0
 speed_override_active = true
-next_state = NodePath("../Wait(Stunned)")
+next_state = NodePath("../MultistateState2")
 animation_trigger = "charge"
 metadata/_custom_type_script = "uid://cjkeo3brnvde2"
 
-[node name="Wait(Stunned)" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("next_state")]
+[node name="MultistateState2" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+script = ExtResource("2_rbowq")
+states_to_execute = [NodePath("SpawnEntitiesState"), NodePath("Wait(Stunned)")]
+states_that_need_to_finish = [NodePath("Wait(Stunned)")]
+next_state = NodePath("../MoveTowardsPlayerState")
+
+[node name="Wait(Stunned)" type="Node" parent="StateMachine/MultistateState2" index="0" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_5qkpy")
 wait_time = 2.0
-next_state = NodePath("../MoveTowardsPlayerState")
+next_state = NodePath("../../MoveTowardsPlayerState")
 animation_trigger = "stunned"
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState2" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_n4sta")
+next_state = NodePath("../../MultistateState/LookAtPlayerState")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState2/SpawnEntitiesState" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.7890626, 0.61431277, 0, -0.61431277, 0.7890626, 0, 0.40301532, -0.3561021)
+script = ExtResource("7_fs8yq")
+entity_to_spawn = ExtResource("10_fs8yq")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
 transform = Transform3D(0.4514425, 0, 0, 0, -4.2719705e-08, 0.5626625, 0, -0.9773129, -2.4594758e-08, 0, 0.2828154, -0.07334371)
@@ -101,6 +121,7 @@ mesh = SubResource("PrismMesh_431lo")
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, -0.123390555)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20420316, 0)
 shape = SubResource("SphereShape3D_n4sta")
 
 [node name="Hurtbox" parent="." index="5" instance=ExtResource("5_rwiy8")]

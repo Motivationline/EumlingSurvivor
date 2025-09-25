@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnvxyg3ysg7tf"]
+
+[ext_resource type="PackedScene" uid="uid://wqhqib0voc53" path="res://game/vfx/particle_one_shot_component/particle_oneshot_component.tscn" id="1_uatyq"]
+
+[sub_resource type="Curve" id="Curve_hnt48"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.5921266, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uatyq"]
+curve = SubResource("Curve_hnt48")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t44cp"]
+direction = Vector3(0, 1, 0)
+spread = 60.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.5
+gravity = Vector3(0, 0.1, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_min = 0.01
+scale_max = 0.049999997
+alpha_curve = SubResource("CurveTexture_uatyq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okp71"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.776, 0.16000003, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vdlir"]
+material = SubResource("StandardMaterial3D_okp71")
+radial_segments = 6
+rings = 6
+
+[node name="Pol" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 0.8261278, 0.56348276, 0, -0.56348276, 0.8261278, 0, 0, 0)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.55
+process_material = SubResource("ParticleProcessMaterial_t44cp")
+draw_pass_1 = SubResource("SphereMesh_vdlir")
+
+[node name="particle_oneshot_component" parent="." node_paths=PackedStringArray("node_to_kill") instance=ExtResource("1_uatyq")]
+node_to_kill = NodePath("..")
