@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1as42uiohbk5"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r7xpd"]
+size = Vector2(1, 3)
+center_offset = Vector3(0, 0, -1.5)
+
+[node name="Atttack" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026230186, 0)
+mesh = SubResource("PlaneMesh_r7xpd")

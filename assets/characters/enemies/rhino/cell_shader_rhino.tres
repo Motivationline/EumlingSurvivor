@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://tmbw1h2xk554"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_y1naw"]
+[ext_resource type="Texture2D" uid="uid://bsjygsmocv0rk" path="res://assets/characters/enemies/rhino/rhino_Rhino_Base_color.png" id="2_hlg73"]
+
+[sub_resource type="Gradient" id="Gradient_y1naw"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.002016129, 0.64314514)
+colors = PackedColorArray(0.19076231, 0.19076234, 0.19076231, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hlg73"]
+gradient = SubResource("Gradient_y1naw")
+
+[sub_resource type="Gradient" id="Gradient_ggiqk"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5383065)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fu2e8"]
+gradient = SubResource("Gradient_ggiqk")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_y1naw")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_hlg73")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_hlg73")
+shader_parameter/specular_focus = 0.5
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_fu2e8")
+shader_parameter/rim_focus = 0.0
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true

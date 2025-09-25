@@ -1,11 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgr2h5l5eveyh"]
+[gd_scene load_steps=17 format=3 uid="uid://dgr2h5l5eveyh"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_bghrv"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_5qkpy"]
+[ext_resource type="Script" path="res://state_machine/enemy/multistate.gd" id="2_rbowq"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_rdo5s"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_rwiy8"]
 [ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="4_rbowq"]
+[ext_resource type="PackedScene" uid="uid://cygf82frkbihh" path="res://assets/characters/enemies/rhino/rhino_prefab.tscn" id="5_rdo5s"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="5_rwiy8"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="6_0xs35"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="6_n4sta"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_fs8yq"]
+[ext_resource type="PackedScene" uid="uid://bu3a5g7w20saj" path="res://game/enemies/beatle/dummy_attack_visual_enemy.tscn" id="8_n4sta"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_431lo"]
 
@@ -18,45 +24,79 @@ radius = 0.54914546
 
 [node name="Beatle" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_bghrv")]
 health = 30.0
-speed = 2.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("LookAtPlayerState")
+[node name="Healthbar3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7900729, 0.06912398)
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveTowardsPlayerState")
+
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_rwiy8")
+wait_time = 0.0
+stop_distance = 2.5
+next_state = NodePath("../MultistateState")
+animation_trigger = "walk"
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="MultistateState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+script = ExtResource("2_rbowq")
+states_to_execute = [NodePath("LookAtPlayerState"), NodePath("Wait(Charging)"), NodePath("SpawnEntitiesState")]
+states_that_need_to_finish = [NodePath("Wait(Charging)")]
+next_state = NodePath("../ChargeAttack")
+animation_trigger = "buckleup"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/MultistateState" index="0" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_rdo5s")
-rotation_speed = 20.0
+wait_time = 2.0
 speed_override = 70.5
 speed_override_active = true
-next_state = NodePath("../Wait(Charging)")
+next_state = NodePath(".")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="Wait(Charging)" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+[node name="Wait(Charging)" type="Node" parent="StateMachine/MultistateState" index="1" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_5qkpy")
-wait_time = 0.2
-next_state = NodePath("../ChargeAttack")
+wait_time = 2.0
+next_state = NodePath("../../ChargeAttack")
+animation_trigger = "buckleup"
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState" index="2" node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_n4sta")
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0"]
+script = ExtResource("7_fs8yq")
+entity_to_spawn = ExtResource("8_n4sta")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="ChargeAttack" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_rbowq")
 max_distance = 20.0
 max_time = 1.0
-stop_when_running_into_something = false
 speed_override = 5.0
 speed_override_active = true
 next_state = NodePath("../Wait(Stunned)")
+animation_trigger = "charge"
 metadata/_custom_type_script = "uid://cjkeo3brnvde2"
 
 [node name="Wait(Stunned)" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_5qkpy")
-next_state = NodePath("../LookAtPlayerState")
+wait_time = 2.0
+next_state = NodePath("../MoveTowardsPlayerState")
+animation_trigger = "stunned"
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
 transform = Transform3D(0.4514425, 0, 0, 0, -4.2719705e-08, 0.5626625, 0, -0.9773129, -2.4594758e-08, 0, 0.2828154, -0.07334371)
+visible = false
 mesh = SubResource("PrismMesh_431lo")
+
+[node name="rhino" parent="Visuals" index="1" instance=ExtResource("5_rdo5s")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, -0.123390555)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
 shape = SubResource("SphereShape3D_n4sta")

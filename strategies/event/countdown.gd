@@ -2,6 +2,7 @@ extends EventStrategy
 ## Counts down every time this event is called before triggering the attached event when countdown reaches 0
 class_name CountdownEventStrategy
 
+signal on_countdown
 ## How often this event needs to be triggered before the defined event is called.[br]  
 ## Or in other words: every n-th time this event is called, call the other event.[br]
 ## 1 -> every time, 2 -> every other time, etc.
@@ -24,6 +25,7 @@ func event_triggered(_data):
 	if (once && happened): return
 	current_count -= 1
 	if (current_count == 0):
+			on_countdown.emit()
 			current_count = count
 			event.event_triggered(_data)
 			happened = true

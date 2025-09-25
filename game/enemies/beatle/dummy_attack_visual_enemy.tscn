@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu3a5g7w20saj"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_j6gfq"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_jtk3m"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_mprou"]
+[ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="3_nkvi3"]
+[ext_resource type="PackedScene" uid="uid://d1as42uiohbk5" path="res://game/enemies/beatle/beatle_attack_visual.tscn" id="3_qhmrw"]
+
+[node name="DummyEnemy" instance=ExtResource("1_j6gfq")]
+health = 5000.0
+speed = 0.0
+ignore_enemy_in_level = true
+
+[node name="Healthbar3D" parent="." index="0"]
+visible = false
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("LookAtPlayerState")
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_jtk3m")
+wait_time = 2.0
+rotation_speed = 20.0
+next_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_mprou")
+wait_time = 2.0
+next_state = NodePath("../KillSelfState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="KillSelfState" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_nkvi3")
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://dj632w22te1th"
+
+[node name="Atttack" parent="Visuals" index="0" instance=ExtResource("3_qhmrw")]

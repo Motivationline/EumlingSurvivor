@@ -1,0 +1,66 @@
+[gd_scene load_steps=13 format=3 uid="uid://cygf82frkbihh"]
+
+[ext_resource type="PackedScene" uid="uid://mfgh445dbv05" path="res://assets/characters/enemies/rhino/rhino.glb" id="1_3vq58"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bd8ie"]
+animation = &"buckleup"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_svt3p"]
+animation = &"charge"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bhb4w"]
+animation = &"stunned"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3vq58"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bd8ie"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_svt3p"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"buckleup"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j4g5q"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"charge"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xp7k0"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"stunned"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s0fm0"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u1h6y"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"buckleup"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_svt3p"]
+states/Start/position = Vector2(197, 100)
+states/buckleup/node = SubResource("AnimationNodeAnimation_bd8ie")
+states/buckleup/position = Vector2(423, -6)
+states/charge/node = SubResource("AnimationNodeAnimation_svt3p")
+states/charge/position = Vector2(553, -51)
+states/stunned/node = SubResource("AnimationNodeAnimation_bhb4w")
+states/stunned/position = Vector2(740, -32)
+states/walk/node = SubResource("AnimationNodeAnimation_3vq58")
+states/walk/position = Vector2(413, 100)
+transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_bd8ie"), "walk", "buckleup", SubResource("AnimationNodeStateMachineTransition_svt3p"), "buckleup", "charge", SubResource("AnimationNodeStateMachineTransition_j4g5q"), "charge", "stunned", SubResource("AnimationNodeStateMachineTransition_xp7k0"), "stunned", "walk", SubResource("AnimationNodeStateMachineTransition_s0fm0"), "stunned", "buckleup", SubResource("AnimationNodeStateMachineTransition_u1h6y")]
+graph_offset = Vector2(-243, -119)
+
+[node name="rhino" instance=ExtResource("1_3vq58")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_svt3p")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/buckleup = false
+parameters/conditions/charge = false
+parameters/conditions/stunned = false
+parameters/conditions/walk = false
