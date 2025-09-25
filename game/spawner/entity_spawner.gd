@@ -7,6 +7,7 @@ signal spawn_finished
 
 ## If set, spawns the entity as a child of the relevant parent, to the level otherwise. [color=red]Does not affect the position or rotation, only the parent[/color]
 @export var spawn_local: bool = false
+@export var ignore_relative_rotation: bool = false
 
 @export_category("Burst")
 @export var entity_to_spawn: PackedScene
@@ -56,7 +57,8 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 			return
 	
 	instance.global_position = _relative_to.global_position
-	instance.global_rotation = _relative_to.global_rotation
+	if !ignore_relative_rotation:
+		instance.global_rotation = _relative_to.global_rotation
 	if (target_strategy):
 		var target_position = target_strategy.get_target_position(_relative_to)
 		target_position.y = _relative_to.global_position.y

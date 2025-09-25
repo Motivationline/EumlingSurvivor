@@ -5,7 +5,7 @@ extends State
 ##
 ## Ends when the distance from Entity to Player is less than stop_distance
 class_name LookAtPlayerState
-
+@export var infinite: bool = false
 ## pause time after the destination was reached
 @export var wait_time: float = 1:
 	set(new_value):
@@ -34,7 +34,7 @@ func setup(_parent: Enemy, _animation_tree: AnimationTree):
 func enter():
 	done = false
 	super()
-	wait()
+	if !infinite: wait()
 
 func physics_process(_delta: float) -> State:
 	var target_vec = (player.position - parent.position).normalized()

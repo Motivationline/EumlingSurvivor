@@ -50,6 +50,7 @@ animation_trigger = "buckleup"
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine/MultistateState" index="0" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_rdo5s")
+infinite = null
 wait_time = 2.0
 speed_override = 70.5
 speed_override_active = true
@@ -70,6 +71,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0"]
 script = ExtResource("7_fs8yq")
+ignore_relative_rotation = true
 entity_to_spawn = ExtResource("8_n4sta")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
