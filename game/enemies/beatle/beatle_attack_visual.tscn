@@ -1,11 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1as42uiohbk5"]
+[gd_scene load_steps=5 format=3 uid="uid://d1as42uiohbk5"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_r7xpd"]
 size = Vector2(1, 5.5)
 center_offset = Vector3(0, 0, -2.75)
+
+[sub_resource type="Gradient" id="Gradient_r7xpd"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4comr"]
+gradient = SubResource("Gradient_r7xpd")
+width = 8
+fill_from = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw08w"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.80090797, 0.4966058, 0.19946003, 1)
+albedo_texture = SubResource("GradientTexture2D_4comr")
+uv1_scale = Vector3(1, 0.972, 1)
 
 [node name="Atttack" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026230186, 0)
 mesh = SubResource("PlaneMesh_r7xpd")
+surface_material_override/0 = SubResource("StandardMaterial3D_mw08w")
