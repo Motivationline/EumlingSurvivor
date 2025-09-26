@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ca1d4hdexrjh6"]
+[gd_scene load_steps=19 format=3 uid="uid://ca1d4hdexrjh6"]
 
 [ext_resource type="PackedScene" uid="uid://bmc2la5fkmscu" path="res://game/levels/base_level.tscn" id="1_dqrpd"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="2_esbnm"]
@@ -8,8 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://xuwqosnwo8qw" path="res://assets/models/beach/palm3_prefab.tscn" id="6_7b3cs"]
 [ext_resource type="PackedScene" uid="uid://m0e7gij3jvvt" path="res://assets/models/beach/palm2_prefab.tscn" id="7_cg8yi"]
 [ext_resource type="Shader" uid="uid://cad0ilir1nvs7" path="res://game/shared/water_shader.tres" id="8_f022y"]
-[ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="9_3fmnc"]
-[ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/box_3.tscn" id="11_7b3cs"]
+[ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="11_7b3cs"]
 [ext_resource type="PackedScene" uid="uid://dfx4ho1heq5c6" path="res://assets/models/cliffs/cliff_01_prefab.tscn" id="11_cg8yi"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_3fmnc"]
@@ -197,19 +196,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6323586, 1.6128607)
 mesh = SubResource("BoxMesh_f022y")
 surface_material_override/0 = SubResource("StandardMaterial3D_6hwer")
 
-[node name="CactusHog" parent="." index="9" instance=ExtResource("9_3fmnc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.179452, 0, 2.653471)
-
-[node name="CactusHog2" parent="." index="10" instance=ExtResource("9_3fmnc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2150273, 0, -2.633893)
-
-[node name="CactusHog3" parent="." index="11" instance=ExtResource("9_3fmnc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9443603, 0, -1.9024715)
-
-[node name="Cliffs" type="Node3D" parent="." index="12"]
+[node name="Cliffs" type="Node3D" parent="." index="9"]
 
 [node name="cliff_07" parent="Cliffs" index="0" instance=ExtResource("11_cg8yi")]
 transform = Transform3D(-4.2242227e-08, 1.123742e-08, -1, 0.21367836, 0.97690403, 1.9516315e-09, 0.97690403, -0.21367836, -4.3667796e-08, -5.459256, -0.4534961, -3.126821)
 
-[node name="Box" parent="." index="13" instance=ExtResource("11_7b3cs")]
+[node name="Box" parent="." index="10" instance=ExtResource("11_7b3cs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0511228, 0, 1.7162309)
+
+[node name="Box2" parent="." index="11" instance=ExtResource("11_7b3cs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2629008, 0, 0.8730111)
+
+[node name="Box3" parent="." index="12" instance=ExtResource("11_7b3cs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2744808, 0, -1.2575574)
+
+[node name="Box4" parent="." index="13" instance=ExtResource("11_7b3cs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.352063, 0, -1.845015)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcvsvqmftm3te"]
+[gd_scene load_steps=15 format=3 uid="uid://bcvsvqmftm3te"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_n6rvl"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_duogs"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="4_augyx"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_0qa4y"]
 [ext_resource type="PackedScene" uid="uid://bfmaa13n0k6rb" path="res://game/enemies/box/box_1.tscn" id="6_k2tqc"]
+[ext_resource type="PackedScene" uid="uid://by87cdyijsrbs" path="res://game/shared/animation trigger component/animation_trigger_component.tscn" id="7_0qa4y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_augyx"]
 albedo_color = Color(0.738408, 0.7341033, 7.70092e-07, 1)
@@ -16,81 +17,45 @@ albedo_color = Color(0.738408, 0.7341033, 7.70092e-07, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_shucr"]
 
-[sub_resource type="Curve" id="Curve_augyx"]
-_data = [Vector2(0, 0.38172716), 0.0, 34.710056, 0, 0, Vector2(0.08437499, 1), 0.0, 0.0, 0, 0, Vector2(0.85937494, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -12.987649, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_eu15o"]
-curve = SubResource("Curve_augyx")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0qa4y"]
-lifetime_randomness = 0.5
-emission_shape_scale = Vector3(0.3, 0.3, 0.3)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-angle_min = -360.0
-angle_max = 360.00003
-direction = Vector3(0, 1, 0)
-spread = 180.0
-initial_velocity_min = 1.0
-initial_velocity_max = 4.0
-gravity = Vector3(0, -8, 0)
-linear_accel_min = -2.2400022
-linear_accel_max = -2.2400022
-radial_accel_min = 1.1199977
-radial_accel_max = 4.4799976
-scale_curve = SubResource("CurveTexture_eu15o")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qa4y"]
-albedo_color = Color(0.05882353, 0.43529412, 0, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="BoxMesh" id="BoxMesh_k2tqc"]
-material = SubResource("StandardMaterial3D_0qa4y")
-size = Vector3(0.25, 0.5, 0.1)
-
 [sub_resource type="Animation" id="Animation_eu15o"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/path = NodePath("Visuals/MeshInstance3D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5)]
 }
 
-[sub_resource type="Animation" id="Animation_y2rk3"]
-resource_name = "spawn"
+[sub_resource type="Animation" id="Animation_k2tqc"]
+resource_name = "hurt"
+length = 0.16667001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/path = NodePath("Visuals/MeshInstance3D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 0.1, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.4, 0.8, 0.4), Vector3(0.55, 0.45, 0.55), Vector3(0.5, 0.5, 0.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_812sx"]
 _data = {
 &"RESET": SubResource("Animation_eu15o"),
-&"spawn": SubResource("Animation_y2rk3")
+&"hurt": SubResource("Animation_k2tqc")
 }
 
 [node name="box_2" node_paths=PackedStringArray("hurtbox", "on_death") instance=ExtResource("1_n6rvl")]
-health = 3.0
+health = 1.0
 speed = 0.0
 ignore_enemy_in_level = true
 hurtbox = NodePath("Hurtbox")
@@ -133,18 +98,15 @@ script = ExtResource("5_0qa4y")
 entity_to_spawn = ExtResource("6_k2tqc")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25780267, 0.02287507)
-emitting = false
-amount = 12
-one_shot = true
-explosiveness = 1.0
-randomness = 0.25
-process_material = SubResource("ParticleProcessMaterial_0qa4y")
-draw_pass_1 = SubResource("BoxMesh_k2tqc")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
 libraries = {
 &"": SubResource("AnimationLibrary_812sx")
 }
-autoplay = "spawn"
+autoplay = "hurt"
+
+[node name="AnimationTriggerComponent" parent="." index="8" node_paths=PackedStringArray("node_to_connect", "animation_player") instance=ExtResource("7_0qa4y")]
+node_to_connect = NodePath("../Hurtbox")
+signal_to_connect = "hurt_by"
+animation_player = NodePath("../AnimationPlayer")
+animation_to_play = "hurt"
+force_stop_animation = true
