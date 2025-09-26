@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ca1d4hdexrjh6"]
+[gd_scene load_steps=20 format=3 uid="uid://ca1d4hdexrjh6"]
 
 [ext_resource type="PackedScene" uid="uid://bmc2la5fkmscu" path="res://game/levels/base_level.tscn" id="1_dqrpd"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="2_esbnm"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://m0e7gij3jvvt" path="res://assets/models/beach/palm2_prefab.tscn" id="7_cg8yi"]
 [ext_resource type="Shader" uid="uid://cad0ilir1nvs7" path="res://game/shared/water_shader.tres" id="8_f022y"]
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="9_3fmnc"]
-[ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/box_3.tscn" id="11_7b3cs"]
+[ext_resource type="PackedScene" uid="uid://qjw03pnxap48" path="res://game/enemies/box/box_test.tscn" id="10_k8v1e"]
+[ext_resource type="PackedScene" uid="uid://dfx4ho1heq5c6" path="res://assets/models/cliffs/cliff_01_prefab.tscn" id="11_cg8yi"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_3fmnc"]
 vertices = PackedVector3Array(0.75, 0.5, -0.75, 1, 0.5, 0, 4.5, 0.5, 0, 4.5, 0.5, -4.5, -4.5, 0.5, 0, -0.75, 0.5, 0, -0.5, 0.5, -0.75, -4.5, 0.5, -4.5, 0.5, 0.5, 1, 4.5, 0.5, 4.5, -0.5, 0.5, 1, -4.5, 0.5, 4.5)
@@ -22,8 +23,8 @@ albedo_color = Color(0, 0.29, 0.0145, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5l2t"]
 albedo_color = Color(0.185273, 0.627928, 0.462023, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_6hwer"]
-size = Vector2(50, 50)
+[sub_resource type="BoxMesh" id="BoxMesh_cg8yi"]
+size = Vector3(15, 1, 15)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxhlw"]
 transparency = 1
@@ -38,6 +39,12 @@ shader_parameter/direction1 = Vector2(0.01, -0.01)
 shader_parameter/direction2 = Vector2(0.03, 0.03)
 shader_parameter/highlight_threshold = 0.394000018715
 shader_parameter/main_threshhold = 0.2090000099275
+
+[sub_resource type="BoxMesh" id="BoxMesh_f022y"]
+size = Vector3(14.9, 1, 14.9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hwer"]
+albedo_color = Color(0.34, 0.25007, 0.1054, 1)
 
 [node name="Level" instance=ExtResource("1_dqrpd")]
 
@@ -136,36 +143,59 @@ size = Vector3(2, 1, 2)
 [node name="Env" type="Node3D" parent="." index="8"]
 
 [node name="stone_v1" parent="Env" index="0" instance=ExtResource("3_thqnl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.955557, -0.6396028, 4.7766905)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.955557, -1.8054264, 4.7766905)
 
-[node name="stone_v2" parent="Env" index="1" instance=ExtResource("3_thqnl")]
-transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, -5.70593, -1.1358854, 3.5674362)
+[node name="stone_v8" parent="Env" index="1" instance=ExtResource("3_thqnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.153182, -2.032609, 6.094219)
 
-[node name="stone_v5" parent="Env" index="2" instance=ExtResource("3_thqnl")]
+[node name="stone_v9" parent="Env" index="2" instance=ExtResource("3_thqnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24727964, -2.032609, 6.094219)
+
+[node name="stone_v10" parent="Env" index="3" instance=ExtResource("3_thqnl")]
+transform = Transform3D(0.46267727, 0, -0.88652676, 0, 1, 0, 0.88652676, 0, 0.46267727, 1.4420047, -2.241108, 6.446452)
+
+[node name="stone_v2" parent="Env" index="4" instance=ExtResource("3_thqnl")]
+transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, -5.70593, -1.6735135, 3.5674362)
+
+[node name="stone_v5" parent="Env" index="5" instance=ExtResource("3_thqnl")]
 transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, -5.559148, -1.1358844, -4.567322)
 
-[node name="stone_v6" parent="Env" index="3" instance=ExtResource("3_thqnl")]
-transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, 3.1465337, -1.1358854, 5.832925)
+[node name="stone_v6" parent="Env" index="6" instance=ExtResource("3_thqnl")]
+transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, 5.6740923, -1.1358854, -5.7223024)
 
-[node name="stone_v3" parent="Env" index="4" instance=ExtResource("4_3fmnc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9080086, -0.24051285, 5.5839376)
+[node name="stone_v3" parent="Env" index="7" instance=ExtResource("4_3fmnc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1097379, -1.3970704, 7.071754)
 
-[node name="stone_v4" parent="Env" index="5" instance=ExtResource("5_k8v1e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1642094, -0.4551401, 5.495246)
+[node name="stone_v4" parent="Env" index="8" instance=ExtResource("5_k8v1e")]
+transform = Transform3D(-0.054608263, -0.9967191, -0.05974057, -0.88288796, 0.0761448, -0.46336937, 0.46639797, 0.027440425, -0.8841494, 7.383249, 0.36626267, -4.258772)
 
-[node name="stone_v7" parent="Env" index="6" instance=ExtResource("5_k8v1e")]
-transform = Transform3D(0.36777127, -0.04561931, -0.9287965, 0.12309921, 0.99239445, -5.7131553e-09, 0.9217325, -0.11433411, 0.37058985, 6.2228765, -1.0899096, -4.022257)
+[node name="stone_v11" parent="Env" index="9" instance=ExtResource("5_k8v1e")]
+transform = Transform3D(-0.49585617, -0.42401573, 0.75785047, 0.4997021, 0.5744181, 0.6483374, -0.7102284, 0.7001816, -0.072947115, 6.881864, -1.2802877, -2.959909)
 
-[node name="palm_v3" parent="Env" index="7" instance=ExtResource("6_7b3cs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.071848, 0, 3.8356187)
+[node name="stone_v12" parent="Env" index="10" instance=ExtResource("5_k8v1e")]
+transform = Transform3D(0.73939615, 0, -0.67327064, 0, 1, 0, 0.67327064, 0, 0.73939615, 5.8177557, -1.718349, 0.9149227)
 
-[node name="palm_v2" parent="Env" index="8" instance=ExtResource("7_cg8yi")]
+[node name="stone_v13" parent="Env" index="11" instance=ExtResource("5_k8v1e")]
+transform = Transform3D(0.4554362, 0, -0.89026845, 0, 1, 0, 0.89026845, 0, 0.4554362, -5.944285, -2.2047586, -1.0249624)
+
+[node name="stone_v7" parent="Env" index="12" instance=ExtResource("5_k8v1e")]
+transform = Transform3D(0.36777127, -0.04561931, -0.9287965, 0.12309921, 0.99239445, -5.7131553e-09, 0.9217325, -0.11433411, 0.37058985, 6.2228765, -2.1893187, 4.4295673)
+
+[node name="palm_v3" parent="Env" index="13" instance=ExtResource("6_7b3cs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9282737, -0.43139744, -4.224804)
+
+[node name="palm_v2" parent="Env" index="14" instance=ExtResource("7_cg8yi")]
 transform = Transform3D(0.9630546, 0, -0.2693065, 0, 1, 0, 0.2693065, 0, 0.9630546, -6.2149816, 4.7683716e-07, -5.21352)
 
-[node name="Water" type="MeshInstance3D" parent="Env" index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40004253, 0)
-mesh = SubResource("PlaneMesh_6hwer")
+[node name="Water" type="MeshInstance3D" parent="Env" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9730357, 1.6128607)
+mesh = SubResource("BoxMesh_cg8yi")
 surface_material_override/0 = SubResource("ShaderMaterial_2mejl")
+
+[node name="Sand" type="MeshInstance3D" parent="Env" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6323586, 1.6128607)
+mesh = SubResource("BoxMesh_f022y")
+surface_material_override/0 = SubResource("StandardMaterial3D_6hwer")
 
 [node name="CactusHog" parent="." index="9" instance=ExtResource("9_3fmnc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.179452, 0, 2.653471)
@@ -176,5 +206,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2150273, 0, -2.633893)
 [node name="CactusHog3" parent="." index="11" instance=ExtResource("9_3fmnc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9443603, 0, -1.9024715)
 
-[node name="Box" parent="." index="12" instance=ExtResource("11_7b3cs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6606995, -1.1920929e-07, -0.5304084)
+[node name="BaseEnemy" parent="." index="12" instance=ExtResource("10_k8v1e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2470094, -0.16799498, 0.025384903)
+
+[node name="Cliffs" type="Node3D" parent="." index="13"]
+
+[node name="cliff_07" parent="Cliffs" index="0" instance=ExtResource("11_cg8yi")]
+transform = Transform3D(-4.2242227e-08, 1.123742e-08, -1, 0.21367836, 0.97690403, 1.9516315e-09, 0.97690403, -0.21367836, -4.3667796e-08, -5.459256, -0.4534961, -3.126821)

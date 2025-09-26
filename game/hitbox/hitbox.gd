@@ -1,5 +1,7 @@
 @tool
 extends Area3D
+## HitBox is used to detect hits, lol. [br]
+## [member hit] signal to detect hits
 class_name HitBox
 
 ## How much damage should this hitbox deal. Might be modified by the parent of the hitbox, e.g. a projectile.
@@ -11,6 +13,7 @@ class_name HitBox
 ## How long between individual damage applications to a specific hurtbox
 @export var damage_cooldown: float = 0.5
 
+## signal that is emitted when hit
 signal hit(hurtbox: HurtBox)
 
 @export var attached_to: Enum.HITBOX = Enum.HITBOX.NONE:

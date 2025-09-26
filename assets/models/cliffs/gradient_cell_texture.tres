@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://ccgc5rdkk6r87"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_m2swd"]
+[ext_resource type="Texture2D" uid="uid://bhsmvqv3s00qd" path="res://assets/models/cliffs/gradient_texture.png" id="2_beaka"]
+
+[sub_resource type="Gradient" id="Gradient_htjcm"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.48883376)
+colors = PackedColorArray(0.117977925, 0.13685223, 0.04095169, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ud1dq"]
+gradient = SubResource("Gradient_htjcm")
+
+[sub_resource type="Gradient" id="Gradient_5qpqe"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.79539645)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yg4gm"]
+gradient = SubResource("Gradient_5qpqe")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_m2swd")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_beaka")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_ud1dq")
+shader_parameter/specular_focus = 0.5
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_yg4gm")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true

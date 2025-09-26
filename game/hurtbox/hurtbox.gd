@@ -1,5 +1,7 @@
 @tool
 extends Area3D
+## This is a description [br]
+## [member hurt_by] signal to connect when hurt
 class_name HurtBox
 
 # TODO: add invul frames?
