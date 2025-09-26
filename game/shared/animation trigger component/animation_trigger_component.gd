@@ -4,6 +4,7 @@ extends Node
 @export var signal_to_connect: String
 @export var animation_player: AnimationPlayer
 @export var animation_to_play: String
+@export var force_stop_animation: bool = false
 ## use this if node is not in current scene
 @export var node_with_animationplayer: Node3D
 
@@ -24,4 +25,6 @@ func find_first_animation_tree(node: Node3D) -> AnimationPlayer:
 	return null
 
 func _play_animation(_a = null, _b = null, _c = null, _d = null, _e = null, _f = null, _h = null):
+	if force_stop_animation:
+		animation_player.stop()
 	animation_player.play(animation_to_play)
