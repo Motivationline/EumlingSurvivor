@@ -1,0 +1,154 @@
+[gd_scene load_steps=19 format=3 uid="uid://bfmaa13n0k6rb"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_ljiym"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="2_6408y"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_y2rk3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2rk3"]
+albedo_color = Color(0.87276894, 0.086816885, 3.85046e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eu15o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_812sx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g6trh"]
+
+[sub_resource type="Curve" id="Curve_y2rk3"]
+_data = [Vector2(0, 0.38172716), 0.0, 34.710056, 0, 0, Vector2(0.08437499, 1), 0.0, 0.0, 0, 0, Vector2(0.85937494, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -12.987649, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_eu15o"]
+curve = SubResource("Curve_y2rk3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_812sx"]
+lifetime_randomness = 0.5
+emission_shape_scale = Vector3(0.3, 0.3, 0.3)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -360.0
+angle_max = 360.00003
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, -8, 0)
+linear_accel_min = -2.2400022
+linear_accel_max = -2.2400022
+radial_accel_min = 1.1199977
+radial_accel_max = 4.4799976
+scale_curve = SubResource("CurveTexture_eu15o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6trh"]
+albedo_color = Color(0.7372549, 0.73333335, 0, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="BoxMesh" id="BoxMesh_3wsa6"]
+material = SubResource("StandardMaterial3D_g6trh")
+size = Vector3(0.25, 0.5, 0.1)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y2rk3"]
+animation = &"spawn"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eu15o"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_812sx"]
+states/End/position = Vector2(696, 106)
+states/Start/position = Vector2(176, 106)
+states/spawn/node = SubResource("AnimationNodeAnimation_y2rk3")
+states/spawn/position = Vector2(346, 106)
+transitions = ["Start", "spawn", SubResource("AnimationNodeStateMachineTransition_eu15o")]
+
+[sub_resource type="Animation" id="Animation_y2rk3"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_eu15o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_812sx"]
+_data = {
+&"RESET": SubResource("Animation_eu15o"),
+&"spawn": SubResource("Animation_y2rk3")
+}
+
+[node name="Box_1" node_paths=PackedStringArray("hurtbox") instance=ExtResource("1_ljiym")]
+health = 3.0
+speed = 0.0
+ignore_enemy_in_level = true
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("WaitForTimeXState")
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_y2rk3")
+wait_time = 10.0
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+material_override = SubResource("StandardMaterial3D_y2rk3")
+mesh = SubResource("BoxMesh_eu15o")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_812sx")
+
+[node name="Hurtbox" parent="." index="5" instance=ExtResource("2_6408y")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_g6trh")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25780267, 0.02287507)
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+randomness = 0.25
+process_material = SubResource("ParticleProcessMaterial_812sx")
+draw_pass_1 = SubResource("BoxMesh_3wsa6")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
+tree_root = SubResource("AnimationNodeStateMachine_812sx")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+libraries = {
+&"": SubResource("AnimationLibrary_812sx")
+}

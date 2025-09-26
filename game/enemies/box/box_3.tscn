@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1l2qwlh68hvn"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_b1cdp"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_ul4rw"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_v2mew"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="4_f5b06"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_8uea5"]
+[ext_resource type="PackedScene" uid="uid://bcvsvqmftm3te" path="res://game/enemies/box/box_2.tscn" id="6_v2mew"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tivtm"]
+albedo_color = Color(0.058101013, 0.4334131, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_txksh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nmhrn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6esvg"]
+
+[node name="Box" node_paths=PackedStringArray("hurtbox", "on_death") instance=ExtResource("1_b1cdp")]
+health = 3.0
+speed = 0.0
+ignore_enemy_in_level = true
+hurtbox = NodePath("Hurtbox")
+on_death = [NodePath("SpawnEntitiesEventStrategy")]
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("WaitForTimeXState")
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ul4rw")
+wait_time = 10.0
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+material_override = SubResource("StandardMaterial3D_tivtm")
+mesh = SubResource("BoxMesh_txksh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_nmhrn")
+
+[node name="Hurtbox" parent="." index="5" instance=ExtResource("3_v2mew")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_6esvg")
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="." index="6"]
+script = ExtResource("4_f5b06")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="SpawnEntitiesEventStrategy" index="0"]
+script = ExtResource("5_8uea5")
+entity_to_spawn = ExtResource("6_v2mew")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
