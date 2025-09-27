@@ -6,6 +6,10 @@ var player: Player
 @onready var scene_fade_animation_player: AnimationPlayer = $SceneFadeOverlay/AnimationPlayer
 @onready var upgrade_view: CanvasLayer = $UpgradeView
 @onready var level_choice_overlay: CanvasLayer = $LevelChoiceOverlay
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
+
+signal requestMusic
+
 
 func _ready() -> void:
 	player = player_scene.instantiate()
@@ -45,6 +49,9 @@ func load_level():
 		level_wrapper.add_child(new_level)
 		new_level.spawn_player(player)
 		new_level.level_ended.connect(level_ended)
+	#plays a random track
+	requestMusic.emit(true) 
+	
 	
 	scene_fade_animation_player.play_backwards("fade")
 	Engine.time_scale = 1

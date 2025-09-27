@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://uyyg1ut65j1"]
 
-[ext_resource type="AudioStream" uid="uid://byfdnm5xd5k28" path="res://game/sound/music/Puzzle_intro.ogg" id="1_0mnli"]
-[ext_resource type="AudioStream" uid="uid://ds6vf8g8h2h6h" path="res://game/sound/music/Puzzle_loop.ogg" id="1_mnvcu"]
+[ext_resource type="AudioStream" uid="uid://byfdnm5xd5k28" path="res://game/sound/music/Menu_intro.ogg" id="1_0mnli"]
+[ext_resource type="AudioStream" uid="uid://ds6vf8g8h2h6h" path="res://game/sound/music/Menu_loop.ogg" id="1_mnvcu"]
 [ext_resource type="Script" uid="uid://cgdd38d2p7id8" path="res://game/sound/logic/music_player.gd" id="3_2bvub"]
-[ext_resource type="AudioStream" uid="uid://bp8ypixhc4mkc" path="res://game/sound/music/Puzzle_tail.ogg" id="3_r7t64"]
+[ext_resource type="AudioStream" uid="uid://bp8ypixhc4mkc" path="res://game/sound/music/Menu_tail.ogg" id="3_r7t64"]
 [ext_resource type="AudioStream" uid="uid://djqo3hu22b3tv" path="res://game/sound/music/BossCombat_intro.ogg" id="4_fg342"]
 [ext_resource type="AudioStream" uid="uid://d1qyvqcqnqo03" path="res://game/sound/music/BossCombat_loop.ogg" id="5_bc5l5"]
 [ext_resource type="AudioStream" uid="uid://cjssvovu08m7i" path="res://game/sound/music/BossCombat_tail.ogg" id="6_u8k67"]
@@ -24,11 +24,11 @@ stream_1/volume = -60.0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_pff77"]
 clip_count = 4
-clip_0/name = &"Puzzle Intro"
+clip_0/name = &"Menu Intro"
 clip_0/stream = ExtResource("1_0mnli")
 clip_0/auto_advance = 1
 clip_0/next_clip = 1
-clip_1/name = &"Puzzle Loop"
+clip_1/name = &"Menu Loop"
 clip_1/stream = SubResource("AudioStreamSynchronized_mm6rf")
 clip_1/auto_advance = 0
 clip_2/name = &"Boss Intro"
@@ -61,6 +61,7 @@ script = ExtResource("3_2bvub")
 debug = true
 
 [node name="DebugUI" type="GridContainer" parent="."]
+visible = false
 offset_right = 409.0
 offset_bottom = 359.0
 
@@ -70,11 +71,5 @@ custom_minimum_size = Vector2(400, 800)
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_font_sizes/font_size = 30
-item_count = 5
-item_0/text = "Puzzle"
-item_1/text = "Combat"
-item_2/text = "Boss"
-item_3/text = "Chase"
-item_4/text = "Parkour"
 
 [connection signal="item_clicked" from="DebugUI/DebugSelector" to="." method="_on_debug_list_item_clicked"]
