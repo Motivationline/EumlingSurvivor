@@ -117,18 +117,23 @@ size = Vector3(9.3125, 1, 1)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.104352, 12.5917, 7.49343)
+projection = 1
 fov = 45.0
+size = 15.0
+near = 0.01
+far = 30.0
 script = ExtResource("1_j48a7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.713593, 0.700561, 0, -0.700561, 0.713593, 0, 4.44658, 0)
+transform = Transform3D(0.9469659, -0.18320374, -0.26399282, 0.0877022, -0.6430056, 0.7608235, -0.30913436, -0.74362653, -0.5928369, 0, 7.560488, 0)
 
 [node name="Lights" type="Node3D" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
-transform = Transform3D(0.802373, -0.579826, 0.141416, 0.0617642, 0.316347, 0.946631, -0.593617, -0.750817, 0.289641, -5.2903, 7.71908, -5.02786)
+transform = Transform3D(0.8023737, -0.5798261, 0.14141548, -0.41826475, -0.37728322, 0.8262637, -0.42573592, -0.72212094, -0.54524404, -5.2903, 7.71908, -5.02786)
 light_bake_mode = 1
 shadow_enabled = true
+shadow_transmittance_bias = -0.185
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
 environment = SubResource("Environment_j48a7")
