@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dxq1x1v4dyk1v"]
+
+[ext_resource type="Shader" uid="uid://msmyqmc5glty" path="res://game/shared/foliage_shader.gdshader" id="1_yp6pt"]
+[ext_resource type="Texture2D" uid="uid://b3q8ijs1a2nh8" path="res://assets/models/tree/leaves-01.jpg" id="2_6a5t7"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_yp6pt")
+shader_parameter/TopColor = Color(0.2627451, 0.52156866, 0.11372549, 1)
+shader_parameter/BottomColor = Color(0.11666666, 0.28, 0, 1)
+shader_parameter/Alpha = ExtResource("2_6a5t7")
+shader_parameter/FresnelColor = Color(0.548941, 0.92661846, 0.08296133, 1)
+shader_parameter/WindScale = 1.0
+shader_parameter/WindSpeed = 4.0
+shader_parameter/WindStrength = 1.50000002375
+shader_parameter/WindDensity = 5.0
+shader_parameter/ClampTop = 1.0
+shader_parameter/ClampBtm = 0.0
+shader_parameter/MeshScale = -0.333
+shader_parameter/ColorRamp = 0.3
+shader_parameter/FaceRoationVariation = 1.0810001938475002
+shader_parameter/FresnelStrength = -2.0
+shader_parameter/FresnelBlend = -1.0
+shader_parameter/DeactivateGlobalVariation = false
+shader_parameter/WiggleFrequency = 3.0
+shader_parameter/WiggleStrength = 0.1
+shader_parameter/WiggleSpeed = 1.0
+shader_parameter/WiggleScale = 3.0
+shader_parameter/DistanceScale = 0.5
+shader_parameter/DistanceStart = 0.0
+shader_parameter/DistanceScaleRange = 70.0

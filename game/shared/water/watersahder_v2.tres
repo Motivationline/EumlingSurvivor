@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c5aybdnm7cxf7"]
+
+[ext_resource type="Shader" uid="uid://cn08qtwdoupx6" path="res://game/shared/water/toon_water_shader.gdshader" id="1_7xu4q"]
+[ext_resource type="Texture2D" uid="uid://1583oa3cnkm" path="res://assets/vfx/projectile_realistic/Swirl 11 - 256x256.png" id="2_8jhe4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7xu4q")
+shader_parameter/unshaded_mode = false
+shader_parameter/slide_speed = 0.2
+shader_parameter/wobble_speed = 1.0
+shader_parameter/wobble_intensity = 0.2
+shader_parameter/texture_scale = 0.2
+shader_parameter/water = ExtResource("2_8jhe4")
+shader_parameter/min_height = 0.0
+shader_parameter/max_height = 0.14
+shader_parameter/bottom_color = Color(0, 0.6363335, 0.83, 1)
+shader_parameter/top_color = Color(0, 0.726, 0.99, 1)
+shader_parameter/darken_factor = 0.51600002451
+shader_parameter/inside_color = Color(0.1, 0.1, 0.2, 1)
+shader_parameter/inside_darken = 0.8

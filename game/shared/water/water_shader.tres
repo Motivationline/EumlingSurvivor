@@ -93,7 +93,7 @@ default_value = Vector2(0.01, 0.01)
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_add, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_add, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx, depth_prepass_alpha, unshaded;
 
 uniform float UV_Scale = 4.0;
 uniform vec2 direction1 = vec2(0.010000, 0.010000);
@@ -182,6 +182,7 @@ void fragment() {
 
 // Input:20
 	vec4 n_out20p0 = COLOR;
+	float n_out20p1 = n_out20p0.r;
 	float n_out20p4 = n_out20p0.a;
 
 
@@ -197,6 +198,8 @@ void fragment() {
 }
 "
 modes/blend = 1
+flags/depth_prepass_alpha = true
+flags/unshaded = true
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_5ug48")
 nodes/fragment/2/position = Vector2(-2200, 0)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_qfkpp")
@@ -237,4 +240,4 @@ nodes/fragment/20/node = SubResource("VisualShaderNodeInput_5ug48")
 nodes/fragment/20/position = Vector2(-540, 420)
 nodes/fragment/21/node = SubResource("VisualShaderNodeVectorOp_cudsn")
 nodes/fragment/21/position = Vector2(-20, 260)
-nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 3, 0, 4, 1, 5, 0, 2, 0, 6, 0, 3, 0, 7, 0, 5, 2, 7, 0, 6, 2, 8, 0, 5, 1, 9, 0, 6, 1, 10, 0, 5, 0, 11, 0, 6, 0, 12, 0, 11, 1, 12, 0, 10, 1, 4, 0, 13, 0, 14, 0, 13, 1, 4, 0, 15, 1, 13, 0, 15, 0, 15, 0, 16, 0, 16, 0, 0, 0, 4, 0, 17, 0, 18, 0, 17, 1, 17, 0, 19, 1, 4, 0, 19, 0, 19, 0, 16, 1, 21, 0, 0, 1, 16, 0, 21, 0, 20, 4, 21, 1)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 3, 0, 4, 1, 5, 0, 2, 0, 6, 0, 3, 0, 8, 0, 5, 1, 9, 0, 6, 1, 10, 0, 5, 0, 11, 0, 6, 0, 12, 0, 11, 1, 12, 0, 10, 1, 4, 0, 13, 0, 14, 0, 13, 1, 4, 0, 15, 1, 13, 0, 15, 0, 15, 0, 16, 0, 4, 0, 17, 0, 18, 0, 17, 1, 17, 0, 19, 1, 4, 0, 19, 0, 19, 0, 16, 1, 16, 0, 21, 0, 16, 0, 0, 0, 21, 0, 0, 1, 20, 1, 21, 1, 7, 0, 5, 2, 7, 0, 6, 2, 20, 4, 21, 1)
