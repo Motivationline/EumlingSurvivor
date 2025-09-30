@@ -27,7 +27,6 @@ var active_unique_upgrades: Array[String] = []
 
 func _ready() -> void:
 	base_type = Enum.EUMLING_TYPE.REALISTIC
-
 	possible_playstyle_upgrades = [Enum.EUMLING_TYPE.SOCIAL, Enum.EUMLING_TYPE.ENTERPRISING, Enum.EUMLING_TYPE.INVESTIGATIVE]
 
 	possible_upgrades = [

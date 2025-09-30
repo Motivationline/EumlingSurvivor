@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://ixi64aeuij20"]
+
+[ext_resource type="Script" uid="uid://lyw335u13wo3" path="res://game/player/weapons/dagger/dagger.gd" id="1_gqmtd"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="2_k3m8f"]
+[ext_resource type="PackedScene" uid="uid://cjpt5ms0ud5r" path="res://game/projectiles/bouncing_ball_projectile/bouncing_ball_projectile_player.tscn" id="3_aefqx"]
+[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="4_dyxcm"]
+
+[sub_resource type="Resource" id="Resource_uqof2"]
+script = ExtResource("4_dyxcm")
+metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[node name="dagger" type="Node3D"]
+script = ExtResource("1_gqmtd")
+
+[node name="EntitySpawner" type="Node3D" parent="."]
+script = ExtResource("2_k3m8f")
+entity_to_spawn = ExtResource("3_aefqx")
+rotation_strategy = SubResource("Resource_uqof2")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="attacktimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="attacktimer" to="." method="_on_attacktimer_timeout"]
