@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5hdpq54o462t"]
+[gd_scene load_steps=10 format=3 uid="uid://b5hdpq54o462t"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_c2tdt"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_xfdg2"]
+[ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="3_jrk2f"]
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="5_leyq8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_0es7d"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_g5j0o"]
@@ -38,6 +39,10 @@ stop_distance = 0.1
 next_state = NodePath(".")
 animation_trigger = "walk"
 metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="MoveForwardState" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("3_jrk2f")
+metadata/_custom_type_script = "uid://mycfudgv475a"
 
 [node name="Hurtbox" parent="." index="3" instance=ExtResource("6_0es7d")]
 collision_layer = 64

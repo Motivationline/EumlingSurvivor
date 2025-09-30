@@ -23,6 +23,7 @@ signal spawn_finished
 @export_range(0, 60, 0.1) var time_between_bursts: float = 0
 @export_range(0, 100) var amount_of_bursts: int = 1
 
+
 func spawn(_parent: Node3D, _relative_to: Node3D = null):
 	if (!_relative_to): _relative_to = _parent
 	for b in amount_of_bursts:

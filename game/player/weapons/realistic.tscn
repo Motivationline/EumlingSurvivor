@@ -22,19 +22,18 @@ script = ExtResource("1_k5bu3")
 base_range = 2.0
 base_projectile_speed = 5.0
 
-[node name="EntitySpawner" type="Node3D" parent="."]
-script = ExtResource("2_cavdi")
-entity_to_spawn = ExtResource("3_25jx3")
-time_between_entities = 0.1
-target_strategy = SubResource("Resource_25jx3")
-metadata/_custom_type_script = "uid://1e84fd3xrrff"
-
 [node name="EntitySpawnerBackwards" type="Node3D" parent="."]
 script = ExtResource("2_cavdi")
 entity_to_spawn = ExtResource("3_25jx3")
 time_between_entities = 0.1
 target_strategy = SubResource("Resource_25jx3")
 rotation_strategy = SubResource("Resource_pv6dc")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="EntitySpawner" type="Node3D" parent="."]
+script = ExtResource("2_cavdi")
+entity_to_spawn = ExtResource("3_25jx3")
+time_between_entities = 0.1
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="AttackTimer" type="Timer" parent="."]

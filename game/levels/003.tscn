@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ct0yilv47scxo"]
+[gd_scene load_steps=23 format=3 uid="uid://ct0yilv47scxo"]
 
 [ext_resource type="PackedScene" uid="uid://bmc2la5fkmscu" path="res://game/levels/base_level.tscn" id="1_xx3ti"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="2_q13jh"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bd6al6p5ch00v" path="res://assets/models/bush/bush_prefab.tscn" id="10_h2aah"]
 [ext_resource type="PackedScene" uid="uid://dx88kwaop00fc" path="res://game/level_obstacles/obstacle2x1.tscn" id="11_ilo1i"]
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="12_lkmf1"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="13_h75d5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_lkmf1"]
 vertices = PackedVector3Array(-2.14, 0.5, -2.27, -1.4900002, 0.5, -2.27, -1.4900002, 0.5, -4.48, -2.5300002, 0.5, -1.8800001, -4.48, 0.5, -4.48, -4.48, 0.5, 1.2399998, -2.5300002, 0.5, 1.1099997, 0.46000004, 0.5, -1.1000001, -0.4500003, 0.5, -1.1000001, -0.97000027, 0.5, -0.71000004, -0.97000027, 0.5, 1.1099997, 0.97999954, 0.5, 1.1099997, 0.97999954, 0.5, -0.71000004, -0.84000015, 0.5, -2.27, -0.4500003, 0.5, -1.8800001, 0.46000004, 0.5, -1.8800001, 0.8499999, 0.5, -2.27, 1.5, 0.5, -4.48, 1.5, 0.5, -2.27, 2.1499996, 0.5, -2.27, 2.54, 0.5, -1.8800001, 4.49, 0.5, -4.48, 2.54, 0.5, 1.1099997, 4.49, 0.5, 1.2399998, -2.5300002, 0.5, 1.8899999, -1.75, 0.5, 2.7999997, -4.48, 0.5, 4.49, 1.1099997, 0.5, 4.49, 0.97999954, 0.5, 2.7999997, 1.7599998, 0.5, 2.7999997, 2.54, 0.5, 1.8899999, 2.1499996, 0.5, 2.4099998, 4.49, 0.5, 4.49)
@@ -305,3 +306,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46346897, 0, 1.0639383)
 
 [node name="CactusHog5" parent="Enemies" index="4" instance=ExtResource("12_lkmf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41596812, 2.3841858e-07, -0.8373178)
+
+[node name="EntitySpawner" type="Node3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0382123, 0.21400213, 0)
+script = ExtResource("13_h75d5")
+entity_to_spawn = ExtResource("12_lkmf1")
+amount_of_spawns = 60
+time_between_entities = 1.0
+metadata/_custom_type_script = "uid://1e84fd3xrrff"

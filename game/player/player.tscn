@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=12 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
 [ext_resource type="PackedScene" uid="uid://cwx4ps7nr715s" path="res://game/healthbar/healthbar.tscn" id="7_anr75"]
 [ext_resource type="PackedScene" uid="uid://bg8awww46vf53" path="res://game/player/weapons/realistic.tscn" id="8_epvkq"]
+[ext_resource type="Script" uid="uid://bccdutn6x02k3" path="res://game/player/dummyattack.gd" id="9_5ghna"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.25
@@ -50,8 +51,6 @@ can_be_hit_by = 6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
-[node name="Realistic" parent="." instance=ExtResource("8_epvkq")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
@@ -77,3 +76,15 @@ grow_horizontal = 2
 grow_vertical = 0
 hide_when_full_after = -1.0
 hide_initially = false
+
+[node name="Realistic" parent="." instance=ExtResource("8_epvkq")]
+base_projectile_amount = 0
+
+[node name="testTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="dummyattack" type="Node3D" parent="."]
+script = ExtResource("9_5ghna")
+
+[connection signal="timeout" from="testTimer" to="dummyattack" method="_on_test_timer_timeout"]
