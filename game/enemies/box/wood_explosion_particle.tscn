@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://mvv6hdvfjfw5"]
+[gd_scene load_steps=7 format=3 uid="uid://mvv6hdvfjfw5"]
 
 [ext_resource type="PackedScene" uid="uid://wqhqib0voc53" path="res://game/vfx/particle_one_shot_component/particle_oneshot_component.tscn" id="1_4au07"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4au07"]
-albedo_color = Color(0.83554876, 0.09525856, 2.8878452e-07, 1)
+[ext_resource type="Material" uid="uid://dbrmg6khapg5l" path="res://assets/models/breakable_stone/brekaable_rock_mat.tres" id="1_5fndr"]
+[ext_resource type="ArrayMesh" uid="uid://bqcbta755nytf" path="res://assets/models/breakable_stone/stone_mesh.res" id="1_6abko"]
 
 [sub_resource type="Curve" id="Curve_augyx"]
 _data = [Vector2(0, 0.38172716), 0.0, 34.710056, 0, 0, Vector2(0.08437499, 1), 0.0, 0.0, 0, 0, Vector2(0.85937494, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -12.987649, 0.0, 0, 0]
@@ -25,31 +24,21 @@ direction = Vector3(0, 1, 0)
 spread = 180.0
 initial_velocity_min = 1.0
 initial_velocity_max = 2.0
-gravity = Vector3(0, -8, 0)
+gravity = Vector3(0, -9.75, 0)
 linear_accel_min = -2.2400022
 linear_accel_max = -2.2400022
 radial_accel_min = 1.1199977
 radial_accel_max = 4.4799976
+scale_min = 0.099999994
+scale_max = 0.19999999
 scale_curve = SubResource("CurveTexture_eu15o")
 collision_mode = 1
 collision_friction = 1.0
 collision_bounce = 0.0
 collision_use_scale = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qa4y"]
-albedo_color = Color(0.05882353, 0.43529412, 0, 1)
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="BoxMesh" id="BoxMesh_k2tqc"]
-material = SubResource("StandardMaterial3D_0qa4y")
-size = Vector3(0.2, 0.4, 0.075)
-
 [node name="WoodExplosionParticle" type="GPUParticles3D"]
-material_override = SubResource("StandardMaterial3D_4au07")
+material_override = ExtResource("1_5fndr")
 emitting = false
 amount = 7
 lifetime = 2.0
@@ -58,7 +47,7 @@ explosiveness = 1.0
 randomness = 0.25
 collision_base_size = 0.02
 process_material = SubResource("ParticleProcessMaterial_0qa4y")
-draw_pass_1 = SubResource("BoxMesh_k2tqc")
+draw_pass_1 = ExtResource("1_6abko")
 
 [node name="particle_oneshot_component" parent="." node_paths=PackedStringArray("node_to_kill") instance=ExtResource("1_4au07")]
 kill_time = 4.0

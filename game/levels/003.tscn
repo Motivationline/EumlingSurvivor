@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ct0yilv47scxo"]
+[gd_scene load_steps=24 format=3 uid="uid://ct0yilv47scxo"]
 
 [ext_resource type="PackedScene" uid="uid://bmc2la5fkmscu" path="res://game/levels/base_level.tscn" id="1_xx3ti"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="2_q13jh"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dx88kwaop00fc" path="res://game/level_obstacles/obstacle2x1.tscn" id="11_ilo1i"]
 [ext_resource type="PackedScene" uid="uid://b5hdpq54o462t" path="res://game/enemies/cactus_hog/cactus_hog_enemy.tscn" id="12_lkmf1"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="13_h75d5"]
+[ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="14_1rvk5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_lkmf1"]
 vertices = PackedVector3Array(-2.14, 0.5, -2.27, -1.4900002, 0.5, -2.27, -1.4900002, 0.5, -4.48, -2.5300002, 0.5, -1.8800001, -4.48, 0.5, -4.48, -4.48, 0.5, 1.2399998, -2.5300002, 0.5, 1.1099997, 0.46000004, 0.5, -1.1000001, -0.4500003, 0.5, -1.1000001, -0.97000027, 0.5, -0.71000004, -0.97000027, 0.5, 1.1099997, 0.97999954, 0.5, 1.1099997, 0.97999954, 0.5, -0.71000004, -0.84000015, 0.5, -2.27, -0.4500003, 0.5, -1.8800001, 0.46000004, 0.5, -1.8800001, 0.8499999, 0.5, -2.27, 1.5, 0.5, -4.48, 1.5, 0.5, -2.27, 2.1499996, 0.5, -2.27, 2.54, 0.5, -1.8800001, 4.49, 0.5, -4.48, 2.54, 0.5, 1.1099997, 4.49, 0.5, 1.2399998, -2.5300002, 0.5, 1.8899999, -1.75, 0.5, 2.7999997, -4.48, 0.5, 4.49, 1.1099997, 0.5, 4.49, 0.97999954, 0.5, 2.7999997, 1.7599998, 0.5, 2.7999997, 2.54, 0.5, 1.8899999, 2.1499996, 0.5, 2.4099998, 4.49, 0.5, 4.49)
@@ -314,3 +315,6 @@ entity_to_spawn = ExtResource("12_lkmf1")
 amount_of_spawns = 60
 time_between_entities = 1.0
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="Box" parent="." index="11" instance=ExtResource("14_1rvk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.955584, -0.014506757, 1.910151)

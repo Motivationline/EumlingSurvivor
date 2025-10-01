@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfmaa13n0k6rb"]
+[gd_scene load_steps=16 format=3 uid="uid://bfmaa13n0k6rb"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_ljiym"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="2_6408y"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_y2rk3"]
+[ext_resource type="PackedScene" uid="uid://dj26jbuwua1d8" path="res://assets/models/breakable_stone/breakable_stone_03.tscn" id="3_owye1"]
 [ext_resource type="PackedScene" uid="uid://by87cdyijsrbs" path="res://game/shared/animation trigger component/animation_trigger_component.tscn" id="4_eu15o"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="5_3wsa6"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_owye1"]
@@ -61,6 +62,9 @@ ignore_enemy_in_level = true
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("SpawnEntitiesEventStrategy")]
 
+[node name="Healthbar3D" parent="." index="0"]
+visible = false
+
 [node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitForTimeXState")
 
@@ -72,9 +76,13 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_y2rk3")
 mesh = SubResource("BoxMesh_eu15o")
 skeleton = NodePath("../..")
+
+[node name="breakable_stone03" parent="Visuals" index="1" instance=ExtResource("3_owye1")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
