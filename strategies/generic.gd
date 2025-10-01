@@ -4,6 +4,8 @@ extends Node
 ## Base class for all strategies. [color=red]Do not add, doesn't do anything.[/color]
 class_name Strategy
 
+@export var isActive: bool = true
+
 var parent: CharacterBody3D
 
 ## Adds all functionality that needs to be set up for this strategy to function properly

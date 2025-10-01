@@ -19,6 +19,8 @@ class_name Projectile
 @export var movement: Array[ProjectileMovementStrategy]
 # @export var upgrades: Array[UpgradeStrategy]
 
+@export var targeting: Array[ProjectileTargetStrategy]
+
 @export_category("Event Managers")
 @export var timeout_event_managers: Array[TimeoutEventManager]
 
@@ -28,6 +30,7 @@ class_name Projectile
 @export var on_hurt: Array[EventStrategy]
 @export var on_end_of_life: Array[EventStrategy]
 @export var on_remove: Array[EventStrategy]
+@export var on_created: Array[EventStrategy]
 
 var current_lifetime: float = 0
 var target_position: Vector3
@@ -48,15 +51,19 @@ func setup(target_pos: Vector3, _owner: Node3D):
 		setup_player(_owner)
 
 	# init strategies
+	Strategy._setup_array(targeting, self, _owner)
 	Strategy._setup_array(movement, self, _owner)
 	Strategy._setup_array(on_world_collision, self, _owner)
 	Strategy._setup_array(on_hit, self, _owner)
 	Strategy._setup_array(on_hurt, self, _owner)
 	Strategy._setup_array(on_end_of_life, self, _owner)
 	Strategy._setup_array(on_remove, self, _owner)
+	Strategy._setup_array(on_created, self, _owner)
 
 	for t in timeout_event_managers:
 		t._setup(self, _owner)
+	
+	_on_created()
 
 func setup_player(player: Player):
 	# speed
@@ -73,7 +80,7 @@ func setup_player(player: Player):
 	restart_timer()
 
 	# piercing
-	var piercing_amount = Upgrade.apply_all(0, player.get_upgrades_for(Enum.UPGRADE.PIERCING))
+	var piercing_amount = Upgrade.apply_all(10, player.get_upgrades_for(Enum.UPGRADE.PIERCING))
 	var piercing_strat = CountdownEventStrategy.new()
 	piercing_strat.count = piercing_amount + 1
 	on_hit.append(piercing_strat)
@@ -105,7 +112,6 @@ func _physics_process(delta: float) -> void:
 		for coll in on_world_collision:
 			coll.event_triggered(collision)
 
-
 func _end_of_lifetime():
 	for strat in on_end_of_life:
 		await strat.event_triggered(null)
@@ -121,3 +127,44 @@ func _hit_box_hit(_area):
 func _hurt_box_hurt(_area):
 	for ev in on_hurt:
 		ev.event_triggered(_area)
+
+func _on_created():
+	for strat in on_created:
+		strat.event_triggered(null)
+
+func _set_targets():
+	for t in targeting:
+		if t.isActive:
+			t.find_target()
+
+func _get_targets():
+	for t in targeting:
+		if t.isActive:
+			return t.targets
+
+func _add_hit(_hit: Node):
+	for t in targeting:
+		if t.isActive:
+			t.hits.append(_hit)
+
+func _get_hits():
+	for t in targeting:
+		if t.isActive:
+			return t.hits
+
+func _remove_target(_target: Node):
+	for t in targeting:
+		if t.isActive:
+			if _target in t.targets:
+				var idx = t.targets.find(_target)
+				t.targets.pop_at(idx)
+
+# func _clear_targets():
+# 	for t in targeting:
+# 		if t.isActive:
+# 			t.targets.clear()
+
+# func _clear_hits():
+# 	for t in targeting:
+# 		if t.isActive:
+# 			t.hits.clear()

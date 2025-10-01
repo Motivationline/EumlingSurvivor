@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg8awww46vf53"]
+[gd_scene load_steps=9 format=3 uid="uid://bg8awww46vf53"]
 
 [ext_resource type="Script" uid="uid://dms0e1w6iso26" path="res://game/player/weapons/realistic.gd" id="1_k5bu3"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="2_cavdi"]
 [ext_resource type="PackedScene" uid="uid://bmjn2csxoum5t" path="res://game/projectiles/realistic_projectile/realistic_projectile.tscn" id="3_25jx3"]
 [ext_resource type="Script" uid="uid://fy4gl1qypbeh" path="res://game/spawner/strategies/target/target_closest_entity.gd" id="3_cavdi"]
+[ext_resource type="PackedScene" uid="uid://by48s6y24lln" path="res://game/projectiles/multi_target_projectile/multi_target_projectile.tscn" id="3_rg8p2"]
 [ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="5_pv6dc"]
 
 [sub_resource type="Resource" id="Resource_25jx3"]
@@ -24,7 +25,7 @@ base_projectile_speed = 5.0
 
 [node name="EntitySpawner" type="Node3D" parent="."]
 script = ExtResource("2_cavdi")
-entity_to_spawn = ExtResource("3_25jx3")
+entity_to_spawn = ExtResource("3_rg8p2")
 time_between_entities = 0.1
 target_strategy = SubResource("Resource_25jx3")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
