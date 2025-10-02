@@ -7,7 +7,7 @@ class_name MoveToTargetProjectileMovementStrategy
 ## inversed inertia
 @export_range(0.0,50,0.1) var velocity_change_rate: float = 30
 
-var targets: Array[Node]
+var targets: Array[Node] = []
 var isPlayer: bool = true
 
 func _setup(_parent: Node, _owner: Node):
@@ -22,7 +22,6 @@ func _setup(_parent: Node, _owner: Node):
 func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: float):
 	#checks if the projectile is fired from the player and adjusts the target accordingly
 	if isPlayer:
-		targets = parent._get_targets()
 		if len(targets) > 0:
 			var target = targets[0]
 			if target:

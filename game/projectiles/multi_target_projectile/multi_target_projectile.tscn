@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://by48s6y24lln"]
+[gd_scene load_steps=13 format=3 uid="uid://by48s6y24lln"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_lbbhb"]
 [ext_resource type="Script" uid="uid://dysr6ilp5g0w4" path="res://strategies/projectile_target/random_batch.gd" id="3_grvmp"]
+[ext_resource type="Script" uid="uid://bd73xvrowdrfm" path="res://strategies/projectile_target/forward.gd" id="3_i3e5b"]
 [ext_resource type="Script" uid="uid://b322w7peeh246" path="res://strategies/projectile_movement/move_to_target.gd" id="4_8du5w"]
 [ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="5_gvak7"]
 [ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="6_0xi6p"]
@@ -35,7 +36,12 @@ shape = SubResource("BoxShape3D_5h5ko")
 
 [node name="TargetRandomBatchProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
 script = ExtResource("3_grvmp")
+isActive = false
 metadata/_custom_type_script = "uid://dysr6ilp5g0w4"
+
+[node name="TargetForwardProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="1"]
+script = ExtResource("3_i3e5b")
+metadata/_custom_type_script = "uid://bd73xvrowdrfm"
 
 [node name="MoveToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
 script = ExtResource("4_8du5w")
@@ -43,6 +49,7 @@ metadata/_custom_type_script = "uid://b322w7peeh246"
 
 [node name="MarkTargetAsHitTargetsEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
 script = ExtResource("5_gvak7")
+isActive = false
 metadata/_custom_type_script = "uid://ucohirynb0xg"
 
 [node name="OnCreated" type="Node" parent="EventStrategies" index="5"]
