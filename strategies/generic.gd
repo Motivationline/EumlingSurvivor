@@ -7,10 +7,12 @@ class_name Strategy
 @export var isActive: bool = true
 
 var parent: CharacterBody3D
+var owning_entity: CharacterBody3D
 
 ## Adds all functionality that needs to be set up for this strategy to function properly
 func _setup(_parent: Node, _owner: Node) -> void:
 	parent = _parent
+	owning_entity = _owner
 
 ## Helper function to set up all strategies in an array
 static func _setup_array(_arr: Array, _parent: Node, _owner: Node):
