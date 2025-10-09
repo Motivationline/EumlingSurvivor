@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://btf0iccai10qr"]
+[gd_scene load_steps=5 format=3 uid="uid://btf0iccai10qr"]
 
 [ext_resource type="Script" uid="uid://b14ltj42nage4" path="res://addons/versatile-mobile-joystick/joystick.gd" id="1_ofv6b"]
+[ext_resource type="Texture2D" uid="uid://byw7xmypgmrn0" path="res://assets/ui/JoystickBG.png" id="2_uiyn1"]
+[ext_resource type="Texture2D" uid="uid://dkulhpf755fpm" path="res://assets/ui/Joystick.png" id="3_iwdxw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46m5w"]
 radius = 4.0
@@ -11,11 +13,17 @@ script = ExtResource("1_ofv6b")
 [node name="Joystick" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Tip" type="Sprite2D" parent="Joystick"]
-unique_name_in_owner = true
-
 [node name="Base" type="Sprite2D" parent="Joystick"]
 unique_name_in_owner = true
+position = Vector2(63, 107)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_uiyn1")
+
+[node name="Tip" type="Sprite2D" parent="Joystick"]
+unique_name_in_owner = true
+position = Vector2(156.128, 217.823)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_iwdxw")
 
 [node name="TouchDetectorIndicator" type="Area2D" parent="."]
 collision_layer = 0

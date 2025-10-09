@@ -27,6 +27,9 @@ var max_health: float:
 @onready var healthbar: Healthbar = $CanvasLayer/Control/Healthbar
 @onready var hurtbox: HurtBox = $Hurtbox
 
+## UI Stuff
+@export var inv: Inv
+
 var active_upgrades: Dictionary[Enum.UPGRADE, Array] = {}
 signal upgrade_added
 
