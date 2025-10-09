@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://34ncdps2t868"]
+
+[ext_resource type="Script" uid="uid://bfouhfdm0a7er" path="res://game/ui/inventory/inv_ui_slot.gd" id="1_bolq4"]
+[ext_resource type="Texture2D" uid="uid://dgieeuysbx3fy" path="res://assets/ui/ItemBackground.png" id="1_j5w3o"]
+
+[sub_resource type="GDScript" id="GDScript_igmd3"]
+
+[node name="invUiSlot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(195, 200)
+offset_right = 195.0
+offset_bottom = 200.0
+script = ExtResource("1_bolq4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_j5w3o")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(195, 200)
+layout_mode = 0
+offset_right = 195.0
+offset_bottom = 200.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(195, 200)
+layout_mode = 2
+
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
+position = Vector2(100, 104)
+script = SubResource("GDScript_igmd3")

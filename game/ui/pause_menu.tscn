@@ -1,0 +1,222 @@
+[gd_scene load_steps=10 format=3 uid="uid://bocn6gw8p7uuq"]
+
+[ext_resource type="Script" uid="uid://nfenew25bi5h" path="res://game/ui/pause_menu.gd" id="1_6wpvo"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_du0dh"]
+[ext_resource type="Texture2D" uid="uid://cit8ls833v4m0" path="res://assets/ui/Banner.png" id="2_3tcw5"]
+[ext_resource type="Texture2D" uid="uid://bmtb62lyra00q" path="res://assets/ui/ButtonSquareHome.png" id="3_pgljg"]
+[ext_resource type="Texture2D" uid="uid://bhj8vhk8ushq2" path="res://assets/ui/ButtonSquareMusic.png" id="4_rjqkg"]
+[ext_resource type="Texture2D" uid="uid://76vi6xgq6r2m" path="res://assets/ui/ButtonSquarePressedMusic.png" id="5_6wpvo"]
+[ext_resource type="Texture2D" uid="uid://b42w2fvb3du5" path="res://assets/ui/ButtonSquareResume.png" id="6_fg14j"]
+[ext_resource type="PackedScene" uid="uid://34ncdps2t868" path="res://game/ui/inventory/inv_ui_slot.tscn" id="7_rjqkg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_otv6y"]
+shader = ExtResource("1_du0dh")
+shader_parameter/lod = 5.0
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6wpvo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_otv6y")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1262.0
+offset_top = -2977.0
+offset_right = 396.0
+offset_bottom = -847.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5501281, 1.91792)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -223.88715
+offset_top = 85.0
+offset_right = 223.88715
+offset_bottom = 184.0
+grow_horizontal = 2
+texture = ExtResource("2_3tcw5")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 90.0
+offset_right = 1079.0
+offset_bottom = 157.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Resume" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 241.0
+offset_top = -435.0
+offset_right = 439.0
+offset_bottom = -368.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Resume"
+horizontal_alignment = 1
+
+[node name="Musik" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -436.0
+offset_right = 99.0
+offset_bottom = -369.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Music"
+horizontal_alignment = 1
+
+[node name="Home" type="Label" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 525.0
+offset_right = 298.0
+offset_bottom = 592.0
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 210.0
+offset_right = 722.0
+offset_bottom = 277.0
+theme_override_font_sizes/font_size = 20
+text = "Current Progress:"
+
+[node name="HomeButton" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 100.0
+offset_top = 315.0
+offset_right = 2141.0
+offset_bottom = 2387.0
+scale = Vector2(0.097901866, 0.097901866)
+texture_normal = ExtResource("3_pgljg")
+
+[node name="MusicButton" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 440.0
+offset_top = 315.0
+offset_right = 2481.0
+offset_bottom = 2387.0
+scale = Vector2(0.097901866, 0.097901866)
+texture_normal = ExtResource("4_rjqkg")
+texture_pressed = ExtResource("5_6wpvo")
+
+[node name="ResumeButton" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 780.0
+offset_top = 315.0
+offset_right = 2821.0002
+offset_bottom = 2387.0
+scale = Vector2(0.097901866, 0.097901866)
+texture_normal = ExtResource("6_fg14j")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -439.5
+offset_top = -1301.0
+offset_right = 440.5
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+current_tab = 1
+
+[node name="Stats" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Acquired" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TabContainer/Acquired"]
+layout_mode = 0
+offset_left = 2.5
+offset_top = 34.0
+offset_right = 882.0
+offset_bottom = 547.0
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Acquired/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -299.75
+offset_top = -202.0
+offset_right = 299.75
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 3
+
+[node name="invUiSlot1" parent="TabContainer/Acquired/NinePatchRect/GridContainer" instance=ExtResource("7_rjqkg")]
+layout_mode = 2
+
+[node name="invUiSlot2" parent="TabContainer/Acquired/NinePatchRect/GridContainer" instance=ExtResource("7_rjqkg")]
+layout_mode = 2
+
+[node name="invUiSlot3" parent="TabContainer/Acquired/NinePatchRect/GridContainer" instance=ExtResource("7_rjqkg")]
+layout_mode = 2
+
+[node name="invUiSlot4" parent="TabContainer/Acquired/NinePatchRect/GridContainer" instance=ExtResource("7_rjqkg")]
+layout_mode = 2
+
+[node name="invUiSlot5" parent="TabContainer/Acquired/NinePatchRect/GridContainer" instance=ExtResource("7_rjqkg")]
+layout_mode = 2
+
+[node name="invUiSlot6" parent="TabContainer/Acquired/NinePatchRect/GridContainer" instance=ExtResource("7_rjqkg")]
+layout_mode = 2
+
+[node name="Passives" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="MusicButton" to="." method="_on_music_button_pressed"]
