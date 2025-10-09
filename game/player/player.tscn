@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=14 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
+[ext_resource type="Resource" uid="uid://bptl28ohdx7tg" path="res://game/ui/inventory/playerInv.tres" id="2_gb4gm"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
 [ext_resource type="PackedScene" uid="uid://bmjn2csxoum5t" path="res://game/projectiles/realistic_projectile/realistic_projectile.tscn" id="4_epvkq"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="5_4ste8"]
@@ -26,6 +27,7 @@ script = ExtResource("1_b2mth")
 base_speed = 2.0
 eumling_visuals = NodePath("Eumling_Survivor")
 spawner = NodePath("TestingSpawner")
+inv = ExtResource("2_gb4gm")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -63,19 +65,18 @@ grow_vertical = 2
 
 [node name="Healthbar" parent="CanvasLayer/Control" instance=ExtResource("7_anr75")]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -163.0
-offset_top = -62.0
-offset_right = -163.0
-offset_bottom = -62.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_left = 172.0
+offset_top = 87.99999
+offset_right = 172.0
+offset_bottom = 87.99999
+scale = Vector2(2.2946465, 2.2946465)
 hide_when_full_after = -1.0
 hide_initially = false
+
+[node name="PauseButton" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="testTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -90,5 +91,6 @@ enabled = true
 rotation_parent = NodePath("../Eumling_Survivor")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("10_j0mij")]

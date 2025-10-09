@@ -36,7 +36,7 @@ func update_slots():
 		slots[p].update(inv.items[p])
 	
 func _process(_delta):
-	if Input.is_action_just_pressed("open pause menu"):
+	if Input.is_action_just_pressed("openPauseMenu"):
 		if is_open:
 			close()
 		else:
