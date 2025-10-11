@@ -1,12 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://by48s6y24lln"]
+[gd_scene load_steps=12 format=3 uid="uid://cfyxw5fhwmyyy"]
 
-[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_lbbhb"]
-[ext_resource type="Script" uid="uid://dysr6ilp5g0w4" path="res://strategies/projectile_target/random_batch.gd" id="2_3h78m"]
-[ext_resource type="Script" uid="uid://b322w7peeh246" path="res://strategies/projectile_movement/move_to_target.gd" id="4_8du5w"]
-[ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="5_gvak7"]
-[ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="6_0xi6p"]
-[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="7_xmnuf"]
-[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_50pph"]
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_3ycxt"]
+[ext_resource type="Script" uid="uid://cgr07cq2s5xxq" path="res://strategies/projectile_target/closest_new_target.gd" id="2_p4q1l"]
+[ext_resource type="Script" uid="uid://ciibuj5lu0oho" path="res://strategies/projectile_movement/artillery_move_to_target.gd" id="3_p4q1l"]
+[ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="4_b6orn"]
+[ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="5_6ma20"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="6_i2kb8"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_ly6wf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5h5ko"]
 size = Vector3(0.22460938, 0.21972656, 1)
@@ -20,12 +20,13 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqng7"]
 albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 
-[node name="MultiTargetProjectile" node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_hit", "on_created") instance=ExtResource("1_lbbhb")]
+[node name="ArtilleryTargetProjectile" node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_world_collision", "on_hit", "on_created") instance=ExtResource("1_3ycxt")]
 lifetime = 20.0
 hit_box = NodePath("Hitbox")
-movement = [NodePath("MovementStrategies/MoveToTargetProjectileMovementStrategy")]
-targeting = [NodePath("TargetStrategies/TargetRandomBatchProjectileTargetStrategy")]
-on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy")]
+movement = [NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
+targeting = [NodePath("TargetStrategies/TargetClosestNewProjectileTargetStrategy")]
+on_world_collision = [NodePath("EventStrategies/RemoveEventStrategy")]
+on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy"), NodePath("EventStrategies/RemoveEventStrategy")]
 on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
@@ -33,29 +34,29 @@ shape = SubResource("BoxShape3D_5h5ko")
 
 [node name="TargetStrategies" type="Node" parent="." index="1"]
 
-[node name="TargetRandomBatchProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
-script = ExtResource("2_3h78m")
-metadata/_custom_type_script = "uid://dysr6ilp5g0w4"
+[node name="TargetClosestNewProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
+script = ExtResource("2_p4q1l")
+metadata/_custom_type_script = "uid://cgr07cq2s5xxq"
 
-[node name="MoveToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
-script = ExtResource("4_8du5w")
-metadata/_custom_type_script = "uid://b322w7peeh246"
+[node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
+script = ExtResource("3_p4q1l")
+metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
 [node name="MarkTargetAsHitTargetsEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
-script = ExtResource("5_gvak7")
+script = ExtResource("4_b6orn")
 metadata/_custom_type_script = "uid://ucohirynb0xg"
 
 [node name="OnCreated" type="Node" parent="EventStrategies" index="5"]
 
 [node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0"]
-script = ExtResource("6_0xi6p")
+script = ExtResource("5_6ma20")
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="6"]
-script = ExtResource("7_xmnuf")
+script = ExtResource("6_i2kb8")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="Hitbox" parent="." index="4" instance=ExtResource("8_50pph")]
+[node name="Hitbox" parent="." index="4" instance=ExtResource("7_ly6wf")]
 collision_layer = 4
 collision_mask = 64
 individual_hit_limit = 1
