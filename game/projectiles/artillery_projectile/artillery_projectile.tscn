@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cfyxw5fhwmyyy"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_3ycxt"]
-[ext_resource type="Script" uid="uid://cgr07cq2s5xxq" path="res://strategies/projectile_target/closest_new_target.gd" id="2_p4q1l"]
+[ext_resource type="Script" uid="uid://cxrle2kxqucp4" path="res://strategies/projectile_target/closest.gd" id="2_p4q1l"]
 [ext_resource type="Script" uid="uid://ciibuj5lu0oho" path="res://strategies/projectile_movement/artillery_move_to_target.gd" id="3_p4q1l"]
 [ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="4_b6orn"]
 [ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="5_6ma20"]
@@ -24,7 +24,7 @@ albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 lifetime = 20.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
-targeting = [NodePath("TargetStrategies/TargetClosestNewProjectileTargetStrategy")]
+targeting = [NodePath("TargetStrategies/TargetClosestProjectileTargetStrategy")]
 on_world_collision = [NodePath("EventStrategies/RemoveEventStrategy")]
 on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy"), NodePath("EventStrategies/RemoveEventStrategy")]
 on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
@@ -34,9 +34,9 @@ shape = SubResource("BoxShape3D_5h5ko")
 
 [node name="TargetStrategies" type="Node" parent="." index="1"]
 
-[node name="TargetClosestNewProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
+[node name="TargetClosestProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
 script = ExtResource("2_p4q1l")
-metadata/_custom_type_script = "uid://cgr07cq2s5xxq"
+metadata/_custom_type_script = "uid://cxrle2kxqucp4"
 
 [node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
 script = ExtResource("3_p4q1l")
