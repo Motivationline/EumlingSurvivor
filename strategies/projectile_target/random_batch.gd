@@ -17,7 +17,7 @@ func find_target():
 			targets.append(enemy)
 
 	_sort_targets_by_distance()
-
+	
 func _sort_targets_by_distance():
 	targets.sort_custom(_sort_by_distance)
 	
