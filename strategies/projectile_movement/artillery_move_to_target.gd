@@ -62,3 +62,4 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				parent.velocity = new_dir * speed_mag
 				parent.velocity.y = y
 				parent.rotation.y = lerp_angle(parent.rotation.y,atan2(-parent.velocity.x,-parent.velocity.z),_delta* rotation_speed)
+				parent.rotation.x = lerp_angle(parent.rotation.x, atan2(-parent.velocity.y, -parent.velocity.z), _delta * rotation_speed)
