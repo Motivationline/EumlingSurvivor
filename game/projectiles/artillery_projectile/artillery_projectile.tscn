@@ -26,7 +26,7 @@ hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
 targeting = [NodePath("TargetStrategies/TargetClosestProjectileTargetStrategy")]
 on_world_collision = [NodePath("EventStrategies/RemoveEventStrategy")]
-on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy"), NodePath("EventStrategies/RemoveEventStrategy")]
+on_hit = [NodePath("EventStrategies/RemoveEventStrategy")]
 on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
@@ -40,6 +40,7 @@ metadata/_custom_type_script = "uid://cxrle2kxqucp4"
 
 [node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
 script = ExtResource("3_p4q1l")
+amplitude = 3.0
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
 [node name="MarkTargetAsHitTargetsEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]

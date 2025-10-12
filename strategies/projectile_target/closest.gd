@@ -17,3 +17,4 @@ func get_closest_Node(_nodes: Array[Node]):
 			closest_dist = dist
 			closest = n
 	targets.append(closest)#adds the closest to the targets array
+	print("Targets: ", targets, "len: ", len(targets), "idx_0: ", targets[0])

@@ -6,6 +6,8 @@ class_name ArtilleryToTargetProjectileMovementStrategy
 @export_range(0.0,20.0,0.1) var rotation_speed: float = 15
 ## inversed inertia
 @export_range(0.0,50,0.1) var velocity_change_rate: float = 30
+## factor to increase/decrease the arch of the flight path
+@export_range(0.0,3,0.1) var amplitude: float = 0.1
 
 var targets: Array[Node] = []
 var isPlayer: bool = true
@@ -51,7 +53,11 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				
 				var x = traveled - distance/2
 				
-				var y = x * x
+				var y = x * x * x
+				# make the amplitude based on enemy distance
+				var dist_rel_amp = distance * amplitude
+				
+				y *= -dist_rel_amp
 				
 				parent.velocity = new_dir * speed_mag
 				parent.velocity.y = y
