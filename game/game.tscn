@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bck4sy6x58mj2"]
+[gd_scene load_steps=16 format=3 uid="uid://bck4sy6x58mj2"]
 
 [ext_resource type="Script" uid="uid://332o24o22ksb" path="res://game/game.gd" id="1_dakft"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="2_dxrkv"]
@@ -10,7 +10,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_p57ef"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5sy4"]
-radius = 50.0
+radius = 100.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gee14"]
 size = Vector2(1080, 1920)
@@ -18,6 +18,9 @@ size = Vector2(1080, 1920)
 [sub_resource type="Curve" id="Curve_0tnpc"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dakft"]
+radius = 200.0
 
 [sub_resource type="Animation" id="Animation_dakft"]
 resource_name = "RESET"
@@ -106,7 +109,10 @@ deadzone_circle = SubResource("CircleShape2D_p57ef")
 tip_limit_circle = SubResource("CircleShape2D_u5sy4")
 touch_detection_region = SubResource("RectangleShape2D_gee14")
 strength_curve = SubResource("Curve_0tnpc")
-visibility_mode = 1
+follow = true
+follow_circle = SubResource("CircleShape2D_dakft")
+visibility_when_idle = 0.1
+visibility_when_active = 0.8
 left_movement = "left"
 right_movement = "right"
 up_movement = "up"

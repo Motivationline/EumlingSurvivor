@@ -4,15 +4,17 @@ extends Node2D
 
 # Joystick modes
 enum JoystickMode {
-	FIXED,      # Joystick doesn't move
-	DYNAMIC     # Joystick positioned where touch occurs
+	## Joystick doesn't move
+	FIXED,
+	## Joystick positioned where touch occurs
+	DYNAMIC,
 }
 
-# Visibility modes
-enum VisibilityMode {
-	ALWAYS,
-	WHEN_TOUCHED
-}
+# # Visibility modes
+# enum VisibilityMode {
+# 	ALWAYS,
+# 	WHEN_TOUCHED
+# }
 
 # Exportable settings
 ## Texture of the stationary part of the joystick, typically larger than the tip.
@@ -74,11 +76,40 @@ enum VisibilityMode {
 ## DYNAMIC: Joystick appears wherever the touch occurs within the detection region.
 @export var joystick_mode: JoystickMode = JoystickMode.DYNAMIC
 
+
+@export_group("Follow")
+
+## Should the joystick follow the players touch?
+@export var follow: bool = false:
+	set(value):
+		follow = value
+		update_configuration_warnings()
+		%FollowRegion.visible = follow
+
+## Specifies the area outside which the joystick should start following.
+## Recommended to be at least as large as as Tip Limit Circle.
+@export var follow_circle: CircleShape2D:
+	set(value):
+		follow_circle = value
+		%FollowRegion.shape = follow_circle
+		if Engine.is_editor_hint():
+			print("Follow region updated")
+			update_configuration_warnings()
+
 ## Controls when the joystick is visible on the screen.
 ## ALWAYS: Joystick is always visible.
 ## WHEN_TOUCHED: Joystick only appears when the player touches the screen.
-@export var visibility_mode: VisibilityMode = VisibilityMode.ALWAYS
+# @export var visibility_mode: VisibilityMode = VisibilityMode.ALWAYS
 
+@export_group("Visibility")
+
+## Controls how visible (alpha) the joystick is while the player [b]does not[/b] touch the screen
+@export_range(0, 1) var visibility_when_idle: float = 1
+## Controls how visible (alpha) the joystick is while the player [b]does[/b] touch the screen
+@export_range(0, 1) var visibility_when_active: float = 1
+
+
+@export_group("Directions")
 # Movement mappings
 ## Input action name for leftward movement.
 ## Links the joystick's left direction to this input action in the project settings.
@@ -105,21 +136,16 @@ var being_touched: bool = false:
 		
 		# Control visibility based on mode
 		if being_touched:
-			if visibility_mode == VisibilityMode.WHEN_TOUCHED:
-				%Joystick.show()
+			%Joystick.modulate.a = visibility_when_active
 		else:
-			if visibility_mode == VisibilityMode.WHEN_TOUCHED:
-				%Joystick.hide()
+			%Joystick.modulate.a = visibility_when_idle
 
 # Initial setup
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		if visibility_mode == VisibilityMode.WHEN_TOUCHED:
-			%Joystick.hide()
-		else:
-			%Joystick.show()
+		%Joystick.modulate.a = visibility_when_active
 
-func _update_tip_texture(texture : Texture2D) -> void:
+func _update_tip_texture(texture: Texture2D) -> void:
 	tip_texture = texture
 	%Tip.texture = tip_texture
 	if Engine.is_editor_hint():
@@ -146,6 +172,9 @@ func _get_configuration_warnings() -> PackedStringArray:
 	for key in required_values.keys():
 		if not required_values[key]:
 			warnings.append("Please define %s" % key)
+
+	if (follow && !follow_circle):
+		warnings.append("If you want to use Follow, you need to define a Follow Circle")
 	return warnings
 
 # Check if point is inside touch detection region
@@ -193,6 +222,13 @@ func _move_and_calculate(event: InputEvent) -> void:
 	var distance: float = t_init_pos.distance_to(event_pos)
 	var max_distance: float = %TipLimit.shape.radius
 	var deadzone_length: float = %DeadZone.shape.radius
+	var follow_radius: float = %FollowRegion.shape.radius
+
+	# Adjust base position if following is true
+	if (follow && follow_radius < distance):
+		%Joystick.global_position = event_pos + -direction * (follow_radius - 1)
+		_move_and_calculate(event)
+		return
 	
 	# Adjust distance considering deadzone
 	var adjusted_distance: float = max(distance - deadzone_length, 0)
@@ -215,9 +251,9 @@ func _move_and_calculate(event: InputEvent) -> void:
 # Update input actions based on movement
 func _update_input_actions(output: Vector2) -> void:
 	var actions = [
-		{"action": left_movement, "condition": output.x < 0, "strength": -output.x},
+		{"action": left_movement, "condition": output.x < 0, "strength": - output.x},
 		{"action": right_movement, "condition": output.x > 0, "strength": output.x},
-		{"action": up_movement, "condition": output.y < 0, "strength": -output.y},
+		{"action": up_movement, "condition": output.y < 0, "strength": - output.y},
 		{"action": down_movement, "condition": output.y > 0, "strength": output.y}
 	]
 	
