@@ -9,6 +9,7 @@ radius = 4.0
 
 [node name="JoystickController" type="Node2D"]
 script = ExtResource("1_ofv6b")
+follow = null
 
 [node name="Joystick" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -32,6 +33,16 @@ monitorable = false
 [node name="TouchDetector" type="CollisionShape2D" parent="TouchDetectorIndicator"]
 unique_name_in_owner = true
 debug_color = Color(0.137255, 0.647059, 0, 0.0509804)
+
+[node name="FollowRegionIndicator" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2147483648
+monitoring = false
+monitorable = false
+
+[node name="FollowRegion" type="CollisionShape2D" parent="FollowRegionIndicator"]
+unique_name_in_owner = true
+debug_color = Color(0.8627451, 0, 0.8666667, 0.05490196)
 
 [node name="DeadZoneIndicator" type="Area2D" parent="."]
 
