@@ -8,7 +8,13 @@ extends AudioStreamPlayer
 
 
 
-enum level {MENU, COMBAT, BOSS, CHASE, PARKOUR}
+enum level {
+MENU, 
+COMBAT, 
+BOSS, 
+CHASE, 
+PARKOUR
+}
 @export var debug:bool
 @onready var debug_ui = $DebugUI
 
