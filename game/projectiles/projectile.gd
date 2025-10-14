@@ -105,32 +105,39 @@ func restart_timer():
 func _physics_process(delta: float) -> void:
 	current_lifetime += delta
 	for mov in movement:
-		mov.apply_movement(delta, current_lifetime, lifetime)
+		if mov.isActive:
+			mov.apply_movement(delta, current_lifetime, lifetime)
 	velocity *= delta
 	var collision: KinematicCollision3D = move_and_collide(velocity)
 	if (collision):
 		for coll in on_world_collision:
-			coll.event_triggered(collision)
+			if coll.isActive:
+				coll.event_triggered(collision)
 
 func _end_of_lifetime():
 	for strat in on_end_of_life:
-		await strat.event_triggered(null)
+		if strat.isActive:
+			await strat.event_triggered(null)
 	queue_free()
 
 func _on_remove():
 	for strat in on_remove:
-		strat.event_triggered(null)
+		if strat.isActive:
+			strat.event_triggered(null)
 
 func _hit_box_hit(_area):
 	for ev in on_hit:
-		ev.event_triggered(_area)
+		if ev.isActive:
+			ev.event_triggered(_area)
 func _hurt_box_hurt(_area):
 	for ev in on_hurt:
-		ev.event_triggered(_area)
+		if ev.isActive:
+			ev.event_triggered(_area)
 
 func _on_created():
 	for strat in on_created:
-		strat.event_triggered(null)
+		if strat.isActive:
+			strat.event_triggered(null)
 
 func _set_targets():
 	for t in targeting:
