@@ -140,6 +140,8 @@ var being_touched: bool = false:
 		else:
 			%Joystick.modulate.a = visibility_when_idle
 
+var active_touch_id: int = -1;
+
 # Initial setup
 func _ready() -> void:
 	if not Engine.is_editor_hint():
@@ -186,33 +188,35 @@ func _is_inside_touch_detector(pos: Vector2) -> bool:
 # Touch input processing
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
-		# Touch start
-		%TouchIndicator.global_position = event.position
-		if event.pressed:
+		if event.pressed and !being_touched and _is_inside_touch_detector(event.position):
+			# Touch start
+			%TouchIndicator.global_position = event.position
 			%Touch.disabled = false
-			if _is_inside_touch_detector(event.position):
-				being_touched = true
-				if joystick_mode == JoystickMode.DYNAMIC:
-					%Joystick.global_position = event.position
-				_move_and_calculate(event)
-		else:
+			being_touched = true
+			active_touch_id = event.index
+			if joystick_mode == JoystickMode.DYNAMIC:
+				%Joystick.global_position = event.position
+			_move_and_calculate(event)
+		elif !event.pressed && being_touched && event.index == active_touch_id:
 			# Touch end
 			being_touched = false
+			active_touch_id = -1
 			%Touch.disabled = true
 			%Tip.global_position = %Base.global_position
 			_update_input_actions(Vector2.ZERO)
 	
 	elif event is InputEventScreenDrag:
 		# Touch drag
-		%TouchIndicator.global_position = event.position
-		if _is_inside_touch_detector(event.position):
-			being_touched = true
-			_move_and_calculate(event)
-		else:
-			# Outside touch area
-			being_touched = false
-			%Tip.global_position = %Base.global_position
-			_update_input_actions(Vector2.ZERO)
+		if event.index == active_touch_id:
+			%TouchIndicator.global_position = event.position
+			if _is_inside_touch_detector(event.position):
+				being_touched = true
+				_move_and_calculate(event)
+			else:
+				# Outside touch area
+				being_touched = false
+				%Tip.global_position = %Base.global_position
+				_update_input_actions(Vector2.ZERO)
 
 # Calculate joystick movement and strength
 func _move_and_calculate(event: InputEvent) -> void:
