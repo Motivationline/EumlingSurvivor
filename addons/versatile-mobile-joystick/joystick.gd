@@ -109,6 +109,20 @@ enum JoystickMode {
 @export_range(0, 1) var visibility_when_active: float = 1
 
 
+@export_group("Rest Position")
+
+## 
+@export var enable_custom_resting_position: bool = false:
+	set(value):
+		enable_custom_resting_position = value
+		_move_to_resting_position()
+## 
+@export var resting_position: Vector2:
+	set(value):
+		resting_position = value
+		_move_to_resting_position()
+
+
 @export_group("Directions")
 # Movement mappings
 ## Input action name for leftward movement.
@@ -141,6 +155,11 @@ var being_touched: bool = false:
 			%Joystick.modulate.a = visibility_when_idle
 
 var active_touch_id: int = -1;
+
+
+signal touch_started
+signal touch_ended
+
 
 # Initial setup
 func _ready() -> void:
@@ -197,26 +216,29 @@ func _input(event: InputEvent) -> void:
 			if joystick_mode == JoystickMode.DYNAMIC:
 				%Joystick.global_position = event.position
 			_move_and_calculate(event)
-		elif !event.pressed && being_touched && event.index == active_touch_id:
+			touch_started.emit()
+		elif !event.pressed && event.index == active_touch_id:
 			# Touch end
 			being_touched = false
 			active_touch_id = -1
 			%Touch.disabled = true
 			%Tip.global_position = %Base.global_position
 			_update_input_actions(Vector2.ZERO)
+			touch_ended.emit()
+			_move_to_resting_position()
 	
 	elif event is InputEventScreenDrag:
 		# Touch drag
 		if event.index == active_touch_id:
 			%TouchIndicator.global_position = event.position
-			if _is_inside_touch_detector(event.position):
-				being_touched = true
-				_move_and_calculate(event)
-			else:
-				# Outside touch area
-				being_touched = false
-				%Tip.global_position = %Base.global_position
-				_update_input_actions(Vector2.ZERO)
+			# if _is_inside_touch_detector(event.position):
+			# 	being_touched = true
+			_move_and_calculate(event)
+			# else:
+			# 	# Outside touch area
+			# 	being_touched = false
+			# 	%Tip.global_position = %Base.global_position
+			# 	_update_input_actions(Vector2.ZERO)
 
 # Calculate joystick movement and strength
 func _move_and_calculate(event: InputEvent) -> void:
@@ -267,3 +289,7 @@ func _update_input_actions(output: Vector2) -> void:
 			Input.action_press(action.action, action.strength)
 		else:
 			Input.action_release(action.action)
+
+func _move_to_resting_position():
+	if !enable_custom_resting_position: return
+	%Joystick.position = resting_position

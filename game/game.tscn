@@ -102,12 +102,14 @@ follow = true
 follow_circle = SubResource("CircleShape2D_dakft")
 visibility_when_idle = 0.1
 visibility_when_active = 0.8
+enable_custom_resting_position = true
+resting_position = Vector2(-200, 200)
 left_movement = "left"
 right_movement = "right"
 up_movement = "up"
 down_movement = "down"
 
-[node name="DirectionController" parent="TouchJoystickOverlay" instance=ExtResource("2_dxrkv")]
+[node name="AttackController" parent="TouchJoystickOverlay" instance=ExtResource("2_dxrkv")]
 position = Vector2(1434, 537)
 base_texture = ExtResource("3_dakft")
 tip_texture = ExtResource("4_u5opy")
@@ -115,15 +117,15 @@ deadzone_circle = SubResource("CircleShape2D_p57ef")
 tip_limit_circle = SubResource("CircleShape2D_u5sy4")
 touch_detection_region = SubResource("RectangleShape2D_gee14")
 strength_curve = SubResource("Curve_0tnpc")
-joystick_mode = 0
-follow = false
 follow_circle = SubResource("CircleShape2D_dakft")
 visibility_when_idle = 0.1
 visibility_when_active = 0.8
-left_movement = "left"
-right_movement = "right"
-up_movement = "up"
-down_movement = "down"
+enable_custom_resting_position = true
+resting_position = Vector2(200, 200)
+left_movement = "attack_left"
+right_movement = "attack_right"
+up_movement = "attack_up"
+down_movement = "attack_down"
 
 [node name="SceneFadeOverlay" type="CanvasLayer" parent="."]
 layer = 120
