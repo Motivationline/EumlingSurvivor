@@ -4,6 +4,4 @@ class_name ClearTargetsEventStrategy
 
 
 func event_triggered(_data):
-	for t in parent.targeting:
-		if t.isActive:
-			t.targets.clear()
+	parent.targets.clear()

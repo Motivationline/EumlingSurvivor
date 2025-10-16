@@ -3,7 +3,7 @@ extends ProjectileTargetStrategy
 class_name TargetForwardProjectileTargetStrategy
 
 func find_target():
-	targets = []
+	parent.targets = []
 	
 	var forward_target = Node3D.new()
 	var debug_mesh = MeshInstance3D.new()
@@ -13,6 +13,6 @@ func find_target():
 	forward_target.position = owning_entity.velocity.normalized() * 100 + parent.position - owning_entity.position
 	parent.add_child(forward_target)
 	
-	targets.append(forward_target)
+	parent.targets.append(forward_target)
 	#print(forward_target.position)
 	#print(targets)

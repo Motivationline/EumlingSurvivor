@@ -35,6 +35,9 @@ class_name Projectile
 var current_lifetime: float = 0
 var target_position: Vector3
 
+var targets: Array[Node]
+var hits: Array[Node]
+
 var obj_that_spawned_this: Node3D
 
 func setup(target_pos: Vector3, _owner: Node3D):
@@ -145,26 +148,18 @@ func _set_targets():
 			t.find_target()
 
 func _get_targets():
-	for t in targeting:
-		if t.isActive:
-			return t.targets
+	return targets
 
 func _add_hit(_hit: Node):
-	for t in targeting:
-		if t.isActive:
-			t.hits.append(_hit)
+	hits.append(_hit)
 
 func _get_hits():
-	for t in targeting:
-		if t.isActive:
-			return t.hits
+	return hits
 
 func _remove_target(_target: Node):
-	for t in targeting:
-		if t.isActive:
-			if _target in t.targets:
-				var idx = t.targets.find(_target)
-				t.targets.pop_at(idx)
+	if _target in targets:
+		var idx = targets.find(_target)
+		targets.pop_at(idx)
 
 # func _clear_targets():
 # 	for t in targeting:

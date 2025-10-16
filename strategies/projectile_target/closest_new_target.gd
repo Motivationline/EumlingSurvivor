@@ -13,7 +13,7 @@ func get_closest_Node(_nodes: Array[Node]):
 	var enemies: Array[Node] = _nodes
 	for n: Node3D in enemies:
 		var dist = parent.global_position.distance_to(n.global_position)
-		if dist < closest_dist && not(hits.has(n)):
+		if dist < closest_dist && not(parent.hits.has(n)):
 			closest_dist = dist
 			closest = n
-	targets.append(closest)#adds the closest to the targets array
+	parent.targets.append(closest)#adds the closest to the targets array

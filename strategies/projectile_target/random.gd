@@ -4,4 +4,4 @@ class_name TargetRandomProjectileTargetStrategy
 
 func find_target():
 	var enemies = get_tree().get_nodes_in_group("Enemy")
-	targets.append(enemies[randi_range(0, len(enemies))])
+	parent.targets.append(enemies[randi_range(0, len(enemies))])

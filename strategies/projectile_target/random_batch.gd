@@ -11,15 +11,15 @@ func find_target():
 
 	var pick_count = min(amount, enemies.size())
 
-	while targets.size() < pick_count:
+	while parent.targets.size() < pick_count:
 		var enemy = enemies[randi_range(0, enemies.size() - 1)]
-		if not enemy in targets:
-			targets.append(enemy)
+		if not enemy in parent.targets:
+			parent.targets.append(enemy)
 
 	_sort_targets_by_distance()
 	
 func _sort_targets_by_distance():
-	targets.sort_custom(_sort_by_distance)
+	parent.targets.sort_custom(_sort_by_distance)
 	
 func _sort_by_distance(a: Node, b: Node) -> bool:
 	var dist_a = parent.global_transform.origin.distance_to(a.global_transform.origin)

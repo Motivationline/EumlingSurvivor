@@ -4,9 +4,7 @@ class_name ResortTargetsTargetsEventStrategy
 
 
 func event_triggered(_data):
-		for t in parent.targeting:
-			if t.isActive:
-				_sort_targets_by_distance(t.targets)
+	_sort_targets_by_distance(parent.targets)
 	
 func _sort_targets_by_distance(targets):
 	targets.sort_custom(self, "_sort_by_distance")

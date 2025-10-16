@@ -1,6 +1,16 @@
 extends ProjectileTargetStrategy
-## sets the target to the closest enemy
-class_name TargetClosestProjectileTargetStrategy
+## sets the target(s) based on inputs
+class_name UniversalTargetingProjectileTargetStrategy
+
+## preferred type of entety or Node you want to target
+@export var target_type: Node
+## the max distance in that we pick targets from
+@export_range(0,100,1) var max_radius: float
+## the min distance in that we pick targets from
+@export_range(0,100,1) var min_radius: float
+## preferred max target amount
+@export var max_targets: float
+
 
 func find_target():
 	var enemies = get_tree().get_nodes_in_group("Enemy")
