@@ -160,6 +160,9 @@ func _remove_target(_target: Node):
 	if _target in targets:
 		var idx = targets.find(_target)
 		targets.pop_at(idx)
+		
+func _clear_targets():
+	targets = []
 
 # func _clear_targets():
 # 	for t in targeting:

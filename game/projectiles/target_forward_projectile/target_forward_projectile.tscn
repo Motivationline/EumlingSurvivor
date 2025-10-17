@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://ty5663uxijui"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_yngjd"]
-[ext_resource type="Script" uid="uid://dysr6ilp5g0w4" path="res://strategies/projectile_target/random_batch.gd" id="2_h5k73"]
+[ext_resource type="Script" uid="uid://bd73xvrowdrfm" path="res://strategies/projectile_target/forward.gd" id="2_c75pm"]
 [ext_resource type="Script" uid="uid://b322w7peeh246" path="res://strategies/projectile_movement/move_to_target.gd" id="3_oxm08"]
 [ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="4_vohkm"]
 [ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="5_sw1o0"]
@@ -24,8 +24,8 @@ albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 lifetime = 20.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/MoveToTargetProjectileMovementStrategy")]
-targeting = [NodePath("")]
-on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy")]
+targeting = [NodePath("TargetStrategies/TargetForwardProjectileTargetStrategy")]
+on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy"), NodePath("EventStrategies/RemoveEventStrategy")]
 on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
@@ -33,9 +33,9 @@ shape = SubResource("BoxShape3D_5h5ko")
 
 [node name="TargetStrategies" type="Node" parent="." index="1"]
 
-[node name="TargetRandomBatchProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
-script = ExtResource("2_h5k73")
-metadata/_custom_type_script = "uid://dysr6ilp5g0w4"
+[node name="TargetForwardProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
+script = ExtResource("2_c75pm")
+metadata/_custom_type_script = "uid://bd73xvrowdrfm"
 
 [node name="MoveToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
 script = ExtResource("3_oxm08")
@@ -47,8 +47,9 @@ metadata/_custom_type_script = "uid://ucohirynb0xg"
 
 [node name="OnCreated" type="Node" parent="EventStrategies" index="5"]
 
-[node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0"]
+[node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0" node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("5_sw1o0")
+targeting_strats = NodePath("../../../TargetStrategies/TargetForwardProjectileTargetStrategy")
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="6"]
