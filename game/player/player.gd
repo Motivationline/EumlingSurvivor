@@ -64,8 +64,9 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction_3d * speed
 	move_and_slide()
 	
-	if (!direction.is_zero_approx()):
-		eumling_visuals.look_at(global_position + direction_3d)
+	var look_direction = Input.get_vector("attack_left", "attack_right", "attack_up", "attack_down")
+	if (!look_direction.is_zero_approx()):
+		eumling_visuals.look_at(global_position + Vector3(look_direction.x, 0, look_direction.y))
 	
 	if (weapon): weapon.physics_process(_delta)
 
