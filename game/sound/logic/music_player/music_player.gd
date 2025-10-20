@@ -19,6 +19,8 @@ PARKOUR
 @onready var debug_ui = $DebugUI
 
 
+@onready var init_bus_volume = AudioServer.get_bus_volume_db(1)
+
 func _ready():
 	
 	if debug:
@@ -94,16 +96,28 @@ func update_track_tail_volume():
 
 func get_current_stream_synchronised():
 	return  stream.get_clip_stream(get_stream_playback().get_current_clip_index())
-	
+
+
+
+func fade_volume(out:bool , duration:float = 5):
+	print("bus"+ AudioServer.get_bus_name(1))
+	print(AudioServer.get_bus_volume_db(1))
+	var tween = get_tree().create_tween()
+	if out:
+		tween.tween_method(func(v): AudioServer.set_bus_volume_db(1, v),init_bus_volume,-100,duration)
+		print("out")
+	else:
+		tween.tween_method(func(v): AudioServer.set_bus_volume_db(1, v),AudioServer.get_bus_volume_db(1),init_bus_volume,duration)
+		print("in")
+	print(AudioServer.get_bus_volume_db(1))
+
+
 
 func _on_debug_list_item_clicked(index, _at_position, _mouse_button_index):
 	for key in level.values():
 		print(key)
 		if key == index:
 			queue_specific_track(key)
-			
-			
-			
 
 
 func _on_game_request_music(random:bool = false, level_type:level = level.MENU):
@@ -112,4 +126,12 @@ func _on_game_request_music(random:bool = false, level_type:level = level.MENU):
 		queue_random_track()
 	else:
 		queue_specific_track(level_type)
-	
+
+
+func _on_fade_in_button_pressed() -> void:
+	fade_volume(false, 1)
+
+
+
+func _on_fade_out_button_pressed() -> void:
+	fade_volume(true, 1)

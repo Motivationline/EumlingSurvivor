@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://byw7xmypgmrn0" path="res://assets/ui/JoystickBG.png" id="3_dakft"]
 [ext_resource type="Texture2D" uid="uid://dkulhpf755fpm" path="res://assets/ui/Joystick.png" id="4_u5opy"]
 [ext_resource type="PackedScene" uid="uid://nfg4d3b33sns" path="res://game/ui/upgrade_view.tscn" id="5_dxrkv"]
-[ext_resource type="PackedScene" uid="uid://uyyg1ut65j1" path="res://game/sound/logic/music_ player.tscn" id="6_dakft"]
+[ext_resource type="PackedScene" uid="uid://uyyg1ut65j1" path="res://game/sound/logic/music_player/music_ player.tscn" id="6_dakft"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p57ef"]
 
@@ -189,8 +189,6 @@ text = "confirm
 "
 
 [node name="MusicPlayer" parent="." instance=ExtResource("6_dakft")]
-debug = false
 
-[connection signal="requestMusic" from="." to="MusicPlayer" method="_on_game_request_music" binds= [false]]
 [connection signal="text_submitted" from="LevelChoiceOverlay/Control/CenterContainer/VBoxContainer/LineEdit" to="LevelChoiceOverlay" method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="LevelChoiceOverlay/Control/CenterContainer/VBoxContainer/Button" to="LevelChoiceOverlay" method="_on_button_pressed"]
