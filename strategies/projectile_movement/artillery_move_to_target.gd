@@ -51,15 +51,16 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				
 				traveled = (start_pos - parent.position).length()
 				
-				var x = traveled - distance/2
+				var x = traveled
 				
-				var y = x * x * x
+				#var y = -(1.0/3.0 * (x * x * x)) + (distance/2.0) * (x * x)
+				var y = -x * x + distance * x
 				# make the amplitude based on enemy distance
-				var dist_rel_amp = distance * amplitude
+				#var dist_rel_amp = distance * amplitude
 				
-				y *= -dist_rel_amp
+				#y *= -dist_rel_amp
 				
 				parent.velocity = new_dir * speed_mag
 				parent.velocity.y = y
-				parent.rotation.y = lerp_angle(parent.rotation.y,atan2(-parent.velocity.x,-parent.velocity.z),_delta* rotation_speed)
+				parent.rotation.y = lerp_angle(parent.rotation.y,atan2(parent.velocity.x,parent.velocity.z),_delta* rotation_speed)
 				parent.rotation.x = lerp_angle(parent.rotation.x, atan2(-parent.velocity.y, -parent.velocity.z), _delta * rotation_speed)

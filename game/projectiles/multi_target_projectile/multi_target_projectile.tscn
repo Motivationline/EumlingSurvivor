@@ -50,8 +50,9 @@ metadata/_custom_type_script = "uid://ucohirynb0xg"
 
 [node name="OnCreated" type="Node" parent="EventStrategies" index="5"]
 
-[node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0"]
+[node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0" node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("6_0xi6p")
+targeting_strats = [NodePath("../../../TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="6"]
