@@ -1,0 +1,104 @@
+[gd_scene load_steps=13 format=3 uid="uid://bfo0xbx16v5hd"]
+
+[ext_resource type="Texture2D" uid="uid://cmhdcxu014g7t" path="res://game/sound/logic/sfx_dummy/AudioStreamPlayer.svg" id="1_1dl0x"]
+[ext_resource type="Script" uid="uid://rgn2epv8urlq" path="res://game/sound/logic/sfx_dummy/sfx_dummy.gd" id="1_lgo28"]
+[ext_resource type="PackedScene" uid="uid://cy2tlb6wedycd" path="res://game/sound/logic/sfx/sound_effect_manager.tscn" id="2_lgo28"]
+[ext_resource type="AudioStream" uid="uid://cmkw4gh2pplxu" path="res://game/sound/sfx/test_sounds/click_correct.mp3" id="4_rr2ut"]
+[ext_resource type="AudioStream" uid="uid://b0wr7ectau5jh" path="res://game/sound/sfx/test_sounds/click_incorrect.mp3" id="5_bgtu7"]
+[ext_resource type="AudioStream" uid="uid://biiivro82owwo" path="res://game/sound/sfx/test_sounds/purchase_1.mp3" id="6_lked1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tx8s5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysohl"]
+albedo_color = Color(0.2784314, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_rr2ut"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bgtu7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lked1"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.99996674),
+"transitions": PackedFloat32Array(0.210224, 0.16493842, 0.5000002),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 5, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ent5h"]
+_data = {
+&"RESET": SubResource("Animation_bgtu7"),
+&"jump": SubResource("Animation_lked1"),
+&"spin": SubResource("Animation_rr2ut")
+}
+
+[node name="SfxDummy" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_tx8s5")
+surface_material_override/0 = SubResource("StandardMaterial3D_ysohl")
+script = ExtResource("1_lgo28")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(10.579521, 0, 0, 0, 10.579521, 0, 0, 0, 10.579521, 0, 1.4711484, 0)
+texture_filter = 0
+texture = ExtResource("1_1dl0x")
+
+[node name="SoundEffectManager" parent="." instance=ExtResource("2_lgo28")]
+
+[node name="ClickCorrect" type="AudioStreamPlayer" parent="SoundEffectManager"]
+stream = ExtResource("4_rr2ut")
+
+[node name="ClickIncorrect" type="AudioStreamPlayer" parent="SoundEffectManager"]
+stream = ExtResource("5_bgtu7")
+
+[node name="Purchase1" type="AudioStreamPlayer" parent="SoundEffectManager"]
+stream = ExtResource("6_lked1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ent5h")
+}
