@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1osfdf275swk"]
+[gd_scene load_steps=3 format=3 uid="uid://b1osfdf275swk"]
 
 [ext_resource type="PackedScene" uid="uid://bhfncjfyvm7a2" path="res://game/projectiles/dragster_projectile/dragster_projectile_player.tscn" id="1_78qsa"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="2_hn1k7"]
 
-[node name="Projectile" instance=ExtResource("1_78qsa")]
+[node name="Projectile" node_paths=PackedStringArray("on_hit") instance=ExtResource("1_78qsa")]
+collision_mask = 1
+on_hit = []
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0"]
+script = ExtResource("2_hn1k7")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
 [node name="Hitbox" parent="." index="5"]
-collision_layer = 32
-collision_mask = 8
+collision_layer = 33
+collision_mask = 9
 attached_to = 6
 can_hit = 4

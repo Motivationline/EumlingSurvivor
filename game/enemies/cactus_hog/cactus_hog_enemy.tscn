@@ -1,11 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5hdpq54o462t"]
+[gd_scene load_steps=15 format=3 uid="uid://b5hdpq54o462t"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_c2tdt"]
+[ext_resource type="Script" path="res://state_machine/enemy/multistate.gd" id="2_7gcdu"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_xfdg2"]
-[ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="3_jrk2f"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_leyq8"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_0es7d"]
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="5_leyq8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_0es7d"]
+[ext_resource type="PackedScene" uid="uid://b1osfdf275swk" path="res://game/projectiles/dragster_projectile/dragster_projectile_enemy.tscn" id="6_g5j0o"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_g5j0o"]
+[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="7_ljv8p"]
+
+[sub_resource type="Resource" id="Resource_httce"]
+script = ExtResource("7_ljv8p")
+metadata/_custom_type_script = "uid://pv70hoylokg6"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_aprxc"]
 radius = 0.271826
@@ -30,19 +38,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928938, -0.0283241)
 hide_when_full_after = 0.5
 
 [node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("MoveTowardsPlayer")
+initial_state = NodePath("MultistateState")
 
-[node name="MoveTowardsPlayer" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="MultistateState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+script = ExtResource("2_7gcdu")
+states_to_execute = [NodePath("MoveTowardsPlayer"), NodePath("SpawnEntitiesState")]
+states_that_need_to_finish = [NodePath("SpawnEntitiesState")]
+next_state = NodePath(".")
+
+[node name="MoveTowardsPlayer" type="Node" parent="StateMachine/MultistateState" index="0"]
 script = ExtResource("2_xfdg2")
 wait_time = 0.0
 stop_distance = 0.1
-next_state = NodePath(".")
 animation_trigger = "walk"
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="MoveForwardState" type="Node" parent="StateMachine" index="1"]
-script = ExtResource("3_jrk2f")
-metadata/_custom_type_script = "uid://mycfudgv475a"
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_leyq8")
+start_delay = 2.0
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0"]
+script = ExtResource("5_0es7d")
+spawn_local = true
+entity_to_spawn = ExtResource("6_g5j0o")
+amount_of_spawns = 4
+rotation_strategy = SubResource("Resource_httce")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Hurtbox" parent="." index="3" instance=ExtResource("6_0es7d")]
 collision_layer = 64
