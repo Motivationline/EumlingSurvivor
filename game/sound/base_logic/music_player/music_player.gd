@@ -1,4 +1,4 @@
-extends AudioStreamPlayer
+class_name MusicPlayer extends AudioStreamPlayer
 
 
 
@@ -38,7 +38,7 @@ func start_playback(track_name: String):
 	if playing == false:
 		play()
 	get_stream_playback().switch_to_clip_by_name(track_name)
-	print("clipIndex = ", get_stream_playback().get_current_clip_index())
+	#print("clipIndex = ", get_stream_playback().get_current_clip_index())
 	update_track_tail_volume()
 	
 func queue_random_track():
@@ -50,25 +50,25 @@ func queue_specific_track(level_type:level):
 	start_playback(next_track)
 
 func select_track(level_type:level) -> String:
-	print(level_type)
+	#print(level_type)
 	var selected_track
 	match level_type:
 		
 		
 		level.MENU:
-			print("MENU playing")
+			#print("MENU playing")
 			selected_track = "Menu"
 		level.COMBAT:
-			print("COMBAT playing")
+			#print("COMBAT playing")
 			selected_track = "Combat"
 		level.BOSS:
-			print("BOSS playing")
+			#print("BOSS playing")
 			selected_track = "Boss"
 		level.CHASE:
-			print("CHASE playing")
+			#print("CHASE playing")
 			selected_track = "Chase"
 		level.PARKOUR:
-			print("PARKOUR playing")
+			#print("PARKOUR playing")
 			selected_track = "Parkour"
 	
 	
@@ -89,9 +89,9 @@ func update_track_tail_volume():
 	
 	#raise tail volume of next track
 	current_stream_synchronised = get_current_stream_synchronised()
-	print(current_stream_synchronised.get_sync_stream_volume(1))
+	#print(current_stream_synchronised.get_sync_stream_volume(1))
 	current_stream_synchronised.set_sync_stream_volume(1,0.0)
-	print(current_stream_synchronised.get_sync_stream_volume(1))
+	#print(current_stream_synchronised.get_sync_stream_volume(1))
 	#implement reset
 
 func get_current_stream_synchronised():
@@ -99,23 +99,23 @@ func get_current_stream_synchronised():
 
 
 
-func fade_volume(out:bool , duration:float = 5):
-	print("bus"+ AudioServer.get_bus_name(1))
-	print(AudioServer.get_bus_volume_db(1))
+func fade_volume(out:bool , duration:float, reduction_db:float = 20):
+	#print("bus"+ AudioServer.get_bus_name(1))
+	#print(AudioServer.get_bus_volume_db(1))
 	var tween = get_tree().create_tween()
 	if out:
-		tween.tween_method(func(v): AudioServer.set_bus_volume_db(1, v),init_bus_volume,-100,duration)
-		print("out")
+		tween.tween_method(func(v): AudioServer.set_bus_volume_db(1, v),init_bus_volume,-reduction_db,duration)
+		#print("out")
 	else:
 		tween.tween_method(func(v): AudioServer.set_bus_volume_db(1, v),AudioServer.get_bus_volume_db(1),init_bus_volume,duration)
-		print("in")
-	print(AudioServer.get_bus_volume_db(1))
+		#print("in")
+	#print(AudioServer.get_bus_volume_db(1))
 
 
 
 func _on_debug_list_item_clicked(index, _at_position, _mouse_button_index):
 	for key in level.values():
-		print(key)
+		#print(key)
 		if key == index:
 			queue_specific_track(key)
 
