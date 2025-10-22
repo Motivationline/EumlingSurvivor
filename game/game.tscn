@@ -189,6 +189,8 @@ text = "confirm
 "
 
 [node name="MusicPlayer" parent="." instance=ExtResource("6_dakft")]
+debug = false
 
+[connection signal="requestMusic" from="." to="MusicPlayer" method="_on_game_request_music"]
 [connection signal="text_submitted" from="LevelChoiceOverlay/Control/CenterContainer/VBoxContainer/LineEdit" to="LevelChoiceOverlay" method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="LevelChoiceOverlay/Control/CenterContainer/VBoxContainer/Button" to="LevelChoiceOverlay" method="_on_button_pressed"]
