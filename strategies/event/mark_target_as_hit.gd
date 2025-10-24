@@ -5,7 +5,14 @@ class_name MarkTargetAsHitTargetsEventStrategy
 
 func event_triggered(_data):
 	if len(parent.targets) > 0:
-		var hit = arrays_overlap(parent.targets, parent.hit_box.overlapping)
+		var overlapping: Array[Node] = []
+		
+		for entry in parent.hit_box.overlapping:
+			overlapping.append(entry["area"].get_parent())
+			
+		#print("overlapping: ", overlapping)
+		
+		var hit = arrays_overlap(parent.targets, overlapping)
 		if hit:
 			var i = parent.targets.find(hit)
 			parent._add_hit(hit)
