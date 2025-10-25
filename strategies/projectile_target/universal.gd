@@ -2,7 +2,7 @@ extends ProjectileTargetStrategy
 ## sets the target(s) based on inputs
 class_name UniversalTargetingProjectileTargetStrategy
 
-enum target_types { Player, Enemy }
+enum target_types { Player, Enemy, Level }
 
 ## preferred type of entety or Node you want to target
 @export var target_type: target_types
@@ -21,9 +21,11 @@ func find_target():
 	var targets: Array[Node]
 	
 	if target_type == target_types.Player:
-		pass
+		targets = get_tree().get_nodes_in_group("Player")
 	elif target_type == target_types.Enemy:
 		targets = get_tree().get_nodes_in_group("Enemy")
+	elif target_type == target_types.Level:
+		targets = get_tree().get_nodes_in_group("Level")
 		#get_closest_Node(targets)
 		#print("getting all targets", targets)
 	

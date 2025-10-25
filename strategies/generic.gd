@@ -4,7 +4,7 @@ extends Node
 ## Base class for all strategies. [color=red]Do not add, doesn't do anything.[/color]
 class_name Strategy
 
-@export var isActive: bool = true
+@export var is_active: bool = true
 
 var parent: CharacterBody3D
 var owning_entity: CharacterBody3D

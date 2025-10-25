@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://by48s6y24lln"]
+[gd_scene load_steps=14 format=3 uid="uid://by48s6y24lln"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_lbbhb"]
 [ext_resource type="Script" uid="uid://l8142vs0gken" path="res://strategies/projectile_target/universal.gd" id="2_3h78m"]
 [ext_resource type="Script" uid="uid://b322w7peeh246" path="res://strategies/projectile_movement/move_to_target.gd" id="4_8du5w"]
+[ext_resource type="Script" uid="uid://dnehu1gqacmbw" path="res://strategies/event/destroy_node.gd" id="5_32qv8"]
 [ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="5_gvak7"]
 [ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="6_0xi6p"]
+[ext_resource type="Script" uid="uid://d13s0cgbc5iq0" path="res://strategies/event/deactivate.gd" id="6_yfe6o"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="7_xmnuf"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_50pph"]
 
@@ -25,7 +27,7 @@ lifetime = 20.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/MoveToTargetProjectileMovementStrategy")]
 targeting = [NodePath("TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
-on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy")]
+on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy"), NodePath("EventStrategies/OnHit/DestroyNodeEventStrategy"), NodePath("EventStrategies/OnHit/DeactivateEventStrategy")]
 on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
@@ -47,6 +49,16 @@ metadata/_custom_type_script = "uid://b322w7peeh246"
 [node name="MarkTargetAsHitTargetsEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
 script = ExtResource("5_gvak7")
 metadata/_custom_type_script = "uid://ucohirynb0xg"
+
+[node name="DestroyNodeEventStrategy" type="Node" parent="EventStrategies/OnHit" index="1" node_paths=PackedStringArray("nodes")]
+script = ExtResource("5_32qv8")
+nodes = [NodePath("../../../tmp_visuals/CSGBox3D")]
+metadata/_custom_type_script = "uid://dnehu1gqacmbw"
+
+[node name="DeactivateEventStrategy" type="Node" parent="EventStrategies/OnHit" index="2" node_paths=PackedStringArray("strats")]
+script = ExtResource("6_yfe6o")
+strats = [NodePath("../../../MovementStrategies/MoveToTargetProjectileMovementStrategy")]
+metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
 
 [node name="OnCreated" type="Node" parent="EventStrategies" index="5"]
 

@@ -3,11 +3,12 @@ extends EventStrategy
 class_name DeactivateEventStrategy
 
 ## Add Node pool inside this Array
-@export var nodes: Array[Node]:
+@export var strats: Array[Node]:
 	set(new_value):
-		nodes = new_value
+		strats = new_value
 
 func event_triggered(_data):
-	for n in nodes:
+	for n in strats:
 		#n.hide()
 		n.is_active = false
+		set_process(false)

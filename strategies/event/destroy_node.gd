@@ -1,6 +1,6 @@
 extends EventStrategy
 ## Removes the node when event is called
-class_name ActivateEventStrategy
+class_name DestroyNodeEventStrategy
 
 ## Add Node pool inside this Array
 @export var nodes: Array[Node]:
@@ -9,6 +9,4 @@ class_name ActivateEventStrategy
 
 func event_triggered(_data):
 	for n in nodes:
-		#n.show()
-		n.is_active = true
-		set_process(true)
+		n.queue_free()
