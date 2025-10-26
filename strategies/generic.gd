@@ -13,6 +13,9 @@ var owning_entity: CharacterBody3D
 func _setup(_parent: Node, _owner: Node) -> void:
 	parent = _parent
 	owning_entity = _owner
+	
+	if not is_active:
+		self.set_process(false)
 
 ## Helper function to set up all strategies in an array
 static func _setup_array(_arr: Array, _parent: Node, _owner: Node):
