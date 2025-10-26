@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8i5p1aqn6t04"]
+[gd_scene load_steps=17 format=3 uid="uid://c8i5p1aqn6t04"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_qimiv"]
 [ext_resource type="Script" uid="uid://l8142vs0gken" path="res://strategies/projectile_target/universal.gd" id="2_e7nm6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ciibuj5lu0oho" path="res://strategies/projectile_movement/artillery_move_to_target.gd" id="4_oehk6"]
 [ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="4_rw8u3"]
 [ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="5_0r34h"]
+[ext_resource type="Script" uid="uid://00ua1d2dsp1k" path="res://strategies/event/bounce.gd" id="5_upmae"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="6_b55m7"]
 [ext_resource type="Script" uid="uid://dnehu1gqacmbw" path="res://strategies/event/destroy_node.gd" id="6_upmae"]
 [ext_resource type="Script" uid="uid://d13s0cgbc5iq0" path="res://strategies/event/deactivate.gd" id="7_4gdau"]
@@ -24,11 +25,12 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqng7"]
 albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 
-[node name="MultiTargetProjectile" node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_hit", "on_created") instance=ExtResource("1_qimiv")]
+[node name="MultiTargetProjectile" node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_world_collision", "on_hit", "on_created") instance=ExtResource("1_qimiv")]
 lifetime = 20.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/MoveToTargetProjectileMovementStrategy"), NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
 targeting = [NodePath("TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/BounceEventStrategy")]
 on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy"), NodePath("EventStrategies/OnHit/DestroyNodeEventStrategy"), NodePath("EventStrategies/OnHit/DeactivateEventStrategy"), NodePath("EventStrategies/OnHit/ActivateEventStrategy")]
 on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
 
@@ -53,6 +55,11 @@ script = ExtResource("4_oehk6")
 amplitude = 0.7
 is_active = false
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
+
+[node name="BounceEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" node_paths=PackedStringArray("ray_cast")]
+script = ExtResource("5_upmae")
+ray_cast = NodePath("../../../RayCast3D")
+metadata/_custom_type_script = "uid://00ua1d2dsp1k"
 
 [node name="MarkTargetAsHitTargetsEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
 script = ExtResource("4_rw8u3")
@@ -90,7 +97,11 @@ metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 script = ExtResource("6_b55m7")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="Hitbox" parent="." index="4" instance=ExtResource("7_qm0fq")]
+[node name="RayCast3D" type="RayCast3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+target_position = Vector3(0, 0, -0.5)
+
+[node name="Hitbox" parent="." index="5" instance=ExtResource("7_qm0fq")]
 collision_layer = 4
 collision_mask = 64
 individual_hit_limit = 1
@@ -100,7 +111,7 @@ can_hit = 7
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
 shape = SubResource("BoxShape3D_5h5ko")
 
-[node name="tmp_visuals" type="Node3D" parent="." index="5"]
+[node name="tmp_visuals" type="Node3D" parent="." index="6"]
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="tmp_visuals" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
