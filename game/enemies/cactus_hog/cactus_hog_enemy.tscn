@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5hdpq54o462t"]
+[gd_scene load_steps=12 format=3 uid="uid://b5hdpq54o462t"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_c2tdt"]
+[ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="2_jrk2f"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_xfdg2"]
+[ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="4_c2tdt"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="5_eagit"]
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="5_leyq8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_0es7d"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_g5j0o"]
@@ -29,15 +32,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928938, -0.0283241)
 hide_when_full_after = 0.5
 
 [node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("MoveTowardsPlayer")
+initial_state = NodePath("MoveRandomOnNavMeshState")
 
-[node name="MoveTowardsPlayer" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_jrk2f")
+target = 1
+offset = null
+max_radius = 2.0
+next_state = NodePath("../MoveRandomOnNavMeshState")
+metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
+
+[node name="MoveTowardsPlayer" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_xfdg2")
 wait_time = 0.0
 stop_distance = 0.1
-next_state = NodePath(".")
+next_state = NodePath("../TeleportToOnNavMeshState")
 animation_trigger = "walk"
 metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="FleeFromPlayerState" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_c2tdt")
+time_based = true
+target_flee_time = 1.0
+debug_show_path = true
+next_state = NodePath("../TeleportToOnNavMeshState")
+metadata/_custom_type_script = "uid://mycfudgv475a"
+
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_eagit")
+debug_show_path = true
+next_state = NodePath("../TeleportToOnNavMeshState")
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 
 [node name="Hurtbox" parent="." index="3" instance=ExtResource("6_0es7d")]
 collision_layer = 64
