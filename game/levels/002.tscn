@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ca1d4hdexrjh6"]
+[gd_scene load_steps=23 format=3 uid="uid://ca1d4hdexrjh6"]
 
 [ext_resource type="PackedScene" uid="uid://bmc2la5fkmscu" path="res://game/levels/base_level.tscn" id="1_dqrpd"]
 [ext_resource type="PackedScene" uid="uid://n5wktu2htysm" path="res://game/level_obstacles/obstacle1x1.tscn" id="2_cg8yi"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="11_7b3cs"]
 [ext_resource type="PackedScene" uid="uid://bd6al6p5ch00v" path="res://assets/models/bush/bush_prefab.tscn" id="11_f022y"]
 [ext_resource type="PackedScene" uid="uid://dja7e38qqqhkd" path="res://assets/models/jungle_tree/jungel_tree_prefab.tscn" id="13_f022y"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/sniper/sniper_enemy.tscn" id="14_6hwer"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_3fmnc"]
 vertices = PackedVector3Array(0.75, 0.5, -0.75, 1, 0.5, 0, 4.5, 0.5, 0, 4.5, 0.5, -4.5, -4.5, 0.5, 0, -0.75, 0.5, 0, -0.5, 0.5, -0.75, -4.5, 0.5, -4.5, 0.5, 0.5, 1, 4.5, 0.5, 4.5, -0.5, 0.5, 1, -4.5, 0.5, 4.5)
@@ -69,6 +70,7 @@ size = Vector3(10, 1, 10)
 
 [node name="Obstacle" parent="NavigationRegion3D" index="1" instance=ExtResource("2_cg8yi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+collision_mask = 1
 
 [node name="PlayerSpawnMarker" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5663033)
@@ -281,16 +283,16 @@ transform = Transform3D(0.5289084, 0, -0.2806101, -0.07025916, 0.5796659, -0.132
 [node name="Cliffs" type="Node3D" parent="." index="9"]
 
 [node name="Box" parent="." index="10" instance=ExtResource("11_7b3cs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0511228, 0, 1.7162309)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2805463, 0, -3.6929135)
 
 [node name="Box2" parent="." index="11" instance=ExtResource("11_7b3cs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2629008, 0, 0.8730111)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7542888, 0, -3.8932714)
 
 [node name="Box3" parent="." index="12" instance=ExtResource("11_7b3cs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2744808, 0, -1.2575574)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8667488, 0, -3.8556418)
 
 [node name="Box4" parent="." index="13" instance=ExtResource("11_7b3cs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.352063, 0, -1.845015)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27797318, 0, -3.7628713)
 
 [node name="jungel_tree_01" parent="." index="14" instance=ExtResource("13_f022y")]
 transform = Transform3D(-0.15236492, 0, -0.9883243, 0, 1, 0, 0.9883243, 0, -0.15236492, -4.2851343, 4.7683716e-07, -5.9678)
@@ -300,3 +302,19 @@ transform = Transform3D(-0.15236492, 0, -0.9883243, 0, 1, 0, 0.9883243, 0, -0.15
 
 [node name="jungel_tree_03" parent="." index="16" instance=ExtResource("13_f022y")]
 transform = Transform3D(0.6957374, 0, 0.71829635, 0, 1, 0, -0.71829635, 0, 0.6957374, -2.8961265, 0, -5.3745217)
+
+[node name="SniperEnemy" parent="." index="17" instance=ExtResource("14_6hwer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0191555, 0, 3.5473495)
+ignore_enemy_in_level = true
+
+[node name="SniperEnemy2" parent="." index="18" instance=ExtResource("14_6hwer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0542126, 0, 3.788385)
+ignore_enemy_in_level = true
+
+[node name="SniperEnemy3" parent="." index="19" instance=ExtResource("14_6hwer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.122428, 0, -4.10289)
+ignore_enemy_in_level = true
+
+[node name="SniperEnemy4" parent="." index="20" instance=ExtResource("14_6hwer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8791704, 0, -4.099765)
+ignore_enemy_in_level = true

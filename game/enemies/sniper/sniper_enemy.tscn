@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://b865xrtojih3l"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jj26d"]
+[ext_resource type="PackedScene" uid="uid://dtxcbfvali8ib" path="res://assets/characters/enemies/peacock/peacock_prefab.tscn" id="2_3n5vt"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_4ah3n"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="2_qcoba"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_4ah3n"]
+[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/sniper/sniper_projectile_enemy.tscn" id="4_3xlw0"]
+[ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="6_yptkn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lrmx"]
+radius = 0.2421875
+height = 0.5961914
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qcoba"]
+radius = 0.26123047
+height = 0.7426758
+
+[node name="SniperEnemy" node_paths=PackedStringArray("hurtbox", "node_with_animation_tree") instance=ExtResource("1_jj26d")]
+hurtbox = NodePath("HurtBox")
+node_with_animation_tree = NodePath("Visuals/peacock")
+
+[node name="Healthbar3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90527487, -0.07545662)
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("LookAtPlayerState")
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_4ah3n")
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_qcoba")
+start_delay = 0.3
+next_state = NodePath("../LookAtPlayerState")
+animation_trigger = "attack"
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0"]
+script = ExtResource("3_4ah3n")
+entity_to_spawn = ExtResource("4_3xlw0")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="peacock" parent="Visuals" index="0" instance=ExtResource("2_3n5vt")]
+
+[node name="HurtBox" type="Area3D" parent="." index="4"]
+collision_layer = 65
+collision_mask = 5
+script = ExtResource("6_yptkn")
+attached_to = 7
+can_be_hit_by = 3
+metadata/_custom_type_script = "uid://b327yqkxkrliq"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27905273, 0)
+shape = SubResource("CapsuleShape3D_6lrmx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3322754, 0)
+shape = SubResource("CapsuleShape3D_qcoba")
+debug_color = Color(0.6433014, 0.4436161, 0.73155004, 0.41960785)

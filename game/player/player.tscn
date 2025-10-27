@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cwx4ps7nr715s" path="res://game/healthbar/healthbar.tscn" id="7_anr75"]
 [ext_resource type="PackedScene" uid="uid://ixi64aeuij20" path="res://game/player/weapons/dagger/dagger.tscn" id="9_5ghna"]
 [ext_resource type="PackedScene" uid="uid://bqoqtx6dcidh2" path="res://game/player/weapons/hit_and_run/hit_and_run_attack.tscn" id="9_j0mij"]
-[ext_resource type="PackedScene" path="res://game/ui/pause_menu.tscn" id="10_j0mij"]
+[ext_resource type="PackedScene" uid="uid://bocn6gw8p7uuq" path="res://game/ui/pause_menu.tscn" id="10_j0mij"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.25
@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://pv70hoylokg6"
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_b2mth")
-base_speed = 2.0
+base_speed = 3.0
 eumling_visuals = NodePath("Eumling_Survivor")
 spawner = NodePath("TestingSpawner")
 inv = ExtResource("2_gb4gm")
@@ -85,10 +85,10 @@ autostart = true
 [node name="hit_and_run_attack" parent="." node_paths=PackedStringArray("rotation_parent", "player") instance=ExtResource("9_j0mij")]
 rotation_parent = NodePath("../Eumling_Survivor")
 player = NodePath("..")
-enabled = true
 
 [node name="dagger" parent="." node_paths=PackedStringArray("rotation_parent") instance=ExtResource("9_5ghna")]
 rotation_parent = NodePath("../Eumling_Survivor")
+enabled = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 visible = false
