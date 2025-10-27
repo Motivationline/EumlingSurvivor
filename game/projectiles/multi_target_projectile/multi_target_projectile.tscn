@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://by48s6y24lln"]
+[gd_scene load_steps=13 format=3 uid="uid://by48s6y24lln"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_lbbhb"]
 [ext_resource type="Script" uid="uid://l8142vs0gken" path="res://strategies/projectile_target/universal.gd" id="2_3h78m"]
 [ext_resource type="Script" uid="uid://b322w7peeh246" path="res://strategies/projectile_movement/move_to_target.gd" id="4_8du5w"]
 [ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="5_gvak7"]
 [ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="6_0xi6p"]
+[ext_resource type="Script" uid="uid://beikha7j587u7" path="res://strategies/event/snap_to_target.gd" id="6_i3e5b"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="7_xmnuf"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_50pph"]
 
@@ -26,7 +27,7 @@ hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/MoveToTargetProjectileMovementStrategy")]
 targeting = [NodePath("TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
 on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy")]
-on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
+on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy"), NodePath("EventStrategies/OnCreated/SnapToTargetEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_5h5ko")
@@ -54,6 +55,10 @@ metadata/_custom_type_script = "uid://ucohirynb0xg"
 script = ExtResource("6_0xi6p")
 targeting_strats = [NodePath("../../../TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
+
+[node name="SnapToTargetEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="1"]
+script = ExtResource("6_i3e5b")
+metadata/_custom_type_script = "uid://beikha7j587u7"
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="6"]
 script = ExtResource("7_xmnuf")
