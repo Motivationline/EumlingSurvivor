@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bclxhfmk8hmfi"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jhi1l"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_3utvs"]
+[ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="3_vgowq"]
+
+[node name="BaseEnemy" instance=ExtResource("1_jhi1l")]
+
+[node name="Healthbar3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4826612, 0)
+
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveTowardsPlayerState")
+
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_3utvs")
+stop_distance = 0.1
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="BossBugger" parent="Visuals" index="0" instance=ExtResource("3_vgowq")]

@@ -1,15 +1,90 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvbt5bpffucle"]
+[gd_scene load_steps=11 format=3 uid="uid://cvbt5bpffucle"]
 
 [ext_resource type="PackedScene" uid="uid://by41qcd1ukb23" path="res://assets/characters/enemies/bossbugger/BossBugger.glb" id="1_kivi1"]
+[ext_resource type="Shader" uid="uid://5x2ftmf5e728" path="res://game/shared/lquid_shader/liquid_shader.gdshader" id="2_lvjto"]
+[ext_resource type="Script" uid="uid://pxwowh6vn2b7" path="res://assets/characters/enemies/bossbugger/liquid_wobble.gd" id="3_vkxpk"]
+
+[sub_resource type="Gradient" id="Gradient_vkxpk"]
+colors = PackedColorArray(0.3272901, 0.11730001, 0.69, 1, 0.75333357, 0.26, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_djlvw"]
+gradient = SubResource("Gradient_vkxpk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_url60"]
+render_priority = 0
+shader = ExtResource("2_lvjto")
+shader_parameter/liquid_height = 0.23
+shader_parameter/liquid_surface_color = Color(0.8693332, 0.44, 1, 1)
+shader_parameter/liquid_rim_gradient = SubResource("GradientTexture1D_djlvw")
+shader_parameter/rim_emission_intensity = 0.814000038665
+shader_parameter/rim_exponent = 3.0
+shader_parameter/emission_intensity = 0.1
+shader_parameter/liquid_surface_gradient_size = 0.1
+shader_parameter/wobble = Vector2(1.285992e-06, 3.4455923e-07)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vkxpk"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vkxpk"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_djlvw"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_url60"]
+states/Start/position = Vector2(212, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_vkxpk")
+states/idle/position = Vector2(407, 101)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_djlvw")]
 
 [node name="BossBugger" instance=ExtResource("1_kivi1")]
 
 [node name="Skeleton3D" parent="Armature_001" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5508739, -0.1314758, 0.09425163)
-bones/0/rotation = Quaternion(-2.1073426e-08, 0.7071068, 0.7071068, -2.1073426e-08)
-bones/1/position = Vector3(-1.1706507e-07, 2.292947e-29, 1.964026)
-bones/1/rotation = Quaternion(-0.013380027, -0.7069801, 0.7069802, -0.013380093)
-bones/2/rotation = Quaternion(0.9976152, 0.069021374, -7.531786e-08, -5.210969e-09)
-bones/4/rotation = Quaternion(-2.4836542e-08, -1.2003412e-07, 0.1408873, 0.9900257)
-bones/20/rotation = Quaternion(-0.5476138, 0.4655411, -0.5678056, -0.40123263)
-bones/23/rotation = Quaternion(-0.3650847, 0.60556865, -0.6055683, -0.36508486)
+bones/0/position = Vector3(3.6608788e-37, 1.5107346, -4.2211253e-22)
+bones/0/rotation = Quaternion(0.99646163, 1.1365011e-09, -4.553389e-08, -0.08404934)
+bones/1/rotation = Quaternion(1, -2.2204466e-16, -7.54979e-08, -1.7514199e-22)
+bones/5/rotation = Quaternion(-0.24784467, 3.777685e-09, 3.66664e-08, 0.9687998)
+bones/6/rotation = Quaternion(-0.16554058, 1.0071379e-14, -4.3717884e-14, 0.9862031)
+bones/7/rotation = Quaternion(-0.16554067, -1.7322949e-14, 6.276269e-14, 0.986203)
+bones/8/rotation = Quaternion(-0.1655406, 1.070579e-14, -6.3628905e-14, 0.986203)
+bones/9/rotation = Quaternion(-0.3454889, -1.38703746e-14, -4.7610306e-14, 0.9384229)
+bones/10/rotation = Quaternion(-0.34548897, -4.7213074e-14, 6.253974e-14, 0.9384229)
+bones/11/rotation = Quaternion(-0.3454889, 2.1462707e-14, -5.082871e-14, 0.9384229)
+bones/12/rotation = Quaternion(-0.3454889, -1.2985381e-14, 8.237094e-08, 0.9384228)
+bones/13/rotation = Quaternion(-0.43745503, 2.1976295e-14, -1.097451e-08, 0.89924026)
+bones/14/rotation = Quaternion(-0.43745542, -6.6331807e-09, -1.4201288e-08, 0.8992401)
+bones/15/rotation = Quaternion(-0.4374548, -6.633117e-09, -1.4201403e-08, 0.89924043)
+bones/16/rotation = Quaternion(-0.4374552, -6.63318e-09, -1.4201388e-08, 0.8992402)
+bones/17/rotation = Quaternion(0.6799702, -0.00059758837, 0.0006833132, 0.73323923)
+bones/18/rotation = Quaternion(0.7250312, 0.18070522, 0.21930592, 0.6273598)
+bones/19/rotation = Quaternion(-0.4482501, 0.46257576, -0.5691232, -0.51107186)
+bones/22/rotation = Quaternion(-0.37417156, 0.47766775, -0.7109109, -0.3555768)
+bones/23/rotation = Quaternion(0.009057703, 7.921549e-08, -8.784009e-09, 0.99995905)
+bones/24/rotation = Quaternion(0.009057696, -1.1439226e-09, -2.0404593e-07, 0.99995905)
+bones/25/rotation = Quaternion(0.6799702, 0.00059764844, -0.00068338186, 0.73323923)
+bones/26/rotation = Quaternion(0.7275995, -0.16082557, -0.19749373, 0.6369697)
+bones/27/rotation = Quaternion(0.20613426, -0.6517438, 0.33630842, 0.64779264)
+bones/31/rotation = Quaternion(0.4068571, 0.5057172, -0.53115046, 0.54460675)
+bones/34/rotation = Quaternion(0.3741715, 0.47766766, -0.7109111, 0.35557678)
+
+[node name="Cube_084" parent="Armature_001/Skeleton3D" index="8"]
+visible = false
+material_override = SubResource("ShaderMaterial_url60")
+cast_shadow = 0
+script = ExtResource("3_vkxpk")
+liquid_height = 2.32
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" index="15"]
+transform = Transform3D(1, 5.3892255e-09, 2.3796397e-07, 3.45468e-08, 0.98587126, -0.16750386, -2.3550459e-07, 0.16750385, 0.9858713, -1.4625922e-11, 1.508059, -0.00045459185)
+bone_name = "DEF_FLUID"
+bone_idx = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armature_001/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(1, -6.208427e-08, 8.1328295e-09, 6.183291e-08, 0.95868754, -0.28446186, 9.863726e-09, 0.28446168, 0.95868754, 7.614168e-09, 0.50160086, -0.009195544)
+material_override = SubResource("ShaderMaterial_url60")
+mesh = SubResource("SphereMesh_vkxpk")
+script = ExtResource("3_vkxpk")
+liquid_height = 0.23
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_url60")
+anim_player = NodePath("../AnimationPlayer")
