@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://d2dyolx2gtknx"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://d2dyolx2gtknx"]
 
 [sub_resource type="AudioEffectEQ" id="AudioEffectEQ_j3pel"]
 resource_name = "EQ"
@@ -12,6 +12,10 @@ band_db/3200_hz = -9.0
 resource_name = "HardLimiter"
 ceiling_db = -2.23
 
+[sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_g28q7"]
+resource_name = "HardLimiter"
+ceiling_db = -2.23
+
 [resource]
 bus/1/name = &"Music"
 bus/1/solo = false
@@ -21,7 +25,7 @@ bus/1/volume_db = -11.214649
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectEQ_j3pel")
 bus/1/effect/0/enabled = true
-bus/2/name = &"SFX"
+bus/2/name = &"SFXGeneral"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
@@ -29,3 +33,11 @@ bus/2/volume_db = -1.068181
 bus/2/send = &"Master"
 bus/2/effect/0/effect = SubResource("AudioEffectHardLimiter_j3pel")
 bus/2/effect/0/enabled = true
+bus/3/name = &"SFXEnemies"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = -6.5451865
+bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectHardLimiter_g28q7")
+bus/3/effect/0/enabled = true

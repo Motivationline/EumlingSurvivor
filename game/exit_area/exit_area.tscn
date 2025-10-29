@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bml0rn4uxx07g"]
 
-[ext_resource type="Script" uid="uid://ct7skgiecn1pc" path="res://game/exit_area/exit_area.gd" id="1_47e78"]
-[ext_resource type="PackedScene" uid="uid://be1fw7kjvhpof" path="res://game/exit_area/exit_trunk.tscn" id="1_tkqdu"]
+[ext_resource type="Script" path="res://game/exit_area/exit_area.gd" id="1_47e78"]
+[ext_resource type="PackedScene" path="res://game/exit_area/exit_trunk.tscn" id="1_tkqdu"]
 [ext_resource type="PackedScene" uid="uid://cy2tlb6wedycd" path="res://game/sound/base_logic/sfx/manager/sound_effect_manager.tscn" id="3_47e78"]
 [ext_resource type="AudioStream" uid="uid://jdj6s0mg7a6p" path="res://game/sound/sfx_assets/exit_area/chime.wav" id="4_gva8b"]
 [ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://game/sound/sfx_assets/exit_area/leaves_receding_1.wav" id="5_2dq3v"]
@@ -379,12 +379,12 @@ debug_sound = "Leaves"
 [node name="Chime" type="AudioStreamPlayer" parent="SoundEffectManager"]
 stream = ExtResource("4_gva8b")
 volume_db = -2.627
-bus = &"SFX"
+bus = &"SFXGeneral"
 
 [node name="Leaves" type="AudioStreamPlayer3D" parent="SoundEffectManager"]
 stream = SubResource("AudioStreamRandomizer_mu12n")
 panning_strength = 2.0
-bus = &"SFX"
+bus = &"SFXGeneral"
 attenuation_filter_cutoff_hz = 20500.0
 
 [editable path="Visuals/exit_trunk"]
