@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfqnaivntys0e"]
+
+[ext_resource type="Texture2D" uid="uid://ffv67kyamkbk" path="res://assets/ui/PopUpScribble.png" id="1_21ds8"]
+[ext_resource type="Script" uid="uid://ue6huoujxb8w" path="res://game/ui/styleTest/pop_up_style_test.gd" id="1_bjd0j"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="2_07g4t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cctgu"]
+shader = ExtResource("2_07g4t")
+shader_parameter/lod = 3.0000001425
+
+[node name="PopUpStyleTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bjd0j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cctgu")
+layout_mode = 0
+offset_left = -7.0
+offset_top = -6.0
+offset_right = 1927.0
+offset_bottom = 1091.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(963, 539)
+texture = ExtResource("1_21ds8")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl3hpe8wdba2d"]
+
+[ext_resource type="Script" uid="uid://dv26knavapap1" path="res://game/ui/styleTest/upgrade_picker_style_test.gd" id="1_3f0a7"]
+[ext_resource type="Texture2D" uid="uid://d0dya41qlby3l" path="res://assets/ui/UpgradePickerScribble.png" id="1_uexpu"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="2_lp33e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4v8v"]
+shader = ExtResource("2_lp33e")
+shader_parameter/lod = 3.0000001425
+
+[node name="UpgradePickerStyleTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3f0a7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_n4v8v")
+layout_mode = 0
+offset_left = -6.0
+offset_top = -3.0
+offset_right = 1924.0
+offset_bottom = 1087.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 542)
+texture = ExtResource("1_uexpu")

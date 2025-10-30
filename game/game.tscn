@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bck4sy6x58mj2"]
+[gd_scene load_steps=19 format=3 uid="uid://bck4sy6x58mj2"]
 
 [ext_resource type="Script" uid="uid://332o24o22ksb" path="res://game/game.gd" id="1_dakft"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="2_dxrkv"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://nugi5hyp3qvw" path="res://assets/ui/joystickInScribble.png" id="4_u5opy"]
 [ext_resource type="PackedScene" uid="uid://nfg4d3b33sns" path="res://game/ui/upgrade_view.tscn" id="5_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://uyyg1ut65j1" path="res://game/sound/base_logic/music_player/music_player.tscn" id="6_dakft"]
+[ext_resource type="PackedScene" uid="uid://d0caudp08babr" path="res://game/ui/styleTest/PauseMenuStyleTest.tscn" id="7_l8g03"]
+[ext_resource type="PackedScene" uid="uid://bfqnaivntys0e" path="res://game/ui/styleTest/popUpStyleTest.tscn" id="8_j8tme"]
+[ext_resource type="PackedScene" uid="uid://dl3hpe8wdba2d" path="res://game/ui/styleTest/UpgradePickerStyleTest.tscn" id="9_3vho3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p57ef"]
 
@@ -192,6 +195,18 @@ text = "confirm
 
 [node name="MusicPlayer" parent="." groups=["MusicPlayer"] instance=ExtResource("6_dakft")]
 debug = false
+
+[node name="pauseMenuStyleTest" type="CanvasLayer" parent="."]
+
+[node name="PauseMenuStyleTest" parent="pauseMenuStyleTest" instance=ExtResource("7_l8g03")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PopUpStyleTest" parent="CanvasLayer" instance=ExtResource("8_j8tme")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="UpgradePickerStyleTest" parent="CanvasLayer2" instance=ExtResource("9_3vho3")]
 
 [connection signal="requestMusic" from="." to="MusicPlayer" method="_on_game_request_music"]
 [connection signal="text_submitted" from="LevelChoiceOverlay/Control/CenterContainer/VBoxContainer/LineEdit" to="LevelChoiceOverlay" method="_on_line_edit_text_submitted"]
