@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cwx4ps7nr715s"]
 
 [ext_resource type="Script" uid="uid://nkjs6gp505yc" path="res://game/healthbar/healthbar.gd" id="1_oxsi7"]
-[ext_resource type="Texture2D" uid="uid://tyaiqsfrmbee" path="res://assets/ui/HealthbarTop.png" id="2_fv03a"]
+[ext_resource type="Texture2D" uid="uid://bwqbc2owuwa5s" path="res://assets/ui/HealthbarScribble.png" id="2_fv03a"]
 [ext_resource type="Texture2D" uid="uid://cwf5ihgu2x5k5" path="res://assets/ui/HealthbarBottom.png" id="3_tue3n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hoxgt"]
@@ -35,10 +35,11 @@ script = ExtResource("1_oxsi7")
 [node name="DamageBar" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
-offset_top = 7.0
-offset_right = 320.0
-offset_bottom = 39.0
-scale = Vector2(0.98983854, 0.51376766)
+offset_left = 8.0
+offset_top = 27.0
+offset_right = 328.0
+offset_bottom = 59.0
+scale = Vector2(1.484506, 0.23763804)
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_hoxgt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_o76um")
@@ -48,10 +49,11 @@ show_percentage = false
 [node name="HealthBar" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
-offset_top = 7.0
-offset_right = 320.0
-offset_bottom = 39.0
-scale = Vector2(0.98983854, 0.51376766)
+offset_left = 8.0
+offset_top = 27.0
+offset_right = 328.0
+offset_bottom = 59.0
+scale = Vector2(1.484506, 0.23763804)
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_2fanj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sxu8y")
@@ -64,14 +66,15 @@ one_shot = true
 
 [node name="UpperDecoration" type="TextureRect" parent="."]
 layout_mode = 1
-offset_left = 3.0
+offset_left = -4.0
 offset_top = -9.0
-offset_right = 1599.0
-offset_bottom = 94.0
+offset_right = 2566.8088
+offset_bottom = 242.28207
 scale = Vector2(0.195, 0.195)
 texture = ExtResource("2_fv03a")
 
 [node name="LowerDecoration" type="TextureRect" parent="UpperDecoration"]
+visible = false
 layout_mode = 0
 offset_left = 605.1282
 offset_top = 174.35901

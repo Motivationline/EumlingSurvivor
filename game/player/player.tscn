@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=15 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cwx4ps7nr715s" path="res://game/healthbar/healthbar.tscn" id="7_anr75"]
 [ext_resource type="PackedScene" uid="uid://ixi64aeuij20" path="res://game/player/weapons/dagger/dagger.tscn" id="9_5ghna"]
 [ext_resource type="PackedScene" uid="uid://bqoqtx6dcidh2" path="res://game/player/weapons/hit_and_run/hit_and_run_attack.tscn" id="9_j0mij"]
+[ext_resource type="Texture2D" uid="uid://bpmqv2iso808a" path="res://assets/ui/PauseButtonScribble.png" id="9_uv2nh"]
 [ext_resource type="PackedScene" uid="uid://bocn6gw8p7uuq" path="res://game/ui/pause_menu.tscn" id="10_j0mij"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
@@ -65,18 +66,34 @@ grow_vertical = 2
 
 [node name="Healthbar" parent="CanvasLayer/Control" instance=ExtResource("7_anr75")]
 layout_mode = 1
-offset_left = 172.0
-offset_top = 87.99999
-offset_right = 172.0
-offset_bottom = 87.99999
-scale = Vector2(2.2946465, 2.2946465)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -752.0
+offset_top = 31.0
+offset_right = -752.0
+offset_bottom = 31.0
+grow_horizontal = 2
+scale = Vector2(3.047281, 2.2488232)
 hide_when_full_after = -1.0
 hide_initially = false
 
 [node name="PauseButton" type="TextureButton" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(1808, 40.000004)
+scale = Vector2(0.5889311, 0.5889311)
+texture = ExtResource("9_uv2nh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(140.00012, 39)
+scale = Vector2(0.5889311, 0.5889311)
+texture = ExtResource("9_uv2nh")
+flip_h = true
 
 [node name="testTimer" type="Timer" parent="."]
 wait_time = 0.5

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://332o24o22ksb" path="res://game/game.gd" id="1_dakft"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="2_dxrkv"]
-[ext_resource type="Texture2D" uid="uid://byw7xmypgmrn0" path="res://assets/ui/JoystickBG.png" id="3_dakft"]
-[ext_resource type="Texture2D" uid="uid://dkulhpf755fpm" path="res://assets/ui/Joystick.png" id="4_u5opy"]
+[ext_resource type="Texture2D" uid="uid://c3g81j7o6xffx" path="res://assets/ui/joystickOutScribble.png" id="3_dakft"]
+[ext_resource type="Texture2D" uid="uid://nugi5hyp3qvw" path="res://assets/ui/joystickInScribble.png" id="4_u5opy"]
 [ext_resource type="PackedScene" uid="uid://nfg4d3b33sns" path="res://game/ui/upgrade_view.tscn" id="5_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://uyyg1ut65j1" path="res://game/sound/base_logic/music_player/music_player.tscn" id="6_dakft"]
 
@@ -91,7 +91,8 @@ script = ExtResource("1_dakft")
 [node name="TouchJoystickOverlay" type="CanvasLayer" parent="."]
 
 [node name="MovementController" parent="TouchJoystickOverlay" instance=ExtResource("2_dxrkv")]
-position = Vector2(480, 537)
+position = Vector2(418, 612)
+scale = Vector2(1.132587, 1.132587)
 base_texture = ExtResource("3_dakft")
 tip_texture = ExtResource("4_u5opy")
 deadzone_circle = SubResource("CircleShape2D_p57ef")
@@ -110,7 +111,8 @@ up_movement = "up"
 down_movement = "down"
 
 [node name="AttackController" parent="TouchJoystickOverlay" instance=ExtResource("2_dxrkv")]
-position = Vector2(1434, 537)
+position = Vector2(1505, 612)
+scale = Vector2(1.1315652, 1.132587)
 base_texture = ExtResource("3_dakft")
 tip_texture = ExtResource("4_u5opy")
 deadzone_circle = SubResource("CircleShape2D_p57ef")
