@@ -8,7 +8,7 @@ class_name Realistic
 @export var base_damage: float = 1
 @export var base_projectile_amount: int = 1
 @export var base_projectile_speed: float = 2
-@export var base_piercing: int = 100
+@export var base_piercing: int = 0
 
 
 @onready var entity_spawner: EntitySpawner = $EntitySpawner

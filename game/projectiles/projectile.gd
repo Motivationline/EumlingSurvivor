@@ -83,7 +83,7 @@ func setup_player(player: Player):
 	restart_timer()
 
 	# piercing
-	var piercing_amount = Upgrade.apply_all(10, player.get_upgrades_for(Enum.UPGRADE.PIERCING))
+	var piercing_amount = Upgrade.apply_all(0, player.get_upgrades_for(Enum.UPGRADE.PIERCING))
 	var piercing_strat = CountdownEventStrategy.new()
 	piercing_strat.count = piercing_amount + 1
 	on_hit.append(piercing_strat)
