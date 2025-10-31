@@ -2,10 +2,10 @@ extends ProjectileTargetStrategy
 ## sets the target(s) based on inputs
 class_name UniversalTargetingProjectileTargetStrategy
 
-enum target_types { Player, Enemy, Level }
+enum TARGET_TYPES { Player, Enemy, Level }
 
 ## preferred type of entety or Node you want to target
-@export var target_type: target_types
+@export var target_type: TARGET_TYPES
 ## the max distance in that we pick targets from
 @export_range(0,100,0.1) var max_radius: float
 ## the min distance in that we pick targets from
@@ -20,11 +20,11 @@ func find_target():
 	#print("finding targets")
 	var targets: Array[Node]
 	
-	if target_type == target_types.Player:
+	if target_type == TARGET_TYPES.Player:
 		targets = get_tree().get_nodes_in_group("Player")
-	elif target_type == target_types.Enemy:
+	elif target_type == TARGET_TYPES.Enemy:
 		targets = get_tree().get_nodes_in_group("Enemy")
-	elif target_type == target_types.Level:
+	elif target_type == TARGET_TYPES.Level:
 		targets = get_tree().get_nodes_in_group("Level")
 		#get_closest_Node(targets)
 		#print("getting all targets", targets)

@@ -5,7 +5,7 @@ extends State
 ## Ends after teleporting.
 class_name TeleportToOnNavMeshState
 
-enum target_types { PLAYER, TEAMMEMBER, RANDOM, BACK }
+enum TARGET_TYPES { PLAYER, TEAMMEMBER, RANDOM, BACK }
 
 ## How long to wait [b]after[/b] reaching the target location before proceeding to the next state 
 @export var wait_time: float = 1:
@@ -16,7 +16,7 @@ enum target_types { PLAYER, TEAMMEMBER, RANDOM, BACK }
 # tp to random pos in given radius range
 # tp x units back
 # tp to team mate
-@export var target: target_types
+@export var target: TARGET_TYPES
 
 ## used when teleporting to player or team member, to not land inside them
 @export var offset: float = 0.5
@@ -49,12 +49,12 @@ func find_new_target():
 	var tp_position: Vector3 = parent.position
 	
 	match target:
-		target_types.PLAYER:
+		TARGET_TYPES.PLAYER:
 			#print(get_tree().get_nodes_in_group("Player")[0])
 			var near_player = get_tree().get_nodes_in_group("Player")[0].global_position + (Vector3(randf_range(-1, 1),0.0,randf_range(-1, 1)).normalized() * offset)
 			tp_position = get_point_on_map(near_player, 0.2)
 			
-		target_types.RANDOM:
+		TARGET_TYPES.RANDOM:
 			var random_position := Vector3.ZERO
 			var attempts := 0
 			var max_attempts := 100
@@ -70,7 +70,7 @@ func find_new_target():
 			if attempts >= max_attempts:
 				print("Warning: Could not find valid point on navmesh after ", max_attempts, " attempts.")
 	
-		target_types.TEAMMEMBER:
+		TARGET_TYPES.TEAMMEMBER:
 			var group: Array[StringName] = parent.get_groups()
 			#print("group: ",group)
 			var targets = get_tree().get_nodes_in_group(group[0])
@@ -82,7 +82,7 @@ func find_new_target():
 						break
 				tp_position = member.global_position + (Vector3(randf_range(-1, 1),0.0,randf_range(-1, 1)).normalized() * offset)
 		
-		target_types.BACK:
+		TARGET_TYPES.BACK:
 			var back_position = parent.position + (parent.global_transform.basis.z * back) + Vector3(0,0.5,0)
 			tp_position = get_point_on_map(back_position,0.2) * Vector3(1,0,1)
 			#TODO: the npcs only rotate their visuals forward vector never changes
