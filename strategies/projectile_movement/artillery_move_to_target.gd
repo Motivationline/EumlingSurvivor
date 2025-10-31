@@ -48,19 +48,32 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 					target_pos = target.position
 					distance = (target_pos - start_pos).length()
 					isPosLocked = true
+					
+					target_pos.y = 0
+					start_pos.y = 0
 				
-				traveled = (start_pos - parent.position).length()
+				var parent_pos = parent.position
+				parent_pos.y = 0
+				
+				traveled = (start_pos - parent_pos).length()
 				
 				var x = traveled
 				
+				
+				
 				#var y = -(1.0/3.0 * (x * x * x)) + (distance/2.0) * (x * x)
-				var y = -x * x + distance * x
+				var y = -(x * x) + distance * x
+				var gradient = -2 * x + distance
+				print("gradient: ", gradient)
+				#print("x: ",x)
+				#print("y: ", y)
+				#print("distance: ", distance)
 				# make the amplitude based on enemy distance
 				#var dist_rel_amp = distance * amplitude
 				
 				#y *= -dist_rel_amp
 				
 				parent.velocity = new_dir * speed_mag
-				parent.velocity.y = y
-				parent.rotation.y = lerp_angle(parent.rotation.y,atan2(parent.velocity.x,parent.velocity.z),_delta* rotation_speed)
+				parent.position.y = y
+				parent.rotation.y = tan(1/gradient)
 				parent.rotation.x = lerp_angle(parent.rotation.x, atan2(-parent.velocity.y, -parent.velocity.z), _delta * rotation_speed)
