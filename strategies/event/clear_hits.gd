@@ -1,5 +1,5 @@
 extends EventStrategy
-## Removes the node when event is called
+## clears the hit array
 class_name ClearHitsEventStrategy
 
 func event_triggered(_data):

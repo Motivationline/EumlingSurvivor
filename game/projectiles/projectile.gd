@@ -142,34 +142,26 @@ func _on_created():
 		if strat.is_active:
 			strat.event_triggered(null)
 
-func _set_targets():
+func set_targets():
+	print("setting targets")
 	for t in targeting:
 		if t.is_active:
 			t.find_target()
+	print("targets: ", targets)
 
-func _get_targets():
+func get_targets():
 	return targets
 
-func _add_hit(_hit: Node):
+func add_hit(_hit: Node):
 	hits.append(_hit)
 
-func _get_hits():
+func get_hits():
 	return hits
 
-func _remove_target(_target: Node):
+func remove_target(_target: Node):
 	if _target in targets:
 		var idx = targets.find(_target)
 		targets.pop_at(idx)
 		
-func _clear_targets():
+func clear_targets():
 	targets = []
-
-# func _clear_targets():
-# 	for t in targeting:
-# 		if t.is_active:
-# 			t.targets.clear()
-
-# func _clear_hits():
-# 	for t in targeting:
-# 		if t.is_active:
-# 			t.hits.clear()

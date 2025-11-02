@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cfyxw5fhwmyyy"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_3ycxt"]
-[ext_resource type="Script" uid="uid://cxrle2kxqucp4" path="res://strategies/projectile_target/closest.gd" id="2_p4q1l"]
+[ext_resource type="Script" uid="uid://l8142vs0gken" path="res://strategies/projectile_target/universal.gd" id="2_p4q1l"]
 [ext_resource type="Script" uid="uid://ciibuj5lu0oho" path="res://strategies/projectile_movement/artillery_move_to_target.gd" id="3_p4q1l"]
 [ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="4_b6orn"]
 [ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="5_6ma20"]
@@ -24,7 +24,7 @@ albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 lifetime = 20.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
-targeting = [NodePath("TargetStrategies/TargetClosestProjectileTargetStrategy")]
+targeting = [NodePath("TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
 on_world_collision = [NodePath("EventStrategies/RemoveEventStrategy")]
 on_hit = [NodePath("EventStrategies/RemoveEventStrategy")]
 on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
@@ -34,28 +34,36 @@ shape = SubResource("BoxShape3D_5h5ko")
 
 [node name="TargetStrategies" type="Node" parent="." index="1"]
 
-[node name="TargetClosestProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
+[node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
 script = ExtResource("2_p4q1l")
-metadata/_custom_type_script = "uid://cxrle2kxqucp4"
+target_type = 1
+max_radius = 100.0
+max_targets = 1
+is_active = true
+metadata/_custom_type_script = "uid://l8142vs0gken"
 
 [node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
 script = ExtResource("3_p4q1l")
 amplitude = 3.0
+is_active = true
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
 [node name="MarkTargetAsHitTargetsEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
 script = ExtResource("4_b6orn")
+is_active = true
 metadata/_custom_type_script = "uid://ucohirynb0xg"
 
 [node name="OnCreated" type="Node" parent="EventStrategies" index="5"]
 
 [node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0" node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("5_6ma20")
-targeting_strats = [NodePath("../../../TargetStrategies/TargetClosestProjectileTargetStrategy")]
+targeting_strats = [NodePath("../../../TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
+is_active = true
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="6"]
 script = ExtResource("6_i2kb8")
+is_active = true
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
 [node name="Hitbox" parent="." index="4" instance=ExtResource("7_ly6wf")]

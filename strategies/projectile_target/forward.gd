@@ -4,7 +4,7 @@ class_name TargetForwardProjectileTargetStrategy
 
 func find_target():
 	if parent.targets.is_empty() or parent.targets[0].name != "forward":
-		parent._clear_targets()
+		parent.clear_targets()
 		
 		var forward_target = Node3D.new()
 		forward_target.name = "forward"

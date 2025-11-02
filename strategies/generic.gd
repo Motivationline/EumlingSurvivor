@@ -4,7 +4,13 @@ extends Node
 ## Base class for all strategies. [color=red]Do not add, doesn't do anything.[/color]
 class_name Strategy
 
-@export var is_active: bool = true
+@export var is_active: bool:
+	set(new_value):
+		is_active = new_value
+		if not is_active:
+			self.set_process(false)
+		else:
+			self.set_process(true)
 
 var parent: CharacterBody3D
 var owning_entity: CharacterBody3D
@@ -13,9 +19,6 @@ var owning_entity: CharacterBody3D
 func _setup(_parent: Node, _owner: Node) -> void:
 	parent = _parent
 	owning_entity = _owner
-	
-	if not is_active:
-		self.set_process(false)
 
 ## Helper function to set up all strategies in an array
 static func _setup_array(_arr: Array, _parent: Node, _owner: Node):

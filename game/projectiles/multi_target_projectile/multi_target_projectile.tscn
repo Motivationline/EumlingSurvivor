@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://b322w7peeh246" path="res://strategies/projectile_movement/move_to_target.gd" id="4_8du5w"]
 [ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="5_gvak7"]
 [ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="6_0xi6p"]
-[ext_resource type="Script" uid="uid://beikha7j587u7" path="res://strategies/event/snap_to_target.gd" id="6_i3e5b"]
+[ext_resource type="Script" uid="uid://beikha7j587u7" path="res://strategies/event/look_at_target.gd" id="6_i3e5b"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="7_xmnuf"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_50pph"]
 
@@ -27,7 +27,7 @@ hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/MoveToTargetProjectileMovementStrategy")]
 targeting = [NodePath("TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
 on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy")]
-on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy"), NodePath("EventStrategies/OnCreated/SnapToTargetEventStrategy")]
+on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy"), NodePath("EventStrategies/OnCreated/LookAtTargetEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_5h5ko")
@@ -37,16 +37,19 @@ shape = SubResource("BoxShape3D_5h5ko")
 [node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
 script = ExtResource("2_3h78m")
 target_type = 1
-max_radius = 4.0
-max_targets = 2
+max_radius = 23.5
+max_targets = 3
+is_active = true
 metadata/_custom_type_script = "uid://l8142vs0gken"
 
 [node name="MoveToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
 script = ExtResource("4_8du5w")
+is_active = true
 metadata/_custom_type_script = "uid://b322w7peeh246"
 
 [node name="MarkTargetAsHitTargetsEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
 script = ExtResource("5_gvak7")
+is_active = true
 metadata/_custom_type_script = "uid://ucohirynb0xg"
 
 [node name="OnCreated" type="Node" parent="EventStrategies" index="5"]
@@ -54,10 +57,12 @@ metadata/_custom_type_script = "uid://ucohirynb0xg"
 [node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0" node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("6_0xi6p")
 targeting_strats = [NodePath("../../../TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
+is_active = true
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
-[node name="SnapToTargetEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="1"]
+[node name="LookAtTargetEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="1"]
 script = ExtResource("6_i3e5b")
+is_active = true
 metadata/_custom_type_script = "uid://beikha7j587u7"
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="6"]

@@ -1,11 +1,9 @@
 extends EventStrategy
-## Removes the node when event is called
+## Deactivates the Strategies inside the given Array
 class_name DeactivateEventStrategy
 
 ## Add Node pool inside this Array
-@export var strats: Array[Node]:
-	set(new_value):
-		strats = new_value
+@export var strats: Array[Node]
 
 ## trigger the action after a given delay
 @export var is_delayed: bool = false
@@ -17,6 +15,4 @@ func event_triggered(_data):
 		await get_tree().create_timer(delay).timeout
 	
 	for n in strats:
-		#n.hide()
 		n.is_active = false
-		set_process(false)

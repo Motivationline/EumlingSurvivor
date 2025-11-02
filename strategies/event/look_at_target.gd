@@ -1,6 +1,6 @@
 extends EventStrategy
-## Removes the node when event is called
-class_name SnapToTargetEventStrategy
+## Rotates the parent to face the targets
+class_name LookAtTargetEventStrategy
 
 func event_triggered(_data):
 	if len(parent.targets) > 0:

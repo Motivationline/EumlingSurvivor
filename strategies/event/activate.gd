@@ -1,11 +1,9 @@
 extends EventStrategy
-## Removes the node when event is called
+## Activates the given Strategies from the Array
 class_name ActivateEventStrategy
 
 ## Add Activation Node pool inside this Array
-@export var activate: Array[Node]:
-	set(new_value):
-		activate = new_value
+@export var activate: Array[Node]
 
 ## trigger the action after a given delay
 @export var is_delayed: bool = false
@@ -19,4 +17,3 @@ func event_triggered(_data):
 	for n in activate:
 		#n.show()
 		n.is_active = true
-		set_process(true)

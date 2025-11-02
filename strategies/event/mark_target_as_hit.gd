@@ -1,5 +1,5 @@
 extends EventStrategy
-## Removes the node when event is called
+## Removes Hit entity from Target Array and adds it into the Hit Array
 class_name MarkTargetAsHitTargetsEventStrategy
 
 
@@ -15,8 +15,8 @@ func event_triggered(_data):
 		var hit = arrays_overlap(parent.targets, overlapping)
 		if hit:
 			var i = parent.targets.find(hit)
-			parent._add_hit(hit)
-			parent._remove_target(parent.targets[i])
+			parent.add_hit(hit)
+			parent.remove_target(parent.targets[i])
 
 func arrays_overlap(arr1, arr2):
 	var arr2_dict = {}

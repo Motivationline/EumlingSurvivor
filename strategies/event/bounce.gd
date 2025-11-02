@@ -1,5 +1,5 @@
 extends EventStrategy
-## Removes the node when event is called
+## Makes the projectile bounce off if it hits the Level
 class_name BounceEventStrategy
 
 @export var ray_cast: RayCast3D

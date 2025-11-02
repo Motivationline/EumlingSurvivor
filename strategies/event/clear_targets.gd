@@ -1,5 +1,5 @@
 extends EventStrategy
-## Removes the node when event is called
+## Clears the targets Array
 class_name ClearTargetsEventStrategy
 
 
