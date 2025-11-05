@@ -23,13 +23,16 @@ func _setup(_parent: Node, _owner: Node):
 		is_player = false
 	else:
 		is_player = true
+		
+	start_pos = parent.position
+	
 
 func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: float):
 	#checks if the projectile is fired from the player and adjusts the target accordingly
 	if is_player:
-		if len(parent._get_targets()) > 0:
+		if len(parent.get_targets()) > 0:
 			var target = parent.get_targets()[0]
-			print("Target: ", target)
+			#print("Target: ", target)
 			if target:
 				var speed_mag = parent.velocity.length()
 				var new_dir = lerp(parent.velocity.normalized(), (target.position - parent.position).normalized(), _delta * velocity_change_rate)
@@ -39,7 +42,6 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				#line: player -> targetpos
 				
 				if not isPosLocked:
-					start_pos = parent.position
 					target_pos = target.position
 					distance = (target_pos - start_pos).length()
 					isPosLocked = true
@@ -51,22 +53,14 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				parent_pos.y = 0
 				
 				traveled = (start_pos - parent_pos).length()
-				
+				# x is the amount we already traveled in target position
 				var x = traveled
-				
-				
-				
-				#var y = -(1.0/3.0 * (x * x * x)) + (distance/2.0) * (x * x)
+				# calculate the y-pos for x (how far we traveled to the target) on the parabula
+				# the parabula ranges from start_pos to target_pos
 				var y = -(x * x) + distance * x
+				# calculate the gradient (steigung) at a certain point
+				# we can use the gradient to calculate the angle our projectile should be at on every point
 				var gradient = -2 * x + distance
-				#print("gradient: ", gradient)
-				#print("x: ",x)
-				#print("y: ", y)
-				#print("distance: ", distance)
-				# make the amplitude based on enemy distance
-				#var dist_rel_amp = distance * amplitude
-				
-				#y *= -dist_rel_amp
 				
 				parent.velocity = new_dir * speed_mag
 				parent.position.y = y

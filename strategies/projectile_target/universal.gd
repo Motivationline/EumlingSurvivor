@@ -32,7 +32,7 @@ func find_target():
 	_sort_targets_by_distance(targets)
 	
 	for target in targets:
-		var dist = parent.global_transform.origin.distance_to(target.global_transform.origin)
+		var dist = parent.global_transform.origin.distance_squared_to(target.global_transform.origin)
 		if dist > max_radius or dist < min_radius:
 			var i = targets.find(target)
 			targets.pop_at(i)
@@ -49,11 +49,11 @@ func find_target():
 	parent.targets = targets
 	
 func _sort_targets_by_distance(_targets):
-	_targets.sort_custom(func(a, b): return _sort_by_distance(a, b))
+	_targets.sort_custom(_sort_by_distance)
 	
 func _sort_by_distance(a: Node, b: Node) -> bool:
-	var dist_a = parent.global_transform.origin.distance_to(a.global_transform.origin)
-	var dist_b = parent.global_transform.origin.distance_to(b.global_transform.origin)
+	var dist_a = parent.global_transform.origin.distance_squared_to(a.global_transform.origin)
+	var dist_b = parent.global_transform.origin.distance_squared_to(b.global_transform.origin)
 	return dist_a < dist_b
 
 # returns the closest Node from the given Array
@@ -62,7 +62,7 @@ func get_closest_Node(_nodes: Array[Node]):
 	var closest_dist = INF
 	var enemies: Array[Node] = _nodes
 	for n: Node3D in enemies:
-		var dist = parent.global_position.distance_to(n.global_position)
+		var dist = parent.global_position.distance_squared_to(n.global_position)
 		if dist < closest_dist:
 			closest_dist = dist
 			closest = n

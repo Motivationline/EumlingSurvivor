@@ -132,6 +132,8 @@ func _hit_box_hit(_area):
 	for ev in on_hit:
 		if ev.is_active:
 			ev.event_triggered(_area)
+	_mark_target_as_hit(_area)
+	
 func _hurt_box_hurt(_area):
 	for ev in on_hurt:
 		if ev.is_active:
@@ -143,11 +145,11 @@ func _on_created():
 			strat.event_triggered(null)
 
 func set_targets():
-	print("setting targets")
+	#print("setting targets")
 	for t in targeting:
 		if t.is_active:
 			t.find_target()
-	print("targets: ", targets)
+	#print("targets: ", targets)
 
 func get_targets():
 	return targets
@@ -162,6 +164,24 @@ func remove_target(_target: Node):
 	if _target in targets:
 		var idx = targets.find(_target)
 		targets.pop_at(idx)
+
+func remove_hit(_hit: Node):
+	if _hit in hits:
+		var idx = hits.find(_hit)
+		hits.pop_at(idx)
 		
 func clear_targets():
-	targets = []
+	targets.clear()
+
+func clear_hits():
+	hits.clear()
+	
+# mark target as hit
+
+func _mark_target_as_hit(_area):
+	if len(targets) > 0:
+		var hit = _area.get_parent()
+		if hit:
+			var i = targets.find(hit)
+			add_hit(hit)
+			remove_target(targets[i])

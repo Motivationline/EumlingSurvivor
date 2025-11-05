@@ -1,10 +1,10 @@
 extends ProjectileMovementStrategy
-## Controls the projectiles direction
+## Moves the Projectile to the target
 class_name MoveToTargetProjectileMovementStrategy
 
 ## amount to rotate when directions change
 @export_range(0.0,20.0,0.1) var rotation_speed: float = 15
-## inversed inertia
+## how quick the direction of the velocity changes (grater values = faster)
 @export_range(0.0,50,0.1) var velocity_change_rate: float = 30
 
 var is_player: bool = true

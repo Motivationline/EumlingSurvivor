@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfyxw5fhwmyyy"]
+[gd_scene load_steps=11 format=3 uid="uid://cfyxw5fhwmyyy"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_3ycxt"]
 [ext_resource type="Script" uid="uid://l8142vs0gken" path="res://strategies/projectile_target/universal.gd" id="2_p4q1l"]
 [ext_resource type="Script" uid="uid://ciibuj5lu0oho" path="res://strategies/projectile_movement/artillery_move_to_target.gd" id="3_p4q1l"]
-[ext_resource type="Script" uid="uid://ucohirynb0xg" path="res://strategies/event/mark_target_as_hit.gd" id="4_b6orn"]
 [ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="5_6ma20"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="6_i2kb8"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_ly6wf"]
@@ -47,11 +46,6 @@ script = ExtResource("3_p4q1l")
 amplitude = 3.0
 is_active = true
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
-
-[node name="MarkTargetAsHitTargetsEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
-script = ExtResource("4_b6orn")
-is_active = true
-metadata/_custom_type_script = "uid://ucohirynb0xg"
 
 [node name="OnCreated" type="Node" parent="EventStrategies" index="5"]
 
