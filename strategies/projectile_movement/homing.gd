@@ -27,7 +27,7 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 		target = get_closest_Node(parent, enemies)
 		
 	# checks if the target is in the homing range
-	if target.global_position.distance_to(parent.global_position) <= homing_range:
+	if target.global_position.distance_squared_to(parent.global_position) <= homing_range:
 		var speed_mag = parent.velocity.length()
 		var new_dir = lerp(parent.velocity.normalized(), (target.position - parent.position).normalized(), _delta * velocity_change_rate)
 		#parent.velocity = lerp(parent.velocity, (target.position - parent.position).normalized() * speed, _delta * rotation_speed)
@@ -40,7 +40,7 @@ func get_closest_Node(_target, _nodes: Array[Node]):
 	var closest_dist = INF
 	var enemies: Array[Node] = _nodes
 	for n: Node3D in enemies:
-		var dist = parent.global_position.distance_to(n.global_position)
+		var dist = parent.global_position.distance_squared_to(n.global_position)
 		if dist < closest_dist:
 			closest_dist = dist
 			closest = n
@@ -50,7 +50,7 @@ func get_closest_Node(_target, _nodes: Array[Node]):
 #func node_in_range(_range: float, _target, _nodes: Array[Node]):
 	#var enemies = _nodes
 	#for n: Node3D in enemies:
-		#var dist = _target.global_position.distance_to(n.global_position)
+		#var dist = _target.global_position.distance_squared_to(n.global_position)
 		#if dist < _range:
 			#return true
 	#return false

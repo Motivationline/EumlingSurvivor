@@ -53,5 +53,5 @@ func physics_process(_delta: float) -> State:
 
 func end_condition_reached() -> bool:
 	if (timer.is_stopped()): return true
-	if (start_position.distance_to(parent.global_position) >= max_distance): return true
+	if (start_position.distance_squared_to(parent.global_position) >= max_distance): return true
 	return false
