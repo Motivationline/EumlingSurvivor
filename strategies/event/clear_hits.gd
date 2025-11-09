@@ -3,4 +3,4 @@ extends EventStrategy
 class_name ClearHitsEventStrategy
 
 func event_triggered(_data):
-	parent.hits.clear()
+	parent.clear_hits()

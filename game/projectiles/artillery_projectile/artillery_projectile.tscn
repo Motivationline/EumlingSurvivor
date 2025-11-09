@@ -20,6 +20,7 @@ albedo_color = Color(0, 0, 0, 1)
 albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 
 [node name="ArtilleryTargetProjectile" node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_world_collision", "on_hit", "on_created") instance=ExtResource("1_3ycxt")]
+damage = null
 lifetime = 20.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
@@ -36,6 +37,8 @@ shape = SubResource("BoxShape3D_5h5ko")
 [node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
 script = ExtResource("2_p4q1l")
 target_type = 1
+target_property = 2
+target_sorter = 3
 max_radius = 100.0
 max_targets = 1
 is_active = true
@@ -43,7 +46,6 @@ metadata/_custom_type_script = "uid://l8142vs0gken"
 
 [node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
 script = ExtResource("3_p4q1l")
-amplitude = 3.0
 is_active = true
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 

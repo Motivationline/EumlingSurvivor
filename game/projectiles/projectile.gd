@@ -148,7 +148,7 @@ func set_targets():
 	#print("setting targets")
 	for t in targeting:
 		if t.is_active:
-			t.find_target()
+			targets = t.find_target()
 	#print("targets: ", targets)
 
 func get_targets():

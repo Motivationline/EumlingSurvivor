@@ -17,9 +17,8 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqng7"]
 albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 
-[node name="RealisticProjectile" node_paths=PackedStringArray("hit_box", "on_world_collision") instance=ExtResource("1_25de7")]
+[node name="RealisticProjectile" node_paths=PackedStringArray("hit_box") instance=ExtResource("1_25de7")]
 hit_box = NodePath("Hitbox")
-on_world_collision = [NodePath("EventStrategies/TimerEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_5h5ko")

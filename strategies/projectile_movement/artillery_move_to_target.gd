@@ -6,8 +6,6 @@ class_name ArtilleryToTargetProjectileMovementStrategy
 @export_range(0.0,20.0,0.1) var rotation_speed: float = 15
 ## how quick the direction of the velocity changes (grater values = faster)
 @export_range(0.0,50,0.1) var velocity_change_rate: float = 30
-## factor to increase/decrease the arch of the flight path
-@export_range(0.0,3,0.1) var amplitude: float = 0.1
 
 var isPosLocked: bool = false
 var start_pos: Vector3
