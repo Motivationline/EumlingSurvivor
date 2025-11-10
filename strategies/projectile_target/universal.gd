@@ -36,9 +36,15 @@ func find_target():
 	
 	match target_property:
 		TARGET_PROPERTIES.HIT:
-			pass
+			for target in targets:
+				if target.health == target.max_health:
+					var idx = targets.find(target)
+					targets.pop_at(idx)
 		TARGET_PROPERTIES.NEW:
-			pass
+			for target in targets:
+				if target.health <= target.max_health:
+					var idx = targets.find(target)
+					targets.pop_at(idx)
 		TARGET_PROPERTIES.BOTH:
 			pass
 	
@@ -51,20 +57,19 @@ func find_target():
 			targets = Utils.sort_array_by_distance(targets, parent)
 		TARGET_SORTERS.FARTHEST:
 			targets = Utils.sort_array_by_distance(targets, parent)
-			print(targets)
 			targets = targets.slice(len(targets)-1, 0, -1)
-			print(targets)
 		TARGET_SORTERS.STRONGEST:
-			pass
+			targets.sort_custom(sort_by_strength)
 		TARGET_SORTERS.WEAKEST:
-			pass
+			targets.sort_custom(sort_by_strength)
+			targets = targets.slice(len(targets)-1, 0, -1)
 	
 	# check if the targets are in the given min-/max-radius range, remove others
 	for target in targets:
 		var dist = parent.global_transform.origin.distance_squared_to(target.global_transform.origin)
 		if dist > max_radius or dist < min_radius:
-			var i = targets.find(target)
-			targets.pop_at(i)
+			var idx = targets.find(target)
+			targets.pop_at(idx)
 	
 	# remove everything thats over the max_targets count
 	if len(targets) > max_targets:
@@ -72,3 +77,8 @@ func find_target():
 	#print("slicing targets", targets)
 	
 	return targets
+
+static func sort_by_strength(a: Node, b: Node) -> bool:
+	var health_a = a.health
+	var health_b = b.health
+	return health_a < health_b
