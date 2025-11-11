@@ -2,8 +2,8 @@ extends EventStrategy
 ## Activates the given Strategies from the Array
 class_name ActivateEventStrategy
 
-## Add Activation Node pool inside this Array
-@export var activate: Array[Node]
+## Add Activation Strategy pool inside this Array
+@export var activate: Array[Strategy]
 
 ## trigger the action after a given delay
 @export var is_delayed: bool = false
