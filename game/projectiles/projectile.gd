@@ -182,6 +182,6 @@ func _mark_target_as_hit(_area):
 	if len(targets) > 0:
 		var hit = _area.get_parent()
 		if hit:
-			var i = targets.find(hit)
+			#var i = targets.find(hit)
 			add_hit(hit)
-			remove_target(targets[i])
+			#remove_target(targets[i])

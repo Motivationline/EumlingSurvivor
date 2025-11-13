@@ -37,14 +37,22 @@ func find_target():
 	match target_property:
 		TARGET_PROPERTIES.HIT:
 			for target in targets:
-				if target.health == target.max_health:
+				if not parent.hits.has(target):
 					var idx = targets.find(target)
 					targets.pop_at(idx)
+			#for target in targets:
+				#if target.health == target.max_health:
+					#var idx = targets.find(target)
+					#targets.pop_at(idx)
 		TARGET_PROPERTIES.NEW:
 			for target in targets:
-				if target.health <= target.max_health:
+				if parent.hits.has(target):
 					var idx = targets.find(target)
 					targets.pop_at(idx)
+			#for target in targets:
+				#if target.health <= target.max_health:
+					#var idx = targets.find(target)
+					#targets.pop_at(idx)
 		TARGET_PROPERTIES.BOTH:
 			pass
 	
