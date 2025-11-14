@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://7xwuetluroys"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_6s86c"]
+[ext_resource type="Texture2D" uid="uid://4y6nssbe0rcr" path="res://assets/characters/enemies/bomberry/bomberry_DefaultMaterial_Base_color.png" id="2_yerxr"]
+
+[sub_resource type="Gradient" id="Gradient_6s86c"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.627451)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yerxr"]
+gradient = SubResource("Gradient_6s86c")
+
+[sub_resource type="Gradient" id="Gradient_yerxr"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7708333)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0tkb3"]
+gradient = SubResource("Gradient_yerxr")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6s86c")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_yerxr")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_yerxr")
+shader_parameter/specular_focus = 0.5
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_0tkb3")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true
