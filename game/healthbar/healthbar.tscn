@@ -1,34 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwx4ps7nr715s"]
+[gd_scene load_steps=7 format=3 uid="uid://cwx4ps7nr715s"]
 
 [ext_resource type="Script" uid="uid://nkjs6gp505yc" path="res://game/healthbar/healthbar.gd" id="1_oxsi7"]
 [ext_resource type="Texture2D" uid="uid://bwqbc2owuwa5s" path="res://assets/ui/HealthbarScribble.png" id="2_fv03a"]
 [ext_resource type="Texture2D" uid="uid://cwf5ihgu2x5k5" path="res://assets/ui/HealthbarBottom.png" id="3_tue3n"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hoxgt"]
-bg_color = Color(0.0648083, 0.11, 0.0165, 0.505882)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 4.0
-expand_margin_top = 4.0
-expand_margin_right = 4.0
-expand_margin_bottom = 4.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o76um"]
 bg_color = Color(1, 0.64, 0.1, 1)
+border_width_left = 2
+border_width_top = 12
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.5871439, 0.36244202, 5.7756904e-07, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fanj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxu8y"]
 bg_color = Color(0.24495, 0.69, 0.069, 1)
+border_width_left = 2
+border_width_top = 12
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(6.858632e-07, 0.43135667, 1.92523e-07, 1)
 
 [node name="Healthbar" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 4.0
 offset_top = 9.0
-offset_right = 44.0
+offset_right = 502.0
 offset_bottom = 49.0
 script = ExtResource("1_oxsi7")
 
@@ -36,12 +35,10 @@ script = ExtResource("1_oxsi7")
 z_index = 10
 layout_mode = 1
 offset_left = 8.0
-offset_top = 27.0
 offset_right = 328.0
-offset_bottom = 59.0
+offset_bottom = 145.0
 scale = Vector2(1.484506, 0.23763804)
 mouse_filter = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_hoxgt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_o76um")
 value = 70.0
 show_percentage = false
@@ -50,9 +47,8 @@ show_percentage = false
 z_index = 10
 layout_mode = 1
 offset_left = 8.0
-offset_top = 27.0
 offset_right = 328.0
-offset_bottom = 59.0
+offset_bottom = 145.0
 scale = Vector2(1.484506, 0.23763804)
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_2fanj")
@@ -65,6 +61,7 @@ wait_time = 0.4
 one_shot = true
 
 [node name="UpperDecoration" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 offset_left = -4.0
 offset_top = -9.0
