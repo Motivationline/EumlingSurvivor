@@ -1,0 +1,178 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjdgq0enp4rhi"]
+
+[ext_resource type="Script" uid="uid://b80rxujvjbxg0" path="res://game/aoes/aoe.gd" id="1_vbyxs"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_i8aay"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vbyxs"]
+height = 0.17663574
+radius = 0.98876953
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8aay"]
+albedo_color = Color(0.827451, 0.5803922, 0.019607844, 1)
+metallic = 0.17
+metallic_specular = 0.69
+roughness = 0.41
+emission_enabled = true
+emission = Color(0.66851515, 0.3961391, 0.058238998, 1)
+grow_amount = 0.01
+
+[sub_resource type="Animation" id="Animation_vbyxs"]
+resource_name = "Honey_Spawn"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGCylinder3D:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0, 2, 2),
+"points": PackedFloat32Array(0.25, 0, 0, 0, 0.35519528, 1, -0.13333333, -0.0045211315, 0.6555556, 0, 1.05, -0.6555556, 0, 0.25555557, 0, 0.2, -0.099999905, 0.24480478, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 2.2333333, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGCylinder3D:scale:z")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 2, 2),
+"points": PackedFloat32Array(0.25, 0, 0, 0, 0.36054164, 1, -0.13333333, -0.009867489, 0.6555556, 0, 1.05, -0.6555556, 0, 0.25555557, 0, 0.2, -0.10364652, 0.25015116, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 2.2333333, 3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CSGCylinder3D:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2),
+"points": PackedFloat32Array(0.05, 0, 0, 0.7444445, 0, 0.05, -0.7444445, 0, 0.25555557, 0, -0.05, -0.23697972, 0.08848216, 0, 0),
+"times": PackedFloat32Array(0, 2.2333333, 3)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Hitbox/CollisionShape3D:shape:radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 2.2333333, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.26171875, 0.98876953, 0.98876953, 0.23535156]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Hitbox/CollisionShape3D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.9, 2.9333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_i8aay"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGCylinder3D:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGCylinder3D:scale:z")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CSGCylinder3D:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Hitbox/CollisionShape3D:shape:radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.98876953]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Hitbox/CollisionShape3D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i8aay"]
+_data = {
+&"Honey_Spawn": SubResource("Animation_vbyxs"),
+&"RESET": SubResource("Animation_i8aay")
+}
+
+[node name="Honey_AOE_Floor" type="Node3D" node_paths=PackedStringArray("collsion_shape", "visuals")]
+script = ExtResource("1_vbyxs")
+duration = 3.0
+collsion_shape = NodePath("Hitbox/CollisionShape3D")
+visuals = NodePath("Visuals")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_i8aay")]
+collision_layer = 32
+collision_mask = 8
+damage = 0.1
+damage_cooldown = 0.2
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08758545, 0)
+shape = SubResource("CylinderShape3D_vbyxs")
+disabled = true
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+material_override = SubResource("StandardMaterial3D_i8aay")
+radius = 1.0
+height = 0.1
+cone = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
+libraries = {
+&"": SubResource("AnimationLibrary_i8aay")
+}
+autoplay = "Honey_Spawn"

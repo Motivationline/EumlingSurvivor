@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8fl6h51qwtke"]
+
+[ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_23kmn"]
+[ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="2_o3r7l"]
+[ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="3_xxbww"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="4_1q47h"]
+[ext_resource type="PackedScene" uid="uid://he057bxgogh1" path="res://assets/characters/enemies/bee/bee_prefab.tscn" id="4_xxbww"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_irhv4"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="5_kp0cq"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_1q47h"]
+[ext_resource type="PackedScene" uid="uid://cfsoibufbvjrp" path="res://game/projectiles/artillery_honey/honey_bomb.tscn" id="7_limpd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1q47h"]
+size = Vector3(0.69140625, 0.8754883, 0.63623047)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_limpd"]
+radius = 0.27676392
+height = 0.55352783
+
+[node name="Bee" type="CharacterBody3D" node_paths=PackedStringArray("healthbar", "hurtbox", "state_machine")]
+collision_layer = 16
+script = ExtResource("1_23kmn")
+health = 10.0
+healthbar = NodePath("Healthbar3D")
+hurtbox = NodePath("Hurtbox")
+state_machine = NodePath("StateMachine")
+
+[node name="Healthbar3D" parent="." instance=ExtResource("2_o3r7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.5)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_xxbww")
+initial_state = NodePath("LookAtPlayerState")
+metadata/_custom_type_script = "uid://cio21hucnk80k"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_1q47h")
+wait_time = 3.0
+speed_override = 0.0
+speed_override_active = true
+next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = "idle"
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_irhv4")
+start_delay = 0.8
+next_state = NodePath("../LookAtPlayerState")
+animation_trigger = "artillery"
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState"]
+script = ExtResource("6_1q47h")
+entity_to_spawn = ExtResource("7_limpd")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="Eventlisteners" type="Node" parent="."]
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="Bee" parent="Visuals" instance=ExtResource("4_xxbww")]
+
+[node name="Hurtbox" parent="." instance=ExtResource("5_kp0cq")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34448242, -0.04711914)
+shape = SubResource("BoxShape3D_1q47h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2737732, 0)
+shape = SubResource("CapsuleShape3D_limpd")

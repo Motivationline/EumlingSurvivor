@@ -1,0 +1,198 @@
+[gd_scene load_steps=20 format=3 uid="uid://cfsoibufbvjrp"]
+
+[ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_ue552"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_ssm1l"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="3_6f8i2"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_egfvy"]
+[ext_resource type="Script" uid="uid://b4v4ykq5jgbug" path="res://strategies/projectile_movement/rotate_to_velocity.gd" id="3_sb88r"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_sb88r"]
+[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="4_tjydd"]
+[ext_resource type="Shader" uid="uid://5lep1if814ha" path="res://assets/vfx/projectile_realistic/shader_vfx_realistic.tres" id="5_q2vro"]
+[ext_resource type="PackedScene" uid="uid://bjdgq0enp4rhi" path="res://game/aoes/honey_aoe_floor/honey_aoe_floor.tscn" id="6_sb88r"]
+
+[sub_resource type="Curve" id="Curve_tjydd"]
+_limits = [0.0, 2.0, 0.0, 2.0]
+_data = [Vector2(2, 2), 6.355853, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ue552"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ssm1l"]
+radius = 0.26604587
+
+[sub_resource type="SphereMesh" id="SphereMesh_aw1i8"]
+radius = 0.1
+height = 0.2
+radial_segments = 32
+rings = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6f8i2"]
+albedo_color = Color(0.9529412, 0.69803923, 0.16078432, 0)
+emission_enabled = true
+emission = Color(0.83137256, 0.6039216, 0.20784314, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sb88r"]
+render_priority = -1
+next_pass = SubResource("StandardMaterial3D_6f8i2")
+shader = ExtResource("4_tjydd")
+shader_parameter/ball_color = Color(1, 0.2901961, 0, 1)
+shader_parameter/frensel_power = 3.1
+shader_parameter/visibility = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_07kx1"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_sb88r")
+shader = ExtResource("5_q2vro")
+shader_parameter/Final_Color = Color(1, 0.92941177, 0.16078432, 1)
+shader_parameter/fire_speed = Vector2(0.05, 0.05)
+shader_parameter/visibilty = 1.0
+
+[sub_resource type="Animation" id="Animation_sb88r"]
+resource_name = "UpAndDown"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.1, 1.1031572, 2.5, -0.5333333, -0.038546324, 0.76666665, -0.124204636, 0, 0, 0.34446895, 0, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.06666667, 0.1, 1.9000001, 1.9333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.06666667, 0.10000001, 1.9000001, 1.9333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_07kx1"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_07kx1"]
+_data = {
+&"RESET": SubResource("Animation_07kx1"),
+&"UpAndDown": SubResource("Animation_sb88r")
+}
+
+[node name="Honey_Bomb" type="CharacterBody3D" node_paths=PackedStringArray("hit_box", "movement", "on_end_of_life")]
+collision_layer = 128
+script = ExtResource("1_ue552")
+hit_box = NodePath("Hitbox")
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_end_of_life = [NodePath("EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy")]
+
+[node name="MovementStrategies" type="Node" parent="."]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies"]
+script = ExtResource("2_ssm1l")
+speed = SubResource("Curve_tjydd")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="RotateToVelocityProjectileMovementStrategy" type="Node" parent="MovementStrategies"]
+script = ExtResource("3_sb88r")
+metadata/_custom_type_script = "uid://b4v4ykq5jgbug"
+
+[node name="EventStrategies" type="Node" parent="."]
+
+[node name="OnWorldCollision" type="Node" parent="EventStrategies"]
+
+[node name="OnHit" type="Node" parent="EventStrategies"]
+
+[node name="OnHurt" type="Node" parent="EventStrategies"]
+
+[node name="OnEndOfLife" type="Node" parent="EventStrategies"]
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnEndOfLife"]
+script = ExtResource("3_6f8i2")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy"]
+script = ExtResource("4_sb88r")
+entity_to_spawn = ExtResource("6_sb88r")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="OnRemove" type="Node" parent="EventStrategies"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ue552")
+disabled = true
+
+[node name="Hitbox" parent="." instance=ExtResource("3_egfvy")]
+collision_layer = 32
+collision_mask = 8
+damage = 1.0
+individual_hit_limit = 1
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_ssm1l")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("SphereMesh_aw1i8")
+surface_material_override/0 = SubResource("ShaderMaterial_07kx1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_07kx1")
+}
+autoplay = "UpAndDown"
