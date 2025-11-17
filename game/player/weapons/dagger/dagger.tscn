@@ -19,6 +19,7 @@ rotation_strategy = SubResource("Resource_uqof2")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="attacktimer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [connection signal="timeout" from="attacktimer" to="." method="_on_attacktimer_timeout"]
