@@ -38,6 +38,8 @@ var possible_upgrades: Array[Upgrade] = [
 	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 1.25),
 ]
 
+var anim_player: AnimationTree
+
 func _ready() -> void:
 	add_to_group("Player")
 	max_health = base_health
@@ -47,6 +49,8 @@ func _ready() -> void:
 	if (healthbar): healthbar.init_health(max_health)
 	if (hurtbox): hurtbox.hurt_by.connect(hurt_by)
 	if (weapon): weapon.setup(self)
+
+	anim_player = eumling_visuals.find_child("AnimationTree")
 
 func hurt_by(_area: HitBox):
 	health -= _area.damage
@@ -58,15 +62,32 @@ func hurt_by(_area: HitBox):
 	# 	await get_tree().create_timer(0.1, true, true, true).timeout
 	# 	Engine.time_scale = 1
 
+var prev_direction: Vector3
+
 func _physics_process(_delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
 	var direction_3d = Vector3(direction.x, 0, direction.y)
 	velocity = direction_3d * speed
 	move_and_slide()
+
+	if direction_3d.is_zero_approx():
+		anim_player.set("parameters/conditions/run", false)
+		anim_player.set("parameters/conditions/idle", true)
+	else:
+		anim_player.set("parameters/conditions/run", true)
+		anim_player.set("parameters/conditions/idle", false)
+		prev_direction = direction_3d
+
 	
 	var look_direction = Input.get_vector("attack_left", "attack_right", "attack_up", "attack_down")
-	if (!look_direction.is_zero_approx()):
+	if look_direction.is_zero_approx():
+		anim_player.set("parameters/conditions/attack", false)
+		if not prev_direction.is_zero_approx():
+			eumling_visuals.look_at(global_position + prev_direction)
+	else:
 		eumling_visuals.look_at(global_position + Vector3(look_direction.x, 0, look_direction.y))
+		anim_player.set("parameters/conditions/attack", true)
+	
 	
 	if (weapon): weapon.physics_process(_delta)
 
@@ -106,3 +127,8 @@ func get_possible_upgrades() -> Array[Upgrade]:
 	var upgrades = weapon.get_possible_upgrades().duplicate()
 	upgrades.append_array(possible_upgrades)
 	return upgrades
+
+## TODOs
+# only shoot while input is given
+# in direction of input
+# i-frames
