@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=16 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bqoqtx6dcidh2" path="res://game/player/weapons/hit_and_run/hit_and_run_attack.tscn" id="9_j0mij"]
 [ext_resource type="Texture2D" uid="uid://bpmqv2iso808a" path="res://assets/ui/PauseButtonScribble.png" id="9_uv2nh"]
 [ext_resource type="PackedScene" uid="uid://bocn6gw8p7uuq" path="res://game/ui/pause_menu.tscn" id="10_j0mij"]
+[ext_resource type="PackedScene" uid="uid://cctgxhumux0fs" path="res://game/player/weapons/shoot_on_command/shoot_on_command.tscn" id="12_n270p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.25
@@ -105,7 +106,10 @@ player = NodePath("..")
 
 [node name="dagger" parent="." node_paths=PackedStringArray("rotation_parent") instance=ExtResource("9_5ghna")]
 rotation_parent = NodePath("../Eumling_Survivor")
+
+[node name="shoot_on_command" parent="." node_paths=PackedStringArray("rotation_parent") instance=ExtResource("12_n270p")]
 enabled = true
+rotation_parent = NodePath("../Eumling_Survivor")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 visible = false

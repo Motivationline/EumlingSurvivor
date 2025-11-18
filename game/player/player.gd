@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
+@onready var shoot_on_command: Node3D = $shoot_on_command
+
 @export var base_speed: float = 5.0
 var speed: float
 @export var base_health: float = 10.0
@@ -87,6 +89,7 @@ func _physics_process(_delta: float) -> void:
 	else:
 		eumling_visuals.look_at(global_position + Vector3(look_direction.x, 0, look_direction.y))
 		anim_player.set("parameters/conditions/attack", true)
+		shoot_on_command.try_to_shoot()
 	
 	
 	if (weapon): weapon.physics_process(_delta)
