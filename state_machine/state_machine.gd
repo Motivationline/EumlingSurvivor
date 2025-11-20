@@ -15,6 +15,8 @@ var current_state: State
 
 var parent: CharacterBody3D
 
+signal consumed_resource(amount: float)
+
 func setup(_parent: CharacterBody3D, _animation_tree: AnimationTree):
 	parent = _parent
 	for child in get_children():
@@ -35,9 +37,13 @@ func physics_process(delta: float):
 func switch_to_state(next_state: State):
 	if (!next_state): return
 
-	if (current_state): current_state.exit()
+	if (current_state):
+		current_state.exit()
+		if current_state.consumed_resource.is_connected(consume_resources):
+			current_state.consumed_resource.disconnect(consume_resources)
 
 	current_state = next_state
+	current_state.consumed_resource.connect(consume_resources)
 	current_state.enter()
 
 
@@ -77,3 +83,6 @@ func _get_all_states(_node: Node) -> Array[State]:
 		if (child.get_child_count() > 0):
 			states.append_array(_get_all_states(child))
 	return states
+
+func consume_resources(amount: float):
+	consumed_resource.emit(amount)

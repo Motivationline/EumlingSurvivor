@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bclxhfmk8hmfi"]
+[gd_scene load_steps=18 format=3 uid="uid://bclxhfmk8hmfi"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jhi1l"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_3utvs"]
+[ext_resource type="Script" uid="uid://d08yjq57yklyp" path="res://game/enemies/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_ectag"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="3_vgowq"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_fi40l"]
@@ -29,9 +30,11 @@ height = 2.6362305
 radius = 0.2553711
 height = 2.4926758
 
-[node name="BaseEnemy" node_paths=PackedStringArray("hurtbox", "node_with_animation_tree") instance=ExtResource("1_jhi1l")]
+[node name="BossBugger" node_paths=PackedStringArray("hurtbox", "node_with_animation_tree") instance=ExtResource("1_jhi1l")]
 collision_layer = 64
 collision_mask = 65
+script = ExtResource("2_unkqv")
+MAX_FILL = 100.0
 hurtbox = NodePath("HurtBox")
 node_with_animation_tree = NodePath("Visuals/BossBugger")
 

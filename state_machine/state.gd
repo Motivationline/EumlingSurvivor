@@ -19,6 +19,12 @@ class_name State
 		update_configuration_warnings()
 var current_iteration: int = 0
 
+## If the enemy has a resource, how much of that resource this state costs.
+## Depending on the state, this will get consumed at different points (or not at all if we didn't implement it yet)
+@export var resource_cost: float = 0.0
+signal consumed_resource(amount: float)
+var consume_resource_on_enter: bool = false
+
 ## Set up a trigger for your animation transition here and it will get triggered when this state starts.
 @export var animation_trigger: String
 
@@ -33,6 +39,7 @@ func setup(_parent: Enemy, _animation: AnimationTree) -> void:
 ## Called every time the state is set to be the active state
 func enter() -> void:
 	if (anim_player && animation_trigger): anim_player.set("parameters/conditions/" + animation_trigger, true)
+	if consume_resource_on_enter: consume_resource()
 	pass
 
 ## Called every time the state is no longer the active state
@@ -65,3 +72,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func get_possible_next_states() -> Array[State]:
 	return [next_state]
+
+func consume_resource():
+	consumed_resource.emit(resource_cost)

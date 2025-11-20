@@ -36,6 +36,7 @@ func physics_process(_delta: float) -> State:
 func wait():
 	if random:
 		wait_time = randf_range(min_wait_time, max_wait_time)
+	consume_resource()
 	await get_tree().create_timer(wait_time).timeout
 	done = true
 	

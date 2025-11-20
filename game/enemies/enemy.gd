@@ -43,6 +43,7 @@ class_name Enemy
 
 var max_health: float
 var reset_timer: Timer
+var resource: float = 0.0
 
 func _ready() -> void:
 	max_health = health
@@ -50,7 +51,9 @@ func _ready() -> void:
 	if (hitbox): hitbox.hit.connect(_hit)
 	if (hurtbox): hurtbox.hurt_by.connect(_hurt_by)
 
-	if (state_machine): state_machine.setup(self, find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self))
+	if (state_machine): 
+		state_machine.setup(self, find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self))
+		state_machine.consumed_resource.connect(consume_resource)
 
 	Strategy._setup_array(on_death, self, self)
 	Strategy._setup_array(on_hit, self, self)
@@ -96,3 +99,6 @@ func _physics_process(delta: float) -> void:
 func reset_health():
 	if (heal_back_to_full):
 		health = max_health
+
+func consume_resource(amount: float):
+	resource -= amount
