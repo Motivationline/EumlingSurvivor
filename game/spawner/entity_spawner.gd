@@ -23,6 +23,12 @@ signal spawn_finished
 @export_range(0, 60, 0.1) var time_between_bursts: float = 0
 @export_range(0, 100) var amount_of_bursts: int = 1
 
+func _ready() -> void:
+	if (!entity_to_spawn):
+		printerr("%s: No entity to spawn set. Unable to register for shader precompilation." % [name])
+		return
+
+	ShaderPrecompiler.register(entity_to_spawn)
 
 func spawn(_parent: Node3D, _relative_to: Node3D = null):
 	if (!_relative_to): _relative_to = _parent
