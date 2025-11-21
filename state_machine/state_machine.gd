@@ -19,7 +19,7 @@ signal consumed_resource(amount: float)
 
 func setup(_parent: CharacterBody3D, _animation_tree: AnimationTree):
 	parent = _parent
-	for child in get_children():
+	for child in find_children("*", "State"):
 		if (child is State):
 			child.setup(parent, _animation_tree)
 	switch_to_state(initial_state)
