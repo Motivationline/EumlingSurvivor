@@ -49,10 +49,10 @@ func choose_next_state():
 		"RANDOM":
 			next_state = possible_states.pick_random()
 		"HIGHEST":
-			possible_states.sort_custom(func(a, b): return a.cost > b.cost)
+			possible_states.sort_custom(func(a, b): return a.resource_cost > b.resource_cost)
 			next_state = possible_states.front()
 		"LOWEST":
-			possible_states.sort_custom(func(a, b): return a.cost > b.cost)
+			possible_states.sort_custom(func(a, b): return a.resource_cost > b.resource_cost)
 			next_state = possible_states.back()
 
 	done = true
