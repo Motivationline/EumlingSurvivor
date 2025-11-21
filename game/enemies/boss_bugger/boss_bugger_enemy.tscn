@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bclxhfmk8hmfi"]
+[gd_scene load_steps=23 format=3 uid="uid://bclxhfmk8hmfi"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jhi1l"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_3utvs"]
@@ -14,10 +14,20 @@
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_wwgv0"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_fi40l"]
 [ext_resource type="Script" uid="uid://fy4gl1qypbeh" path="res://game/spawner/strategies/target/target_closest_entity.gd" id="9_ojgvi"]
+[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_csjgc"]
+[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_c2xk5"]
 
 [sub_resource type="Resource" id="Resource_unkqv"]
 script = ExtResource("9_ojgvi")
 metadata/_custom_type_script = "uid://fy4gl1qypbeh"
+
+[sub_resource type="Resource" id="Resource_4qoll"]
+script = ExtResource("12_csjgc")
+metadata/_custom_type_script = "uid://yd5ytc70xwp6"
+
+[sub_resource type="Resource" id="Resource_ha4n7"]
+script = ExtResource("13_c2xk5")
+metadata/_custom_type_script = "uid://pv70hoylokg6"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fngux"]
 radius = 0.38916016
@@ -51,7 +61,7 @@ initial_state = NodePath("ChooseStateBasedOnCost")
 script = ExtResource("3_unkqv")
 fallback = NodePath("../Recharge/WaitForTimeXState")
 selection = "RANDOM"
-states = [NodePath("../MeleeAttack/MoveTowardsPlayerState"), NodePath("../TripleShot/Initial Shot")]
+states = [NodePath("../MeleeAttack/MoveTowardsPlayerState"), NodePath("../TripleShot/LookAtPlayerState1"), NodePath("../BigBomba/AimForBig")]
 animation_trigger = "idle"
 metadata/_custom_type_script = "uid://bfy1ig4u2piu5"
 
@@ -65,6 +75,7 @@ speed_override = 2.0
 speed_override_active = true
 debug_show_path = true
 next_state = NodePath("../SpawnEntitiesState")
+resource_cost = 3.0
 animation_trigger = "idle"
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
@@ -97,7 +108,18 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="TripleShot" type="Node" parent="StateMachine" index="3"]
 
-[node name="Initial Shot" type="Node" parent="StateMachine/TripleShot" index="0" node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState1" type="Node" parent="StateMachine/TripleShot" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_aud5x")
+wait_time = 0.15
+rotation_speed = 20.0
+speed_override = 0.0
+speed_override_active = true
+next_state = NodePath("../Initial Shot")
+resource_cost = 3.0
+animation_trigger = "shoot"
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="Initial Shot" type="Node" parent="StateMachine/TripleShot" index="1" node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
 start_delay = 0.5
 next_state = NodePath("../LookAtPlayerState2")
@@ -112,16 +134,17 @@ offset_distance = 1.6
 target_strategy = SubResource("Resource_unkqv")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="LookAtPlayerState2" type="Node" parent="StateMachine/TripleShot" index="1" node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState2" type="Node" parent="StateMachine/TripleShot" index="2" node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_aud5x")
 wait_time = 0.15
+rotation_speed = 20.0
 speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState3")
 animation_trigger = "shoot"
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="SpawnEntitiesState3" type="Node" parent="StateMachine/TripleShot" index="2" node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState3" type="Node" parent="StateMachine/TripleShot" index="3" node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
 start_delay = 0.15
 next_state = NodePath("../LookAtPlayerState3")
@@ -136,16 +159,17 @@ offset_distance = 1.6
 target_strategy = SubResource("Resource_unkqv")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="LookAtPlayerState3" type="Node" parent="StateMachine/TripleShot" index="3" node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState3" type="Node" parent="StateMachine/TripleShot" index="4" node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_aud5x")
 wait_time = 0.15
+rotation_speed = 20.0
 speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState4")
 animation_trigger = "shoot"
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="SpawnEntitiesState4" type="Node" parent="StateMachine/TripleShot" index="4" node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState4" type="Node" parent="StateMachine/TripleShot" index="5" node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
 start_delay = 0.15
 next_state = NodePath("../../ChooseStateBasedOnCost")
@@ -158,6 +182,93 @@ script = ExtResource("4_fi40l")
 entity_to_spawn = ExtResource("8_aud5x")
 offset_distance = 1.6
 target_strategy = SubResource("Resource_unkqv")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="BigBomba" type="Node" parent="StateMachine" index="4"]
+
+[node name="AimForBig" type="Node" parent="StateMachine/BigBomba" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_aud5x")
+wait_time = 0.15
+rotation_speed = 20.0
+speed_override = 0.0
+speed_override_active = true
+next_state = NodePath("../Booom")
+resource_cost = 6.0
+animation_trigger = "shoot"
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="Booom" type="Node" parent="StateMachine/BigBomba" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_ectag")
+start_delay = 0.5
+next_state = NodePath("../AimForBig2")
+resource_cost = 2.0
+animation_trigger = "shoot"
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom" index="0"]
+script = ExtResource("4_fi40l")
+entity_to_spawn = ExtResource("8_aud5x")
+amount_of_spawns = 10
+time_between_entities = 0.001
+offset_distance = 0.6
+target_strategy = SubResource("Resource_4qoll")
+rotation_strategy = SubResource("Resource_ha4n7")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="AimForBig2" type="Node" parent="StateMachine/BigBomba" index="2" node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_aud5x")
+wait_time = 0.15
+rotation_speed = 20.0
+speed_override = 0.0
+speed_override_active = true
+next_state = NodePath("../Booom2")
+animation_trigger = "shoot"
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="Booom2" type="Node" parent="StateMachine/BigBomba" index="3" node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_ectag")
+start_delay = 0.5
+next_state = NodePath("../AimForBig3")
+resource_cost = 2.0
+animation_trigger = "shoot"
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom2" index="0"]
+script = ExtResource("4_fi40l")
+entity_to_spawn = ExtResource("8_aud5x")
+amount_of_spawns = 10
+time_between_entities = 0.001
+offset_distance = 0.6
+target_strategy = SubResource("Resource_4qoll")
+rotation_strategy = SubResource("Resource_ha4n7")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="AimForBig3" type="Node" parent="StateMachine/BigBomba" index="4" node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_aud5x")
+wait_time = 0.15
+rotation_speed = 20.0
+speed_override = 0.0
+speed_override_active = true
+next_state = NodePath("../Booom3")
+animation_trigger = "shoot"
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="Booom3" type="Node" parent="StateMachine/BigBomba" index="5" node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_ectag")
+start_delay = 0.5
+next_state = NodePath("../../ChooseStateBasedOnCost")
+resource_cost = 2.0
+animation_trigger = "shoot"
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom3" index="0"]
+script = ExtResource("4_fi40l")
+entity_to_spawn = ExtResource("8_aud5x")
+amount_of_spawns = 10
+time_between_entities = 0.001
+offset_distance = 0.6
+target_strategy = SubResource("Resource_4qoll")
+rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="BossBugger" parent="Visuals" index="0" instance=ExtResource("3_vgowq")]
