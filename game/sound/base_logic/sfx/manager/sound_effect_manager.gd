@@ -29,7 +29,7 @@ func play_sound(sound_name:String, focus:bool = false):
 	var sound = sound_list[sound_name] 
 	sound.play()
 	if focus:
-		music_player.fade_volume(true,1,)
+		music_player.fade_volume(true,1)
 		await get_tree().create_timer(sound.stream.get_length()-6).timeout
 		music_player.fade_volume(false,2)
 		

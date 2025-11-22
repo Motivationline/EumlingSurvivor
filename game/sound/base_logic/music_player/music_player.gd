@@ -7,13 +7,13 @@ class_name MusicPlayer extends AudioStreamPlayer
 #-implement level change stuff
 
 
-
+var current_track
 enum level {
 MENU, 
-COMBAT, 
-BOSS, 
-CHASE, 
-PARKOUR
+COMBAT_ISLAND, 
+BOSS_GENERIC,
+BOSS_ISLAND, 
+CHASE
 }
 @export var debug:bool
 @onready var debug_ui = $DebugUI
@@ -37,9 +37,12 @@ func debug_list_setup():
 func start_playback(track_name: String):
 	if playing == false:
 		play()
-	get_stream_playback().switch_to_clip_by_name(track_name)
+	if track_name != current_track:
+		get_stream_playback().switch_to_clip_by_name(track_name)
+		
 	#print("clipIndex = ", get_stream_playback().get_current_clip_index())
 	update_track_tail_volume()
+	current_track = track_name
 	
 func queue_random_track():
 	var next_track = random_track()
@@ -51,25 +54,21 @@ func queue_specific_track(level_type:level):
 
 func select_track(level_type:level) -> String:
 	#print(level_type)
-	var selected_track
+	var selected_track = "Menu"
 	match level_type:
 		
 		
 		level.MENU:
-			#print("MENU playing")
 			selected_track = "Menu"
-		level.COMBAT:
-			#print("COMBAT playing")
-			selected_track = "Combat"
-		level.BOSS:
-			#print("BOSS playing")
-			selected_track = "Boss"
+		level.COMBAT_ISLAND:
+			selected_track = "CombatIsland"
+		level.BOSS_GENERIC:
+			selected_track = "BossGeneric"
+		level.BOSS_ISLAND:
+			selected_track = "BossIsland"
 		level.CHASE:
-			#print("CHASE playing")
 			selected_track = "Chase"
-		level.PARKOUR:
-			#print("PARKOUR playing")
-			selected_track = "Parkour"
+
 	
 	
 	return selected_track+" Intro"
@@ -87,9 +86,8 @@ func update_track_tail_volume():
 	
 	await get_tree().create_timer(60).timeout
 	
-	#raise tail volume of next track
 	current_stream_synchronised = get_current_stream_synchronised()
-	#print(current_stream_synchronised.get_sync_stream_volume(1))
+
 	current_stream_synchronised.set_sync_stream_volume(1,0.0)
 	#print(current_stream_synchronised.get_sync_stream_volume(1))
 	#implement reset
