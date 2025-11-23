@@ -8,6 +8,10 @@ class_name Level
 ## An area that when entered by a player after the complete condition is achieved, triggers a "level cleared" call
 @export var goal_area: Area3D
 
+
+@export var music:MusicPlayer.level
+
+
 var cleared: bool = false
 var finished: bool = false
 var ends: bool = false
