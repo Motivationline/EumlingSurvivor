@@ -28,7 +28,11 @@ func _ready() -> void:
 		printerr("%s: No entity to spawn set. Unable to register for shader precompilation." % [name])
 		return
 
-	ShaderPrecompiler.register(entity_to_spawn)
+	ShaderPrecompiler.prewarm(entity_to_spawn)
+
+func _notification(what: int) -> void:
+	if (what == NOTIFICATION_PREDELETE && entity_to_spawn):
+		ShaderPrecompiler.release(entity_to_spawn)
 
 func spawn(_parent: Node3D, _relative_to: Node3D = null):
 	if (!_relative_to): _relative_to = _parent

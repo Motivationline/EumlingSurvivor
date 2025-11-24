@@ -1,14 +1,27 @@
 extends Node3D
 
-var registry: Dictionary[PackedScene, bool]
+# Dictionary mapping PackedScene → instantiated Node (or null if already prewarmed)
+var registry: Dictionary[PackedScene, Node]
 
-func register(_scene: PackedScene):
-	if registry.has(_scene):
+# Prewarm a scene by instantiating it if it hasn’t been prewarmed yet.
+func prewarm(_scene: PackedScene) -> void:
+	if _scene in registry:
 		return
 
-	registry.set(_scene, true)
-	add_child(_scene.instantiate())
-	
-func flush(): # we might need to flush the nodes from memory at some point... but when?
-	for node in get_children():
-		node.queue_free()
+	var instance = _scene.instantiate();
+	registry[_scene] = instance
+	add_child(instance)
+
+# Release the instance of a prewarmed scene, leaving a null entry to mark it handled.
+func release(_scene: PackedScene) -> void:
+	var instance = registry.get(_scene);
+	if !instance:
+		return
+
+	registry[_scene] = null;
+	instance.queue_free();
+
+# Release all active instances while preserving prewarm history.
+func flush() -> void:
+	for scene in registry.keys():
+		release(scene)
