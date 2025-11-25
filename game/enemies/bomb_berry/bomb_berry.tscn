@@ -1,0 +1,122 @@
+[gd_scene load_steps=17 format=3 uid="uid://x2dk7v2g4s7q"]
+
+[ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_7rr5f"]
+[ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="2_efn1f"]
+[ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="3_ikocw"]
+[ext_resource type="PackedScene" uid="uid://b8ns3hl23ic6v" path="res://assets/characters/enemies/bomberry/bomberry_prefab.tscn" id="4_efn1f"]
+[ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="4_rarrg"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="4_xw6l7"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="5_mewqf"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="6_4tpv7"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_xw6l7"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="7_quf04"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="8_2y2qo"]
+[ext_resource type="PackedScene" uid="uid://cir8dxt72i6di" path="res://game/aoes/explosion/berry_explosion_aoe.tscn" id="9_quf04"]
+[ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="10_8c3vi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_055wm"]
+radius = 0.22945888
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rarrg"]
+radius = 0.29065907
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xw6l7"]
+radius = 0.25
+
+[node name="BombBerry" type="CharacterBody3D" node_paths=PackedStringArray("healthbar", "hitbox", "hurtbox", "state_machine", "node_with_animation_tree")]
+collision_layer = 16
+script = ExtResource("1_7rr5f")
+health = 1.0
+speed = 2.0
+healthbar = NodePath("Healthbar3D")
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+state_machine = NodePath("StateMachine")
+node_with_animation_tree = NodePath("Visuals/bomberry")
+
+[node name="Healthbar3D" parent="." instance=ExtResource("2_efn1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.5)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_ikocw")
+initial_state = NodePath("DecideDistanceState")
+metadata/_custom_type_script = "uid://cio21hucnk80k"
+
+[node name="DecideDistanceState" type="Node" parent="StateMachine" node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found")]
+script = ExtResource("4_rarrg")
+distance_to_check = 4.0
+state_if_distance_is_smaller = NodePath("../ChasePlayer/MoveTowardsPlayerState")
+state_if_distance_is_larger = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
+state_if_no_node_found = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
+metadata/_custom_type_script = "uid://b0kknw1o07ha2"
+
+[node name="RandomWalk" type="Node" parent="StateMachine"]
+
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine/RandomWalk" node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_xw6l7")
+wait_time = 0.0
+min_distance = 3.0
+next_state = NodePath("../../DecideDistanceState")
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="ChasePlayer" type="Node" parent="StateMachine"]
+
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/ChasePlayer" node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_4tpv7")
+wait_time = 0.0
+stop_distance = 1.0
+next_state = NodePath("../../Explode/SpawnEntitiesState")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="Explode" type="Node" parent="StateMachine"]
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Explode" node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_quf04")
+start_delay = 1.55
+next_state = NodePath("../KillSelfState")
+animation_trigger = "explode"
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/Explode/SpawnEntitiesState"]
+script = ExtResource("8_2y2qo")
+entity_to_spawn = ExtResource("9_quf04")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="KillSelfState" type="Node" parent="StateMachine/Explode" node_paths=PackedStringArray("next_state")]
+script = ExtResource("10_8c3vi")
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://dj632w22te1th"
+
+[node name="Eventlisteners" type="Node" parent="."]
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="bomberry" parent="Visuals" instance=ExtResource("4_efn1f")]
+
+[node name="Hitbox" parent="." instance=ExtResource("5_mewqf")]
+collision_layer = 32
+collision_mask = 8
+damage = 0.5
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109611675, 0)
+shape = SubResource("SphereShape3D_055wm")
+debug_color = Color(0.96862745, 0, 0, 0.41960785)
+
+[node name="Hurtbox" parent="." instance=ExtResource("6_xw6l7")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15074888, 0)
+shape = SubResource("SphereShape3D_rarrg")
+debug_color = Color(0, 0.6424242, 0.32324392, 0.41960785)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("SphereShape3D_xw6l7")
+disabled = true

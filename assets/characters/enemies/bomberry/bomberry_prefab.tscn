@@ -1,6 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8ns3hl23ic6v"]
+[gd_scene load_steps=7 format=3 uid="uid://b8ns3hl23ic6v"]
 
 [ext_resource type="PackedScene" uid="uid://ca8qbynsv4h1r" path="res://assets/characters/enemies/bomberry/bomberry.glb" id="1_1vqqe"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1vqqe"]
+animation = &"explode"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6y500"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_appcq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ahpr"]
+advance_mode = 2
+advance_condition = &"explode"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_uhlw0"]
+states/Start/position = Vector2(199, 100)
+states/explode/node = SubResource("AnimationNodeAnimation_1vqqe")
+states/explode/position = Vector2(663, 57)
+states/run/node = SubResource("AnimationNodeAnimation_6y500")
+states/run/position = Vector2(446, 100)
+transitions = ["Start", "run", SubResource("AnimationNodeStateMachineTransition_appcq"), "run", "explode", SubResource("AnimationNodeStateMachineTransition_4ahpr")]
 
 [node name="bomberry" instance=ExtResource("1_1vqqe")]
 
@@ -18,3 +39,8 @@ bones/7/position = Vector3(-0.0043226215, 0.05305821, -0.16061457)
 bones/7/rotation = Quaternion(0.6065535, -0.36344594, -0.60655344, -0.36344585)
 bones/9/rotation = Quaternion(-0.7071068, -2.512148e-15, 7.105428e-15, 0.7071068)
 bones/11/rotation = Quaternion(-0.7071068, 2.512148e-15, -7.105428e-15, 0.7071068)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_uhlw0")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/explode = false

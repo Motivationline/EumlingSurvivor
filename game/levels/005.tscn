@@ -4,7 +4,7 @@
 [ext_resource type="MeshLibrary" uid="uid://c1mcxdm7jwk30" path="res://level/tilemap/base_tilemap.tres" id="2_bqlpg"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="3_2vpne"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="4_fm1nv"]
-[ext_resource type="PackedScene" uid="uid://b8fl6h51qwtke" path="res://game/enemies/bee/bee.tscn" id="5_5shha"]
+[ext_resource type="PackedScene" uid="uid://x2dk7v2g4s7q" path="res://game/enemies/bomb_berry/bomb_berry.tscn" id="5_5shha"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_avud8"]
 vertices = PackedVector3Array(-4.75, 1, -2.5, -4.75, 1, -2, -4.5, 1, -2, -4.5, 1, -2.5, -1, 1, -4.5, 1, 1, -4.5, 1, 1, -4.75, -1, 1, -4.75, 4.75, 1, -4.5, -4.5, 1, 4.75, 4.75, 1, 4.75, -4.5, 1, -4.5)
@@ -42,9 +42,21 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="PlayerSpawnMarker" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52699757, 4.020817)
 
+[node name="GoalArea" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
 [node name="ExitArea" parent="." index="6" node_paths=PackedStringArray("parent") instance=ExtResource("4_fm1nv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57012856, -5.938103)
 parent = NodePath("..")
 
-[node name="Bee" parent="." index="7" instance=ExtResource("5_5shha")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3062558, 0.5, 1.7068717)
+[node name="BombBerry" parent="." index="7" instance=ExtResource("5_5shha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.392, 0.5, 1.84)
+
+[node name="BombBerry2" parent="." index="8" instance=ExtResource("5_5shha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4227407, 0.49999952, -2.1353254)
+
+[node name="BombBerry3" parent="." index="9" instance=ExtResource("5_5shha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8166687, 0.5, -2.279986)
+
+[node name="BombBerry4" parent="." index="10" instance=ExtResource("5_5shha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.764539, 0.5, 0.35043573)
