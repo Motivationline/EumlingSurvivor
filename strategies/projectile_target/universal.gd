@@ -36,23 +36,17 @@ func find_target():
 	
 	match target_property:
 		TARGET_PROPERTIES.HIT:
-			for target in targets:
-				if not parent.hits.has(target):
-					var idx = targets.find(target)
-					targets.pop_at(idx)
-			#for target in targets:
-				#if target.health == target.max_health:
-					#var idx = targets.find(target)
-					#targets.pop_at(idx)
+			targets = targets.filter(hits)
+			# for target in targets:
+			# 	if not parent.hits.has(target):
+			# 		var idx = targets.find(target)
+			# 		targets.pop_at(idx)
 		TARGET_PROPERTIES.NEW:
-			for target in targets:
-				if parent.hits.has(target):
-					var idx = targets.find(target)
-					targets.pop_at(idx)
-			#for target in targets:
-				#if target.health <= target.max_health:
-					#var idx = targets.find(target)
-					#targets.pop_at(idx)
+			targets = targets.difference(hits)
+			# for target in targets:
+			# 	if parent.hits.has(target):
+			# 		var idx = targets.find(target)
+			# 		targets.pop_at(idx)
 		TARGET_PROPERTIES.BOTH:
 			pass
 	
@@ -70,14 +64,18 @@ func find_target():
 			targets.sort_custom(sort_by_strength)
 		TARGET_SORTERS.WEAKEST:
 			targets.sort_custom(sort_by_strength)
-			targets = targets.slice(len(targets)-1, 0, -1)
+			targets = targets.reverse()
 	
 	# check if the targets are in the given min-/max-radius range, remove others
-	for target in targets:
-		var dist = parent.global_transform.origin.distance_squared_to(target.global_transform.origin)
-		if dist > max_radius or dist < min_radius:
-			var idx = targets.find(target)
-			targets.pop_at(idx)
+
+	targets = targets.filter(func(target): return parent.global_transform.origin.distance_to(target.global_transform.origin) > max_radius or < min_radius)
+
+	# for target in targets:
+	# 	var dist = parent.global_transform.origin.distance_to(target.global_transform.origin)
+		
+	# 	if dist > max_radius or dist < min_radius:
+	# 		var idx = targets.find(target)
+	# 		targets.pop_at(idx)
 	
 	# remove everything thats over the max_targets count
 	if len(targets) > max_targets:
