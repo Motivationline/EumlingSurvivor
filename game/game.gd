@@ -34,18 +34,18 @@ func load_level():
 		child.queue_free()
 	
 	Engine.time_scale = 0
-	var level_id: String = ""
+	var level_location: String = ""
 	while (true):
 		level_choice_overlay.setup()
-		level_id = await level_choice_overlay.level_chosen
-		var level_location := find_file(level_id + ".tscn", "res://game/levels")
+		var level_id = await level_choice_overlay.level_chosen
+		level_location = find_file(level_id + ".tscn", "res://game/levels")
 		if (level_location != "" and ResourceLoader.exists(level_location)):
 			break
 		else:
 			printerr("Level '%s.tscn' doesn't exist in '/game/levels/' or its subfolders. Try again." % level_id)
 
 	# add new stuff
-	var level_to_load = load("res://game/levels/%s.tscn" % level_id) as PackedScene
+	var level_to_load = load(level_location) as PackedScene
 	if (level_to_load && level_to_load.can_instantiate()):
 		var new_level = level_to_load.instantiate() as Level
 		level_wrapper.add_child(new_level)
