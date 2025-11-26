@@ -36,13 +36,14 @@ func find_target():
 	
 	match target_property:
 		TARGET_PROPERTIES.HIT:
-			targets = targets.filter(hits)
+			targets = targets.filter(parent.hits)
 			# for target in targets:
 			# 	if not parent.hits.has(target):
 			# 		var idx = targets.find(target)
 			# 		targets.pop_at(idx)
 		TARGET_PROPERTIES.NEW:
-			targets = targets.difference(hits)
+			for hit in parent.hits:
+				targets.erase(hit)
 			# for target in targets:
 			# 	if parent.hits.has(target):
 			# 		var idx = targets.find(target)
@@ -64,11 +65,11 @@ func find_target():
 			targets.sort_custom(sort_by_strength)
 		TARGET_SORTERS.WEAKEST:
 			targets.sort_custom(sort_by_strength)
-			targets = targets.reverse()
+			targets.reverse()
 	
 	# check if the targets are in the given min-/max-radius range, remove others
 
-	targets = targets.filter(func(target): return parent.global_transform.origin.distance_to(target.global_transform.origin) > max_radius or < min_radius)
+	targets = targets.filter(func(target): return parent.global_transform.origin.distance_to(target.global_transform.origin) > max_radius or parent.global_transform.origin.distance_to(target.global_transform.origin) < min_radius)
 
 	# for target in targets:
 	# 	var dist = parent.global_transform.origin.distance_to(target.global_transform.origin)

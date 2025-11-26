@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=12 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
-[ext_resource type="PackedScene" uid="uid://cfyxw5fhwmyyy" path="res://game/projectiles/artillery_projectile/artillery_projectile.tscn" id="4_epvkq"]
+[ext_resource type="PackedScene" uid="uid://c8i5p1aqn6t04" path="res://game/projectiles/goofy_test_projectile/goofy_test_projectile.tscn" id="4_5ghna"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="5_4ste8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
 [ext_resource type="PackedScene" uid="uid://cwx4ps7nr715s" path="res://game/healthbar/healthbar.tscn" id="7_anr75"]
 [ext_resource type="PackedScene" uid="uid://bg8awww46vf53" path="res://game/player/weapons/realistic.tscn" id="8_epvkq"]
+[ext_resource type="Script" uid="uid://dms0e1w6iso26" path="res://game/player/weapons/realistic.gd" id="8_j0mij"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.25
@@ -35,7 +36,7 @@ shape = SubResource("CapsuleShape3D_ct7j0")
 [node name="TestingSpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458658, 0)
 script = ExtResource("3_a4w0n")
-entity_to_spawn = ExtResource("4_epvkq")
+entity_to_spawn = ExtResource("4_5ghna")
 offset_distance = 0.1
 rotation_strategy = SubResource("Resource_anr75")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -50,7 +51,10 @@ can_be_hit_by = 6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
-[node name="Realistic" parent="." instance=ExtResource("8_epvkq")]
+[node name="Realistic" type="Node3D" parent="." instance=ExtResource("8_epvkq")]
+script = ExtResource("8_j0mij")
+base_range = 2.0
+base_projectile_speed = 5.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
