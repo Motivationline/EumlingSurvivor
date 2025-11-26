@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://djh7k2agmnhkt"]
+
+[ext_resource type="PackedScene" uid="uid://buaeqphorstgl" path="res://assets/models/beach/stone_v2.glb" id="1_kryoc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhdkl"]
+albedo_color = Color(0.40069774, 0.40069774, 0.40069768, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7viq3"]
+radius = 0.66938406
+
+[node name="stone_v2" instance=ExtResource("1_kryoc")]
+
+[node name="rock_001" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fhdkl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07861668, 0.39405167, 0)
+shape = SubResource("SphereShape3D_7viq3")

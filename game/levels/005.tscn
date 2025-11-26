@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://32lig2iwki40"]
+[gd_scene load_steps=13 format=3 uid="uid://32lig2iwki40"]
 
 [ext_resource type="PackedScene" uid="uid://bmc2la5fkmscu" path="res://game/levels/base_level.tscn" id="1_5shha"]
 [ext_resource type="MeshLibrary" uid="uid://c1mcxdm7jwk30" path="res://level/tilemap/base_tilemap.tres" id="2_bqlpg"]
@@ -12,6 +12,37 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 agent_radius = 0.25
 agent_max_climb = 0.0
 edge_max_error = 0.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wbp8f"]
+size = Vector3(1.9667969, 1.8048096, 1)
+
+[sub_resource type="Gradient" id="Gradient_gxtsi"]
+offsets = PackedFloat32Array(0.25613078, 0.3133515, 0.373297)
+colors = PackedColorArray(0.32156864, 0.46666667, 0.58431375, 1, 0.68235296, 0.7372549, 0.7882353, 1, 0.6292534, 0.85100484, 0.81591386, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_weh0f"]
+gradient = SubResource("Gradient_gxtsi")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vfi3j"]
+panorama = SubResource("GradientTexture2D_weh0f")
+
+[sub_resource type="Sky" id="Sky_826sl"]
+sky_material = SubResource("PanoramaSkyMaterial_vfi3j")
+
+[sub_resource type="Environment" id="Environment_weh0f"]
+background_mode = 2
+background_color = Color(0.2772, 0.67144, 0.77, 1)
+sky = SubResource("Sky_826sl")
+ambient_light_source = 2
+ambient_light_color = Color(0.774, 0.8727, 0.9, 1)
+tonemap_mode = 4
+glow_enabled = true
+glow_intensity = 0.2
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.51
 
 [node name="Level" instance=ExtResource("1_5shha")]
 music = 4
@@ -51,10 +82,16 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="PlayerSpawnMarker" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52699757, 4.020817)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
 
 [node name="GoalArea" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="CollisionShape3D" parent="GoalArea" index="0"]
+shape = SubResource("BoxShape3D_wbp8f")
+
+[node name="WorldEnvironment" parent="Lights" index="1"]
+environment = SubResource("Environment_weh0f")
 
 [node name="ExitArea" parent="." index="6" node_paths=PackedStringArray("parent") instance=ExtResource("4_fm1nv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57012856, -5.938103)
