@@ -15,7 +15,7 @@ func _ready() -> void:
 	add_child(player)
 	# init player here.
 	load_level()
-	requestMusic.emit(false,MusicPlayer.level.MENU)
+	requestMusic.emit(false, MusicPlayer.level.MENU)
 	
 
 var current_level: int = 0
@@ -38,10 +38,11 @@ func load_level():
 	while (true):
 		level_choice_overlay.setup()
 		level_id = await level_choice_overlay.level_chosen
-		if (ResourceLoader.exists("res://game/levels/%s.tscn" % level_id)):
+		var level_location := find_file(level_id + ".tscn", "res://game/levels")
+		if (level_location != "" and ResourceLoader.exists(level_location)):
 			break
 		else:
-			printerr("Level '%s.tscn' doesn't exist in '/game/levels/'. Try again." % level_id)
+			printerr("Level '%s.tscn' doesn't exist in '/game/levels/' or its subfolders. Try again." % level_id)
 
 	# add new stuff
 	var level_to_load = load("res://game/levels/%s.tscn" % level_id) as PackedScene
@@ -51,10 +52,9 @@ func load_level():
 		new_level.spawn_player(player)
 		new_level.level_ended.connect(level_ended)
 		
-		requestMusic.emit(false,new_level.music) 
+		requestMusic.emit(false, new_level.music)
 	
 
-	
 	scene_fade_animation_player.play_backwards("fade")
 	Engine.time_scale = 1
 
@@ -64,3 +64,20 @@ func level_ended():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("upgrade"):
 		upgrade_view.show_upgrades(player)
+
+func find_file(file_name: String, folder_location: String = "res://game/levels") -> String:
+	# TODO: this might break on exported builds, so this needs to be replaced with something else before release!
+	var dir := DirAccess.open(folder_location)
+	if dir == null:
+		return ""
+	var files := dir.get_files()
+	if files.has(file_name):
+		return folder_location + "/" + file_name
+	
+	var dirs := dir.get_directories()
+	for d in dirs:
+		var path = find_file(file_name, folder_location + "/" + d)
+		if path != "":
+			return path
+
+	return ""
