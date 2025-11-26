@@ -14,7 +14,7 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 	#checks if the projectile is fired from the player and adjusts the target accordingly
 	if len(parent.get_targets()) > 0:
 		var target = parent.get_targets()[0]
-		#print("Target: ", target)
+		print("Target: ", target)
 		if target:
 			#var speed_mag = parent.velocity.length()
 			var new_dir = lerp(parent.velocity.normalized(), (target.position - parent.position).normalized(), _delta * velocity_change_rate)
