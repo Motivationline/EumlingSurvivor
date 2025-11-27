@@ -36,7 +36,9 @@ func find_target():
 	
 	match target_property:
 		TARGET_PROPERTIES.HIT:
-			targets = targets.filter(parent.hits)
+			targets = targets.filter(func(target):
+				return target in parent.hits
+			)
 		TARGET_PROPERTIES.NEW:
 			targets = targets.filter(func(target):
 				return target not in parent.hits
@@ -53,7 +55,7 @@ func find_target():
 			targets = Utils.sort_array_by_distance(targets, parent)
 		TARGET_SORTERS.FARTHEST:
 			targets = Utils.sort_array_by_distance(targets, parent)
-			targets = targets.slice(len(targets)-1, 0, -1)
+			targets.reverse()
 		TARGET_SORTERS.STRONGEST:
 			targets.sort_custom(sort_by_strength)
 		TARGET_SORTERS.WEAKEST:

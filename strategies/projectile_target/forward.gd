@@ -17,4 +17,4 @@ func find_target():
 		forward_target.position = owning_entity.velocity.normalized() * target_distance + parent.position - owning_entity.position
 		parent.add_child(forward_target)
 		
-		return forward_target
+		return [forward_target]
