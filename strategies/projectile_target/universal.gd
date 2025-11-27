@@ -37,17 +37,10 @@ func find_target():
 	match target_property:
 		TARGET_PROPERTIES.HIT:
 			targets = targets.filter(parent.hits)
-			# for target in targets:
-			# 	if not parent.hits.has(target):
-			# 		var idx = targets.find(target)
-			# 		targets.pop_at(idx)
 		TARGET_PROPERTIES.NEW:
-			for hit in parent.hits:
-				targets.erase(hit)
-			# for target in targets:
-			# 	if parent.hits.has(target):
-			# 		var idx = targets.find(target)
-			# 		targets.pop_at(idx)
+			targets = targets.filter(func(target):
+				return target not in parent.hits
+			)
 		TARGET_PROPERTIES.BOTH:
 			pass
 	
@@ -68,21 +61,15 @@ func find_target():
 			targets.reverse()
 	
 	# check if the targets are in the given min-/max-radius range, remove others
-
-	targets = targets.filter(func(target): return parent.global_transform.origin.distance_to(target.global_transform.origin) > max_radius or parent.global_transform.origin.distance_to(target.global_transform.origin) < min_radius)
-
-	# for target in targets:
-	# 	var dist = parent.global_transform.origin.distance_to(target.global_transform.origin)
-		
-	# 	if dist > max_radius or dist < min_radius:
-	# 		var idx = targets.find(target)
-	# 		targets.pop_at(idx)
+	targets = targets.filter(func(target): 
+		var dist = parent.global_transform.origin.distance_to(target.global_transform.origin)
+		return dist < max_radius and dist > min_radius
+	)
 	
 	# remove everything thats over the max_targets count
 	if len(targets) > max_targets:
 		targets = targets.slice(0, max_targets)
 	#print("slicing targets", targets)
-	
 	return targets
 
 static func sort_by_strength(a: Node, b: Node) -> bool:
