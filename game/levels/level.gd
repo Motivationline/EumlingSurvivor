@@ -9,7 +9,7 @@ class_name Level
 @export var goal_area: Area3D
 
 
-@export var music:MusicPlayer.level
+@export var music:MusicPlayer.LEVEL
 
 
 var cleared: bool = false

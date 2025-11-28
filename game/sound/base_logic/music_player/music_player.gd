@@ -4,11 +4,11 @@ class_name MusicPlayer extends AudioStreamPlayer
 
 #TODO: 
 #-check if current and next track are the same and continue playing,
-#-implement level change stuff
+#-implement LEVEL change stuff
 
 
 var current_track
-enum level {
+enum LEVEL {
 MENU, 
 COMBAT_ISLAND, 
 BOSS_GENERIC,
@@ -30,8 +30,8 @@ func _ready():
 
 func debug_list_setup():
 	var selector:ItemList = debug_ui.get_child(0)
-	for type in level.values():
-		selector.add_item(level.keys()[type])
+	for type in LEVEL.values():
+		selector.add_item(LEVEL.keys()[type])
 	
 
 func start_playback(track_name: String):
@@ -48,25 +48,25 @@ func queue_random_track():
 	var next_track = random_track()
 	start_playback(next_track)
 	
-func queue_specific_track(level_type:level):
+func queue_specific_track(level_type:LEVEL):
 	var next_track = select_track(level_type) 
 	start_playback(next_track)
 
-func select_track(level_type:level) -> String:
+func select_track(level_type:LEVEL) -> String:
 	#print(level_type)
 	var selected_track = "Menu"
 	match level_type:
 		
 		
-		level.MENU:
+		LEVEL.MENU:
 			selected_track = "Menu"
-		level.COMBAT_ISLAND:
+		LEVEL.COMBAT_ISLAND:
 			selected_track = "CombatIsland"
-		level.BOSS_GENERIC:
+		LEVEL.BOSS_GENERIC:
 			selected_track = "BossGeneric"
-		level.BOSS_ISLAND:
+		LEVEL.BOSS_ISLAND:
 			selected_track = "BossIsland"
-		level.CHASE:
+		LEVEL.CHASE:
 			selected_track = "Chase"
 
 	
@@ -74,7 +74,7 @@ func select_track(level_type:level) -> String:
 	return selected_track+" Intro"
 	
 func random_track() -> String:
-	return select_track(level.values().pick_random())
+	return select_track(LEVEL.values().pick_random())
 
 func update_track_tail_volume():
 	
@@ -112,13 +112,13 @@ func fade_volume(out:bool , duration:float, reduction_db:float = 20):
 
 
 func _on_debug_list_item_clicked(index, _at_position, _mouse_button_index):
-	for key in level.values():
+	for key in LEVEL.values():
 		#print(key)
 		if key == index:
 			queue_specific_track(key)
 
 
-func _on_game_request_music(random:bool = false, level_type:level = level.MENU):
+func _on_game_request_music(random:bool = false, level_type:LEVEL = LEVEL.MENU):
 	
 	if random:
 		queue_random_track()

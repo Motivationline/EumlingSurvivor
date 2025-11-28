@@ -15,7 +15,7 @@ func _ready() -> void:
 	add_child(player)
 	# init player here.
 	load_level()
-	requestMusic.emit(false, MusicPlayer.level.MENU)
+	requestMusic.emit(false, MusicPlayer.LEVEL.MENU)
 	
 
 var current_level: int = 0
