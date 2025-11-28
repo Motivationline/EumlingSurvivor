@@ -10,7 +10,3 @@ class_name SetTargetsEventStrategy
 func event_triggered(_data):
 	
 	parent.set_targets(remove_current)
-	
-	#for n in targeting_strats:
-		##set targets
-		#n.find_target()

@@ -31,8 +31,6 @@ func find_target():
 			targets = get_tree().get_nodes_in_group("Enemy")
 		TARGET_TYPES.LEVEL:
 			targets = get_tree().get_nodes_in_group("Level")
-		#get_closest_Node(targets)
-		#print("getting all targets", targets)
 	
 	match target_property:
 		TARGET_PROPERTIES.HIT:
