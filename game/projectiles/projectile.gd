@@ -144,12 +144,20 @@ func _on_created():
 		if strat.is_active:
 			strat.event_triggered(null)
 
-func set_targets():
+func set_targets(_remove_current: bool):
 	#print("setting targets")
 	for t in targeting:
 		if t.is_active:
-			targets += t.find_target()
-	#print("targets: ", targets)
+			if _remove_current:
+				targets = t.find_target()
+			else:
+				var new_targets: Array[Node] = t.find_target()
+				#remove "duplicates" 
+				new_targets = new_targets.filter(func(target):
+					return not target in targets
+				)
+				targets += new_targets
+	#print(targets)
 
 func get_targets():
 	return targets
