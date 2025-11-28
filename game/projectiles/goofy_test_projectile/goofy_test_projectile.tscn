@@ -24,7 +24,7 @@ lifetime = 20.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/MoveToTargetProjectileMovementStrategy")]
 targeting = [NodePath("TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
-on_hit = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy"), NodePath("EventStrategies/RemoveEventStrategy")]
+on_hit = [NodePath("EventStrategies/RemoveEventStrategy")]
 on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
@@ -52,6 +52,7 @@ metadata/_custom_type_script = "uid://b322w7peeh246"
 [node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0" node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("5_0r34h")
 targeting_strats = [NodePath("../../../TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
+remove_current = true
 is_active = true
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
