@@ -27,7 +27,7 @@ func _ready():
 	if debug:
 		debug_list_setup()
 		debug_ui.visible = true
-	print(ambientNoisePlayer)
+
 
 func debug_list_setup():
 	var selector:ItemList = debug_ui.get_child(0)
