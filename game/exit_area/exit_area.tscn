@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/exit_area/exit_area.gd" id="1_47e78"]
 [ext_resource type="PackedScene" path="res://game/exit_area/exit_trunk.tscn" id="1_tkqdu"]
 [ext_resource type="PackedScene" uid="uid://cy2tlb6wedycd" path="res://game/sound/sfx/manager/sound_effect_manager.tscn" id="3_47e78"]
-[ext_resource type="AudioStream" uid="uid://jdj6s0mg7a6p" path="res://assets/sound/sound_effects/exit_area/chime.wav" id="4_gva8b"]
+[ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="4_gva8b"]
 [ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/sound_effects/exit_area/leaves_receding_1.wav" id="5_2dq3v"]
 [ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/sound_effects/exit_area/leaves_receding_2.wav" id="6_ixbc8"]
 [ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/sound_effects/exit_area/leaves_receding_3.wav" id="7_dmamu"]
@@ -376,10 +376,7 @@ libraries = {
 [node name="SoundEffectManager" parent="." instance=ExtResource("3_47e78")]
 debug_sound = "Leaves"
 
-[node name="Chime" type="AudioStreamPlayer" parent="SoundEffectManager"]
-stream = ExtResource("4_gva8b")
-volume_db = -10.0
-bus = &"SFXGeneral"
+[node name="Chime" parent="SoundEffectManager" instance=ExtResource("4_gva8b")]
 
 [node name="Leaves" type="AudioStreamPlayer3D" parent="SoundEffectManager"]
 stream = SubResource("AudioStreamRandomizer_mu12n")

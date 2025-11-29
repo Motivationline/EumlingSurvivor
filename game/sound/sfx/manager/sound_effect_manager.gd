@@ -23,7 +23,7 @@ func sound_list_setup():
 	for sound in get_children():
 		if (sound is AudioStreamPlayer) or (sound is AudioStreamPlayer3D) or (sound is AudioStreamPlayer2D):
 			sound_list[sound.name] = sound
-	#print(sound_list)
+	print(sound_list)
 
 func play_sound(sound_name:String, focus:bool = false):
 	var sound = sound_list[sound_name] 

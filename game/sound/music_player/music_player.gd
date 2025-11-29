@@ -117,9 +117,11 @@ func fade_volume(out:bool , duration:float, reduction_db:float = 20):
 	var tween = get_tree().create_tween()
 	if out:
 		tween.tween_method(func(v): AudioServer.set_bus_volume_db(1, v),init_bus_volume,-reduction_db,duration)
+		tween.tween_method(func(v): AudioServer.set_bus_volume_db(2, v),init_bus_volume,-reduction_db,duration)
 		#print("out")
 	else:
 		tween.tween_method(func(v): AudioServer.set_bus_volume_db(1, v),AudioServer.get_bus_volume_db(1),init_bus_volume,duration)
+		tween.tween_method(func(v): AudioServer.set_bus_volume_db(2, v),AudioServer.get_bus_volume_db(1),init_bus_volume,duration)
 		#print("in")
 	#print(AudioServer.get_bus_volume_db(1))
 
