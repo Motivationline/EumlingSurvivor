@@ -28,11 +28,11 @@ var consume_resource_on_enter: bool = false
 ## Set up a trigger for your animation transition here and it will get triggered when this state starts.
 @export var animation_trigger: String
 
-var parent: Enemy
+var parent: CharacterBase
 var anim_player: AnimationTree
 
 ## Called once when the state machine is first initialized 
-func setup(_parent: Enemy, _animation: AnimationTree) -> void:
+func setup(_parent: CharacterBase, _animation: AnimationTree) -> void:
 	parent = _parent
 	anim_player = _animation
 

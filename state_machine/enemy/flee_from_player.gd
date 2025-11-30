@@ -36,7 +36,7 @@ var player: CharacterBody3D
 # for how long this entity has been fleeing
 var time_fleeing: float = 0
 
-func setup(_parent: Enemy, _animation_tree: AnimationTree):
+func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	parent = _parent
 	nav_agent = NavigationAgent3D.new()

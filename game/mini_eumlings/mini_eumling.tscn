@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl2wdp7h030ki"]
+
+[ext_resource type="Script" uid="uid://crvuhquov5dm6" path="res://game/mini_eumlings/mini_eumling_base.gd" id="1_2cqpj"]
+[ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="2_d48rs"]
+[ext_resource type="Script" uid="uid://b2lasa256a4fq" path="res://state_machine/mini_eumling/follow_player_as_flock.gd" id="4_2cqpj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_72bhe"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_epkpd"]
+radius = 0.24511719
+height = 0.6078688
+
+[node name="MiniEumling" type="CharacterBody3D" node_paths=PackedStringArray("state_machine") groups=["MiniEumling"]]
+collision_layer = 16
+script = ExtResource("1_2cqpj")
+state_machine = NodePath("StateMachine")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_72bhe")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_d48rs")
+initial_state = NodePath("FollowPlayerAsFlockState")
+metadata/_custom_type_script = "uid://cio21hucnk80k"
+
+[node name="FollowPlayerAsFlockState" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_2cqpj")
+wait_time = 0.0
+stop_distance = 0.1
+group = 1
+awareness_radius = 3.0
+alignment_factor = 0.1
+cohesion_factor = 0.1
+debug_show_path = true
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://b2lasa256a4fq"
+
+[node name="EventListeners" type="Node" parent="."]
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34179613, 0)
+shape = SubResource("CapsuleShape3D_epkpd")
+debug_color = Color(0.358393, 0.60428, 0.373735, 0.42)

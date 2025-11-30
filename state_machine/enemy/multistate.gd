@@ -15,7 +15,7 @@ class_name MultistateState
 
 var active_states: Array[State]
 
-func setup(_parent: Enemy, _animation: AnimationTree):
+func setup(_parent: CharacterBase, _animation: AnimationTree):
 	super (_parent, _animation)
 	for state in states_to_execute:
 		state.setup(_parent, _animation)

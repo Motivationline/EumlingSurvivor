@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends CharacterBase
 class_name Enemy
 
 @export_category("Base Values")

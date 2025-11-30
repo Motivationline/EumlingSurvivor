@@ -29,7 +29,7 @@ var nav_agent: NavigationAgent3D
 var done: bool = false
 var player: CharacterBody3D
 
-func setup(_parent: Enemy, _animation_tree: AnimationTree):
+func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	parent = _parent
 	nav_agent = NavigationAgent3D.new()
@@ -68,6 +68,7 @@ func physics_process(_delta: float) -> State:
 func update_target_location():
 	var target_position = player.position - ((player.position - parent.position).normalized() * stop_distance)
 	nav_agent.target_position = target_position
+	print(target_position)
 	done = false
 	nav_agent.debug_enabled = debug_show_path
 

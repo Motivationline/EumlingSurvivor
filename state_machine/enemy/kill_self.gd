@@ -5,7 +5,7 @@ class_name KillSelfState
 
 var done: bool = false
 
-func setup(_parent: Enemy, _animation_tree: AnimationTree):
+func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	done = false
 

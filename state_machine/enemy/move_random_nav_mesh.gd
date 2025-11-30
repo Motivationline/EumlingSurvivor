@@ -33,7 +33,7 @@ class_name MoveRandomOnNavMeshState
 var nav_agent: NavigationAgent3D
 var done: bool = false
 
-func setup(_parent: Enemy, _animation_tree: AnimationTree):
+func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	nav_agent = NavigationAgent3D.new()
 	parent.add_child(nav_agent)
