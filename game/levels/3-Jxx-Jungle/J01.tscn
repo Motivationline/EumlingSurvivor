@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ncnbysiqfcwu"]
+
+[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_avtaw"]
+[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="2_0th8w"]
+
+[node name="Level" instance=ExtResource("1_avtaw")]
+
+[node name="TortoiseEnemy" parent="Enemies" index="0" instance=ExtResource("2_0th8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7002082, 0, 1.4174464)

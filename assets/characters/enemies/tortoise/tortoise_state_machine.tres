@@ -24,7 +24,7 @@ advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s76xj"]
 advance_mode = 2
-advance_condition = &"heal"
+advance_condition = &"shake"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1huhm"]
 switch_mode = 2
@@ -33,7 +33,7 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fgv8n"]
 xfade_time = 0.1
 advance_mode = 2
-advance_condition = &"heal"
+advance_condition = &"shake"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d5qa0"]
 xfade_time = 0.1
@@ -50,4 +50,4 @@ states/tortoise_shake/position = Vector2(601, 54)
 states/tortoise_walk/node = SubResource("AnimationNodeAnimation_po1wb")
 states/tortoise_walk/position = Vector2(390, 7)
 transitions = ["Start", "tortoise_idle", SubResource("AnimationNodeStateMachineTransition_31ggw"), "tortoise_idle", "tortoise_walk", SubResource("AnimationNodeStateMachineTransition_u38ti"), "tortoise_walk", "tortoise_idle", SubResource("AnimationNodeStateMachineTransition_d7yk1"), "tortoise_walk", "tortoise_shake", SubResource("AnimationNodeStateMachineTransition_s76xj"), "tortoise_shake", "tortoise_walk", SubResource("AnimationNodeStateMachineTransition_1huhm"), "tortoise_idle", "tortoise_shake", SubResource("AnimationNodeStateMachineTransition_fgv8n"), "tortoise_shake", "tortoise_idle", SubResource("AnimationNodeStateMachineTransition_d5qa0")]
-graph_offset = Vector2(-219, -102)
+graph_offset = Vector2(234, -11)

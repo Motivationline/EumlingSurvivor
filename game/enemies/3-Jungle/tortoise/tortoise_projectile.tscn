@@ -1,0 +1,152 @@
+[gd_scene load_steps=13 format=3 uid="uid://c03op2rrwafaq"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_ohwqb"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_lwbwl"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_860yy"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_860yy"]
+
+[sub_resource type="Curve" id="Curve_860yy"]
+_limits = [0.0, 6.0, 0.0, 1.0]
+_data = [Vector2(0, 6), 0.0, -0.15139665, 0, 0, Vector2(0.11458333, 6), 0.0, 0.0, 0, 0, Vector2(0.39930555, 0), 0.15010071, 0.15010071, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_860yy"]
+albedo_color = Color(0, 0.37354115, 1.92523e-07, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_7gchl"]
+material = SubResource("StandardMaterial3D_860yy")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_860yy"]
+radius = 0.07719664
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7gchl"]
+radius = 0.09208642
+
+[sub_resource type="Animation" id="Animation_860yy"]
+resource_name = "Leaf_Fall"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.26666668, 0.003987491, 0.51739776, -0.46653485, 0.0021708745, 0.13333327, -0.00062042475, 0.48214775, -0.06666672, 0.0013760328, 0.16666663, -0.0022051334, 0.27226475, -0.100000024, 0.0020175576, 0.23333335, -0.004121542, 0.1398942, -0.100000024, 0.0013739765, 0.13333333, 0.0008623749, 0.05, -0.0333333, 0.043690037, 0, 0),
+"times": PackedFloat32Array(0, 0.46666667, 0.93333334, 1.3333334, 1.7, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position:z")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.13333336, 0, 0.11666666, 0, 0.24782404, -0.1406179, -0.0004259646, 0.1927154, 0.0010649264, -0.19290753, -0.17395127, 0.0004927516, 0.1927154, 0.0009897202, 0.2563694, -0.24061799, -0.0025108159, 0.1927154, 0.0004709661, 0, -0.040617943, 0.030721916, 0, 0),
+"times": PackedFloat32Array(0, 0.46666667, 0.93333334, 1.3333334, 1.7, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 2, 2),
+"points": PackedFloat32Array(0.00065004826, 0, 0, 0.2666667, 0, 0.07948657, -0.26643756, -0.0021977616, 0.16666657, 0.0013747811, -0.32698318, -0.1080328, -0.00022414618, 0.12531126, 0.00025999546, 0.3177414, -0.1302675, 0.0003900826, 0.11111064, -0.0003327179, -0.30788937, -0.11110918, -0.00066883874, 0.11095321, 0.00066789985, 0.006793478, -0.025966167, -0.05919337, 0, 0),
+"times": PackedFloat32Array(0, 0.46666667, 0.93333334, 1.3333334, 1.7, 2)
+}
+
+[sub_resource type="Animation" id="Animation_7gchl"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position:z")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_miqcd"]
+_data = {
+&"Leaf_Fall": SubResource("Animation_860yy"),
+&"RESET": SubResource("Animation_7gchl")
+}
+
+[node name="Projectile" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit") instance=ExtResource("1_ohwqb")]
+collision_mask = 257
+damage = 0.5
+hit_box = NodePath("Hitbox")
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_hit = [NodePath("EventStrategies/OnHit/RemoveEventStrategy")]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
+script = ExtResource("2_lwbwl")
+speed = SubResource("Curve_860yy")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0"]
+script = ExtResource("3_860yy")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
+script = ExtResource("3_860yy")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="Visuals" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+transform = Transform3D(0.3225002, 0, 0, 0, -1.6036287e-08, 0.038361035, 0, -0.36686748, -1.6768141e-09, 0, 0, 0)
+mesh = SubResource("PrismMesh_7gchl")
+skeleton = NodePath("../..")
+
+[node name="Hitbox" parent="." index="3" instance=ExtResource("4_860yy")]
+collision_layer = 32
+collision_mask = 8
+damage = 1.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_860yy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_7gchl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+&"": SubResource("AnimationLibrary_miqcd")
+}
+autoplay = "Leaf_Fall"
