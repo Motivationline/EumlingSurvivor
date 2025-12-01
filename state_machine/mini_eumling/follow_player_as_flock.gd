@@ -22,7 +22,7 @@ enum GROUP {ENEMY, MINIEUMLING}
 ## the radius in which group members get detected
 @export var awareness_radius: float = 1
 ## how far each member seperates from each other
-@export var separation_radius: float = 0.5
+@export var separation_factor: float = 0.5
 ## strength of the alignment of each member
 @export var alignment_factor: float = 0.5
 ## how much each member steers towards the average psotion of local members
@@ -99,18 +99,6 @@ func target_reached():
 	nav_agent.debug_enabled = false
 	await get_tree().create_timer(wait_time).timeout
 	done = true
-	
-#func _steer_separation(_direction) -> Vector3:
-	##var direction := parent.global_transform.basis.z
-	#var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
-	#var members_in_range: Array[Node] = members.filter(func(member):
-		#return parent.global_position.distance_to(member.global_position) < awareness_radius
-	#)
-	#
-	#for member in members_in_range:
-		#var ratio: float = (member.global_position - parent.global_position).length() / separation_radius
-		#_direction -= ratio * (member.global_position - parent.global_position)
-	#return _direction.normalized()
 
 func _flock(_direction: Vector3) -> Vector3:
 	#separation
@@ -125,7 +113,7 @@ func _flock(_direction: Vector3) -> Vector3:
 	members.erase(parent)
 	
 	for member in members_in_range:
-		var ratio: float = 1.0 - (member.global_position - parent.global_position).length() / separation_radius
+		var ratio: float = 1.0 - (member.global_position - parent.global_position).length() / separation_factor
 		ratio = clamp(ratio, 0.0, 1.0)
 		_direction -= ratio * (member.global_position - parent.global_position)
 	
