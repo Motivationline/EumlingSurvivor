@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2y2kj4pgfj4k"]
+[gd_scene load_steps=5 format=3 uid="uid://c2y2kj4pgfj4k"]
 
 [ext_resource type="Script" uid="uid://nkjs6gp505yc" path="res://game/healthbar/healthbar.gd" id="1_68gid"]
-[ext_resource type="Texture2D" uid="uid://bwqbc2owuwa5s" path="res://assets/ui/HealthbarScribble.png" id="2_tq0he"]
-[ext_resource type="Texture2D" uid="uid://cwf5ihgu2x5k5" path="res://assets/ui/HealthbarBottom.png" id="3_kxfyk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o76um"]
 bg_color = Color(0.99905866, 0.97335905, 0.9671038, 1)
@@ -25,20 +23,18 @@ border_color = Color(0.8666667, 0.28235295, 0.15294118, 1)
 [node name="Healthbar" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 4.0
-offset_top = 9.0
-offset_right = 502.0
-offset_bottom = 49.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 499.0
+offset_bottom = 41.0
 script = ExtResource("1_68gid")
 
 [node name="DamageBar" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
-offset_left = -3.0
-offset_top = -7.9999995
-offset_right = 317.0
-offset_bottom = 137.0
-scale = Vector2(1.484506, 0.23763804)
+offset_right = 320.0
+offset_bottom = 145.0
+scale = Vector2(1.5479033, 0.2477866)
 mouse_filter = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_o76um")
 value = 70.0
@@ -47,11 +43,9 @@ show_percentage = false
 [node name="HealthBar" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
-offset_left = -3.0
-offset_top = -7.9999995
-offset_right = 317.0
-offset_bottom = 137.0
-scale = Vector2(1.484506, 0.23763804)
+offset_right = 320.0
+offset_bottom = 145.0
+scale = Vector2(1.5479033, 0.2477866)
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_2fanj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sxu8y")
@@ -61,24 +55,5 @@ show_percentage = false
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
-
-[node name="UpperDecoration" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-offset_left = -4.0
-offset_top = -9.0
-offset_right = 2566.8088
-offset_bottom = 242.28207
-scale = Vector2(0.195, 0.195)
-texture = ExtResource("2_tq0he")
-
-[node name="LowerDecoration" type="TextureRect" parent="UpperDecoration"]
-visible = false
-layout_mode = 0
-offset_left = 605.1282
-offset_top = 174.35901
-offset_right = 989.1282
-offset_bottom = 289.359
-texture = ExtResource("3_kxfyk")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

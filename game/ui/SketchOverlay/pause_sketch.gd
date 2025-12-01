@@ -5,7 +5,7 @@ func _ready():
 	close ()
 	
 func _process(_delta):
-	if Input.is_action_just_pressed("scribbleOverlayPause"):
+	if Input.is_action_just_pressed("scribbleOverlayUpgrade"):
 		if is_open:
 			close()
 		else:

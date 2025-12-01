@@ -28,18 +28,19 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = 4.0
 offset_top = 9.0
-offset_right = 502.0
-offset_bottom = 49.0
+offset_right = 4.0
+offset_bottom = 9.0
+scale = Vector2(1, 0.99778324)
 script = ExtResource("1_oxsi7")
 
 [node name="DamageBar" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
-offset_left = 8.0
-offset_top = 1.0
-offset_right = 328.0
-offset_bottom = 146.0
-scale = Vector2(1.5044277, 0.24174428)
+offset_left = 9.0
+offset_top = -2.004444
+offset_right = 329.0
+offset_bottom = 142.99556
+scale = Vector2(1.5697538, 0.23222625)
 mouse_filter = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_o76um")
 value = 70.0
@@ -48,11 +49,11 @@ show_percentage = false
 [node name="HealthBar" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
-offset_left = 8.0
-offset_top = 1.0
-offset_right = 328.0
-offset_bottom = 146.0
-scale = Vector2(1.5044277, 0.24174428)
+offset_left = 9.0
+offset_top = -2.004444
+offset_right = 329.0
+offset_bottom = 142.99556
+scale = Vector2(1.5697538, 0.23222625)
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_2fanj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sxu8y")
@@ -64,6 +65,7 @@ wait_time = 0.4
 one_shot = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 z_index = 10
 layout_mode = 0
 offset_left = -5.000004
@@ -72,6 +74,7 @@ offset_right = 3369.0
 offset_bottom = 366.0
 scale = Vector2(0.15167624, 0.15110038)
 texture = ExtResource("4_tue3n")
+stretch_mode = 3
 
 [node name="UpperDecoration" type="TextureRect" parent="."]
 visible = false
@@ -92,13 +95,31 @@ offset_right = 989.1282
 offset_bottom = 289.359
 texture = ExtResource("3_tue3n")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="OutlineNinePatch" type="NinePatchRect" parent="."]
 visible = false
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-visible = false
-position = Vector2(254, 28)
-scale = Vector2(0.14977022, 0.14977022)
+z_index = 10
+layout_mode = 0
+offset_left = -4.0
+offset_top = -8.017773
+offset_right = 3370.0
+offset_bottom = 367.98224
+scale = Vector2(0.15628934, 0.12708849)
 texture = ExtResource("4_tue3n")
+patch_margin_left = 500
+patch_margin_right = 500
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 138.0
+offset_top = 86.19107
+offset_right = 178.0
+offset_bottom = 126.19107
+scale = Vector2(55.37409, 6.461367)
+texture = ExtResource("4_tue3n")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

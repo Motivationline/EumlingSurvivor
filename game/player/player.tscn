@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=19 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
@@ -10,9 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cwx4ps7nr715s" path="res://game/healthbar/healthbar.tscn" id="7_anr75"]
 [ext_resource type="PackedScene" uid="uid://ixi64aeuij20" path="res://game/player/weapons/dagger/dagger.tscn" id="9_5ghna"]
 [ext_resource type="PackedScene" uid="uid://bqoqtx6dcidh2" path="res://game/player/weapons/hit_and_run/hit_and_run_attack.tscn" id="9_j0mij"]
-[ext_resource type="Texture2D" uid="uid://bpmqv2iso808a" path="res://assets/ui/PauseButtonScribble.png" id="9_uv2nh"]
 [ext_resource type="Texture2D" uid="uid://s4sspr0pav3l" path="res://assets/ui/SketchGreyButtonTexture.png" id="10_2mv0n"]
-[ext_resource type="PackedScene" uid="uid://bocn6gw8p7uuq" path="res://game/ui/pause_menu.tscn" id="10_j0mij"]
 [ext_resource type="Texture2D" uid="uid://cvy3lafwe3ion" path="res://assets/ui/SketchButtonKurzEumling.png" id="11_gh012"]
 [ext_resource type="PackedScene" uid="uid://cctgxhumux0fs" path="res://game/player/weapons/shoot_on_command/shoot_on_command.tscn" id="12_n270p"]
 [ext_resource type="Texture2D" uid="uid://biajvboc3quwy" path="res://assets/ui/SketchButtonKurzPlay.png" id="12_usp30"]
@@ -95,12 +93,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -446.99994
-offset_top = 36.0
-offset_right = -446.99994
-offset_bottom = 36.0
+offset_left = -630.0
+offset_top = 57.0
+offset_right = -630.0
+offset_bottom = 57.0
 grow_horizontal = 2
-scale = Vector2(1.2545942, -0.61159563)
+scale = Vector2(2.5415335, 0.6596746)
 hide_when_full_after = -1.0
 hide_initially = false
 
@@ -109,19 +107,6 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Sprite2D" type="Sprite2D" parent="UI/Control"]
-visible = false
-position = Vector2(1808, 40.000004)
-scale = Vector2(0.5889311, 0.5889311)
-texture = ExtResource("9_uv2nh")
-
-[node name="Sprite2D2" type="Sprite2D" parent="UI/Control"]
-visible = false
-position = Vector2(156, 326)
-scale = Vector2(0.5889311, 0.5889311)
-texture = ExtResource("9_uv2nh")
-flip_h = true
 
 [node name="Panel" type="Panel" parent="UI/Control"]
 clip_children = 1
@@ -195,9 +180,6 @@ enabled = true
 rotation_parent = NodePath("../Eumling_Survivor")
 
 [node name="UITest" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PauseSketch" parent="UITest" instance=ExtResource("16_gh012")]
-
-[node name="PauseMenu" parent="UITest" instance=ExtResource("10_j0mij")]
 visible = false
