@@ -7,8 +7,8 @@
 [sub_resource type="BoxMesh" id="BoxMesh_72bhe"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_epkpd"]
-radius = 0.24511719
-height = 0.6078688
+radius = 0.12542208
+height = 0.25084415
 
 [node name="MiniEumling" type="CharacterBody3D" node_paths=PackedStringArray("state_machine") groups=["MiniEumling"]]
 collision_layer = 16
@@ -16,7 +16,7 @@ script = ExtResource("1_2cqpj")
 state_machine = NodePath("StateMachine")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.125, 0)
 mesh = SubResource("BoxMesh_72bhe")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -27,7 +27,8 @@ metadata/_custom_type_script = "uid://cio21hucnk80k"
 [node name="FollowPlayerAsFlockState" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_2cqpj")
 wait_time = 0.0
-stop_distance = 0.5
+min_distance = 0.5
+max_distance = 1.0
 group = 1
 awareness_radius = 3.0
 separation_factor = 2.0
@@ -39,6 +40,6 @@ metadata/_custom_type_script = "uid://b2lasa256a4fq"
 [node name="EventListeners" type="Node" parent="."]
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34179613, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12976642, 0)
 shape = SubResource("CapsuleShape3D_epkpd")
 debug_color = Color(0.358393, 0.60428, 0.373735, 0.42)

@@ -3,18 +3,13 @@ class_name MiniEumling
 
 @export var state_machine: StateMachine
 @export var node_with_animation_tree: Node3D
-# States:
-#	Idle
-#	Follow Player
 
 ## How fast this entity moves when it moves
 @export_range(0, 100, 0.1) var speed: float = 1
 
 var resource: float = 0.0
 
-
 func _ready() -> void:
-	print("setup state Machine")
 	if (state_machine): 
 		state_machine.setup(self, find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self))
 		state_machine.consumed_resource.connect(consume_resource)
