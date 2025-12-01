@@ -1,18 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu1ucgco815t4"]
+[gd_scene load_steps=5 format=3 uid="uid://cu1ucgco815t4"]
 
 [ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_axhys"]
 [ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="2_wu6ui"]
 [ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="3_3pmql"]
+[ext_resource type="PackedScene" uid="uid://cary3jj8sadl7" path="res://game/healthbarEnemy/healthbarEnemy_3d.tscn" id="3_qbujc"]
 
 [node name="BaseEnemy" type="CharacterBody3D" node_paths=PackedStringArray("healthbar", "state_machine")]
 collision_layer = 16
 script = ExtResource("1_axhys")
 health = 10.0
-healthbar = NodePath("Healthbar3D")
+healthbar = NodePath("HealthbarEnemy3D")
 state_machine = NodePath("StateMachine")
 
 [node name="Healthbar3D" parent="." instance=ExtResource("2_wu6ui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.5)
+visible = false
+
+[node name="HealthbarEnemy3D" parent="." instance=ExtResource("3_qbujc")]
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_3pmql")

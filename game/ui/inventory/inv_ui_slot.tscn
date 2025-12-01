@@ -1,7 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://34ncdps2t868"]
+[gd_scene load_steps=6 format=3 uid="uid://34ncdps2t868"]
 
 [ext_resource type="Script" uid="uid://bfouhfdm0a7er" path="res://game/ui/inventory/inv_ui_slot.gd" id="1_bolq4"]
 [ext_resource type="Texture2D" uid="uid://dgieeuysbx3fy" path="res://assets/ui/ItemBackground.png" id="1_j5w3o"]
+[ext_resource type="Texture2D" uid="uid://s4sspr0pav3l" path="res://assets/ui/SketchGreyButtonTexture.png" id="3_igmd3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yl8u6"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
 
 [sub_resource type="GDScript" id="GDScript_igmd3"]
 
@@ -13,15 +26,35 @@ offset_bottom = 200.0
 script = ExtResource("1_bolq4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_j5w3o")
 centered = false
 
+[node name="Panel" type="Panel" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4.885914, 4.885914)
+theme_override_styles/panel = SubResource("StyleBoxFlat_yl8u6")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.0409706, 1.0409706)
+texture = ExtResource("3_igmd3")
+expand_mode = 1
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(195, 200)
 layout_mode = 0
-offset_right = 195.0
-offset_bottom = 200.0
+offset_left = 26.0
+offset_top = 25.0
+offset_right = 221.0
+offset_bottom = 225.0
+scale = Vector2(0.7129965, 0.7129965)
 
 [node name="Panel" type="Panel" parent="CenterContainer"]
 self_modulate = Color(1, 1, 1, 0)

@@ -26,7 +26,7 @@ var max_health: float:
 @export var eumling_visuals: Node3D
 @export var spawner: EntitySpawner
 
-@onready var healthbar: Healthbar = $CanvasLayer/Control/Healthbar
+@onready var healthbar: Healthbar = $UI/Control/Healthbar
 @onready var hurtbox: HurtBox = $Hurtbox
 
 ## UI Stuff

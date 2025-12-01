@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://332o24o22ksb" path="res://game/game.gd" id="1_dakft"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="2_dxrkv"]
-[ext_resource type="Texture2D" uid="uid://c3g81j7o6xffx" path="res://assets/ui/joystickOutScribble.png" id="3_dakft"]
-[ext_resource type="Texture2D" uid="uid://nugi5hyp3qvw" path="res://assets/ui/joystickInScribble.png" id="4_u5opy"]
+[ext_resource type="Texture2D" uid="uid://uuudl7yxl3ke" path="res://assets/ui/SketchJoystickBack.png" id="3_l8g03"]
+[ext_resource type="Texture2D" uid="uid://cghhnri00gbe4" path="res://assets/ui/SketchJoystickSketch.png" id="4_j8tme"]
 [ext_resource type="PackedScene" uid="uid://nfg4d3b33sns" path="res://game/ui/upgrade_view.tscn" id="5_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://uyyg1ut65j1" path="res://game/sound/music_player/music_player.tscn" id="6_dakft"]
 [ext_resource type="PackedScene" uid="uid://d0caudp08babr" path="res://game/ui/styleTest/PauseMenuStyleTest.tscn" id="7_l8g03"]
@@ -96,8 +96,8 @@ script = ExtResource("1_dakft")
 [node name="MovementController" parent="TouchJoystickOverlay" instance=ExtResource("2_dxrkv")]
 position = Vector2(418, 612)
 scale = Vector2(1.132587, 1.132587)
-base_texture = ExtResource("3_dakft")
-tip_texture = ExtResource("4_u5opy")
+base_texture = ExtResource("3_l8g03")
+tip_texture = ExtResource("4_j8tme")
 deadzone_circle = SubResource("CircleShape2D_p57ef")
 tip_limit_circle = SubResource("CircleShape2D_u5sy4")
 touch_detection_region = SubResource("RectangleShape2D_gee14")
@@ -116,8 +116,8 @@ down_movement = "down"
 [node name="AttackController" parent="TouchJoystickOverlay" instance=ExtResource("2_dxrkv")]
 position = Vector2(1505, 612)
 scale = Vector2(1.1315652, 1.132587)
-base_texture = ExtResource("3_dakft")
-tip_texture = ExtResource("4_u5opy")
+base_texture = ExtResource("3_l8g03")
+tip_texture = ExtResource("4_j8tme")
 deadzone_circle = SubResource("CircleShape2D_p57ef")
 tip_limit_circle = SubResource("CircleShape2D_u5sy4")
 touch_detection_region = SubResource("RectangleShape2D_gee14")
@@ -197,14 +197,17 @@ text = "confirm
 debug = false
 
 [node name="pauseMenuStyleTest" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PauseMenuStyleTest" parent="pauseMenuStyleTest" instance=ExtResource("7_l8g03")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PopUpStyleTest" parent="CanvasLayer" instance=ExtResource("8_j8tme")]
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="UpgradePickerStyleTest" parent="CanvasLayer2" instance=ExtResource("9_3vho3")]
 

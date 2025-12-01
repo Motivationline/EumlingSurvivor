@@ -1,0 +1,267 @@
+[gd_scene load_steps=17 format=3 uid="uid://cbr7504esjh25"]
+
+[ext_resource type="Script" uid="uid://cb6exknwr21rp" path="res://game/ui/SketchOverlay/pause_sketch.gd" id="1_ae7h8"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_t8k7y"]
+[ext_resource type="Texture2D" uid="uid://dm0ask6wx3c21" path="res://assets/ui/SketchButtonKurzMusic.png" id="1_xhfm7"]
+[ext_resource type="Texture2D" uid="uid://biajvboc3quwy" path="res://assets/ui/SketchButtonKurzPlay.png" id="2_guwo0"]
+[ext_resource type="Texture2D" uid="uid://s4sspr0pav3l" path="res://assets/ui/SketchGreyButtonTexture.png" id="2_rjl6h"]
+[ext_resource type="Texture2D" uid="uid://dga44i4l037h4" path="res://assets/ui/TextFrameWhite.png" id="3_uhhhn"]
+[ext_resource type="Texture2D" uid="uid://bm8g2f0mt1qn8" path="res://assets/ui/SketchButtonKurzHome.png" id="3_x1yof"]
+[ext_resource type="Texture2D" uid="uid://dlxllxaxnftbv" path="res://assets/ui/SketchBackpack.png" id="4_t8k7y"]
+[ext_resource type="PackedScene" uid="uid://34ncdps2t868" path="res://game/ui/inventory/inv_ui_slot.tscn" id="5_rjl6h"]
+[ext_resource type="Texture2D" uid="uid://bauneegqmb3li" path="res://assets/ui/SketchButtonKurzMusicKlicked.png" id="5_vuwpx"]
+[ext_resource type="Texture2D" uid="uid://bia574g2w2453" path="res://assets/ui/SketchButtonPlayKlicked.png" id="6_afn0b"]
+[ext_resource type="Texture2D" uid="uid://c6ey6sobnbhsr" path="res://assets/ui/SketchBanner.png" id="6_uhhhn"]
+[ext_resource type="Texture2D" uid="uid://dn1tklt43usdv" path="res://assets/ui/SketchButtonKurzHomeKlicked.png" id="8_vuwpx"]
+[ext_resource type="Texture2D" uid="uid://bhhrts4lchx3w" path="res://assets/ui/SketchCircle.png" id="11_afn0b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vuwpx"]
+shader = ExtResource("1_t8k7y")
+shader_parameter/lod = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ae7h8"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="PauseSketch" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ae7h8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vuwpx")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -986.0
+offset_top = -1137.0
+offset_right = 298.41003
+offset_bottom = -515.4934
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5501281, 1.91792)
+
+[node name="InfoTextBox" type="Panel" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_left = 1325.0
+offset_top = 359.0
+offset_right = 1819.0
+offset_bottom = 1042.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ae7h8")
+
+[node name="TextureRect" type="TextureRect" parent="InfoTextBox"]
+layout_mode = 0
+offset_right = 495.0
+offset_bottom = 684.0
+texture = ExtResource("2_rjl6h")
+expand_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="InfoTextBox/TextureRect"]
+position = Vector2(77.00001, 607.00006)
+scale = Vector2(0.066861965, 0.066861965)
+texture = ExtResource("3_uhhhn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="InfoTextBox/TextureRect"]
+position = Vector2(415.99997, 607.00006)
+scale = Vector2(0.066861965, 0.066861965)
+texture = ExtResource("3_uhhhn")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="InfoTextBox/TextureRect"]
+position = Vector2(77.00001, 75.361755)
+scale = Vector2(0.066861965, 0.066861965)
+texture = ExtResource("3_uhhhn")
+flip_v = true
+
+[node name="Sprite2D4" type="Sprite2D" parent="InfoTextBox/TextureRect"]
+position = Vector2(415.99997, 75.361755)
+scale = Vector2(0.066861965, 0.066861965)
+texture = ExtResource("3_uhhhn")
+flip_h = true
+flip_v = true
+
+[node name="Label" type="Label" parent="InfoTextBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -182.0
+offset_top = 118.0
+offset_right = 182.0
+offset_bottom = 185.0
+grow_horizontal = 2
+text = "INFO TEXT ITEM"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InfoTextBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.0
+offset_top = 224.0
+offset_right = 168.0
+offset_bottom = 288.0
+grow_horizontal = 2
+text = "This contains the Info Text about the Item clicked."
+
+[node name="SoundButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1500.0
+offset_top = 181.0
+offset_right = 3476.0
+offset_bottom = 2223.0
+scale = Vector2(0.06911028, 0.06911028)
+texture_normal = ExtResource("1_xhfm7")
+texture_pressed = ExtResource("5_vuwpx")
+
+[node name="ResumeButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1680.0001
+offset_top = 181.0
+offset_right = 3656.0
+offset_bottom = 2223.0
+scale = Vector2(0.06911028, 0.06911028)
+texture_normal = ExtResource("2_guwo0")
+texture_pressed = ExtResource("6_afn0b")
+
+[node name="HomeButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1320.0001
+offset_top = 181.0
+offset_right = 3296.0
+offset_bottom = 2223.0
+scale = Vector2(0.06911028, 0.06911028)
+texture_normal = ExtResource("3_x1yof")
+texture_pressed = ExtResource("8_vuwpx")
+
+[node name="Backpack" type="Sprite2D" parent="."]
+position = Vector2(562.00006, 613)
+scale = Vector2(0.45232782, 0.45232773)
+texture = ExtResource("4_t8k7y")
+
+[node name="InventoryScroll" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 502.0
+offset_right = 359.9656
+offset_bottom = 540.48236
+scale = Vector2(11.901559, 11.901559)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="InventoryScroll"]
+layout_mode = 2
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="InventoryScroll/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5631409
+offset_top = -5.15979
+offset_right = 661.4369
+offset_bottom = 1154.8402
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.06071638, 0.06071638)
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 3
+
+[node name="invUiSlot1" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot2" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot3" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot4" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot5" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot6" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot7" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot8" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot9" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot10" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot11" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot12" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot13" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot14" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="invUiSlot15" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
+layout_mode = 2
+
+[node name="Banner" type="Sprite2D" parent="."]
+position = Vector2(1052, 97)
+scale = Vector2(0.16678321, 0.16678321)
+texture = ExtResource("6_uhhhn")
+
+[node name="Label" type="Label" parent="Banner"]
+offset_left = -545.61865
+offset_top = -305.78613
+offset_right = -395.61865
+offset_bottom = -238.78613
+scale = Vector2(7.1267776, 7.1267776)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "PAUSE"
+
+[node name="ItemCircle" type="Sprite2D" parent="."]
+position = Vector2(1205, 449.517)
+scale = Vector2(0.06369529, 0.06369529)
+texture = ExtResource("11_afn0b")
+
+[node name="ItemCircle2" type="Sprite2D" parent="."]
+position = Vector2(1205, 615.51697)
+scale = Vector2(0.06369529, 0.06369529)
+texture = ExtResource("11_afn0b")
+
+[node name="ItemCircle3" type="Sprite2D" parent="."]
+position = Vector2(1205, 785.51697)
+scale = Vector2(0.06369529, 0.06369529)
+texture = ExtResource("11_afn0b")
+
+[node name="ItemCircle4" type="Sprite2D" parent="."]
+position = Vector2(1205, 953.51697)
+scale = Vector2(0.06369529, 0.06369529)
+texture = ExtResource("11_afn0b")

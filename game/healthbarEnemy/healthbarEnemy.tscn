@@ -1,27 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwx4ps7nr715s"]
+[gd_scene load_steps=7 format=3 uid="uid://c2y2kj4pgfj4k"]
 
-[ext_resource type="Script" uid="uid://nkjs6gp505yc" path="res://game/healthbar/healthbar.gd" id="1_oxsi7"]
-[ext_resource type="Texture2D" uid="uid://bwqbc2owuwa5s" path="res://assets/ui/HealthbarScribble.png" id="2_fv03a"]
-[ext_resource type="Texture2D" uid="uid://cwf5ihgu2x5k5" path="res://assets/ui/HealthbarBottom.png" id="3_tue3n"]
-[ext_resource type="Texture2D" uid="uid://chs1drmjr8viu" path="res://assets/ui/HealthbarOverlaySimple.png" id="4_tue3n"]
+[ext_resource type="Script" uid="uid://nkjs6gp505yc" path="res://game/healthbar/healthbar.gd" id="1_68gid"]
+[ext_resource type="Texture2D" uid="uid://bwqbc2owuwa5s" path="res://assets/ui/HealthbarScribble.png" id="2_tq0he"]
+[ext_resource type="Texture2D" uid="uid://cwf5ihgu2x5k5" path="res://assets/ui/HealthbarBottom.png" id="3_kxfyk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o76um"]
-bg_color = Color(1, 0.64, 0.1, 1)
+bg_color = Color(0.99905866, 0.97335905, 0.9671038, 1)
 border_width_left = 2
 border_width_top = 12
 border_width_right = 2
 border_width_bottom = 12
-border_color = Color(1, 0.6392157, 0.101960786, 1)
+border_color = Color(1, 0.972549, 0.96862745, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fanj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxu8y"]
-bg_color = Color(0.24313726, 0.6901961, 0.07058824, 1)
+bg_color = Color(0.8666667, 0.28235295, 0.15294118, 1)
 border_width_left = 2
 border_width_top = 12
 border_width_right = 2
 border_width_bottom = 12
-border_color = Color(0.24313726, 0.6901961, 0.07058824, 1)
+border_color = Color(0.8666667, 0.28235295, 0.15294118, 1)
 
 [node name="Healthbar" type="Control"]
 layout_mode = 3
@@ -30,16 +29,16 @@ offset_left = 4.0
 offset_top = 9.0
 offset_right = 502.0
 offset_bottom = 49.0
-script = ExtResource("1_oxsi7")
+script = ExtResource("1_68gid")
 
 [node name="DamageBar" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
-offset_left = 8.0
-offset_top = 1.0
-offset_right = 328.0
-offset_bottom = 146.0
-scale = Vector2(1.5044277, 0.24174428)
+offset_left = -3.0
+offset_top = -7.9999995
+offset_right = 317.0
+offset_bottom = 137.0
+scale = Vector2(1.484506, 0.23763804)
 mouse_filter = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_o76um")
 value = 70.0
@@ -48,11 +47,11 @@ show_percentage = false
 [node name="HealthBar" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
-offset_left = 8.0
-offset_top = 1.0
-offset_right = 328.0
-offset_bottom = 146.0
-scale = Vector2(1.5044277, 0.24174428)
+offset_left = -3.0
+offset_top = -7.9999995
+offset_right = 317.0
+offset_bottom = 137.0
+scale = Vector2(1.484506, 0.23763804)
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_2fanj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sxu8y")
@@ -63,16 +62,6 @@ show_percentage = false
 wait_time = 0.4
 one_shot = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
-z_index = 10
-layout_mode = 0
-offset_left = -5.000004
-offset_top = -10.0
-offset_right = 3369.0
-offset_bottom = 366.0
-scale = Vector2(0.15167624, 0.15110038)
-texture = ExtResource("4_tue3n")
-
 [node name="UpperDecoration" type="TextureRect" parent="."]
 visible = false
 layout_mode = 1
@@ -81,7 +70,7 @@ offset_top = -9.0
 offset_right = 2566.8088
 offset_bottom = 242.28207
 scale = Vector2(0.195, 0.195)
-texture = ExtResource("2_fv03a")
+texture = ExtResource("2_tq0he")
 
 [node name="LowerDecoration" type="TextureRect" parent="UpperDecoration"]
 visible = false
@@ -90,15 +79,6 @@ offset_left = 605.1282
 offset_top = 174.35901
 offset_right = 989.1282
 offset_bottom = 289.359
-texture = ExtResource("3_tue3n")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-visible = false
-position = Vector2(254, 28)
-scale = Vector2(0.14977022, 0.14977022)
-texture = ExtResource("4_tue3n")
+texture = ExtResource("3_kxfyk")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

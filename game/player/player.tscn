@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=21 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
@@ -11,8 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://ixi64aeuij20" path="res://game/player/weapons/dagger/dagger.tscn" id="9_5ghna"]
 [ext_resource type="PackedScene" uid="uid://bqoqtx6dcidh2" path="res://game/player/weapons/hit_and_run/hit_and_run_attack.tscn" id="9_j0mij"]
 [ext_resource type="Texture2D" uid="uid://bpmqv2iso808a" path="res://assets/ui/PauseButtonScribble.png" id="9_uv2nh"]
+[ext_resource type="Texture2D" uid="uid://s4sspr0pav3l" path="res://assets/ui/SketchGreyButtonTexture.png" id="10_2mv0n"]
 [ext_resource type="PackedScene" uid="uid://bocn6gw8p7uuq" path="res://game/ui/pause_menu.tscn" id="10_j0mij"]
+[ext_resource type="Texture2D" uid="uid://cvy3lafwe3ion" path="res://assets/ui/SketchButtonKurzEumling.png" id="11_gh012"]
 [ext_resource type="PackedScene" uid="uid://cctgxhumux0fs" path="res://game/player/weapons/shoot_on_command/shoot_on_command.tscn" id="12_n270p"]
+[ext_resource type="Texture2D" uid="uid://biajvboc3quwy" path="res://assets/ui/SketchButtonKurzPlay.png" id="12_usp30"]
+[ext_resource type="PackedScene" uid="uid://cbr7504esjh25" path="res://game/ui/SketchOverlay/pause_sketch.tscn" id="16_gh012"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.25
@@ -21,6 +25,12 @@ height = 1.0
 [sub_resource type="Resource" id="Resource_anr75"]
 script = ExtResource("5_4ste8")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0e4oy"]
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
 collision_layer = 2
@@ -55,9 +65,9 @@ can_be_hit_by = 6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,36 +75,109 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Healthbar" parent="CanvasLayer/Control" instance=ExtResource("7_anr75")]
+[node name="Healthbar2" parent="UI/Control" instance=ExtResource("7_anr75")]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -752.0
-offset_top = 31.0
-offset_right = -752.0
-offset_bottom = 31.0
+offset_left = -2013.7832
+offset_top = 275.30713
+offset_right = -2013.7832
+offset_bottom = 275.30713
 grow_horizontal = 2
-scale = Vector2(3.047281, 2.2488232)
+scale = Vector2(2.4131918, 1.7808799)
 hide_when_full_after = -1.0
 hide_initially = false
 
-[node name="PauseButton" type="TextureButton" parent="CanvasLayer/Control"]
+[node name="Healthbar" parent="UI/Control" instance=ExtResource("7_anr75")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -446.99994
+offset_top = 36.0
+offset_right = -446.99994
+offset_bottom = 36.0
+grow_horizontal = 2
+scale = Vector2(1.2545942, -0.61159563)
+hide_when_full_after = -1.0
+hide_initially = false
+
+[node name="PauseButton" type="TextureButton" parent="UI/Control"]
 visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control"]
+visible = false
 position = Vector2(1808, 40.000004)
 scale = Vector2(0.5889311, 0.5889311)
 texture = ExtResource("9_uv2nh")
 
-[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Control"]
-position = Vector2(140.00012, 39)
+[node name="Sprite2D2" type="Sprite2D" parent="UI/Control"]
+visible = false
+position = Vector2(156, 326)
 scale = Vector2(0.5889311, 0.5889311)
 texture = ExtResource("9_uv2nh")
 flip_h = true
+
+[node name="Panel" type="Panel" parent="UI/Control"]
+clip_children = 1
+layout_mode = 0
+offset_left = 88.0
+offset_top = 62.0
+offset_right = 252.23364
+offset_bottom = 134.00125
+scale = Vector2(0.9448688, 0.81943655)
+theme_override_styles/panel = SubResource("StyleBoxFlat_0e4oy")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/Panel"]
+layout_mode = 0
+offset_left = -9.40922
+offset_top = -4.931595
+offset_right = 165.94441
+offset_bottom = 82.85076
+texture = ExtResource("10_2mv0n")
+expand_mode = 1
+
+[node name="TextureButton2" type="TextureButton" parent="UI/Control"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 46.0
+offset_right = 2075.0
+offset_bottom = 2088.0
+scale = Vector2(0.033757787, 0.033757787)
+texture_normal = ExtResource("11_gh012")
+
+[node name="Panel2" type="Panel" parent="UI/Control"]
+clip_children = 1
+layout_mode = 0
+offset_left = 1703.9999
+offset_top = 62.0
+offset_right = 1868.2335
+offset_bottom = 134.00125
+scale = Vector2(0.94487256, 0.8194397)
+theme_override_styles/panel = SubResource("StyleBoxFlat_0e4oy")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/Panel2"]
+layout_mode = 0
+offset_left = -9.40922
+offset_top = -4.931595
+offset_right = 165.94441
+offset_bottom = 82.85076
+texture = ExtResource("10_2mv0n")
+expand_mode = 1
+
+[node name="TextureButton" type="TextureButton" parent="UI/Control"]
+layout_mode = 0
+offset_left = 1781.9999
+offset_top = 47.000008
+offset_right = 3758.0
+offset_bottom = 2089.0
+scale = Vector2(0.033757795, 0.033757795)
+texture_normal = ExtResource("12_usp30")
 
 [node name="testTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -111,7 +194,10 @@ rotation_parent = NodePath("../Eumling_Survivor")
 enabled = true
 rotation_parent = NodePath("../Eumling_Survivor")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="UITest" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("10_j0mij")]
+[node name="PauseSketch" parent="UITest" instance=ExtResource("16_gh012")]
+
+[node name="PauseMenu" parent="UITest" instance=ExtResource("10_j0mij")]
+visible = false
