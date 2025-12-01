@@ -27,10 +27,10 @@ metadata/_custom_type_script = "uid://cio21hucnk80k"
 [node name="FollowPlayerAsFlockState" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_2cqpj")
 wait_time = 0.0
-stop_distance = 0.1
+stop_distance = 0.5
 group = 1
 awareness_radius = 3.0
-alignment_factor = 0.1
+separation_radius = 0.6
 cohesion_factor = 0.1
 debug_show_path = true
 next_state = NodePath(".")
