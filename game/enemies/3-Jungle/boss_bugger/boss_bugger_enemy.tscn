@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jhi1l"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_3utvs"]
-[ext_resource type="Script" uid="uid://d08yjq57yklyp" path="res://game/enemies/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
+[ext_resource type="Script" uid="uid://d08yjq57yklyp" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_ectag"]
-[ext_resource type="Script" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="3_unkqv"]
+[ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="3_unkqv"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="3_vgowq"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_fi40l"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="4_vgowq"]
@@ -53,7 +53,7 @@ collision_layer = 64
 collision_mask = 65
 script = ExtResource("2_unkqv")
 MAX_FILL = 9.0
-health = 20.0
+health = 40.0
 hurtbox = NodePath("HurtBox")
 node_with_animation_tree = NodePath("Visuals/BossBugger")
 
@@ -61,6 +61,9 @@ node_with_animation_tree = NodePath("Visuals/BossBugger")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4826612, 0)
 hide_when_full_after = 100.0
 hide_initially = false
+
+[node name="HealthbarEnemy3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, -0.5)
 
 [node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("ChooseStateBasedOnCost")
