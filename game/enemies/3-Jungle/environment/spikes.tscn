@@ -1,0 +1,236 @@
+[gd_scene load_steps=19 format=3 uid="uid://dk6vxgi2ymgv4"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_bdsau"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_04kag"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_ovvjf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80b7e"]
+albedo_color = Color(0.75686276, 0.02745098, 0.12156863, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_gicpd"]
+material = SubResource("StandardMaterial3D_80b7e")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y64vg"]
+albedo_color = Color(0.5019608, 0.4862745, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i0hom"]
+material = SubResource("StandardMaterial3D_y64vg")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o8mup"]
+
+[sub_resource type="Animation" id="Animation_l81q0"]
+resource_name = "Down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Spikes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.44082046, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qh4ut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Spikes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.44082046, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0fbkj"]
+resource_name = "UP"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Spikes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.5, 0.6, 0.70000005, 1.9000001, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.341, 0), Vector3(0, -0.266, 0), Vector3(0, -0.266, 0), Vector3(0, 0.053, 0), Vector3(0, -0.04, 0), Vector3(0, -0.16, 0), Vector3(0, -0.326, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.53333336, 1.9, 1.9333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pb8bu"]
+_data = {
+&"Down": SubResource("Animation_l81q0"),
+&"RESET": SubResource("Animation_qh4ut"),
+&"UP": SubResource("Animation_0fbkj")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bdsau"]
+animation = &"Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_04kag"]
+animation = &"UP"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ovvjf"]
+advance_mode = 2
+advance_condition = &"down"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_80b7e"]
+advance_mode = 2
+advance_condition = &"up"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gicpd"]
+advance_mode = 2
+advance_condition = &"down"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_y64vg"]
+states/Down/node = SubResource("AnimationNodeAnimation_bdsau")
+states/Down/position = Vector2(413, 112)
+states/UP/node = SubResource("AnimationNodeAnimation_04kag")
+states/UP/position = Vector2(576, 94)
+transitions = ["Start", "Down", SubResource("AnimationNodeStateMachineTransition_ovvjf"), "Down", "UP", SubResource("AnimationNodeStateMachineTransition_80b7e"), "UP", "Down", SubResource("AnimationNodeStateMachineTransition_gicpd")]
+
+[node name="SpikeTrap" node_paths=PackedStringArray("hitbox") instance=ExtResource("1_bdsau")]
+speed = 0.0
+ignore_enemy_in_level = true
+hitbox = NodePath("Hitbox")
+cannot_die = true
+
+[node name="HealthbarEnemy3D" parent="." index="1"]
+visible = false
+
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("WaitDown")
+
+[node name="WaitDown" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_04kag")
+wait_time = 2.0
+next_state = NodePath("../WaitUP")
+animation_trigger = "down"
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="WaitUP" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_04kag")
+wait_time = 2.0
+next_state = NodePath("../WaitDown")
+animation_trigger = "up"
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Spikes" type="Node3D" parent="Visuals" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.7322147, 0, 0, 0, 0.5, 0, -0.44082046, 0)
+
+[node name="Spike" type="MeshInstance3D" parent="Visuals/Spikes" index="0"]
+transform = Transform3D(0.26143846, 0, 0, 0, 0.5177108, 0, 0, 0, 0.17236345, -0.371013, 0.22720522, 0.008065641)
+mesh = SubResource("PrismMesh_gicpd")
+skeleton = NodePath("../..")
+
+[node name="Spike3" type="MeshInstance3D" parent="Visuals/Spikes" index="1"]
+transform = Transform3D(-1.0532743e-08, 0, 0.17236347, 0, 0.5177108, 0, -0.24798727, 0, -7.450581e-09, -0.3617306, 0.22720522, -0.3711536)
+mesh = SubResource("PrismMesh_gicpd")
+skeleton = NodePath("../..")
+
+[node name="Spike5" type="MeshInstance3D" parent="Visuals/Spikes" index="2"]
+transform = Transform3D(-1.1672392e-08, 0, 0.17236347, 0, 0.5177108, 0, -0.27481964, 0, -7.450581e-09, -0.3380762, 0.22720522, 0.3480677)
+mesh = SubResource("PrismMesh_gicpd")
+skeleton = NodePath("../..")
+
+[node name="Spike7" type="MeshInstance3D" parent="Visuals/Spikes" index="3"]
+transform = Transform3D(0.21213335, 0, 0, 0, 0.5177108, 0, 0, 0, 0.17236345, 0.37465107, 0.22720522, 0.009880722)
+mesh = SubResource("PrismMesh_gicpd")
+skeleton = NodePath("../..")
+
+[node name="Spike8" type="MeshInstance3D" parent="Visuals/Spikes" index="4"]
+transform = Transform3D(-9.411268e-09, 0, 0.17236347, 0, 0.5177108, 0, -0.22158282, 0, -7.450581e-09, 0.36224902, 0.22720522, -0.38499475)
+mesh = SubResource("PrismMesh_gicpd")
+skeleton = NodePath("../..")
+
+[node name="Spike9" type="MeshInstance3D" parent="Visuals/Spikes" index="5"]
+transform = Transform3D(-9.331696e-09, 0, 0.17236347, 0, 0.5177108, 0, -0.21970934, 0, -7.450581e-09, 0.37475026, 0.22720522, 0.36124235)
+mesh = SubResource("PrismMesh_gicpd")
+skeleton = NodePath("../..")
+
+[node name="Spike2" type="MeshInstance3D" parent="Visuals/Spikes" index="6"]
+transform = Transform3D(-1.6537143e-08, 0, 0.17236346, 0, 0.51771075, 0, -0.25957155, 0, -1.1175871e-08, 0, 0.22720522, 0)
+mesh = SubResource("PrismMesh_gicpd")
+skeleton = NodePath("../..")
+
+[node name="Spike4" type="MeshInstance3D" parent="Visuals/Spikes" index="7"]
+transform = Transform3D(0.22433427, 0, 0, 0, 0.5177108, 0, 0, 0, 0.17236345, 0.013865471, 0.22720522, -0.34459198)
+mesh = SubResource("PrismMesh_gicpd")
+skeleton = NodePath("../..")
+
+[node name="Spike6" type="MeshInstance3D" parent="Visuals/Spikes" index="8"]
+transform = Transform3D(0.24388145, 0, 0, 0, 0.5177108, 0, 0, 0, 0.17236345, 0.004091561, 0.22720522, 0.37664255)
+mesh = SubResource("PrismMesh_gicpd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21034646, 0)
+mesh = SubResource("BoxMesh_i0hom")
+
+[node name="Hitbox" parent="." index="5" instance=ExtResource("3_ovvjf")]
+collision_layer = 32
+collision_mask = 8
+damage = 1.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_o8mup")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+&"": SubResource("AnimationLibrary_pb8bu")
+}
+autoplay = "Down"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
+tree_root = SubResource("AnimationNodeStateMachine_y64vg")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/down = false
+parameters/conditions/up = false

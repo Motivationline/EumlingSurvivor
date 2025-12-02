@@ -17,13 +17,14 @@ radius = 0.26123047
 height = 0.7426758
 
 [node name="SniperEnemy" node_paths=PackedStringArray("hurtbox", "node_with_animation_tree") instance=ExtResource("1_jj26d")]
+health = 5.0
 hurtbox = NodePath("HurtBox")
 node_with_animation_tree = NodePath("Visuals/peacock")
 
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90527487, -0.07545662)
 
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("LookAtPlayerState")
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
@@ -43,8 +44,6 @@ script = ExtResource("3_4ah3n")
 entity_to_spawn = ExtResource("4_3xlw0")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="peacock" parent="Visuals" index="0" instance=ExtResource("2_3n5vt")]
-
 [node name="HurtBox" type="Area3D" parent="." index="4"]
 collision_layer = 64
 collision_mask = 5
@@ -61,3 +60,5 @@ shape = SubResource("CapsuleShape3D_6lrmx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3322754, 0)
 shape = SubResource("CapsuleShape3D_qcoba")
 debug_color = Color(0.6433014, 0.4436161, 0.73155004, 0.41960785)
+
+[node name="peacock" parent="Visuals" index="0" instance=ExtResource("2_3n5vt")]
