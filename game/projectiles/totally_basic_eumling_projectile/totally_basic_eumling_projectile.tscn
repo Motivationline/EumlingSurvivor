@@ -1,0 +1,209 @@
+[gd_scene load_steps=26 format=3 uid="uid://csrh8ood2mu1q"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_5adta"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_lu38v"]
+[ext_resource type="ArrayMesh" uid="uid://7p6hcpisyve7" path="res://assets/characters/eumling/leaf_projectile.res" id="3_706qm"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_yusjb"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_h4lxs"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="4_x7orq"]
+[ext_resource type="PackedScene" uid="uid://bov1hcmo0on0h" path="res://game/vfx/firehit/fire_hit.tscn" id="5_x7orq"]
+[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="8_28psj"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_x7orq"]
+
+[sub_resource type="Curve" id="Curve_yusjb"]
+_limits = [0.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_706qm"]
+albedo_color = Color(0.3892439, 0.67000383, 0.32454136, 1)
+emission_enabled = true
+emission = Color(1, 0.9853333, 0.120000005, 1)
+emission_energy_multiplier = 0.17
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7orq"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+
+[sub_resource type="Curve" id="Curve_28psj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_aejtm"]
+curve = SubResource("Curve_28psj")
+
+[sub_resource type="Curve" id="Curve_rqm5e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6569612, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ifyym"]
+curve = SubResource("Curve_rqm5e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h5f0h"]
+particle_flag_align_y = true
+emission_shape = 2
+emission_sphere_radius = 0.1
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 1.5
+initial_velocity_max = 3.0
+radial_velocity_min = 0.019977648
+radial_velocity_max = 0.49997765
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_ifyym")
+color = Color(1, 1, 0.39999998, 1)
+alpha_curve = SubResource("CurveTexture_aejtm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2uqe5"]
+flip_faces = true
+size = Vector2(0.01, 0.05)
+orientation = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x7orq"]
+emission_shape = 2
+emission_sphere_radius = 0.1
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.5
+radial_velocity_min = 0.019977648
+radial_velocity_max = 0.49997765
+gravity = Vector3(0, 0, 0)
+damping_min = 2.0
+damping_max = 5.0
+scale_curve = SubResource("CurveTexture_ifyym")
+color = Color(1, 1, 0.39999998, 1)
+alpha_curve = SubResource("CurveTexture_aejtm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aejtm"]
+render_priority = 0
+shader = ExtResource("8_28psj")
+shader_parameter/ball_color = Color(0.89, 0.68352, 0.11569999, 1)
+shader_parameter/frensel_power = -2.455
+shader_parameter/visibility = 0.205
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_acb8o"]
+radius = 0.13893983
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_28psj"]
+radius = 0.16739365
+
+[sub_resource type="Animation" id="Animation_yusjb"]
+resource_name = "fly"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.01, 0.265, 0), Vector3(0.01, 0.242, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_acb8o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.26474383, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h4lxs"]
+_data = {
+&"RESET": SubResource("Animation_acb8o"),
+&"fly": SubResource("Animation_yusjb")
+}
+
+[node name="Projectile" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_end_of_life") instance=ExtResource("1_5adta")]
+collision_mask = 257
+hit_box = NodePath("Hitbox")
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnHit/RemoveEventStrategy")]
+on_hit = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnHit/RemoveEventStrategy")]
+on_end_of_life = [NodePath("EventStrategies/OnHit/RemoveEventStrategy")]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
+script = ExtResource("2_lu38v")
+speed = SubResource("Curve_yusjb")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
+script = ExtResource("3_yusjb")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnHit" index="1"]
+script = ExtResource("4_x7orq")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnHit/SpawnEntitiesEventStrategy" index="0"]
+script = ExtResource("4_h4lxs")
+entity_to_spawn = ExtResource("5_x7orq")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26474383, 0)
+mesh = ExtResource("3_706qm")
+surface_material_override/0 = SubResource("StandardMaterial3D_706qm")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002693967, -0.004100442, 0)
+material_override = SubResource("StandardMaterial3D_x7orq")
+amount = 10
+lifetime = 0.3
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_h5f0h")
+draw_pass_1 = SubResource("PlaneMesh_2uqe5")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="MeshInstance3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002693967, -0.004100442, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_x7orq")
+amount = 5
+lifetime = 2.0
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_x7orq")
+draw_pass_1 = ExtResource("3_706qm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D" index="2"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.0007976033, -0.0015535653, 0)
+material_override = SubResource("ShaderMaterial_aejtm")
+mesh = ExtResource("3_706qm")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006139621, 0)
+shape = SubResource("SphereShape3D_acb8o")
+debug_color = Color(0.929439, 2.955228e-05, 0.6627207, 0.41960785)
+
+[node name="Hitbox" parent="." index="4" instance=ExtResource("8_x7orq")]
+collision_layer = 4
+collision_mask = 65
+attached_to = 3
+can_hit = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+shape = SubResource("SphereShape3D_28psj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+&"": SubResource("AnimationLibrary_h4lxs")
+}

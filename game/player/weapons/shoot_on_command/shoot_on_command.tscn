@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="1_0amth"]
 [ext_resource type="Script" uid="uid://w8hpw604beo6" path="res://game/player/weapons/shoot_on_command/shoot_on_command.gd" id="1_iygp7"]
-[ext_resource type="PackedScene" uid="uid://cjpt5ms0ud5r" path="res://game/projectiles/bouncing_ball_projectile/bouncing_ball_projectile_player.tscn" id="2_iygp7"]
+[ext_resource type="PackedScene" uid="uid://csrh8ood2mu1q" path="res://game/projectiles/totally_basic_eumling_projectile/totally_basic_eumling_projectile.tscn" id="3_iygp7"]
 
 [node name="shoot_on_command" type="Node3D"]
 script = ExtResource("1_iygp7")
 
 [node name="EntitySpawner" type="Node3D" parent="."]
 script = ExtResource("1_0amth")
-entity_to_spawn = ExtResource("2_iygp7")
+entity_to_spawn = ExtResource("3_iygp7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Timer" type="Timer" parent="."]
