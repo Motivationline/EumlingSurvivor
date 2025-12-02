@@ -143,16 +143,23 @@ cannot_die = true
 visible = false
 
 [node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("WaitDown")
+initial_state = NodePath("FirstTimeDelay")
 
-[node name="WaitDown" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="FirstTimeDelay" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_04kag")
+wait_time = 0.0
+next_state = NodePath("../WaitDown")
+animation_trigger = "down"
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="WaitDown" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_04kag")
 wait_time = 2.0
 next_state = NodePath("../WaitUP")
 animation_trigger = "down"
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="WaitUP" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+[node name="WaitUP" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_04kag")
 wait_time = 2.0
 next_state = NodePath("../WaitDown")
