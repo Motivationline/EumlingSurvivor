@@ -17,8 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://cbr7504esjh25" path="res://game/ui/SketchOverlay/pause_sketch.tscn" id="16_gh012"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
-radius = 0.25
-height = 1.0
+radius = 0.23
+height = 0.9135742
 
 [sub_resource type="Resource" id="Resource_anr75"]
 script = ExtResource("5_4ste8")
@@ -40,7 +40,7 @@ spawner = NodePath("TestingSpawner")
 inv = ExtResource("2_gb4gm")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4567871, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
 [node name="Eumling_Survivor" parent="." instance=ExtResource("1_wv0h6")]
