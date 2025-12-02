@@ -1,6 +1,53 @@
-[gd_scene load_steps=8 format=3 uid="uid://el7nans1vkam"]
+[gd_scene load_steps=17 format=3 uid="uid://el7nans1vkam"]
 
 [ext_resource type="PackedScene" uid="uid://b6s55jlxw1j4x" path="res://assets/characters/enemies/cactushog/cactushog.glb" id="1_guqsc"]
+[ext_resource type="Animation" uid="uid://dffuki6ujxyud" path="res://assets/characters/enemies/cactushog/hog_idle.res" id="2_gekiq"]
+[ext_resource type="Animation" uid="uid://cx78i38qg6lg4" path="res://assets/characters/enemies/cactushog/hog_run.res" id="3_46rdp"]
+
+[sub_resource type="Animation" id="Animation_e5xn7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HogAramture/Skeleton3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwm3v"]
+_data = {
+&"RESET": SubResource("Animation_e5xn7"),
+&"idle_hog": ExtResource("2_gekiq"),
+&"run_hog": ExtResource("3_46rdp")
+}
+
+[sub_resource type="Animation" id="Animation_2twxx"]
+resource_name = "ShootTest"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HogAramture/Skeleton3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.53333336, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1141858, 0.8287871, 1.1610161), Vector3(1.4, 0.673, 1.4), Vector3(0.855, 1.227, 0.865), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xyhcu"]
+_data = {
+&"ShootTest": SubResource("Animation_2twxx")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xoegt"]
+animation = &"Test/ShootTest"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_guqsc"]
 animation = &"idle_hog"
@@ -21,29 +68,45 @@ xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wshgy"]
+advance_mode = 2
+advance_condition = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wrlgy"]
+advance_mode = 2
+advance_condition = &"idle"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2twxx"]
-states/End/position = Vector2(722, 140)
+states/End/position = Vector2(793, 140)
 states/Start/position = Vector2(275, 140)
+states/Test_ShootTest/node = SubResource("AnimationNodeAnimation_xoegt")
+states/Test_ShootTest/position = Vector2(620, 140)
 states/idle_hog/node = SubResource("AnimationNodeAnimation_guqsc")
 states/idle_hog/position = Vector2(428, 140)
 states/run_hog/node = SubResource("AnimationNodeAnimation_rn35m")
 states/run_hog/position = Vector2(428, 29)
-transitions = ["Start", "idle_hog", SubResource("AnimationNodeStateMachineTransition_gekiq"), "idle_hog", "run_hog", SubResource("AnimationNodeStateMachineTransition_46rdp"), "run_hog", "idle_hog", SubResource("AnimationNodeStateMachineTransition_e5xn7")]
-graph_offset = Vector2(-334, -85)
+transitions = ["Start", "idle_hog", SubResource("AnimationNodeStateMachineTransition_gekiq"), "idle_hog", "run_hog", SubResource("AnimationNodeStateMachineTransition_46rdp"), "run_hog", "idle_hog", SubResource("AnimationNodeStateMachineTransition_e5xn7"), "idle_hog", "Test_ShootTest", SubResource("AnimationNodeStateMachineTransition_wshgy"), "Test_ShootTest", "idle_hog", SubResource("AnimationNodeStateMachineTransition_wrlgy")]
+graph_offset = Vector2(-291, -81)
 
 [node name="cactushog" instance=ExtResource("1_guqsc")]
 
 [node name="Skeleton3D" parent="HogAramture" index="0"]
+transform = Transform3D(1, 0, 1.4210855e-14, 0, 1, 0, -1.4210855e-14, 0, 1, 0, 0, 0)
 bones/1/position = Vector3(0, -1.4901161e-08, -5.293956e-23)
 bones/2/rotation = Quaternion(0.7071068, 0, 0, 0.7071068)
-bones/2/scale = Vector3(1.0006533, 0.99869555, 1.0006533)
-bones/3/position = Vector3(3.2102221e-24, 1.490116e-08, 0.48365214)
+bones/2/scale = Vector3(1.0132254, 0.97407395, 1.0132254)
+bones/3/position = Vector3(3.0398282e-24, 1.3781328e-08, 0.4718258)
 
 [node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_vwm3v"),
+&"Test": SubResource("AnimationLibrary_xyhcu")
+}
 autoplay = "run_hog"
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeStateMachine_2twxx")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
+parameters/conditions/shoot = false
 parameters/conditions/walk = false
