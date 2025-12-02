@@ -20,18 +20,19 @@ albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 [node name="RealisticProjectile" node_paths=PackedStringArray("hit_box", "on_world_collision") instance=ExtResource("1_25de7")]
 collision_mask = 257
 hit_box = NodePath("Hitbox")
-on_world_collision = [NodePath("EventStrategies/TimerEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 shape = SubResource("BoxShape3D_5h5ko")
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="5"]
 script = ExtResource("3_6rkhr")
+is_active = true
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
 [node name="TimerEventStrategy" type="Node" parent="EventStrategies" index="6" node_paths=PackedStringArray("event")]
 script = ExtResource("3_g7rvt")
 event = NodePath("../RemoveEventStrategy")
+is_active = true
 metadata/_custom_type_script = "uid://bmq6jlknuf4wy"
 
 [node name="Hitbox" parent="." index="3" instance=ExtResource("2_hgol8")]

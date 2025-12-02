@@ -2,8 +2,8 @@ extends EventStrategy
 ## Deactivates the Strategies inside the given Array
 class_name DeactivateEventStrategy
 
-## Add Node pool inside this Array
-@export var strats: Array[Node]
+## Add Deactivation Strategy pool inside this Array
+@export var strats: Array[Strategy]
 
 ## trigger the action after a given delay
 @export var is_delayed: bool = false

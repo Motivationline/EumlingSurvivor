@@ -1,17 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8i5p1aqn6t04"]
+[gd_scene load_steps=16 format=3 uid="uid://c8i5p1aqn6t04"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_qimiv"]
 [ext_resource type="Script" uid="uid://l8142vs0gken" path="res://strategies/projectile_target/universal.gd" id="2_e7nm6"]
-[ext_resource type="Script" path="res://strategies/projectile_movement/move_to_target.gd" id="3_8rhee"]
-[ext_resource type="Script" path="res://strategies/projectile_movement/artillery_move_to_target.gd" id="4_oehk6"]
-[ext_resource type="Script" path="res://strategies/event/mark_target_as_hit.gd" id="4_rw8u3"]
-[ext_resource type="Script" path="res://strategies/event/set_targets.gd" id="5_0r34h"]
-[ext_resource type="Script" path="res://strategies/event/bounce.gd" id="5_upmae"]
+[ext_resource type="Script" uid="uid://b322w7peeh246" path="res://strategies/projectile_movement/move_to_target.gd" id="3_8rhee"]
+[ext_resource type="Script" uid="uid://ciibuj5lu0oho" path="res://strategies/projectile_movement/artillery_move_to_target.gd" id="4_oehk6"]
+[ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="5_0r34h"]
+[ext_resource type="Script" uid="uid://00ua1d2dsp1k" path="res://strategies/event/bounce.gd" id="5_upmae"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="6_b55m7"]
 [ext_resource type="Script" path="res://strategies/event/destroy_node.gd" id="6_upmae"]
-[ext_resource type="Script" path="res://strategies/event/deactivate.gd" id="7_4gdau"]
+[ext_resource type="Script" uid="uid://d13s0cgbc5iq0" path="res://strategies/event/deactivate.gd" id="7_4gdau"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_qm0fq"]
-[ext_resource type="Script" path="res://strategies/event/activate.gd" id="8_w3wqf"]
+[ext_resource type="Script" uid="uid://2ncl5gd1yn5a" path="res://strategies/event/activate.gd" id="8_w3wqf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5h5ko"]
 size = Vector3(0.22460938, 0.21972656, 1)
@@ -25,13 +24,12 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqng7"]
 albedo_color = Color(0.24313726, 0.21568628, 0, 1)
 
-[node name="MultiTargetProjectile" node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_world_collision", "on_hit", "on_created") instance=ExtResource("1_qimiv")]
+[node name="MultiTargetProjectile" node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_hit", "on_created") instance=ExtResource("1_qimiv")]
 lifetime = 20.0
 hit_box = NodePath("Hitbox")
-movement = [NodePath("MovementStrategies/MoveToTargetProjectileMovementStrategy"), NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
+movement = [NodePath("MovementStrategies/MoveToTargetProjectileMovementStrategy")]
 targeting = [NodePath("TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
-on_world_collision = [NodePath("EventStrategies/OnWorldCollision/BounceEventStrategy")]
-on_hit = [NodePath("EventStrategies/OnHit/MarkTargetAsHitTargetsEventStrategy"), NodePath("EventStrategies/OnHit/DestroyNodeEventStrategy"), NodePath("EventStrategies/OnHit/DeactivateEventStrategy"), NodePath("EventStrategies/OnHit/ActivateEventStrategy")]
+on_hit = [NodePath("EventStrategies/RemoveEventStrategy")]
 on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
@@ -42,8 +40,10 @@ shape = SubResource("BoxShape3D_5h5ko")
 [node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="TargetStrategies" index="0"]
 script = ExtResource("2_e7nm6")
 target_type = 1
-max_radius = 4.0
-max_targets = 2
+target_property = 1
+target_sorter = 2
+max_radius = 38.2
+max_targets = 10
 metadata/_custom_type_script = "uid://l8142vs0gken"
 
 [node name="MoveToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
@@ -51,28 +51,24 @@ script = ExtResource("3_8rhee")
 
 [node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1"]
 script = ExtResource("4_oehk6")
-amplitude = 0.7
 
 [node name="BounceEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" node_paths=PackedStringArray("ray_cast")]
 script = ExtResource("5_upmae")
 ray_cast = NodePath("../../../RayCast3D")
 
-[node name="MarkTargetAsHitTargetsEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
-script = ExtResource("4_rw8u3")
-
-[node name="DestroyNodeEventStrategy" type="Node" parent="EventStrategies/OnHit" index="1" node_paths=PackedStringArray("nodes")]
+[node name="DestroyNodeEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0" node_paths=PackedStringArray("nodes")]
 script = ExtResource("6_upmae")
 nodes = [NodePath("../../../tmp_visuals/CSGBox3D")]
 is_delayed = true
 delay = 0.5
 
-[node name="DeactivateEventStrategy" type="Node" parent="EventStrategies/OnHit" index="2" node_paths=PackedStringArray("strats")]
+[node name="DeactivateEventStrategy" type="Node" parent="EventStrategies/OnHit" index="1" node_paths=PackedStringArray("strats")]
 script = ExtResource("7_4gdau")
 strats = [NodePath("../../../MovementStrategies/MoveToTargetProjectileMovementStrategy")]
 is_delayed = true
 delay = 0.5
 
-[node name="ActivateEventStrategy" type="Node" parent="EventStrategies/OnHit" index="3" node_paths=PackedStringArray("activate")]
+[node name="ActivateEventStrategy" type="Node" parent="EventStrategies/OnHit" index="2" node_paths=PackedStringArray("activate")]
 script = ExtResource("8_w3wqf")
 activate = [NodePath("../../../MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
 is_delayed = true
