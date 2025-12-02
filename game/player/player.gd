@@ -14,11 +14,17 @@ var health: float = 10.0:
 			health = clampf(new_value, 0, max_health)
 		if (healthbar):
 			healthbar.health = health
+		if (health == 0):
+			died.emit()
+			anim_player.set("parameters/conditions/run", false)
+			anim_player.set("parameters/conditions/idle", true)
 var max_health: float:
 	set(value):
 		max_health = value
 		if (healthbar):
 			healthbar.max_health = max_health
+
+signal died
 
 # @export var weapon: Weapon
 
@@ -67,6 +73,7 @@ func hurt_by(_area: HitBox):
 var prev_direction: Vector3
 
 func _physics_process(_delta: float) -> void:
+	if health == 0: return
 	var direction = Input.get_vector("left", "right", "up", "down")
 	var direction_3d = Vector3(direction.x, 0, direction.y)
 	velocity = direction_3d * speed
