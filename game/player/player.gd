@@ -20,7 +20,7 @@ var max_health: float:
 		if (healthbar):
 			healthbar.max_health = max_health
 
-@export var weapon: Weapon
+# @export var weapon: Weapon
 
 @export_category("")
 @export var eumling_visuals: Node3D
@@ -50,7 +50,7 @@ func _ready() -> void:
 
 	if (healthbar): healthbar.init_health(max_health)
 	if (hurtbox): hurtbox.hurt_by.connect(hurt_by)
-	if (weapon): weapon.setup(self)
+	# if (weapon): weapon.setup(self)
 
 	anim_player = eumling_visuals.find_child("AnimationTree")
 
@@ -92,10 +92,10 @@ func _physics_process(_delta: float) -> void:
 		shoot_on_command.try_to_shoot()
 	
 	
-	if (weapon): weapon.physics_process(_delta)
+	# if (weapon): weapon.physics_process(_delta)
 
-func _process(delta: float) -> void:
-	if (weapon): weapon.process(delta)
+# func _process(delta: float) -> void:
+	# if (weapon): weapon.process(delta)
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("test")):
@@ -127,7 +127,7 @@ func get_upgrades_for(type: Enum.UPGRADE) -> Array[Upgrade]:
 	return active_upgrades.get(type)
 
 func get_possible_upgrades() -> Array[Upgrade]:
-	var upgrades = weapon.get_possible_upgrades().duplicate()
+	var upgrades = [] # weapon.get_possible_upgrades().duplicate()
 	upgrades.append_array(possible_upgrades)
 	return upgrades
 

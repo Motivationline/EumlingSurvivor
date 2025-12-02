@@ -19,6 +19,8 @@ class_name Projectile
 @export var movement: Array[ProjectileMovementStrategy]
 # @export var upgrades: Array[UpgradeStrategy]
 
+@export var targeting: Array[ProjectileTargetStrategy]
+
 @export_category("Event Managers")
 @export var timeout_event_managers: Array[TimeoutEventManager]
 
@@ -28,9 +30,13 @@ class_name Projectile
 @export var on_hurt: Array[EventStrategy]
 @export var on_end_of_life: Array[EventStrategy]
 @export var on_remove: Array[EventStrategy]
+@export var on_created: Array[EventStrategy]
 
 var current_lifetime: float = 0
 var target_position: Vector3
+
+var targets: Array[Node]
+var hits: Array[Node]
 
 var obj_that_spawned_this: Node3D
 
@@ -48,15 +54,19 @@ func setup(target_pos: Vector3, _owner: Node3D):
 		setup_player(_owner)
 
 	# init strategies
+	Strategy._setup_array(targeting, self, _owner)
 	Strategy._setup_array(movement, self, _owner)
 	Strategy._setup_array(on_world_collision, self, _owner)
 	Strategy._setup_array(on_hit, self, _owner)
 	Strategy._setup_array(on_hurt, self, _owner)
 	Strategy._setup_array(on_end_of_life, self, _owner)
 	Strategy._setup_array(on_remove, self, _owner)
+	Strategy._setup_array(on_created, self, _owner)
 
 	for t in timeout_event_managers:
 		t._setup(self, _owner)
+	
+	_on_created()
 
 func setup_player(player: Player):
 	# speed
@@ -98,26 +108,60 @@ func restart_timer():
 func _physics_process(delta: float) -> void:
 	current_lifetime += delta
 	for mov in movement:
-		mov.apply_movement(delta, current_lifetime, lifetime)
+		if mov.is_active:
+			mov.apply_movement(delta, current_lifetime, lifetime)
 	velocity *= delta
 	var collision: KinematicCollision3D = move_and_collide(velocity)
 	if (collision):
 		for coll in on_world_collision:
-			coll.event_triggered(collision)
-
+			if coll.is_active:
+				coll.event_triggered(collision)
 
 func _end_of_lifetime():
 	for strat in on_end_of_life:
-		await strat.event_triggered(null)
+		if strat.is_active:
+			await strat.event_triggered(null)
 	queue_free()
 
 func _on_remove():
 	for strat in on_remove:
-		strat.event_triggered(null)
+		if strat.is_active:
+			strat.event_triggered(null)
 
 func _hit_box_hit(_area):
 	for ev in on_hit:
-		ev.event_triggered(_area)
+		if ev.is_active:
+			ev.event_triggered(_area)
 func _hurt_box_hurt(_area):
 	for ev in on_hurt:
-		ev.event_triggered(_area)
+		if ev.is_active:
+			ev.event_triggered(_area)
+
+func _on_created():
+	for strat in on_created:
+		if strat.is_active:
+			strat.event_triggered(null)
+
+func set_targets():
+	print("setting targets")
+	for t in targeting:
+		if t.is_active:
+			t.find_target()
+	print("targets: ", targets)
+
+func get_targets():
+	return targets
+
+func add_hit(_hit: Node):
+	hits.append(_hit)
+
+func get_hits():
+	return hits
+
+func remove_target(_target: Node):
+	if _target in targets:
+		var idx = targets.find(_target)
+		targets.pop_at(idx)
+		
+func clear_targets():
+	targets = []

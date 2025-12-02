@@ -15,6 +15,10 @@ signal spawn_finished
 @export_range(0, 60) var time_between_entities: float = 0
 @export var offset_distance: float = 0
 
+@export var is_random_delay: bool
+@export var min_random_delay: float = 30
+@export var max_random_delay: float = 90
+
 @export_category("Targeting")
 @export var target_strategy: TargetStrategy
 @export var rotation_strategy: RotationStrategy
@@ -22,6 +26,10 @@ signal spawn_finished
 @export_category("Multi Burst")
 @export_range(0, 60, 0.1) var time_between_bursts: float = 0
 @export_range(0, 100) var amount_of_bursts: int = 1
+
+@export var is_random_burst_delay: bool
+@export var min_random_burst_delay: float = 30
+@export var max_random_burst_delay: float = 90
 
 func _ready() -> void:
 	if (!entity_to_spawn):
@@ -34,10 +42,14 @@ func _notification(what: int) -> void:
 	if (what == NOTIFICATION_PREDELETE && entity_to_spawn):
 		ShaderPrecompiler.release(entity_to_spawn)
 
+
 func spawn(_parent: Node3D, _relative_to: Node3D = null):
 	if (!_relative_to): _relative_to = _parent
 	for b in amount_of_bursts:
-		if (b != 0 && time_between_bursts > 0):
+		if b != 0 && is_random_burst_delay:
+			var random_burst_delay = randf_range(min_random_burst_delay, max_random_burst_delay)
+			await get_tree().create_timer(random_burst_delay).timeout
+		elif (b != 0 && time_between_bursts > 0):
 			await get_tree().create_timer(time_between_bursts).timeout
 		await burst(_parent, _relative_to)
 	
@@ -45,7 +57,10 @@ func spawn(_parent: Node3D, _relative_to: Node3D = null):
 
 func burst(_parent: Node3D, _relative_to: Node3D):
 	for i in amount_of_spawns:
-		if (i != 0 && time_between_entities > 0):
+		if i != 0 && is_random_delay:
+			var random_delay = randf_range(min_random_delay, max_random_delay)
+			await get_tree().create_timer(random_delay).timeout
+		elif (i != 0 && time_between_entities > 0):
 			await get_tree().create_timer(time_between_entities).timeout
 		spawn_entity(_parent, _relative_to, i, amount_of_spawns)
 	burst_finished.emit()
