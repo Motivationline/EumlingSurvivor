@@ -14,6 +14,7 @@ func _ready() -> void:
 	player = player_scene.instantiate()
 	add_child(player)
 	# init player here.
+	player.died.connect(level_ended)
 	load_level()
 	requestMusic.emit(false, MusicPlayer.LEVEL.MENU)
 	
@@ -27,6 +28,8 @@ func choose_next_level() -> String:
 func load_level():
 	scene_fade_animation_player.play("fade")
 	await scene_fade_animation_player.animation_finished
+
+	player.health = INF
 
 	# remove old stuff
 	var children = level_wrapper.get_children()
