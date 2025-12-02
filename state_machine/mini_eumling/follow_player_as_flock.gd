@@ -46,6 +46,7 @@ var done: bool = false
 var player: CharacterBody3D
 var flock_group: String
 var is_satisfied: bool
+var is_leader: bool
 
 func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
@@ -64,6 +65,8 @@ func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 			flock_group = "Enemy"
 		GROUP.MINIEUMLING:
 			flock_group = "MiniEumling"
+	
+	define_leader()
 
 func enter():
 	super()
@@ -76,6 +79,15 @@ func physics_process(_delta: float) -> State:
 	
 	if parent.global_position.distance_to(player.global_position) > max_distance:
 		is_satisfied = false
+		if is_leader:
+			var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
+			# erase self? or not
+			for member in members:
+				if member.state_machine.current_state is FollowPlayerAsFlockState:
+					member.state_machine.current_state.is_satisfied = false
+			
+			define_leader()
+			
 		#parent.look_at(nav_agent.get_next_path_position())
 		var destination = nav_agent.get_next_path_position()
 		var local_destination =  destination- parent.global_position 
@@ -155,6 +167,24 @@ func _flock(_direction: Vector3) -> Vector3:
 	var dir_to_pos: Vector3 = (member_average_pos - parent.global_position).normalized()
 	
 	_direction = lerp(_direction, dir_to_pos, cohesion_factor)
-	
 	return _direction.normalized()
+
+func define_leader() -> void:
+	var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
+	var closest = get_closest_node(parent as Node3D, members as Array[Node3D])
+	#fix this
 	
+	if closest.state_machine.current_state is FollowPlayerAsFlockState:
+		closest.state_machine.current_state.is_leader = true
+
+# TODO: Ich replace das mit der methode aus der Utils Klasse sobald das Gemerged ist
+func get_closest_node(_origin: Node3D, _targets: Array[Node3D]):
+	if len(_targets) > 0:
+		var closest: Node3D = null
+		var closest_dist = INF
+		for n: Node3D in _targets:
+			var dist = _origin.distance_squared_to(n.global_position)
+			if dist < closest_dist:
+				closest_dist = dist
+				closest = n
+		return closest
