@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=21 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cctgxhumux0fs" path="res://game/player/weapons/shoot_on_command/shoot_on_command.tscn" id="12_n270p"]
 [ext_resource type="Texture2D" uid="uid://biajvboc3quwy" path="res://assets/ui/SketchButtonKurzPlay.png" id="12_usp30"]
 [ext_resource type="PackedScene" uid="uid://cbr7504esjh25" path="res://game/ui/SketchOverlay/pause_sketch.tscn" id="16_gh012"]
+[ext_resource type="PackedScene" uid="uid://daky13b2c211v" path="res://game/player/walk_smoke/walk_smoke.tscn" id="17_gh012"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.23
@@ -187,3 +188,6 @@ rotation_parent = NodePath("../Eumling_Survivor")
 
 [node name="PauseSketch" parent="UITest" instance=ExtResource("16_gh012")]
 visible = false
+
+[node name="WalkSmoke" parent="." node_paths=PackedStringArray("player") instance=ExtResource("17_gh012")]
+player = NodePath("..")
