@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=20 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
 [ext_resource type="Resource" uid="uid://bptl28ohdx7tg" path="res://game/ui/inventory/playerInv.tres" id="2_gb4gm"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
+[ext_resource type="PackedScene" uid="uid://dadtg2y3wb6l4" path="res://assets/characters/eumling/V2/eumling_v_2_prefab.tscn" id="4_2mv0n"]
 [ext_resource type="PackedScene" uid="uid://c8i5p1aqn6t04" path="res://game/projectiles/goofy_test_projectile/goofy_test_projectile.tscn" id="4_5ghna"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="5_4ste8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
@@ -35,7 +36,7 @@ collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_b2mth")
 base_speed = 3.0
-eumling_visuals = NodePath("Eumling_Survivor")
+eumling_visuals = NodePath("Eumling_v2")
 spawner = NodePath("TestingSpawner")
 inv = ExtResource("2_gb4gm")
 
@@ -44,6 +45,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4567871, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
 [node name="Eumling_Survivor" parent="." instance=ExtResource("1_wv0h6")]
+visible = false
+
+[node name="Eumling_v2" parent="." instance=ExtResource("4_2mv0n")]
 
 [node name="TestingSpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458658, 0)

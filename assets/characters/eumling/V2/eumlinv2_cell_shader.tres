@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://d2f7iuup8m8v3"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_qf5i3"]
+[ext_resource type="Texture2D" uid="uid://b8wn66g3jsvps" path="res://assets/characters/eumling/V2/Eumling_v2_EumlingMat_Base_color.png" id="2_tv7ka"]
+
+[sub_resource type="Gradient" id="Gradient_qf5i3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.46578366)
+colors = PackedColorArray(0.42365062, 0.42365065, 0.42365062, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tv7ka"]
+gradient = SubResource("Gradient_qf5i3")
+
+[sub_resource type="Gradient" id="Gradient_b3oyc"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.73730683)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s6xy7"]
+gradient = SubResource("Gradient_b3oyc")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qf5i3")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_tv7ka")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_tv7ka")
+shader_parameter/specular_focus = 0.5
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_s6xy7")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true
