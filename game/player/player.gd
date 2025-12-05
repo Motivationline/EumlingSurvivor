@@ -70,7 +70,7 @@ func hurt_by(_area: HitBox):
 
 	# more hit impact with some time slowdown
 	if (_area.damage > 0):
-		Engine.time_scale = 0.1
+		Engine.time_scale = 0.5
 		await get_tree().create_timer(0.1, true, true, true).timeout
 		Engine.time_scale = 1
 
@@ -93,11 +93,13 @@ func _physics_process(_delta: float) -> void:
 	if look_direction.is_zero_approx():
 		if not prev_direction.is_zero_approx():
 			eumling_visuals.look_at(global_position + prev_direction)
+		%shittyVisual.hide()
 	else:
 		eumling_visuals.look_at(global_position + Vector3(look_direction.x, 0, look_direction.y))
 		if(shoot_on_command.try_to_shoot()):
 			anim_player.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	
+		%shittyVisual.show()
+		
 	
 	# if (weapon): weapon.physics_process(_delta)
 

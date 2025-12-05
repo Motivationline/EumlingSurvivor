@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=22 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="Resource" uid="uid://bptl28ohdx7tg" path="res://game/ui/inventory/playerInv.tres" id="2_gb4gm"]
@@ -20,6 +20,15 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.23
 height = 0.9135742
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mv0n"]
+transparency = 1
+depth_draw_mode = 2
+no_depth_test = true
+albedo_color = Color(0.78, 0.53300005, 0.1872, 0.21568628)
+
+[sub_resource type="QuadMesh" id="QuadMesh_gh012"]
+size = Vector2(0.345, 10)
 
 [sub_resource type="Resource" id="Resource_anr75"]
 script = ExtResource("5_4ste8")
@@ -45,6 +54,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4567871, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
 [node name="Eumling_v2" parent="." instance=ExtResource("4_2mv0n")]
+
+[node name="shittyVisual" type="MeshInstance3D" parent="Eumling_v2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -2.1521143e-07, -4.923464)
+material_override = SubResource("StandardMaterial3D_2mv0n")
+mesh = SubResource("QuadMesh_gh012")
+skeleton = NodePath("../..")
 
 [node name="TestingSpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458658, 0)
