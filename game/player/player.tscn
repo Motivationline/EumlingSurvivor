@@ -1,7 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=20 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
-[ext_resource type="PackedScene" uid="uid://c7w1sa348vsi6" path="res://assets/characters/eumling/prefab_eumling.tscn" id="1_wv0h6"]
 [ext_resource type="Resource" uid="uid://bptl28ohdx7tg" path="res://game/ui/inventory/playerInv.tres" id="2_gb4gm"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
 [ext_resource type="PackedScene" uid="uid://dadtg2y3wb6l4" path="res://assets/characters/eumling/V2/eumling_v_2_prefab.tscn" id="4_2mv0n"]
@@ -44,9 +43,6 @@ inv = ExtResource("2_gb4gm")
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4567871, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
-
-[node name="Eumling_Survivor" parent="." instance=ExtResource("1_wv0h6")]
-visible = false
 
 [node name="Eumling_v2" parent="." instance=ExtResource("4_2mv0n")]
 
@@ -174,15 +170,15 @@ wait_time = 0.5
 autostart = true
 
 [node name="hit_and_run_attack" parent="." node_paths=PackedStringArray("rotation_parent", "player") instance=ExtResource("9_j0mij")]
-rotation_parent = NodePath("../Eumling_Survivor")
+rotation_parent = NodePath("../Eumling_v2")
 player = NodePath("..")
 
 [node name="dagger" parent="." node_paths=PackedStringArray("rotation_parent") instance=ExtResource("9_5ghna")]
-rotation_parent = NodePath("../Eumling_Survivor")
+rotation_parent = NodePath("../Eumling_v2")
 
 [node name="shoot_on_command" parent="." node_paths=PackedStringArray("rotation_parent") instance=ExtResource("12_n270p")]
 enabled = true
-rotation_parent = NodePath("../Eumling_Survivor")
+rotation_parent = NodePath("../Eumling_v2")
 
 [node name="UITest" type="CanvasLayer" parent="."]
 
