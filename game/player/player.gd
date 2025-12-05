@@ -8,6 +8,11 @@ var speed: float
 @export var base_health: float = 10.0
 var health: float = 10.0:
 	set(new_value):
+		if health == 0 and new_value > 0:
+			revive()
+		if health - new_value > 0: 
+			anim_player.set("parameters/GetHitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
 		if (max_health <= 0):
 			health = new_value
 		else:
@@ -15,9 +20,7 @@ var health: float = 10.0:
 		if (healthbar):
 			healthbar.health = health
 		if (health == 0):
-			died.emit()
-			anim_player.set("parameters/conditions/run", false)
-			anim_player.set("parameters/conditions/idle", true)
+			die()
 var max_health: float:
 	set(value):
 		max_health = value
@@ -61,14 +64,15 @@ func _ready() -> void:
 	anim_player = eumling_visuals.find_child("AnimationTree")
 
 func hurt_by(_area: HitBox):
+	if health == 0: return
 	health -= _area.damage
 	# TODO: add invulnerability?
 
-	# TODO: re-enable this if we want more hit impact
-	# if (_area.damage > 0):
-	# 	Engine.time_scale = 0.1
-	# 	await get_tree().create_timer(0.1, true, true, true).timeout
-	# 	Engine.time_scale = 1
+	# more hit impact with some time slowdown
+	if (_area.damage > 0):
+		Engine.time_scale = 0.1
+		await get_tree().create_timer(0.1, true, true, true).timeout
+		Engine.time_scale = 1
 
 var prev_direction: Vector3
 
@@ -79,24 +83,20 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction_3d * speed
 	move_and_slide()
 
-	if direction_3d.is_zero_approx():
-		anim_player.set("parameters/conditions/run", false)
-		anim_player.set("parameters/conditions/idle", true)
-	else:
-		anim_player.set("parameters/conditions/run", true)
-		anim_player.set("parameters/conditions/idle", false)
+	if not direction_3d.is_zero_approx():
 		prev_direction = direction_3d
+	
+	anim_player.set("parameters/Idle-Walk/blend_amount", direction_3d.length())
 
 	
 	var look_direction = Input.get_vector("attack_left", "attack_right", "attack_up", "attack_down")
 	if look_direction.is_zero_approx():
-		anim_player.set("parameters/conditions/attack", false)
 		if not prev_direction.is_zero_approx():
 			eumling_visuals.look_at(global_position + prev_direction)
 	else:
 		eumling_visuals.look_at(global_position + Vector3(look_direction.x, 0, look_direction.y))
-		anim_player.set("parameters/conditions/attack", true)
-		shoot_on_command.try_to_shoot()
+		if(shoot_on_command.try_to_shoot()):
+			anim_player.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 	
 	# if (weapon): weapon.physics_process(_delta)
@@ -138,7 +138,16 @@ func get_possible_upgrades() -> Array[Upgrade]:
 	upgrades.append_array(possible_upgrades)
 	return upgrades
 
+func die():
+	anim_player.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	hurtbox.process_mode = Node.PROCESS_MODE_DISABLED
+	await get_tree().create_timer(2).timeout
+	died.emit()
+
+func revive():
+	hurtbox.process_mode = Node.PROCESS_MODE_INHERIT
+	anim_player.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT) 
+
+
 ## TODOs
-# only shoot while input is given
-# in direction of input
 # i-frames
