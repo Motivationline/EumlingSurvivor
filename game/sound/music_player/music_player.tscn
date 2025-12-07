@@ -135,26 +135,111 @@ bus = &"Music"
 script = ExtResource("10_yl7jb")
 ambientNoisePlayer = NodePath("EnvNoisePlayer")
 debug = true
+debug_element = 1
 
-[node name="DebugUI" type="GridContainer" parent="."]
+[node name="DebugUI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="TrackSelector" type="GridContainer" parent="DebugUI"]
 visible = false
-offset_right = 409.0
-offset_bottom = 359.0
+anchors_preset = -1
+anchor_top = 0.10700001
+anchor_right = 0.21300001
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 0.4399948
+offset_right = 2.039978
+offset_bottom = -6.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
 
-[node name="DebugSelector" type="ItemList" parent="DebugUI"]
+[node name="List" type="ItemList" parent="DebugUI/TrackSelector"]
 clip_contents = false
 custom_minimum_size = Vector2(400, 800)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 4
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 30
+auto_height = true
 
-[node name="FadeInButton" type="Button" parent="DebugUI"]
+[node name="FadeInButton" type="Button" parent="DebugUI/TrackSelector"]
 layout_mode = 2
 text = "Fade in"
 
-[node name="FadeOutButton" type="Button" parent="DebugUI"]
+[node name="FadeOutButton" type="Button" parent="DebugUI/TrackSelector"]
 layout_mode = 2
+size_flags_vertical = 8
 text = "Fade out
+"
+
+[node name="VolumeMixer" type="VBoxContainer" parent="DebugUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 534.0
+offset_top = 318.0
+offset_right = -347.0
+offset_bottom = -311.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+
+[node name="MasterLabel" type="Label" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+text = "Master"
+
+[node name="Master" type="HSlider" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+
+[node name="BGMLabel" type="Label" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+text = "BGM"
+
+[node name="BGM" type="HSlider" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+
+[node name="SFXGeneralLabel" type="Label" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+text = "General SFX"
+
+[node name="SFXGeneral" type="HSlider" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+
+[node name="SFXEnemyLabel" type="Label" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+text = "Enemy SFX"
+
+[node name="SFXEnemy" type="HSlider" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+
+[node name="EnvironmentLabel" type="Label" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+text = "Environment"
+
+[node name="Environment" type="HSlider" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+
+[node name="VolumeMixerButton" type="Button" parent="DebugUI"]
+visible = false
+offset_left = 232.0
+offset_top = 13.0
+offset_right = 372.0
+offset_bottom = 88.0
+disabled = true
+toggle_mode = true
+text = "Mixer"
+
+[node name="TrackSelectorButton" type="Button" parent="DebugUI"]
+visible = false
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 206.0
+offset_bottom = 85.0
+disabled = true
+toggle_mode = true
+text = "Selector
 "
 
 [node name="EnvNoisePlayer" type="AudioStreamPlayer" parent="."]
@@ -162,6 +247,13 @@ stream = SubResource("AudioStreamInteractive_j45xg")
 volume_db = 10.0
 bus = &"Environment"
 
-[connection signal="item_clicked" from="DebugUI/DebugSelector" to="." method="_on_debug_list_item_clicked"]
-[connection signal="pressed" from="DebugUI/FadeInButton" to="." method="_on_fade_in_button_pressed"]
-[connection signal="pressed" from="DebugUI/FadeOutButton" to="." method="_on_fade_out_button_pressed"]
+[connection signal="item_clicked" from="DebugUI/TrackSelector/List" to="." method="_on_debug_list_item_clicked"]
+[connection signal="pressed" from="DebugUI/TrackSelector/FadeInButton" to="." method="_on_fade_in_button_pressed"]
+[connection signal="pressed" from="DebugUI/TrackSelector/FadeOutButton" to="." method="_on_fade_out_button_pressed"]
+[connection signal="value_changed" from="DebugUI/VolumeMixer/Master" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="value_changed" from="DebugUI/VolumeMixer/BGM" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="value_changed" from="DebugUI/VolumeMixer/SFXGeneral" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="value_changed" from="DebugUI/VolumeMixer/SFXEnemy" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="value_changed" from="DebugUI/VolumeMixer/Environment" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="toggled" from="DebugUI/VolumeMixerButton" to="." method="_on_volume_mixer_button_toggled"]
+[connection signal="toggled" from="DebugUI/TrackSelectorButton" to="." method="_on_track_selector_button_toggled"]
