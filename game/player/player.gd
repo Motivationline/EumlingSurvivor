@@ -70,8 +70,8 @@ func hurt_by(_area: HitBox):
 
 	# more hit impact with some time slowdown
 	if (_area.damage > 0):
-		Engine.time_scale = 0.5
-		await get_tree().create_timer(0.1, true, true, true).timeout
+		Engine.time_scale = 0.3
+		await get_tree().create_timer(0.06, true, true, true).timeout
 		Engine.time_scale = 1
 
 var prev_direction: Vector3
