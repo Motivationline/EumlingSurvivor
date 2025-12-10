@@ -6,10 +6,10 @@ class_name SpawnEntitiesEventStrategy
 var spawner: EntitySpawner
 
 func _ready() -> void:
+	_find_child()
 	if (Engine.is_editor_hint()):
 		child_order_changed.connect(_find_child)
 		return
-	_find_child()
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
