@@ -1,4 +1,6 @@
-[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://chiexwbpmjuuj"]
+[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://chiexwbpmjuuj"]
+
+[ext_resource type="Texture2D" uid="uid://cvfuxbsry3gdd" path="res://assets/models/projectiles/leaf_trail.png" id="1_jxcei"]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_itpsl"]
 parameter_name = "ball_color"
@@ -17,6 +19,9 @@ operator = 2
 parameter_name = "visibility"
 default_value_enabled = true
 default_value = 1.0
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_2hkox"]
+texture = ExtResource("1_jxcei")
 
 [resource]
 code = "shader_type spatial;
@@ -60,6 +65,8 @@ flags/unshaded = true
 flags/shadows_disabled = true
 flags/ambient_light_disabled = true
 flags/fog_disabled = true
+nodes/vertex/2/node = SubResource("VisualShaderNodeTexture_2hkox")
+nodes/vertex/2/position = Vector2(-100, 100)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_itpsl")
 nodes/fragment/2/position = Vector2(-80, 140)
 nodes/fragment/3/node = SubResource("VisualShaderNodeFresnel_itpsl")

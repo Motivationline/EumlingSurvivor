@@ -17,25 +17,42 @@ BOSS_ISLAND,
 CHASE
 }
 @export var debug:bool
+
+enum BUS_IDS {MASTER, MUSIC, SFX_ALL, SFX_ENEMIES, SFX_GENERAL, ENVIRONMENT}
+
 @onready var debug_ui = $DebugUI
+@onready var track_selector = $DebugUI/TrackSelector
+@onready var init_bus_volumes:Array[float] 
 
-
-@onready var init_bus_volume = AudioServer.get_bus_volume_db(1)
 
 func _ready():
-	
+
+	for i in AudioServer.bus_count:
+		init_bus_volumes.append(AudioServer.get_bus_volume_db(i))
 	if debug:
-		debug_list_setup()
+		debug_setup()
 		debug_ui.visible = true
 
 
-func debug_list_setup():
-	var selector:ItemList = debug_ui.get_child(0)
+func debug_setup():
+	$DebugUI/VolumeMixerButton.show()
+	$DebugUI/VolumeMixerButton.disabled = false
+	$DebugUI/VolumeMixer/Master.value = AudioServer.get_bus_volume_linear(BUS_IDS.MASTER)*100
+	$DebugUI/VolumeMixer/BGM.value = AudioServer.get_bus_volume_linear(BUS_IDS.MUSIC)*100
+	$DebugUI/VolumeMixer/SFXEnemy.value = AudioServer.get_bus_volume_linear(BUS_IDS.SFX_ENEMIES)*100
+	$DebugUI/VolumeMixer/SFXGeneral.value = AudioServer.get_bus_volume_linear(BUS_IDS.SFX_GENERAL)*100
+	$DebugUI/VolumeMixer/Environment.value = AudioServer.get_bus_volume_linear(BUS_IDS.ENVIRONMENT)*100
+	
+	
+	$DebugUI/TrackSelectorButton.show()
+	$DebugUI/TrackSelectorButton.disabled = false
+	
+	var selector:ItemList = track_selector.find_child("List")
 	for type in LEVEL.values():
 		selector.add_item(LEVEL.keys()[type])
-	
 
-func start_playback(names:Array[String]):
+
+func start_playback(names:Array[String],with_ambient:bool = true):
 	var track_name = names[0]
 	var env_name = names[1]
 	if playing == false:
@@ -43,7 +60,7 @@ func start_playback(names:Array[String]):
 		
 	if track_name != current_track:
 		get_stream_playback().switch_to_clip_by_name(track_name)
-	if env_name != current_env:
+	if env_name != current_env and with_ambient:
 		if env_name == "":
 			ambientNoisePlayer.stop()
 		else:
@@ -111,17 +128,17 @@ func get_current_stream_synchronised():
 
 
 
-func fade_volume(out:bool , duration:float, reduction_db:float = 20):
+func fade_volume(out:bool , duration:float, reduction_db:float = 30):
 	#print("bus"+ AudioServer.get_bus_name(1))
 	#print(AudioServer.get_bus_volume_db(1))
 	var tween = get_tree().create_tween()
 	if out:
-		tween.tween_method(func(v): AudioServer.set_bus_volume_db(1, v),init_bus_volume,-reduction_db,duration)
-		tween.tween_method(func(v): AudioServer.set_bus_volume_db(2, v),init_bus_volume,-reduction_db,duration)
+		tween.tween_method(func(v): AudioServer.set_bus_volume_db(BUS_IDS.MUSIC, v),  init_bus_volumes[BUS_IDS.MUSIC],  -reduction_db,  duration)
+		tween.tween_method(func(v): AudioServer.set_bus_volume_db(BUS_IDS.ENVIRONMENT, v),  init_bus_volumes[BUS_IDS.ENVIRONMENT],  -reduction_db,  duration)
 		#print("out")
 	else:
-		tween.tween_method(func(v): AudioServer.set_bus_volume_db(1, v),AudioServer.get_bus_volume_db(1),init_bus_volume,duration)
-		tween.tween_method(func(v): AudioServer.set_bus_volume_db(2, v),AudioServer.get_bus_volume_db(1),init_bus_volume,duration)
+		tween.tween_method(func(v): AudioServer.set_bus_volume_db(BUS_IDS.MUSIC, v),  AudioServer.get_bus_volume_db(BUS_IDS.MUSIC),  init_bus_volumes[BUS_IDS.MUSIC],  duration)
+		tween.tween_method(func(v): AudioServer.set_bus_volume_db(BUS_IDS.ENVIRONMENT, v),  AudioServer.get_bus_volume_db(BUS_IDS.ENVIRONMENT),  init_bus_volumes[BUS_IDS.ENVIRONMENT],  duration)
 		#print("in")
 	#print(AudioServer.get_bus_volume_db(1))
 
@@ -143,9 +160,52 @@ func _on_game_request_music(random:bool = false, level_type:LEVEL = LEVEL.MENU):
 
 
 func _on_fade_in_button_pressed() -> void:
-	fade_volume(false, 1)
+	fade_volume(false, 1, 100)
 
 
 
 func _on_fade_out_button_pressed() -> void:
-	fade_volume(true, 1)
+	fade_volume(true, 1, 100)
+
+
+func _on_volume_mixer_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		$DebugUI/VolumeMixer.show()
+		$DebugUI/VolumeMixer.call_deferred("grab_focus")
+
+	else:
+		$DebugUI/VolumeMixer.hide()
+		$DebugUI/VolumeMixer.call_deferred("release_focus")
+
+
+
+func _on_volume_slider_value_changed(value:float, source:Node) ->void:
+	
+	match source.name:
+		"Master":
+
+			AudioServer.set_bus_volume_linear(BUS_IDS.MASTER,value/100)
+
+		"BGM":
+
+			AudioServer.set_bus_volume_linear(BUS_IDS.MUSIC,value/100)
+		"SFXGeneral":
+
+			AudioServer.set_bus_volume_linear(BUS_IDS.SFX_GENERAL,value/100)
+		"SFXEnemy":
+
+			AudioServer.set_bus_volume_linear(BUS_IDS.SFX_ENEMIES,value/100)
+		"Environment":
+
+			AudioServer.set_bus_volume_linear(BUS_IDS.ENVIRONMENT,value/100)
+		
+
+
+func _on_track_selector_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		track_selector.show()
+		track_selector.call_deferred("grab_focus")
+
+	else:
+		track_selector.hide()
+		track_selector.call_deferred("release_focus")

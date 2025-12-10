@@ -1,8 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://csrh8ood2mu1q"]
+[gd_scene load_steps=38 format=3 uid="uid://csrh8ood2mu1q"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_5adta"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_lu38v"]
-[ext_resource type="ArrayMesh" uid="uid://7p6hcpisyve7" path="res://assets/characters/eumling/leaf_projectile.res" id="3_706qm"]
+[ext_resource type="ArrayMesh" uid="uid://bf0lh4o3ufbqb" path="res://assets/characters/eumling/leaf_projectile.res" id="3_706qm"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_yusjb"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_h4lxs"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="4_x7orq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="8_28psj"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_x7orq"]
 [ext_resource type="Shader" uid="uid://5lep1if814ha" path="res://assets/vfx/projectile_realistic/shader_vfx_realistic.tres" id="9_aejtm"]
+[ext_resource type="Shader" uid="uid://5n35xj7sj6bq" path="res://game/projectiles/totally_basic_eumling_projectile/leaf_trail_shader.tres" id="11_ifyym"]
 
 [sub_resource type="Curve" id="Curve_yusjb"]
 _limits = [0.0, 20.0, 0.0, 1.0]
@@ -17,10 +18,25 @@ _data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_706qm"]
-albedo_color = Color(0.3892439, 0.67000383, 0.32454136, 1)
-emission_enabled = true
-emission = Color(1, 0.9853333, 0.120000005, 1)
-emission_energy_multiplier = 0.17
+shading_mode = 0
+diffuse_mode = 3
+albedo_color = Color(0.861851, 1.4393815, 0.5942147, 1)
+stencil_flags = 2
+stencil_color = Color(0.9, 0.73424995, 0.13499998, 1)
+stencil_outline_thickness = 0.029
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2uqe5"]
+render_priority = 0
+shader = ExtResource("8_28psj")
+shader_parameter/ball_color = Color(0.472685, 0.83, 0.3071, 1)
+shader_parameter/frensel_power = 3.195
+shader_parameter/visibility = 0.14
+
+[sub_resource type="SphereMesh" id="SphereMesh_f7sbq"]
+radius = 0.2
+height = 0.3
+radial_segments = 8
+rings = 6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7orq"]
 blend_mode = 1
@@ -39,22 +55,22 @@ point_count = 2
 curve = SubResource("Curve_28psj")
 
 [sub_resource type="Curve" id="Curve_rqm5e"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6569612, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.39080462, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6569612, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_ifyym"]
 curve = SubResource("Curve_rqm5e")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h5f0h"]
 particle_flag_align_y = true
-emission_shape = 2
+emission_shape = 1
 emission_sphere_radius = 0.1
 direction = Vector3(0, 0, 1)
 spread = 0.0
 initial_velocity_min = 1.5
 initial_velocity_max = 3.0
-radial_velocity_min = 0.019977648
-radial_velocity_max = 0.49997765
+radial_velocity_min = -1.0000223
+radial_velocity_max = 0.19997764
 gravity = Vector3(0, 0, 0)
 scale_min = 3.0
 scale_max = 5.0
@@ -67,38 +83,63 @@ flip_faces = true
 size = Vector2(0.01, 0.05)
 orientation = 2
 
+[sub_resource type="Gradient" id="Gradient_2uqe5"]
+offsets = PackedFloat32Array(0.23471883, 0.74816626)
+colors = PackedColorArray(0.059450045, 0.29, 0.029000007, 1, 0.29601505, 0.73, 0.0949, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f7sbq"]
+gradient = SubResource("Gradient_2uqe5")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x7orq"]
-emission_shape = 2
-emission_sphere_radius = 0.1
+angle_min = 1.0728835e-05
+angle_max = 143.1
 direction = Vector3(0, 0, 1)
-spread = 0.0
+spread = 13.966
 initial_velocity_min = 0.5
-initial_velocity_max = 1.5
-radial_velocity_min = 0.019977648
-radial_velocity_max = 0.49997765
+initial_velocity_max = 2.0
+radial_velocity_min = 0.09997764
+radial_velocity_max = 0.19997764
 gravity = Vector3(0, 0, 0)
 damping_min = 2.0
 damping_max = 5.0
+scale_min = 0.5
+scale_max = 0.59999996
 scale_curve = SubResource("CurveTexture_ifyym")
-color = Color(1, 1, 0.39999998, 1)
+color_ramp = SubResource("GradientTexture1D_f7sbq")
 alpha_curve = SubResource("CurveTexture_aejtm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aejtm"]
 render_priority = 0
 shader = ExtResource("8_28psj")
-shader_parameter/ball_color = Color(0.89, 0.68352, 0.11569999, 1)
+shader_parameter/ball_color = Color(0.11339999, 0.36882007, 0.81, 1)
 shader_parameter/frensel_power = -2.455
 shader_parameter/visibility = 0.205
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rqm5e"]
 render_priority = 0
 shader = ExtResource("9_aejtm")
-shader_parameter/Final_Color = Color(0.9666667, 1, 0, 1)
+shader_parameter/Final_Color = Color(0.2974951, 0.66866255, 0.8959307, 1)
 shader_parameter/fire_speed = Vector2(0, 3.13)
 shader_parameter/visibilty = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ifyym"]
 size = Vector2(0.21, 0.905)
+
+[sub_resource type="Gradient" id="Gradient_v7dwm"]
+offsets = PackedFloat32Array(0.011876484, 0.38717338, 1)
+colors = PackedColorArray(0.14265168, 0.31, 0.06509999, 0, 0.20883332, 0.43221653, 0.10531425, 1, 2.4486675, 3.1229057, 0.7432417, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ovhqn"]
+gradient = SubResource("Gradient_v7dwm")
+use_hdr = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1kd3"]
+render_priority = 0
+shader = ExtResource("11_ifyym")
+shader_parameter/Color_texture = SubResource("GradientTexture1D_ovhqn")
+shader_parameter/TrailSpeed = Vector2(3, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_e565q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_acb8o"]
 radius = 0.13893983
@@ -175,35 +216,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26474383, 0)
 mesh = ExtResource("3_706qm")
 surface_material_override/0 = SubResource("StandardMaterial3D_706qm")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002693967, -0.004100442, 0)
-material_override = SubResource("StandardMaterial3D_x7orq")
-amount = 10
-lifetime = 0.3
-randomness = 0.4
-process_material = SubResource("ParticleProcessMaterial_h5f0h")
-draw_pass_1 = SubResource("PlaneMesh_2uqe5")
+[node name="BallAura" type="MeshInstance3D" parent="MeshInstance3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.017936826)
+material_override = SubResource("ShaderMaterial_2uqe5")
+mesh = SubResource("SphereMesh_f7sbq")
 
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="MeshInstance3D" index="1"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002693967, -0.004100442, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_x7orq")
+amount = 10
+lifetime = 0.2
+explosiveness = 0.2
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_h5f0h")
+draw_pass_1 = SubResource("PlaneMesh_2uqe5")
+
+[node name="LeafParticles" type="GPUParticles3D" parent="MeshInstance3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002693967, -0.004100442, 0)
+material_override = SubResource("StandardMaterial3D_x7orq")
 amount = 5
-lifetime = 2.0
-randomness = 0.4
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_x7orq")
 draw_pass_1 = ExtResource("3_706qm")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D" index="2"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D" index="3"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.0007976033, -0.0015535653, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_aejtm")
 mesh = ExtResource("3_706qm")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" index="3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" index="4"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.9970406e-09, 0, 0.4821112)
+visible = false
 material_override = SubResource("ShaderMaterial_rqm5e")
 mesh = SubResource("PlaneMesh_ifyym")
+
+[node name="Trail" type="MeshInstance3D" parent="MeshInstance3D" index="5"]
+transform = Transform3D(-3.8018534e-08, -0.338, -1.7484556e-08, 0, -1.4774449e-08, 0.4, -0.86976266, 1.4774449e-08, 7.642742e-16, 7.327138e-09, -9.1264467e-23, 0.460425)
+material_override = SubResource("ShaderMaterial_n1kd3")
+mesh = SubResource("QuadMesh_e565q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006139621, 0)

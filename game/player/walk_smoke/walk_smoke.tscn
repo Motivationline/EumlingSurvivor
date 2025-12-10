@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://daky13b2c211v"]
+
+[ext_resource type="Script" uid="uid://ddkbbxg33x4hx" path="res://game/player/walk_smoke/walk_smoke.gd" id="1_ovux6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovux6"]
+depth_draw_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+
+[sub_resource type="Gradient" id="Gradient_ovux6"]
+offsets = PackedFloat32Array(0.3594132, 0.6405868)
+colors = PackedColorArray(0.61, 0.61, 0.61, 1, 0.88, 0.88, 0.88, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5ke7a"]
+gradient = SubResource("Gradient_ovux6")
+
+[sub_resource type="Curve" id="Curve_qpw4l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xqh50"]
+curve = SubResource("Curve_qpw4l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nj8ky"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 0.2, 1)
+spread = 15.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, -0.5, 0)
+damping_max = 1.8600001
+scale_curve = SubResource("CurveTexture_xqh50")
+color_ramp = SubResource("GradientTexture1D_5ke7a")
+
+[sub_resource type="SphereMesh" id="SphereMesh_v2bqr"]
+radius = 0.1
+height = 0.2
+radial_segments = 6
+rings = 3
+
+[node name="WalkSmoke" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_ovux6")
+lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_nj8ky")
+draw_pass_1 = SubResource("SphereMesh_v2bqr")
+script = ExtResource("1_ovux6")
