@@ -2,7 +2,7 @@ extends GPUParticles3D
 @export var player:Player
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player.velocity.length() > 0:
 		emitting = true
 	else:

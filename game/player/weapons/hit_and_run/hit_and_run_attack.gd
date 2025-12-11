@@ -12,7 +12,7 @@ func spawn():
 	if enabled:
 		spawner.spawn(self, rotation_parent)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player.velocity.length() <= 0.1 and timer.is_stopped():
 		spawn()
 		timer.start()

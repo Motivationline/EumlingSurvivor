@@ -44,10 +44,14 @@ corner_radius_bottom_left = 12
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_b2mth")
-base_speed = 3.0
 eumling_visuals = NodePath("Eumling_v2")
 spawner = NodePath("TestingSpawner")
 inv = ExtResource("2_gb4gm")
+starting_values = Dictionary[int, float]({
+0: 5.0,
+1: 2.0,
+2: 10.0
+})
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4567871, 0)

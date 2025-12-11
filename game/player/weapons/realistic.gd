@@ -74,9 +74,9 @@ func upgrade_added(_upgrade: Upgrade) -> void:
 		Enum.UPGRADE.PROJECTILE_AMOUNT:
 			prints(base_projectile_amount, Upgrade.apply_all(base_projectile_amount, player.get_upgrades_for(Enum.UPGRADE.PROJECTILE_AMOUNT)))
 			entity_spawner.amount_of_spawns = int(Upgrade.apply_all(base_projectile_amount, player.get_upgrades_for(Enum.UPGRADE.PROJECTILE_AMOUNT)))
-		Enum.UPGRADE.CUSTOM:
-			if (_upgrade is CustomUpgrade):
-				custom_upgrade_added(_upgrade)
+		# Enum.UPGRADE.CUSTOM:
+		# 	if (_upgrade is CustomUpgrade):
+		# 		custom_upgrade_added(_upgrade)
 
 func custom_upgrade_added(_upgrade: CustomUpgrade):
 	if (!possible_unique_upgrades.has(_upgrade)): return

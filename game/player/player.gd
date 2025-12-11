@@ -1,16 +1,15 @@
+@tool
 extends CharacterBody3D
 class_name Player
 
 @onready var shoot_on_command: Node3D = $shoot_on_command
 
-@export var base_speed: float = 5.0
 var speed: float
-@export var base_health: float = 10.0
 var health: float = 10.0:
 	set(new_value):
 		if health == 0 and new_value > 0:
 			revive()
-		if health - new_value > 0: 
+		if health - new_value > 0:
 			anim_player.set("parameters/GetHitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 		if (max_health <= 0):
@@ -31,7 +30,6 @@ signal died
 
 # @export var weapon: Weapon
 
-@export_category("")
 @export var eumling_visuals: Node3D
 @export var spawner: EntitySpawner
 
@@ -41,42 +39,66 @@ signal died
 ## UI Stuff
 @export var inv: Inv
 
-var active_upgrades: Dictionary[Enum.UPGRADE, Array] = {}
+@export var invulnerability_time: float = 0.5
+@export var starting_values: Dictionary[Enum.UPGRADE, float] = {
+	Enum.UPGRADE.HEALTH: 10.0,
+	Enum.UPGRADE.MOVEMENT_SPEED: 3.0,
+}:
+	set(new_value):
+		starting_values = new_value
+		update_configuration_warnings()
+
+var current_values: Dictionary[Enum.UPGRADE, float] = {}
 signal upgrade_added
 
 var possible_upgrades: Array[Upgrade] = [
-	Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.MULTIPLIER, 1.1),
-	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 1.25),
+	Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.MULTIPLIER, 1.1, Enum.RARITY.COMMON),
+	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 1.25, Enum.RARITY.COMMON),
 ]
 
 var anim_player: AnimationTree
 
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "starting_values":
+		_get_configuration_warnings()
+
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
 	add_to_group("Player")
-	max_health = base_health
-	health = base_health
-	speed = base_speed
+	current_values = starting_values.duplicate()
+	max_health = current_values.get(Enum.UPGRADE.HEALTH)
+	health = current_values.get(Enum.UPGRADE.HEALTH)
+	speed = current_values.get(Enum.UPGRADE.MOVEMENT_SPEED)
 
 	if (healthbar): healthbar.init_health(max_health)
 	if (hurtbox): hurtbox.hurt_by.connect(hurt_by)
-	# if (weapon): weapon.setup(self)
 
 	anim_player = eumling_visuals.find_child("AnimationTree")
+	
 
+var is_invulnerable: bool = false
 func hurt_by(_area: HitBox):
+	if is_invulnerable: return
 	if health == 0: return
 	health -= _area.damage
-	# TODO: add invulnerability?
 
+	invulnerability()
 	# more hit impact with some time slowdown
 	if (_area.damage > 0):
 		Engine.time_scale = 0.3
 		await get_tree().create_timer(0.06, true, true, true).timeout
 		Engine.time_scale = 1
 
+func invulnerability():
+	is_invulnerable = true
+	await get_tree().create_timer(invulnerability_time, true).timeout
+	is_invulnerable = false
+
+
 var prev_direction: Vector3
 
 func _physics_process(_delta: float) -> void:
+	if Engine.is_editor_hint(): return
 	if health == 0: return
 	var direction = Input.get_vector("left", "right", "up", "down")
 	var direction_3d = Vector3(direction.x, 0, direction.y)
@@ -96,7 +118,7 @@ func _physics_process(_delta: float) -> void:
 		%shittyVisual.hide()
 	else:
 		eumling_visuals.look_at(global_position + Vector3(look_direction.x, 0, look_direction.y))
-		if(shoot_on_command.try_to_shoot()):
+		if (shoot_on_command.try_to_shoot()):
 			anim_player.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		%shittyVisual.show()
 		
@@ -117,26 +139,21 @@ func spawn_bullet():
 func check_upgrades_affecting_player(upgrade: Upgrade):
 	match upgrade.type:
 		Enum.UPGRADE.HEALTH:
-			var new_max_health = Upgrade.apply_all(base_health, get_upgrades_for(Enum.UPGRADE.HEALTH))
+			var new_max_health = current_values.get(Enum.UPGRADE.HEALTH)
 			var heal_amount = new_max_health - max_health
 			max_health = new_max_health
 			if (heal_amount > 0): health += heal_amount
 		Enum.UPGRADE.MOVEMENT_SPEED:
-			speed = Upgrade.apply_all(base_speed, get_upgrades_for(Enum.UPGRADE.MOVEMENT_SPEED))
+			speed = current_values.get(Enum.UPGRADE.MOVEMENT_SPEED)
 
 func add_upgrade(upgrade: Upgrade):
-	var upgrades = get_upgrades_for(upgrade.type)
-	upgrades.append(upgrade)
-	active_upgrades.set(upgrade.type, upgrades)
+	var value = current_values.get_or_add(upgrade.type, 0)
+	current_values.set(upgrade.type, upgrade.apply(value))
 	upgrade_added.emit(upgrade)
 	check_upgrades_affecting_player(upgrade)
 
-func get_upgrades_for(type: Enum.UPGRADE) -> Array[Upgrade]:
-	if (!active_upgrades.has(type)): return []
-	return active_upgrades.get(type)
-
 func get_possible_upgrades() -> Array[Upgrade]:
-	var upgrades = [] # weapon.get_possible_upgrades().duplicate()
+	var upgrades: Array[Upgrade] = [] # weapon.get_possible_upgrades().duplicate()
 	upgrades.append_array(possible_upgrades)
 	return upgrades
 
@@ -148,8 +165,21 @@ func die():
 
 func revive():
 	hurtbox.process_mode = Node.PROCESS_MODE_INHERIT
-	anim_player.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT) 
+	anim_player.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warning: String = ""
+	if Enum.UPGRADE.keys().size() != starting_values.keys().size():
+		warning += "Not all starting values are set, the following are missing:\n"
+		for key in Enum.UPGRADE.values():
+			if not starting_values.has(key):
+				warning += Enum.UPGRADE.keys()[key] + ", "
+		warning += "\nUnset values are defaulted to 0."
+
+	if warning != "":
+		return [warning]
+	return []
 
 ## TODOs
 # i-frames
