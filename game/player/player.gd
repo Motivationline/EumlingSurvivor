@@ -61,10 +61,9 @@ var possible_upgrades: Array[Upgrade] = [
 	Upgrade.new(Enum.UPGRADE.CRIT_CHANCE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.01, Enum.RARITY.COMMON),
 
 	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.3, Enum.RARITY.UNCOMMON),
-
 	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.4, Enum.RARITY.RARE),
-
 	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.6, Enum.RARITY.EPIC),
+	
 ]
 
 var anim_player: AnimationTree
@@ -73,6 +72,8 @@ var anim_player: AnimationTree
 @onready var attack_cooldown: Timer = $DefaultAttack/AttackCooldown
 @onready var reload_progress: TextureProgressBar = $UI/Control/ReloadProgress
 
+@onready var hurtbox_collision: CollisionShape3D = $Hurtbox/HurtboxCollision
+var hurtbox_start_sizes: Vector2 = Vector2()
 
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "starting_values":
@@ -88,6 +89,10 @@ func _ready() -> void:
 
 	if (healthbar): healthbar.init_health(max_health)
 	if (hurtbox): hurtbox.hurt_by.connect(hurt_by)
+	hurtbox_start_sizes.x = hurtbox_collision.shape.radius
+	hurtbox_start_sizes.y = hurtbox_collision.shape.height
+	eumling_visuals.scale = Vector3.ONE * get_value(Enum.UPGRADE.SIZE)
+	
 
 	anim_player = eumling_visuals.find_child("AnimationTree")
 	
@@ -160,6 +165,11 @@ func check_upgrades_affecting_player(upgrade: Upgrade):
 			if (heal_amount > 0): health += heal_amount
 		Enum.UPGRADE.MOVEMENT_SPEED:
 			speed = get_value(Enum.UPGRADE.MOVEMENT_SPEED)
+		Enum.UPGRADE.SIZE:
+			var new_size = get_value(Enum.UPGRADE.SIZE)
+			eumling_visuals.scale = Vector3.ONE * new_size
+			hurtbox_collision.shape.radius = hurtbox_start_sizes.x * new_size
+			hurtbox_collision.shape.height = hurtbox_start_sizes.y * new_size
 
 func add_upgrade(upgrade: Upgrade):
 	var value = _current_values.get_or_add(upgrade.type, 0)
