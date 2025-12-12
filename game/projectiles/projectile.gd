@@ -77,6 +77,7 @@ func setup_player(player: Player):
 	var player_speed = player.get_value(Enum.UPGRADE.PROJECTILE_SPEED)
 	var speed_strategy = SpeedFromPlayerProjectileMovementStrategy.new()
 	speed_strategy.player_speed = player_speed
+	movement.append(speed_strategy)
 
 	# damage
 	damage = player.get_value(Enum.UPGRADE.DAMAGE)
@@ -87,7 +88,7 @@ func setup_player(player: Player):
 	start_position = global_position
 
 	# piercing
-	var piercing_amount = player.get_value(Enum.UPGRADE.PIERCING)
+	var piercing_amount = player.get_value(Enum.UPGRADE.PROJECTILE_PIERCING)
 	var piercing_strat = CountdownEventStrategy.new()
 	piercing_strat.count = piercing_amount + 1
 	on_hit.append(piercing_strat)

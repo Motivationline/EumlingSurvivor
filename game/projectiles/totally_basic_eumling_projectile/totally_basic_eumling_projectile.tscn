@@ -1,7 +1,6 @@
-[gd_scene load_steps=35 format=3 uid="uid://csrh8ood2mu1q"]
+[gd_scene load_steps=33 format=3 uid="uid://csrh8ood2mu1q"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_5adta"]
-[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_lu38v"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_yusjb"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_h4lxs"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="4_x7orq"]
@@ -10,11 +9,6 @@
 [ext_resource type="ArrayMesh" uid="uid://bf0lh4o3ufbqb" path="res://assets/characters/eumling/leaf_projectile.res" id="8_aejtm"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_x7orq"]
 [ext_resource type="Shader" uid="uid://5n35xj7sj6bq" path="res://game/projectiles/totally_basic_eumling_projectile/leaf_trail_shader.tres" id="11_ifyym"]
-
-[sub_resource type="Curve" id="Curve_yusjb"]
-_limits = [0.0, 20.0, 0.0, 1.0]
-_data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
-point_count = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_706qm"]
 shading_mode = 0
@@ -172,24 +166,17 @@ _data = {
 &"fly": SubResource("Animation_yusjb")
 }
 
-[node name="Projectile" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_end_of_life") instance=ExtResource("1_5adta")]
+[node name="Projectile" node_paths=PackedStringArray("hit_box", "on_world_collision", "on_hit") instance=ExtResource("1_5adta")]
 collision_mask = 257
 hit_box = NodePath("Hitbox")
-movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
-on_world_collision = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnHit/RemoveEventStrategy")]
-on_hit = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnHit/RemoveEventStrategy")]
-on_end_of_life = [NodePath("EventStrategies/OnHit/RemoveEventStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_hit = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
-script = ExtResource("2_lu38v")
-speed = SubResource("Curve_yusjb")
-metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
-
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0"]
 script = ExtResource("3_yusjb")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnHit" index="1"]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
 script = ExtResource("4_x7orq")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
