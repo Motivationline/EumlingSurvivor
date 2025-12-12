@@ -52,19 +52,19 @@ func get_value(upgrade: Enum.UPGRADE) -> float:
 signal upgrade_added
 
 var possible_upgrades: Array[Upgrade] = [
-    Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.15, Enum.RARITY.COMMON),
-    Upgrade.new(Enum.UPGRADE.ATTACK_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.1, Enum.RARITY.COMMON),
-    Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.ABSOLUTE, 50, Enum.RARITY.COMMON),
-    Upgrade.new(Enum.UPGRADE.HEALTH_REGENERATION, Enum.UPGRADE_METHOD.ABSOLUTE, 10, Enum.RARITY.COMMON),
-    Upgrade.new(Enum.UPGRADE.RANGE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.25, Enum.RARITY.COMMON),
-    Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 5, Enum.RARITY.COMMON),
-    Upgrade.new(Enum.UPGRADE.CRIT_CHANCE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.01, Enum.RARITY.COMMON),
+	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.15, Enum.RARITY.COMMON),
+	Upgrade.new(Enum.UPGRADE.ATTACK_COOLDOWN, Enum.UPGRADE_METHOD.ABSOLUTE, 0.1, Enum.RARITY.COMMON),
+	Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.ABSOLUTE, 50, Enum.RARITY.COMMON),
+	Upgrade.new(Enum.UPGRADE.HEALTH_REGENERATION, Enum.UPGRADE_METHOD.ABSOLUTE, 10, Enum.RARITY.COMMON),
+	Upgrade.new(Enum.UPGRADE.RANGE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.25, Enum.RARITY.COMMON),
+	Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 5, Enum.RARITY.COMMON),
+	Upgrade.new(Enum.UPGRADE.CRIT_CHANCE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.01, Enum.RARITY.COMMON),
 
-    Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.3, Enum.RARITY.UNCOMMON),
+	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.3, Enum.RARITY.UNCOMMON),
 
-    Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.4, Enum.RARITY.RARE),
+	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.4, Enum.RARITY.RARE),
 
-    Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.6, Enum.RARITY.EPIC),
+	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.6, Enum.RARITY.EPIC),
 ]
 
 var anim_player: AnimationTree
@@ -199,6 +199,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 func shoot():
 	if not attack_cooldown.is_stopped(): return
 	anim_player.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	var cooldown = get_value(Enum.UPGRADE.ATTACK_SPEED)
+	var cooldown = get_value(Enum.UPGRADE.ATTACK_COOLDOWN)
 	attack_cooldown.start(cooldown)
 	attack_spawner.spawn(self, eumling_visuals)

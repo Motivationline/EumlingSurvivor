@@ -8,8 +8,12 @@ class_name Projectile
 	set(new_dmg):
 		damage = new_dmg
 		if (hit_box): hit_box.damage = new_dmg
-## How long this bullet lives at most
-@export var lifetime: float = 2.0
+## How far this projectile can move at most
+@export var max_distance: float = 2.0
+var max_distance_squared: float
+var start_position: Vector3
+## How long this projectile lives at most, in seconds
+@export var lifetime: float = 120
 
 @export_category("Base Functionality")
 @export var hit_box: HitBox
@@ -77,9 +81,10 @@ func setup_player(player: Player):
 	# damage
 	damage = player.get_value(Enum.UPGRADE.DAMAGE)
 
-	# range / lifetime
-	lifetime = player.get_value(Enum.UPGRADE.RANGE)
-	restart_timer()
+	# range / max_distance
+	max_distance = player.get_value(Enum.UPGRADE.RANGE)
+	max_distance_squared = max_distance * max_distance
+	start_position = global_position
 
 	# piercing
 	var piercing_amount = player.get_value(Enum.UPGRADE.PIERCING)
@@ -91,6 +96,7 @@ func setup_player(player: Player):
 
 func _ready() -> void:
 	tree_exiting.connect(_on_remove)
+	max_distance_squared = max_distance * max_distance
 	start_timer()
 
 var timer: Timer
@@ -100,12 +106,12 @@ func start_timer():
 	timer.timeout.connect(_end_of_lifetime)
 	timer.start(lifetime)
 
-func restart_timer():
-	if (!timer): return
-	timer.start(lifetime)
-
 func _physics_process(delta: float) -> void:
 	current_lifetime += delta
+	var distance_traveled = start_position.distance_squared_to(global_position)
+	if distance_traveled >= max_distance_squared:
+		_end_of_lifetime()
+	
 	for mov in movement:
 		if mov.is_active:
 			mov.apply_movement(delta, current_lifetime, lifetime)
@@ -115,6 +121,7 @@ func _physics_process(delta: float) -> void:
 		for coll in on_world_collision:
 			if coll.is_active:
 				coll.event_triggered(collision)
+	
 
 func _end_of_lifetime():
 	for strat in on_end_of_life:
