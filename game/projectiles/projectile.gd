@@ -70,20 +70,19 @@ func setup(target_pos: Vector3, _owner: Node3D):
 
 func setup_player(player: Player):
 	# speed
-	var speed_upgrades = player.get_upgrades_for(Enum.UPGRADE.PROJECTILE_SPEED)
-	var speed_upgrade_strategy = SpeedUpgradesProjectileMovementStrategy.new()
-	speed_upgrade_strategy.upgrades = speed_upgrades
-	movement.append(speed_upgrade_strategy)
+	var player_speed = player.get_value(Enum.UPGRADE.PROJECTILE_SPEED)
+	var speed_strategy = SpeedFromPlayerProjectileMovementStrategy.new()
+	speed_strategy.player_speed = player_speed
 
 	# damage
-	damage = Upgrade.apply_all(0, player.get_upgrades_for(Enum.UPGRADE.DAMAGE))
+	damage = player.get_value(Enum.UPGRADE.DAMAGE)
 
 	# range / lifetime
-	lifetime = Upgrade.apply_all(0, player.get_upgrades_for(Enum.UPGRADE.RANGE))
+	lifetime = player.get_value(Enum.UPGRADE.RANGE)
 	restart_timer()
 
 	# piercing
-	var piercing_amount = Upgrade.apply_all(0, player.get_upgrades_for(Enum.UPGRADE.PIERCING))
+	var piercing_amount = player.get_value(Enum.UPGRADE.PIERCING)
 	var piercing_strat = CountdownEventStrategy.new()
 	piercing_strat.count = piercing_amount + 1
 	on_hit.append(piercing_strat)

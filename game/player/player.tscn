@@ -1,20 +1,17 @@
-[gd_scene load_steps=23 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=20 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="Resource" uid="uid://bptl28ohdx7tg" path="res://game/ui/inventory/playerInv.tres" id="2_gb4gm"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
 [ext_resource type="PackedScene" uid="uid://dadtg2y3wb6l4" path="res://assets/characters/eumling/V2/eumling_v_2_prefab.tscn" id="4_2mv0n"]
-[ext_resource type="PackedScene" uid="uid://c8i5p1aqn6t04" path="res://game/projectiles/goofy_test_projectile/goofy_test_projectile.tscn" id="4_5ghna"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="5_4ste8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
 [ext_resource type="PackedScene" uid="uid://cwx4ps7nr715s" path="res://game/healthbar/healthbar.tscn" id="7_anr75"]
-[ext_resource type="PackedScene" uid="uid://ixi64aeuij20" path="res://game/player/weapons/dagger/dagger.tscn" id="9_5ghna"]
-[ext_resource type="PackedScene" uid="uid://bqoqtx6dcidh2" path="res://game/player/weapons/hit_and_run/hit_and_run_attack.tscn" id="9_j0mij"]
 [ext_resource type="Texture2D" uid="uid://s4sspr0pav3l" path="res://assets/ui/SketchGreyButtonTexture.png" id="10_2mv0n"]
 [ext_resource type="Texture2D" uid="uid://cvy3lafwe3ion" path="res://assets/ui/SketchButtonKurzEumling.png" id="11_gh012"]
 [ext_resource type="Texture2D" uid="uid://c7b617pf4p3oj" path="res://assets/ui/ReloadCircle.png" id="12_gh012"]
-[ext_resource type="PackedScene" uid="uid://cctgxhumux0fs" path="res://game/player/weapons/shoot_on_command/shoot_on_command.tscn" id="12_n270p"]
 [ext_resource type="Texture2D" uid="uid://biajvboc3quwy" path="res://assets/ui/SketchButtonKurzPlay.png" id="12_usp30"]
+[ext_resource type="PackedScene" uid="uid://csrh8ood2mu1q" path="res://game/projectiles/totally_basic_eumling_projectile/totally_basic_eumling_projectile.tscn" id="13_3ep63"]
 [ext_resource type="PackedScene" uid="uid://cbr7504esjh25" path="res://game/ui/SketchOverlay/pause_sketch.tscn" id="16_gh012"]
 [ext_resource type="PackedScene" uid="uid://daky13b2c211v" path="res://game/player/walk_smoke/walk_smoke.tscn" id="17_gh012"]
 
@@ -31,27 +28,28 @@ albedo_color = Color(0.78, 0.53300005, 0.1872, 0.06666667)
 [sub_resource type="QuadMesh" id="QuadMesh_gh012"]
 size = Vector2(0.345, 3)
 
-[sub_resource type="Resource" id="Resource_anr75"]
-script = ExtResource("5_4ste8")
-metadata/_custom_type_script = "uid://pv70hoylokg6"
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0e4oy"]
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="Resource" id="Resource_anr75"]
+script = ExtResource("5_4ste8")
+metadata/_custom_type_script = "uid://pv70hoylokg6"
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_b2mth")
 eumling_visuals = NodePath("Eumling_v2")
-spawner = NodePath("TestingSpawner")
+spawner = NodePath("DefaultAttack/AttackSpawner")
 inv = ExtResource("2_gb4gm")
 starting_values = Dictionary[int, float]({
-0: 5.0,
-1: 2.0,
-2: 10.0
+0: 3.0,
+1: 1.0,
+2: 10.0,
+6: 5.0
 })
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
@@ -66,14 +64,6 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0
 material_override = SubResource("StandardMaterial3D_2mv0n")
 mesh = SubResource("QuadMesh_gh012")
 skeleton = NodePath("../..")
-
-[node name="TestingSpawner" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458658, 0)
-script = ExtResource("3_a4w0n")
-entity_to_spawn = ExtResource("4_5ghna")
-offset_distance = 0.1
-rotation_strategy = SubResource("Resource_anr75")
-metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Hurtbox" parent="." instance=ExtResource("6_4ste8")]
 collision_layer = 8
@@ -186,7 +176,7 @@ offset_bottom = 2089.0
 scale = Vector2(0.033757795, 0.033757795)
 texture_normal = ExtResource("12_usp30")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/Control"]
+[node name="ReloadProgress" type="TextureProgressBar" parent="UI/Control"]
 layout_mode = 0
 offset_left = 915.0
 offset_top = 98.0
@@ -197,21 +187,6 @@ value = 100.0
 fill_mode = 4
 texture_progress = ExtResource("12_gh012")
 
-[node name="testTimer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
-
-[node name="hit_and_run_attack" parent="." node_paths=PackedStringArray("rotation_parent", "player") instance=ExtResource("9_j0mij")]
-rotation_parent = NodePath("../Eumling_v2")
-player = NodePath("..")
-
-[node name="dagger" parent="." node_paths=PackedStringArray("rotation_parent") instance=ExtResource("9_5ghna")]
-rotation_parent = NodePath("../Eumling_v2")
-
-[node name="shoot_on_command" parent="." node_paths=PackedStringArray("rotation_parent") instance=ExtResource("12_n270p")]
-enabled = true
-rotation_parent = NodePath("../Eumling_v2")
-
 [node name="UITest" type="CanvasLayer" parent="."]
 
 [node name="PauseSketch" parent="UITest" instance=ExtResource("16_gh012")]
@@ -219,3 +194,17 @@ visible = false
 
 [node name="WalkSmoke" parent="." node_paths=PackedStringArray("player") instance=ExtResource("17_gh012")]
 player = NodePath("..")
+
+[node name="DefaultAttack" type="Node3D" parent="."]
+
+[node name="AttackSpawner" type="Node3D" parent="DefaultAttack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458658, 0)
+script = ExtResource("3_a4w0n")
+entity_to_spawn = ExtResource("13_3ep63")
+offset_distance = 0.1
+rotation_strategy = SubResource("Resource_anr75")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="AttackCooldown" type="Timer" parent="DefaultAttack"]
+wait_time = 0.5
+one_shot = true

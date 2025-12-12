@@ -2,8 +2,6 @@
 extends CharacterBody3D
 class_name Player
 
-@onready var shoot_on_command: Node3D = $shoot_on_command
-
 var speed: float
 var health: float = 10.0:
 	set(new_value):
@@ -48,15 +46,33 @@ signal died
 		starting_values = new_value
 		update_configuration_warnings()
 
-var current_values: Dictionary[Enum.UPGRADE, float] = {}
+var _current_values: Dictionary[Enum.UPGRADE, float] = {}
+func get_value(upgrade: Enum.UPGRADE) -> float:
+	return _current_values.get(upgrade, 0)
 signal upgrade_added
 
 var possible_upgrades: Array[Upgrade] = [
-	Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.MULTIPLIER, 1.1, Enum.RARITY.COMMON),
-	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 1.25, Enum.RARITY.COMMON),
+    Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.15, Enum.RARITY.COMMON),
+    Upgrade.new(Enum.UPGRADE.ATTACK_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.1, Enum.RARITY.COMMON),
+    Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.ABSOLUTE, 50, Enum.RARITY.COMMON),
+    Upgrade.new(Enum.UPGRADE.HEALTH_REGENERATION, Enum.UPGRADE_METHOD.ABSOLUTE, 10, Enum.RARITY.COMMON),
+    Upgrade.new(Enum.UPGRADE.RANGE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.25, Enum.RARITY.COMMON),
+    Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 5, Enum.RARITY.COMMON),
+    Upgrade.new(Enum.UPGRADE.CRIT_CHANCE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.01, Enum.RARITY.COMMON),
+
+    Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.3, Enum.RARITY.UNCOMMON),
+
+    Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.4, Enum.RARITY.RARE),
+
+    Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.6, Enum.RARITY.EPIC),
 ]
 
 var anim_player: AnimationTree
+
+@onready var attack_spawner: EntitySpawner = $DefaultAttack/AttackSpawner
+@onready var attack_cooldown: Timer = $DefaultAttack/AttackCooldown
+@onready var reload_progress: TextureProgressBar = $UI/Control/ReloadProgress
+
 
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "starting_values":
@@ -65,16 +81,18 @@ func _validate_property(property: Dictionary) -> void:
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	add_to_group("Player")
-	current_values = starting_values.duplicate()
-	max_health = current_values.get(Enum.UPGRADE.HEALTH)
-	health = current_values.get(Enum.UPGRADE.HEALTH)
-	speed = current_values.get(Enum.UPGRADE.MOVEMENT_SPEED)
+	_current_values = starting_values.duplicate()
+	max_health = get_value(Enum.UPGRADE.HEALTH)
+	health = get_value(Enum.UPGRADE.HEALTH)
+	speed = get_value(Enum.UPGRADE.MOVEMENT_SPEED)
 
 	if (healthbar): healthbar.init_health(max_health)
 	if (hurtbox): hurtbox.hurt_by.connect(hurt_by)
 
 	anim_player = eumling_visuals.find_child("AnimationTree")
 	
+	reload_progress.max_value = 1
+	reload_progress.step = 0
 
 var is_invulnerable: bool = false
 func hurt_by(_area: HitBox):
@@ -118,15 +136,12 @@ func _physics_process(_delta: float) -> void:
 		%shittyVisual.hide()
 	else:
 		eumling_visuals.look_at(global_position + Vector3(look_direction.x, 0, look_direction.y))
-		if (shoot_on_command.try_to_shoot()):
-			anim_player.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		shoot()
 		%shittyVisual.show()
-		
-	
-	# if (weapon): weapon.physics_process(_delta)
 
-# func _process(delta: float) -> void:
-	# if (weapon): weapon.process(delta)
+
+func _process(_delta: float) -> void:
+	reload_progress.value = 1 - attack_cooldown.time_left / attack_cooldown.wait_time
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("test")):
@@ -139,16 +154,16 @@ func spawn_bullet():
 func check_upgrades_affecting_player(upgrade: Upgrade):
 	match upgrade.type:
 		Enum.UPGRADE.HEALTH:
-			var new_max_health = current_values.get(Enum.UPGRADE.HEALTH)
+			var new_max_health = get_value(Enum.UPGRADE.HEALTH)
 			var heal_amount = new_max_health - max_health
 			max_health = new_max_health
 			if (heal_amount > 0): health += heal_amount
 		Enum.UPGRADE.MOVEMENT_SPEED:
-			speed = current_values.get(Enum.UPGRADE.MOVEMENT_SPEED)
+			speed = get_value(Enum.UPGRADE.MOVEMENT_SPEED)
 
 func add_upgrade(upgrade: Upgrade):
-	var value = current_values.get_or_add(upgrade.type, 0)
-	current_values.set(upgrade.type, upgrade.apply(value))
+	var value = _current_values.get_or_add(upgrade.type, 0)
+	_current_values.set(upgrade.type, upgrade.apply(value))
 	upgrade_added.emit(upgrade)
 	check_upgrades_affecting_player(upgrade)
 
@@ -181,5 +196,9 @@ func _get_configuration_warnings() -> PackedStringArray:
 		return [warning]
 	return []
 
-## TODOs
-# i-frames
+func shoot():
+	if not attack_cooldown.is_stopped(): return
+	anim_player.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	var cooldown = get_value(Enum.UPGRADE.ATTACK_SPEED)
+	attack_cooldown.start(cooldown)
+	attack_spawner.spawn(self, eumling_visuals)
