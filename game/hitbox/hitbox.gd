@@ -5,7 +5,12 @@ extends Area3D
 class_name HitBox
 
 ## How much damage should this hitbox deal. Might be modified by the parent of the hitbox, e.g. a projectile.
-@export var damage: float = 0.0
+@export var damage: float = 0.0:
+	get():
+		if critical_hit_chance > randf():
+			# critical hit
+			return damage * critical_hit_damage_multiplier
+		return damage
 
 ## How often this hitbox can hit a specific hurtbox. 0 or less = no limit 
 @export var individual_hit_limit: int = 0
@@ -29,6 +34,14 @@ signal hit(hurtbox: HurtBox)
 		can_hit = _hurtbox
 		if (can_hit > 0): set_collision_mask_value(can_hit, true)
 		update_configuration_warnings()
+
+@export_category("Critical Hits")
+
+## How likely is the critical hit to occur? May get overwritten by parent.
+@export_range(0.0, 1.0, 0.01) var critical_hit_chance: float = 0.0
+
+## How much should the damage be multiplied by? May get overwritten by parent.
+@export var critical_hit_damage_multiplier: float = 2.0
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []

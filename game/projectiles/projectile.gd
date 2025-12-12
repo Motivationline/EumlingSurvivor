@@ -15,6 +15,19 @@ var start_position: Vector3
 ## How long this projectile lives at most, in seconds
 @export var lifetime: float = 120
 
+@export_category("Critical Hits")
+## How likely is the critical hit to occur?
+@export_range(0.0, 1.0, 0.01) var critical_hit_chance: float = 0.0:
+	set(value):
+		critical_hit_chance = value
+		if (hit_box): hit_box.critical_hit_chance = value
+## How much should the damage be multiplied by?
+@export var critical_hit_damage_multiplier: float = 2.0:
+	set(value):
+		critical_hit_damage_multiplier = value
+		if (hit_box): hit_box.critical_hit_damage_multiplier = value
+
+
 @export_category("Base Functionality")
 @export var hit_box: HitBox
 @export var hurt_box: HurtBox
@@ -93,6 +106,10 @@ func setup_player(player: Player):
 	piercing_strat.count = piercing_amount + 1
 	on_hit.append(piercing_strat)
 	piercing_strat.event = RemoveEventStrategy.new()
+
+	# criticals
+	critical_hit_chance = player.get_value(Enum.UPGRADE.CRIT_CHANCE)
+	critical_hit_damage_multiplier = player.get_value(Enum.UPGRADE.CRIT_DAMAGE_MULTIPLIER)
 
 
 func _ready() -> void:

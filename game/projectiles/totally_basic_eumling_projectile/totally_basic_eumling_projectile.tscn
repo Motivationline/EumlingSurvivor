@@ -168,6 +168,7 @@ _data = {
 
 [node name="Projectile" node_paths=PackedStringArray("hit_box", "on_world_collision", "on_hit") instance=ExtResource("1_5adta")]
 collision_mask = 257
+critical_hit_chance = 0.1
 hit_box = NodePath("Hitbox")
 on_world_collision = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_hit = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy")]

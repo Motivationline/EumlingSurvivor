@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=19 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="Resource" uid="uid://bptl28ohdx7tg" path="res://game/ui/inventory/playerInv.tres" id="2_gb4gm"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
 [ext_resource type="PackedScene" uid="uid://dadtg2y3wb6l4" path="res://assets/characters/eumling/V2/eumling_v_2_prefab.tscn" id="4_2mv0n"]
-[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="5_4ste8"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
 [ext_resource type="PackedScene" uid="uid://cwx4ps7nr715s" path="res://game/healthbar/healthbar.tscn" id="7_anr75"]
 [ext_resource type="Texture2D" uid="uid://s4sspr0pav3l" path="res://assets/ui/SketchGreyButtonTexture.png" id="10_2mv0n"]
@@ -38,10 +37,6 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="Resource" id="Resource_anr75"]
-script = ExtResource("5_4ste8")
-metadata/_custom_type_script = "uid://pv70hoylokg6"
-
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
 collision_layer = 2
 collision_mask = 17
@@ -53,11 +48,15 @@ starting_values = Dictionary[int, float]({
 0: 3.0,
 1: 1.0,
 2: 10.0,
+3: 0.0,
 4: 1.0,
 5: 20.0,
-6: 5.0,
+6: 1.0,
+7: 1.0,
 8: 10.0,
-10: 1.0
+10: 1.0,
+11: 0.0,
+12: 2.0
 })
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
@@ -209,8 +208,8 @@ player = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458658, 0)
 script = ExtResource("3_a4w0n")
 entity_to_spawn = ExtResource("13_3ep63")
+time_between_entities = 0.05
 offset_distance = 0.1
-rotation_strategy = SubResource("Resource_anr75")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="AttackCooldown" type="Timer" parent="DefaultAttack"]

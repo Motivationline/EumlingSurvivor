@@ -63,7 +63,8 @@ var possible_upgrades: Array[Upgrade] = [
 	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.3, Enum.RARITY.UNCOMMON),
 	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.4, Enum.RARITY.RARE),
 	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.6, Enum.RARITY.EPIC),
-	
+
+	Upgrade.new(Enum.UPGRADE.PROJECTILE_AMOUNT, Enum.UPGRADE_METHOD.ABSOLUTE, 1, Enum.RARITY.EPIC),
 ]
 
 var anim_player: AnimationTree
@@ -93,6 +94,7 @@ func _ready() -> void:
 	hurtbox_start_sizes.y = hurtbox_collision.shape.height
 	eumling_visuals.scale = Vector3.ONE * get_value(Enum.UPGRADE.SIZE)
 	
+	attack_spawner.amount_of_spawns = int(get_value(Enum.UPGRADE.PROJECTILE_AMOUNT))
 
 	anim_player = eumling_visuals.find_child("AnimationTree")
 	
@@ -170,6 +172,8 @@ func check_upgrades_affecting_player(upgrade: Upgrade):
 			eumling_visuals.scale = Vector3.ONE * new_size
 			hurtbox_collision.shape.radius = hurtbox_start_sizes.x * new_size
 			hurtbox_collision.shape.height = hurtbox_start_sizes.y * new_size
+		Enum.UPGRADE.PROJECTILE_AMOUNT:
+			attack_spawner.amount_of_spawns = int(get_value(Enum.UPGRADE.PROJECTILE_AMOUNT))
 
 func add_upgrade(upgrade: Upgrade):
 	var value = _current_values.get_or_add(upgrade.type, 0)
@@ -212,3 +216,8 @@ func shoot():
 	var cooldown = get_value(Enum.UPGRADE.ATTACK_COOLDOWN)
 	attack_cooldown.start(cooldown)
 	attack_spawner.spawn(self, eumling_visuals)
+
+
+func end_of_level():
+	var amount_to_regenerate = get_value(Enum.UPGRADE.HEALTH_REGENERATION)
+	health += amount_to_regenerate

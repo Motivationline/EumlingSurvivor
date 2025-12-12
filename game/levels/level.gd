@@ -52,6 +52,7 @@ func _process(_delta: float) -> void:
 
 
 func clear_level():
+	player.end_of_level()
 	# TODO: Do stuff that needs to be done before the level can be unloaded, like collecting all the xp / items or something
 	await get_tree().create_timer(1).timeout
 
