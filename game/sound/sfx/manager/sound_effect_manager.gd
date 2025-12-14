@@ -26,6 +26,7 @@ func sound_list_setup():
 
 
 func play_sound(sound_name:String, focus:bool = false, persistent = false):
+
 	if sound_list.has(sound_name):
 		var sound = sound_list[sound_name] 
 		if persistent:

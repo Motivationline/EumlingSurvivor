@@ -171,7 +171,7 @@ size_flags_vertical = 8
 text = "Fade out
 "
 
-[node name="VolumeMixer" type="VBoxContainer" parent="DebugUI"]
+[node name="VolumeMixer" type="SplitContainer" parent="DebugUI"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -179,46 +179,107 @@ anchor_bottom = 1.0
 offset_left = 534.0
 offset_top = 318.0
 offset_right = -347.0
-offset_bottom = -311.0
+offset_bottom = -220.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 0
+split_offset = 20
+dragging_enabled = false
+dragger_visibility = 1
 
-[node name="MasterLabel" type="Label" parent="DebugUI/VolumeMixer"]
+[node name="Sliders" type="VBoxContainer" parent="DebugUI/VolumeMixer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="DebugUI/VolumeMixer/Sliders"]
 layout_mode = 2
 text = "Master"
 
-[node name="Master" type="HSlider" parent="DebugUI/VolumeMixer"]
+[node name="MasterSlider" type="HSlider" parent="DebugUI/VolumeMixer/Sliders"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="BGMLabel" type="Label" parent="DebugUI/VolumeMixer"]
+[node name="BGMLabel" type="Label" parent="DebugUI/VolumeMixer/Sliders"]
 layout_mode = 2
 text = "BGM"
 
-[node name="BGM" type="HSlider" parent="DebugUI/VolumeMixer"]
+[node name="BGMSlider" type="HSlider" parent="DebugUI/VolumeMixer/Sliders"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SFXGeneralLabel" type="Label" parent="DebugUI/VolumeMixer"]
+[node name="SFXGeneralLabel" type="Label" parent="DebugUI/VolumeMixer/Sliders"]
 layout_mode = 2
 text = "General SFX"
 
-[node name="SFXGeneral" type="HSlider" parent="DebugUI/VolumeMixer"]
+[node name="SFXGeneralSlider" type="HSlider" parent="DebugUI/VolumeMixer/Sliders"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SFXEnemyLabel" type="Label" parent="DebugUI/VolumeMixer"]
+[node name="SFXEnemyLabel" type="Label" parent="DebugUI/VolumeMixer/Sliders"]
 layout_mode = 2
 text = "Enemy SFX"
 
-[node name="SFXEnemy" type="HSlider" parent="DebugUI/VolumeMixer"]
+[node name="SFXEnemySlider" type="HSlider" parent="DebugUI/VolumeMixer/Sliders"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="EnvironmentLabel" type="Label" parent="DebugUI/VolumeMixer"]
+[node name="EnvironmentLabel" type="Label" parent="DebugUI/VolumeMixer/Sliders"]
 layout_mode = 2
 text = "Environment"
 
-[node name="Environment" type="HSlider" parent="DebugUI/VolumeMixer"]
+[node name="EnvironmentSlider" type="HSlider" parent="DebugUI/VolumeMixer/Sliders"]
+unique_name_in_owner = true
 layout_mode = 2
+
+[node name="MuteButtons" type="VBoxContainer" parent="DebugUI/VolumeMixer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="MasterMute" type="Button" parent="DebugUI/VolumeMixer/MuteButtons"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.43605796, 8.663535e-07, 1.6845763e-07, 1)
+toggle_mode = true
+text = "Mute
+"
+
+[node name="BGMMute" type="Button" parent="DebugUI/VolumeMixer/MuteButtons"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.43605796, 8.663535e-07, 1.6845763e-07, 1)
+toggle_mode = true
+text = "Mute
+"
+
+[node name="SFXGeneralMute" type="Button" parent="DebugUI/VolumeMixer/MuteButtons"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.43605796, 8.663535e-07, 1.6845763e-07, 1)
+toggle_mode = true
+text = "Mute
+"
+
+[node name="SFXEnemyMute" type="Button" parent="DebugUI/VolumeMixer/MuteButtons"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.43605796, 8.663535e-07, 1.6845763e-07, 1)
+toggle_mode = true
+text = "Mute
+"
+
+[node name="EnvironmentMute" type="Button" parent="DebugUI/VolumeMixer/MuteButtons"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.43605796, 8.663535e-07, 1.6845763e-07, 1)
+toggle_mode = true
+text = "Mute
+"
 
 [node name="VolumeMixerButton" type="Button" parent="DebugUI"]
 visible = false
@@ -249,10 +310,15 @@ bus = &"Environment"
 [connection signal="item_clicked" from="DebugUI/TrackSelector/List" to="." method="_on_debug_list_item_clicked"]
 [connection signal="pressed" from="DebugUI/TrackSelector/FadeInButton" to="." method="_on_fade_in_button_pressed"]
 [connection signal="pressed" from="DebugUI/TrackSelector/FadeOutButton" to="." method="_on_fade_out_button_pressed"]
-[connection signal="value_changed" from="DebugUI/VolumeMixer/Master" to="." method="_on_volume_slider_value_changed" flags=18]
-[connection signal="value_changed" from="DebugUI/VolumeMixer/BGM" to="." method="_on_volume_slider_value_changed" flags=18]
-[connection signal="value_changed" from="DebugUI/VolumeMixer/SFXGeneral" to="." method="_on_volume_slider_value_changed" flags=18]
-[connection signal="value_changed" from="DebugUI/VolumeMixer/SFXEnemy" to="." method="_on_volume_slider_value_changed" flags=18]
-[connection signal="value_changed" from="DebugUI/VolumeMixer/Environment" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="value_changed" from="DebugUI/VolumeMixer/Sliders/MasterSlider" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="value_changed" from="DebugUI/VolumeMixer/Sliders/BGMSlider" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="value_changed" from="DebugUI/VolumeMixer/Sliders/SFXGeneralSlider" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="value_changed" from="DebugUI/VolumeMixer/Sliders/SFXEnemySlider" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="value_changed" from="DebugUI/VolumeMixer/Sliders/EnvironmentSlider" to="." method="_on_volume_slider_value_changed" flags=18]
+[connection signal="toggled" from="DebugUI/VolumeMixer/MuteButtons/MasterMute" to="." method="_on_mute_toggled" flags=18]
+[connection signal="toggled" from="DebugUI/VolumeMixer/MuteButtons/BGMMute" to="." method="_on_mute_toggled" flags=18]
+[connection signal="toggled" from="DebugUI/VolumeMixer/MuteButtons/SFXGeneralMute" to="." method="_on_mute_toggled" flags=18]
+[connection signal="toggled" from="DebugUI/VolumeMixer/MuteButtons/SFXEnemyMute" to="." method="_on_mute_toggled" flags=18]
+[connection signal="toggled" from="DebugUI/VolumeMixer/MuteButtons/EnvironmentMute" to="." method="_on_mute_toggled" flags=18]
 [connection signal="toggled" from="DebugUI/VolumeMixerButton" to="." method="_on_volume_mixer_button_toggled"]
 [connection signal="toggled" from="DebugUI/TrackSelectorButton" to="." method="_on_track_selector_button_toggled"]

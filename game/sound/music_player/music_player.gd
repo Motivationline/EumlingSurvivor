@@ -38,11 +38,11 @@ func _ready():
 func debug_setup():
 	$DebugUI/VolumeMixerButton.show()
 	$DebugUI/VolumeMixerButton.disabled = false
-	$DebugUI/VolumeMixer/Master.value = AudioServer.get_bus_volume_linear(BUS_IDS.MASTER)*100
-	$DebugUI/VolumeMixer/BGM.value = AudioServer.get_bus_volume_linear(BUS_IDS.MUSIC)*100
-	$DebugUI/VolumeMixer/SFXEnemy.value = AudioServer.get_bus_volume_linear(BUS_IDS.SFX_ENEMIES)*100
-	$DebugUI/VolumeMixer/SFXGeneral.value = AudioServer.get_bus_volume_linear(BUS_IDS.SFX_GENERAL)*100
-	$DebugUI/VolumeMixer/Environment.value = AudioServer.get_bus_volume_linear(BUS_IDS.ENVIRONMENT)*100
+	%MasterSlider.value = AudioServer.get_bus_volume_linear(BUS_IDS.MASTER)*100
+	%BGMSlider.value = AudioServer.get_bus_volume_linear(BUS_IDS.MUSIC)*100
+	%SFXEnemySlider.value = AudioServer.get_bus_volume_linear(BUS_IDS.SFX_ENEMIES)*100
+	%SFXGeneralSlider.value = AudioServer.get_bus_volume_linear(BUS_IDS.SFX_GENERAL)*100
+	%EnvironmentSlider.value = AudioServer.get_bus_volume_linear(BUS_IDS.ENVIRONMENT)*100
 	
 	
 	$DebugUI/TrackSelectorButton.show()
@@ -190,20 +190,20 @@ func _on_volume_mixer_button_toggled(toggled_on: bool) -> void:
 func _on_volume_slider_value_changed(value:float, source:Node) ->void:
 	
 	match source.name:
-		"Master":
+		"MasterSlider":
 
 			AudioServer.set_bus_volume_linear(BUS_IDS.MASTER,value/100)
 
-		"BGM":
+		"BGMSlider":
 
 			AudioServer.set_bus_volume_linear(BUS_IDS.MUSIC,value/100)
-		"SFXGeneral":
+		"SFXGeneralSlider":
 
 			AudioServer.set_bus_volume_linear(BUS_IDS.SFX_GENERAL,value/100)
-		"SFXEnemy":
+		"SFXEnemySlider":
 
 			AudioServer.set_bus_volume_linear(BUS_IDS.SFX_ENEMIES,value/100)
-		"Environment":
+		"EnvironmentSlider":
 
 			AudioServer.set_bus_volume_linear(BUS_IDS.ENVIRONMENT,value/100)
 		
@@ -217,3 +217,24 @@ func _on_track_selector_button_toggled(toggled_on: bool) -> void:
 	else:
 		track_selector.hide()
 		track_selector.call_deferred("release_focus")
+
+
+func _on_mute_toggled(toggled_on, source):
+	match source.name:
+		"MasterMute":
+			
+			AudioServer.set_bus_mute(BUS_IDS.MASTER,toggled_on)
+
+		"BGMMute":
+			
+			AudioServer.set_bus_mute(BUS_IDS.MUSIC,toggled_on)
+		"SFXGeneralMute":
+			
+			AudioServer.set_bus_mute(BUS_IDS.SFX_GENERAL,toggled_on)
+		"SFXEnemyMute":
+
+			AudioServer.set_bus_mute(BUS_IDS.SFX_ENEMIES,toggled_on)
+		"EnvironmentMute":
+
+			AudioServer.set_bus_mute(BUS_IDS.ENVIRONMENT,toggled_on)
+		
