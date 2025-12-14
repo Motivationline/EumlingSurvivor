@@ -25,15 +25,20 @@ func sound_list_setup():
 			sound_list[sound.name] = sound
 
 
-func play_sound(sound_name:String, focus:bool = false):
+func play_sound(sound_name:String, focus:bool = false, persistent = false):
 	if sound_list.has(sound_name):
 		var sound = sound_list[sound_name] 
-		sound.play()
+		if persistent:
+			sound.reparent(music_player)
+			sound.finished.connect(sound.queue_free)
+			print(sound.finished.get_connections())
+			sound.play()
+			
+		else:
+			sound.play()
 		
 		if focus:
-			music_player.fade_volume(true,1)
-			await get_tree().create_timer(sound.stream.get_length()-6).timeout
-			music_player.fade_volume(false,2)
+			music_player.fade_in_and_out(sound.stream.get_length())
 	else:
 		print("Sound '"+sound_name+"' is missing!")
 	

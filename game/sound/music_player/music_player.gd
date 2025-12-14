@@ -16,6 +16,7 @@ BOSS_GENERIC,
 BOSS_ISLAND, 
 CHASE
 }
+
 @export var debug:bool
 
 enum BUS_IDS {MASTER, MUSIC, SFX_ALL, SFX_ENEMIES, SFX_GENERAL, ENVIRONMENT}
@@ -80,6 +81,7 @@ func queue_specific_track(level_type:LEVEL):
 	var next_track = select_track(level_type) 
 	start_playback(next_track)
 
+
 func select_track(level_type:LEVEL) -> Array[String]:
 	#print(level_type)
 	var selected_track = "Menu"
@@ -132,6 +134,7 @@ func fade_volume(out:bool , duration:float, reduction_db:float = 30):
 	#print("bus"+ AudioServer.get_bus_name(1))
 	#print(AudioServer.get_bus_volume_db(1))
 	var tween = get_tree().create_tween()
+	tween.set_ignore_time_scale(true)
 	if out:
 		tween.tween_method(func(v): AudioServer.set_bus_volume_db(BUS_IDS.MUSIC, v),  init_bus_volumes[BUS_IDS.MUSIC],  -reduction_db,  duration)
 		tween.tween_method(func(v): AudioServer.set_bus_volume_db(BUS_IDS.ENVIRONMENT, v),  init_bus_volumes[BUS_IDS.ENVIRONMENT],  -reduction_db,  duration)
@@ -142,6 +145,12 @@ func fade_volume(out:bool , duration:float, reduction_db:float = 30):
 		#print("in")
 	#print(AudioServer.get_bus_volume_db(1))
 
+func fade_in_and_out(length:float):
+	fade_volume(true,1)
+	
+	await get_tree().create_timer(length-6,true,false,true).timeout
+	print("ended")
+	fade_volume(false,2)
 
 
 func _on_debug_list_item_clicked(index, _at_position, _mouse_button_index):

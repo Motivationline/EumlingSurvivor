@@ -31,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="17_276u1"]
 [ext_resource type="AudioStream" uid="uid://b47fq4sf141ag" path="res://assets/sound/sound_effects/enemies/mosquito/nobuzz/refill_4.wav" id="17_v27n5"]
 [ext_resource type="AudioStream" uid="uid://b01t0cp6wurjk" path="res://assets/sound/sound_effects/enemies/mosquito/nobuzz/refill_5.wav" id="18_sgf7q"]
-[ext_resource type="AudioStream" uid="uid://dlv0rtdd5m1qf" path="res://assets/sound/sound_effects/enemies/mosquito/buzz.wav" id="24_blvml"]
+[ext_resource type="AudioStream" uid="uid://dlv0rtdd5m1qf" path="res://assets/sound/sound_effects/enemies/mosquito/buzz_loop.wav" id="24_blvml"]
 [ext_resource type="AudioStream" uid="uid://n6gu3f1cfprl" path="res://assets/sound/sound_effects/enemies/mosquito/nobuzz/shoot_1.wav" id="25_eijx0"]
 [ext_resource type="AudioStream" uid="uid://cu2p84n03pcnt" path="res://assets/sound/sound_effects/enemies/mosquito/nobuzz/shoot_2.wav" id="26_4kvcc"]
 [ext_resource type="AudioStream" uid="uid://cxy7rh0l7356g" path="res://assets/sound/sound_effects/enemies/mosquito/nobuzz/shoot_3.wav" id="27_0xpfm"]
@@ -72,7 +72,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(0.09810443, 0.019378351)
+shader_parameter/wobble = Vector2(-0.08164288, -0.05774462)
 
 [sub_resource type="SphereMesh" id="SphereMesh_vkxpk"]
 radius = 0.6
@@ -252,25 +252,25 @@ stream_5/stream = ExtResource("16_a13vd")
 script = SubResource("GDScript_djlvw")
 
 [node name="Skeleton3D" parent="Armature_001" index="0"]
-bones/0/position = Vector3(1.7658533e-38, 1.5089531, -4.4399217e-22)
-bones/0/rotation = Quaternion(0.9974237, -3.0378964e-09, -4.5577853e-08, -0.0717352)
+bones/0/position = Vector3(7.523164e-37, 1.47347, -3.900695e-22)
+bones/0/rotation = Quaternion(0.99409115, 5.226245e-09, -4.5425573e-08, -0.10854939)
 bones/1/rotation = Quaternion(1, 2.220446e-16, -7.54979e-08, -2.0866981e-22)
-bones/1/scale = Vector3(0.95915854, 1.0869889, 0.95915854)
+bones/1/scale = Vector3(0.9682273, 1.066753, 0.9682273)
 bones/4/rotation = Quaternion(0.122083224, 4.5353765e-08, -5.5786633e-09, 0.9925199)
-bones/5/rotation = Quaternion(-0.48320788, 9.599987e-09, 3.6729592e-08, 0.8755057)
-bones/6/rotation = Quaternion(-0.17758575, 5.7416334e-09, 1.0384904e-09, 0.98410535)
+bones/5/rotation = Quaternion(-0.45158798, 5.8770815e-09, 2.5338998e-08, 0.8922266)
+bones/6/rotation = Quaternion(-0.10559774, 3.3802083e-09, 3.6102285e-10, 0.99440897)
 bones/6/scale = Vector3(0.9070117, 1.215554, 0.9070114)
-bones/7/rotation = Quaternion(-0.18230878, -2.8791162e-15, -4.1472007e-14, 0.9832414)
-bones/7/scale = Vector3(1.3401754, 1.0475694, 1.303319)
-bones/8/rotation = Quaternion(-0.17758529, -1.3129616e-14, 1.7525293e-14, 0.98410547)
+bones/7/rotation = Quaternion(-0.10947536, -9.51509e-15, 9.02885e-15, 0.9939895)
+bones/7/scale = Vector3(1.3401755, 1.0174909, 1.326941)
+bones/8/rotation = Quaternion(-0.105598025, 1.8929234e-15, -3.5258853e-16, 0.99440897)
 bones/8/scale = Vector3(0.99999994, 0.99999994, 1)
-bones/9/rotation = Quaternion(-0.35142183, -1.0653317e-14, -3.1915195e-14, 0.9362172)
+bones/9/rotation = Quaternion(-0.3151775, -1.7709191e-15, -4.3065618e-14, 0.9490328)
 bones/9/scale = Vector3(1.0000001, 0.99999994, 1)
-bones/10/rotation = Quaternion(-0.35142192, -1.7328392e-14, 3.8984424e-14, 0.93621725)
+bones/10/rotation = Quaternion(-0.31517765, -1.5348976e-14, -7.89099e-15, 0.9490327)
 bones/10/scale = Vector3(1.0000002, 0.9999996, 1.0000002)
-bones/11/rotation = Quaternion(-0.35142162, 1.3971844e-14, 2.987851e-14, 0.93621737)
+bones/11/rotation = Quaternion(-0.31517786, -1.4444136e-14, -7.550963e-15, 0.9490326)
 bones/11/scale = Vector3(1, 0.99999946, 1.0000002)
-bones/12/rotation = Quaternion(-0.3514218, 4.7023607e-14, 8.378544e-08, 0.93621725)
+bones/12/rotation = Quaternion(-0.31517768, -9.09593e-15, 7.514414e-08, 0.9490327)
 bones/12/scale = Vector3(0.99999994, 1, 1)
 bones/13/rotation = Quaternion(-0.4374547, 9.383135e-15, -1.0974611e-08, 0.89924043)
 bones/13/scale = Vector3(0.99999964, 1.0000006, 0.9999998)
@@ -280,22 +280,22 @@ bones/15/rotation = Quaternion(-0.43745503, -6.6331403e-09, -1.42014445e-08, 0.8
 bones/15/scale = Vector3(1.0000002, 0.9999996, 1.0000001)
 bones/16/rotation = Quaternion(-0.43745545, -6.6332166e-09, -1.4201356e-08, 0.8992401)
 bones/16/scale = Vector3(0.9999999, 1.0000002, 1.0000002)
-bones/17/rotation = Quaternion(0.7945191, -0.0004533029, 0.00081237603, 0.6072385)
+bones/17/rotation = Quaternion(0.7806064, -0.00041546798, 0.0008436011, 0.62502235)
 bones/18/rotation = Quaternion(0.6697367, 0.19849838, 0.20334171, 0.68607825)
-bones/19/rotation = Quaternion(-0.4448884, 0.48012906, -0.554543, -0.513841)
-bones/22/rotation = Quaternion(-0.33795467, 0.5605679, -0.6474488, -0.3903337)
-bones/25/rotation = Quaternion(0.7945191, 0.0004533478, -0.00081245566, 0.6072385)
+bones/19/rotation = Quaternion(-0.4255937, 0.45930606, -0.57190895, -0.52993226)
+bones/22/rotation = Quaternion(-0.3232977, 0.5362562, -0.6677242, -0.40255725)
+bones/25/rotation = Quaternion(0.7806064, 0.00041552554, -0.00084367214, 0.62502235)
 bones/26/rotation = Quaternion(0.67148805, -0.17685577, -0.1832776, 0.69587016)
-bones/27/rotation = Quaternion(0.21411969, -0.655848, 0.32823288, 0.6451971)
+bones/27/rotation = Quaternion(0.19012797, -0.64326894, 0.35224774, 0.6526699)
 bones/27/scale = Vector3(0.9999999, 0.9999999, 0.99999994)
 bones/28/rotation = Quaternion(-1.8217108e-07, 0.05361173, -0.053510725, 0.9971271)
 bones/29/rotation = Quaternion(0.35895163, -0.015417081, 0.03462344, 0.9325863)
 bones/30/rotation = Quaternion(-0.011062886, 0.88252, -0.4687451, 0.036250256)
-bones/31/rotation = Quaternion(0.44488835, 0.4801291, -0.55454314, 0.5138409)
-bones/34/rotation = Quaternion(0.33795458, 0.56056786, -0.64744884, 0.39033362)
+bones/31/rotation = Quaternion(0.42559364, 0.45930606, -0.57190895, 0.52993226)
+bones/34/rotation = Quaternion(0.32329756, 0.53625625, -0.6677242, 0.40255728)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" index="0"]
-transform = Transform3D(0.95915854, 1.3695204e-08, 2.2781205e-07, 2.0639813e-08, 1.0758016, -0.13725634, -2.2719675e-07, 0.15554895, 0.94928694, -3.716741e-11, 1.5060334, -0.00042214425)
+transform = Transform3D(0.9682273, -5.6419613e-10, 2.3089926e-07, 5.0331764e-08, 1.0416138, -0.20895888, -2.2534739e-07, 0.23022228, 0.9454101, 1.5311742e-12, 1.4706432, -0.00062480115)
 bone_name = "DEF_FLUID"
 bone_idx = 2
 
@@ -316,7 +316,7 @@ visible = false
 visible = false
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" index="16"]
-transform = Transform3D(-0.07608376, -0.99710155, -4.4751377e-07, -1.1920929e-07, -4.8894435e-07, 0.9999999, -0.9971015, 0.076083735, -7.4505806e-08, -0.24529767, 1.5091786, -0.0015616105)
+transform = Transform3D(-0.07608376, -0.99710155, -4.9708973e-07, -5.9604645e-08, -5.7928264e-07, 0.9999999, -0.9971014, 0.076083794, -8.940697e-08, -0.24529767, 1.4738103, -0.001540684)
 bone_name = "DEF_FRONTWING.L"
 bone_idx = 19
 
@@ -328,7 +328,7 @@ autoplay = "wings"
 frame_progress = 0.7738692
 
 [node name="BoneAttachment3D3" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" index="17"]
-transform = Transform3D(-0.4668525, -0.8843351, -4.1771142e-07, -2.9802322e-08, -5.289912e-07, 0.99999994, -0.884335, 0.46685252, 1.7881393e-07, -0.13967305, 1.410306, 0.106102355)
+transform = Transform3D(-0.4668525, -0.8843351, -2.288688e-07, 0, -3.3527613e-07, 0.99999994, -0.884335, 0.46685255, 1.0430813e-07, -0.13967305, 1.367255, 0.0985258)
 bone_name = "DEF_BACKWING.L"
 bone_idx = 22
 
@@ -340,7 +340,7 @@ autoplay = "wings"
 frame_progress = 0.7801252
 
 [node name="BoneAttachment3D4" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" index="18"]
-transform = Transform3D(-0.07608382, 0.99710166, 3.5714896e-07, 1.937151e-07, -2.8871e-07, 1.0000001, 0.99710155, 0.076083854, -1.1920929e-07, 0.24529767, 1.5091786, -0.0015616108)
+transform = Transform3D(-0.07608358, 0.99710155, 5.459916e-07, 1.3411045e-07, -6.686896e-07, 1, 0.9971014, 0.07608366, -2.0861626e-07, 0.24529767, 1.4738103, -0.0015406839)
 bone_name = "DEF_FRONTWING.R"
 bone_idx = 31
 
@@ -352,7 +352,7 @@ autoplay = "wings"
 frame_progress = 0.26568833
 
 [node name="BoneAttachment3D5" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" index="19"]
-transform = Transform3D(-0.46685266, 0.88433534, 3.571489e-07, 8.940697e-08, -3.2037497e-07, 0.99999994, 0.88433504, 0.46685266, 1.3411045e-07, 0.13967305, 1.410306, 0.106102355)
+transform = Transform3D(-0.46685255, 0.88433534, 5.161892e-07, 1.937151e-07, -4.61936e-07, 0.9999999, 0.88433504, 0.46685264, 1.1920929e-07, 0.13967305, 1.367255, 0.09852581)
 bone_name = "DEF_BACKWING.R"
 bone_idx = 34
 
@@ -375,7 +375,7 @@ parameters/conditions/shoot = false
 
 [node name="Buzz" parent="SoundEffectManager" index="1" instance=ExtResource("6_q0d2i")]
 stream = ExtResource("24_blvml")
-volume_db = -10.0
+volume_db = -4.0
 autoplay = true
 
 [node name="Slash" parent="SoundEffectManager" index="2" instance=ExtResource("6_q0d2i")]
@@ -383,9 +383,11 @@ stream = SubResource("AudioStreamRandomizer_58bqb")
 
 [node name="Refill" parent="SoundEffectManager" index="3" instance=ExtResource("6_q0d2i")]
 stream = SubResource("AudioStreamRandomizer_h430l")
+volume_db = 0.0
 
 [node name="Shoot" parent="SoundEffectManager" index="4" instance=ExtResource("6_q0d2i")]
 stream = SubResource("AudioStreamRandomizer_xsr2y")
+volume_db = -10.0
 
 [node name="Hitbox" parent="." index="4" instance=ExtResource("17_276u1")]
 collision_layer = 32
