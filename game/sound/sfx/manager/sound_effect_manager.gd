@@ -31,11 +31,8 @@ func play_sound(sound_name:String, focus:bool = false, persistent = false):
 		if persistent:
 			sound.reparent(music_player)
 			sound.finished.connect(sound.queue_free)
-			print(sound.finished.get_connections())
-			sound.play()
-			
-		else:
-			sound.play()
+
+		sound.play()
 		
 		if focus:
 			music_player.fade_in_and_out(sound.stream.get_length())

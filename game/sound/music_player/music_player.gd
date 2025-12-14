@@ -67,7 +67,7 @@ func start_playback(names:Array[String],with_ambient:bool = true):
 		else:
 			ambientNoisePlayer.play()
 			ambientNoisePlayer.get_stream_playback().switch_to_clip_by_name(env_name)
-			print(ambientNoisePlayer.get_stream_playback().get_current_clip_index())
+
 	
 	#print("clipIndex = ", get_stream_playback().get_current_clip_index())
 	update_track_tail_volume()
@@ -120,7 +120,7 @@ func update_track_tail_volume():
 	await get_tree().create_timer(60).timeout
 	
 	current_stream_synchronised = get_current_stream_synchronised()
-
+ 
 	current_stream_synchronised.set_sync_stream_volume(1,0.0)
 	#print(current_stream_synchronised.get_sync_stream_volume(1))
 	#implement reset
@@ -149,7 +149,6 @@ func fade_in_and_out(length:float):
 	fade_volume(true,1)
 	
 	await get_tree().create_timer(length-6,true,false,true).timeout
-	print("ended")
 	fade_volume(false,2)
 
 
