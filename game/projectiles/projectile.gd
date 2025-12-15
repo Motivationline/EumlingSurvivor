@@ -95,6 +95,10 @@ func setup_player(player: Player):
 	# damage
 	damage = player.get_value(Enum.UPGRADE.DAMAGE)
 
+	# size
+	var size = player.get_value(Enum.UPGRADE.PROJECTILE_SIZE)
+	scale *= size
+
 	# range / max_distance
 	max_distance = player.get_value(Enum.UPGRADE.RANGE)
 	max_distance_squared = max_distance * max_distance
