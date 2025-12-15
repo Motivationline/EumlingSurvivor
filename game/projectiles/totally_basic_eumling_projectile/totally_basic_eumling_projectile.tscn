@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://csrh8ood2mu1q"]
+[gd_scene load_steps=34 format=3 uid="uid://csrh8ood2mu1q"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_5adta"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_yusjb"]
@@ -7,10 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://bov1hcmo0on0h" path="res://game/vfx/firehit/fire_hit.tscn" id="5_x7orq"]
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="7_aejtm"]
 [ext_resource type="ArrayMesh" uid="uid://bf0lh4o3ufbqb" path="res://assets/characters/eumling/leaf_projectile.res" id="8_aejtm"]
+[ext_resource type="Texture2D" uid="uid://dno25gc2sf2m3" path="res://assets/vfx/fireball/shockwave.png" id="8_rqm5e"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_x7orq"]
 [ext_resource type="Shader" uid="uid://5n35xj7sj6bq" path="res://game/projectiles/totally_basic_eumling_projectile/leaf_trail_shader.tres" id="11_ifyym"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_706qm"]
+transparency = 1
 shading_mode = 0
 diffuse_mode = 3
 albedo_color = Color(0.861851, 1.4393815, 0.5942147, 1)
@@ -22,8 +24,8 @@ stencil_outline_thickness = 0.029
 render_priority = 0
 shader = ExtResource("7_aejtm")
 shader_parameter/ball_color = Color(0.8770809, 0.97906214, 0.7305308, 1)
-shader_parameter/frensel_power = 14.75
-shader_parameter/visibility = 2.34
+shader_parameter/frensel_power = 15.84
+shader_parameter/visibility = 3.21
 
 [sub_resource type="SphereMesh" id="SphereMesh_f7sbq"]
 radius = 0.2
@@ -40,6 +42,7 @@ disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
+albedo_texture = ExtResource("8_rqm5e")
 billboard_keep_scale = true
 point_size = 15.0
 
@@ -206,6 +209,7 @@ draw_pass_1 = ExtResource("8_aejtm")
 
 [node name="FallLeaves" type="GPUParticles3D" parent="MeshInstance3D" index="2"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.0013983635, 0, 0.17215094)
+visible = false
 material_override = SubResource("StandardMaterial3D_x7orq")
 amount = 25
 process_material = SubResource("ParticleProcessMaterial_aejtm")

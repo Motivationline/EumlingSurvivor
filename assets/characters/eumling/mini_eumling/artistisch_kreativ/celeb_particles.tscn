@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://d00yy6liprkr"]
+
+[ext_resource type="Texture2D" uid="uid://ds50bevv057ww" path="res://assets/vfx/fireball/cross.png" id="1_v8ajh"]
+[ext_resource type="PackedScene" uid="uid://wqhqib0voc53" path="res://game/vfx/particle_one_shot_component/particle_oneshot_component.tscn" id="2_mkq5q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkq5q"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_v8ajh")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_sg312"]
+colors = PackedColorArray(1, 0.8296667, 0.26999998, 1, 3.6007304, 3.6007304, 0.5167493, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_66mvx"]
+gradient = SubResource("Gradient_sg312")
+
+[sub_resource type="Gradient" id="Gradient_bnhb8"]
+offsets = PackedFloat32Array(0, 0.77017117, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.92099476, 0.9209946, 0.9209946, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uhfar"]
+gradient = SubResource("Gradient_bnhb8")
+
+[sub_resource type="Curve" id="Curve_nqnc1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.22068964, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.4635243, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ejrd"]
+curve = SubResource("Curve_nqnc1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o7c5u"]
+angle_min = 1.0728835e-05
+angle_max = 88.000015
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 4.0
+initial_velocity_max = 5.0
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = 2.9999976
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_5ejrd")
+color_ramp = SubResource("GradientTexture1D_uhfar")
+color_initial_ramp = SubResource("GradientTexture1D_66mvx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_5u2it"]
+size = Vector2(0.1, 0.1)
+
+[node name="CelebParticles" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_mkq5q")
+emitting = false
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_o7c5u")
+draw_pass_1 = SubResource("QuadMesh_5u2it")
+
+[node name="particle_oneshot_component" parent="." node_paths=PackedStringArray("node_to_kill") instance=ExtResource("2_mkq5q")]
+node_to_kill = NodePath("..")
