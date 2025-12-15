@@ -37,7 +37,9 @@ signal died
 ## UI Stuff
 @export var inv: Inv
 
+## How long after being hit should the player be invulnerable
 @export var invulnerability_time: float = 0.5
+## What upgradeable values should the player start with
 @export var starting_values: Dictionary[Enum.UPGRADE, float] = {
 	Enum.UPGRADE.HEALTH: 10.0,
 	Enum.UPGRADE.MOVEMENT_SPEED: 3.0,
@@ -50,6 +52,9 @@ var _current_values: Dictionary[Enum.UPGRADE, float] = {}
 func get_value(upgrade: Enum.UPGRADE) -> float:
 	return _current_values.get(upgrade, 0)
 signal upgrade_added
+## Limits to the upgradeable values. x is minimum, y is maximum. If not specified, values can go from 0 to infinity.
+@export var min_max_values: Dictionary[Enum.UPGRADE, Vector2] = {}
+
 
 var possible_upgrades: Array[Upgrade] = [
 	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.15, Enum.RARITY.COMMON),
@@ -177,7 +182,12 @@ func check_upgrades_affecting_player(upgrade: Upgrade):
 
 func add_upgrade(upgrade: Upgrade):
 	var value = _current_values.get_or_add(upgrade.type, 0)
-	_current_values.set(upgrade.type, upgrade.apply(value))
+	var new_value = upgrade.apply(value)
+	if new_value < 0: return
+	if min_max_values.has(upgrade.type):
+		var limits: Vector2 = min_max_values.get(upgrade.type)
+		new_value = clamp(new_value, limits.x, limits.y)
+	_current_values.set(upgrade.type, new_value)
 	upgrade_added.emit(upgrade)
 	check_upgrades_affecting_player(upgrade)
 
