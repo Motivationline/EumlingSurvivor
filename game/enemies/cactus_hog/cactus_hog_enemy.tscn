@@ -29,7 +29,7 @@ height = 0.6078688
 [node name="CactusHog" node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_c2tdt")]
 collision_layer = 64
 collision_mask = 65
-health = 5.0
+health = 180.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 node_with_animation_tree = NodePath("Visuals/cactushog")
@@ -38,7 +38,7 @@ node_with_animation_tree = NodePath("Visuals/cactushog")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928938, -0.0283241)
 hide_when_full_after = 0.5
 
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MultistateState")
 
 [node name="MultistateState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
@@ -68,11 +68,6 @@ amount_of_spawns = 4
 rotation_strategy = SubResource("Resource_httce")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="TriggerStateEventStrategy" type="Node" parent="Eventlisteners" index="0" node_paths=PackedStringArray("state_to_execute")]
-script = ExtResource("8_leyq8")
-state_to_execute = NodePath("../../StateMachine/MultistateState/MoveTowardsPlayer")
-metadata/_custom_type_script = "uid://ce61jighdgsby"
-
 [node name="Hurtbox" parent="." index="3" instance=ExtResource("6_0es7d")]
 collision_layer = 64
 collision_mask = 4
@@ -87,7 +82,7 @@ debug_color = Color(0.57628113, 0.4531935, 0.8296638, 0.41960785)
 [node name="Hitbox" parent="." index="4" instance=ExtResource("7_g5j0o")]
 collision_layer = 32
 collision_mask = 8
-damage = 1.0
+damage = 40.0
 attached_to = 6
 can_hit = 4
 
@@ -100,6 +95,11 @@ debug_color = Color(0.686648, 0.0638954, 0.198134, 0.42)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34179613, 0)
 shape = SubResource("CapsuleShape3D_bht06")
 debug_color = Color(0.358393, 0.60428, 0.373735, 0.42)
+
+[node name="TriggerStateEventStrategy" type="Node" parent="Eventlisteners" index="0" node_paths=PackedStringArray("state_to_execute")]
+script = ExtResource("8_leyq8")
+state_to_execute = NodePath("../../StateMachine/MultistateState/MoveTowardsPlayer")
+metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="cactushog" parent="Visuals" index="0" instance=ExtResource("5_leyq8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

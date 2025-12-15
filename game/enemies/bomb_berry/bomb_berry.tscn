@@ -26,7 +26,7 @@ radius = 0.25
 [node name="BombBerry" type="CharacterBody3D" node_paths=PackedStringArray("healthbar", "hitbox", "hurtbox", "state_machine", "node_with_animation_tree")]
 collision_layer = 16
 script = ExtResource("1_7rr5f")
-health = 1.0
+health = 80.0
 speed = 2.0
 healthbar = NodePath("Healthbar3D")
 hitbox = NodePath("Hitbox")
@@ -96,7 +96,7 @@ metadata/_custom_type_script = "uid://dj632w22te1th"
 [node name="Hitbox" parent="." instance=ExtResource("5_mewqf")]
 collision_layer = 32
 collision_mask = 8
-damage = 0.5
+damage = 20.0
 attached_to = 6
 can_hit = 4
 

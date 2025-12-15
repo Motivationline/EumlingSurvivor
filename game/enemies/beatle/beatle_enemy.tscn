@@ -15,8 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://cnvxyg3ysg7tf" path="res://game/enemies/beatle/pol_vfx.tscn" id="10_fs8yq"]
 [ext_resource type="PackedScene" uid="uid://by87cdyijsrbs" path="res://game/shared/animation trigger component/animation_trigger_component.tscn" id="14_t2e75"]
 
-[sub_resource type="PrismMesh" id="PrismMesh_431lo"]
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_n4sta"]
 radius = 0.20846683
 
@@ -62,17 +60,19 @@ _data = {
 &"health_jump": SubResource("Animation_jsf3j")
 }
 
+[sub_resource type="PrismMesh" id="PrismMesh_431lo"]
+
 [node name="Beatle" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_bghrv")]
 collision_layer = 80
 collision_mask = 65
-health = 30.0
+health = 250.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7900729, 0.06912398)
 
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveTowardsPlayerState")
 
 [node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
@@ -150,14 +150,6 @@ script = ExtResource("7_fs8yq")
 entity_to_spawn = ExtResource("10_fs8yq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
-transform = Transform3D(0.4514425, 0, 0, 0, -4.2719705e-08, 0.5626625, 0, -0.9773129, -2.4594758e-08, 0, 0.2828154, -0.07334371)
-visible = false
-mesh = SubResource("PrismMesh_431lo")
-
-[node name="rhino" parent="Visuals" index="1" instance=ExtResource("5_rdo5s")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, -0.123390555)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20420316, 0)
 shape = SubResource("SphereShape3D_n4sta")
@@ -174,7 +166,7 @@ shape = SubResource("SphereShape3D_fs8yq")
 [node name="Hitbox" parent="." index="6" instance=ExtResource("6_0xs35")]
 collision_layer = 32
 collision_mask = 8
-damage = 2.0
+damage = 75.0
 attached_to = 6
 can_hit = 4
 
@@ -191,3 +183,11 @@ animation_to_play = "health_jump"
 libraries = {
 &"": SubResource("AnimationLibrary_ujdjm")
 }
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+transform = Transform3D(0.4514425, 0, 0, 0, -4.2719705e-08, 0.5626625, 0, -0.9773129, -2.4594758e-08, 0, 0.2828154, -0.07334371)
+visible = false
+mesh = SubResource("PrismMesh_431lo")
+
+[node name="rhino" parent="Visuals" index="1" instance=ExtResource("5_rdo5s")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, -0.123390555)

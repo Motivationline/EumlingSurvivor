@@ -27,6 +27,7 @@ radius = 0.437599
 [node name="TortoiseEnemy" node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_5rk5k")]
 collision_layer = 64
 collision_mask = 65
+health = 400.0
 speed = 0.4
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
@@ -35,7 +36,7 @@ node_with_animation_tree = NodePath("Visuals/tortoise")
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919, 0)
 
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveRandomOnNavMeshState")
 
 [node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
@@ -69,7 +70,7 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35191, 0)
 collision_layer = 32
 collision_mask = 8
-damage = 3.0
+damage = 50.0
 attached_to = 6
 can_hit = 4
 

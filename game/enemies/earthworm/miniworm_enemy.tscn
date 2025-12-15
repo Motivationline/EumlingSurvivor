@@ -17,12 +17,12 @@ size = Vector3(0.84277344, 0.6279297, 0.88061523)
 size = Vector3(0.76660156, 0.6621094, 0.78515625)
 
 [node name="Miniworm" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_f4f4c")]
-health = 2.0
+health = 60.0
 speed = 1.5
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveTowardsPlayerState")
 
 [node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
@@ -45,7 +45,7 @@ shape = SubResource("BoxShape3D_4spmw")
 [node name="Hitbox" parent="." index="4" instance=ExtResource("4_kvjby")]
 collision_layer = 32
 collision_mask = 8
-damage = 1.0
+damage = 25.0
 attached_to = 6
 can_hit = 4
 

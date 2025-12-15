@@ -11,11 +11,12 @@ size = Vector3(0.5, 1, 0.5)
 size = Vector3(0.6, 0.1, 0.5)
 
 [node name="Turnwheeler" instance=ExtResource("1_hl6xb")]
+health = 240.0
 
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0212426, 1.30468, -0.0114209)
 
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveTowardsPlayerState")
 
 [node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]

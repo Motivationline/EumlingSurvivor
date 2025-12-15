@@ -19,11 +19,11 @@ metadata/_custom_type_script = "uid://pv70hoylokg6"
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lo2dp"]
 
 [node name="Earthworm" node_paths=PackedStringArray("hurtbox", "on_death") instance=ExtResource("1_prtti")]
-health = 4.0
+health = 160.0
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("SpawnEntitiesEventStrategy")]
 
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveTowardsPlayerState")
 
 [node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]

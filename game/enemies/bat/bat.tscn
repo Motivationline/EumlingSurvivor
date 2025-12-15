@@ -196,10 +196,11 @@ _data = {
 }
 
 [node name="Bat" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_ajyhn")]
+health = 75.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitForTimeXState")
 
 [node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
@@ -236,7 +237,7 @@ shape = SubResource("BoxShape3D_k47aw")
 [node name="Hitbox" parent="." index="5" instance=ExtResource("3_aeabt")]
 collision_layer = 32
 collision_mask = 8
-damage = 1.0
+damage = 40.0
 attached_to = 6
 can_hit = 4
 

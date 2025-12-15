@@ -36,6 +36,7 @@ albedo_color = Color(1, 0, 0, 1)
 albedo_color = Color(0.376471, 1, 1, 1)
 
 [node name="ExampleEnemy" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_cwq3f")]
+health = 100.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
@@ -46,7 +47,7 @@ shape = SubResource("CapsuleShape3D_s6jag")
 [node name="Healthbar3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.5)
 
-[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MultistateState")
 
 [node name="MultistateState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
@@ -103,6 +104,9 @@ can_hit = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
 shape = SubResource("CapsuleShape3D_s6jag")
 
+[node name="AOE" parent="." index="7" instance=ExtResource("12_wn5ve")]
+never_expire = true
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CapsuleMesh_3v4v4")
@@ -113,6 +117,3 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wn5ve")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335418, -0.219698)
 size = Vector3(0.373047, 0.0585938, 0.207031)
 material = SubResource("StandardMaterial3D_cwq3f")
-
-[node name="AOE" parent="." index="7" instance=ExtResource("12_wn5ve")]
-never_expire = true
