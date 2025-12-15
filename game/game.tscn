@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bck4sy6x58mj2"]
+[gd_scene load_steps=20 format=3 uid="uid://bck4sy6x58mj2"]
 
 [ext_resource type="Script" uid="uid://332o24o22ksb" path="res://game/game.gd" id="1_dakft"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="2_dxrkv"]
@@ -84,6 +84,56 @@ func _on_button_pressed() -> void:
 func confirm_text():
 	hide()
 	level_chosen.emit(line_edit.text)
+"
+
+[sub_resource type="GDScript" id="GDScript_l8g03"]
+script/source = "extends CanvasLayer
+
+signal area_chosen(levels: Array[String])
+@onready var grid_container: GridContainer = $Control/CenterContainer/GridContainer
+
+var areas = [
+	{
+		name = \"Jungle\",
+		folder = \"3-Jxx-Jungle\",
+		levels = [\"J01\", \"J02\", \"J03\", \"JB01\"],
+	},
+	{
+		name = \"Volcano\",
+		folder = \"6-Vxx-Volcano\",
+		levels = [\"V01\"],
+	},
+	{
+		name = \"Testing\",
+		folder = \"\",
+		levels = [\"001\", \"002\", \"003\", \"004\", \"005\"],
+	}
+]
+
+func setup():
+	for child in grid_container.get_children():
+		grid_container.remove_child(child)
+		child.queue_free()
+	
+	for area in areas:
+		var btn = Button.new()
+		btn.text = area.name
+		grid_container.add_child(btn)
+		btn.pressed.connect(choose_area.bind(area))
+	
+	
+	show()
+
+func choose_area(area):
+	var level_names: Array[String] = []
+	var folder_name: String = \"res://game/levels/\"
+	if area.folder:
+		folder_name +=  area.folder + \"/\"
+	for level in area.levels:
+		level_names.append(folder_name + level + \".tscn\")
+	area_chosen.emit(level_names)
+	
+	hide()
 "
 
 [node name="Game" type="Node3D"]
@@ -191,6 +241,29 @@ expand_to_text_length = true
 layout_mode = 2
 text = "confirm
 "
+
+[node name="AreaChoiceOverlay" type="CanvasLayer" parent="."]
+layer = 128
+script = SubResource("GDScript_l8g03")
+
+[node name="Control" type="Control" parent="AreaChoiceOverlay"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="AreaChoiceOverlay/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="AreaChoiceOverlay/Control/CenterContainer"]
+layout_mode = 2
 
 [node name="MusicPlayer" parent="." groups=["MusicPlayer"] instance=ExtResource("6_dakft")]
 debug = false

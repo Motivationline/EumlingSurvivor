@@ -6,9 +6,11 @@ var player: Player
 @onready var scene_fade_animation_player: AnimationPlayer = $SceneFadeOverlay/AnimationPlayer
 @onready var upgrade_view: CanvasLayer = $UpgradeView
 @onready var level_choice_overlay: CanvasLayer = $LevelChoiceOverlay
+@onready var area_choice_overlay: CanvasLayer = $AreaChoiceOverlay
 
 signal requestMusic
 
+var levels_to_load: Array[String] = []
 
 func _ready() -> void:
 	player = player_scene.instantiate()
@@ -38,14 +40,21 @@ func load_level():
 	
 	Engine.time_scale = 0
 	var level_location: String = ""
-	while (true):
-		level_choice_overlay.setup()
-		var level_id = await level_choice_overlay.level_chosen
-		level_location = find_file(level_id + ".tscn", "res://game/levels")
-		if (level_location != "" and ResourceLoader.exists(level_location)):
-			break
-		else:
-			printerr("Level '%s.tscn' doesn't exist in '/game/levels/' or its subfolders. Try again." % level_id)
+	if OS.has_feature("editor"):
+		while (true):
+			level_choice_overlay.setup()
+			var level_id = await level_choice_overlay.level_chosen
+			level_location = find_file(level_id + ".tscn", "res://game/levels")
+			if (level_location != "" and ResourceLoader.exists(level_location)):
+				break
+			else:
+				printerr("Level '%s.tscn' doesn't exist in '/game/levels/' or its subfolders. Try again." % level_id)
+	else:
+		if !levels_to_load.size() > 0:
+			area_choice_overlay.setup()
+			levels_to_load = await area_choice_overlay.area_chosen
+		level_location = levels_to_load.pop_front()
+
 
 	# add new stuff
 	var level_to_load = load(level_location) as PackedScene
