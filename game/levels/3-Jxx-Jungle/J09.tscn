@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=3 uid="uid://cuoj2dk6of5tw"]
+
+[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_7xdpo"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_m4jnl"]
+[ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="3_dihus"]
+[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_m4jnl"]
+[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-Jungle/bomber/bomber_enemy.tscn" id="4_dihus"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_uekqq"]
+vertices = PackedVector3Array(-2.25, 1, -2.25, -2.25, 1, -2, -2, 1, -2, -1, 1, -4.5, -2, 1, -1.5, -2.25, 1, -1.5, -2.25, 1, -1.25, -1.75, 1, -0.25, -2.5, 1, -1.25, -2.5, 1, -1, -1.75, 1, 2.5, -1.5, 1, 2.5, -1.5, 1, 2.25, -0.25, 1, -0.5, 0, 1, -0.5, 0, 1, -0.75, -0.5, 1, -1, 0.75, 1, -0.75, 0.75, 1, -0.5, 1, 1, -0.5, 1.25, 1, -1, 3.75, 1, 2.25, 3.75, 1, 2.5, 4, 1, 2.5, 4, 1, 4, 3.75, 1, 4, 3.75, 1, 4.25, 4.75, 1, 4.75, 3.5, 1, 4.25, 3.5, 1, 4.5, 3, 1, 4.5, 3, 1, 4.25, 2.75, 1, 4.25, 0.75, 1, 4, 1, 1, 4, 1, 1, 3.75, -0.5, 1, 3.5, 1.75, 1, 3.75, 1.75, 1, 4, 2, 1, 4, 4.5, 1, 3.5, 4.5, 1, 3.25, 4.25, 1, 3.25, 4.25, 1, 2.5, 4.5, 1, 2.5, 4.5, 1, 2.25, 1.5, 1, 1, 1.5, 1, 0.75, 1.25, 1, 0.75, 1, 1, 2.25, -0.5, 1, 0.5, -0.75, 1, 0.5, -0.75, 1, 0.75, -0.25, 1, 2.25, -1, 1, 0.75, -1, 1, 1, -2.5, 1, 3, -2.75, 1, 3, -2.75, 1, 3.25, -3, 1, 3.25, -3, 1, 3.5, -3.5, 1, 3.5, -3.5, 1, 3.25, -3.75, 1, 3.25, -4.5, 1, 4.75, -3.75, 1, 0, -3.5, 1, 0, -3.5, 1, -0.25, -4.5, 1, -1, -1.75, 1, -2, -1.5, 1, -2, -1.5, 1, -2.25, 1.25, 1, -3.5, 1.5, 1, -3.5, 1.5, 1, -3.75, 1, 1, -4.5, 3.75, 1, -3.75, 3.75, 1, -3.5, 4, 1, -3.5, 4.75, 1, -4.5, 4, 1, -3, 3.75, 1, -3, 3.75, 1, -2.75, 4.75, 1, -0.25, 3.5, 1, -2.75, 3.5, 1, -2.5, 4.75, 1, 3.5, 4.75, 1, 2.25, 4.75, 1, 1, -0.5, 1, 4.75, 0.75, 1, 4.75, 2.75, 1, 3.5, -1.75, 1, 4.75, 2, 1, 4.75, 2.5, 1, -0.25, 1.25, 1, -2.25, -4.5, 1, -4.5, -4.5, 1, -2.25, 1, 1, -4.75, -1, 1, -4.75, 2.5, 1, -2.5, -2.5, 1, 1)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 7), PackedInt32Array(12, 11, 10), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 16), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 20), PackedInt32Array(23, 22, 21), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(28, 26, 29), PackedInt32Array(29, 26, 27), PackedInt32Array(32, 31, 30), PackedInt32Array(34, 33, 35), PackedInt32Array(35, 33, 36), PackedInt32Array(39, 38, 37), PackedInt32Array(42, 41, 40), PackedInt32Array(45, 44, 43), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(51, 50, 52), PackedInt32Array(52, 50, 53), PackedInt32Array(55, 54, 52), PackedInt32Array(58, 57, 56), PackedInt32Array(60, 59, 58), PackedInt32Array(62, 61, 63), PackedInt32Array(63, 61, 64), PackedInt32Array(66, 65, 67), PackedInt32Array(67, 65, 68), PackedInt32Array(71, 70, 69), PackedInt32Array(73, 72, 74), PackedInt32Array(74, 72, 75), PackedInt32Array(77, 76, 78), PackedInt32Array(78, 76, 79), PackedInt32Array(81, 80, 82), PackedInt32Array(82, 80, 83), PackedInt32Array(85, 84, 82), PackedInt32Array(40, 86, 27), PackedInt32Array(88, 87, 45), PackedInt32Array(90, 89, 33), PackedInt32Array(33, 89, 36), PackedInt32Array(15, 16, 17), PackedInt32Array(17, 16, 20), PackedInt32Array(55, 52, 12), PackedInt32Array(12, 52, 53), PackedInt32Array(42, 40, 24), PackedInt32Array(24, 40, 27), PackedInt32Array(23, 21, 43), PackedInt32Array(43, 21, 45), PackedInt32Array(45, 21, 88), PackedInt32Array(37, 35, 91), PackedInt32Array(91, 35, 36), PackedInt32Array(7, 67, 9), PackedInt32Array(9, 67, 68), PackedInt32Array(39, 37, 32), PackedInt32Array(32, 37, 91), PackedInt32Array(61, 60, 64), PackedInt32Array(64, 60, 92), PackedInt32Array(32, 30, 39), PackedInt32Array(39, 30, 93), PackedInt32Array(85, 82, 94), PackedInt32Array(94, 82, 83), PackedInt32Array(30, 29, 93), PackedInt32Array(93, 29, 27), PackedInt32Array(72, 95, 75), PackedInt32Array(75, 95, 3), PackedInt32Array(3, 95, 71), PackedInt32Array(4, 2, 69), PackedInt32Array(69, 2, 3), PackedInt32Array(69, 7, 4), PackedInt32Array(65, 63, 68), PackedInt32Array(68, 63, 64), PackedInt32Array(43, 42, 23), PackedInt32Array(23, 42, 24), PackedInt32Array(16, 13, 50), PackedInt32Array(50, 13, 53), PackedInt32Array(10, 58, 56), PackedInt32Array(97, 96, 0), PackedInt32Array(0, 96, 3), PackedInt32Array(3, 99, 75), PackedInt32Array(75, 99, 98), PackedInt32Array(3, 71, 69), PackedInt32Array(94, 100, 85), PackedInt32Array(10, 56, 12), PackedInt32Array(12, 56, 101), PackedInt32Array(12, 101, 55), PackedInt32Array(49, 46, 21), PackedInt32Array(21, 46, 88), PackedInt32Array(58, 10, 60), PackedInt32Array(60, 10, 92), PackedInt32Array(78, 79, 80), PackedInt32Array(80, 79, 83), PackedInt32Array(20, 48, 19), PackedInt32Array(19, 48, 49), PackedInt32Array(74, 75, 76), PackedInt32Array(76, 75, 79)]
+agent_radius = 0.25
+agent_max_climb = 0.0
+edge_max_error = 0.25
+
+[node name="Level" instance=ExtResource("1_7xdpo")]
+
+[node name="NavigationRegion3D" parent="." index="0"]
+navigation_mesh = SubResource("NavigationMesh_uekqq")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_m4jnl")
+cell_size = Vector3(0.5, 0.5, 0.5)
+data = {
+"cells": PackedInt32Array(65533, 9, 0, 65533, 8, 0, 65533, 7, 0, 65533, 6, 0, 65533, 5, 0, 65534, 5, 0, 65535, 5, 0, 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5, 0, 2, 8, 0, 2, 9, 0, 5, 5, 0, 6, 6, 0, 6, 5, 0, 6, 7, 0, 9, 0, 0, 8, 0, 0, 7, 0, 0, 6, 0, 0, 5, 0, 0, 4, 0, 0, 3, 0, 0, 3, 65535, 0, 3, 65534, 0, 3, 65533, 0, 3, 65532, 0, 3, 65531, 0, 3, 65530, 0, 3, 65529, 0, 4, 65529, 0, 5, 65529, 0, 6, 65529, 0, 2, 65532, 0, 1, 65532, 0, 0, 65532, 0, 65535, 65532, 0, 65534, 65532, 0, 65533, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65529, 0, 0, 65529, 1, 0, 65529, 2, 0, 65529, 3, 0, 65529, 5, 0, 65529, 4, 0, 65533, 65532, 0, 65533, 65533, 0, 65533, 65534, 0, 65533, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 65535, 0, 65526, 65532, 0, 65527, 65532, 0, 65528, 65532, 0, 65529, 65532, 0, 65530, 65532, 0, 9, 5, 0)
+}
+
+[node name="SpikeTrap" parent="Enemies" index="0" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0.25)
+
+[node name="SpikeTrap10" parent="Enemies" index="1" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 2.75)
+
+[node name="SpikeTrap11" parent="Enemies" index="2" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 2.75)
+
+[node name="SpikeTrap12" parent="Enemies" index="3" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -1.75)
+
+[node name="SpikeTrap13" parent="Enemies" index="4" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -1.75)
+
+[node name="SpikeTrap2" parent="Enemies" index="5" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -0.25)
+
+[node name="FirstTimeDelay" parent="Enemies/SpikeTrap2/StateMachine" index="0"]
+wait_time = 0.5
+
+[node name="SpikeTrap3" parent="Enemies" index="6" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.75)
+
+[node name="FirstTimeDelay" parent="Enemies/SpikeTrap3/StateMachine" index="0"]
+wait_time = 1.0
+
+[node name="SpikeTrap4" parent="Enemies" index="7" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -1.25)
+
+[node name="FirstTimeDelay" parent="Enemies/SpikeTrap4/StateMachine" index="0"]
+wait_time = 1.5
+
+[node name="SpikeTrap5" parent="Enemies" index="8" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -1.25)
+
+[node name="FirstTimeDelay" parent="Enemies/SpikeTrap5/StateMachine" index="0"]
+wait_time = 1.5
+
+[node name="SpikeTrap6" parent="Enemies" index="9" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.75)
+
+[node name="FirstTimeDelay" parent="Enemies/SpikeTrap6/StateMachine" index="0"]
+wait_time = 2.0
+
+[node name="SpikeTrap7" parent="Enemies" index="10" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -1.25)
+
+[node name="FirstTimeDelay" parent="Enemies/SpikeTrap7/StateMachine" index="0"]
+wait_time = 2.5
+
+[node name="SpikeTrap8" parent="Enemies" index="11" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -0.25)
+
+[node name="FirstTimeDelay" parent="Enemies/SpikeTrap8/StateMachine" index="0"]
+wait_time = 2.5
+
+[node name="SpikeTrap9" parent="Enemies" index="12" instance=ExtResource("3_m4jnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.25)
+
+[node name="FirstTimeDelay" parent="Enemies/SpikeTrap9/StateMachine" index="0"]
+wait_time = 3.0
+
+[node name="Bomber" parent="Enemies" index="13" instance=ExtResource("4_dihus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0155437, 0, -0.9221685)
+
+[node name="Bomber2" parent="Enemies" index="14" instance=ExtResource("4_dihus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5072396, 0, -3.407679)
+
+[node name="ExitArea" parent="." index="8" node_paths=PackedStringArray("parent") instance=ExtResource("3_dihus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")
+
+[editable path="Enemies/SpikeTrap"]
+[editable path="Enemies/SpikeTrap10"]
+[editable path="Enemies/SpikeTrap11"]
+[editable path="Enemies/SpikeTrap12"]
+[editable path="Enemies/SpikeTrap13"]
+[editable path="Enemies/SpikeTrap2"]
+[editable path="Enemies/SpikeTrap3"]
+[editable path="Enemies/SpikeTrap4"]
+[editable path="Enemies/SpikeTrap5"]
+[editable path="Enemies/SpikeTrap6"]
+[editable path="Enemies/SpikeTrap7"]
+[editable path="Enemies/SpikeTrap8"]
+[editable path="Enemies/SpikeTrap9"]
