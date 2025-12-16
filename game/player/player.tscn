@@ -79,9 +79,11 @@ shape = SubResource("CapsuleShape3D_ct7j0")
 
 [node name="Eumling_v2" parent="." instance=ExtResource("4_2mv0n")]
 
-[node name="shittyVisual" type="MeshInstance3D" parent="Eumling_v2"]
+[node name="ShittyVisual" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.29689664, -1.5943458)
+
+[node name="shittyVisual" type="MeshInstance3D" parent="ShittyVisual"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.042, -1.5)
 material_override = SubResource("StandardMaterial3D_2mv0n")
 mesh = SubResource("QuadMesh_gh012")
 skeleton = NodePath("../..")

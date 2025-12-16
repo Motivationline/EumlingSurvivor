@@ -57,6 +57,7 @@ signal upgrade_added
 
 
 var possible_upgrades: Array[Upgrade] = [
+	Upgrade.new(Enum.UPGRADE.PROJECTILE_SIZE, Enum.UPGRADE_METHOD.ABSOLUTE, 1, Enum.RARITY.COMMON),
 	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.15, Enum.RARITY.COMMON),
 	Upgrade.new(Enum.UPGRADE.ATTACK_COOLDOWN, Enum.UPGRADE_METHOD.MULTIPLIER, 0.1, Enum.RARITY.COMMON),
 	Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.ABSOLUTE, 50, Enum.RARITY.COMMON),
@@ -107,6 +108,8 @@ func _validate_property(property: Dictionary) -> void:
 	if property.name == "starting_values":
 		_get_configuration_warnings()
 
+var initial_preview_color: Color
+
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	add_to_group("Player")
@@ -128,6 +131,10 @@ func _ready() -> void:
 	reload_progress.max_value = 1
 	reload_progress.step = 0
 
+	attack_cooldown.timeout.connect(reset_preview_color)
+	initial_preview_color = %ShittyVisual.get_child(0).material_override.albedo_color
+	update_attack_visual()
+
 var is_invulnerable: bool = false
 func hurt_by(_area: HitBox):
 	if is_invulnerable: return
@@ -148,6 +155,7 @@ func invulnerability():
 
 
 var prev_direction: Vector3
+var was_looking_somewhere: bool = false
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -165,14 +173,18 @@ func _physics_process(_delta: float) -> void:
 	
 	var look_direction = Input.get_vector("attack_left", "attack_right", "attack_up", "attack_down")
 	if look_direction.is_zero_approx():
+		if was_looking_somewhere:
+			shoot()
+		was_looking_somewhere = false
 		if not prev_direction.is_zero_approx():
 			eumling_visuals.look_at(global_position + prev_direction)
-		%shittyVisual.hide()
+		%ShittyVisual.hide()
 	else:
 		eumling_visuals.look_at(global_position + Vector3(look_direction.x, 0, look_direction.y))
-		shoot()
-		%shittyVisual.show()
-
+		was_looking_somewhere = true
+		%ShittyVisual.show()
+		prev_direction = Vector3(look_direction.x, 0, look_direction.y)
+	%ShittyVisual.rotation.y = eumling_visuals.rotation.y
 
 func _process(_delta: float) -> void:
 	reload_progress.value = 1 - attack_cooldown.time_left / attack_cooldown.wait_time
@@ -201,6 +213,17 @@ func check_upgrades_affecting_player(upgrade: Upgrade):
 			hurtbox_collision.shape.height = hurtbox_start_sizes.y * new_size
 		Enum.UPGRADE.PROJECTILE_AMOUNT:
 			attack_spawner.amount_of_spawns = int(get_value(Enum.UPGRADE.PROJECTILE_AMOUNT))
+		Enum.UPGRADE.RANGE:
+			update_attack_visual()
+		Enum.UPGRADE.PROJECTILE_SIZE:
+			update_attack_visual()
+
+func update_attack_visual():
+	var projectile_default_size = 0.25
+	%ShittyVisual.get_child(0).mesh.size.x = get_value(Enum.UPGRADE.PROJECTILE_SIZE) * projectile_default_size
+	%ShittyVisual.get_child(0).mesh.size.y = get_value(Enum.UPGRADE.RANGE)
+	%ShittyVisual.get_child(0).position.z = -get_value(Enum.UPGRADE.RANGE) / 2
+
 
 func add_upgrade(upgrade: Upgrade):
 	var value = _current_values.get_or_add(upgrade.type, 0)
@@ -248,6 +271,11 @@ func shoot():
 	var cooldown = get_value(Enum.UPGRADE.ATTACK_COOLDOWN)
 	attack_cooldown.start(cooldown)
 	attack_spawner.spawn(self, eumling_visuals)
+	%ShittyVisual.get_child(0).material_override.albedo_color = Color(1, 0, 0, 17.0 / 255)
+
+
+func reset_preview_color():
+	%ShittyVisual.get_child(0).material_override.albedo_color = initial_preview_color
 
 
 func end_of_level():
