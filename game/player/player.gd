@@ -90,6 +90,8 @@ var possible_upgrades: Array[Upgrade] = [
 	Upgrade.new(Enum.UPGRADE.CRIT_CHANCE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.12, Enum.RARITY.EPIC),
 	
 	Upgrade.new(Enum.UPGRADE.PROJECTILE_AMOUNT, Enum.UPGRADE_METHOD.ABSOLUTE, 1, Enum.RARITY.EPIC),
+	Upgrade.new(Enum.UPGRADE.SIZE, Enum.UPGRADE_METHOD.ABSOLUTE, -1, Enum.RARITY.EPIC),
+	Upgrade.new(Enum.UPGRADE.SIZE, Enum.UPGRADE_METHOD.ABSOLUTE, 1, Enum.RARITY.EPIC),
 ]
 
 var anim_player: AnimationTree
