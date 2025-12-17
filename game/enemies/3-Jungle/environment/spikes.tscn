@@ -1,8 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://dk6vxgi2ymgv4"]
+[gd_scene load_steps=28 format=3 uid="uid://dk6vxgi2ymgv4"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_bdsau"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_04kag"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_ovvjf"]
+[ext_resource type="PackedScene" uid="uid://cy2tlb6wedycd" path="res://game/sound/sfx/manager/sound_effect_manager.tscn" id="4_ovvjf"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="5_80b7e"]
+[ext_resource type="AudioStream" uid="uid://bpv4vn1vkfvsi" path="res://assets/sound/sound_effects/objects/spikes/extend_1.wav" id="6_qh4ut"]
+[ext_resource type="AudioStream" uid="uid://b7jnpobmjahn8" path="res://assets/sound/sound_effects/objects/spikes/extend_2.wav" id="7_0fbkj"]
+[ext_resource type="AudioStream" uid="uid://bxqyyfjy1q3a6" path="res://assets/sound/sound_effects/objects/spikes/extend_3.wav" id="8_pb8bu"]
+[ext_resource type="AudioStream" uid="uid://cn13no7bt6gao" path="res://assets/sound/sound_effects/objects/spikes/extend_4.wav" id="9_o8mup"]
+[ext_resource type="AudioStream" uid="uid://cwmwsug0govte" path="res://assets/sound/sound_effects/objects/spikes/extend_5.wav" id="10_fc4p4"]
+[ext_resource type="AudioStream" uid="uid://r4ll3uvo2ffk" path="res://assets/sound/sound_effects/objects/spikes/extend_6.wav" id="11_2ot51"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80b7e"]
 albedo_color = Color(0.75686276, 0.02745098, 0.12156863, 1)
@@ -100,6 +108,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false, false, true]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SoundEffectManager")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Extend", false, false],
+"method": &"play_sound"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pb8bu"]
 _data = {
@@ -132,6 +154,16 @@ states/Down/position = Vector2(413, 112)
 states/UP/node = SubResource("AnimationNodeAnimation_04kag")
 states/UP/position = Vector2(576, 94)
 transitions = ["Start", "Down", SubResource("AnimationNodeStateMachineTransition_ovvjf"), "Down", "UP", SubResource("AnimationNodeStateMachineTransition_80b7e"), "UP", "Down", SubResource("AnimationNodeStateMachineTransition_gicpd")]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gicpd"]
+random_pitch = 1.1
+streams_count = 6
+stream_0/stream = ExtResource("6_qh4ut")
+stream_1/stream = ExtResource("7_0fbkj")
+stream_2/stream = ExtResource("8_pb8bu")
+stream_3/stream = ExtResource("9_o8mup")
+stream_4/stream = ExtResource("10_fc4p4")
+stream_5/stream = ExtResource("11_2ot51")
 
 [node name="SpikeTrap" node_paths=PackedStringArray("hitbox") instance=ExtResource("1_bdsau")]
 speed = 0.0
@@ -241,3 +273,10 @@ tree_root = SubResource("AnimationNodeStateMachine_y64vg")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/down = false
 parameters/conditions/up = false
+
+[node name="SoundEffectManager" parent="." index="8" instance=ExtResource("4_ovvjf")]
+
+[node name="Extend" parent="SoundEffectManager" index="1" instance=ExtResource("5_80b7e")]
+stream = SubResource("AudioStreamRandomizer_gicpd")
+volume_db = -12.0
+bus = &"SFXGeneral"
