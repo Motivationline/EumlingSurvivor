@@ -112,18 +112,8 @@ var initial_preview_color: Color
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	add_to_group("Player")
-	_current_values = starting_values.duplicate()
-	max_health = get_value(Enum.UPGRADE.HEALTH)
-	health = get_value(Enum.UPGRADE.HEALTH)
-	speed = get_value(Enum.UPGRADE.MOVEMENT_SPEED)
-
-	if (healthbar): healthbar.init_health(max_health)
-	if (hurtbox): hurtbox.hurt_by.connect(hurt_by)
 	hurtbox_start_sizes.x = hurtbox_collision.shape.radius
 	hurtbox_start_sizes.y = hurtbox_collision.shape.height
-	eumling_visuals.scale = Vector3.ONE * get_value(Enum.UPGRADE.SIZE)
-	
-	attack_spawner.amount_of_spawns = int(get_value(Enum.UPGRADE.PROJECTILE_AMOUNT))
 
 	anim_player = eumling_visuals.find_child("AnimationTree")
 	
@@ -132,6 +122,22 @@ func _ready() -> void:
 
 	attack_cooldown.timeout.connect(reset_preview_color)
 	initial_preview_color = %ShittyVisual.get_child(0).material_override.albedo_color
+
+	reset()
+
+# reset player to its un-upgraded state
+func reset():
+	_current_values = starting_values.duplicate()
+	max_health = get_value(Enum.UPGRADE.HEALTH)
+	health = get_value(Enum.UPGRADE.HEALTH)
+	speed = get_value(Enum.UPGRADE.MOVEMENT_SPEED)
+
+	if (healthbar): healthbar.init_health(max_health)
+	if (hurtbox): hurtbox.hurt_by.connect(hurt_by)
+	eumling_visuals.scale = Vector3.ONE * get_value(Enum.UPGRADE.SIZE)
+	
+	attack_spawner.amount_of_spawns = int(get_value(Enum.UPGRADE.PROJECTILE_AMOUNT))
+
 	update_attack_visual()
 
 var is_invulnerable: bool = false

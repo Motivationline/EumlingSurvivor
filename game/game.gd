@@ -8,6 +8,8 @@ var player: Player
 @onready var level_choice_overlay: CanvasLayer = $LevelChoiceOverlay
 @onready var area_choice_overlay: CanvasLayer = $AreaChoiceOverlay
 
+@onready var debug_upgrade_view: CanvasLayer = $DebugUpgradeView
+
 signal requestMusic
 
 var levels_to_load: Array[String] = []
@@ -31,7 +33,8 @@ func load_level():
 	scene_fade_animation_player.play("fade")
 	await scene_fade_animation_player.animation_finished
 
-	player.health = INF
+	if player.health == 0:
+		player.reset()
 
 	# remove old stuff
 	var children = level_wrapper.get_children()
@@ -62,6 +65,7 @@ func load_level():
 		var new_level = level_to_load.instantiate() as Level
 		level_wrapper.add_child(new_level)
 		new_level.spawn_player(player)
+		new_level.level_finished.connect(level_finished)
 		new_level.level_ended.connect(level_ended)
 		
 		requestMusic.emit(false, new_level.music)
@@ -70,12 +74,17 @@ func load_level():
 	scene_fade_animation_player.play_backwards("fade")
 	Engine.time_scale = 1
 
+func level_finished():
+	upgrade_view.show_upgrades(player.possible_upgrades)
+	var chosen_upgrade = await upgrade_view.upgrade_chosen
+	player.add_upgrade(chosen_upgrade)
+
 func level_ended():
 	load_level()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("upgrade"):
-		upgrade_view.show_upgrades(player)
+		debug_upgrade_view.show_upgrades(player)
 
 func find_file(file_name: String, folder_location: String = "res://game/levels") -> String:
 	# TODO: this might break on exported builds, so this needs to be replaced with something else before release!

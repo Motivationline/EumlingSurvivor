@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8nr8s04nxds6"]
+
+[ext_resource type="Script" uid="uid://dvyxtca55nu2m" path="res://game/ui/upgrades/upgrade_option.gd" id="1_2fcc3"]
+
+[node name="UpgradeOption" type="PanelContainer"]
+offset_right = 199.0
+offset_bottom = 208.0
+script = ExtResource("1_2fcc3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Title"
+
+[node name="Subtitle" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Subtitle"
+
+[node name="Info" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "+ 50% this
+- 50% that
+"
+fit_content = true
