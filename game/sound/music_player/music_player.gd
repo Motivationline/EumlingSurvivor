@@ -43,8 +43,6 @@ func debug_setup():
 	%SFXEnemySlider.value = AudioServer.get_bus_volume_linear(BUS_IDS.SFX_ENEMIES)*100
 	%SFXGeneralSlider.value = AudioServer.get_bus_volume_linear(BUS_IDS.SFX_GENERAL)*100
 	%EnvironmentSlider.value = AudioServer.get_bus_volume_linear(BUS_IDS.ENVIRONMENT)*100
-	
-	
 	$DebugUI/TrackSelectorButton.show()
 	$DebugUI/TrackSelectorButton.disabled = false
 	
@@ -147,7 +145,6 @@ func fade_volume(out:bool , duration:float, reduction_db:float = 30):
 
 func fade_in_and_out(length:float):
 	fade_volume(true,1)
-	
 	await get_tree().create_timer(length-6,true,false,true).timeout
 	fade_volume(false,2)
 

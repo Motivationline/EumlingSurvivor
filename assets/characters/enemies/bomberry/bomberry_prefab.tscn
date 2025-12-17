@@ -1,14 +1,14 @@
 [gd_scene load_steps=20 format=3 uid="uid://b8ns3hl23ic6v"]
 
 [ext_resource type="PackedScene" uid="uid://ca8qbynsv4h1r" path="res://assets/characters/enemies/bomberry/bomberry.glb" id="1_1vqqe"]
-[ext_resource type="PackedScene" uid="uid://cy2tlb6wedycd" path="res://game/sound/sfx/manager/sound_effect_manager.tscn" id="2_appcq"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="2_jh4a6"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="3_4ahpr"]
-[ext_resource type="AudioStream" uid="uid://gux8h75ckcwo" path="res://assets/sound/sound_effects/enemies/bomb_berry/charge_1.wav" id="4_13fr6"]
-[ext_resource type="AudioStream" uid="uid://drhtpeylcv5lm" path="res://assets/sound/sound_effects/enemies/bomb_berry/charge_2.wav" id="5_nx8uu"]
-[ext_resource type="AudioStream" uid="uid://bulot3ony1hxf" path="res://assets/sound/sound_effects/enemies/bomb_berry/charge_3.wav" id="6_gfeba"]
-[ext_resource type="AudioStream" uid="uid://bvb8ynp4xwto0" path="res://assets/sound/sound_effects/enemies/bomb_berry/charge_4.wav" id="7_sc727"]
-[ext_resource type="AudioStream" uid="uid://bher35ljx425f" path="res://assets/sound/sound_effects/enemies/bomb_berry/charge_5.wav" id="8_snc2r"]
-[ext_resource type="AudioStream" uid="uid://ckrptc0lh1gq4" path="res://assets/sound/sound_effects/enemies/bomb_berry/charge_6.wav" id="9_4yawg"]
+[ext_resource type="AudioStream" uid="uid://gux8h75ckcwo" path="res://assets/characters/enemies/bomberry/sounds/charge_1.wav" id="4_13fr6"]
+[ext_resource type="AudioStream" uid="uid://drhtpeylcv5lm" path="res://assets/characters/enemies/bomberry/sounds/charge_2.wav" id="5_nx8uu"]
+[ext_resource type="AudioStream" uid="uid://bulot3ony1hxf" path="res://assets/characters/enemies/bomberry/sounds/charge_3.wav" id="6_gfeba"]
+[ext_resource type="AudioStream" uid="uid://bvb8ynp4xwto0" path="res://assets/characters/enemies/bomberry/sounds/charge_4.wav" id="7_sc727"]
+[ext_resource type="AudioStream" uid="uid://bher35ljx425f" path="res://assets/characters/enemies/bomberry/sounds/charge_5.wav" id="8_snc2r"]
+[ext_resource type="AudioStream" uid="uid://ckrptc0lh1gq4" path="res://assets/characters/enemies/bomberry/sounds/charge_6.wav" id="9_4yawg"]
 [ext_resource type="Material" uid="uid://cnoq1hlmtsi46" path="res://game/shared/flash/flash_material.tres" id="10_jh4a6"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1vqqe"]
@@ -105,32 +105,37 @@ _data = {
 [node name="bomberry" instance=ExtResource("1_1vqqe")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/1/position = Vector3(-0.0071651116, 0.07181065, 0.044472285)
-bones/1/rotation = Quaternion(-0.07620005, 0.60328734, 0.78761744, -0.09948238)
-bones/1/scale = Vector3(1.1075122, 0.8152727, 1.1075122)
-bones/2/rotation = Quaternion(-0.7151298, -0.09380388, -0.09266973, 0.68644196)
-bones/2/scale = Vector3(1.000011, 1.0006232, 0.9996561)
-bones/4/position = Vector3(0.0043226657, 0.053058214, -0.16061457)
-bones/4/rotation = Quaternion(0.6065535, 0.36344594, 0.6065535, -0.3634459)
-bones/6/rotation = Quaternion(-0.69962305, -0.109527275, -0.1094301, 0.69753605)
-bones/6/scale = Vector3(0.99999994, 1.0000033, 0.9999981)
-bones/8/position = Vector3(-0.0043226215, 0.05305821, -0.16061457)
+bones/1/position = Vector3(-0.011896475, -0.022218823, 0.13893661)
+bones/1/rotation = Quaternion(-0.06292604, 0.7934005, 0.58353126, -0.16139159)
+bones/1/scale = Vector3(1.0053605, 0.9896884, 1.0053605)
+bones/2/rotation = Quaternion(-0.8755431, -0.111144856, -0.111002944, 0.45689112)
+bones/2/scale = Vector3(0.99994624, 1.0002868, 0.9999984)
+bones/4/position = Vector3(0.006382147, 0.056621015, -0.16400886)
+bones/4/rotation = Quaternion(0.60655344, 0.36344582, 0.60655355, -0.3634459)
+bones/6/rotation = Quaternion(-0.83965766, -0.112131834, -0.11203669, 0.5194702)
+bones/6/scale = Vector3(0.9999677, 0.9999229, 1.0002505)
+bones/8/position = Vector3(-0.0022631306, 0.056621023, -0.16400884)
 bones/8/rotation = Quaternion(0.6065535, -0.36344594, -0.60655344, -0.36344585)
-bones/10/rotation = Quaternion(0, 0, 1, 0)
-bones/12/rotation = Quaternion(0, 0, 1, 0)
-bones/18/position = Vector3(4.462776e-17, -0.42894557, -0.014603853)
-bones/21/position = Vector3(-4.6976585e-19, 0.043899477, 0.18380016)
-bones/21/rotation = Quaternion(0.012756409, -0.100994535, 0.9869635, -0.1246613)
-bones/22/position = Vector3(4.656613e-10, 0.014571893, 0.10206031)
-bones/23/position = Vector3(-4.656613e-10, -5.820766e-10, -0.14227661)
-bones/24/rotation = Quaternion(0.6857359, 6.111577e-08, 5.5624746e-08, 0.7278505)
-bones/24/scale = Vector3(1.1075124, 0.8152728, 1.1075124)
-bones/25/rotation = Quaternion(-0.7151298, -0.09380388, -0.09266973, 0.68644196)
-bones/25/scale = Vector3(1.000011, 1.0006232, 0.9996561)
-bones/27/position = Vector3(0.00432267, 0.053058214, -0.16061457)
-bones/29/rotation = Quaternion(-0.69962305, -0.109527275, -0.1094301, 0.69753605)
-bones/29/scale = Vector3(0.99999994, 1.0000033, 0.9999981)
-bones/31/position = Vector3(-0.004322623, 0.05305821, -0.16061457)
+bones/10/position = Vector3(-0.07754073, 0.23394932, 0.1503691)
+bones/10/rotation = Quaternion(7.1054274e-15, -0.5200252, 0.85415095, 7.1054274e-15)
+bones/12/position = Vector3(0.07754073, -0.072349, 0.07111788)
+bones/12/rotation = Quaternion(0, 0.31912422, 0.9477129, -3.5527137e-15)
+bones/14/position = Vector3(-0.07754073, 0.23394932, 0.1503691)
+bones/14/rotation = Quaternion(-1.4018081e-15, -0.5200252, 0.85415095, 9.237502e-16)
+bones/16/position = Vector3(0.07754073, -0.072349, 0.07111788)
+bones/16/rotation = Quaternion(-1.7543358e-15, 0.31912422, 0.9477129, -5.668785e-16)
+bones/21/position = Vector3(-4.6976585e-19, 0.021734528, 0.27275565)
+bones/21/rotation = Quaternion(0.06962562, 0.14839995, 0.9736378, -0.15861647)
+bones/22/position = Vector3(1.4313386e-09, -1.5439278e-09, 0.15485965)
+bones/23/position = Vector3(1.8626451e-09, -2.3283064e-09, -0.1422766)
+bones/24/rotation = Quaternion(0.7071068, 5.0728552e-08, 5.072855e-08, 0.7071068)
+bones/24/scale = Vector3(1.0053605, 0.9896884, 1.0053605)
+bones/25/rotation = Quaternion(-0.8755431, -0.111144856, -0.111002944, 0.45689112)
+bones/25/scale = Vector3(0.99994624, 1.0002868, 0.9999984)
+bones/27/position = Vector3(0.0063821515, 0.056621023, -0.16400886)
+bones/29/rotation = Quaternion(-0.83965766, -0.112131834, -0.11203669, 0.5194702)
+bones/29/scale = Vector3(0.9999677, 0.9999229, 1.0002505)
+bones/31/position = Vector3(-0.002263134, 0.056621023, -0.16400886)
 bones/31/rotation = Quaternion(0.60655355, -0.36344594, -0.60655344, -0.3634459)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
@@ -138,7 +143,9 @@ tree_root = SubResource("AnimationNodeStateMachine_uhlw0")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/explode = false
 
-[node name="SoundEffectManager" parent="." index="3" instance=ExtResource("2_appcq")]
+[node name="SoundEffectManager" type="Node3D" parent="." index="3"]
+script = ExtResource("2_jh4a6")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
 [node name="Charge" parent="SoundEffectManager" index="0" instance=ExtResource("3_4ahpr")]
 stream = SubResource("AudioStreamRandomizer_uhlw0")

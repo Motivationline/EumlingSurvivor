@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ct7skgiecn1pc" path="res://game/exit_area/exit_area.gd" id="1_47e78"]
 [ext_resource type="PackedScene" path="res://game/exit_area/exit_trunk.tscn" id="1_tkqdu"]
-[ext_resource type="PackedScene" uid="uid://cy2tlb6wedycd" path="res://game/sound/sfx/manager/sound_effect_manager.tscn" id="3_47e78"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="4_gva8b"]
-[ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/sound_effects/exit_area/leaves_receding_1.wav" id="5_2dq3v"]
-[ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/sound_effects/exit_area/leaves_receding_2.wav" id="6_ixbc8"]
-[ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/sound_effects/exit_area/leaves_receding_3.wav" id="7_dmamu"]
-[ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/sound_effects/exit_area/leaves_receding_4.wav" id="8_vofq4"]
+[ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_1.wav" id="5_2dq3v"]
+[ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_2.wav" id="6_ixbc8"]
+[ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_3.wav" id="7_dmamu"]
+[ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_4.wav" id="8_vofq4"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="9_2dq3v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
 size = Vector3(2.2646484, 1.980957, 1)
@@ -270,7 +270,7 @@ tracks/10/path = NodePath("SoundEffectManager")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.03333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": ["Leaves"],
@@ -374,8 +374,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_47e78")
 }
 
-[node name="SoundEffectManager" parent="." instance=ExtResource("3_47e78")]
-debug_sound = "Leaves"
+[node name="SoundEffectManager" type="Node3D" parent="."]
+script = ExtResource("9_2dq3v")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
 [node name="Chime" parent="SoundEffectManager" instance=ExtResource("4_gva8b")]
 

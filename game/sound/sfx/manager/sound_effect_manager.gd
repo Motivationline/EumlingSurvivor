@@ -1,18 +1,20 @@
 class_name SoundEffectManager extends Node3D
 
 var sound_list:Dictionary
-@export var debug:bool
-@export var debug_sound:String
+var debug:bool
+var debug_sound:String
 
 
-@onready var debug_ui = $DebugUI
-@onready var debug_list = $DebugUI/DebugSelector
+var debug_ui
+var debug_list
 @onready var music_player:MusicPlayer = get_tree().get_first_node_in_group("MusicPlayer")
 
 func _ready() :
 	sound_list_setup()
 	if debug:
-		debug_list_setup()
+		debug_ui = $DebugUI
+		debug_list = $DebugUI/DebugSelector
+		#debug_list_setup()
 
 func _process(_delta):
 	if debug:
