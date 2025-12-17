@@ -31,7 +31,7 @@ signal died
 @export var eumling_visuals: Node3D
 @export var spawner: EntitySpawner
 
-@onready var healthbar: Healthbar = $UI/Control/Healthbar
+@onready var healthbar: Healthbar3D = $Healthbar3D
 @onready var hurtbox: HurtBox = $Hurtbox
 
 ## UI Stuff
@@ -57,7 +57,6 @@ signal upgrade_added
 
 
 var possible_upgrades: Array[Upgrade] = [
-	Upgrade.new(Enum.UPGRADE.PROJECTILE_SIZE, Enum.UPGRADE_METHOD.ABSOLUTE, 1, Enum.RARITY.COMMON),
 	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.15, Enum.RARITY.COMMON),
 	Upgrade.new(Enum.UPGRADE.ATTACK_COOLDOWN, Enum.UPGRADE_METHOD.MULTIPLIER, 0.1, Enum.RARITY.COMMON),
 	Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.ABSOLUTE, 50, Enum.RARITY.COMMON),

@@ -5,12 +5,12 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
 [ext_resource type="PackedScene" uid="uid://dadtg2y3wb6l4" path="res://assets/characters/eumling/V2/eumling_v_2_prefab.tscn" id="4_2mv0n"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
-[ext_resource type="PackedScene" uid="uid://cwx4ps7nr715s" path="res://game/healthbar/healthbar.tscn" id="7_anr75"]
 [ext_resource type="Texture2D" uid="uid://s4sspr0pav3l" path="res://assets/ui/SketchGreyButtonTexture.png" id="10_2mv0n"]
 [ext_resource type="Texture2D" uid="uid://cvy3lafwe3ion" path="res://assets/ui/SketchButtonKurzEumling.png" id="11_gh012"]
 [ext_resource type="Texture2D" uid="uid://c7b617pf4p3oj" path="res://assets/ui/ReloadCircle.png" id="12_gh012"]
 [ext_resource type="Texture2D" uid="uid://biajvboc3quwy" path="res://assets/ui/SketchButtonKurzPlay.png" id="12_usp30"]
 [ext_resource type="PackedScene" uid="uid://csrh8ood2mu1q" path="res://game/projectiles/totally_basic_eumling_projectile/totally_basic_eumling_projectile.tscn" id="13_3ep63"]
+[ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="13_n270p"]
 [ext_resource type="PackedScene" uid="uid://cbr7504esjh25" path="res://game/ui/SketchOverlay/pause_sketch.tscn" id="16_gh012"]
 [ext_resource type="PackedScene" uid="uid://daky13b2c211v" path="res://game/player/walk_smoke/walk_smoke.tscn" id="17_gh012"]
 
@@ -108,35 +108,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Healthbar2" parent="UI/Control" instance=ExtResource("7_anr75")]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -2013.7832
-offset_top = 275.30713
-offset_right = -2013.7832
-offset_bottom = 275.30713
-grow_horizontal = 2
-scale = Vector2(2.4131918, 1.7808799)
-hide_when_full_after = -1.0
-hide_initially = false
-
-[node name="Healthbar" parent="UI/Control" instance=ExtResource("7_anr75")]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -630.0
-offset_top = 57.0
-offset_right = -630.0
-offset_bottom = 57.0
-grow_horizontal = 2
-scale = Vector2(2.5415335, 0.6596746)
-hide_when_full_after = -1.0
-hide_initially = false
-
 [node name="PauseButton" type="TextureButton" parent="UI/Control"]
 visible = false
 layout_mode = 0
@@ -231,3 +202,7 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 [node name="AttackCooldown" type="Timer" parent="DefaultAttack"]
 wait_time = 0.5
 one_shot = true
+
+[node name="Healthbar3D" parent="." instance=ExtResource("13_n270p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+show_health_numbers = true

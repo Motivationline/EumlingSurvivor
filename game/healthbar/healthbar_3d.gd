@@ -5,12 +5,15 @@ class_name Healthbar3D
 @export var hide_when_full_after: float = 2.0
 ## Whether to hide the healthbar initially
 @export var hide_initially: bool = true
+## Should the health numbers be visible?
+@export var show_health_numbers: bool = false
 
 @onready var healthbar: Healthbar = $SubViewport/Healthbar
 
 func _ready():
 	healthbar.hide_when_full_after = hide_when_full_after
 	healthbar.hide_initially = hide_initially
+	healthbar.show_health_numbers = show_health_numbers
 
 var health: float = 0:
 	set = _set_health

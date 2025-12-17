@@ -3,21 +3,32 @@ class_name Healthbar
 
 @onready var damage_bar: ProgressBar = $DamageBar
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var health_points_display: Label = $HealthPointsDisplay
 @onready var timer: Timer = $Timer
 
 ## Hides the healthbar after this time if it's full. Set to negative to always show.
 @export var hide_when_full_after: float = 2.0
 ## Whether to hide the healthbar initially
 @export var hide_initially: bool = true
+## Should the health numbers be visible?
+@export var show_health_numbers: bool = false:
+	set(value):
+		show_health_numbers = value	
+		health_points_display.visible = show_health_numbers
+
 
 var health: float = 0:
 	set = _set_health
 var max_health: float = 0:
 	set = _set_max_health
+	
+func _ready():
+	health_points_display.visible = show_health_numbers
 
 func _set_health(value: float):
 	var prev_health = health
 	health = value
+	health_points_display.text = str(int(health))
 	if (health_bar):
 		var health_tween = create_tween()
 		health_tween.tween_property(health_bar, "value", health, 0.05)
