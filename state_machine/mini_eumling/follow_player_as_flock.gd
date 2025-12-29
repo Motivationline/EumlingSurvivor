@@ -48,6 +48,10 @@ var flock_group: String
 var is_satisfied: bool
 var is_leader: bool
 
+# debug
+var leader_material := StandardMaterial3D.new()
+var normal_material := StandardMaterial3D.new()
+
 func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	parent = _parent
@@ -66,6 +70,9 @@ func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 		GROUP.MINIEUMLING:
 			flock_group = "MiniEumling"
 	
+	leader_material.albedo_color = Color.RED
+	normal_material.albedo_color = Color.WHITE
+	
 	define_leader()
 
 func enter():
@@ -77,25 +84,33 @@ func physics_process(_delta: float) -> State:
 	
 	update_target_location()
 	
-	if is_leader:
-		if parent.visualizer:
-			var newMaterial = StandardMaterial3D.new()
-			newMaterial.albedo_color = Color(1.0, 0.0, 0.0, 1.0)
-			parent.visualizer.mesh.surface_set_material(0,newMaterial)
-	else:
-		if parent.visualizer:
-			var newMaterial = StandardMaterial3D.new()
-			newMaterial.albedo_color = Color(1.0, 1.0, 1.0, 1.0)
-			parent.visualizer.mesh.surface_set_material(0,newMaterial)
+	# get the closest nod to the player
+	var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
+	var closest = get_closest_node(player as Node3D, members)
+	print(closest)
+	
+	# if i am the closest, i am the leader
+	is_leader = (parent == closest)
+	
+	# set debug material
+	if parent.visualizer:
+		if is_leader:
+			#parent.visualizer.mesh.surface_set_material(0, leader_material)
+			parent.visualizer.set_scale(Vector3.ONE * 0.5)
+		else:
+			parent.visualizer.set_scale(Vector3.ONE * 0.25)
+			#parent.visualizer.mesh.surface_set_material(0, normal_material)
+
 	
 	if parent.global_position.distance_to(player.global_position) > max_distance:
 		is_satisfied = false
 		if is_leader:
-			define_leader()
-			var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
+			#define_leader()
+			#members = get_tree().get_nodes_in_group(flock_group)
 			for member in members:
-				if member.state_machine.current_state is FollowPlayerAsFlockState:
-					member.state_machine.current_state.is_satisfied = false
+				var sate = member.state_machine.current_state
+				if sate is FollowPlayerAsFlockState:
+					sate.is_satisfied = false
 			
 		#parent.look_at(nav_agent.get_next_path_position())
 		var destination = nav_agent.get_next_path_position()
@@ -124,6 +139,7 @@ func update_target_location():
 func target_reached():
 	nav_agent.debug_enabled = false
 	await get_tree().create_timer(wait_time).timeout
+	if done: return
 	done = true
 
 func _flock(_direction: Vector3) -> Vector3:
@@ -178,25 +194,21 @@ func _flock(_direction: Vector3) -> Vector3:
 	_direction = lerp(_direction, dir_to_pos, cohesion_factor)
 	return _direction.normalized()
 
-func define_leader() -> void:
-	var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
-	
+func define_leader():
+	var members = get_tree().get_nodes_in_group(flock_group)
+	if members.is_empty(): return
+
+	var closest = get_closest_node(player, members)
+
 	for member in members:
 		var state = member.state_machine.current_state
 		if state is FollowPlayerAsFlockState:
-			state.is_leader = false
-	
-	var closest = get_closest_node(player as Node3D, members)
-	var states = closest.state_machine._get_all_states(closest.state_machine)
-	#for state in states:
-		#if state is FollowPlayerAsFlockState:
-			#state.is_leader = true
-	if closest.state_machine.current_state is FollowPlayerAsFlockState:
-		closest.state_machine.current_state.is_leader = true
+			state.is_leader = (member == closest)
+
 
 # TODO: Ich replace das mit der methode aus der Utils Klasse sobald das Gemerged ist
 func get_closest_node(_origin: Node3D, _n_targets: Array[Node]):
-	var _targets:  Array[Node3D]
+	var _targets:  Array[Node3D] = []
 	for n in _n_targets:
 		_targets.push_back(n as Node3D)
 		
