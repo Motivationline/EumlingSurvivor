@@ -58,7 +58,7 @@ func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 	nav_agent.target_reached.connect(target_reached)
 	nav_agent.target_desired_distance = 0.1
 	nav_agent.path_desired_distance = 0.1
-	nav_agent.debug_enabled = debug_show_path
+	#nav_agent.debug_enabled = debug_show_path
 	player = get_tree().get_nodes_in_group("Player")[0]
 	match group:
 		GROUP.ENEMY:
@@ -77,16 +77,25 @@ func physics_process(_delta: float) -> State:
 	
 	update_target_location()
 	
+	if is_leader:
+		if parent.visualizer:
+			var newMaterial = StandardMaterial3D.new()
+			newMaterial.albedo_color = Color(1.0, 0.0, 0.0, 1.0)
+			parent.visualizer.mesh.surface_set_material(0,newMaterial)
+	else:
+		if parent.visualizer:
+			var newMaterial = StandardMaterial3D.new()
+			newMaterial.albedo_color = Color(1.0, 1.0, 1.0, 1.0)
+			parent.visualizer.mesh.surface_set_material(0,newMaterial)
+	
 	if parent.global_position.distance_to(player.global_position) > max_distance:
 		is_satisfied = false
 		if is_leader:
+			define_leader()
 			var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
-			# erase self? or not
 			for member in members:
 				if member.state_machine.current_state is FollowPlayerAsFlockState:
 					member.state_machine.current_state.is_satisfied = false
-			
-			define_leader()
 			
 		#parent.look_at(nav_agent.get_next_path_position())
 		var destination = nav_agent.get_next_path_position()
@@ -171,19 +180,31 @@ func _flock(_direction: Vector3) -> Vector3:
 
 func define_leader() -> void:
 	var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
-	var closest = get_closest_node(parent as Node3D, members as Array[Node3D])
-	#fix this
 	
+	for member in members:
+		var state = member.state_machine.current_state
+		if state is FollowPlayerAsFlockState:
+			state.is_leader = false
+	
+	var closest = get_closest_node(player as Node3D, members)
+	var states = closest.state_machine._get_all_states(closest.state_machine)
+	#for state in states:
+		#if state is FollowPlayerAsFlockState:
+			#state.is_leader = true
 	if closest.state_machine.current_state is FollowPlayerAsFlockState:
 		closest.state_machine.current_state.is_leader = true
 
 # TODO: Ich replace das mit der methode aus der Utils Klasse sobald das Gemerged ist
-func get_closest_node(_origin: Node3D, _targets: Array[Node3D]):
+func get_closest_node(_origin: Node3D, _n_targets: Array[Node]):
+	var _targets:  Array[Node3D]
+	for n in _n_targets:
+		_targets.push_back(n as Node3D)
+		
 	if len(_targets) > 0:
-		var closest: Node3D = null
+		var closest: Node = null
 		var closest_dist = INF
-		for n: Node3D in _targets:
-			var dist = _origin.distance_squared_to(n.global_position)
+		for n: Node in _targets:
+			var dist = _origin.global_position.distance_squared_to(n.global_position)
 			if dist < closest_dist:
 				closest_dist = dist
 				closest = n

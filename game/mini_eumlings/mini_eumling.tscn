@@ -10,10 +10,11 @@
 radius = 0.12542208
 height = 0.25084415
 
-[node name="MiniEumling" type="CharacterBody3D" node_paths=PackedStringArray("state_machine") groups=["MiniEumling"]]
+[node name="MiniEumling" type="CharacterBody3D" node_paths=PackedStringArray("state_machine", "visualizer") groups=["MiniEumling"]]
 collision_layer = 16
 script = ExtResource("1_2cqpj")
 state_machine = NodePath("StateMachine")
+visualizer = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.125, 0)
@@ -33,7 +34,6 @@ group = 1
 awareness_radius = 3.0
 separation_factor = 2.0
 cohesion_factor = 0.1
-debug_show_path = true
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://b2lasa256a4fq"
 

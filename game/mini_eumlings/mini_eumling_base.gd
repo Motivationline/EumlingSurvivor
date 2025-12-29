@@ -3,6 +3,7 @@ class_name MiniEumling
 
 @export var state_machine: StateMachine
 @export var node_with_animation_tree: Node3D
+@export var visualizer: MeshInstance3D
 
 ## How fast this entity moves when it moves
 @export_range(0, 100, 0.1) var speed: float = 1
