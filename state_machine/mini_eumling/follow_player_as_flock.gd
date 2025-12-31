@@ -28,6 +28,10 @@ enum GROUP {ENEMY, MINIEUMLING}
 @export var alignment_factor: float = 0.5
 ## how much each member steers towards the average psotion of local members
 @export var cohesion_factor: float = 0.5
+## FOV (in deg) of the Entities in which they perceive other members
+@export_range(0.0,180.0,1) var fov: float = 70
+## threshold at what point the entity stops if the neighbor is at standstill
+@export var neighbor_stop_threshold: float = 0.3
 
 @export_group("Overrides")
 ## Movement Speed Override
@@ -45,7 +49,7 @@ var nav_agent: NavigationAgent3D
 var done: bool = false
 var player: CharacterBody3D
 var flock_group: String
-var is_satisfied: bool
+var is_standstill: bool
 var is_leader: bool
 
 # debug
@@ -87,7 +91,7 @@ func physics_process(_delta: float) -> State:
 	# get the closest nod to the player
 	var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
 	var closest = get_closest_node(player as Node3D, members)
-	print(closest)
+	#print(closest)
 	
 	# if i am the closest, i am the leader
 	is_leader = (parent == closest)
@@ -103,14 +107,14 @@ func physics_process(_delta: float) -> State:
 
 	
 	if parent.global_position.distance_to(player.global_position) > max_distance:
-		is_satisfied = false
+		#is_standstill = false
 		if is_leader:
 			#define_leader()
 			#members = get_tree().get_nodes_in_group(flock_group)
 			for member in members:
 				var sate = member.state_machine.current_state
 				if sate is FollowPlayerAsFlockState:
-					sate.is_satisfied = false
+					sate.is_standstill = false
 			
 		#parent.look_at(nav_agent.get_next_path_position())
 		var destination = nav_agent.get_next_path_position()
@@ -123,7 +127,7 @@ func physics_process(_delta: float) -> State:
 		#parent.visuals.rotation.y = lerp_angle(parent.visuals.rotation.y,atan2(-parent.velocity.x,-parent.velocity.z),_delta* rotation_speed)
 		parent.move_and_slide()
 	else:
-		is_satisfied = true
+		is_standstill = true
 	
 	#check if the player is closer than stopping distance
 	if (player.position - parent.position).length() <= (min_distance):
@@ -155,17 +159,27 @@ func _flock(_direction: Vector3) -> Vector3:
 	if members_in_range.is_empty():
 		return _direction.normalized()
 	
-	#TODO: add Vision Cone, rm member that is outside of that cone
+	#Vision Cone, rm member that is outside of that cone
+	#print("Members: ", members_in_range)
+	for member in members_in_range:
+		var dist = member.global_position - parent.global_position
+		var angle_rad = acos(parent.transform.basis.z.dot(dist))
+		var angle = angle_rad * (180/PI)
+		#print(angle)
+		#TODO: Check if this produces is finite error
+		if angle > fov:
+			members_in_range.erase(member)
+	#print("Members after cone: ", members_in_range)
 	
 	for member in members_in_range:
+		
 		var ratio: float = 1.0 - (member.global_position - parent.global_position).length() / separation_factor
 		ratio = clamp(ratio, 0.0, 1.0)
 		#print(ratio)
-		if member.state_machine.current_state is FollowPlayerAsFlockState && member.state_machine.current_state.is_satisfied && ratio > 0.8:
+		if member.state_machine.current_state is FollowPlayerAsFlockState && member.state_machine.current_state.is_standstill && ratio > 0.3:
 			#print("member is satisfied")
-			is_satisfied = true
+			is_standstill = true
 			return Vector3.ZERO
-			## TODO: break out of this -> declare a leader (the closest to the player), if the leader is farther than the max dist to the player, overwrite all
 		
 		_direction -= ratio * (member.global_position - parent.global_position)
 	
