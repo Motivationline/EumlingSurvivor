@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://uyyg1ut65j1"]
+[gd_scene load_steps=26 format=3 uid="uid://uyyg1ut65j1"]
 
 [ext_resource type="AudioStream" uid="uid://byfdnm5xd5k28" path="res://assets/sound/music/Menu_intro.ogg" id="1_4jx58"]
 [ext_resource type="AudioStream" uid="uid://ds6vf8g8h2h6h" path="res://assets/sound/music/Menu_loop.ogg" id="2_4l1yl"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://dxp4fgrapxtpu" path="res://assets/sound/music/BossIsland_loop.ogg" id="14_0u0o4"]
 [ext_resource type="AudioStream" uid="uid://cf43rtd5p8ycp" path="res://assets/sound/music/BossIsland_tail.ogg" id="15_1cfgr"]
 [ext_resource type="AudioStream" uid="uid://o88dlhile0m1" path="res://assets/sound/environment_noise/Env_Island.ogg" id="17_vk51o"]
+[ext_resource type="AudioStream" uid="uid://bkmmqpq8r6ti2" path="res://assets/sound/environment_noise/Env_Forest.ogg" id="18_gq4td"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_mm6rf"]
 stream_count = 2
@@ -124,10 +125,13 @@ Vector2i(9, -1): {
 }
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_j45xg"]
-clip_count = 1
+clip_count = 2
 clip_0/name = &"Island"
 clip_0/stream = ExtResource("17_vk51o")
 clip_0/auto_advance = 0
+clip_1/name = &"Forest"
+clip_1/stream = ExtResource("18_gq4td")
+clip_1/auto_advance = 0
 
 [node name="MusicPlayer" type="AudioStreamPlayer" node_paths=PackedStringArray("ambientNoisePlayer")]
 stream = SubResource("AudioStreamInteractive_pff77")
@@ -304,7 +308,7 @@ text = "Selector
 
 [node name="EnvNoisePlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_j45xg")
-volume_db = 10.0
+volume_db = 8.0
 bus = &"Environment"
 
 [connection signal="item_clicked" from="DebugUI/TrackSelector/List" to="." method="_on_debug_list_item_clicked"]

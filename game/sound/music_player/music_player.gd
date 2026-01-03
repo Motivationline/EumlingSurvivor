@@ -89,11 +89,13 @@ func select_track(level_type:LEVEL) -> Array[String]:
 		
 		LEVEL.MENU:
 			selected_track = "Menu"
+			selected_ambient = "Forest"
 		LEVEL.COMBAT_ISLAND:
 			selected_track = "CombatIsland"
 			selected_ambient = "Island"
 		LEVEL.BOSS_GENERIC:
 			selected_track = "BossGeneric"
+			selected_ambient = "Forest"
 		LEVEL.BOSS_ISLAND:
 			selected_track = "BossIsland"
 			selected_ambient = "Island"
