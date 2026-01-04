@@ -11,7 +11,8 @@ var current_track:String
 var current_env:String
 enum LEVEL {
 MENU, 
-COMBAT_ISLAND, 
+COMBAT_ISLAND,
+COMBAT_FOREST, 
 BOSS_GENERIC,
 BOSS_ISLAND, 
 CHASE
@@ -89,10 +90,12 @@ func select_track(level_type:LEVEL) -> Array[String]:
 		
 		LEVEL.MENU:
 			selected_track = "Menu"
-			selected_ambient = "Forest"
 		LEVEL.COMBAT_ISLAND:
 			selected_track = "CombatIsland"
 			selected_ambient = "Island"
+		LEVEL.COMBAT_FOREST:
+			selected_track = "CombatForest"
+			selected_ambient = "Forest"
 		LEVEL.BOSS_GENERIC:
 			selected_track = "BossGeneric"
 			selected_ambient = "Forest"

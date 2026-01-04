@@ -1,11 +1,14 @@
-[gd_scene load_steps=26 format=3 uid="uid://uyyg1ut65j1"]
+[gd_scene load_steps=30 format=3 uid="uid://uyyg1ut65j1"]
 
 [ext_resource type="AudioStream" uid="uid://byfdnm5xd5k28" path="res://assets/sound/music/Menu_intro.ogg" id="1_4jx58"]
 [ext_resource type="AudioStream" uid="uid://ds6vf8g8h2h6h" path="res://assets/sound/music/Menu_loop.ogg" id="2_4l1yl"]
 [ext_resource type="AudioStream" uid="uid://bp8ypixhc4mkc" path="res://assets/sound/music/Menu_tail.ogg" id="3_idn17"]
+[ext_resource type="AudioStream" uid="uid://n7larc6pdf80" path="res://assets/sound/music/CombatForest_intro.ogg" id="4_egont"]
 [ext_resource type="AudioStream" uid="uid://djqo3hu22b3tv" path="res://assets/sound/music/BossGeneric_intro.ogg" id="4_i14vr"]
+[ext_resource type="AudioStream" uid="uid://djtsuq65vi7hr" path="res://assets/sound/music/CombatForest_loop.ogg" id="5_4clt5"]
 [ext_resource type="AudioStream" uid="uid://d1qyvqcqnqo03" path="res://assets/sound/music/BossGeneric_loop.ogg" id="5_wrmn7"]
 [ext_resource type="AudioStream" uid="uid://cjssvovu08m7i" path="res://assets/sound/music/BossGeneric_tail.ogg" id="6_lmv7x"]
+[ext_resource type="AudioStream" uid="uid://5g63bwipx8d" path="res://assets/sound/music/CombatForest_tail.ogg" id="6_oh7yp"]
 [ext_resource type="AudioStream" uid="uid://c2ustglkejkhh" path="res://assets/sound/music/Chase_intro.ogg" id="7_rumds"]
 [ext_resource type="AudioStream" uid="uid://bodhilivtehfq" path="res://assets/sound/music/Chase_loop.ogg" id="8_dmraq"]
 [ext_resource type="AudioStream" uid="uid://dgsgs57us6tr8" path="res://assets/sound/music/Chase_tail.ogg" id="9_6rkcp"]
@@ -25,6 +28,13 @@ stream_0/stream = ExtResource("2_4l1yl")
 stream_0/volume = 0.0
 stream_1/stream = ExtResource("3_idn17")
 stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_w86fx"]
+stream_count = 2
+stream_0/stream = ExtResource("5_4clt5")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("6_oh7yp")
+stream_1/volume = 0.0
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ehp35"]
 stream_count = 2
@@ -55,7 +65,7 @@ stream_1/stream = ExtResource("15_1cfgr")
 stream_1/volume = -60.0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_pff77"]
-clip_count = 10
+clip_count = 12
 clip_0/name = &"Menu Intro"
 clip_0/stream = ExtResource("1_4jx58")
 clip_0/auto_advance = 1
@@ -91,35 +101,17 @@ clip_8/next_clip = 9
 clip_9/name = &"BossIsland Loop"
 clip_9/stream = SubResource("AudioStreamSynchronized_1g2au")
 clip_9/auto_advance = 0
+clip_10/name = &"CombatForest Intro"
+clip_10/stream = ExtResource("4_egont")
+clip_10/auto_advance = 0
+clip_11/name = &"CombatForest Loop"
+clip_11/stream = SubResource("AudioStreamSynchronized_w86fx")
+clip_11/auto_advance = 0
 _transitions = {
-Vector2i(1, -1): {
-"fade_beats": 1.0,
+Vector2i(-1, -1): {
+"fade_beats": 4.0,
 "fade_mode": 2,
-"from_time": 0,
-"to_time": 1
-},
-Vector2i(3, -1): {
-"fade_beats": 1.0,
-"fade_mode": 2,
-"from_time": 0,
-"to_time": 1
-},
-Vector2i(5, -1): {
-"fade_beats": 1.0,
-"fade_mode": 2,
-"from_time": 0,
-"to_time": 1
-},
-Vector2i(7, -1): {
-"fade_beats": 1.0,
-"fade_mode": 2,
-"from_time": 0,
-"to_time": 1
-},
-Vector2i(9, -1): {
-"fade_beats": 1.0,
-"fade_mode": 2,
-"from_time": 0,
+"from_time": 1,
 "to_time": 1
 }
 }
