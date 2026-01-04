@@ -10,11 +10,11 @@ class_name MusicPlayer extends AudioStreamPlayer
 var current_track:String
 var current_env:String
 enum LEVEL {
-MENU, 
-COMBAT_ISLAND, 
-BOSS_GENERIC,
-BOSS_ISLAND, 
-CHASE
+	MENU, 
+	COMBAT_ISLAND, 
+	BOSS_GENERIC,
+	BOSS_ISLAND, 
+	CHASE
 }
 
 @export var debug:bool
