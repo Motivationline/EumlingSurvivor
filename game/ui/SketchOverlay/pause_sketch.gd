@@ -12,9 +12,15 @@ func _process(_delta):
 			open()
 
 func open():
-	self.visible = true
+	visible = true
 	is_open = true
+	Engine.time_scale = 0
 	
 func close():
-		visible = false
-		is_open = false
+	Engine.time_scale = 1
+	visible = false
+	is_open = false
+
+
+func _on_resume_button_pressed() -> void:
+	close()

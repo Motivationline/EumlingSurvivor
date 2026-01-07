@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://cbr7504esjh25"]
 
 [ext_resource type="Script" uid="uid://cb6exknwr21rp" path="res://game/ui/SketchOverlay/pause_sketch.gd" id="1_ae7h8"]
-[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_t8k7y"]
+[ext_resource type="Shader" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_t8k7y"]
 [ext_resource type="Texture2D" uid="uid://s4sspr0pav3l" path="res://assets/ui/SketchGreyButtonTexture.png" id="2_rjl6h"]
 [ext_resource type="Texture2D" uid="uid://dga44i4l037h4" path="res://assets/ui/TextFrameWhite.png" id="3_uhhhn"]
 [ext_resource type="Texture2D" uid="uid://dlxllxaxnftbv" path="res://assets/ui/SketchBackpack.png" id="4_t8k7y"]
@@ -278,3 +278,5 @@ texture = ExtResource("14_lnywe")
 position = Vector2(1205, 953.51697)
 scale = Vector2(0.06369529, 0.06369529)
 texture = ExtResource("14_lnywe")
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
