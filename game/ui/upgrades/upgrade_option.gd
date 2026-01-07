@@ -1,9 +1,9 @@
 extends PanelContainer
 class_name UpgradeOption
 
-@onready var title: Label = $Sprite2D/Title
-@onready var subtitle: Label = $Sprite2D/Subtitle
-@onready var info: RichTextLabel = $Sprite2D/Info
+@onready var title: Label = %Title
+@onready var subtitle: Label = %Subtitle
+@onready var info: RichTextLabel = %Info
 
 func setup(upgrade: Upgrade):
 	prints(Enum.UPGRADE.keys())
