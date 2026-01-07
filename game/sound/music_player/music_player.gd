@@ -124,7 +124,7 @@ func update_track_tail_volume():
 	
 	current_stream_synchronised = get_current_stream_synchronised()
  
-	current_stream_synchronised.set_sync_stream_volume(1,0.0)
+#current_stream_synchronised.set_sync_stream_volume(1,0.0)
 	#print(current_stream_synchronised.get_sync_stream_volume(1))
 	#implement reset
 

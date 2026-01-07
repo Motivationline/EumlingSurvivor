@@ -1,16 +1,22 @@
-[gd_scene load_steps=19 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene load_steps=25 format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="Resource" uid="uid://bptl28ohdx7tg" path="res://game/ui/inventory/playerInv.tres" id="2_gb4gm"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
 [ext_resource type="PackedScene" uid="uid://dadtg2y3wb6l4" path="res://assets/characters/eumling/V2/eumling_v_2_prefab.tscn" id="4_2mv0n"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
+[ext_resource type="Texture2D" uid="uid://ch2hc8xdjjpyj" path="res://assets/ui/ButtonFlatPause.png" id="6_usp30"]
+[ext_resource type="Texture2D" uid="uid://s767nhl5h7j4" path="res://assets/ui/ButtonFlatPausePressed.png" id="7_0e4oy"]
+[ext_resource type="Texture2D" uid="uid://veflkhfyq0u6" path="res://assets/ui/ButtonFlatEumlinge.png" id="7_3ep63"]
+[ext_resource type="Texture2D" uid="uid://beij1gh6c8q3g" path="res://assets/ui/ButtonFlatEumlingPressed.png" id="8_rqcxa"]
 [ext_resource type="Texture2D" uid="uid://s4sspr0pav3l" path="res://assets/ui/SketchGreyButtonTexture.png" id="10_2mv0n"]
-[ext_resource type="Texture2D" uid="uid://cvy3lafwe3ion" path="res://assets/ui/SketchButtonKurzEumling.png" id="11_gh012"]
+[ext_resource type="Texture2D" uid="uid://dq30vdu2ccg2s" path="res://assets/ui/ProgressBarInner.png" id="11_eeltd"]
+[ext_resource type="Texture2D" uid="uid://cry5xati0o452" path="res://assets/ui/ProgressBarOutline.png" id="12_088ty"]
 [ext_resource type="Texture2D" uid="uid://c7b617pf4p3oj" path="res://assets/ui/ReloadCircle.png" id="12_gh012"]
-[ext_resource type="Texture2D" uid="uid://biajvboc3quwy" path="res://assets/ui/SketchButtonKurzPlay.png" id="12_usp30"]
 [ext_resource type="PackedScene" uid="uid://csrh8ood2mu1q" path="res://game/projectiles/totally_basic_eumling_projectile/totally_basic_eumling_projectile.tscn" id="13_3ep63"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="13_epc1c"]
 [ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="13_n270p"]
+[ext_resource type="Texture2D" uid="uid://cimrid30f7wjf" path="res://assets/ui/EumlingIcon.png" id="14_0e4oy"]
 [ext_resource type="PackedScene" uid="uid://cbr7504esjh25" path="res://game/ui/SketchOverlay/pause_sketch.tscn" id="16_gh012"]
 [ext_resource type="PackedScene" uid="uid://daky13b2c211v" path="res://game/player/walk_smoke/walk_smoke.tscn" id="17_gh012"]
 
@@ -108,23 +114,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PauseButton" type="TextureButton" parent="UI/Control"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Panel" type="Panel" parent="UI/Control"]
+[node name="TimeBackground" type="Panel" parent="UI/Control"]
 clip_children = 1
 layout_mode = 0
-offset_left = 88.0
+offset_left = 1520.0
 offset_top = 62.0
-offset_right = 252.23364
+offset_right = 1684.2336
 offset_bottom = 134.00125
 scale = Vector2(0.9448688, 0.81943655)
 theme_override_styles/panel = SubResource("StyleBoxFlat_0e4oy")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Control/Panel"]
+[node name="TextureRect" type="TextureRect" parent="UI/Control/TimeBackground"]
 layout_mode = 0
 offset_left = -9.40922
 offset_top = -4.931595
@@ -133,16 +133,17 @@ offset_bottom = 82.85076
 texture = ExtResource("10_2mv0n")
 expand_mode = 1
 
-[node name="TextureButton2" type="TextureButton" parent="UI/Control"]
+[node name="PauseButton" type="TextureButton" parent="UI/Control"]
 layout_mode = 0
-offset_left = 99.0
-offset_top = 46.0
-offset_right = 2075.0
-offset_bottom = 2088.0
-scale = Vector2(0.033757787, 0.033757787)
-texture_normal = ExtResource("11_gh012")
+offset_left = 54.0
+offset_top = 29.0
+offset_right = 2030.0
+offset_bottom = 2071.0
+scale = Vector2(0.043695968, 0.043695968)
+texture_normal = ExtResource("6_usp30")
+texture_pressed = ExtResource("7_0e4oy")
 
-[node name="Panel2" type="Panel" parent="UI/Control"]
+[node name="EumlingeBackground" type="Panel" parent="UI/Control"]
 clip_children = 1
 layout_mode = 0
 offset_left = 1703.9999
@@ -152,7 +153,7 @@ offset_bottom = 134.00125
 scale = Vector2(0.94487256, 0.8194397)
 theme_override_styles/panel = SubResource("StyleBoxFlat_0e4oy")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Control/Panel2"]
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EumlingeBackground"]
 layout_mode = 0
 offset_left = -9.40922
 offset_top = -4.931595
@@ -161,25 +162,73 @@ offset_bottom = 82.85076
 texture = ExtResource("10_2mv0n")
 expand_mode = 1
 
-[node name="TextureButton" type="TextureButton" parent="UI/Control"]
+[node name="EumlingeButton" type="TextureButton" parent="UI/Control"]
+visible = false
 layout_mode = 0
 offset_left = 1781.9999
 offset_top = 47.000008
 offset_right = 3758.0
 offset_bottom = 2089.0
 scale = Vector2(0.033757795, 0.033757795)
-texture_normal = ExtResource("12_usp30")
+texture_normal = ExtResource("7_3ep63")
+texture_pressed = ExtResource("8_rqcxa")
 
 [node name="ReloadProgress" type="TextureProgressBar" parent="UI/Control"]
 layout_mode = 0
-offset_left = 915.0
-offset_top = 98.0
-offset_right = 1121.0
-offset_bottom = 304.0
+offset_left = 44.00006
+offset_top = 206.0
+offset_right = 250.00006
+offset_bottom = 412.0
 scale = Vector2(0.4, 0.4)
 value = 1.0
 fill_mode = 4
 texture_progress = ExtResource("12_gh012")
+
+[node name="XPBar" type="TextureProgressBar" parent="UI/Control"]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 63.0
+offset_right = 3699.0
+offset_bottom = 339.0
+scale = Vector2(0.36896476, 0.19825365)
+nine_patch_stretch = true
+texture_under = ExtResource("11_eeltd")
+texture_over = ExtResource("12_088ty")
+
+[node name="Level" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 739.0
+offset_top = 2.0
+offset_right = 987.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("13_epc1c")
+theme_override_font_sizes/font_size = 60
+text = "Level/XP"
+
+[node name="Time" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 1549.0
+offset_top = 73.0
+offset_right = 1648.0
+offset_bottom = 140.0
+theme_override_fonts/font = ExtResource("13_epc1c")
+theme_override_font_sizes/font_size = 30
+text = "XX:XX"
+
+[node name="SavedEumlings" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 1756.0
+offset_top = 74.0
+offset_right = 1798.0
+offset_bottom = 141.0
+theme_override_fonts/font = ExtResource("13_epc1c")
+theme_override_font_sizes/font_size = 30
+text = "YY"
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control"]
+position = Vector2(1832, 92)
+scale = Vector2(0.030777289, 0.03077728)
+texture = ExtResource("14_0e4oy")
 
 [node name="UITest" type="CanvasLayer" parent="."]
 
@@ -206,3 +255,5 @@ one_shot = true
 [node name="Healthbar3D" parent="." instance=ExtResource("13_n270p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 show_health_numbers = true
+
+[connection signal="pressed" from="UI/Control/PauseButton" to="UITest/PauseSketch" method="open"]

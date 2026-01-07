@@ -1,33 +1,65 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8nr8s04nxds6"]
+[gd_scene load_steps=4 format=3 uid="uid://b8nr8s04nxds6"]
 
 [ext_resource type="Script" uid="uid://dvyxtca55nu2m" path="res://game/ui/upgrades/upgrade_option.gd" id="1_2fcc3"]
+[ext_resource type="Texture2D" uid="uid://chetipyd0k0uy" path="res://assets/ui/UpgradeScreen.png" id="2_om75u"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="3_kej5l"]
 
 [node name="UpgradeOption" type="PanelContainer"]
-offset_right = 199.0
+offset_right = 179.0
 offset_bottom = 208.0
 script = ExtResource("1_2fcc3")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(88, 103.49678)
+scale = Vector2(0.12651677, 0.12651677)
+texture = ExtResource("2_om75u")
+
+[node name="Title" type="Label" parent="Sprite2D"]
+offset_left = -137.33354
+offset_top = -35.542976
+offset_right = 225.91109
+offset_bottom = 139.45703
+theme_override_fonts/font = ExtResource("3_kej5l")
+theme_override_font_sizes/font_size = 120
+text = "Title"
+metadata/_edit_use_anchors_ = true
+
+[node name="Subtitle" type="Label" parent="Sprite2D"]
+offset_left = -390.26447
+offset_top = 288.52475
+offset_right = -191.26447
+offset_bottom = 358.52475
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_kej5l")
+theme_override_font_sizes/font_size = 80
+text = "Subtitle"
+metadata/_edit_use_anchors_ = true
+
+[node name="Info" type="RichTextLabel" parent="Sprite2D"]
+offset_left = -406.07263
+offset_top = 430.7984
+offset_right = 408.0487
+offset_bottom = 606.7984
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_kej5l")
+theme_override_font_sizes/normal_font_size = 60
+text = "+ 50% this
+- 50% that
+"
+fit_content = true
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sprite2D"]
+visible = false
+offset_left = -713.6452
+offset_top = -819.3165
+offset_right = -514.6452
+offset_bottom = -611.3165
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Title"
-
-[node name="Subtitle" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Subtitle"
-
-[node name="Info" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "+ 50% this
-- 50% that
-"
-fit_content = true

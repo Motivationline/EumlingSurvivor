@@ -1,14 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2y2kj4pgfj4k"]
+[gd_scene load_steps=7 format=3 uid="uid://c2y2kj4pgfj4k"]
 
 [ext_resource type="Script" uid="uid://nkjs6gp505yc" path="res://game/healthbar/healthbar.gd" id="1_68gid"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="2_ehdlf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o76um"]
-bg_color = Color(0.99905866, 0.97335905, 0.9671038, 1)
+bg_color = Color(0.98750085, 0.6110711, 0.5234328, 1)
 border_width_left = 2
 border_width_top = 12
 border_width_right = 2
 border_width_bottom = 12
-border_color = Color(1, 0.972549, 0.96862745, 1)
+border_color = Color(0.9882353, 0.6117647, 0.52156866, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fanj"]
 
@@ -20,21 +21,25 @@ border_width_right = 2
 border_width_bottom = 12
 border_color = Color(0.8666667, 0.28235295, 0.15294118, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehdlf"]
+bg_color = Color(0, 0.47050148, 0.9390653, 1)
+
 [node name="Healthbar" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 499.0
-offset_bottom = 41.0
+offset_right = 299.0
+offset_bottom = 96.0
 script = ExtResource("1_68gid")
 
 [node name="DamageBar" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
+offset_top = 27.06
 offset_right = 320.0
-offset_bottom = 145.0
-scale = Vector2(1.5479033, 0.2477866)
+offset_bottom = 172.06
+scale = Vector2(0.927, 0.229)
 mouse_filter = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_o76um")
 value = 70.0
@@ -43,9 +48,10 @@ show_percentage = false
 [node name="HealthBar" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
+offset_top = 27.06
 offset_right = 320.0
-offset_bottom = 145.0
-scale = Vector2(1.5479033, 0.2477866)
+offset_bottom = 172.06
+scale = Vector2(0.829, 0.229)
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_2fanj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sxu8y")
@@ -55,14 +61,26 @@ show_percentage = false
 [node name="HealthPointsDisplay" type="Label" parent="."]
 z_index = 11
 layout_mode = 0
-offset_left = 201.0
-offset_top = -19.042212
-offset_right = 311.0
-offset_bottom = 47.957787
+offset_left = 86.0
+offset_top = -22.049
+offset_right = 204.0
+offset_bottom = 47.951
+theme_override_fonts/font = ExtResource("2_ehdlf")
 text = "1000"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_top = 74.00001
+offset_right = 297.0
+offset_bottom = 101.00001
+scale = Vector2(1, 0.44500622)
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_ehdlf")
+value = 50.0
+show_percentage = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
