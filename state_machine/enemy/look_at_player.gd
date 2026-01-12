@@ -48,6 +48,7 @@ func wait():
 	await get_tree().create_timer(wait_time).timeout
 	done = true
 	
+	#TODO: remove below func
 func target_reached():
 	await get_tree().create_timer(wait_time).timeout
 	done = true
