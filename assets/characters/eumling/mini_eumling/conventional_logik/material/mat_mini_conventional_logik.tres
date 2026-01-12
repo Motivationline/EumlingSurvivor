@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://bk81m3jelbnjp"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_c2iso"]
+[ext_resource type="Texture2D" uid="uid://7lbx8of75tqj" path="res://assets/characters/eumling/mini_eumling/conventional_logik/material/mini_conventional_logik_MiniEumlingMat_Jungle_Base_color.png" id="2_tso3x"]
+
+[sub_resource type="Gradient" id="Gradient_vgg1n"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.09070295, 0.5986394)
+colors = PackedColorArray(0.29954743, 0.29954746, 0.29954734, 1, 0.98454744, 0.98454744, 0.98454744, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0db8l"]
+gradient = SubResource("Gradient_vgg1n")
+
+[sub_resource type="Gradient" id="Gradient_dkpi6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.8185941)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_heniq"]
+gradient = SubResource("Gradient_dkpi6")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_c2iso")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_tso3x")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_0db8l")
+shader_parameter/specular_focus = 0.5
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_heniq")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true

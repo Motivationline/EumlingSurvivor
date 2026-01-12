@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdx5nmy7mmesh"]
+
+[ext_resource type="PackedScene" uid="uid://dqru3ipa22rvk" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik.glb" id="1_aciid"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_few7l"]
+animation = &"mini_eumling_run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gooxe"]
+animation = &"mini_eumling_celebrate"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8vc2i"]
+animation = &"mini_eumling_idle"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_tw7dt"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_vofm8"]
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "celebrate"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_aciid"]
+graph_offset = Vector2(-494.2478, -30.067757)
+nodes/output/position = Vector2(500, 160)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_8vc2i")
+nodes/Animation/position = Vector2(-440, 60)
+nodes/Transition/node = SubResource("AnimationNodeTransition_vofm8")
+nodes/Transition/position = Vector2(-100.2, 171.5)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_few7l")
+"nodes/Animation 2/position" = Vector2(-440, 240)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_tw7dt")
+nodes/OneShot/position = Vector2(280, 160)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_gooxe")
+"nodes/Animation 3/position" = Vector2(-480, 420)
+node_connections = [&"output", 0, &"OneShot", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 3", &"OneShot", 0, &"Transition"]
+
+[node name="mini_conventional_logik" instance=ExtResource("1_aciid")]
+
+[node name="Skeleton3D" parent="Aramture_conventiona_logik" index="0"]
+bones/0/position = Vector3(-0.006367549, 0.12677065, 0.035899833)
+bones/0/rotation = Quaternion(0.060557056, 0.9700143, -0.23477606, -0.016889878)
+bones/0/scale = Vector3(1.1194165, 1.0523186, 0.97150457)
+bones/1/position = Vector3(2.8544607e-09, 0.008096352, 0.0057629133)
+bones/1/rotation = Quaternion(0.07768435, 2.4055055e-07, 3.486727e-08, 0.99697804)
+bones/1/scale = Vector3(0.9999998, 0.9956365, 1.000469)
+bones/2/rotation = Quaternion(0.07763594, -2.4180488e-07, 1.5183328e-08, 0.9969818)
+bones/3/rotation = Quaternion(0.5330305, 2.0919734e-07, 1.7340426e-07, 0.84609604)
+bones/3/scale = Vector3(0.99999416, 0.99829006, 1.0040222)
+bones/4/rotation = Quaternion(0.23676354, -2.871503e-07, 2.9334012e-07, 0.9715674)
+bones/5/rotation = Quaternion(0.22766012, 1.5759083e-07, 1.3709652e-07, 0.9737407)
+bones/6/rotation = Quaternion(0.27025765, 1.3643862e-07, 1.0755886e-07, 0.9627881)
+bones/7/rotation = Quaternion(0.018875346, 0.9676307, 0.24713069, -0.047549564)
+bones/7/scale = Vector3(1.0018634, 0.898926, 1.1154557)
+bones/8/rotation = Quaternion(-1.9299729e-07, 0.96592593, 0.25881907, -7.6529425e-08)
+bones/9/rotation = Quaternion(0.96592593, 1.7386455e-07, 3.0466405e-09, -0.25881895)
+bones/10/rotation = Quaternion(-0.001164291, 0.95980334, 0.28066924, 0.0010444901)
+bones/10/scale = Vector3(1.0000211, 0.90310234, 1.1134796)
+bones/11/rotation = Quaternion(3.6200856e-08, 0.96592593, 0.25881907, 7.6951244e-07)
+bones/12/rotation = Quaternion(0.96592593, 1.1369327e-08, 6.094868e-07, -0.25881895)
+bones/13/rotation = Quaternion(-0.008116142, 0.23217636, 0.97218984, 0.029585626)
+bones/13/scale = Vector3(0.94477874, 1.1958727, 0.8915929)
+bones/14/rotation = Quaternion(0.006058272, 0.9809413, -0.1942096, 0.0004714771)
+bones/14/scale = Vector3(1.0296538, 0.9066167, 1.1229957)
+bones/15/rotation = Quaternion(0.026705554, -0.65489525, 0.75519824, -0.008653602)
+bones/15/scale = Vector3(0.9196666, 0.9641159, 0.9529541)
+bones/17/rotation = Quaternion(-0.022934828, 0.22835669, 0.97142535, 0.06049905)
+bones/17/scale = Vector3(0.9181384, 1.2730874, 0.8650478)
+bones/18/rotation = Quaternion(0.013503184, 0.98651546, -0.16310497, 0.0013359707)
+bones/18/scale = Vector3(1.0084692, 0.9242025, 1.1608884)
+bones/19/rotation = Quaternion(-0.010608613, -0.6774459, 0.7354351, 0.009473016)
+bones/19/scale = Vector3(0.9685349, 0.9696202, 0.8747976)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_aciid")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "idle"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
