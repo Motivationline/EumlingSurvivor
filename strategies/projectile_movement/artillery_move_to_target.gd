@@ -7,6 +7,10 @@ class_name ArtilleryToTargetProjectileMovementStrategy
 ## how quick the direction of the velocity changes (grater values = faster)
 @export_range(0.0,50,0.1) var velocity_change_rate: float = 30
 
+@export var speed_amp: float = 10
+
+@onready var db_cube: MeshInstance3D = $"../../DBMesh"
+
 var isPosLocked: bool = false
 var start_pos: Vector3
 var target_pos: Vector3
@@ -35,12 +39,13 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				target_pos = target.position
 				distance = (target_pos - start_pos).length()
 				isPosLocked = true
+				db_cube.global_position = target_pos
 				
-				target_pos.y = 0
-				start_pos.y = 0
+				#target_pos.y = 0
+				#start_pos.y = 0
 			
 			var parent_pos = parent.position
-			parent_pos.y = 0
+			#parent_pos.y = 0
 			
 			traveled = (start_pos - parent_pos).length()
 			# x is the amount we already traveled in target position
@@ -52,8 +57,25 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 			# we can use the gradient to calculate the angle our projectile should be at on every point
 			var gradient = -2 * x + distance
 			
-			parent.velocity = new_dir #* speed_mag
+			#parent.velocity = new_dir #* speed_mag
+			
+			
+			# horizontal direction from start to target
+			var horizontal_dir = (target_pos - start_pos)
+			horizontal_dir.y = 0
+			horizontal_dir = horizontal_dir.normalized()
+
+			# slope at current point
+			var slope = gradient
+
+			# build direction vector
+			var dir = horizontal_dir + Vector3.UP * slope
+			dir = dir.normalized()
+
+			#var speed = parent.velocity.length()
+			parent.velocity = dir * speed_amp
+			
 			#print("velocity: ", parent.velocity, ", new_dir: ", new_dir, ", speed_mag: ", speed_mag)
-			parent.position.y = y
-			parent.rotation.y = tan(1/gradient)
-			parent.rotation.x = lerp_angle(parent.rotation.x, atan2(-parent.velocity.y, -parent.velocity.z), _delta * rotation_speed)
+			#parent.position.y = y
+			#parent.rotation.y = tan(1/gradient)
+			#parent.rotation.x = lerp_angle(parent.rotation.x, atan2(-parent.velocity.y, -parent.velocity.z), _delta * rotation_speed)

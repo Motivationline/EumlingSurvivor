@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfyxw5fhwmyyy"]
+[gd_scene load_steps=12 format=3 uid="uid://cfyxw5fhwmyyy"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_3ycxt"]
 [ext_resource type="Script" uid="uid://l8142vs0gken" path="res://strategies/projectile_target/universal.gd" id="2_p4q1l"]
@@ -18,6 +18,8 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqng7"]
 albedo_color = Color(0.24313726, 0.21568628, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y0egy"]
 
 [node name="ArtilleryTargetProjectile" node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_world_collision", "on_hit", "on_created") instance=ExtResource("1_3ycxt")]
 damage = null
@@ -41,12 +43,10 @@ target_property = 2
 target_sorter = 3
 max_radius = 100.0
 max_targets = 1
-is_active = true
 metadata/_custom_type_script = "uid://l8142vs0gken"
 
 [node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
 script = ExtResource("3_p4q1l")
-is_active = true
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
 [node name="OnCreated" type="Node" parent="EventStrategies" index="5"]
@@ -54,12 +54,10 @@ metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 [node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0" node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("5_6ma20")
 targeting_strats = [NodePath("../../../TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
-is_active = true
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="6"]
 script = ExtResource("6_i2kb8")
-is_active = true
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
 [node name="Hitbox" parent="." index="4" instance=ExtResource("7_ly6wf")]
@@ -89,3 +87,6 @@ material = SubResource("StandardMaterial3D_6rkhr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.40161133)
 size = Vector3(0.25, 0.01, 0.197)
 material = SubResource("StandardMaterial3D_xqng7")
+
+[node name="DBMesh" type="MeshInstance3D" parent="." index="6"]
+mesh = SubResource("BoxMesh_y0egy")
