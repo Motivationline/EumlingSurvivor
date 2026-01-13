@@ -1,0 +1,548 @@
+[gd_scene load_steps=27 format=3 uid="uid://8jbavxhvd2hx"]
+
+[ext_resource type="Texture2D" uid="uid://bgweba8ob4lv0" path="res://game/ui/reveal_seed/reward_background.png" id="2_q1d54"]
+[ext_resource type="Texture2D" uid="uid://epvigqgnbl17" path="res://game/ui/reveal_seed/reward_background2.png" id="3_rd7av"]
+[ext_resource type="ArrayMesh" uid="uid://bavnh7muxdqa" path="res://game/ui/reveal_seed/sed_model_wip.res" id="4_h88u7"]
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="4_j7odg"]
+[ext_resource type="PackedScene" uid="uid://drxv2fntob1we" path="res://mini_eumling_artistisch_reveal.tscn" id="5_j7odg"]
+[ext_resource type="Script" uid="uid://cuvk4fi0ipgsm" path="res://game/ui/reveal_seed/trigger_tool.gd" id="6_0rqoo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rd7av"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_q1d54")
+
+[sub_resource type="QuadMesh" id="QuadMesh_h88u7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h88u7"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.21831405)
+albedo_texture = ExtResource("3_rd7av")
+
+[sub_resource type="Animation" id="Animation_rd7av"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.64105946, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q1d54"]
+resource_name = "background_animation"
+length = 40.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0001, 40),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.64105946, 0, 0), Vector3(-0.64053583, 0, -6.2831855)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h88u7"]
+_data = {
+&"RESET": SubResource("Animation_rd7av"),
+&"background_animation": SubResource("Animation_q1d54")
+}
+
+[sub_resource type="Animation" id="Animation_0rqoo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.17733952, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Flash:material_override:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../WhiteBackground:material_override:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../Mini_Eumling_Anchor:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../Mini_Eumling_Anchor/mini_eumling_var1/Aramture_MiniEumling_001/Skeleton3D/mini_eumling_var1_obj_001:material_overlay:albedo_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j7odg"]
+resource_name = "click_01"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.17733952, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.02617994, 0.2617994), Vector3(0, -0.017453292, -0.08726646), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../WhiteBackground:material_override:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Flash:material_override:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.03333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../Mini_Eumling_Anchor:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_5lndm"]
+resource_name = "click_02"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.17733952, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.12217305, -0.2617994), Vector3(0, -0.017453292, 0.2617994), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Mini_Eumling_Anchor:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../Flash:material_override:albedo_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(-0.03333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../WhiteBackground:material_override:albedo_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ey80x"]
+resource_name = "click_03"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.17733952, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.36666667, 0.5, 0.6333333, 0.7666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.12217305, 0.2617994), Vector3(0, -0.017453292, -0.2617994), Vector3(0, -0.12217305, 0.2617994), Vector3(0, -0.017453292, -0.2617994), Vector3(0, -0.12217305, 0.2617994), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Mini_Eumling_Anchor:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../Flash:material_override:albedo_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(-0.03333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../WhiteBackground:material_override:albedo_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hk45w"]
+resource_name = "reveal"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Flash:material_override:albedo_color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.39999998, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../WhiteBackground:material_override:albedo_color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.06666667, 0.36666667, 2, 3.1333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1.035265),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.06666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Mini_Eumling_Anchor:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.069169894),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../Mini_Eumling_Anchor/mini_eumling_var1/Aramture_MiniEumling_001/Skeleton3D/mini_eumling_var1_obj_001:material_overlay:albedo_color")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.6952016, 3.0666666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5lndm"]
+_data = {
+&"RESET": SubResource("Animation_0rqoo"),
+&"click_01": SubResource("Animation_j7odg"),
+&"click_02": SubResource("Animation_5lndm"),
+&"click_03": SubResource("Animation_ey80x"),
+&"reveal": SubResource("Animation_hk45w")
+}
+
+[sub_resource type="Gradient" id="Gradient_0rqoo"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.14661655, 0.61466163)
+colors = PackedColorArray(0.04, 0.022226667, 0.0055999993, 1, 0.26, 0.14819999, 0.036399994, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5lndm"]
+gradient = SubResource("Gradient_0rqoo")
+
+[sub_resource type="Gradient" id="Gradient_ey80x"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.43984962)
+colors = PackedColorArray(0, 0, 0, 1, 0.34, 0.23278666, 0.047599997, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hk45w"]
+gradient = SubResource("Gradient_ey80x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6d64s"]
+render_priority = 0
+shader = ExtResource("4_j7odg")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_5lndm")
+shader_parameter/specular_focus = 0.5
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_hk45w")
+shader_parameter/rim_focus = 0.5370000255075
+shader_parameter/use_HDR = true
+shader_parameter/use_diffuse_smooth_attenuation = true
+shader_parameter/use_specular_smooth_attenuation = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6d64s"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_p1l2k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cg7f"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)
+
+[node name="RevealSeed" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.82719827, 0.56191015, 0, -0.56191015, 0.82719827, 0, 1.2917441, 1.5170482)
+projection = 1
+size = 0.87480724
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5720027, 0.8202517, 0, -0.8202517, 0.5720027, 0, 3.3311021, 2.0942307)
+light_color = Color(1.2331203, 1.3352358, 1.353256, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.9603069, 0, 0, 0, 1.5711129, 0.59804475, 0, -1.1723516, 0.8014625, -2.7931083e-08, -1.3896177, -2.202589)
+material_override = SubResource("StandardMaterial3D_rd7av")
+mesh = SubResource("QuadMesh_h88u7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.7121402, 0, 0, 0, 1.3727524, 0.597625, 0, -1.0232182, 0.8017755, 2.5012604e-08, -0.8552309, -1.4859235)
+material_override = SubResource("StandardMaterial3D_h88u7")
+mesh = SubResource("QuadMesh_h88u7")
+
+[node name="Background_Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_h88u7")
+}
+autoplay = "background_animation"
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0.17733952, 0)
+
+[node name="seed_animation" type="AnimationPlayer" parent="Marker3D"]
+root_node = NodePath("../Seed")
+libraries = {
+&"": SubResource("AnimationLibrary_5lndm")
+}
+autoplay = "reveal"
+
+[node name="Seed" type="MeshInstance3D" parent="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 0.8285004, 0.55998844, 0, -0.55998844, 0.8285004, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_6d64s")
+mesh = ExtResource("4_h88u7")
+skeleton = NodePath("../..")
+
+[node name="Mini_Eumling_Anchor" type="Marker3D" parent="."]
+
+[node name="mini_eumling_var1" parent="Mini_Eumling_Anchor" instance=ExtResource("5_j7odg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Flash" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.0318098, 0, 0, 0, 1.1965057, 0.70710677, 0, -1.1965057, 0.70710677, 0, 0.5882812, 0.5882812)
+material_override = SubResource("StandardMaterial3D_6d64s")
+mesh = SubResource("QuadMesh_p1l2k")
+
+[node name="WhiteBackground" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.0318098, 0, 0, 0, 1.1965057, 0.70710677, 0, -1.1965057, 0.70710677, 0, -0.10852739, -0.10852739)
+material_override = SubResource("StandardMaterial3D_8cg7f")
+mesh = SubResource("QuadMesh_p1l2k")
+
+[node name="TriggerTool" type="Node" parent="."]
+script = ExtResource("6_0rqoo")
