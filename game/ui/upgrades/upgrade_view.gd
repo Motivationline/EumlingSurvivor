@@ -3,7 +3,7 @@ extends CanvasLayer
 signal upgrade_chosen(Upgrade)
 
 const UPGRADE_OPTION = preload("uid://b8nr8s04nxds6")
-@onready var upgrade_container: HBoxContainer = $MarginContainer/CenterContainer/UpgradeContainer
+@onready var upgrade_container: HBoxContainer = $MarginContainer/UpgradeContainer
 
 @export var upgrade_chances: Dictionary = {
 	Enum.RARITY.COMMON: 0.45,
@@ -14,6 +14,7 @@ const UPGRADE_OPTION = preload("uid://b8nr8s04nxds6")
 }
 
 func show_upgrades(possible_upgrades: Array[Upgrade]):
+	Engine.time_scale = 0
 
 	var upgrades: Array[Upgrade]
 	for i in range(3):
@@ -41,5 +42,6 @@ func show_upgrades(possible_upgrades: Array[Upgrade]):
 func upgrade_input(event: InputEvent, option: Upgrade):
 	if not event is InputEventScreenTouch: return
 	if not event.pressed: return 
-	upgrade_chosen.emit(option)
+	upgrade_chosen.emit(option) 
+	Engine.time_scale = 1
 	hide()

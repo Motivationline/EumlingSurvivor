@@ -14,16 +14,20 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="UpgradeContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer"]
+[node name="UpgradeContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="UpgradeOption" parent="MarginContainer/CenterContainer/UpgradeContainer" instance=ExtResource("2_264sj")]
+[node name="UpgradeOption" parent="MarginContainer/UpgradeContainer" instance=ExtResource("2_264sj")]
 layout_mode = 2
 
-[node name="UpgradeOption2" parent="MarginContainer/CenterContainer/UpgradeContainer" instance=ExtResource("2_264sj")]
+[node name="UpgradeOption2" parent="MarginContainer/UpgradeContainer" instance=ExtResource("2_264sj")]
+layout_mode = 2
+
+[node name="UpgradeOption3" parent="MarginContainer/UpgradeContainer" instance=ExtResource("2_264sj")]
 layout_mode = 2
