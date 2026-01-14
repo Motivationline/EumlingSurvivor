@@ -1,3 +1,52 @@
-[gd_scene format=3 uid="uid://co8g0cy1kcxmd"]
+[gd_scene load_steps=3 format=3 uid="uid://dm5487efgho7v"]
+
+[ext_resource type="Script" uid="uid://g5x2uj6jmytl" path="res://game/ui/main_menu/main_menu.gd" id="1_2ww3u"]
+[ext_resource type="PackedScene" uid="uid://dadtg2y3wb6l4" path="res://assets/characters/eumling/V2/eumling_v_2_prefab.tscn" id="2_mkp5f"]
 
 [node name="MainMenu" type="Node3D"]
+script = ExtResource("1_2ww3u")
+
+[node name="Eumling_v2" parent="." instance=ExtResource("2_mkp5f")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, -4.0086928e-08, 0.88867325, 0.458541, 7.769028e-08, 0.458541, -0.88867325, 0, 1.502757, -1.4508237)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.5
+offset_top = -75.0
+offset_right = 52.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Play"
+
+[node name="EumlingclopediaButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -105.0
+offset_top = -75.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Eumlingclopedia"
+
+[connection signal="pressed" from="CanvasLayer/Control/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/EumlingclopediaButton" to="." method="_on_eumlingclopedia_button_pressed"]
