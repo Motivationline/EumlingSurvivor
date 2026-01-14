@@ -146,6 +146,8 @@ func target_reached():
 	if done: return
 	done = true
 
+# TODO: Flock only moving entities
+
 func _flock(_direction: Vector3) -> Vector3:
 	#separation
 	var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
@@ -163,8 +165,14 @@ func _flock(_direction: Vector3) -> Vector3:
 	#print("Members: ", members_in_range)
 	for member in members_in_range:
 		var dist = member.global_position - parent.global_position
-		var angle_rad = acos(parent.transform.basis.z.dot(dist))
-		var angle = angle_rad * (180/PI)
+		#var angle_rad = acos(parent.transform.basis.z.dot(dist))
+		var to_member = (member.global_position - parent.global_position)
+		var to_member_dir = to_member.normalized()
+
+		var forward = -parent.transform.basis.z.normalized() # depending on your forward axis
+		var dot = clamp(forward.dot(to_member_dir), -1.0, 1.0)
+		var angle = rad_to_deg(acos(dot))
+		#var angle = angle_rad * (180/PI)
 		#print(angle)
 		#TODO: Check if this produces is finite error
 		if angle > fov:
