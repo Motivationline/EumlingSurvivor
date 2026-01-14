@@ -87,7 +87,7 @@ func _hurt_by(_attacker: HitBox):
 
 func _die():
 	for ev in on_death:
-		await ev.event_triggered("Death")
+		ev.event_triggered("Death")
 	queue_free()
 
 func _process(delta: float) -> void:
