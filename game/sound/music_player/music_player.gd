@@ -57,9 +57,9 @@ func start_playback(names:Array[String],with_ambient:bool = true):
 	var env_name = names[1]
 	if playing == false:
 		play()
-		
 	if track_name != current_track:
 		get_stream_playback().switch_to_clip_by_name(track_name)
+		
 	if env_name != current_env and with_ambient:
 		if env_name == "":
 			ambientNoisePlayer.stop()

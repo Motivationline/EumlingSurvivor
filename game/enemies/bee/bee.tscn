@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8fl6h51qwtke"]
+[gd_scene load_steps=16 format=3 uid="uid://b8fl6h51qwtke"]
 
 [ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_23kmn"]
 [ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="2_o3r7l"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cfsoibufbvjrp" path="res://game/projectiles/artillery_honey/honey_bomb.tscn" id="7_limpd"]
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="9_jqvwv"]
 [ext_resource type="PackedScene" uid="uid://c3ksp1n3yrx3o" path="res://game/aoes/peacock_aoe_attack/peacock_aoe.tscn" id="10_65bwp"]
+[ext_resource type="Script" path="res://strategies/event/enemy/play_sound.gd" id="11_jqvwv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1q47h"]
 size = Vector3(0.69140625, 0.8754883, 0.63623047)
@@ -20,13 +21,14 @@ size = Vector3(0.69140625, 0.8754883, 0.63623047)
 radius = 0.27676392
 height = 0.55352783
 
-[node name="Bee" type="CharacterBody3D" node_paths=PackedStringArray("healthbar", "hurtbox", "state_machine")]
+[node name="Bee" type="CharacterBody3D" node_paths=PackedStringArray("healthbar", "hurtbox", "state_machine", "on_death")]
 collision_layer = 16
 script = ExtResource("1_23kmn")
 health = 200.0
 healthbar = NodePath("Healthbar3D")
 hurtbox = NodePath("Hurtbox")
 state_machine = NodePath("StateMachine")
+on_death = [NodePath("Eventlisteners/PlaySoundEventStrategy")]
 
 [node name="Healthbar3D" parent="." instance=ExtResource("2_o3r7l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.5)
@@ -100,6 +102,12 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Eventlisteners" type="Node" parent="."]
 
+[node name="PlaySoundEventStrategy" type="Node" parent="Eventlisteners" node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("11_jqvwv")
+sound_manager = NodePath("../../Visuals/Bee/SoundEffectManager")
+sound_to_play = "Death"
+needs_to_be_persistent = true
+
 [node name="Visuals" type="Node3D" parent="."]
 
 [node name="Bee" parent="Visuals" instance=ExtResource("4_xxbww")]
@@ -117,3 +125,5 @@ shape = SubResource("BoxShape3D_1q47h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2737732, 0)
 shape = SubResource("CapsuleShape3D_limpd")
+
+[editable path="Visuals/Bee"]

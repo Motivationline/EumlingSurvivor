@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bclxhfmk8hmfi"]
+[gd_scene load_steps=25 format=3 uid="uid://bclxhfmk8hmfi"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jhi1l"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_3utvs"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_fi40l"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_csjgc"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_c2xk5"]
+[ext_resource type="Script" path="res://strategies/event/enemy/play_sound.gd" id="13_g2myh"]
 
 [sub_resource type="Resource" id="Resource_0v3ys"]
 script = ExtResource("12_csjgc")
@@ -48,7 +49,7 @@ height = 2.6362305
 radius = 0.2553711
 height = 2.4926758
 
-[node name="BossBugger" node_paths=PackedStringArray("hurtbox", "node_with_animation_tree") instance=ExtResource("1_jhi1l")]
+[node name="BossBugger" node_paths=PackedStringArray("hurtbox", "node_with_animation_tree", "on_death") instance=ExtResource("1_jhi1l")]
 collision_layer = 64
 collision_mask = 65
 script = ExtResource("2_unkqv")
@@ -56,6 +57,7 @@ MAX_FILL = 9.0
 health = 800.0
 hurtbox = NodePath("HurtBox")
 node_with_animation_tree = NodePath("Visuals/BossBugger")
+on_death = [NodePath("Eventlisteners/PlaySoundEventStrategy")]
 
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4826612, 0)
@@ -281,6 +283,12 @@ target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
+[node name="PlaySoundEventStrategy" type="Node" parent="Eventlisteners" index="0" node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("13_g2myh")
+sound_manager = NodePath("../../Visuals/BossBugger/SoundEffectManager")
+sound_to_play = "Death"
+needs_to_be_persistent = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)
 shape = SubResource("CapsuleShape3D_fngux")
@@ -311,3 +319,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2463379, 0)
 shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" index="0" instance=ExtResource("3_vgowq")]
+
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" index="0"]
+bones/0/position = Vector3(1.5046328e-36, 1.2618552, -4.350388e-22)
+bones/0/rotation = Quaternion(0.9953815, -4.5829354e-09, -4.5484533e-08, 0.09599852)
+bones/1/scale = Vector3(1.0233818, 0.9548385, 1.0233818)
+bones/5/rotation = Quaternion(-0.3568207, 1.3808197e-09, 5.0640978e-08, 0.9341729)
+bones/6/rotation = Quaternion(-0.20554766, 6.672329e-09, 1.403244e-09, 0.9786471)
+bones/7/rotation = Quaternion(-0.21006376, -2.2358886e-14, 2.468743e-14, 0.9776877)
+bones/7/scale = Vector3(1.3401755, 1.0625199, 1.2911601)
+bones/8/rotation = Quaternion(-0.20554754, 1.7124421e-15, 1.0657329e-15, 0.9786472)
+bones/9/rotation = Quaternion(-0.3636853, -6.2529323e-15, -4.066015e-14, 0.93152195)
+bones/10/rotation = Quaternion(-0.36368507, -1.55211e-14, -6.3629683e-15, 0.931522)
+bones/11/rotation = Quaternion(-0.3636848, -1.4844937e-14, 2.5765414e-14, 0.9315221)
+bones/12/rotation = Quaternion(-0.36368546, 3.9825565e-14, 8.670931e-08, 0.9315219)
+bones/17/rotation = Quaternion(0.92512596, -0.0004846503, 0.0007369426, 0.3796594)
+bones/19/rotation = Quaternion(-0.52452016, 0.56606865, -0.46648484, -0.43224627)
+bones/22/rotation = Quaternion(-0.39844614, 0.6609054, -0.54463786, -0.32835114)
+bones/25/rotation = Quaternion(0.92512596, 0.0004846847, -0.0007370273, 0.3796594)
+bones/27/rotation = Quaternion(0.31895524, -0.70148647, 0.21398649, 0.60032845)
+bones/31/rotation = Quaternion(0.5245202, 0.56606865, -0.46648487, 0.43224618)
+bones/34/rotation = Quaternion(0.3984461, 0.6609054, -0.544638, 0.3283511)
+
+[node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0"]
+transform = Transform3D(1.0233818, 3.730006e-10, 2.4403175e-07, -4.7029392e-08, 0.9372394, 0.19557881, -2.394575e-07, -0.18247946, 1.0045195, -1.0122976e-12, 1.2593117, 0.00049523654)
+
+[node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="16"]
+transform = Transform3D(-0.07608376, -0.99710166, -6.973993e-07, -1.6391277e-07, -6.724149e-07, 1, -0.9971016, 0.07608366, -1.6391277e-07, -0.24529767, 1.2615535, -0.0015486884)
+
+[node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="17"]
+transform = Transform3D(-0.46685272, -0.8843352, -3.6957374e-07, -4.4703484e-08, -3.2037497e-07, 1.0000001, -0.8843351, 0.46685258, 1.937151e-07, -0.13967305, 1.2036928, 0.13268791)
+
+[node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="18"]
+transform = Transform3D(-0.07608346, 0.99710166, 5.542983e-07, 4.4703484e-08, -5.7462603e-07, 1.0000001, 0.99710155, 0.076083556, -1.4901161e-07, 0.24529767, 1.2615535, -0.0015486883)
+
+[node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="19"]
+transform = Transform3D(-0.46685255, 0.88433534, 2.56275e-07, 1.7881393e-07, -1.937151e-07, 1, 0.8843351, 0.46685264, -5.9604645e-08, 0.13967305, 1.2036928, 0.13268793)
+
+[editable path="Visuals/BossBugger"]

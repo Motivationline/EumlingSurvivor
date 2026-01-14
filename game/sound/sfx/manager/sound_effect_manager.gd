@@ -36,7 +36,6 @@ func play_sound(sound_name:String, focus:bool = false, persistent = false):
 			sound.finished.connect(sound.queue_free)
 
 		sound.play()
-		
 		if focus:
 			music_player.fade_in_and_out(sound.stream.get_length())
 	else:
