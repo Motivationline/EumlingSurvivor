@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cfsoibufbvjrp" path="res://game/projectiles/artillery_honey/honey_bomb.tscn" id="7_limpd"]
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="9_jqvwv"]
 [ext_resource type="PackedScene" uid="uid://c3ksp1n3yrx3o" path="res://game/aoes/peacock_aoe_attack/peacock_aoe.tscn" id="10_65bwp"]
-[ext_resource type="Script" path="res://strategies/event/enemy/play_sound.gd" id="11_jqvwv"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="11_jqvwv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1q47h"]
 size = Vector3(0.69140625, 0.8754883, 0.63623047)
@@ -21,13 +21,14 @@ size = Vector3(0.69140625, 0.8754883, 0.63623047)
 radius = 0.27676392
 height = 0.55352783
 
-[node name="Bee" type="CharacterBody3D" node_paths=PackedStringArray("healthbar", "hurtbox", "state_machine", "on_death")]
+[node name="Bee" type="CharacterBody3D" node_paths=PackedStringArray("healthbar", "hurtbox", "state_machine", "node_with_animation_tree", "on_death")]
 collision_layer = 16
 script = ExtResource("1_23kmn")
 health = 200.0
 healthbar = NodePath("Healthbar3D")
 hurtbox = NodePath("Hurtbox")
 state_machine = NodePath("StateMachine")
+node_with_animation_tree = NodePath("Visuals/Bee")
 on_death = [NodePath("Eventlisteners/PlaySoundEventStrategy")]
 
 [node name="Healthbar3D" parent="." instance=ExtResource("2_o3r7l")]
@@ -52,14 +53,15 @@ wait_time = 3.0
 speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState")
-animation_trigger = "idle"
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_irhv4")
 start_delay = 0.8
 next_state = NodePath("../DecideDistanceState")
-animation_trigger = "artillery"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/shoot/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState"]
@@ -74,7 +76,6 @@ flee_distance = 3.5
 time_based = true
 target_flee_time = 2.0
 next_state = NodePath("../DecideDistanceState2")
-animation_trigger = "idle"
 metadata/_custom_type_script = "uid://mycfudgv475a"
 
 [node name="DecideDistanceState2" type="Node" parent="StateMachine" node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found")]
@@ -90,7 +91,9 @@ script = ExtResource("5_irhv4")
 start_delay = 0.2
 end_delay = 0.8
 next_state = NodePath("../DecideDistanceState")
-animation_trigger = "attack"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/artillery/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState2"]
@@ -111,6 +114,109 @@ needs_to_be_persistent = true
 [node name="Visuals" type="Node3D" parent="."]
 
 [node name="Bee" parent="Visuals" instance=ExtResource("4_xxbww")]
+
+[node name="Skeleton3D" parent="Visuals/Bee" index="0"]
+bones/0/position = Vector3(2.419707e-07, 0.40067336, -7.8976154e-07)
+bones/0/rotation = Quaternion(0.49893486, -0.4989347, 0.501063, -0.501063)
+bones/1/rotation = Quaternion(0.24796554, -0.6449838, -0.2915725, 0.66143364)
+bones/2/rotation = Quaternion(-0.20638213, 0.002803796, -0.114293456, 0.97176933)
+bones/3/rotation = Quaternion(0.58645386, -0.5781079, -0.41830525, 0.3832543)
+bones/4/rotation = Quaternion(-0.20028163, -0.022647683, -0.0862948, 0.97566783)
+bones/5/rotation = Quaternion(0.70806503, -0.4141063, -0.54620814, -0.16975445)
+bones/6/rotation = Quaternion(-0.2548652, -0.020566417, -0.052088395, 0.96535355)
+bones/7/rotation = Quaternion(-0.57666504, 0.069964424, 0.70796114, 0.4016884)
+bones/8/rotation = Quaternion(-0.24329482, -0.03041465, -0.065194175, 0.96728086)
+bones/9/rotation = Quaternion(-0.40925208, -0.35399723, 0.6177169, 0.57063514)
+bones/10/rotation = Quaternion(-0.1234467, -0.022370636, -0.06795555, 0.9897689)
+bones/11/rotation = Quaternion(-0.333746, -0.6477425, 0.28773674, 0.6214908)
+bones/12/rotation = Quaternion(-0.20854405, -0.006492741, -0.055913903, 0.9763918)
+bones/13/rotation = Quaternion(-0.05177688, -0.7076581, 0.008471973, 0.7046045)
+bones/14/rotation = Quaternion(-0.21352243, -0.0069272364, -0.06660368, 0.9746406)
+bones/16/position = Vector3(2.4235877e-07, 0.11465474, -7.8976154e-07)
+bones/16/scale = Vector3(1.0757462, 0.86435574, 1.0757462)
+bones/17/rotation = Quaternion(-0.3271523, -0.62687844, -0.32932287, 0.62573254)
+bones/17/scale = Vector3(0.93301207, 1.0014036, 1.0937331)
+bones/18/rotation = Quaternion(-0.51918215, 0.055219185, 0.17776406, 0.8341468)
+bones/18/scale = Vector3(1.0008763, 0.99566877, 1.003909)
+bones/23/rotation = Quaternion(-0.5201483, -0.051105846, -0.16768421, 0.8358923)
+bones/23/scale = Vector3(1.0003209, 0.99637, 1.0037187)
+bones/28/position = Vector3(0.026584605, 0.33090383, 0.10460581)
+bones/28/rotation = Quaternion(-0.0060522617, 0.82524025, 0.56410617, 0.026946653)
+bones/28/scale = Vector3(0.9298083, 0.9630175, 1.1297754)
+bones/29/rotation = Quaternion(-0.20028163, -0.022647811, -0.08629471, 0.97566783)
+bones/30/rotation = Quaternion(-0.16783203, -0.010704817, -0.24517268, 0.9547818)
+bones/31/position = Vector3(0.10285269, 0.28236368, 0.0819992)
+bones/31/rotation = Quaternion(0.27961564, 0.6315621, 0.6748581, -0.25982875)
+bones/31/scale = Vector3(0.92966837, 0.9308488, 1.1563593)
+bones/32/rotation = Quaternion(-0.20638189, 0.0028037084, -0.11429339, 0.9717694)
+bones/33/rotation = Quaternion(-0.16516107, -0.0031837458, -0.100735135, 0.9811036)
+bones/34/position = Vector3(0.086810164, 0.23456706, 0.0059591867)
+bones/34/rotation = Quaternion(-0.53634083, -0.46453097, -0.49367788, 0.50282365)
+bones/34/scale = Vector3(0.9296683, 0.9306106, 1.1565675)
+bones/36/position = Vector3(0.008090823, 0.088764355, -3.541581e-08)
+bones/36/rotation = Quaternion(-0.14655933, -0.00715621, -0.094681695, 0.9846342)
+bones/37/position = Vector3(0.07753458, 0.27854037, -0.07982089)
+bones/37/rotation = Quaternion(-0.6940541, -0.22343947, -0.237459, 0.6418544)
+bones/37/scale = Vector3(0.92967397, 0.9313227, 1.1559589)
+bones/38/rotation = Quaternion(-0.20854402, -0.0064927125, -0.055913746, 0.97639185)
+bones/39/rotation = Quaternion(-0.17519349, -0.01592058, -0.0987825, 0.9794366)
+bones/40/position = Vector3(0.027632505, 0.3220649, -0.10825017)
+bones/40/rotation = Quaternion(-0.53704184, 0.037102986, 0.032645553, 0.84210676)
+bones/40/scale = Vector3(0.9297493, 0.97336775, 1.1209078)
+bones/41/rotation = Quaternion(-0.12300769, -0.016634397, -0.068668224, 0.9898874)
+bones/42/rotation = Quaternion(-0.20681532, -0.01123708, 0.020365069, 0.9781036)
+bones/43/position = Vector3(-0.06320225, 0.33178526, -0.058635406)
+bones/43/rotation = Quaternion(-0.35732454, 0.4555707, 0.21605656, 0.7861896)
+bones/43/scale = Vector3(0.9297305, 1.033277, 1.0659261)
+bones/44/rotation = Quaternion(-0.24329506, -0.030414648, -0.065194264, 0.96728086)
+bones/45/rotation = Quaternion(-0.122417465, 0.0048028473, -0.042315453, 0.99156463)
+bones/46/position = Vector3(-0.048928544, 0.3574224, 0.033562016)
+bones/46/rotation = Quaternion(-0.20661557, 0.79275346, 0.26496878, 0.50857025)
+bones/46/scale = Vector3(0.9310094, 1.0717162, 1.0261089)
+bones/47/rotation = Quaternion(-0.2548651, -0.02056659, -0.052088458, 0.96535367)
+bones/48/rotation = Quaternion(-0.13319916, -0.037024323, -0.14882898, 0.97915125)
+bones/49/position = Vector3(-0.07428659, 0.27355742, 0.047811076)
+bones/49/rotation = Quaternion(-0.3406542, 0.6527417, 0.5324161, 0.41763163)
+bones/49/scale = Vector3(0.9296673, 0.93962395, 1.1492876)
+bones/50/position = Vector3(-0.07392183, 0.2735574, -0.048373554)
+bones/50/rotation = Quaternion(-0.53386575, 0.41485587, 0.33837757, 0.6545095)
+bones/50/scale = Vector3(0.9296672, 0.9396241, 1.1492867)
+
+[node name="DEF_ANTENNA1_R" parent="Visuals/Bee/Skeleton3D" index="0"]
+transform = Transform3D(-0.46043494, 0.64763397, -0.6131504, 0.030321617, 0.6438341, 0.6568817, 0.98584855, 0.40376276, -0.31312, 0.06523307, 0.54506975, -0.07671453)
+
+[node name="DEF_ANTENNA_R" parent="Visuals/Bee/Skeleton3D" index="1"]
+transform = Transform3D(-0.46043414, 0.64763397, -0.6131511, 0.030320555, 0.64383405, 0.6568818, 0.985849, 0.4037629, -0.3131185, 0.023603886, 0.5036849, -0.10266794)
+
+[node name="DEF_ANTENNA1_L" parent="Visuals/Bee/Skeleton3D" index="2"]
+transform = Transform3D(-0.45493343, -0.6467762, 0.6181423, -0.028875107, 0.6458796, 0.6549358, -0.9884665, 0.4000607, -0.3095984, -0.06408579, 0.5452741, -0.0770844)
+
+[node name="DEF_ANTENNA_L" parent="Visuals/Bee/Skeleton3D" index="3"]
+transform = Transform3D(-0.45493263, -0.64677626, 0.61814284, -0.02887407, 0.6458795, 0.65493596, -0.98846686, 0.40006092, -0.3095969, -0.02251179, 0.5037577, -0.10279983)
+
+[node name="DEF_PEDAL32" parent="Visuals/Bee/Skeleton3D" index="4"]
+transform = Transform3D(-0.23877363, 1.0336492, -0.023255229, 0.03957225, -0.07519615, 0.9548862, 0.97254294, 0.23279892, -0.03513439, 0.21092182, 0.43154955, -0.02432912)
+
+[node name="DEF_PEDAL31" parent="Visuals/Bee/Skeleton3D" index="5"]
+transform = Transform3D(-0.05131536, 0.9641911, -0.44009852, 0.016405148, 0.3025697, 0.90951115, 0.99871176, 0.04184323, -0.045753963, 0.112529546, 0.40067336, -0.028599076)
+
+[node name="DEF_PEDAL11" parent="Visuals/Bee/Skeleton3D" index="6"]
+transform = Transform3D(0.99680036, -0.080801226, -0.00858607, 0.0014689273, -0.050481744, 0.9977133, -0.08099332, -0.99585474, -0.077642456, 0.0064108144, 0.31740412, -0.09338649)
+
+[node name="DEF_PEDAL72" parent="Visuals/Bee/Skeleton3D" index="7"]
+transform = Transform3D(0.69349414, -0.61203295, -0.38605934, 0.04665147, -0.46012637, 0.8845246, -0.71876913, -0.62517244, -0.3083174, -0.15989998, 0.34963766, -0.1414188)
+
+[node name="DEF_PEDAL71" parent="Visuals/Bee/Skeleton3D" index="8"]
+transform = Transform3D(0.6165074, -0.78631306, -0.078680634, 0.004282996, -0.061337106, 0.9962409, -0.7874495, -0.61613435, -0.053207144, -0.08586678, 0.35541272, -0.08340832)
+
+[node name="DEF_BODY" parent="Visuals/Bee/Skeleton3D" index="9"]
+transform = Transform3D(0, 1.9192553e-16, 1.0757462, 2.3886364e-16, 0.86435574, -2.3886364e-16, -1.0757462, 1.9192553e-16, 0, 2.4235877e-07, 0.11465474, -7.8976154e-07)
+
+[node name="BoneAttachment3D" parent="Visuals/Bee/Skeleton3D" index="26"]
+transform = Transform3D(-0.90802866, 0.41495672, -0.10414171, -8.645246e-06, 0.16322632, 0.97312427, 0.4191131, 0.8990289, -0.22559722, 0.051432826, 0.35110566, 0.07991272)
+
+[node name="BoneAttachment3D2" parent="Visuals/Bee/Skeleton3D" index="27"]
+transform = Transform3D(-0.9044281, -0.42259857, 0.10603359, -9.627115e-06, 0.16322663, 0.97312355, -0.42682722, 0.8954622, -0.22471452, -0.052037425, 0.35110566, 0.07952034)
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_kp0cq")]
 collision_layer = 64

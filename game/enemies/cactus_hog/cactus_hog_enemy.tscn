@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://b5hdpq54o462t"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_c2tdt"]
-[ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="2_7gcdu"]
+[ext_resource type="Script" path="res://state_machine/enemy/multistate.gd" id="2_7gcdu"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_xfdg2"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_leyq8"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_0es7d"]
@@ -51,13 +51,18 @@ next_state = NodePath(".")
 script = ExtResource("2_xfdg2")
 wait_time = 0.0
 stop_distance = 0.1
-animation_trigger = "walk"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": 1
+})
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState" index="1" node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_leyq8")
 start_delay = 2.0
 next_state = NodePath(".")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Shoot/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0"]

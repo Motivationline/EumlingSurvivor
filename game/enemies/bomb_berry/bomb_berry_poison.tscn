@@ -75,7 +75,9 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 script = ExtResource("7_6vfce")
 start_delay = 1.55
 next_state = NodePath("../KillSelfState")
-animation_trigger = "explode"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Explode/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/Explode/SpawnEntitiesState"]

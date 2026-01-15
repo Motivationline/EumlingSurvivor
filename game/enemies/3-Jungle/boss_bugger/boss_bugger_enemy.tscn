@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_fi40l"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_csjgc"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_c2xk5"]
-[ext_resource type="Script" path="res://strategies/event/enemy/play_sound.gd" id="13_g2myh"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="13_g2myh"]
 
 [sub_resource type="Resource" id="Resource_0v3ys"]
 script = ExtResource("12_csjgc")
@@ -75,7 +75,9 @@ script = ExtResource("3_unkqv")
 fallback = NodePath("../Recharge/WaitForTimeXState")
 selection = "RANDOM"
 states = [NodePath("../MeleeAttack/MoveTowardsPlayerState"), NodePath("../TripleShot/LookAtPlayerState1"), NodePath("../BigBomba/AimForBig")]
-animation_trigger = "idle"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Salve/request": 3
+})
 
 [node name="MeleeAttack" type="Node" parent="StateMachine" index="1"]
 
@@ -87,7 +89,6 @@ speed_override = 2.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState")
 resource_cost = 3.0
-animation_trigger = "idle"
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine/MeleeAttack" index="1" node_paths=PackedStringArray("next_state")]
@@ -96,7 +97,9 @@ start_delay = 0.5
 end_delay = 0.4
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = 3.0
-animation_trigger = "melee"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/hit/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/MeleeAttack/SpawnEntitiesState" index="0"]
@@ -115,7 +118,9 @@ script = ExtResource("8_wwgv0")
 wait_time = 1.6
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = -9.0
-animation_trigger = "REFILL"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Suck/request": 1
+})
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="TripleShot" type="Node" parent="StateMachine" index="3"]
@@ -128,7 +133,6 @@ speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../Initial Shot")
 resource_cost = 3.0
-animation_trigger = "shoot"
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="Initial Shot" type="Node" parent="StateMachine/TripleShot" index="1" node_paths=PackedStringArray("next_state")]
@@ -136,7 +140,9 @@ script = ExtResource("3_ectag")
 start_delay = 0.5
 next_state = NodePath("../LookAtPlayerState2")
 resource_cost = 1.0
-animation_trigger = "shoot"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Salve/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/Initial Shot" index="0"]
@@ -153,7 +159,9 @@ rotation_speed = 20.0
 speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState3")
-animation_trigger = "shoot"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Salve/request": 3
+})
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="SpawnEntitiesState3" type="Node" parent="StateMachine/TripleShot" index="3" node_paths=PackedStringArray("next_state")]
@@ -161,7 +169,9 @@ script = ExtResource("3_ectag")
 start_delay = 0.15
 next_state = NodePath("../LookAtPlayerState3")
 resource_cost = 1.0
-animation_trigger = "shoot"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Salve/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState3" index="0"]
@@ -178,7 +188,9 @@ rotation_speed = 20.0
 speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState4")
-animation_trigger = "shoot"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Salve/request": 3
+})
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="SpawnEntitiesState4" type="Node" parent="StateMachine/TripleShot" index="5" node_paths=PackedStringArray("next_state")]
@@ -186,7 +198,9 @@ script = ExtResource("3_ectag")
 start_delay = 0.15
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = 1.0
-animation_trigger = "shoot"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Salve/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState4" index="0"]
@@ -206,7 +220,6 @@ speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../Booom")
 resource_cost = 6.0
-animation_trigger = "shoot"
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="Booom" type="Node" parent="StateMachine/BigBomba" index="1" node_paths=PackedStringArray("next_state")]
@@ -214,7 +227,6 @@ script = ExtResource("3_ectag")
 start_delay = 0.5
 next_state = NodePath("../AimForBig2")
 resource_cost = 2.0
-animation_trigger = "shoot"
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom" index="0"]
@@ -234,7 +246,6 @@ rotation_speed = 20.0
 speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../Booom2")
-animation_trigger = "shoot"
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="Booom2" type="Node" parent="StateMachine/BigBomba" index="3" node_paths=PackedStringArray("next_state")]
@@ -242,7 +253,6 @@ script = ExtResource("3_ectag")
 start_delay = 0.5
 next_state = NodePath("../AimForBig3")
 resource_cost = 2.0
-animation_trigger = "shoot"
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom2" index="0"]
@@ -262,7 +272,6 @@ rotation_speed = 20.0
 speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../Booom3")
-animation_trigger = "shoot"
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="Booom3" type="Node" parent="StateMachine/BigBomba" index="5" node_paths=PackedStringArray("next_state")]
@@ -270,7 +279,6 @@ script = ExtResource("3_ectag")
 start_delay = 0.5
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = 2.0
-animation_trigger = "shoot"
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom3" index="0"]
@@ -321,39 +329,39 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 [node name="BossBugger" parent="Visuals" index="0" instance=ExtResource("3_vgowq")]
 
 [node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" index="0"]
-bones/0/position = Vector3(1.5046328e-36, 1.2618552, -4.350388e-22)
-bones/0/rotation = Quaternion(0.9953815, -4.5829354e-09, -4.5484533e-08, 0.09599852)
-bones/1/scale = Vector3(1.0233818, 0.9548385, 1.0233818)
-bones/5/rotation = Quaternion(-0.3568207, 1.3808197e-09, 5.0640978e-08, 0.9341729)
-bones/6/rotation = Quaternion(-0.20554766, 6.672329e-09, 1.403244e-09, 0.9786471)
-bones/7/rotation = Quaternion(-0.21006376, -2.2358886e-14, 2.468743e-14, 0.9776877)
-bones/7/scale = Vector3(1.3401755, 1.0625199, 1.2911601)
-bones/8/rotation = Quaternion(-0.20554754, 1.7124421e-15, 1.0657329e-15, 0.9786472)
-bones/9/rotation = Quaternion(-0.3636853, -6.2529323e-15, -4.066015e-14, 0.93152195)
-bones/10/rotation = Quaternion(-0.36368507, -1.55211e-14, -6.3629683e-15, 0.931522)
-bones/11/rotation = Quaternion(-0.3636848, -1.4844937e-14, 2.5765414e-14, 0.9315221)
-bones/12/rotation = Quaternion(-0.36368546, 3.9825565e-14, 8.670931e-08, 0.9315219)
-bones/17/rotation = Quaternion(0.92512596, -0.0004846503, 0.0007369426, 0.3796594)
-bones/19/rotation = Quaternion(-0.52452016, 0.56606865, -0.46648484, -0.43224627)
-bones/22/rotation = Quaternion(-0.39844614, 0.6609054, -0.54463786, -0.32835114)
-bones/25/rotation = Quaternion(0.92512596, 0.0004846847, -0.0007370273, 0.3796594)
-bones/27/rotation = Quaternion(0.31895524, -0.70148647, 0.21398649, 0.60032845)
-bones/31/rotation = Quaternion(0.5245202, 0.56606865, -0.46648487, 0.43224618)
-bones/34/rotation = Quaternion(0.3984461, 0.6609054, -0.544638, 0.3283511)
+bones/0/position = Vector3(7.81285e-37, 1.4130188, -3.7923982e-22)
+bones/0/rotation = Quaternion(0.9964729, 5.9564558e-09, -4.5534406e-08, -0.08391556)
+bones/1/scale = Vector3(0.98572814, 1.0292687, 0.9857282)
+bones/5/rotation = Quaternion(-0.40777615, 3.9024908e-09, 2.160924e-08, 0.91308194)
+bones/6/rotation = Quaternion(-0.08192501, 2.613889e-09, 2.1549935e-10, 0.99663854)
+bones/7/rotation = Quaternion(-0.08513968, -8.631358e-15, 2.3080027e-14, 0.99636906)
+bones/7/scale = Vector3(1.3401754, 1.0105885, 1.3322085)
+bones/8/rotation = Quaternion(-0.08192488, -5.094122e-18, -9.537439e-16, 0.9966385)
+bones/9/rotation = Quaternion(-0.30286574, -1.9056899e-15, -2.8875285e-14, 0.95303327)
+bones/10/rotation = Quaternion(-0.3028659, -7.070788e-15, -1.3690521e-14, 0.95303315)
+bones/11/rotation = Quaternion(-0.3028655, -1.0485623e-14, -1.1789883e-14, 0.9530334)
+bones/12/rotation = Quaternion(-0.30286583, -3.768422e-15, 7.220877e-08, 0.9530332)
+bones/17/rotation = Quaternion(0.81156313, -0.0004111487, 0.00083841954, 0.5842641)
+bones/19/rotation = Quaternion(-0.4385775, 0.4733182, -0.56036747, -0.5192378)
+bones/22/rotation = Quaternion(-0.33316064, 0.55261606, -0.654249, -0.39443347)
+bones/25/rotation = Quaternion(0.81156313, 0.0004112057, -0.00083849154, 0.5842641)
+bones/27/rotation = Quaternion(0.2062212, -0.65178907, 0.336221, 0.6477649)
+bones/31/rotation = Quaternion(0.43857735, 0.47331822, -0.5603675, 0.5192379)
+bones/34/rotation = Quaternion(0.33316055, 0.552616, -0.6542492, 0.39443338)
 
 [node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0"]
-transform = Transform3D(1.0233818, 3.730006e-10, 2.4403175e-07, -4.7029392e-08, 0.9372394, 0.19557881, -2.394575e-07, -0.18247946, 1.0045195, -1.0122976e-12, 1.2593117, 0.00049523654)
+transform = Transform3D(0.98572814, -4.352573e-09, 2.3536691e-07, 4.3472305e-08, 1.0147727, -0.16485234, -2.3135495e-07, 0.17213401, 0.97184545, 1.1812501e-11, 1.4102648, -0.00046715658)
 
 [node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="16"]
-transform = Transform3D(-0.07608376, -0.99710166, -6.973993e-07, -1.6391277e-07, -6.724149e-07, 1, -0.9971016, 0.07608366, -1.6391277e-07, -0.24529767, 1.2615535, -0.0015486884)
+transform = Transform3D(-0.07608376, -0.9971016, -3.175362e-07, -1.3411045e-07, -2.6915222e-07, 0.99999994, -0.9971015, 0.07608376, -2.9802322e-08, -0.24529767, 1.4132825, -0.0015556337)
 
 [node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="17"]
-transform = Transform3D(-0.46685272, -0.8843352, -3.6957374e-07, -4.4703484e-08, -3.2037497e-07, 1.0000001, -0.8843351, 0.46685258, 1.937151e-07, -0.13967305, 1.2036928, 0.13268791)
+transform = Transform3D(-0.4668526, -0.8843352, -5.2615246e-07, -1.0430813e-07, -5.1409006e-07, 0.99999994, -0.88433504, 0.46685255, 2.2351742e-07, -0.13967305, 1.3118088, 0.10366047)
 
 [node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="18"]
-transform = Transform3D(-0.07608346, 0.99710166, 5.542983e-07, 4.4703484e-08, -5.7462603e-07, 1.0000001, 0.99710155, 0.076083556, -1.4901161e-07, 0.24529767, 1.2615535, -0.0015486883)
+transform = Transform3D(-0.07608382, 0.9971017, 4.573242e-07, 3.7252903e-07, -3.7718564e-07, 1.0000001, 0.99710155, 0.07608374, -2.5331974e-07, 0.24529767, 1.4132825, -0.0015556335)
 
 [node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="19"]
-transform = Transform3D(-0.46685255, 0.88433534, 2.56275e-07, 1.7881393e-07, -1.937151e-07, 1, 0.8843351, 0.46685264, -5.9604645e-08, 0.13967305, 1.2036928, 0.13268793)
+transform = Transform3D(-0.46685255, 0.8843352, 3.3811486e-07, 2.2351742e-07, -2.9057264e-07, 0.9999999, 0.8843349, 0.46685272, -1.3411045e-07, 0.13967305, 1.3118088, 0.10366048)
 
 [editable path="Visuals/BossBugger"]

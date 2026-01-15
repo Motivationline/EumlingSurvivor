@@ -33,7 +33,6 @@ wait_time = 0.0
 stop_distance = 1.0
 debug_show_path = true
 next_state = NodePath("../SpawnEntitiesState")
-animation_trigger = "walk"
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
@@ -41,7 +40,9 @@ script = ExtResource("3_dg07b")
 start_delay = 0.4
 end_delay = 0.85
 next_state = NodePath("../MoveTowardsPlayerState")
-animation_trigger = "attack"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/shoot/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0"]
