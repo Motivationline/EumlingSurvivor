@@ -11,15 +11,11 @@ health = 5000.0
 speed = 0.0
 ignore_enemy_in_level = true
 
-[node name="Healthbar3D" parent="." index="0"]
-visible = false
-
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("LookAtPlayerState")
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_jtk3m")
-infinite = null
 wait_time = 2.0
 rotation_speed = 20.0
 next_state = NodePath("../WaitForTimeXState")

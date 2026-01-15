@@ -1,7 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://8jbavxhvd2hx"]
+[gd_scene load_steps=33 format=3 uid="uid://8jbavxhvd2hx"]
 
 [ext_resource type="Script" uid="uid://bmk2foi6xphtj" path="res://game/ui/reveal_seed/reveal_seed.gd" id="1_p1l2k"]
-[ext_resource type="Texture2D" uid="uid://bgweba8ob4lv0" path="res://game/ui/reveal_seed/reward_background.png" id="2_q1d54"]
+[ext_resource type="Texture2D" uid="uid://opqokv4kksnj" path="res://assets/ui/reveal/Element 1@0.5x.png" id="2_p1l2k"]
 [ext_resource type="Texture2D" uid="uid://epvigqgnbl17" path="res://game/ui/reveal_seed/reward_background2.png" id="3_rd7av"]
 [ext_resource type="ArrayMesh" uid="uid://bavnh7muxdqa" path="res://game/ui/reveal_seed/sed_model_wip.res" id="4_h88u7"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="4_j7odg"]
@@ -15,14 +15,20 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rd7av"]
 transparency = 1
 shading_mode = 0
-albedo_texture = ExtResource("2_q1d54")
+albedo_color = Color(1, 0.8666667, 0, 1)
+albedo_texture = ExtResource("2_p1l2k")
 
 [sub_resource type="QuadMesh" id="QuadMesh_h88u7"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1l2k"]
+shading_mode = 0
+albedo_color = Color(0.74, 0.51738334, 0.037000008, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h88u7"]
 transparency = 1
+blend_mode = 1
 shading_mode = 0
-albedo_color = Color(1, 1, 1, 0.21831405)
+albedo_color = Color(1.160701, 1.0645912, 0.19960326, 0.72282284)
 albedo_texture = ExtResource("3_rd7av")
 
 [sub_resource type="Animation" id="Animation_rd7av"]
@@ -30,7 +36,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("Lights01:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,6 +44,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-0.64105946, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lights02:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.64093775, 9.238584e-09, -1.4601871)]
 }
 
 [sub_resource type="Animation" id="Animation_q1d54"]
@@ -47,7 +65,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("Lights01:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -55,6 +73,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-0.64105946, 0, 0), Vector3(-0.64053583, 0, -6.2831855)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lights02:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666666, 40),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.64093775, 9.238584e-09, -1.4601871), Vector3(-0.64053583, 0, -7.7440257)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h88u7"]
@@ -519,7 +549,6 @@ _data = {
 
 [node name="RevealSeed" type="Node3D"]
 script = ExtResource("1_p1l2k")
-which_eumling_is_shown = 2
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.82719827, 0.56191015, 0, -0.56191015, 0.82719827, 0, 1.2917441, 1.5170482)
@@ -529,9 +558,19 @@ size = 0.87480724
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5720027, 0.8202517, 0, -0.8202517, 0.5720027, 0, 3.3311021, 2.0942307)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.9603069, 0, 0, 0, 1.5711129, 0.59804475, 0, -1.1723516, 0.8014625, -2.7931083e-08, -1.3896177, -2.202589)
+[node name="Lights01" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.275, 0, 0, 0, 1.8233274, 0.6943301, 0, -1.3605522, 0.93049806, -2.7931083e-08, -1.3896177, -2.202589)
 material_override = SubResource("StandardMaterial3D_rd7av")
+mesh = SubResource("QuadMesh_h88u7")
+
+[node name="Lights02" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.29317948, 2.639769, 1.0033845e-08, -2.1158683, 0.23499371, 0.81021863, 1.5784428, -0.17530593, 1.0860803, -2.6798912e-08, -1.5208952, -2.3785825)
+material_override = SubResource("StandardMaterial3D_rd7av")
+mesh = SubResource("QuadMesh_h88u7")
+
+[node name="Background" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4313717, 2.53937, 8.598131e-09, -2.036005, 1.1476389, 0.88866866, 1.5175915, -0.85542375, 1.1922404, -2.7931081e-08, -1.5565242, -2.4265113)
+material_override = SubResource("StandardMaterial3D_p1l2k")
 mesh = SubResource("QuadMesh_h88u7")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]

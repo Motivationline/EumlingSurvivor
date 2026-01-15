@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5mujlqqgbrur"]
+
+[ext_resource type="PackedScene" uid="uid://c0u5li8n58lcm" path="res://assets/models/beach/stone_v5.glb" id="1_nojpp"]
+[ext_resource type="PackedScene" uid="uid://cg73m83g0gu84" path="res://assets/models/jungle_tree/jungel_tree_01.glb" id="2_ghvui"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0p1rw"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1bca"]
+
+[node name="Background_Tile" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0166885, 0, 0, 0, -4.4440867e-08, 1.0166885, 0, -1.0166885, -4.4440867e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_0p1rw")
+surface_material_override/0 = SubResource("StandardMaterial3D_m1bca")
+
+[node name="stone_v5" parent="." instance=ExtResource("1_nojpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.16905, -0.6104479, 3.8264103)
+
+[node name="stone_v8" parent="." instance=ExtResource("1_nojpp")]
+transform = Transform3D(3.5839102, 0, 0, 0, 3.5839102, 0, 0, 0, 3.5839102, -6.3753424, -5.90907, 31.593493)
+
+[node name="stone_v6" parent="." instance=ExtResource("1_nojpp")]
+transform = Transform3D(0.4095563, -0.24555147, -0.87861717, 0.514215, 0.8576613, 0, 0.75355595, -0.4517981, 0.47752684, 3.3548255, -1.243095, -2.1790366)
+
+[node name="stone_v7" parent="." instance=ExtResource("1_nojpp")]
+transform = Transform3D(0.24034722, -0.48676598, -0.83981675, 0.61187136, 0.7476211, -0.25821692, 0.75355595, -0.4517981, 0.47752687, -9.280926, -0.82821023, -2.5500007)
+
+[node name="jungel_tree_01" parent="." instance=ExtResource("2_ghvui")]
+transform = Transform3D(-0.35476434, 0, 0.9349558, 0, 1, 0, -0.9349558, 0, -0.35476434, 5.4235554, -0.4108057, 7.9540577)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.99888426, 0.013539071, -0.045243666, 0.003953204, 0.9786333, 0.20557557, 0.04706026, 0.20516734, -0.97759485, -0.3816061, 1.961946, -5.016777)
+fov = 35.0
+size = 2.3674734

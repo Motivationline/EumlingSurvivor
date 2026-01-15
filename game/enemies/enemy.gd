@@ -13,7 +13,6 @@ class_name Enemy
 		if (health <= 0 && !cannot_die):
 			_die()
 		# TODO: add damage number popup
-
 ## How fast this entity moves when it moves
 @export_range(0, 100, 0.1) var speed: float = 1
 

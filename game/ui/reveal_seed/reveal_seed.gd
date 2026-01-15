@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 var mini_eumling:Array[Node]

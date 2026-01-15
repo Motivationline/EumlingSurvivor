@@ -1,10 +1,16 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=2 format=3 uid="uid://dpgxkgtaj4shj"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=3 format=3 uid="uid://dpgxkgtaj4shj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ddmi"]
+animation = &"mini_eumling_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pd5tl"]
 animation = &"mini_eumling_celebrate"
 
 [resource]
-graph_offset = Vector2(-442, -1)
+graph_offset = Vector2(-640.531, 191.6081)
+nodes/output/position = Vector2(212.8475, 343.8392)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_pd5tl")
-nodes/Animation/position = Vector2(-20, 140)
+nodes/Animation/position = Vector2(-210.2329, 175.0263)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_6ddmi")
+"nodes/Animation 2/position" = Vector2(-180, 340)
 node_connections = [&"output", 0, &"Animation"]
