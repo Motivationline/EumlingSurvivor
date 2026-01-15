@@ -25,8 +25,9 @@ var current_iteration: int = 0
 signal consumed_resource(amount: float)
 var consume_resource_on_enter: bool = false
 
-## Set up a trigger for your animation transition here and it will get triggered when this state starts.
-@export var animation_trigger: String
+## Set up trigger(s) for your animation transition here and it will get triggered when this state starts.
+## use the full path for the name, e.g. "parameters/conditions/attack" and make sure to use the correct type!
+@export var animation_trigger: Dictionary[String, Variant]
 
 var parent: Enemy
 var anim_player: AnimationTree
@@ -38,13 +39,16 @@ func setup(_parent: Enemy, _animation: AnimationTree) -> void:
 
 ## Called every time the state is set to be the active state
 func enter() -> void:
-	if (anim_player && animation_trigger): anim_player.set("parameters/conditions/" + animation_trigger, true)
+	if (anim_player && animation_trigger.size() > 0):
+		for key in animation_trigger.keys():
+			anim_player.set(key, animation_trigger.get(key))
 	if consume_resource_on_enter: consume_resource()
 	pass
 
 ## Called every time the state is no longer the active state
 func exit() -> void:
-	if (anim_player && animation_trigger): anim_player.set("parameters/conditions/" + animation_trigger, false)
+	# if (anim_player && animation_trigger.size() > 0): 
+	# 	anim_player.set("parameters/conditions/" + animation_trigger, false)
 	pass
 
 ## While active, this is called with the parents regular _process() function
