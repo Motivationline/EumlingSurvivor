@@ -1,17 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5mujlqqgbrur"]
+[gd_scene load_steps=7 format=3 uid="uid://c5mujlqqgbrur"]
 
 [ext_resource type="PackedScene" uid="uid://c0u5li8n58lcm" path="res://assets/models/beach/stone_v5.glb" id="1_nojpp"]
 [ext_resource type="PackedScene" uid="uid://cg73m83g0gu84" path="res://assets/models/jungle_tree/jungel_tree_01.glb" id="2_ghvui"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_0p1rw"]
-size = Vector2(20, 20)
+size = Vector2(20, 100)
+
+[sub_resource type="Gradient" id="Gradient_ghvui"]
+offsets = PackedFloat32Array(0.0019607844, 0.5117647, 1)
+colors = PackedColorArray(0.14342006, 0.71, 0.113600016, 1, 0.71259993, 0.84, 0.252, 1, 0.14509805, 0.70980394, 0.11372549, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n4wbu"]
+gradient = SubResource("Gradient_ghvui")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.44444445, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1bca"]
+albedo_color = Color(0.5145284, 0.73, 0.16790001, 1)
+albedo_texture = SubResource("GradientTexture2D_n4wbu")
 
 [node name="Background_Tile" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.0166885, 0, 0, 0, -4.4440867e-08, 1.0166885, 0, -1.0166885, -4.4440867e-08, 0, 0, 0)
+transform = Transform3D(1.0166885, 0, 0, 0, -4.4440867e-08, 1.0166885, 0, -1.0166885, -4.4440867e-08, 0, 0, 44)
 mesh = SubResource("QuadMesh_0p1rw")
 surface_material_override/0 = SubResource("StandardMaterial3D_m1bca")
 
@@ -22,13 +33,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.16905, -0.6104479, 3.826410
 transform = Transform3D(3.5839102, 0, 0, 0, 3.5839102, 0, 0, 0, 3.5839102, -6.3753424, -5.90907, 31.593493)
 
 [node name="stone_v6" parent="." instance=ExtResource("1_nojpp")]
-transform = Transform3D(0.4095563, -0.24555147, -0.87861717, 0.514215, 0.8576613, 0, 0.75355595, -0.4517981, 0.47752684, 3.3548255, -1.243095, -2.1790366)
+transform = Transform3D(0.4095563, -0.24555147, -0.87861717, 0.514215, 0.8576613, 0, 0.75355595, -0.4517981, 0.47752684, 6.4749303, -1.243095, 12.745361)
+
+[node name="stone_v9" parent="." instance=ExtResource("1_nojpp")]
+transform = Transform3D(0.4095563, -0.24555147, -0.87861717, 0.514215, 0.8576613, 0, 0.75355595, -0.4517981, 0.47752684, 1.9114747, -1.243095, 21.661274)
 
 [node name="stone_v7" parent="." instance=ExtResource("1_nojpp")]
-transform = Transform3D(0.24034722, -0.48676598, -0.83981675, 0.61187136, 0.7476211, -0.25821692, 0.75355595, -0.4517981, 0.47752687, -9.280926, -0.82821023, -2.5500007)
+transform = Transform3D(0.6807741, -0.33157402, 0.65315026, 0.72592115, 0.18621948, -0.66208786, 0.09790188, 0.92486787, 0.36747015, -0.06985855, -0.82821023, -3.698474)
 
 [node name="jungel_tree_01" parent="." instance=ExtResource("2_ghvui")]
-transform = Transform3D(-0.35476434, 0, 0.9349558, 0, 1, 0, -0.9349558, 0, -0.35476434, 5.4235554, -0.4108057, 7.9540577)
+transform = Transform3D(-0.35476434, 0, 0.9349558, 0, 1, 0, -0.9349558, 0, -0.35476434, 7.014866, -0.4108057, 20.638168)
+
+[node name="jungel_tree_02" parent="." instance=ExtResource("2_ghvui")]
+transform = Transform3D(-0.9611642, 0.26431072, 0.07939363, 0.2634136, 0.9644376, -0.021758366, -0.08232117, 0, -0.9966059, 2.7981634, -0.4108057, 23.042484)
+
+[node name="jungel_tree_03" parent="." instance=ExtResource("2_ghvui")]
+transform = Transform3D(0.4919773, -0.24859893, 0.8343601, 0.2725917, 0.9541626, 0.12356158, -0.8268326, 0.1666502, 0.53719234, -9.052567, -0.4108057, 24.768356)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.99888426, 0.013539071, -0.045243666, 0.003953204, 0.9786333, 0.20557557, 0.04706026, 0.20516734, -0.97759485, -0.3816061, 1.961946, -5.016777)

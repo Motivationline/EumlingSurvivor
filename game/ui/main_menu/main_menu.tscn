@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm5487efgho7v"]
+[gd_scene load_steps=10 format=3 uid="uid://dm5487efgho7v"]
 
 [ext_resource type="Script" uid="uid://g5x2uj6jmytl" path="res://game/ui/main_menu/main_menu.gd" id="1_2ww3u"]
 [ext_resource type="PackedScene" uid="uid://yj6cb30iarbn" path="res://assets/characters/eumling/V2/eumling_main_menu.tscn" id="2_mkp5f"]
@@ -42,13 +42,36 @@ _data = {
 &"run": SubResource("Animation_cwbgs")
 }
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mkp5f"]
+sky_top_color = Color(0.29067197, 0.77249277, 0.8994792, 1)
+sky_horizon_color = Color(0.20898062, 0.5116769, 0.67729557, 1)
+sky_curve = 0.9747043
+
+[sub_resource type="Sky" id="Sky_1x88f"]
+sky_material = SubResource("ProceduralSkyMaterial_mkp5f")
+
+[sub_resource type="Environment" id="Environment_0p1rw"]
+background_mode = 2
+background_color = Color(0.20667872, 0.67734784, 0.81232065, 1)
+sky = SubResource("Sky_1x88f")
+sky_rotation = Vector3(1.0297443, 0, 0)
+ambient_light_source = 2
+ambient_light_color = Color(0.23, 0.12650001, 0, 1)
+glow_intensity = 0.09
+glow_hdr_luminance_cap = 0.72
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.1342243, 0.6088932, 0.7264619, 1)
+fog_density = 1.0
+fog_depth_curve = 1.6817927
+
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_2ww3u")
 
 [node name="Anchor" type="Marker3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Anchor"]
-transform = Transform3D(-0.99888426, 0.013539071, -0.045243666, 0.003953204, 0.9786333, 0.20557557, 0.04706026, 0.20516734, -0.97759485, -0.3816061, 1.961946, -5.016777)
+transform = Transform3D(-0.98757887, 0, 0.15712401, 0, 1, 0, -0.15712401, 0, -0.987579, 0.6859336, 0.7411723, -5.47697)
 fov = 35.0
 size = 2.3674734
 
@@ -97,18 +120,29 @@ text = "Eumlingclopedia"
 [node name="Background_Tile2" parent="." instance=ExtResource("3_mkp5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
 
+[node name="Background_Tile4" parent="." instance=ExtResource("3_mkp5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+
 [node name="Background_Tile3" parent="." instance=ExtResource("3_mkp5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
+[node name="Background_Tile5" parent="." instance=ExtResource("3_mkp5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.9659258, -7.450581e-09, -0.25881904, 0.25, -0.25881904, 0.93301266, -0.066987306, -0.9659258, -0.24999999, 0, 4.583892, 0)
+transform = Transform3D(0.9504936, -0.137276, -0.278778, 0.24807316, -0.20507109, 0.946787, -0.18714043, -0.9690723, -0.1608642, 0, 4.583892, 0)
 light_color = Color(0.8633, 0.97, 0.96644336, 1)
+shadow_enabled = true
+shadow_opacity = 0.61
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_0ipjw")
 }
 autoplay = "run"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0p1rw")
 
 [connection signal="pressed" from="CanvasLayer/Control/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/EumlingclopediaButton" to="." method="_on_eumlingclopedia_button_pressed"]
