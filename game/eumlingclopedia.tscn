@@ -1,23 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0tttappajswp"]
+[gd_scene load_steps=4 format=3 uid="uid://d0tttappajswp"]
 
-[ext_resource type="Script" uid="uid://cxyuv1foy3owr" path="res://game/ui/eumlingclopedia/new_eumling_overlay.gd" id="1_c2iw6"]
 [ext_resource type="Script" uid="uid://wnlawfl1owd" path="res://game/ui/eumlingclopedia/eumlingclopedia.gd" id="1_hyh01"]
-[ext_resource type="Texture2D" uid="uid://7iemphu5hfaq" path="res://game/ui/eumlingclopedia/crack_0.JPG" id="2_m05iq"]
-[ext_resource type="Texture2D" uid="uid://ce8fsar25mu7t" path="res://game/ui/eumlingclopedia/crack_1.JPG" id="3_ud8ws"]
-[ext_resource type="Texture2D" uid="uid://mhckjqd531ng" path="res://game/ui/eumlingclopedia/crack_2.JPG" id="4_hyh01"]
-[ext_resource type="Texture2D" uid="uid://bpet7g6rjkltw" path="res://game/ui/eumlingclopedia/crack_3.JPG" id="5_4nkax"]
 [ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="6_ud8ws"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ud8ws"]
 viewport_path = NodePath("Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer/EumlingPreview/SubViewport")
-
-[sub_resource type="Curve" id="Curve_ud8ws"]
-_limits = [0.0, 1.0, 0.0, 0.5015385]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5015385, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_hyh01"]
-viewport_path = NodePath("NewEumlingOverlay/NewEumling/Eumling/SubViewport")
 
 [node name="Eumlingclopedia" type="Control"]
 layout_mode = 3
@@ -163,102 +150,5 @@ offset_left = -132.0
 offset_bottom = 75.0
 grow_horizontal = 0
 text = "Close"
-
-[node name="NewEumlingOverlay" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_c2iw6")
-light_curve = SubResource("Curve_ud8ws")
-
-[node name="NewEumling" type="Control" parent="NewEumlingOverlay"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="NewEumlingOverlay/NewEumling"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Eumling" type="TextureRect" parent="NewEumlingOverlay/NewEumling"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("ViewportTexture_hyh01")
-
-[node name="SubViewport" type="SubViewport" parent="NewEumlingOverlay/NewEumling/Eumling"]
-own_world_3d = true
-transparent_bg = true
-size = Vector2i(1920, 1080)
-
-[node name="Node3D" type="Node3D" parent="NewEumlingOverlay/NewEumling/Eumling/SubViewport"]
-
-[node name="mini_realistisch_geschick" parent="NewEumlingOverlay/NewEumling/Eumling/SubViewport/Node3D" instance=ExtResource("6_ud8ws")]
-
-[node name="Camera3D" type="Camera3D" parent="NewEumlingOverlay/NewEumling/Eumling/SubViewport/Node3D"]
-transform = Transform3D(-1, 0, -8.940696e-08, -3.371513e-08, 0.9261736, 0.37709734, 8.280637e-08, 0.37709734, -0.9261736, 0, 0.48358524, -0.68613183)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="NewEumlingOverlay/NewEumling/Eumling/SubViewport/Node3D"]
-transform = Transform3D(1, 0, 0, 0, -0.70710677, 0.70710677, 0, -0.70710677, -0.70710677, 0, 1.2940505, -1.1451737)
-spot_attenuation = 0.0
-spot_angle = 20.0
-
-[node name="EumlingName" type="Label" parent="NewEumlingOverlay/NewEumling"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -116.5
-offset_top = 219.0
-offset_right = 116.5
-offset_bottom = 286.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "EUMLING!"
-
-[node name="Crack0" type="TextureRect" parent="NewEumlingOverlay"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_m05iq")
-
-[node name="Crack1" type="TextureRect" parent="NewEumlingOverlay"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("3_ud8ws")
-
-[node name="Crack2" type="TextureRect" parent="NewEumlingOverlay"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("4_hyh01")
-
-[node name="Crack3" type="TextureRect" parent="NewEumlingOverlay"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("5_4nkax")
 
 [connection signal="pressed" from="Book/CloseButton" to="." method="_on_close_button_pressed"]
