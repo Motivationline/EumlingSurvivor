@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://cps3kdcef7kl1"]
+
+[ext_resource type="PackedScene" uid="uid://dqru3ipa22rvk" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik.glb" id="1_vdlbv"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://dpgxkgtaj4shj" path="res://assets/characters/eumling/mini_eumling/blend_tree_mini_eumling_reveal.tres" id="2_4h88s"]
+[ext_resource type="PackedScene" uid="uid://ktelomi1407x" path="res://assets/characters/eumling/mini_eumling/celebrate_spawner.tscn" id="3_32x68"]
+
+[node name="mini_conventional_reveal" instance=ExtResource("1_vdlbv")]
+
+[node name="Skeleton3D" parent="Aramture_conventiona_logik" index="0"]
+bones/0/position = Vector3(-0.017220391, 0.06872888, -0.033608377)
+bones/0/rotation = Quaternion(0.08424252, 0.9853909, 0.14762738, 0.010688184)
+bones/0/scale = Vector3(1.0028067, 1.0823934, 1.0172514)
+bones/1/position = Vector3(-6.706644e-10, 0.07794063, -0.0025946123)
+bones/1/rotation = Quaternion(0.030541707, 2.3488364e-07, 5.315557e-09, 0.9995335)
+bones/1/scale = Vector3(0.99999976, 0.9962617, 0.9999447)
+bones/2/rotation = Quaternion(0.030494735, -2.3997328e-07, 1.1730945e-08, 0.9995349)
+bones/3/rotation = Quaternion(0.018422855, 1.8537901e-07, 1.36219445e-08, 0.9998303)
+bones/3/scale = Vector3(0.99999416, 0.99829006, 1.0040222)
+bones/4/rotation = Quaternion(-0.07556169, -3.5507577e-07, 3.5864517e-08, 0.9971411)
+bones/5/rotation = Quaternion(-0.0848907, 1.1615477e-07, 2.9755682e-08, 0.9963903)
+bones/6/rotation = Quaternion(-0.040994905, 1.1212848e-07, 7.229045e-09, 0.9991594)
+bones/7/rotation = Quaternion(0.013891148, 0.6897751, 0.72342676, -0.025908185)
+bones/7/scale = Vector3(1.0000057, 0.99199545, 1.0114505)
+bones/8/rotation = Quaternion(-1.9711504e-07, 0.96592593, 0.25881907, -7.406634e-08)
+bones/9/rotation = Quaternion(0.96592593, 1.7386455e-07, 3.0466405e-09, -0.25881895)
+bones/10/rotation = Quaternion(0.011464603, 0.6535911, 0.7564634, -0.021224)
+bones/10/scale = Vector3(1.000005, 0.9962329, 1.0061363)
+bones/11/rotation = Quaternion(2.851872e-08, 0.96592593, 0.25881907, 7.6303496e-07)
+bones/12/rotation = Quaternion(0.96592593, 1.1369327e-08, 6.094868e-07, -0.25881895)
+bones/13/rotation = Quaternion(-0.082793586, 0.09516801, 0.9690913, 0.21201481)
+bones/13/scale = Vector3(0.9886429, 1.0426692, 0.9737753)
+bones/14/rotation = Quaternion(0.008010181, 0.6398673, -0.76844275, 0.0012787221)
+bones/14/scale = Vector3(0.9692233, 1.1301477, 0.91716033)
+bones/15/rotation = Quaternion(-0.10654164, -0.26066658, 0.9485098, -0.14502116)
+bones/15/scale = Vector3(1.0231817, 0.9219761, 0.96577877)
+bones/17/rotation = Quaternion(0.14068669, 0.034932896, 0.9893928, -0.009420465)
+bones/17/scale = Vector3(0.99918133, 1.0159711, 0.9873649)
+bones/18/rotation = Quaternion(-0.013000577, 0.75820464, -0.65187156, -0.0044912836)
+bones/18/scale = Vector3(0.96671295, 1.1300478, 0.9183521)
+bones/19/rotation = Quaternion(0.08124503, -0.37811002, 0.9147812, 0.11665022)
+bones/19/scale = Vector3(1.0266242, 0.9455286, 0.9398826)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = ExtResource("2_4h88s")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CelebrateSpawner" parent="." index="4" instance=ExtResource("3_32x68")]
