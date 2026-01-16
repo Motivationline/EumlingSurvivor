@@ -23,8 +23,17 @@ func show_upgrades(possible_upgrades: Array[Upgrade]):
 			var chance = upgrade_chances.get(rarity)
 			value -= chance
 			if value <= 0:
-				var rarity_upgrades = possible_upgrades.filter(func(upgrade): return upgrade.type == rarity)
-				upgrades.push_back(rarity_upgrades.pick_random())
+				var rarity_upgrades = possible_upgrades.filter(func(upgrade: Upgrade): return upgrade.rarity == rarity)
+				rarity_upgrades.shuffle()
+				var chosen_upgrade: Upgrade = rarity_upgrades.pop_back()
+				while not chosen_upgrade or upgrades.filter(func(up: Upgrade): return up.type == chosen_upgrade.type).size() > 0:
+					if rarity_upgrades.size() == 0:
+						rarity -= 1
+						if rarity < 0:
+							break
+						rarity_upgrades = possible_upgrades.filter(func(upgrade: Upgrade): return upgrade.rarity == rarity)
+					chosen_upgrade = rarity_upgrades.pop_back()
+				upgrades.push_back(chosen_upgrade)
 				break
 
 	for child in upgrade_container.get_children():

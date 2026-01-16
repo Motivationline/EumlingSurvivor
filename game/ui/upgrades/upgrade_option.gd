@@ -6,7 +6,12 @@ class_name UpgradeOption
 @onready var info: RichTextLabel = %Info
 
 func setup(upgrade: Upgrade):
-	prints(Enum.UPGRADE.keys())
-	info.text = "%s: %s %s" % [Enum.UPGRADE.keys()[upgrade.type], Enum.UPGRADE_METHOD.keys()[upgrade.method], upgrade.value]
+	title.text = Enum.UPGRADE.keys()[upgrade.type]
+	subtitle.text = ""
+
+	if upgrade.method == Enum.UPGRADE_METHOD.ABSOLUTE:
+		info.text = "+ " if upgrade.value > 0 else "- "
+	else:
+		info.text = "x "
+	info.text += str(upgrade.value)
 	theme_type_variation = Enum.RARITY.keys()[upgrade.rarity]
-	
