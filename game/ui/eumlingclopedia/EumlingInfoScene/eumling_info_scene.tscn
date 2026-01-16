@@ -1,0 +1,111 @@
+[gd_scene load_steps=16 format=3 uid="uid://cvnp8vu3k7ul3"]
+
+[ext_resource type="PackedScene" uid="uid://drn335i4omarh" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial_visual.tscn" id="1_d43fs"]
+[ext_resource type="Script" uid="uid://mc3425i5q6bo" path="res://game/ui/eumlingclopedia/EumlingInfoScene/eumling_info_scene.gd" id="1_sg6df"]
+[ext_resource type="PackedScene" uid="uid://xx1ogf8cudcr" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/mini_eumling_artistisch_kreativ_visual.tscn" id="1_thad2"]
+[ext_resource type="PackedScene" uid="uid://bdx5nmy7mmesh" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik_visual.tscn" id="2_sg6df"]
+[ext_resource type="PackedScene" uid="uid://w0h1g2ngldyl" path="res://assets/characters/eumling/mini_eumling/entrepreneurual_ehrgeiz/mini_eumling_entrep_ehrgeiz_visual.tscn" id="3_2bcsq"]
+[ext_resource type="PackedScene" uid="uid://pywy6q2jhxwo" path="res://assets/characters/eumling/mini_eumling/investigativ_forschend/mini_investigativ_forschend_visual.tscn" id="4_3l11f"]
+[ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="5_dyyf1"]
+
+[sub_resource type="Environment" id="Environment_d43fs"]
+ambient_light_source = 3
+ambient_light_color = Color(0.5366428, 0.46651226, 0.4684111, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_d43fs"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbhj8"]
+albedo_color = Color(0.10479001, 0.42, 0.08819999, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thad2"]
+albedo_color = Color(1, 0.39607844, 0.003921569, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sg6df"]
+albedo_color = Color(0.7, 0.6234667, 0.41300002, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bcsq"]
+albedo_color = Color(0.39874998, 0.58, 0.145, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3l11f"]
+albedo_color = Color(0.52, 0.43506667, 0.3744, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dyyf1"]
+albedo_color = Color(0.31602994, 0.31020004, 0.66, 1)
+
+[node name="EumlingInfoScene" type="Node3D"]
+script = ExtResource("1_sg6df")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d43fs")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 4.809653e-08, -7.300319e-08, 0, 0.83505917, 0.55016017, 8.742278e-08, 0.55016017, -0.83505917, 0, 1.0501543, -1.1508971)
+fov = 35.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.87057906, -0.22472186, 0.43771246, -0.49202856, -0.39761543, 0.77447397, 0, -0.88960785, -0.45672524, 0, 2.9422164, 0)
+shadow_enabled = true
+shadow_opacity = 0.54
+
+[node name="Scenes" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Artistisch" type="Node3D" parent="Scenes"]
+
+[node name="Floor" type="MeshInstance3D" parent="Scenes/Artistisch"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_d43fs")
+surface_material_override/0 = SubResource("StandardMaterial3D_wbhj8")
+
+[node name="mini_eumling_var1" parent="Scenes/Artistisch" instance=ExtResource("1_thad2")]
+
+[node name="Conventional" type="Node3D" parent="Scenes"]
+visible = false
+
+[node name="Floor" type="MeshInstance3D" parent="Scenes/Conventional"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_d43fs")
+surface_material_override/0 = SubResource("StandardMaterial3D_thad2")
+
+[node name="mini_conventional_logik" parent="Scenes/Conventional" instance=ExtResource("2_sg6df")]
+
+[node name="entrepreneur" type="Node3D" parent="Scenes"]
+visible = false
+
+[node name="Floor" type="MeshInstance3D" parent="Scenes/entrepreneur"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_d43fs")
+surface_material_override/0 = SubResource("StandardMaterial3D_sg6df")
+
+[node name="mini_entre_ehrgeiz" parent="Scenes/entrepreneur" instance=ExtResource("3_2bcsq")]
+
+[node name="investigativ" type="Node3D" parent="Scenes"]
+visible = false
+
+[node name="Floor" type="MeshInstance3D" parent="Scenes/investigativ"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_d43fs")
+surface_material_override/0 = SubResource("StandardMaterial3D_2bcsq")
+
+[node name="mini_investigativ_forschend" parent="Scenes/investigativ" instance=ExtResource("4_3l11f")]
+
+[node name="realistisch" type="Node3D" parent="Scenes"]
+visible = false
+
+[node name="Floor" type="MeshInstance3D" parent="Scenes/realistisch"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_d43fs")
+surface_material_override/0 = SubResource("StandardMaterial3D_3l11f")
+
+[node name="mini_realistisch_geschick" parent="Scenes/realistisch" instance=ExtResource("5_dyyf1")]
+
+[node name="sozial" type="Node3D" parent="Scenes"]
+visible = false
+
+[node name="Floor" type="MeshInstance3D" parent="Scenes/sozial"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_d43fs")
+surface_material_override/0 = SubResource("StandardMaterial3D_dyyf1")
+
+[node name="mini_sozial_sozial" parent="Scenes/sozial" instance=ExtResource("1_d43fs")]

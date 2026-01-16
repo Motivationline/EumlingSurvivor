@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wnlawfl1owd" path="res://game/ui/eumlingclopedia/eumlingclopedia.gd" id="1_hyh01"]
 [ext_resource type="PackedScene" uid="uid://bppbnuj7gd2bu" path="res://game/ui/eumlingclopedia/EumlingButton/EumlingButton.tscn" id="2_vgq4i"]
-[ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="6_ud8ws"]
+[ext_resource type="PackedScene" uid="uid://cvnp8vu3k7ul3" path="res://game/ui/eumlingclopedia/EumlingInfoScene/eumling_info_scene.tscn" id="3_vgq4i"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ud8ws"]
 viewport_path = NodePath("Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer/EumlingPreview/SubViewport")
@@ -119,16 +119,7 @@ texture = SubResource("ViewportTexture_ud8ws")
 [node name="SubViewport" type="SubViewport" parent="Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer/EumlingPreview"]
 own_world_3d = true
 
-[node name="mini_realistisch_geschick" parent="Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer/EumlingPreview/SubViewport" instance=ExtResource("6_ud8ws")]
-
-[node name="Camera3D" type="Camera3D" parent="Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer/EumlingPreview/SubViewport"]
-transform = Transform3D(-1, 3.8841026e-08, -8.052937e-08, -3.371513e-08, 0.67038774, 0.74201095, 8.280637e-08, 0.74201095, -0.67038774, -2.410186e-08, 1.1190028, -0.7184806)
-fov = 35.0
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer/EumlingPreview/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, -0.70710677, 0.70710677, 0, -0.70710677, -0.70710677, 0, 1.2940505, -1.1451737)
-spot_attenuation = 0.0
-spot_angle = 20.0
+[node name="EumlingInfoScene" parent="Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer/EumlingPreview/SubViewport" instance=ExtResource("3_vgq4i")]
 
 [node name="CloseButton" type="Button" parent="Book"]
 layout_mode = 1
