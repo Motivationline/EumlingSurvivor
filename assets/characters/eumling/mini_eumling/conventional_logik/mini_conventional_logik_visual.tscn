@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bdx5nmy7mmesh"]
+[gd_scene load_steps=25 format=3 uid="uid://bdx5nmy7mmesh"]
 
 [ext_resource type="PackedScene" uid="uid://dqru3ipa22rvk" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik.glb" id="1_aciid"]
 [ext_resource type="PackedScene" uid="uid://ktelomi1407x" path="res://assets/characters/eumling/mini_eumling/celebrate_spawner.tscn" id="2_m1eu0"]
@@ -24,16 +24,16 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_talkm"]
 curve = SubResource("Curve_246bn")
 
-[sub_resource type="Gradient" id="Gradient_6equv"]
+[sub_resource type="Gradient" id="Gradient_oknsj"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.4558233, 0.67469877)
 colors = PackedColorArray(1, 0.7666667, 0, 1, 1, 0.4616667, 0.050000012, 1, 0.73, 0.051099997, 0.051099997, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_eya0d"]
-gradient = SubResource("Gradient_6equv")
+gradient = SubResource("Gradient_oknsj")
 
 [sub_resource type="Curve" id="Curve_bntwx"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3827073), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_u3sb7"]
@@ -56,6 +56,49 @@ color_ramp = SubResource("GradientTexture1D_eya0d")
 alpha_curve = SubResource("CurveTexture_talkm")
 
 [sub_resource type="QuadMesh" id="QuadMesh_d7anh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_246bn"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("3_oknsj")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_talkm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5248092, 0.20304751), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6equv"]
+curve = SubResource("Curve_talkm")
+
+[sub_resource type="Gradient" id="Gradient_eya0d"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.4558233)
+colors = PackedColorArray(0.16, 0.16, 0.16, 1, 0.49, 0.49, 0.49, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bntwx"]
+gradient = SubResource("Gradient_eya0d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u3sb7"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 0.39999998
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+damping_min = 0.2
+damping_max = 1.0
+scale_min = 0.29999998
+scale_max = 0.39999998
+scale_curve = SubResource("CurveTexture_u3sb7")
+color_ramp = SubResource("GradientTexture1D_bntwx")
+alpha_curve = SubResource("CurveTexture_6equv")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_few7l"]
 animation = &"mini_eumling_run"
@@ -100,51 +143,61 @@ node_connections = [&"output", 0, &"OneShot", &"Transition", 0, &"Animation", &"
 [node name="mini_conventional_logik" instance=ExtResource("1_aciid")]
 
 [node name="Skeleton3D" parent="Aramture_conventiona_logik" index="0"]
-bones/0/position = Vector3(-0.016378963, 0.1809858, -0.09127264)
-bones/0/rotation = Quaternion(-3.1166284e-08, 0.88384575, 0.46777853, -7.829285e-08)
-bones/0/scale = Vector3(1.0313832, 1.0521228, 1.0120738)
-bones/1/position = Vector3(2.6410646e-05, 0.0966201, 0.002308816)
-bones/1/rotation = Quaternion(-0.039334524, 0.00025218647, 9.699143e-05, 0.9992261)
-bones/1/scale = Vector3(0.9999999, 0.997452, 1.0015215)
-bones/2/rotation = Quaternion(-0.08439819, 0.00026817195, -3.864621e-05, 0.9964321)
-bones/3/rotation = Quaternion(-0.10063285, -8.936228e-05, -1.636376e-05, 0.99492365)
-bones/3/scale = Vector3(1, 0.99971616, 1.0007471)
-bones/4/rotation = Quaternion(-0.2173148, 7.141337e-05, -2.4339957e-05, 0.97610164)
-bones/5/rotation = Quaternion(-0.2264407, 7.164978e-05, -2.495059e-05, 0.974025)
-bones/6/rotation = Quaternion(-0.1833914, 7.267976e-05, -2.181487e-05, 0.98304)
-bones/7/rotation = Quaternion(-0.007253176, 0.41257846, 0.9108076, 0.012489215)
-bones/7/scale = Vector3(1.0000232, 0.99762523, 1.0026484)
-bones/8/rotation = Quaternion(-2.0678436e-07, 0.9998689, -0.01619287, -1.6828775e-08)
-bones/9/rotation = Quaternion(0.96592593, 1.7381619e-07, 3.0863265e-09, -0.25881895)
-bones/10/rotation = Quaternion(-0.010849144, 0.41257805, 0.9106659, 0.018687526)
-bones/10/scale = Vector3(1.000056, 0.99759805, 1.0026442)
-bones/11/rotation = Quaternion(2.3843418e-07, 0.9998689, -0.0161929, 7.2626597e-07)
-bones/12/rotation = Quaternion(0.96592593, 1.1277733e-08, 6.0957535e-07, -0.25881895)
-bones/13/rotation = Quaternion(0.00989401, -0.56099546, 0.8268969, 0.03778578)
-bones/13/scale = Vector3(0.9595821, 1.1170276, 0.9339862)
-bones/14/rotation = Quaternion(-0.0030646634, 0.9998525, 0.016902953, -0.00014383695)
-bones/14/scale = Vector3(0.9246256, 1.1153502, 0.9815356)
-bones/15/rotation = Quaternion(-0.036152698, -0.72953546, 0.6828333, 0.014483515)
-bones/15/scale = Vector3(1.0916132, 1.0491048, 0.7874896)
-bones/17/rotation = Quaternion(0.012563145, -0.5604716, 0.82668775, 0.04797234)
-bones/17/scale = Vector3(0.9588734, 1.1186018, 0.93335867)
-bones/18/rotation = Quaternion(-0.0038449967, 0.9998509, 0.016836705, -0.0001838424)
-bones/18/scale = Vector3(0.92419505, 1.1157582, 0.9819348)
-bones/19/rotation = Quaternion(-0.04592599, -0.7293737, 0.68232435, 0.018397063)
-bones/19/scale = Vector3(1.0921166, 1.0494556, 0.78713346)
+bones/0/position = Vector3(-0.0130667165, 0.13682362, -0.048744533)
+bones/0/rotation = Quaternion(-1.6565973e-08, 0.9788934, 0.2043714, -7.609366e-08)
+bones/0/scale = Vector3(1.0028065, 1.0823934, 1.0172513)
+bones/1/position = Vector3(-1.0419733e-09, 0.093200676, -7.947626e-05)
+bones/1/rotation = Quaternion(4.3938682e-05, -0.000407309, 0.0008019445, 0.99999964)
+bones/1/scale = Vector3(0.9999999, 0.995632, 1.0004764)
+bones/2/rotation = Quaternion(9.7044115e-08, -2.3848003e-07, 0.00089590834, 0.9999997)
+bones/3/rotation = Quaternion(0.18569884, 2.2981706e-07, 7.645826e-08, 0.9826067)
+bones/3/scale = Vector3(0.999994, 0.99828994, 1.0040221)
+bones/4/rotation = Quaternion(-0.18221381, -3.4049552e-07, -5.426043e-08, 0.983259)
+bones/5/rotation = Quaternion(-0.19140828, 1.3260393e-07, -1.2328608e-08, 0.9815105)
+bones/6/rotation = Quaternion(-0.14806375, 9.8254304e-08, -3.8715026e-08, 0.98897785)
+bones/7/rotation = Quaternion(-0.0053937556, 0.73699045, 0.67580676, 0.010062607)
+bones/7/scale = Vector3(0.9999994, 0.9798318, 1.0250468)
+bones/8/rotation = Quaternion(-1.8227517e-07, 0.9659258, 0.25881904, -7.287217e-08)
+bones/9/rotation = Quaternion(0.96592593, 1.6505692e-07, 6.2305587e-09, -0.25881895)
+bones/10/rotation = Quaternion(-0.0056633195, 0.7367789, 0.67602754, 0.010563792)
+bones/10/scale = Vector3(0.99999946, 0.97985446, 1.02502)
+bones/11/rotation = Quaternion(5.0693895e-08, 0.9659258, 0.25881904, 7.57898e-07)
+bones/12/rotation = Quaternion(0.96592593, 1.1324562e-08, 6.1550094e-07, -0.25881895)
+bones/13/rotation = Quaternion(0.004401257, -0.5440933, 0.8318307, 0.1095481)
+bones/13/scale = Vector3(0.87179035, 1.3681252, 0.8415763)
+bones/14/rotation = Quaternion(-0.016160524, 0.9990418, 0.040611487, -0.002276931)
+bones/14/scale = Vector3(0.8456216, 1.254945, 1.0443193)
+bones/15/rotation = Quaternion(-0.10886767, -0.5229536, 0.8436901, 0.0534276)
+bones/15/scale = Vector3(1.3286101, 1.0146298, 0.71672434)
+bones/17/rotation = Quaternion(-0.16257587, 0.42205417, 0.89122576, -0.034001444)
+bones/17/scale = Vector3(0.9819242, 1.1024979, 0.92586267)
+bones/18/rotation = Quaternion(-0.00037651768, 0.60451573, -0.79658973, 0.0023099363)
+bones/18/scale = Vector3(1.0072541, 1.0616407, 0.9425299)
+bones/19/rotation = Quaternion(0.104338706, -0.5586817, 0.81363976, -0.1223868)
+bones/19/scale = Vector3(0.9958221, 0.9557272, 0.94793135)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Aramture_conventiona_logik/Skeleton3D" index="1"]
-transform = Transform3D(-1.0313829, 0.00021984846, -0.00051287614, -0.0003253384, 0.5227275, 0.88213295, 0.00044267252, 0.9097122, -0.49976623, -0.0164062, 0.24008602, -0.0085283965)
+transform = Transform3D(-1.002805, 0.0016013988, 0.00081706396, 0.001922511, 0.9876764, 0.40712404, -6.4770225e-05, 0.4311093, -0.93275714, -0.013066716, 0.22924405, -0.0083068535)
 bone_name = "DEF_BODY"
 bone_idx = 1
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Aramture_conventiona_logik/Skeleton3D/BoneAttachment3D" index="0"]
+[node name="Flame" type="GPUParticles3D" parent="Aramture_conventiona_logik/Skeleton3D/BoneAttachment3D" index="0"]
 transform = Transform3D(-0.8425021, 0.005894868, -0.013573462, -0.0070606824, 0.7497404, 0.7371359, 0.011139415, 0.79093754, -0.71355397, -0.0012976851, 0.116568945, 0.016807724)
 material_override = SubResource("StandardMaterial3D_hld1v")
-amount = 12
+amount = 5
 lifetime = 0.4
 randomness = 1.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_s7kb2")
+draw_pass_1 = SubResource("QuadMesh_d7anh")
+
+[node name="Smoke" type="GPUParticles3D" parent="Aramture_conventiona_logik/Skeleton3D/BoneAttachment3D/Flame" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 8.731149e-11, 0.1343599, 9.313227e-10)
+material_override = SubResource("StandardMaterial3D_246bn")
+amount = 12
+lifetime = 0.8
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_u3sb7")
 draw_pass_1 = SubResource("QuadMesh_d7anh")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
