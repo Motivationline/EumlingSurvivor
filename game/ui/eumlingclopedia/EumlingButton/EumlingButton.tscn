@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bppbnuj7gd2bu"]
+
+[ext_resource type="Texture2D" uid="uid://2c00dsmmwedn" path="res://assets/ui/mini_eumling_thumbnails/mini_eumling_thumbnail_placeholder.png" id="1_7j2us"]
+[ext_resource type="Theme" uid="uid://sc52irjublj1" path="res://game/ui/eumlingclopedia/EumlingButton/EumlingButton_theme.tres" id="2_txhyt"]
+
+[node name="Eumling_Button" type="Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 200.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7j2us")
+expand_mode = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_txhyt")
+
+[node name="NewAlert" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 2.0
+offset_bottom = 42.0
+grow_horizontal = 0
+color = Color(1, 0, 0, 1)
