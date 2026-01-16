@@ -154,6 +154,7 @@ states/Down/position = Vector2(413, 112)
 states/UP/node = SubResource("AnimationNodeAnimation_04kag")
 states/UP/position = Vector2(576, 94)
 transitions = ["Start", "Down", SubResource("AnimationNodeStateMachineTransition_ovvjf"), "Down", "UP", SubResource("AnimationNodeStateMachineTransition_80b7e"), "UP", "Down", SubResource("AnimationNodeStateMachineTransition_gicpd")]
+graph_offset = Vector2(-32, -81)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gicpd"]
 random_pitch = 1.1
@@ -181,21 +182,24 @@ initial_state = NodePath("FirstTimeDelay")
 script = ExtResource("2_04kag")
 wait_time = 0.0
 next_state = NodePath("../WaitDown")
-animation_trigger = "down"
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="WaitDown" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_04kag")
 wait_time = 2.0
 next_state = NodePath("../WaitUP")
-animation_trigger = "down"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/conditions/down": true
+})
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="WaitUP" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_04kag")
 wait_time = 2.0
 next_state = NodePath("../WaitDown")
-animation_trigger = "up"
+animation_trigger = Dictionary[String, Variant]({
+"parameters/conditions/up": true
+})
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Spikes" type="Node3D" parent="Visuals" index="0"]
