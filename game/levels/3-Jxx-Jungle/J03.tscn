@@ -26,108 +26,15 @@ data = {
 "cells": PackedInt32Array(65526, 0, 786432, 65526, 65535, 786432, 65526, 65534, 786432, 65526, 1, 786432, 65528, 65535, 786432, 65528, 0, 786432, 65528, 1, 786432, 65526, 65533, 786432, 65527, 65533, 786432, 65528, 65533, 786432, 65529, 65533, 786432, 65530, 65533, 786432, 65530, 65534, 786432, 65530, 65535, 786432, 65530, 0, 786432, 65528, 2, 786432, 65529, 2, 786432, 65530, 2, 786432, 65531, 2, 786432, 65532, 2, 786432, 65532, 1, 786432, 65532, 0, 786432, 65532, 65535, 786432, 65532, 65534, 786432, 65532, 65533, 786432, 65526, 2, 786432, 9, 65533, 786432, 9, 65534, 786432, 9, 65535, 786432, 9, 0, 786432, 9, 1, 786432, 9, 2, 786432, 7, 65533, 786432, 7, 65534, 786432, 7, 65535, 786432, 7, 0, 786432, 8, 2, 786432, 7, 2, 786432, 6, 2, 786432, 5, 2, 786432, 5, 1, 786432, 5, 0, 786432, 5, 65535, 786432, 6, 65533, 786432, 5, 65533, 786432, 4, 65533, 786432, 3, 65533, 786432, 3, 65534, 786432, 3, 65535, 786432, 3, 0, 786432, 3, 1, 786432, 3, 2, 786432, 65532, 3, 786432, 65533, 3, 786432, 65534, 3, 786432, 65535, 3, 786432, 0, 3, 786432, 1, 3, 786432, 2, 3, 786432, 3, 3, 786432, 3, 65532, 786432, 2, 65532, 786432, 1, 65532, 786432, 0, 65532, 786432, 65535, 65532, 786432, 65534, 65532, 786432, 65533, 65532, 786432, 65532, 65532, 786432, 65534, 2, 786432, 65534, 1, 786432, 65534, 0, 786432, 65534, 65535, 786432, 65534, 65534, 786432, 65535, 65534, 786432, 0, 65534, 786432, 1, 65534, 786432, 1, 65535, 786432, 1, 0, 786432, 1, 1, 786432, 0, 1, 786432)
 }
 
-[node name="TrapsHalfSpeed" type="Node3D" parent="Enemies" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
-visible = false
-
-[node name="SpikeTrap" parent="Enemies/TrapsHalfSpeed" index="0" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 1.25)
-
-[node name="SpikeTrap2" parent="Enemies/TrapsHalfSpeed" index="1" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0.75)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap2/StateMachine" index="0"]
-wait_time = 0.2
-
-[node name="SpikeTrap3" parent="Enemies/TrapsHalfSpeed" index="2" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0.25)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap3/StateMachine" index="0"]
-wait_time = 0.4
-
-[node name="SpikeTrap4" parent="Enemies/TrapsHalfSpeed" index="3" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.25)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap4/StateMachine" index="0"]
-wait_time = 0.6
-
-[node name="SpikeTrap5" parent="Enemies/TrapsHalfSpeed" index="4" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.75)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap5/StateMachine" index="0"]
-wait_time = 0.8
-
-[node name="SpikeTrap6" parent="Enemies/TrapsHalfSpeed" index="5" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -0.75)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap6/StateMachine" index="0"]
-wait_time = 1.0
-
-[node name="SpikeTrap7" parent="Enemies/TrapsHalfSpeed" index="6" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.75)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap7/StateMachine" index="0"]
-wait_time = 1.2
-
-[node name="SpikeTrap8" parent="Enemies/TrapsHalfSpeed" index="7" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.25)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap8/StateMachine" index="0"]
-wait_time = 1.4
-
-[node name="SpikeTrap9" parent="Enemies/TrapsHalfSpeed" index="8" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.25)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap9/StateMachine" index="0"]
-wait_time = 1.6
-
-[node name="SpikeTrap10" parent="Enemies/TrapsHalfSpeed" index="9" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.75)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap10/StateMachine" index="0"]
-wait_time = 1.8
-
-[node name="SpikeTrap11" parent="Enemies/TrapsHalfSpeed" index="10" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0.75)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap11/StateMachine" index="0"]
-wait_time = 2.0
-
-[node name="SpikeTrap12" parent="Enemies/TrapsHalfSpeed" index="11" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.75)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap12/StateMachine" index="0"]
-wait_time = 2.2
-
-[node name="SpikeTrap13" parent="Enemies/TrapsHalfSpeed" index="12" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.25)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap13/StateMachine" index="0"]
-wait_time = 2.4
-
-[node name="SpikeTrap14" parent="Enemies/TrapsHalfSpeed" index="13" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.25)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap14/StateMachine" index="0"]
-wait_time = 2.6
-
-[node name="SpikeTrap15" parent="Enemies/TrapsHalfSpeed" index="14" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.75)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap15/StateMachine" index="0"]
-wait_time = 2.8
-
-[node name="SpikeTrap16" parent="Enemies/TrapsHalfSpeed" index="15" instance=ExtResource("3_wmcso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -1.25)
-
-[node name="FirstTimeDelay" parent="Enemies/TrapsHalfSpeed/SpikeTrap16/StateMachine" index="0"]
-wait_time = 3.0
-
-[node name="Traps0_1" type="Node3D" parent="Enemies" index="1"]
+[node name="Traps0_1" type="Node3D" parent="Enemies" index="0"]
 transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 2, 0, 0)
 
 [node name="SpikeTrap" parent="Enemies/Traps0_1" index="0" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 1.25)
+
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap2" parent="Enemies/Traps0_1" index="1" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0.75)
@@ -135,11 +42,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0.75)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap2/StateMachine" index="0"]
 wait_time = 0.1
 
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap2" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap3" parent="Enemies/Traps0_1" index="2" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0.25)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap3/StateMachine" index="0"]
 wait_time = 0.2
+
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap3" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap4" parent="Enemies/Traps0_1" index="3" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.25)
@@ -147,11 +62,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.25)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap4/StateMachine" index="0"]
 wait_time = 0.3
 
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap4" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap5" parent="Enemies/Traps0_1" index="4" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.75)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap5/StateMachine" index="0"]
 wait_time = 0.4
+
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap5" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap6" parent="Enemies/Traps0_1" index="5" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -0.75)
@@ -159,11 +82,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -0.75)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap6/StateMachine" index="0"]
 wait_time = 0.5
 
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap6" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap7" parent="Enemies/Traps0_1" index="6" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.75)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap7/StateMachine" index="0"]
 wait_time = 0.6
+
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap7" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap8" parent="Enemies/Traps0_1" index="7" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.25)
@@ -171,11 +102,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.25)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap8/StateMachine" index="0"]
 wait_time = 0.7
 
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap8" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap9" parent="Enemies/Traps0_1" index="8" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.25)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap9/StateMachine" index="0"]
 wait_time = 0.8
+
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap9" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap10" parent="Enemies/Traps0_1" index="9" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.75)
@@ -183,11 +122,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.75)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap10/StateMachine" index="0"]
 wait_time = 0.9
 
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap10" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap11" parent="Enemies/Traps0_1" index="10" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0.75)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap11/StateMachine" index="0"]
 wait_time = 1.0
+
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap11" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap12" parent="Enemies/Traps0_1" index="11" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.75)
@@ -195,11 +142,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.75)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap12/StateMachine" index="0"]
 wait_time = 1.1
 
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap12" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap13" parent="Enemies/Traps0_1" index="12" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.25)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap13/StateMachine" index="0"]
 wait_time = 1.2
+
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap13" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap14" parent="Enemies/Traps0_1" index="13" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.25)
@@ -207,11 +162,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.25)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap14/StateMachine" index="0"]
 wait_time = 1.3
 
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap14" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap15" parent="Enemies/Traps0_1" index="14" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.75)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap15/StateMachine" index="0"]
 wait_time = 1.4
+
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap15" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap16" parent="Enemies/Traps0_1" index="15" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -1.25)
@@ -219,11 +182,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -1.25)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_1/SpikeTrap16/StateMachine" index="0"]
 wait_time = 1.5
 
-[node name="Traps0_3" type="Node3D" parent="Enemies" index="2"]
+[node name="AnimationTree" parent="Enemies/Traps0_1/SpikeTrap16" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
+[node name="Traps0_3" type="Node3D" parent="Enemies" index="1"]
 transform = Transform3D(0.9999997, 0, 0, 0, 1, 0, 0, 0, 0.9999997, -2, 0, 0)
 
 [node name="SpikeTrap" parent="Enemies/Traps0_3" index="0" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 1.25)
+
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap2" parent="Enemies/Traps0_3" index="1" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0.75)
@@ -231,11 +202,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0.75)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap2/StateMachine" index="0"]
 wait_time = 0.1
 
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap2" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap3" parent="Enemies/Traps0_3" index="2" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0.25)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap3/StateMachine" index="0"]
 wait_time = 0.2
+
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap3" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap4" parent="Enemies/Traps0_3" index="3" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.25)
@@ -243,11 +222,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.25)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap4/StateMachine" index="0"]
 wait_time = 0.3
 
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap4" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap5" parent="Enemies/Traps0_3" index="4" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.75)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap5/StateMachine" index="0"]
 wait_time = 0.4
+
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap5" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap6" parent="Enemies/Traps0_3" index="5" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -0.75)
@@ -255,11 +242,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -0.75)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap6/StateMachine" index="0"]
 wait_time = 0.5
 
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap6" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap7" parent="Enemies/Traps0_3" index="6" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.75)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap7/StateMachine" index="0"]
 wait_time = 0.6
+
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap7" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap8" parent="Enemies/Traps0_3" index="7" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.25)
@@ -267,11 +262,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.25)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap8/StateMachine" index="0"]
 wait_time = 0.7
 
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap8" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap9" parent="Enemies/Traps0_3" index="8" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.25)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap9/StateMachine" index="0"]
 wait_time = 0.8
+
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap9" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap10" parent="Enemies/Traps0_3" index="9" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.75)
@@ -279,11 +282,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.75)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap10/StateMachine" index="0"]
 wait_time = 0.9
 
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap10" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap11" parent="Enemies/Traps0_3" index="10" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0.75)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap11/StateMachine" index="0"]
 wait_time = 1.0
+
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap11" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap12" parent="Enemies/Traps0_3" index="11" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.75)
@@ -291,11 +302,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.75)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap12/StateMachine" index="0"]
 wait_time = 1.1
 
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap12" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap13" parent="Enemies/Traps0_3" index="12" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.25)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap13/StateMachine" index="0"]
 wait_time = 1.2
+
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap13" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap14" parent="Enemies/Traps0_3" index="13" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.25)
@@ -303,11 +322,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.25)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap14/StateMachine" index="0"]
 wait_time = 1.3
 
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap14" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
 [node name="SpikeTrap15" parent="Enemies/Traps0_3" index="14" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.75)
 
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap15/StateMachine" index="0"]
 wait_time = 1.4
+
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap15" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
 
 [node name="SpikeTrap16" parent="Enemies/Traps0_3" index="15" instance=ExtResource("3_wmcso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -1.25)
@@ -315,32 +342,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -1.25)
 [node name="FirstTimeDelay" parent="Enemies/Traps0_3/SpikeTrap16/StateMachine" index="0"]
 wait_time = 1.5
 
-[node name="TortoiseEnemy" parent="Enemies" index="3" instance=ExtResource("4_48sih")]
+[node name="AnimationTree" parent="Enemies/Traps0_3/SpikeTrap16" index="7"]
+parameters/conditions/Down = false
+parameters/conditions/Up = false
+
+[node name="TortoiseEnemy" parent="Enemies" index="2" instance=ExtResource("4_48sih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 3.5)
 
-[node name="TortoiseEnemy2" parent="Enemies" index="4" instance=ExtResource("4_48sih")]
+[node name="TortoiseEnemy2" parent="Enemies" index="3" instance=ExtResource("4_48sih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -3.5)
 
 [node name="ExitArea" parent="." index="8" node_paths=PackedStringArray("parent") instance=ExtResource("2_vw6r5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
 
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap2"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap3"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap4"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap5"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap6"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap7"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap8"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap9"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap10"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap11"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap12"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap13"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap14"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap15"]
-[editable path="Enemies/TrapsHalfSpeed/SpikeTrap16"]
 [editable path="Enemies/Traps0_1/SpikeTrap"]
 [editable path="Enemies/Traps0_1/SpikeTrap2"]
 [editable path="Enemies/Traps0_1/SpikeTrap3"]
