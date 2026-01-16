@@ -25,6 +25,7 @@ func _ready() -> void:
 	
 
 var current_level: int = 0
+var currently_loaded_level: Level
 func choose_next_level() -> String:
 	current_level += 1
 	var level_string = str(current_level).pad_zeros(3)
@@ -72,6 +73,8 @@ func load_level():
 		new_level.level_ended.connect(level_ended)
 		
 		requestMusic.emit(false, new_level.music)
+
+		currently_loaded_level = new_level
 	
 
 	scene_fade_animation_player.play_backwards("fade")
@@ -79,9 +82,10 @@ func load_level():
 	Engine.time_scale = 1
 
 func level_finished():
-	upgrade_view.show_upgrades(player.possible_upgrades)
-	var chosen_upgrade = await upgrade_view.upgrade_chosen
-	player.add_upgrade(chosen_upgrade)
+	if not currently_loaded_level.is_boss_level:
+		upgrade_view.show_upgrades(player.possible_upgrades)
+		var chosen_upgrade = await upgrade_view.upgrade_chosen
+		player.add_upgrade(chosen_upgrade)
 
 func level_ended():
 	load_level()

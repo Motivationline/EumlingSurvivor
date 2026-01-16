@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="4_c68hb"]
 
 [node name="Level" instance=ExtResource("1_xysdr")]
+is_boss_level = true
+
+[node name="CollisionShape3D" parent="GoalArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 10)
 
 [node name="BossBugger" parent="Enemies" index="0" instance=ExtResource("2_7aecd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.3377893)

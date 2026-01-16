@@ -23,3 +23,12 @@ static func sort_by_distance(a: Node, b: Node, origin: Node) -> bool:
 	var dist_a = origin.global_position.distance_squared_to(a.global_transform.origin)
 	var dist_b = origin.global_position.distance_squared_to(b.global_transform.origin)
 	return dist_a < dist_b
+
+static func find_first_animation_tree(node: Node3D) -> AnimationTree:
+	if (!node): return null
+	for child in node.get_children():
+		if (child is AnimationTree): return child
+		if (child.get_child_count() > 0 && child is Node3D):
+			var tree = find_first_animation_tree(child)
+			if (tree && tree is AnimationTree): return tree
+	return null
