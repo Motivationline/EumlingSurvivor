@@ -162,22 +162,18 @@ func _flock(_direction: Vector3) -> Vector3:
 		return _direction.normalized()
 	
 	#Vision Cone, rm member that is outside of that cone
-	#print("Members: ", members_in_range)
 	for member in members_in_range:
-		var dist = member.global_position - parent.global_position
+		#var dist = member.global_position - parent.global_position
 		#var angle_rad = acos(parent.transform.basis.z.dot(dist))
 		var to_member = (member.global_position - parent.global_position)
 		var to_member_dir = to_member.normalized()
 
-		var forward = -parent.transform.basis.z.normalized() # depending on your forward axis
+		var forward = -parent.transform.basis.z.normalized()
 		var dot = clamp(forward.dot(to_member_dir), -1.0, 1.0)
 		var angle = rad_to_deg(acos(dot))
-		#var angle = angle_rad * (180/PI)
-		#print(angle)
-		#TODO: Check if this produces is finite error
+		
 		if angle > fov:
 			members_in_range.erase(member)
-	#print("Members after cone: ", members_in_range)
 	
 	for member in members_in_range:
 		
