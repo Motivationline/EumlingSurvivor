@@ -48,10 +48,22 @@ tracks/1/path = NodePath("Hitbox/CollisionShape3D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector3(0, -0.625, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_qh4ut"]
@@ -80,6 +92,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.25, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_0fbkj"]
 resource_name = "UP"
@@ -103,7 +127,7 @@ tracks/1/path = NodePath("Hitbox/CollisionShape3D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 0.53333336, 1.9, 1.9333334),
+"times": PackedFloat32Array(0, 0.53333336, 1.9, 1.9333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, false, false, true]
@@ -122,6 +146,18 @@ tracks/2/keys = {
 "method": &"play_sound"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.25, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pb8bu"]
 _data = {
@@ -130,31 +166,30 @@ _data = {
 &"UP": SubResource("Animation_0fbkj")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bdsau"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qh4ut"]
 animation = &"Down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_04kag"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0fbkj"]
 animation = &"UP"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ovvjf"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qh4ut"]
 advance_mode = 2
 advance_condition = &"down"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_80b7e"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0fbkj"]
 advance_mode = 2
 advance_condition = &"up"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gicpd"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pb8bu"]
 advance_mode = 2
 advance_condition = &"down"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_y64vg"]
-states/Down/node = SubResource("AnimationNodeAnimation_bdsau")
-states/Down/position = Vector2(413, 112)
-states/UP/node = SubResource("AnimationNodeAnimation_04kag")
-states/UP/position = Vector2(576, 94)
-transitions = ["Start", "Down", SubResource("AnimationNodeStateMachineTransition_ovvjf"), "Down", "UP", SubResource("AnimationNodeStateMachineTransition_80b7e"), "UP", "Down", SubResource("AnimationNodeStateMachineTransition_gicpd")]
-graph_offset = Vector2(-32, -81)
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pb8bu"]
+states/Down/node = SubResource("AnimationNodeAnimation_qh4ut")
+states/Down/position = Vector2(387, 128)
+states/UP/node = SubResource("AnimationNodeAnimation_0fbkj")
+states/UP/position = Vector2(579, 114)
+transitions = ["Start", "Down", SubResource("AnimationNodeStateMachineTransition_qh4ut"), "Down", "UP", SubResource("AnimationNodeStateMachineTransition_0fbkj"), "UP", "Down", SubResource("AnimationNodeStateMachineTransition_pb8bu")]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gicpd"]
 random_pitch = 1.1
@@ -166,10 +201,11 @@ stream_3/stream = ExtResource("9_o8mup")
 stream_4/stream = ExtResource("10_fc4p4")
 stream_5/stream = ExtResource("11_2ot51")
 
-[node name="SpikeTrap" node_paths=PackedStringArray("hitbox") instance=ExtResource("1_bdsau")]
+[node name="SpikeTrap" node_paths=PackedStringArray("hitbox", "node_with_animation_tree") instance=ExtResource("1_bdsau")]
 speed = 0.0
 ignore_enemy_in_level = true
 hitbox = NodePath("Hitbox")
+node_with_animation_tree = NodePath(".")
 cannot_die = true
 
 [node name="HealthbarEnemy3D" parent="." index="1"]
@@ -189,7 +225,8 @@ script = ExtResource("2_04kag")
 wait_time = 2.0
 next_state = NodePath("../WaitUP")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/conditions/down": true
+"parameters/conditions/down": true,
+"parameters/conditions/up": false
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
@@ -198,6 +235,7 @@ script = ExtResource("2_04kag")
 wait_time = 2.0
 next_state = NodePath("../WaitDown")
 animation_trigger = Dictionary[String, Variant]({
+"parameters/conditions/down": false,
 "parameters/conditions/up": true
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
@@ -273,7 +311,7 @@ libraries = {
 autoplay = "Down"
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="7"]
-tree_root = SubResource("AnimationNodeStateMachine_y64vg")
+tree_root = SubResource("AnimationNodeStateMachine_pb8bu")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/down = false
 parameters/conditions/up = false
