@@ -3,7 +3,7 @@ extends EventStrategy
 class_name ActivateEventStrategy
 
 ## Add Activation Strategy pool inside this Array
-@export var activate: Array[Strategy]
+@export var strategies_to_activate: Array[Strategy]
 
 ## trigger the action after a given delay
 @export var is_delayed: bool = false
@@ -14,6 +14,6 @@ func event_triggered(_data):
 	if is_delayed:
 		await get_tree().create_timer(delay).timeout
 	
-	for n in activate:
+	for n in strategies_to_activate:
 		#n.show()
 		n.is_active = true

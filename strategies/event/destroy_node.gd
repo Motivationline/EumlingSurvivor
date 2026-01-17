@@ -3,7 +3,7 @@ extends EventStrategy
 class_name DestroyNodeEventStrategy
 
 ## Add Node pool inside this Array
-@export var nodes: Array[Node]
+@export var nodes_to_destroy: Array[Node]
 
 ## trigger the action after a given delay
 @export var is_delayed: bool = false
@@ -18,6 +18,6 @@ func event_triggered(_data):
 		
 	#TODO: make this piercing dependant?
 	if not has_hit:
-		for n in nodes:
+		for n in nodes_to_destroy:
 			n.queue_free()
 		has_hit = true
