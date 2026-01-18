@@ -39,15 +39,17 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				target_pos = target.position
 				distance = (target_pos - start_pos).length()
 				isPosLocked = true
-				db_cube.global_position = target_pos
-				
+				print(distance)
 				#target_pos.y = 0
 				#start_pos.y = 0
+			
+			db_cube.global_position = target_pos
 			
 			var parent_pos = parent.position
 			#parent_pos.y = 0
 			
-			traveled = (start_pos - parent_pos).length()
+			traveled = (start_pos - (parent_pos - Vector3(0,start_pos.y,0))).length()
+			print(traveled)
 			# x is the amount we already traveled in target position
 			var x = traveled
 			# calculate the y-pos for x (how far we traveled to the target) on the parabula
