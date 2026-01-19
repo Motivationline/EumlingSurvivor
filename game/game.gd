@@ -6,7 +6,6 @@ var player: Player
 @onready var level_wrapper: Node3D = $Level
 @onready var scene_fade_animation_player: AnimationPlayer = $SceneFadeOverlay/AnimationPlayer
 @onready var upgrade_view: CanvasLayer = $UpgradeView
-@onready var level_choice_overlay: CanvasLayer = $LevelChoiceOverlay
 @onready var area_choice_overlay: CanvasLayer = $AreaChoiceOverlay
 
 @onready var debug_upgrade_view: CanvasLayer = $DebugUpgradeView
@@ -47,20 +46,10 @@ func load_level():
 	
 	Engine.time_scale = 0
 	var level_location: String = ""
-	if OS.has_feature("editor"):
-		while (true):
-			level_choice_overlay.setup()
-			var level_id = await level_choice_overlay.level_chosen
-			level_location = find_file(level_id + ".tscn", "res://game/levels")
-			if (level_location != "" and ResourceLoader.exists(level_location)):
-				break
-			else:
-				printerr("Level '%s.tscn' doesn't exist in '/game/levels/' or its subfolders. Try again." % level_id)
-	else:
-		if !levels_to_load.size() > 0:
-			area_choice_overlay.setup()
-			levels_to_load = await area_choice_overlay.area_chosen
-		level_location = levels_to_load.pop_front()
+	if !levels_to_load.size() > 0:
+		area_choice_overlay.setup()
+		levels_to_load = await area_choice_overlay.area_chosen
+	level_location = levels_to_load.pop_front()
 
 
 	# add new stuff
@@ -100,20 +89,3 @@ func return_to_main_menu():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("upgrade"):
 		debug_upgrade_view.show_upgrades(player)
-
-func find_file(file_name: String, folder_location: String = "res://game/levels") -> String:
-	# TODO: this might break on exported builds, so this needs to be replaced with something else before release!
-	var dir := DirAccess.open(folder_location)
-	if dir == null:
-		return ""
-	var files := dir.get_files()
-	if files.has(file_name):
-		return folder_location + "/" + file_name
-	
-	var dirs := dir.get_directories()
-	for d in dirs:
-		var path = find_file(file_name, folder_location + "/" + d)
-		if path != "":
-			return path
-
-	return ""
