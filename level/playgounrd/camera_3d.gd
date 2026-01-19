@@ -13,6 +13,7 @@ var floor_plane = Plane(Vector3.UP)
 
 func _ready() -> void:
 	player = get_tree().get_nodes_in_group("Player")[0]
+	player.camera = self
 	offset_x = position.x
 	offset_z = position.z
 

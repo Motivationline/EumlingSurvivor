@@ -161,12 +161,15 @@ func invulnerability():
 
 var prev_direction: Vector3
 var was_looking_somewhere: bool = false
+var camera: Camera3D
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
 	if health == 0: return
 	var direction = Input.get_vector("left", "right", "up", "down")
 	var direction_3d = Vector3(direction.x, 0, direction.y)
+	if camera:
+		direction_3d = direction_3d.rotated(Vector3.UP, camera.rotation.y)
 	velocity = direction_3d * speed
 	move_and_slide()
 
@@ -177,6 +180,9 @@ func _physics_process(_delta: float) -> void:
 
 	
 	var look_direction = Input.get_vector("attack_left", "attack_right", "attack_up", "attack_down")
+	var look_direction_3d = Vector3(look_direction.x, 0, look_direction.y)
+	if camera:
+		look_direction_3d = look_direction_3d.rotated(Vector3.UP, camera.rotation.y)
 	if look_direction.is_zero_approx():
 		if was_looking_somewhere:
 			shoot()
@@ -185,10 +191,10 @@ func _physics_process(_delta: float) -> void:
 			eumling_visuals.look_at(global_position + prev_direction)
 		%ShittyVisual.hide()
 	else:
-		eumling_visuals.look_at(global_position + Vector3(look_direction.x, 0, look_direction.y))
+		eumling_visuals.look_at(global_position + look_direction_3d)
 		was_looking_somewhere = true
 		%ShittyVisual.show()
-		prev_direction = Vector3(look_direction.x, 0, look_direction.y)
+		prev_direction = look_direction_3d
 	%ShittyVisual.rotation.y = eumling_visuals.rotation.y
 
 func _process(_delta: float) -> void:
@@ -227,7 +233,7 @@ func update_attack_visual():
 	var projectile_default_size = 0.25
 	%ShittyVisual.get_child(0).mesh.size.x = get_value(Enum.UPGRADE.PROJECTILE_SIZE) * projectile_default_size
 	%ShittyVisual.get_child(0).mesh.size.y = get_value(Enum.UPGRADE.RANGE)
-	%ShittyVisual.get_child(0).position.z = -get_value(Enum.UPGRADE.RANGE) / 2
+	%ShittyVisual.get_child(0).position.z = - get_value(Enum.UPGRADE.RANGE) / 2
 
 
 func add_upgrade(upgrade: Upgrade):
