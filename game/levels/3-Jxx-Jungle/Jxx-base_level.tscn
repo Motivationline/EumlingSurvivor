@@ -464,7 +464,7 @@ shadow_opacity = 0.53
 
 [node name="Lights" type="Node3D" parent="."]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+[node name="AmbientLights" type="DirectionalLight3D" parent="Lights"]
 transform = Transform3D(0.80237365, -0.579826, 0.14141546, 0.06176425, 0.31634703, 0.9466307, -0.5936175, -0.7508172, 0.28964102, -5.2903, 13.859095, -5.02786)
 light_bake_mode = 1
 shadow_enabled = true
@@ -475,6 +475,12 @@ directional_shadow_split_3 = 0.776
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
 environment = SubResource("Environment_weh0f")
+
+[node name="ShadowLight" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 7.857627, 3, -5.665901)
+light_energy = 0.05
+shadow_enabled = true
+directional_shadow_split_1 = 0.013
 
 [node name="Env" type="Node3D" parent="."]
 
@@ -492,7 +498,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4n8tp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7914107, -0.43659332, -5.637316)
 
 [node name="jungel_tree_02" parent="Env" instance=ExtResource("4_ruf1u")]
-transform = Transform3D(-0.27577183, 0, -0.9612234, 0, 1, 0, 0.9612234, 0, -0.27577183, 2.7086701, -0.43659237, -6.217332)
+transform = Transform3D(-0.27577183, 0, -0.9612234, 0, 1, 0, 0.9612234, 0, -0.27577183, -8.737791, -0.43659285, -3.5010982)
 
 [node name="jungel_tree_03" parent="Env" instance=ExtResource("4_ruf1u")]
 transform = Transform3D(-0.6845598, 0, 0.7289568, 0, 1, 0, -0.7289568, 0, -0.6845598, -6.8466964, -1.3226206, 3.5075579)

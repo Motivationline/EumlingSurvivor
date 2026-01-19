@@ -1,44 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://cpteni1gx0qfr"]
 
-[ext_resource type="PackedScene" uid="uid://bh5hx6axlhpid" path="res://assets/models/Jungle/ObstacleStone/obstacle_stone.tscn" id="1_wg8yc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_70ykt"]
-resource_name = "Material.001"
-cull_mode = 2
-albedo_color = Color(0.4785469, 0.8178236, 0.9066512, 1)
-roughness = 0.5
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_u7lmg"]
-_surfaces = [{
-"aabb": AABB(-0.25, -0.25, -0.25, 0.5, 0.5, 0.5),
-"format": 34896613377,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
-"name": "Material.001",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD/////AAAAAP//AAD//wAA////////AAD//wAAAAAAAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_1lgot"]
-resource_name = "0_5x0_5_Cube_001"
-_surfaces = [{
-"aabb": AABB(-0.25, -0.25, -0.25, 0.5, 0.5, 0.5),
-"attribute_data": PackedByteArray("/1////+f/7//n////1//v/9f/7//n/9//5//v/9f/3//X/9//5//P/+f/3//X/8//1//P/+fAAD/n/8//18AAP8f/3//X/8//1//f/8f/z//n/9//9//P//f/3//n/8/"),
-"format": 34896613399,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_70ykt"),
-"name": "Material.001",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("AAAAAP//VNUAAP//AABU1QAA/////1TVAAAAAAAAVNUAAAAAAAD///////8AAP//AAD//wAA/////wAAAAD/////AAAAAFTV////////VNX/////AABU1f//AAD//1TV//8AAP///78AAP//////v/////////+/AAAAAP///78AAAAAAAD/v///AAD///+///8AAAAA/78AAAAA////v/////8AAP//AAD///////8AAP//AAD/////////////VNVU1VTVVNVU1VTVVNVU1f+//7//v/+//7//v/+//7+qKqoqqiqqKqoqqiqqKqoq/////////////////////wAA/38AAP9/AAD/fwAA/3//f/+//3//v/9//7//f/+/")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_u7lmg")
+[ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="1_wg8yc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wg8yc"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -55,10 +17,48 @@ albedo_color = Color(0.73, 0.90999997, 1, 0.14901961)
 [sub_resource type="BoxShape3D" id="BoxShape3D_13bgu"]
 size = Vector3(0.5, 2.4232483, 0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kqau"]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("1_wg8yc")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_udnil"]
+_surfaces = [{
+"aabb": AABB(-0.25, -0.25068232, -0.25, 0.50416523, 0.5082706, 0.50416523),
+"format": 34896613377,
+"index_count": 84,
+"index_data": PackedByteArray("DAABAAIABwACAAEACQACAAcABwABAAsACQAHAAsACQALAAoACwABAAUACwAFAAoACgAIAAkACQAIAAIACgAFAAgADQAFAAEADAANAAEADgAIAAUADQAOAAUADwACAAgADwAMAAIADgAPAAgABgAMAA8AAwAOAA0AAAANAAwAAAADAA0ABgAAAAwAAwAEAA4ABAAPAA4ABAADAAAABAAGAA8ABAAAAAYA"),
+"lods": [0.012747425, PackedByteArray("AAABAAIAAAADAAEABAADAAAAAwAFAAEAAwAEAAUABAAAAAYABgAAAAIABAAGAAUABwACAAEABgACAAgABQAGAAgACQACAAcACQAIAAIACgAFAAgACgAIAAkACwABAAUACwAFAAoABwABAAsACQALAAoACQAHAAsA")],
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("4f0AAOH9AAAAAPLs4f0AAOH9Ms/h/QAAAAAAAOH9AAAAAAAAAAAAAAAA4+wAAAAA4f0AAAAAAAAt5tT7LeYAAOH9UeQAAAAALeb//7QXAAC0F9T7tBcAALQX1Pst5gAA///sWv//AACPBEx2UfkAAI8ERXaPBAAAUfkkco8EAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5nbks"]
+resource_name = "ObstacleStone_Cube"
+_surfaces = [{
+"aabb": AABB(-0.25, -0.25068232, -0.25, 0.50416523, 0.5082706, 0.50416523),
+"attribute_data": PackedByteArray("JDyLRe9+HIDMPb55ZH2TQRF3BQAkPItF1ja6BWR9k0F0Q3S7oXgsh8R38LvBfjnC/n9TgTU93cTlfQ/DVUOhhu9+HIDMPb55FjZYgEg6i8EaAIjBFjZYgEg6i8EFAMKA5X0Pwwc9+f81Pd3EyH35/zq9/ILBfjnC/n9Tgbq728PiPFdcWX0KYbKeY4M9nf/BVh0FwJsX0H+AfI/hBT5u4g=="),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("IAABAAIAIAAhAAEAAAAhACAAAAADACEAIgAdAB4AIgAjAB0AHAAjACIAHAAfACMABAAFAAYABAAHAAUACAAJAAoACQALAAoACQAMAAsACgANAAgACgAOAA0ACAAPAAkADwAQAAkADwARABAACAASAA8ACAATABIAJAAVABYAJAAlABUAFAAlACQAFAAXACUAJgAaABgAJgAnABoAGwAnACYAGwAZACcA"),
+"lods": [0.012747425, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACQALAAoACQAMAAsACgANAAgACgAOAA0ACAAPAAkADwAQAAkADwARABAACAASAA8ACAATABIAFAAVABYAFAAXABUAGAAZABoAGwAZABgAHAAdAB4AHAAfAB0A")],
+"material": SubResource("StandardMaterial3D_4kqau"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("4f0AAOH9TP4AAPLs4f2w/uH9Ms/h/UD/AAAAAOH9lP0AAAAAAADX/eH9AADh/df94f0AAAAAbf0AAAAA4f1A/i3m//+0Fxv2tBfU+y3m+Pe0F9T7tBcO+gAA4+wAADz6AADy7OH99e/h/VHkAADM7AAA4+wAAFL2LebU+y3mufIAAPLs4f3N+eH9Ms/h/Vb24f0yz+H90+Lh/VHkAADA9OH9AAAAAJrV4f0yz+H9edXh/VHkAACy1eH9AADh/YPVAADj7AAA9v/h/QAAAAD7/+H9UeQAAPX/AAAAAAAA//8AAAAA4f2n1QAA4+wAAL3TAADy7OH9w9MAAAAAAACx1f//7Fr//8v+jwRMdlH5Jv6PBEx2Ufmw1I8ERXaPBLLUUfkkco8EoNX//+xa//951Y8ERXaPBPv/Ufkkco8E+/9B/88ATv8Y/0//F/9C/9EA0j6k/dI+pP2aPjT9Cz8W/u1Bpwx8eqqyc3iuxLtyTcT9ezuvwkaoDF94d8iKL9wK8nWvq7AkwxRULccKjz0CF2QrTiqhKjcrWypaK4ArQCrPgpz/cIIAAK6Cvv9rfSMAxVbkq6lU/qqmVPeqv1bZq+v/2gD4/yH/uVVyq7hVcKviKtcqHiuxKkuAuf8ggNf/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_udnil")
+
 [node name="BaseTilemaps" type="Node3D"]
 
 [node name="Obstacle_0_5x0_5" type="MeshInstance3D" parent="."]
-mesh = SubResource("ArrayMesh_1lgot")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Obstacle_0_5x0_5"]
@@ -79,4 +79,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96162415, 0)
 shape = SubResource("BoxShape3D_13bgu")
 debug_color = Color(0.47039998, 0.4888799, 0.84, 1)
 
-[node name="ObstacleStone" parent="." instance=ExtResource("1_wg8yc")]
+[node name="Obstalce_Stone" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_5nbks")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstalce_Stone"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstalce_Stone/StaticBody3D"]
+shape = SubResource("BoxShape3D_wg8yc")
+debug_color = Color(0.47039998, 0.4888799, 0.84, 0.59607846)
