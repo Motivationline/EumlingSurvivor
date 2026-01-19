@@ -1,11 +1,13 @@
-[gd_scene load_steps=47 format=4 uid="uid://up4ci3iwwg8b"]
+[gd_scene load_steps=49 format=4 uid="uid://up4ci3iwwg8b"]
 
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_eloi7"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_jyv5p"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="3_6ii85"]
-[ext_resource type="PackedScene" uid="uid://dja7e38qqqhkd" path="res://assets/models/jungle_tree/jungel_tree_prefab.tscn" id="4_ruf1u"]
+[ext_resource type="PackedScene" uid="uid://dja7e38qqqhkd" path="res://assets/models/Jungle/jungle_tree/jungel_tree_prefab.tscn" id="4_ruf1u"]
 [ext_resource type="PackedScene" uid="uid://bd6al6p5ch00v" path="res://assets/models/bush/bush_prefab.tscn" id="5_egn2h"]
 [ext_resource type="PackedScene" uid="uid://bkff3bbbcyrcj" path="res://assets/models/momument/prefab_monument.tscn" id="6_i2d4m"]
+[ext_resource type="Script" uid="uid://bc7pailucq83t" path="res://addons/dreadpon.spatial_gardener/gardener/gardener.gd" id="7_6ii85"]
+[ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="8_ruf1u"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
 vertices = PackedVector3Array(-4.5, 1, -4.5, -4.5, 1, 4.5, 4.5, 1, 4.5, 4.5, 1, -4.5)
@@ -362,8 +364,6 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAAAAAD8AAADBAAAAPwAAAD8AAADBAAAAAAAAAAAAAADBAAAAPwAAAAAAAADBAAAAPwAAAD8AAAjBAAAAAAAAAD8AAAjBAAAAPwAAAAAAAAjBAAAAAAAAAAAAAAjBAAAAPwAAAD8AAADBAAAAPwAAAD8AAAjBAAAAPwAAAAAAAADBAAAAPwAAAAAAAAjBAAAAAAAAAD8AAAjBAAAAAAAAAD8AAADBAAAAAAAAAAAAAAjBAAAAAAAAAAAAAADBAAAAPwAAAD8AAADBAAAAAAAAAD8AAADBAAAAPwAAAD8AAAjBAAAAAAAAAD8AAAjBAAAAAAAAAAAAAADBAAAAPwAAAAAAAADBAAAAAAAAAAAAAAjBAAAAPwAAAAAAAAjBAAAAPwAAAD8AAADBAACAPwAAAD8AAADBAAAAPwAAAAAAAADBAACAPwAAAAAAAADBAACAPwAAAD8AAAjBAAAAPwAAAD8AAAjBAACAPwAAAAAAAAjBAAAAPwAAAAAAAAjBAACAPwAAAD8AAADBAACAPwAAAD8AAAjBAACAPwAAAAAAAADBAACAPwAAAAAAAAjBAAAAPwAAAD8AAAjBAAAAPwAAAD8AAADBAAAAPwAAAAAAAAjBAAAAPwAAAAAAAADBAACAPwAAAD8AAADBAAAAPwAAAD8AAADBAACAPwAAAD8AAAjBAAAAPwAAAD8AAAjBAAAAPwAAAAAAAADBAACAPwAAAAAAAADBAAAAPwAAAAAAAAjBAACAPwAAAAAAAAjBAACAPwAAAD8AAADBAADAPwAAAD8AAADBAACAPwAAAAAAAADBAADAPwAAAAAAAADBAADAPwAAAD8AAAjBAACAPwAAAD8AAAjBAADAPwAAAAAAAAjBAACAPwAAAAAAAAjBAADAPwAAAD8AAADBAADAPwAAAD8AAAjBAADAPwAAAAAAAADBAADAPwAAAAAAAAjBAACAPwAAAD8AAAjBAACAPwAAAD8AAADBAACAPwAAAAAAAAjBAACAPwAAAAAAAADBAADAPwAAAD8AAADBAACAPwAAAD8AAADBAADAPwAAAD8AAAjBAACAPwAAAD8AAAjBAACAPwAAAAAAAADBAADAPwAAAAAAAADBAACAPwAAAAAAAAjBAADAPwAAAAAAAAjB/3//f////7//f/9/////v/9//3////+//3//f////7//////AAD/v/////8AAP+//////wAA/7//////AAD/v///AID///////8AgP///////wCA////////AID/////AAAAgP9//78AAACA/3//vwAAAID/f/+/AAAAgP9//78AgP//AAD/vwCA//8AAP+/AID//wAA/78AgP//AAD/vwCAAAD///+/AIAAAP///78AgAAA////vwCAAAD///+//3//f////7//f/9/////v/9//3////+//3//f////7//////AAD/v/////8AAP+//////wAA/7//////AAD/v///AID///////8AgP///////wCA////////AID/////AAAAgP9//78AAACA/3//vwAAAID/f/+/AAAAgP9//78AgP//AAD/vwCA//8AAP+/AID//wAA/78AgP//AAD/vwCAAAD///+/AIAAAP///78AgAAA////vwCAAAD///+//3//f////7//f/9/////v/9//3////+//3//f////7//////AAD/v/////8AAP+//////wAA/7//////AAD/v///AID///////8AgP///////wCA////////AID/////AAAAgP9//78AAACA/3//vwAAAID/f/+/AAAAgP9//78AgP//AAD/vwCA//8AAP+/AID//wAA/78AgP//AAD/vwCAAAD///+/AIAAAP///78AgAAA////vwCAAAD///+/")
 }]
 
-[sub_resource type="BoxMesh" id="BoxMesh_eloi7"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbp8f"]
 size = Vector3(1.9667969, 1.8048096, 1)
 
@@ -407,6 +407,12 @@ size = Vector2(30, 30)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4n8tp"]
 albedo_color = Color(0.06586128, 0.13228461, 0.02173196, 1)
 
+[sub_resource type="Resource" id="Resource_egn2h"]
+resource_local_to_scene = true
+script = ExtResource("8_ruf1u")
+octree_managers = []
+metadata/class = "Arborist"
+
 [node name="Level" type="Node3D" node_paths=PackedStringArray("player_spawn", "goal_area")]
 script = ExtResource("1_eloi7")
 player_spawn = NodePath("PlayerSpawnMarker")
@@ -442,9 +448,6 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="PlayerSpawnMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerSpawnMarker"]
-mesh = SubResource("BoxMesh_eloi7")
 
 [node name="GoalArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
@@ -497,7 +500,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4n8tp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7914107, -0.43659332, -5.637316)
 
 [node name="jungel_tree_02" parent="Env" instance=ExtResource("4_ruf1u")]
-transform = Transform3D(-0.84824246, 0, -0.52960837, 0, 1, 0, 0.52960837, 0, -0.84824246, 4.771756, -0.43659237, -5.664099)
+transform = Transform3D(-0.27577183, 0, -0.9612234, 0, 1, 0, 0.9612234, 0, -0.27577183, 2.7086701, -0.43659237, -6.217332)
 
 [node name="jungel_tree_03" parent="Env" instance=ExtResource("4_ruf1u")]
 transform = Transform3D(-0.6845598, 0, 0.7289568, 0, 1, 0, -0.7289568, 0, -0.6845598, -6.8466964, -1.3226206, 3.5075579)
@@ -543,3 +546,13 @@ transform = Transform3D(4.5109253, 4.705122, 4.638252, -4.6828184, 6.2387905, -1
 
 [node name="Enemies" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Gardener" type="Node3D" parent="."]
+script = ExtResource("7_6ii85")
+file_management/garden_work_directory = ""
+gardening/gardening_collision_mask = 1.0
+arborist = SubResource("Resource_egn2h")
+plugin_version = "1.4.1"
+storage_version = 4
+metadata/_custom_type_script = "uid://bc7pailucq83t"
+metadata/class = "Gardener"

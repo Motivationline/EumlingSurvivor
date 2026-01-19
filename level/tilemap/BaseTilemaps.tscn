@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://cpteni1gx0qfr"]
+[gd_scene load_steps=9 format=4 uid="uid://cpteni1gx0qfr"]
+
+[ext_resource type="PackedScene" uid="uid://bh5hx6axlhpid" path="res://assets/models/Jungle/ObstacleStone/obstacle_stone.tscn" id="1_wg8yc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_70ykt"]
 resource_name = "Material.001"
@@ -63,7 +65,7 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle_0_5x0_5/StaticBody3D"]
 shape = SubResource("BoxShape3D_wg8yc")
-debug_color = Color(0.47039998, 0.4888799, 0.84, 1)
+debug_color = Color(0.47039998, 0.4888799, 0.84, 0.59607846)
 
 [node name="MapBorder_0_5x0_5" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_13bgu")
@@ -76,3 +78,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_13bgu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96162415, 0)
 shape = SubResource("BoxShape3D_13bgu")
 debug_color = Color(0.47039998, 0.4888799, 0.84, 1)
+
+[node name="ObstacleStone" parent="." instance=ExtResource("1_wg8yc")]

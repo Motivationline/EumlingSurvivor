@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh5hx6axlhpid"]
+
+[ext_resource type="PackedScene" uid="uid://m14qxh5fce8m" path="res://assets/models/Jungle/ObstacleStone/ObstacleStone.glb" id="1_ctv4c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ctv4c"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="ObstacleStone" instance=ExtResource("1_ctv4c")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_ctv4c")
+debug_color = Color(1, 0.42000002, 0.71966684, 1)
