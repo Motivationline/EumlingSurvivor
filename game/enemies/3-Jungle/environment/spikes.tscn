@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://dk6vxgi2ymgv4"]
+[gd_scene load_steps=27 format=3 uid="uid://dk6vxgi2ymgv4"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_bdsau"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_04kag"]
+[ext_resource type="PackedScene" uid="uid://cbbcu7gsooiql" path="res://assets/models/Jungle/Spikes/spikes.tscn" id="3_0fbkj"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_ovvjf"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="4_qh4ut"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="5_80b7e"]
@@ -11,12 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://cn13no7bt6gao" path="res://assets/sound/obstacle_sound_effects/objects/spikes/extend_4.wav" id="9_o8mup"]
 [ext_resource type="AudioStream" uid="uid://cwmwsug0govte" path="res://assets/sound/obstacle_sound_effects/objects/spikes/extend_5.wav" id="10_fc4p4"]
 [ext_resource type="AudioStream" uid="uid://r4ll3uvo2ffk" path="res://assets/sound/obstacle_sound_effects/objects/spikes/extend_6.wav" id="11_2ot51"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80b7e"]
-albedo_color = Color(0.75686276, 0.02745098, 0.12156863, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_gicpd"]
-material = SubResource("StandardMaterial3D_80b7e")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y64vg"]
 albedo_color = Color(0.5019608, 0.4862745, 0, 1)
@@ -118,7 +113,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.5, 0.6, 0.70000005, 1.9000001, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, -0.341, 0), Vector3(0, -0.266, 0), Vector3(0, -0.266, 0), Vector3(0, 0.053, 0), Vector3(0, -0.04, 0), Vector3(0, -0.16, 0), Vector3(0, -0.326, 0)]
+"values": [Vector3(0, -0.341, 0), Vector3(0, -0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0.053, 0), Vector3(0, -0.04, 0), Vector3(0, -0.16, 0), Vector3(0, -0.326, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -241,52 +236,10 @@ animation_trigger = Dictionary[String, Variant]({
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Spikes" type="Node3D" parent="Visuals" index="0"]
-transform = Transform3D(0.5, 0, 0, 0, 0.7322147, 0, 0, 0, 0.5, 0, -0.44082046, 0)
+transform = Transform3D(3.183, 0, 0, 0, 4.196, 0, 0, 0, 3.183, 0, -0.44082046, 0)
 
-[node name="Spike" type="MeshInstance3D" parent="Visuals/Spikes" index="0"]
-transform = Transform3D(0.26143846, 0, 0, 0, 0.5177108, 0, 0, 0, 0.17236345, -0.371013, 0.22720522, 0.008065641)
-mesh = SubResource("PrismMesh_gicpd")
-skeleton = NodePath("../..")
-
-[node name="Spike3" type="MeshInstance3D" parent="Visuals/Spikes" index="1"]
-transform = Transform3D(-1.0532743e-08, 0, 0.17236347, 0, 0.5177108, 0, -0.24798727, 0, -7.450581e-09, -0.3617306, 0.22720522, -0.3711536)
-mesh = SubResource("PrismMesh_gicpd")
-skeleton = NodePath("../..")
-
-[node name="Spike5" type="MeshInstance3D" parent="Visuals/Spikes" index="2"]
-transform = Transform3D(-1.1672392e-08, 0, 0.17236347, 0, 0.5177108, 0, -0.27481964, 0, -7.450581e-09, -0.3380762, 0.22720522, 0.3480677)
-mesh = SubResource("PrismMesh_gicpd")
-skeleton = NodePath("../..")
-
-[node name="Spike7" type="MeshInstance3D" parent="Visuals/Spikes" index="3"]
-transform = Transform3D(0.21213335, 0, 0, 0, 0.5177108, 0, 0, 0, 0.17236345, 0.37465107, 0.22720522, 0.009880722)
-mesh = SubResource("PrismMesh_gicpd")
-skeleton = NodePath("../..")
-
-[node name="Spike8" type="MeshInstance3D" parent="Visuals/Spikes" index="4"]
-transform = Transform3D(-9.411268e-09, 0, 0.17236347, 0, 0.5177108, 0, -0.22158282, 0, -7.450581e-09, 0.36224902, 0.22720522, -0.38499475)
-mesh = SubResource("PrismMesh_gicpd")
-skeleton = NodePath("../..")
-
-[node name="Spike9" type="MeshInstance3D" parent="Visuals/Spikes" index="5"]
-transform = Transform3D(-9.331696e-09, 0, 0.17236347, 0, 0.5177108, 0, -0.21970934, 0, -7.450581e-09, 0.37475026, 0.22720522, 0.36124235)
-mesh = SubResource("PrismMesh_gicpd")
-skeleton = NodePath("../..")
-
-[node name="Spike2" type="MeshInstance3D" parent="Visuals/Spikes" index="6"]
-transform = Transform3D(-1.6537143e-08, 0, 0.17236346, 0, 0.51771075, 0, -0.25957155, 0, -1.1175871e-08, 0, 0.22720522, 0)
-mesh = SubResource("PrismMesh_gicpd")
-skeleton = NodePath("../..")
-
-[node name="Spike4" type="MeshInstance3D" parent="Visuals/Spikes" index="7"]
-transform = Transform3D(0.22433427, 0, 0, 0, 0.5177108, 0, 0, 0, 0.17236345, 0.013865471, 0.22720522, -0.34459198)
-mesh = SubResource("PrismMesh_gicpd")
-skeleton = NodePath("../..")
-
-[node name="Spike6" type="MeshInstance3D" parent="Visuals/Spikes" index="8"]
-transform = Transform3D(0.24388145, 0, 0, 0, 0.5177108, 0, 0, 0, 0.17236345, 0.004091561, 0.22720522, 0.37664255)
-mesh = SubResource("PrismMesh_gicpd")
-skeleton = NodePath("../..")
+[node name="Spikes" parent="Visuals/Spikes" index="0" instance=ExtResource("3_0fbkj")]
+transform = Transform3D(0.298, 0, 0, 0, 0.298, 0, 0, 0, 0.298, 0, -0.02627004, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21034646, 0)
