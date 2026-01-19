@@ -20,6 +20,7 @@ var traveled: float
 func _setup(_parent: Node, _owner: Node):
 	super (_parent, _owner)
 	start_pos = parent.position
+	parent.velocity = Vector3.ZERO
 	
 
 func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: float):
@@ -39,7 +40,7 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				target_pos = target.position
 				distance = (target_pos - start_pos).length()
 				isPosLocked = true
-				print(distance)
+				print("distance:", distance)
 				#target_pos.y = 0
 				#start_pos.y = 0
 			
@@ -48,8 +49,8 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 			var parent_pos = parent.position
 			#parent_pos.y = 0
 			
-			traveled = (start_pos - (parent_pos - Vector3(0,start_pos.y,0))).length()
-			print(traveled)
+			traveled = ((start_pos - Vector3(0,start_pos.y,0))- (parent_pos - Vector3(0,parent_pos.y,0))).length()
+			print("traveled: ",traveled, " start_pos: ", start_pos, " target_pos: ", target_pos, " parent_pos: ", parent.global_position)
 			# x is the amount we already traveled in target position
 			var x = traveled
 			# calculate the y-pos for x (how far we traveled to the target) on the parabula
