@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://up4ci3iwwg8b"]
+[gd_scene load_steps=46 format=4 uid="uid://up4ci3iwwg8b"]
 
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_eloi7"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_jyv5p"]
@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dja7e38qqqhkd" path="res://assets/models/Jungle/jungle_tree/jungel_tree_prefab.tscn" id="4_ruf1u"]
 [ext_resource type="PackedScene" uid="uid://bd6al6p5ch00v" path="res://assets/models/bush/bush_prefab.tscn" id="5_egn2h"]
 [ext_resource type="PackedScene" uid="uid://bkff3bbbcyrcj" path="res://assets/models/momument/prefab_monument.tscn" id="6_i2d4m"]
-[ext_resource type="Script" uid="uid://bc7pailucq83t" path="res://addons/dreadpon.spatial_gardener/gardener/gardener.gd" id="7_6ii85"]
-[ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="8_ruf1u"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
 vertices = PackedVector3Array(-4.5, 1, -4.5, -4.5, 1, 4.5, 4.5, 1, 4.5, 4.5, 1, -4.5)
@@ -70,7 +68,7 @@ size = Vector3(0.6, 0.5, 0.6)
 resource_name = "Material.002"
 cull_mode = 2
 albedo_color = Color(0.15228745, 0.28173983, 0.123734854, 1)
-roughness = 0.5
+metallic_specular = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_j42j1"]
 _surfaces = [{
@@ -407,12 +405,6 @@ size = Vector2(30, 30)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4n8tp"]
 albedo_color = Color(0.06586128, 0.13228461, 0.02173196, 1)
 
-[sub_resource type="Resource" id="Resource_egn2h"]
-resource_local_to_scene = true
-script = ExtResource("8_ruf1u")
-octree_managers = []
-metadata/class = "Arborist"
-
 [node name="Level" type="Node3D" node_paths=PackedStringArray("player_spawn", "goal_area")]
 script = ExtResource("1_eloi7")
 player_spawn = NodePath("PlayerSpawnMarker")
@@ -546,13 +538,3 @@ transform = Transform3D(4.5109253, 4.705122, 4.638252, -4.6828184, 6.2387905, -1
 
 [node name="Enemies" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="Gardener" type="Node3D" parent="."]
-script = ExtResource("7_6ii85")
-file_management/garden_work_directory = ""
-gardening/gardening_collision_mask = 1.0
-arborist = SubResource("Resource_egn2h")
-plugin_version = "1.4.1"
-storage_version = 4
-metadata/_custom_type_script = "uid://bc7pailucq83t"
-metadata/class = "Gardener"
