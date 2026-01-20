@@ -1,0 +1,91 @@
+[gd_scene load_steps=15 format=3 uid="uid://dlxnvjne1irpy"]
+
+[ext_resource type="Texture2D" uid="uid://47y0pme0fbl6" path="res://assets/ui/Roadsign.png" id="1_aqff7"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_cxt50"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="2_44wh7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bi2ca"]
+shader = ExtResource("1_cxt50")
+shader_parameter/lod = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cxt50"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bi2ca"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jce7x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dmnx1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qr4w3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qf0lw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iq2hp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cu6w4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mnp3q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2khj"]
+
+[node name="AreaPicker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_bi2ca")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(48.197548, 27.088264)
+
+[node name="Sign" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -293.99994
+offset_top = 1.0000038
+offset_right = 1866.0
+offset_bottom = 3841.0
+grow_horizontal = 2
+scale = Vector2(0.2894374, 0.2894374)
+texture = ExtResource("1_aqff7")
+
+[node name="Jungle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 854.0
+offset_top = 251.0
+offset_right = 1101.0
+offset_bottom = 376.0
+scale = Vector2(1.0040706, 0.9943427)
+theme_override_colors/font_pressed_color = Color(0.23911008, 0.12829375, 0.049078874, 1)
+theme_override_fonts/font = ExtResource("2_44wh7")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cxt50")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bi2ca")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jce7x")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dmnx1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qr4w3")
+text = "Jungle"
+
+[node name="Vulcano" type="Button" parent="."]
+layout_mode = 0
+offset_left = 828.00006
+offset_top = 589.00006
+offset_right = 1122.0
+offset_bottom = 714.00006
+rotation = -0.123314455
+theme_override_colors/font_pressed_color = Color(0.23921569, 0.12941177, 0.050980393, 1)
+theme_override_fonts/font = ExtResource("2_44wh7")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qf0lw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iq2hp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_cu6w4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mnp3q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h2khj")
+text = "Vulcano"

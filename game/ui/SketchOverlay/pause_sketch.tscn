@@ -1,14 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbr7504esjh25"]
+[gd_scene load_steps=18 format=3 uid="uid://cbr7504esjh25"]
 
 [ext_resource type="Script" uid="uid://cb6exknwr21rp" path="res://game/ui/SketchOverlay/pause_sketch.gd" id="1_ae7h8"]
-[ext_resource type="Shader" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_t8k7y"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_t8k7y"]
 [ext_resource type="Texture2D" uid="uid://s4sspr0pav3l" path="res://assets/ui/SketchGreyButtonTexture.png" id="2_rjl6h"]
 [ext_resource type="Texture2D" uid="uid://dga44i4l037h4" path="res://assets/ui/TextFrameWhite.png" id="3_uhhhn"]
 [ext_resource type="Texture2D" uid="uid://dlxllxaxnftbv" path="res://assets/ui/SketchBackpack.png" id="4_t8k7y"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="5_0i5jc"]
 [ext_resource type="Texture2D" uid="uid://bdadcktl5wa1e" path="res://assets/ui/ButtonFlatMusic.png" id="5_ae7h8"]
 [ext_resource type="PackedScene" uid="uid://34ncdps2t868" path="res://game/ui/inventory/inv_ui_slot.tscn" id="5_rjl6h"]
-[ext_resource type="Texture2D" uid="uid://bym3f6cho14e6" path="res://assets/ui/FrameSketch.png" id="6_758ov"]
 [ext_resource type="Texture2D" uid="uid://fpp7cakghff6" path="res://assets/ui/ButtonFlatSoundPressed.png" id="6_rlwl4"]
 [ext_resource type="Texture2D" uid="uid://c6ey6sobnbhsr" path="res://assets/ui/SketchBanner.png" id="6_uhhhn"]
 [ext_resource type="Texture2D" uid="uid://lqvoinjtph1p" path="res://assets/ui/ButtonFlatPlay.png" id="7_0i5jc"]
@@ -73,29 +72,45 @@ offset_bottom = 684.0
 texture = ExtResource("2_rjl6h")
 expand_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="InfoTextBox/TextureRect"]
-position = Vector2(77.00001, 607.00006)
-scale = Vector2(0.066861965, 0.066861965)
-texture = ExtResource("3_uhhhn")
-
-[node name="Sprite2D2" type="Sprite2D" parent="InfoTextBox/TextureRect"]
-position = Vector2(415.99997, 607.00006)
-scale = Vector2(0.066861965, 0.066861965)
+[node name="Deko1" type="TextureRect" parent="InfoTextBox/TextureRect"]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 552.0
+offset_right = 2028.0
+offset_bottom = 2208.0
+scale = Vector2(0.066345446, 0.066345446)
 texture = ExtResource("3_uhhhn")
 flip_h = true
 
-[node name="Sprite2D3" type="Sprite2D" parent="InfoTextBox/TextureRect"]
-position = Vector2(77.00001, 75.361755)
-scale = Vector2(0.066861965, 0.066861965)
+[node name="Deko2" type="TextureRect" parent="InfoTextBox/TextureRect"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 20.0
+offset_right = 1689.0
+offset_bottom = 1676.0
+scale = Vector2(0.066345446, 0.066345446)
 texture = ExtResource("3_uhhhn")
 flip_v = true
 
-[node name="Sprite2D4" type="Sprite2D" parent="InfoTextBox/TextureRect"]
-position = Vector2(415.99997, 75.361755)
-scale = Vector2(0.066861965, 0.066861965)
+[node name="Deko3" type="TextureRect" parent="InfoTextBox/TextureRect"]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 20.0
+offset_right = 2028.0
+offset_bottom = 1676.0
+scale = Vector2(0.066345446, 0.066345446)
 texture = ExtResource("3_uhhhn")
 flip_h = true
 flip_v = true
+
+[node name="Deko4" type="TextureRect" parent="InfoTextBox/TextureRect"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 552.0
+offset_right = 1689.0
+offset_bottom = 2208.0
+scale = Vector2(0.066345446, 0.066345446)
+texture = ExtResource("3_uhhhn")
 
 [node name="Label" type="Label" parent="InfoTextBox"]
 layout_mode = 1
@@ -122,12 +137,6 @@ offset_bottom = 320.0
 grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("5_0i5jc")
 text = "This contains the Info Text about the Item clicked."
-
-[node name="Sprite2D" type="Sprite2D" parent="InfoTextBox"]
-visible = false
-position = Vector2(247, 329)
-scale = Vector2(0.4427268, 0.44163063)
-texture = ExtResource("6_758ov")
 
 [node name="SoundButton" type="TextureButton" parent="."]
 layout_mode = 0
@@ -161,9 +170,13 @@ scale = Vector2(0.06911028, 0.06911028)
 texture_normal = ExtResource("9_ivxfl")
 texture_pressed = ExtResource("10_s0x18")
 
-[node name="Backpack" type="Sprite2D" parent="."]
-position = Vector2(562.00006, 613)
-scale = Vector2(0.45232782, 0.45232773)
+[node name="Backpack" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 183.0
+offset_right = 2259.0
+offset_bottom = 2084.0
+scale = Vector2(0.45288205, 0.45288205)
 texture = ExtResource("4_t8k7y")
 
 [node name="InventoryScroll" type="ScrollContainer" parent="."]
@@ -244,39 +257,60 @@ layout_mode = 2
 [node name="invUiSlot15" parent="InventoryScroll/NinePatchRect/GridContainer" instance=ExtResource("5_rjl6h")]
 layout_mode = 2
 
-[node name="Banner" type="Sprite2D" parent="."]
-position = Vector2(1052, 97)
-scale = Vector2(0.16678321, 0.16678321)
+[node name="Banner" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 763.0
+offset_top = 36.999996
+offset_right = 4231.0
+offset_bottom = 752.0
+scale = Vector2(0.16670571, 0.16670571)
 texture = ExtResource("6_uhhhn")
 
 [node name="Label" type="Label" parent="Banner"]
-offset_left = -539.6228
-offset_top = -323.77362
-offset_right = -385.6228
-offset_bottom = -253.77362
+layout_mode = 0
+offset_left = 1193.7202
+offset_top = 35.99156
+offset_right = 1347.7202
+offset_bottom = 105.99156
 scale = Vector2(7.1267776, 7.1267776)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_0i5jc")
 text = "PAUSE"
 
-[node name="ItemCircle" type="Sprite2D" parent="."]
-position = Vector2(1205, 449.517)
-scale = Vector2(0.06369529, 0.06369529)
+[node name="WhiteCircle" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1138.0
+offset_top = 383.0
+offset_right = 3222.0
+offset_bottom = 2467.0
+scale = Vector2(0.06375013, 0.06375013)
 texture = ExtResource("14_lnywe")
 
-[node name="ItemCircle2" type="Sprite2D" parent="."]
-position = Vector2(1205, 615.51697)
-scale = Vector2(0.06369529, 0.06369529)
+[node name="WhiteCircle2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1138.0
+offset_top = 548.0
+offset_right = 3222.0
+offset_bottom = 2632.0
+scale = Vector2(0.06375013, 0.06375013)
 texture = ExtResource("14_lnywe")
 
-[node name="ItemCircle3" type="Sprite2D" parent="."]
-position = Vector2(1205, 785.51697)
-scale = Vector2(0.06369529, 0.06369529)
+[node name="WhiteCircle3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1138.0
+offset_top = 719.0
+offset_right = 3222.0
+offset_bottom = 2803.0
+scale = Vector2(0.06375013, 0.06375013)
 texture = ExtResource("14_lnywe")
 
-[node name="ItemCircle4" type="Sprite2D" parent="."]
-position = Vector2(1205, 953.51697)
-scale = Vector2(0.06369529, 0.06369529)
+[node name="WhiteCircle4" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1138.0
+offset_top = 887.0
+offset_right = 3222.0
+offset_bottom = 2971.0
+scale = Vector2(0.06375013, 0.06375013)
 texture = ExtResource("14_lnywe")
 
 [connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]

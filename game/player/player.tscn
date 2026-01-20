@@ -115,6 +115,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TimeBackground" type="Panel" parent="UI/Control"]
+visible = false
 clip_children = 1
 layout_mode = 0
 offset_left = 1520.0
@@ -125,6 +126,7 @@ scale = Vector2(0.9448688, 0.81943655)
 theme_override_styles/panel = SubResource("StyleBoxFlat_0e4oy")
 
 [node name="TextureRect" type="TextureRect" parent="UI/Control/TimeBackground"]
+visible = false
 layout_mode = 0
 offset_left = -9.40922
 offset_top = -4.931595
@@ -144,6 +146,7 @@ texture_normal = ExtResource("6_usp30")
 texture_pressed = ExtResource("7_0e4oy")
 
 [node name="EumlingeBackground" type="Panel" parent="UI/Control"]
+visible = false
 clip_children = 1
 layout_mode = 0
 offset_left = 1703.9999
@@ -154,6 +157,7 @@ scale = Vector2(0.94487256, 0.8194397)
 theme_override_styles/panel = SubResource("StyleBoxFlat_0e4oy")
 
 [node name="TextureRect" type="TextureRect" parent="UI/Control/EumlingeBackground"]
+visible = false
 layout_mode = 0
 offset_left = -9.40922
 offset_top = -4.931595
@@ -175,16 +179,17 @@ texture_pressed = ExtResource("8_rqcxa")
 
 [node name="ReloadProgress" type="TextureProgressBar" parent="UI/Control"]
 layout_mode = 0
-offset_left = 44.00006
-offset_top = 206.0
-offset_right = 250.00006
-offset_bottom = 412.0
+offset_left = 158.0
+offset_top = 31.0
+offset_right = 364.0
+offset_bottom = 237.0
 scale = Vector2(0.4, 0.4)
 value = 1.0
 fill_mode = 4
 texture_progress = ExtResource("12_gh012")
 
 [node name="XPBar" type="TextureProgressBar" parent="UI/Control"]
+visible = false
 layout_mode = 0
 offset_left = 197.0
 offset_top = 63.0
@@ -196,6 +201,7 @@ texture_under = ExtResource("11_eeltd")
 texture_over = ExtResource("12_088ty")
 
 [node name="Level" type="Label" parent="UI/Control"]
+visible = false
 layout_mode = 0
 offset_left = 739.0
 offset_top = 2.0
@@ -206,6 +212,7 @@ theme_override_font_sizes/font_size = 60
 text = "Level/XP"
 
 [node name="Time" type="Label" parent="UI/Control"]
+visible = false
 layout_mode = 0
 offset_left = 1549.0
 offset_top = 73.0
@@ -216,6 +223,7 @@ theme_override_font_sizes/font_size = 30
 text = "XX:XX"
 
 [node name="SavedEumlings" type="Label" parent="UI/Control"]
+visible = false
 layout_mode = 0
 offset_left = 1756.0
 offset_top = 74.0
@@ -226,6 +234,7 @@ theme_override_font_sizes/font_size = 30
 text = "YY"
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Control"]
+visible = false
 position = Vector2(1832, 92)
 scale = Vector2(0.030777289, 0.03077728)
 texture = ExtResource("14_0e4oy")
