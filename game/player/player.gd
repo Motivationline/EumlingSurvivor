@@ -133,7 +133,7 @@ func reset():
 	speed = get_value(Enum.UPGRADE.MOVEMENT_SPEED)
 
 	if (healthbar): healthbar.init_health(max_health)
-	if (hurtbox): hurtbox.hurt_by.connect(hurt_by)
+	if (hurtbox and not hurtbox.hurt_by.is_connected(hurt_by)): hurtbox.hurt_by.connect(hurt_by)
 	eumling_visuals.scale = Vector3.ONE * get_value(Enum.UPGRADE.SIZE)
 	
 	attack_spawner.amount_of_spawns = int(get_value(Enum.UPGRADE.PROJECTILE_AMOUNT))

@@ -44,14 +44,18 @@ var max_health: float
 var reset_timer: Timer
 var resource: float = 0.0
 
+var animation_tree: AnimationTree
+
 func _ready() -> void:
 	max_health = health
 	if (healthbar): healthbar.init_health(max_health)
 	if (hitbox): hitbox.hit.connect(_hit)
 	if (hurtbox): hurtbox.hurt_by.connect(_hurt_by)
 
+	animation_tree = find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self)
+
 	if (state_machine): 
-		state_machine.setup(self, find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self))
+		state_machine.setup(self, animation_tree)
 		state_machine.consumed_resource.connect(consume_resource)
 
 	Strategy._setup_array(on_death, self, self)
