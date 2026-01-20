@@ -183,9 +183,11 @@ func _physics_process(_delta: float) -> void:
 	var look_direction_3d = Vector3(look_direction.x, 0, look_direction.y)
 	if camera:
 		look_direction_3d = look_direction_3d.rotated(Vector3.UP, camera.rotation.y)
+	if Input.is_action_pressed("fire") or Input.get_action_strength("fire_axis") > 0.5:
+		shoot()
 	if look_direction.is_zero_approx():
-		if was_looking_somewhere:
-			shoot()
+		# if was_looking_somewhere:
+		# 	shoot()
 		was_looking_somewhere = false
 		if not prev_direction.is_zero_approx():
 			eumling_visuals.look_at(global_position + prev_direction)
