@@ -6,7 +6,7 @@ var player: Player
 @onready var level_wrapper: Node3D = $Level
 @onready var scene_fade_animation_player: AnimationPlayer = $SceneFadeOverlay/AnimationPlayer
 @onready var upgrade_view: CanvasLayer = $UpgradeView
-@onready var area_choice_overlay: CanvasLayer = $AreaChoiceOverlay
+@onready var area_choice_overlay: Control = $AreaChoiceOverlay/AreaPicker
 
 @onready var debug_upgrade_view: CanvasLayer = $DebugUpgradeView
 

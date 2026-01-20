@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://bck4sy6x58mj2"]
+[gd_scene load_steps=20 format=3 uid="uid://bck4sy6x58mj2"]
 
 [ext_resource type="Script" uid="uid://332o24o22ksb" path="res://game/game.gd" id="1_dakft"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="2_dxrkv"]
 [ext_resource type="Texture2D" uid="uid://uuudl7yxl3ke" path="res://assets/ui/SketchJoystickBack.png" id="3_l8g03"]
 [ext_resource type="Texture2D" uid="uid://cghhnri00gbe4" path="res://assets/ui/SketchJoystickSketch.png" id="4_j8tme"]
 [ext_resource type="PackedScene" uid="uid://bojgdqih3kgwl" path="res://game/ui/debug_upgrade_view.tscn" id="5_dxrkv"]
+[ext_resource type="PackedScene" uid="uid://dlxnvjne1irpy" path="res://game/ui/StartScreen/area_picker.tscn" id="6_3vho3"]
 [ext_resource type="PackedScene" uid="uid://uyyg1ut65j1" path="res://game/sound/music_player/music_player.tscn" id="6_dakft"]
 [ext_resource type="PackedScene" uid="uid://d0caudp08babr" path="res://game/ui/styleTest/PauseMenuStyleTest.tscn" id="7_l8g03"]
 [ext_resource type="PackedScene" uid="uid://bfqnaivntys0e" path="res://game/ui/styleTest/popUpStyleTest.tscn" id="8_j8tme"]
@@ -63,124 +64,6 @@ _data = {
 &"RESET": SubResource("Animation_dakft"),
 &"fade": SubResource("Animation_u5opy")
 }
-
-[sub_resource type="GDScript" id="GDScript_l8g03"]
-script/source = "extends CanvasLayer
-
-signal area_chosen(levels: Array[String])
-@onready var grid_container: GridContainer = $Control/CenterContainer/GridContainer
-@onready var level_choice_overlay: Control = $LevelChoiceOverlay
-
-var areas = [
-	{
-		name = \"Jungle\",
-		folder = \"3-Jxx-Jungle\",
-		levels = [\"J01\", \"J02\", \"J03\", \"JB01\"],
-	},
-	{
-		name = \"Volcano\",
-		folder = \"6-Vxx-Volcano\",
-		levels = [\"V01\"],
-	},
-	{
-		name = \"Testing\",
-		folder = \"\",
-		levels = [\"001\", \"002\", \"003\", \"004\", \"005\"],
-	}
-]
-
-func _ready() -> void:
-	level_choice_overlay.abort.connect(level_choice_aborted)
-	level_choice_overlay.level_chosen.connect(level_chosen)
-
-func setup():
-	for child in grid_container.get_children():
-		grid_container.remove_child(child)
-		child.queue_free()
-	
-	for area in areas:
-		var btn = Button.new()
-		btn.text = area.name
-		grid_container.add_child(btn)
-		btn.pressed.connect(choose_area.bind(area))
-	
-	
-	show()
-
-func choose_area(area):
-	var level_names: Array[String] = []
-	var folder_name: String = \"res://game/levels/\"
-	if area.folder:
-		folder_name +=  area.folder + \"/\"
-	for level in area.levels:
-		level_names.append(folder_name + level + \".tscn\")
-	area_chosen.emit(level_names)
-	
-	hide()
-
-func _on_debug_button_pressed() -> void:
-	level_choice_overlay.setup()
-
-func level_chosen(level_id: String):
-	var level_location = find_file(level_id + \".tscn\", \"res://game/levels\")
-	if (level_location != \"\" and ResourceLoader.exists(level_location)):
-		area_chosen.emit([level_location] as Array[String])
-		hide()
-	else:
-		printerr(\"Level '%s.tscn' doesn't exist in '/game/levels/' or its subfolders. Try again.\" % level_id)
-		level_choice_overlay.setup()
-
-func level_choice_aborted():
-	pass
-
-func find_file(file_name: String, folder_location: String = \"res://game/levels\") -> String:
-	# TODO: this might break on exported builds, so this needs to be replaced with something else before release!
-	var dir := DirAccess.open(folder_location)
-	if dir == null:
-		return \"\"
-	var files := dir.get_files()
-	if files.has(file_name):
-		return folder_location + \"/\" + file_name
-	
-	var dirs := dir.get_directories()
-	for d in dirs:
-		var path = find_file(file_name, folder_location + \"/\" + d)
-		if path != \"\":
-			return path
-
-	return \"\"
-"
-
-[sub_resource type="GDScript" id="GDScript_j8tme"]
-script/source = "extends Control
-
-@onready var line_edit: LineEdit = %DebugLevelInput
-
-signal level_chosen(level: String)
-signal abort()
-
-func setup():
-	show()
-	line_edit.text = \"\"
-	line_edit.grab_focus()
-
-func _on_line_edit_text_submitted(_new_text: String) -> void:
-	confirm_text()
-
-func _on_button_confirm_pressed() -> void:
-	confirm_text()
-
-func confirm_text():
-	hide()
-	level_chosen.emit(line_edit.text)
-
-func _on_button_cancel_pressed() -> void:
-	abort.emit()
-	hide()
-"
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8tme"]
-bg_color = Color(0.05882353, 0.05882353, 0.05882353, 0.8901961)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_dakft")
@@ -250,84 +133,8 @@ visible = false
 
 [node name="AreaChoiceOverlay" type="CanvasLayer" parent="."]
 layer = 128
-script = SubResource("GDScript_l8g03")
 
-[node name="Control" type="Control" parent="AreaChoiceOverlay"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="AreaChoiceOverlay/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GridContainer" type="GridContainer" parent="AreaChoiceOverlay/Control/CenterContainer"]
-layout_mode = 2
-
-[node name="DebugButton" type="Button" parent="AreaChoiceOverlay/Control"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -75.0
-offset_right = 663.0
-grow_vertical = 0
-text = "Select Level Directly (Debug)"
-
-[node name="LevelChoiceOverlay" type="Control" parent="AreaChoiceOverlay"]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = SubResource("GDScript_j8tme")
-
-[node name="PanelContainer" type="PanelContainer" parent="AreaChoiceOverlay/LevelChoiceOverlay"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_j8tme")
-
-[node name="CenterContainer" type="CenterContainer" parent="AreaChoiceOverlay/LevelChoiceOverlay/PanelContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="AreaChoiceOverlay/LevelChoiceOverlay/PanelContainer/CenterContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="AreaChoiceOverlay/LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Level Select"
-horizontal_alignment = 1
-
-[node name="DebugLevelInput" type="LineEdit" parent="AreaChoiceOverlay/LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-placeholder_text = "level name, e.g. 001"
-alignment = 1
-expand_to_text_length = true
-
-[node name="ButtonConfirm" type="Button" parent="AreaChoiceOverlay/LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "confirm
-"
-
-[node name="ButtonCancel" type="Button" parent="AreaChoiceOverlay/LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "cancel
-"
+[node name="AreaPicker" parent="AreaChoiceOverlay" instance=ExtResource("6_3vho3")]
 
 [node name="MusicPlayer" parent="." groups=["MusicPlayer"] instance=ExtResource("6_dakft")]
 debug = false
@@ -352,7 +159,3 @@ layer = 11
 visible = false
 
 [connection signal="requestMusic" from="." to="MusicPlayer" method="_on_game_request_music"]
-[connection signal="pressed" from="AreaChoiceOverlay/Control/DebugButton" to="AreaChoiceOverlay" method="_on_debug_button_pressed"]
-[connection signal="text_submitted" from="AreaChoiceOverlay/LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer/DebugLevelInput" to="AreaChoiceOverlay/LevelChoiceOverlay" method="_on_line_edit_text_submitted"]
-[connection signal="pressed" from="AreaChoiceOverlay/LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer/ButtonConfirm" to="AreaChoiceOverlay/LevelChoiceOverlay" method="_on_button_confirm_pressed"]
-[connection signal="pressed" from="AreaChoiceOverlay/LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer/ButtonCancel" to="AreaChoiceOverlay/LevelChoiceOverlay" method="_on_button_cancel_pressed"]
