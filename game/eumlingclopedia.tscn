@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0tttappajswp"]
+[gd_scene load_steps=12 format=3 uid="uid://d0tttappajswp"]
 
 [ext_resource type="Script" uid="uid://wnlawfl1owd" path="res://game/ui/eumlingclopedia/eumlingclopedia.gd" id="1_hyh01"]
+[ext_resource type="Texture2D" uid="uid://dxgg3el8yk74k" path="res://assets/ui/PaperMaterialPage.png" id="2_encih"]
 [ext_resource type="PackedScene" uid="uid://bppbnuj7gd2bu" path="res://game/ui/eumlingclopedia/EumlingButton/EumlingButton.tscn" id="2_vgq4i"]
 [ext_resource type="PackedScene" uid="uid://cvnp8vu3k7ul3" path="res://game/ui/eumlingclopedia/EumlingInfoScene/eumling_info_scene.tscn" id="3_vgq4i"]
+[ext_resource type="Texture2D" uid="uid://c6ey6sobnbhsr" path="res://assets/ui/SketchBanner.png" id="4_m05iq"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="5_ud8ws"]
+[ext_resource type="Texture2D" uid="uid://cv0s0ys0k3p6i" path="res://assets/ui/ButtonFlatCross.png" id="7_ioyu4"]
+[ext_resource type="Texture2D" uid="uid://c5dnvt8gthb88" path="res://assets/ui/ButtonFlatCrossPressed.png" id="8_pkqpr"]
+[ext_resource type="Texture2D" uid="uid://ceysl1uh8vf1d" path="res://assets/ui/ButtonFlatDice.png" id="9_6vwf3"]
+[ext_resource type="Texture2D" uid="uid://ylcrmycx54l6" path="res://assets/ui/ButtonFlatDicePressed.png" id="10_0w73j"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ud8ws"]
-viewport_path = NodePath("Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer/EumlingPreview/SubViewport")
+viewport_path = NodePath("Book/EumlingInfo/EumlingPreview/SubViewport")
 
 [node name="Eumlingclopedia" type="Control"]
 layout_mode = 3
@@ -24,7 +31,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="PaperOptic Background" type="TextureRect" parent="Book"]
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 2160.0
+scale = Vector2(0.5016076, 0.5016076)
+texture = ExtResource("2_encih")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Book"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,67 +47,74 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Book/HBoxContainer"]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="Book"]
+layout_mode = 0
+offset_top = 91.0
+offset_right = 958.0
+offset_bottom = 1171.0
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="UnlockedEumlings" type="GridContainer" parent="Book/HBoxContainer/MarginContainer"]
+[node name="UnlockedEumlings" type="GridContainer" parent="Book/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 4
 
-[node name="EumlingButton" parent="Book/HBoxContainer/MarginContainer/UnlockedEumlings" instance=ExtResource("2_vgq4i")]
+[node name="EumlingButton" parent="Book/MarginContainer/UnlockedEumlings" instance=ExtResource("2_vgq4i")]
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="Book/HBoxContainer/MarginContainer/UnlockedEumlings"]
+[node name="Button2" type="Button" parent="Book/MarginContainer/UnlockedEumlings"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 text = "RIA"
 
-[node name="Button3" type="Button" parent="Book/HBoxContainer/MarginContainer/UnlockedEumlings"]
+[node name="Button3" type="Button" parent="Book/MarginContainer/UnlockedEumlings"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 text = "RIA"
 
-[node name="Button4" type="Button" parent="Book/HBoxContainer/MarginContainer/UnlockedEumlings"]
+[node name="Button4" type="Button" parent="Book/MarginContainer/UnlockedEumlings"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 text = "RIA"
 
-[node name="Button5" type="Button" parent="Book/HBoxContainer/MarginContainer/UnlockedEumlings"]
+[node name="Button5" type="Button" parent="Book/MarginContainer/UnlockedEumlings"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 text = "RIA"
 
-[node name="Button6" type="Button" parent="Book/HBoxContainer/MarginContainer/UnlockedEumlings"]
+[node name="Button6" type="Button" parent="Book/MarginContainer/UnlockedEumlings"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 text = "RIA"
 
-[node name="Button7" type="Button" parent="Book/HBoxContainer/MarginContainer/UnlockedEumlings"]
+[node name="Button7" type="Button" parent="Book/MarginContainer/UnlockedEumlings"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 text = "RIA"
 
-[node name="Button8" type="Button" parent="Book/HBoxContainer/MarginContainer/UnlockedEumlings"]
+[node name="Button8" type="Button" parent="Book/MarginContainer/UnlockedEumlings"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 text = "RIA"
 
-[node name="Button9" type="Button" parent="Book/HBoxContainer/MarginContainer/UnlockedEumlings"]
+[node name="Button9" type="Button" parent="Book/MarginContainer/UnlockedEumlings"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 text = "RIA"
 
-[node name="EumlingInfo" type="Control" parent="Book/HBoxContainer"]
-layout_mode = 2
+[node name="EumlingInfo" type="Control" parent="Book"]
+anchors_preset = 0
+offset_left = 962.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Book/HBoxContainer/EumlingInfo"]
+[node name="MarginContainer" type="MarginContainer" parent="Book/EumlingInfo"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,28 +122,59 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Book/HBoxContainer/EumlingInfo/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Book/EumlingInfo/MarginContainer"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Name"
+[node name="Info" type="Label" parent="Book/EumlingInfo"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 838.0
+offset_right = 956.0
+offset_bottom = 1045.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "This poor Eumling is all alone for 
+now. But worry not, there are
+more to come!!"
+horizontal_alignment = 1
 
-[node name="Info" type="Label" parent="Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Info"
-
-[node name="EumlingPreview" type="TextureRect" parent="Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="EumlingPreview" type="TextureRect" parent="Book/EumlingInfo"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 97.0
+offset_right = 1092.0
+offset_bottom = 1106.0
+scale = Vector2(0.7179173, 0.7179173)
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_ud8ws")
 
-[node name="SubViewport" type="SubViewport" parent="Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer/EumlingPreview"]
+[node name="SubViewport" type="SubViewport" parent="Book/EumlingInfo/EumlingPreview"]
 own_world_3d = true
 
-[node name="EumlingInfoScene" parent="Book/HBoxContainer/EumlingInfo/MarginContainer/VBoxContainer/EumlingPreview/SubViewport" instance=ExtResource("3_vgq4i")]
+[node name="EumlingInfoScene" parent="Book/EumlingInfo/EumlingPreview/SubViewport" instance=ExtResource("3_vgq4i")]
+
+[node name="TextureRect" type="TextureRect" parent="Book"]
+layout_mode = 0
+offset_left = 1135.0
+offset_top = 26.0
+offset_right = 4603.0
+offset_bottom = 741.0
+scale = Vector2(0.17543225, 0.17543225)
+texture = ExtResource("4_m05iq")
+
+[node name="Name" type="Label" parent="Book"]
+layout_mode = 0
+offset_left = 1302.0
+offset_top = 30.0
+offset_right = 1585.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ud8ws")
+theme_override_font_sizes/font_size = 60
+text = "Lonely Boi"
+horizontal_alignment = 1
 
 [node name="CloseButton" type="Button" parent="Book"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -132,17 +185,53 @@ grow_horizontal = 0
 text = "Close"
 
 [node name="GambleButton" type="Button" parent="Book"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -425.0
-offset_top = -75.0
+offset_left = -1874.0
+offset_top = -127.0
+offset_right = -1449.0
+offset_bottom = -52.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Let's go gambling!"
 
+[node name="CloseButton2" type="TextureButton" parent="Book"]
+layout_mode = 0
+offset_left = 1789.0
+offset_top = 28.0
+offset_right = 3705.0
+offset_bottom = 1982.0
+scale = Vector2(0.05623997, 0.05623997)
+texture_normal = ExtResource("7_ioyu4")
+texture_pressed = ExtResource("8_pkqpr")
+
+[node name="RandomButton" type="TextureButton" parent="Book"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 823.0
+offset_right = 1967.0
+offset_bottom = 2777.0
+scale = Vector2(0.05640738, 0.05640738)
+texture_normal = ExtResource("9_6vwf3")
+texture_pressed = ExtResource("10_0w73j")
+
+[node name="Label" type="Label" parent="Book"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = -18.0
+offset_right = 771.0
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ud8ws")
+theme_override_font_sizes/font_size = 100
+text = "Eumlingclopedia"
+
 [connection signal="pressed" from="Book/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Book/GambleButton" to="." method="_on_gamble_button_pressed"]
+[connection signal="pressed" from="Book/CloseButton2" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Book/RandomButton" to="." method="_on_gamble_button_pressed"]
