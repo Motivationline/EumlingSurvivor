@@ -1,11 +1,13 @@
-[gd_scene load_steps=18 format=4 uid="uid://ncnbysiqfcwu"]
+[gd_scene load_steps=20 format=4 uid="uid://ncnbysiqfcwu"]
 
 [ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_avtaw"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_sk1xu"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_m16lx"]
 [ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="3_vr1k5"]
+[ext_resource type="PackedScene" uid="uid://bujhyll6x4iak" path="res://assets/models/Jungle/JunglePlant/jungle_plant_big.tscn" id="4_roorl"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="4_vr1k5"]
 [ext_resource type="PackedScene" uid="uid://xx1ogf8cudcr" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/mini_eumling_artistisch_kreativ_visual.tscn" id="5_758ot"]
+[ext_resource type="PackedScene" uid="uid://31e8rrg543xf" path="res://assets/models/Jungle/JunglePlant/jungle_plant_small.tscn" id="5_jgeg3"]
 [ext_resource type="LightmapGIData" uid="uid://bihhfnwadn8dl" path="res://game/levels/3-Jxx-Jungle/Lightmaps/J01.lmbake" id="7_roorl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sk1xu"]
@@ -156,6 +158,18 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
+[node name="JunglePlant6" parent="Env" index="25" instance=ExtResource("4_roorl")]
+transform = Transform3D(0.97269803, 0.1184157, 0.19959027, -0.12084721, 0.99267113, 0, -0.1981275, -0.024119927, 0.97987944, -4.120163, 1.0284381, 0.04647845)
+
+[node name="JunglePlant_small4" parent="Env" index="33" instance=ExtResource("5_jgeg3")]
+transform = Transform3D(0.8292936, -0.13109498, 0.5432184, 0.1561414, 0.98773474, 0, -0.53655565, 0.08481888, 0.83959144, 0.94677323, 0.9949341, -0.039154768)
+
+[node name="JunglePlant_small5" parent="Env" index="34" instance=ExtResource("5_jgeg3")]
+transform = Transform3D(0.8292936, -0.13109498, 0.5432184, 0.1561414, 0.98773474, 0, -0.53655565, 0.08481888, 0.83959144, 4.68045, 0.9949341, -2.1565661)
+
+[node name="JunglePlant_small6" parent="Env" index="35" instance=ExtResource("5_jgeg3")]
+transform = Transform3D(1.2009301, -0.18984339, 0.7866542, 0.22611402, 1.4303744, 0, -0.7770057, 0.12282929, 1.2158427, 4.2401667, 0.9949341, -1.8556904)
+
 [node name="SniperEnemy" parent="Enemies" index="0" instance=ExtResource("3_vr1k5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65700597, 0, -0.119395256)
 
@@ -179,6 +193,7 @@ parent = NodePath("..")
 transform = Transform3D(-0.8358841, 0, -0.548906, 0, 1, 0, 0.548906, 0, -0.8358841, -4.788251, 0.9823066, 1.2067815)
 
 [node name="LightmapGI" type="LightmapGI" parent="." index="10"]
+visible = false
 quality = 2
 supersampling = true
 supersampling_factor = 4.0
