@@ -83,7 +83,8 @@ func return_to_main_menu():
 	scene_fade_animation_player.play("fade")
 	await scene_fade_animation_player.animation_finished
 	faded_to_black = true
-	prints(Main, Main.controller)
+	levels_to_load.clear()
+	Data.active_mini_eumlings.clear()
 	Main.controller.load_scene(Main.controller.main_menu, false)
 
 func _input(event: InputEvent) -> void:

@@ -2,7 +2,7 @@ extends Control
 
 
 signal area_chosen(levels: Array[String])
-@onready var grid_container: GridContainer = $Control/CenterContainer/GridContainer
+# @onready var grid_container: GridContainer = $Control/CenterContainer/GridContainer
 @onready var level_choice_overlay: Control = $LevelChoiceOverlay
 
 var areas = [
