@@ -72,7 +72,10 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 	var instance = entity_to_spawn.instantiate() as Node3D
 	if (spawn_local): _parent.add_child(instance)
 	else:
-		var levels = _parent.get_tree().get_nodes_in_group("Level")
+		if !_parent: return
+		var running_game = _parent.get_tree()
+		if !running_game: return
+		var levels = running_game.get_nodes_in_group("Level")
 		if (!levels || levels.size() <= 0):
 			printerr("%s attached to %s tried to spawn on the level but level not found." % [name, _parent.name])
 			return
