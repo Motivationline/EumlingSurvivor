@@ -86,7 +86,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(0.09619681, -0.027316188)
+shader_parameter/wobble = Vector2(-0.09724543, -0.023309367)
 
 [node name="BossBugger" node_paths=PackedStringArray("hurtbox", "node_with_animation_tree", "on_death") instance=ExtResource("1_c86we")]
 collision_layer = 64
@@ -161,7 +161,6 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/Recharge/SpawnEntitiesState" index="0"]
 script = ExtResource("6_0irvu")
 entity_to_spawn = ExtResource("9_bopa3")
-amount_of_spawns = 2
 offset_distance = 1.0
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
@@ -393,42 +392,42 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 [node name="BossBugger" parent="Visuals" index="0" instance=ExtResource("16_ekuuj")]
 
 [node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" index="0"]
-bones/0/position = Vector3(0, 1.507422, -4.4481496e-22)
-bones/0/rotation = Quaternion(0.9978437, -2.9992915e-09, -4.5597044e-08, -0.065636374)
-bones/1/scale = Vector3(0.9604522, 1.0840708, 0.9604522)
-bones/5/rotation = Quaternion(-0.4823052, 9.529479e-09, 3.8338705e-08, 0.8760033)
-bones/6/rotation = Quaternion(-0.18258563, 5.9075567e-09, 1.1002035e-09, 0.98318994)
-bones/7/rotation = Quaternion(-0.18728854, -2.9532367e-15, -6.327107e-14, 0.982305)
-bones/7/scale = Vector3(1.3401755, 1.0501431, 1.3012422)
-bones/8/rotation = Quaternion(-0.18258518, -2.1048693e-14, 3.6636987e-14, 0.98319006)
-bones/9/rotation = Quaternion(-0.3538617, -3.2773778e-15, -4.2300378e-14, 0.9352977)
-bones/10/rotation = Quaternion(-0.35386187, -2.651657e-14, 5.4465757e-14, 0.9352977)
-bones/11/rotation = Quaternion(-0.35386154, 2.4141972e-14, -7.0099044e-14, 0.93529785)
-bones/12/rotation = Quaternion(-0.35386142, -3.7112318e-14, 8.436724e-08, 0.93529785)
-bones/17/rotation = Quaternion(0.5733958, -0.00024790395, 0.0002272808, 0.8192785)
-bones/19/rotation = Quaternion(-0.4480214, 0.48351014, -0.5515975, -0.5111117)
-bones/22/rotation = Quaternion(-0.34033456, 0.5645154, -0.64400977, -0.38826042)
-bones/25/rotation = Quaternion(0.5733958, 0.00024797127, -0.00022734253, 0.8192785)
-bones/27/rotation = Quaternion(0.21805996, -0.6578424, 0.3242174, 0.6438761)
-bones/31/rotation = Quaternion(0.4480212, 0.48351023, -0.5515976, 0.5111116)
-bones/34/rotation = Quaternion(0.34033448, 0.5645154, -0.6440099, 0.3882604)
+bones/0/position = Vector3(7.523164e-37, 1.4608527, -3.8756469e-22)
+bones/0/rotation = Quaternion(0.9944974, 5.396582e-09, -4.5444136e-08, -0.10476166)
+bones/1/scale = Vector3(0.97199136, 1.0585451, 0.97199136)
+bones/5/rotation = Quaternion(-0.44218287, 5.38352e-09, 2.4096401e-08, 0.896925)
+bones/6/rotation = Quaternion(-0.09892902, 3.1639191e-09, 3.16929e-10, 0.99509454)
+bones/7/rotation = Quaternion(-0.10263399, -4.7649703e-15, 1.944407e-15, 0.99471927)
+bones/7/scale = Vector3(1.3401756, 1.0154135, 1.3285314)
+bones/8/rotation = Quaternion(-0.09892903, 2.0956688e-15, 9.1902965e-15, 0.99509454)
+bones/9/rotation = Quaternion(-0.3117248, 2.4590116e-15, -4.9296152e-14, 0.95017254)
+bones/10/rotation = Quaternion(-0.3117248, -1.4787462e-14, 2.0133376e-15, 0.9501724)
+bones/11/rotation = Quaternion(-0.3117252, -4.190538e-15, -2.982047e-14, 0.9501723)
+bones/12/rotation = Quaternion(-0.31172544, -2.2255842e-14, 7.4320944e-08, 0.95017225)
+bones/17/rotation = Quaternion(0.5463989, -0.00023818816, 0.00023943002, 0.83752507)
+bones/19/rotation = Quaternion(-0.42760935, 0.46148136, -0.5701551, -0.52830714)
+bones/22/rotation = Quaternion(-0.32482886, 0.538796, -0.66567653, -0.40132275)
+bones/25/rotation = Quaternion(0.5463989, 0.00023826546, -0.00023947898, 0.83752507)
+bones/27/rotation = Quaternion(0.19261292, -0.64460623, 0.3497947, 0.6519408)
+bones/31/rotation = Quaternion(0.4276093, 0.46148136, -0.5701552, 0.52830714)
+bones/34/rotation = Quaternion(0.3248288, 0.538796, -0.6656765, 0.40132275)
 
 [node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0"]
-transform = Transform3D(0.9604522, 1.2977732e-08, 2.2823332e-07, 1.8497415e-08, 1.0747302, -0.12580931, -2.2777292e-07, 0.14200206, 0.95217675, -3.522027e-11, 1.5045053, -0.00038537945)
+transform = Transform3D(0.97199136, -1.2831342e-09, 2.3186487e-07, 4.9466127e-08, 1.0353099, -0.2025342, -2.2652995e-07, 0.22056943, 0.9506561, 3.4823052e-12, 1.458043, -0.0005986046)
 
 [node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" index="0"]
 material_override = SubResource("ShaderMaterial_p8oh0")
 
 [node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2"]
-transform = Transform3D(-0.07608364, -0.99710166, -3.874302e-07, -1.4901161e-08, -3.799796e-07, 1.0000001, -0.9971017, 0.076083615, 0, -0.24529767, 1.5076284, -0.0015642516)
+transform = Transform3D(-0.07608376, -0.9971016, -5.268949e-07, -7.4505806e-08, -4.5076013e-07, 1, -0.9971016, 0.07608379, -1.4901161e-08, -0.24529767, 1.4611813, -0.001543232)
 
 [node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="3"]
-transform = Transform3D(-0.4668525, -0.8843352, -4.172325e-07, -2.2351742e-08, -5.1036477e-07, 1.0000001, -0.88433516, 0.46685255, 2.3841858e-07, -0.13967305, 1.4100795, 0.10730052)
+transform = Transform3D(-0.46685272, -0.8843351, -3.1827858e-07, -4.4703484e-08, -2.7567148e-07, 1, -0.8843351, 0.4668527, 1.7881393e-07, -0.13967305, 1.3553915, 0.09933218)
 
 [node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="4"]
-transform = Transform3D(-0.07608382, 0.99710166, 5.3644186e-07, 2.3841858e-07, -5.559996e-07, 1.0000001, 0.99710166, 0.07608387, -1.3411045e-07, 0.24529767, 1.5076284, -0.0015642518)
+transform = Transform3D(-0.07608382, 0.99710166, 4.5658183e-07, 2.5331974e-07, -4.4703484e-07, 1.0000001, 0.99710155, 0.0760838, -1.937151e-07, 0.24529767, 1.4611813, -0.0015432319)
 
 [node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="5"]
-transform = Transform3D(-0.46685255, 0.8843353, 4.1723249e-07, 1.8626451e-07, -4.1350722e-07, 0.99999994, 0.88433516, 0.46685264, -1.4901161e-08, 0.13967305, 1.4100795, 0.10730052)
+transform = Transform3D(-0.46685255, 0.88433534, 3.671748e-07, 5.9604645e-08, -3.6507845e-07, 0.9999999, 0.8843351, 0.4668526, 1.6391277e-07, 0.13967305, 1.3553915, 0.09933219)
 
 [editable path="Visuals/BossBugger"]
