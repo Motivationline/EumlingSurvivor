@@ -50,7 +50,9 @@ func spawn(_parent: Node3D, _relative_to: Node3D = null):
 			var random_burst_delay = randf_range(min_random_burst_delay, max_random_burst_delay)
 			await get_tree().create_timer(random_burst_delay).timeout
 		elif (b != 0 && time_between_bursts > 0):
-			await get_tree().create_timer(time_between_bursts).timeout
+			var tree = get_tree()
+			if tree:
+				await tree.create_timer(time_between_bursts).timeout
 		await burst(_parent, _relative_to)
 	
 	spawn_finished.emit()
