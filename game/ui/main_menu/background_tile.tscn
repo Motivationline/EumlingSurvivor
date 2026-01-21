@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5mujlqqgbrur"]
+[gd_scene load_steps=8 format=3 uid="uid://c5mujlqqgbrur"]
 
 [ext_resource type="PackedScene" uid="uid://c0u5li8n58lcm" path="res://assets/models/beach/stone_v5.glb" id="1_nojpp"]
 [ext_resource type="PackedScene" uid="uid://cg73m83g0gu84" path="res://assets/models/Jungle/jungle_tree/jungel_tree_01.glb" id="2_ghvui"]
+[ext_resource type="PackedScene" uid="uid://m14qxh5fce8m" path="res://assets/models/Jungle/ObstacleStone/ObstacleStone.glb" id="3_n4wbu"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_0p1rw"]
 size = Vector2(20, 100)
@@ -54,3 +55,12 @@ transform = Transform3D(0.4919773, -0.24859893, 0.8343601, 0.2725917, 0.9541626,
 transform = Transform3D(-0.99888426, 0.013539071, -0.045243666, 0.003953204, 0.9786333, 0.20557557, 0.04706026, 0.20516734, -0.97759485, -0.3816061, 1.961946, -5.016777)
 fov = 35.0
 size = 2.3674734
+
+[node name="ObstacleStone" parent="." instance=ExtResource("3_n4wbu")]
+transform = Transform3D(0.9430254, 0, 0.3327208, 0, 1, 0, -0.3327208, 0, 0.9430254, -3.9771452, 0.22408628, 3.6442356)
+
+[node name="ObstacleStone2" parent="." instance=ExtResource("3_n4wbu")]
+transform = Transform3D(0.9430254, -0.109996416, 0.3140126, 0, 0.9437721, 0.33059677, -0.3327208, -0.31176117, 0.89000106, -4.4862857, 0.12408628, 3.360084)
+
+[node name="ObstacleStone3" parent="." instance=ExtResource("3_n4wbu")]
+transform = Transform3D(0.7596574, 0, -0.6503236, 0, 1, 0, 0.6503236, 0, 0.7596574, -5.101132, 0.22408628, 3.8662715)
