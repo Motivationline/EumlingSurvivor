@@ -45,7 +45,7 @@ enum GROUP {ENEMY, MINIEUMLING}
 @export_category("Debug")
 @export var debug_show_path: bool
 
-var nav_agent: NavigationAgent3D
+#var nav_agent: NavigationAgent3D
 var done: bool = false
 var player: CharacterBody3D
 var flock_group: String
@@ -56,16 +56,18 @@ var is_leader: bool
 var leader_material := StandardMaterial3D.new()
 var normal_material := StandardMaterial3D.new()
 
+# TODO: fix y pos
+
 func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	parent = _parent
-	nav_agent = NavigationAgent3D.new()
-	parent.add_child(nav_agent)
+	#nav_agent = NavigationAgent3D.new()
+	#parent.add_child(nav_agent)
 	# anti-schwebe-zeugs - ist bisschen unklar, warum muss ich das auf 2x cell height setzen damit es richtig funktioniert? :shrug:
-	nav_agent.path_height_offset = ProjectSettings.get_setting("navigation/3d/default_cell_height", 0.25) * 2
-	nav_agent.target_reached.connect(target_reached)
-	nav_agent.target_desired_distance = 0.1
-	nav_agent.path_desired_distance = 0.1
+	#nav_agent.path_height_offset = ProjectSettings.get_setting("navigation/3d/default_cell_height", 0.25) * 2
+	#nav_agent.target_reached.connect(target_reached)
+	#nav_agent.target_desired_distance = 0.1
+	#nav_agent.path_desired_distance = 0.1
 	#nav_agent.debug_enabled = debug_show_path
 	player = get_tree().get_nodes_in_group("Player")[0]
 	match group:
@@ -117,8 +119,8 @@ func physics_process(_delta: float) -> State:
 					sate.is_standstill = false
 			
 		#parent.look_at(nav_agent.get_next_path_position())
-		var destination = nav_agent.get_next_path_position()
-		var local_destination =  destination- parent.global_position 
+		#var destination = nav_agent.get_next_path_position()
+		var local_destination =  get_tree().get_first_node_in_group("Player").global_position - parent.global_position 
 		var direction = local_destination.normalized()
 		var speed = speed_override if (speed_override_active) else parent.speed
 		parent.velocity = _flock(direction) * speed
@@ -135,13 +137,13 @@ func physics_process(_delta: float) -> State:
 	return null
 
 func update_target_location():
-	var target_position = player.position - ((player.position - parent.position).normalized() * min_distance)
-	nav_agent.target_position = target_position
+	#var target_position = player.position - ((player.position - parent.position).normalized() * min_distance)
+	#nav_agent.target_position = target_position
 	done = false
-	nav_agent.debug_enabled = debug_show_path
+	#nav_agent.debug_enabled = debug_show_path
 
 func target_reached():
-	nav_agent.debug_enabled = false
+	#nav_agent.debug_enabled = false
 	await get_tree().create_timer(wait_time).timeout
 	if done: return
 	done = true
@@ -191,25 +193,29 @@ func _flock(_direction: Vector3) -> Vector3:
 	
 	#alignment
 	var member_average_dir: Vector3 = Vector3.ZERO
-	for member in members_in_range:
-		var member_dir = member.velocity.normalized()
-		member_average_dir += member_dir
-	
-	member_average_dir /= len(members_in_range)
-	member_average_dir = member_average_dir.normalized()
-	
-	_direction = lerp(_direction, member_average_dir, alignment_factor)
+	if len(members_in_range) > 0:
+		for member in members_in_range:
+			var member_dir = member.velocity.normalized()
+			member_average_dir += member_dir
+		
+		member_average_dir /= len(members_in_range)
+		member_average_dir = member_average_dir.normalized()
+		
+		_direction = lerp(_direction, member_average_dir, alignment_factor)
 	
 	#cohesion
 	var member_average_pos: Vector3 = Vector3.ZERO
-	for member in members_in_range:
-		var member_pos = member.global_position
-		member_average_pos += member_pos
-	
-	member_average_pos /= len(members_in_range)
+	if len(members_in_range) > 0:
+		for member in members_in_range:
+			var member_pos = member.global_position
+			member_average_pos += member_pos
+			member_average_pos /= len(members_in_range)
 	var dir_to_pos: Vector3 = (member_average_pos - parent.global_position).normalized()
 	
 	_direction = lerp(_direction, dir_to_pos, cohesion_factor)
+	#if not _direction.is_finite():
+		#_direction = Vector3.ZERO
+	_direction *= Vector3(1,0,1)
 	return _direction.normalized()
 
 func define_leader():
