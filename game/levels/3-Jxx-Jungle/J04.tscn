@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area.tscn" id="2_x6msp"]
 [ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="3_ltfdp"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_ot24m"]
-[ext_resource type="PackedScene" uid="uid://blwxy4ejulewc" path="res://game/enemies/peacock/peacock_enemy.tscn" id="5_x6o33"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="5_x6o33"]
 [ext_resource type="LightmapGIData" uid="uid://xstomfyjyeur" path="res://game/levels/3-Jxx-Jungle/Lightmaps/J04.lmbake" id="6_x6o33"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ot24m"]
@@ -100,7 +100,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8258246, 0, -0.9265733)
 [node name="TortoiseEnemy2" parent="Enemies" index="1" instance=ExtResource("3_ltfdp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8122014, 0, 0.99386454)
 
-[node name="Peacock" parent="Enemies" index="2" instance=ExtResource("5_x6o33")]
+[node name="SniperEnemy" parent="Enemies" index="2" instance=ExtResource("5_x6o33")]
 
 [node name="ExitArea" parent="." index="8" node_paths=PackedStringArray("parent") instance=ExtResource("2_x6msp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
