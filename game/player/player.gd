@@ -186,8 +186,8 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("fire") or Input.get_action_strength("fire_axis") > 0.5:
 		shoot()
 	if look_direction.is_zero_approx():
-		# if was_looking_somewhere:
-		# 	shoot()
+		if was_looking_somewhere and Data.is_on_mobile:
+			shoot()
 		was_looking_somewhere = false
 		if not prev_direction.is_zero_approx():
 			eumling_visuals.look_at(global_position + prev_direction)
