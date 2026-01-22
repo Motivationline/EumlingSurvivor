@@ -46,6 +46,7 @@ func _notification(what: int) -> void:
 func spawn(_parent: Node3D, _relative_to: Node3D = null):
 	if (!_relative_to): _relative_to = _parent
 	for b in amount_of_bursts:
+		if not is_inside_tree(): return
 		if b != 0 && is_random_burst_delay:
 			var random_burst_delay = randf_range(min_random_burst_delay, max_random_burst_delay)
 			await get_tree().create_timer(random_burst_delay).timeout
@@ -59,6 +60,7 @@ func spawn(_parent: Node3D, _relative_to: Node3D = null):
 
 func burst(_parent: Node3D, _relative_to: Node3D):
 	for i in amount_of_spawns:
+		if not is_inside_tree(): return
 		if i != 0 && is_random_delay:
 			var random_delay = randf_range(min_random_delay, max_random_delay)
 			await get_tree().create_timer(random_delay).timeout
@@ -75,6 +77,7 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 	if (spawn_local): _parent.add_child(instance)
 	else:
 		if !_parent: return
+		if not is_inside_tree(): return
 		var running_game = _parent.get_tree()
 		if !running_game: return
 		var levels = running_game.get_nodes_in_group("Level")
