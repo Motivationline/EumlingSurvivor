@@ -27,6 +27,7 @@ class_name MoveTowardsPlayerState
 
 var nav_agent: NavigationAgent3D
 var done: bool = false
+var done_but_waiting: bool = false
 var player: CharacterBody3D
 
 func setup(_parent: Enemy, _animation_tree: AnimationTree):
@@ -45,9 +46,11 @@ func setup(_parent: Enemy, _animation_tree: AnimationTree):
 func enter():
 	super()
 	update_target_location()
+	done_but_waiting = false
 
 func physics_process(_delta: float) -> State:
 	if (done): return return_next()
+	if done_but_waiting: return null
 	
 	update_target_location()
 	
@@ -73,5 +76,6 @@ func update_target_location():
 
 func target_reached():
 	nav_agent.debug_enabled = false
+	done_but_waiting = true
 	await get_tree().create_timer(wait_time).timeout
 	done = true

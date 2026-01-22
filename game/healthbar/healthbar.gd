@@ -39,7 +39,7 @@ func _set_health(value: float):
 	else:
 		timer.start()
 	
-	if (health_bar && health_bar.max_value == health && hide_when_full_after >= 0):
+	if (health_bar && health_bar.max_value == health && hide_when_full_after >= 0 && is_inside_tree()):
 		await get_tree().create_timer(hide_when_full_after).timeout
 		if (health_bar.max_value == health && hide_when_full_after >= 0):
 			visible = false

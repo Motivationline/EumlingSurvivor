@@ -31,6 +31,7 @@ class_name FleeFromPlayerState
 @export var debug_show_path: bool
 
 var nav_agent: NavigationAgent3D
+var done_but_waiting: bool = false
 var done: bool = false
 var player: CharacterBody3D
 # for how long this entity has been fleeing
@@ -52,10 +53,12 @@ func enter():
 	super()
 	update_target_location()
 	time_fleeing = 0
+	done_but_waiting = false
 
 func physics_process(_delta: float) -> State:
 	if (done): return return_next()
-	
+	if done_but_waiting: return null
+
 	update_target_location()
 	
 	#parent.look_at(nav_agent.get_next_path_position())
@@ -88,5 +91,6 @@ func update_target_location():
 
 func target_reached():
 	nav_agent.debug_enabled = false
+	done_but_waiting = true
 	await get_tree().create_timer(wait_time).timeout
 	done = true

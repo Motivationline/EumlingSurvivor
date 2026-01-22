@@ -11,7 +11,7 @@ class_name ActivateEventStrategy
 @export var delay: float = 0
 
 func event_triggered(_data):
-	if is_delayed:
+	if is_delayed and is_inside_tree():
 		await get_tree().create_timer(delay).timeout
 	
 	for n in strategies_to_activate:

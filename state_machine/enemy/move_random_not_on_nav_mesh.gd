@@ -27,6 +27,7 @@ class_name MoveRandomNotOnNavMeshState
 @export var speed_override_active: bool = false
 
 var done: bool = false
+var done_but_waiting: bool = false
 var target_position: Vector3 = Vector3.ZERO
 
 func setup(_parent: Enemy, _animation_tree: AnimationTree):
@@ -38,6 +39,7 @@ func enter():
 
 func physics_process(_delta: float) -> State:
 	if (done): return return_next()
+	if done_but_waiting: return null
 
 	var local_destination = target_position - parent.global_position
 	var direction = local_destination.normalized()
@@ -61,8 +63,10 @@ func find_new_target():
 	random_position = random_position.normalized() * randf_range(min_distance, max_distance)
 	target_position = random_position
 	done = false
+	done_but_waiting = false
 
 func target_reached():
+	done_but_waiting = true
 	await get_tree().create_timer(wait_time).timeout
 	done = true
 

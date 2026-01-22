@@ -40,8 +40,8 @@ func enter() -> void:
 	done = false
 	if (start_delay > 0): await get_tree().create_timer(start_delay).timeout
 	consume_resource()
-	if (spawner): await spawner.spawn(parent, parent.visuals)
-	if (end_delay > 0): await get_tree().create_timer(end_delay).timeout
+	if spawner and is_inside_tree(): await spawner.spawn(parent, parent.visuals)
+	if end_delay > 0 and is_inside_tree(): await get_tree().create_timer(end_delay).timeout
 	done = true
 
 func process(_delta) -> State:

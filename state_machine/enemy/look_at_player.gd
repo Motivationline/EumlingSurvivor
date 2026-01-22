@@ -40,15 +40,9 @@ func physics_process(_delta: float) -> State:
 	var target_vec = (player.position - parent.position).normalized()
 	var target_rotation = atan2(-target_vec.x, -target_vec.z)
 	parent.visuals.rotation.y = lerp_angle(parent.visuals.rotation.y, target_rotation ,_delta* rotation_speed)
-	#target_reached()
 	if(done) : return return_next()
 	return null
 
 func wait():
-	await get_tree().create_timer(wait_time).timeout
-	done = true
-	
-	#TODO: remove below func
-func target_reached():
 	await get_tree().create_timer(wait_time).timeout
 	done = true
