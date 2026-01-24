@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fsbvao74dovg"]
+[gd_scene load_steps=35 format=3 uid="uid://fsbvao74dovg"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_lls7b"]
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="2_82l66"]
@@ -7,7 +7,26 @@
 [ext_resource type="PackedScene" uid="uid://cfyxw5fhwmyyy" path="res://game/projectiles/artillery_projectile/artillery_projectile.tscn" id="5_pj1a8"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_rkcej"]
 [ext_resource type="Script" uid="uid://bb6m3hglcrhmq" path="res://game/hitbox/hitbox.gd" id="8_7jdl2"]
+[ext_resource type="Script" path="res://strategies/event/enemy/play_sound.gd" id="8_tnmqv"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="9_rkcej"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="10_trurq"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="11_pgmq4"]
+[ext_resource type="AudioStream" uid="uid://cwx0xunov8ayx" path="res://assets/sound/hit_sfx/death_1.wav" id="12_ldbtp"]
+[ext_resource type="AudioStream" uid="uid://i43phfxlj3d3" path="res://assets/sound/hit_sfx/death_2.wav" id="13_4y7xn"]
+[ext_resource type="AudioStream" uid="uid://cswruhi8fcsvd" path="res://assets/sound/hit_sfx/death_3.wav" id="14_5b0h0"]
+[ext_resource type="AudioStream" uid="uid://dsmxr6c62vur3" path="res://assets/sound/hit_sfx/death_4.wav" id="15_r4oyv"]
+[ext_resource type="AudioStream" uid="uid://drohccsrkuoxj" path="res://assets/sound/hit_sfx/death_5.wav" id="16_o183i"]
+[ext_resource type="AudioStream" uid="uid://6iviab80g744" path="res://assets/sound/hit_sfx/death_6.wav" id="17_i4s35"]
+[ext_resource type="AudioStream" uid="uid://cq0aaqlcgu7fy" path="res://assets/sound/hit_sfx/hit_1.wav" id="18_tbj0s"]
+[ext_resource type="AudioStream" uid="uid://cb6ldc8myb4j2" path="res://assets/sound/hit_sfx/hit_2.wav" id="19_jnraw"]
+[ext_resource type="AudioStream" uid="uid://bvymuca72rd5q" path="res://assets/sound/hit_sfx/hit_3.wav" id="20_180uu"]
+[ext_resource type="AudioStream" uid="uid://bi7cr5c8lpmgc" path="res://assets/sound/hit_sfx/hit_4.wav" id="21_k02oo"]
+[ext_resource type="AudioStream" uid="uid://drgryjepf74r1" path="res://assets/sound/hit_sfx/hit_5.wav" id="22_nshiq"]
+[ext_resource type="AudioStream" uid="uid://grs0re4eyjty" path="res://assets/sound/hit_sfx/hit_6.wav" id="23_32en8"]
+[ext_resource type="AudioStream" uid="uid://kmtufd4fmgod" path="res://assets/sound/hit_sfx/hit_7.wav" id="24_b5ig4"]
+[ext_resource type="AudioStream" uid="uid://b1wflgot2ho1o" path="res://assets/sound/hit_sfx/hit_8.wav" id="25_yhsn5"]
+[ext_resource type="AudioStream" uid="uid://divfgafb7b3c4" path="res://assets/sound/hit_sfx/hit_9.wav" id="26_my6wa"]
+[ext_resource type="AudioStream" uid="uid://bpsnjbmf667ua" path="res://assets/sound/hit_sfx/hit_10.wav" id="27_i1pgt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xfv6s"]
 radius = 0.285913
@@ -25,13 +44,37 @@ height = 0.5
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt6xp"]
 albedo_color = Color(0.1407, 0.14763, 0.21, 1)
 
-[node name="Bomber" node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_lls7b")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dpbs3"]
+streams_count = 6
+stream_0/stream = ExtResource("12_ldbtp")
+stream_1/stream = ExtResource("13_4y7xn")
+stream_2/stream = ExtResource("14_5b0h0")
+stream_3/stream = ExtResource("15_r4oyv")
+stream_4/stream = ExtResource("16_o183i")
+stream_5/stream = ExtResource("17_i4s35")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oohnp"]
+streams_count = 10
+stream_0/stream = ExtResource("18_tbj0s")
+stream_1/stream = ExtResource("19_jnraw")
+stream_2/stream = ExtResource("20_180uu")
+stream_3/stream = ExtResource("21_k02oo")
+stream_4/stream = ExtResource("22_nshiq")
+stream_5/stream = ExtResource("23_32en8")
+stream_6/stream = ExtResource("24_b5ig4")
+stream_7/stream = ExtResource("25_yhsn5")
+stream_8/stream = ExtResource("26_my6wa")
+stream_9/stream = ExtResource("27_i1pgt")
+
+[node name="Bomber" node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree", "on_death", "on_hurt") instance=ExtResource("1_lls7b")]
 collision_layer = 64
 collision_mask = 65
 health = 200.0
 hitbox = NodePath("HitBox")
 hurtbox = NodePath("HurtBox")
 node_with_animation_tree = NodePath("Visuals/cactushog")
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral")]
 
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0257249, 1.2022, -0.00323331)
@@ -88,6 +131,17 @@ shape = SubResource("SphereShape3D_ew2cj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329481, 0)
 shape = SubResource("SphereShape3D_jpwg4")
 
+[node name="PlaySoundDeathGeneral" type="Node" parent="Eventlisteners" index="0" node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("8_tnmqv")
+sound_manager = NodePath("../../GeneralEnemySFXManager")
+sound_to_play = "Death"
+needs_to_be_persistent = true
+
+[node name="PlaySoundHitGeneral" type="Node" parent="Eventlisteners" index="1" node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("8_tnmqv")
+sound_manager = NodePath("../../GeneralEnemySFXManager")
+sound_to_play = "Hit"
+
 [node name="cactushog" parent="Visuals" index="0" instance=ExtResource("2_82l66")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
 
@@ -96,3 +150,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0335214, 0.867929, 0.00025
 visible = false
 mesh = SubResource("SphereMesh_4h72o")
 surface_material_override/0 = SubResource("StandardMaterial3D_nt6xp")
+
+[node name="GeneralEnemySFXManager" type="Node3D" parent="." index="8"]
+script = ExtResource("10_trurq")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Death" parent="GeneralEnemySFXManager" index="0" instance=ExtResource("11_pgmq4")]
+stream = SubResource("AudioStreamRandomizer_dpbs3")
+volume_db = 0.0
+
+[node name="Hit" parent="GeneralEnemySFXManager" index="1" instance=ExtResource("11_pgmq4")]
+stream = SubResource("AudioStreamRandomizer_oohnp")
+volume_db = 0.0

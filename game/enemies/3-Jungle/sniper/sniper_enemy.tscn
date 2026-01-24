@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b865xrtojih3l"]
+[gd_scene load_steps=35 format=3 uid="uid://b865xrtojih3l"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jj26d"]
 [ext_resource type="PackedScene" uid="uid://dtxcbfvali8ib" path="res://assets/characters/enemies/peacock/peacock_prefab.tscn" id="2_3n5vt"]
@@ -10,6 +10,25 @@
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="6_yptkn"]
 [ext_resource type="Script" uid="uid://2ncl5gd1yn5a" path="res://strategies/event/activate.gd" id="7_yk45h"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="8_58a1e"]
+[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="11_ymmec"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="12_veopi"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_q1m8v"]
+[ext_resource type="AudioStream" uid="uid://cwx0xunov8ayx" path="res://assets/sound/hit_sfx/death_1.wav" id="14_vpm8i"]
+[ext_resource type="AudioStream" uid="uid://i43phfxlj3d3" path="res://assets/sound/hit_sfx/death_2.wav" id="15_uyo8q"]
+[ext_resource type="AudioStream" uid="uid://cswruhi8fcsvd" path="res://assets/sound/hit_sfx/death_3.wav" id="16_237j1"]
+[ext_resource type="AudioStream" uid="uid://dsmxr6c62vur3" path="res://assets/sound/hit_sfx/death_4.wav" id="17_k5egc"]
+[ext_resource type="AudioStream" uid="uid://drohccsrkuoxj" path="res://assets/sound/hit_sfx/death_5.wav" id="18_qn7bg"]
+[ext_resource type="AudioStream" uid="uid://6iviab80g744" path="res://assets/sound/hit_sfx/death_6.wav" id="19_6xtdm"]
+[ext_resource type="AudioStream" uid="uid://cq0aaqlcgu7fy" path="res://assets/sound/hit_sfx/hit_1.wav" id="20_ygu7c"]
+[ext_resource type="AudioStream" uid="uid://cb6ldc8myb4j2" path="res://assets/sound/hit_sfx/hit_2.wav" id="21_lgepu"]
+[ext_resource type="AudioStream" uid="uid://bvymuca72rd5q" path="res://assets/sound/hit_sfx/hit_3.wav" id="22_qddd1"]
+[ext_resource type="AudioStream" uid="uid://bi7cr5c8lpmgc" path="res://assets/sound/hit_sfx/hit_4.wav" id="23_qjfio"]
+[ext_resource type="AudioStream" uid="uid://drgryjepf74r1" path="res://assets/sound/hit_sfx/hit_5.wav" id="24_70oh3"]
+[ext_resource type="AudioStream" uid="uid://grs0re4eyjty" path="res://assets/sound/hit_sfx/hit_6.wav" id="25_jqab2"]
+[ext_resource type="AudioStream" uid="uid://kmtufd4fmgod" path="res://assets/sound/hit_sfx/hit_7.wav" id="26_4ftxw"]
+[ext_resource type="AudioStream" uid="uid://b1wflgot2ho1o" path="res://assets/sound/hit_sfx/hit_8.wav" id="27_16536"]
+[ext_resource type="AudioStream" uid="uid://divfgafb7b3c4" path="res://assets/sound/hit_sfx/hit_9.wav" id="28_gyalq"]
+[ext_resource type="AudioStream" uid="uid://bpsnjbmf667ua" path="res://assets/sound/hit_sfx/hit_10.wav" id="29_hbhro"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lrmx"]
 radius = 0.4165039
@@ -19,12 +38,42 @@ height = 0.8330078
 radius = 0.26123047
 height = 0.7426758
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pllfl"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("11_ymmec")
+shader_parameter/ball_color = Color(1.6978991, 0, 0, 1)
+shader_parameter/frensel_power = -1.36
+shader_parameter/visibility = 0.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ogjm3"]
+streams_count = 6
+stream_0/stream = ExtResource("14_vpm8i")
+stream_1/stream = ExtResource("15_uyo8q")
+stream_2/stream = ExtResource("16_237j1")
+stream_3/stream = ExtResource("17_k5egc")
+stream_4/stream = ExtResource("18_qn7bg")
+stream_5/stream = ExtResource("19_6xtdm")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4wb6a"]
+streams_count = 10
+stream_0/stream = ExtResource("20_ygu7c")
+stream_1/stream = ExtResource("21_lgepu")
+stream_2/stream = ExtResource("22_qddd1")
+stream_3/stream = ExtResource("23_qjfio")
+stream_4/stream = ExtResource("24_70oh3")
+stream_5/stream = ExtResource("25_jqab2")
+stream_6/stream = ExtResource("26_4ftxw")
+stream_7/stream = ExtResource("27_16536")
+stream_8/stream = ExtResource("28_gyalq")
+stream_9/stream = ExtResource("29_hbhro")
+
 [node name="SniperEnemy" node_paths=PackedStringArray("hurtbox", "node_with_animation_tree", "on_death", "on_hurt") instance=ExtResource("1_jj26d")]
 health = 150.0
 hurtbox = NodePath("HurtBox")
 node_with_animation_tree = NodePath("Visuals/peacock")
-on_death = [NodePath("Eventlisteners/PlaySoundEventStrategy")]
-on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy")]
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
+on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/PlaySoundHitGeneral")]
 
 [node name="Healthbar3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90527487, -0.07545662)
@@ -51,7 +100,7 @@ script = ExtResource("3_4ah3n")
 entity_to_spawn = ExtResource("4_3xlw0")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlaySoundEventStrategy" type="Node" parent="Eventlisteners" index="0" node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" index="0" node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("6_qd5e1")
 sound_manager = NodePath("../../Visuals/peacock/SoundEffectManager")
 sound_to_play = "Death"
@@ -67,6 +116,17 @@ animation_trigger = Dictionary[String, Variant]({
 "parameters/Hurt/request": 1
 })
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
+
+[node name="PlaySoundDeathGeneral" type="Node" parent="Eventlisteners" index="3" node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("6_qd5e1")
+sound_manager = NodePath("../../GeneralEnemySFXManager")
+sound_to_play = "Death"
+needs_to_be_persistent = true
+
+[node name="PlaySoundHitGeneral" type="Node" parent="Eventlisteners" index="4" node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("6_qd5e1")
+sound_manager = NodePath("../../GeneralEnemySFXManager")
+sound_to_play = "Hit"
 
 [node name="HurtBox" type="Area3D" parent="." index="4"]
 collision_layer = 64
@@ -88,24 +148,24 @@ debug_color = Color(0.6433014, 0.4436161, 0.73155004, 0.41960785)
 [node name="peacock" parent="Visuals" index="0" instance=ExtResource("2_3n5vt")]
 
 [node name="Skeleton3D" parent="Visuals/peacock/Armature" index="0"]
-bones/0/position = Vector3(0, 0.04027837, 0.038039602)
-bones/1/position = Vector3(8.34908e-17, 0.13597086, -0.063571766)
-bones/2/position = Vector3(-7.684118e-16, 0.2475239, -0.1287356)
-bones/2/rotation = Quaternion(0.0539805, -7.2333215e-08, -7.6194816e-08, 0.998542)
-bones/3/position = Vector3(9.350842e-09, 0.31191617, -0.121751845)
-bones/3/rotation = Quaternion(-0.17422572, 2.7152725e-08, -3.6574736e-08, 0.9847058)
-bones/4/position = Vector3(1.34180995e-08, 0.3729735, -0.14405605)
-bones/4/rotation = Quaternion(-0.67792916, -5.4306604e-09, 1.10497425e-07, 0.7351272)
-bones/5/position = Vector3(-3.698221e-09, 0.3584825, -0.20620187)
-bones/5/rotation = Quaternion(0.0014804741, 0.26605582, -0.00040861368, 0.9639564)
-bones/6/position = Vector3(-0.030395744, 0.35865057, -0.25795773)
-bones/6/rotation = Quaternion(-0.68057334, 0.18841879, 0.18784092, 0.6826669)
+bones/0/position = Vector3(0, 0.039036755, 0.038039602)
+bones/1/position = Vector3(8.34908e-17, 0.13472925, -0.063571766)
+bones/2/position = Vector3(-2.910263e-16, 0.2462823, -0.1287356)
+bones/2/rotation = Quaternion(0.05342081, -7.1934316e-08, -7.5628655e-08, 0.9985722)
+bones/3/position = Vector3(9.288864e-09, 0.31068122, -0.12181364)
+bones/3/rotation = Quaternion(-0.17236127, 2.729462e-08, -3.6378697e-08, 0.98503387)
+bones/4/position = Vector3(1.3335979e-08, 0.37182257, -0.14388652)
+bones/4/rotation = Quaternion(-0.6729958, -6.0930425e-09, 1.0962096e-07, 0.7396463)
+bones/5/position = Vector3(-3.644779e-09, 0.3584825, -0.20620187)
+bones/5/rotation = Quaternion(0.0014804741, 0.26605582, -0.0004086137, 0.9639564)
+bones/6/position = Vector3(-0.030401979, 0.35865155, -0.25790933)
+bones/6/rotation = Quaternion(-0.6805733, 0.18841876, 0.1878409, 0.68266696)
 bones/7/position = Vector3(-0.039070606, 0.32260364, -0.27158913)
-bones/7/rotation = Quaternion(-0.68057334, 0.18841879, 0.18784092, 0.6826669)
+bones/7/rotation = Quaternion(-0.6805733, 0.18841876, 0.1878409, 0.68266696)
 bones/8/position = Vector3(0.033818413, 0.42930266, -0.1496045)
 bones/8/rotation = Quaternion(0.15554431, 0.78205884, 0.5635586, -0.21585143)
 bones/9/position = Vector3(0.06171748, 0.44744503, -0.10291355)
-bones/9/rotation = Quaternion(0.1638851, 0.7593695, 0.593778, -0.2095889)
+bones/9/rotation = Quaternion(0.16388512, 0.7593695, 0.593778, -0.20958889)
 bones/10/position = Vector3(0.09188773, 0.46205986, -0.052421626)
 bones/10/rotation = Quaternion(0.20742665, 0.60366285, 0.7515354, -0.16661319)
 bones/11/position = Vector3(0.03329517, 0.4173296, -0.2377355)
@@ -121,34 +181,49 @@ bones/15/rotation = Quaternion(0.34800583, -0.6144702, -0.61554205, -0.34989488)
 bones/16/position = Vector3(-0.062958404, 0.37173712, -0.18380894)
 bones/16/rotation = Quaternion(0.34800583, -0.6144702, -0.61554205, -0.34989488)
 bones/17/position = Vector3(0.050809354, 0.3725803, -0.25178516)
-bones/17/rotation = Quaternion(0.6144702, 0.34800583, 0.34989494, -0.615542)
+bones/17/rotation = Quaternion(0.6144702, 0.3480058, 0.34989485, -0.61554205)
 bones/18/position = Vector3(0.049549542, 0.37173712, -0.2510354)
 bones/18/rotation = Quaternion(0.6144702, 0.3480058, 0.34989485, -0.61554205)
 bones/19/position = Vector3(-0.06204929, 0.37070024, -0.18435585)
 bones/19/rotation = Quaternion(0.34800583, -0.6144702, -0.61554205, -0.34989488)
 bones/20/position = Vector3(0.04863716, 0.37070024, -0.25049394)
-bones/20/rotation = Quaternion(0.6144702, 0.34800583, 0.34989494, -0.615542)
-bones/21/position = Vector3(0.08412139, 0.24212363, -0.16300146)
-bones/22/position = Vector3(0.13383693, 0.16964829, -0.073462784)
-bones/23/position = Vector3(0.14529793, 0.17927875, 0.09570292)
-bones/24/position = Vector3(0.118225455, 0.21020578, -0.0012086034)
-bones/25/position = Vector3(0, 0.21454242, -0.17154373)
-bones/26/position = Vector3(1.9084076e-15, 0.12810013, -0.19484654)
-bones/27/position = Vector3(5.10925e-18, 0.15898073, 0.011440381)
-bones/28/position = Vector3(-3.552714e-15, 0.18964832, 0.13655879)
-bones/29/position = Vector3(0.027694607, 0.33646777, 0.31635344)
-bones/29/rotation = Quaternion(0.029516172, 0.9676275, 0.2506252, -0.003599607)
-bones/30/position = Vector3(0.047061563, 0.62327456, 0.47569582)
-bones/30/rotation = Quaternion(0.05898254, 0.9248964, 0.3756035, -0.0031074218)
-bones/31/position = Vector3(0.083687335, 0.85691804, 0.70392895)
-bones/31/rotation = Quaternion(0.0873684, 0.8652268, 0.4937032, -0.002558235)
-bones/32/position = Vector3(0.1342045, 1.0203424, 0.9845679)
-bones/32/rotation = Quaternion(0.11415357, 0.78971106, 0.60276175, -0.001962148)
-bones/33/position = Vector3(0.1942322, 1.101614, 1.2973062)
-bones/33/rotation = Quaternion(0.13884746, 0.69973195, 0.7007816, -0.0013301746)
-bones/34/position = Vector3(-0.084121406, 0.24212363, -0.16300146)
-bones/35/position = Vector3(-0.13383693, 0.16964827, -0.07346277)
-bones/36/position = Vector3(-0.14529793, 0.17927873, 0.09570293)
-bones/37/position = Vector3(-0.118225425, 0.21020578, -0.0012086183)
+bones/20/rotation = Quaternion(0.6144702, 0.3480058, 0.34989485, -0.61554205)
+bones/21/position = Vector3(0.08412139, 0.24088202, -0.16300146)
+bones/22/position = Vector3(0.13383693, 0.16840668, -0.073462784)
+bones/23/position = Vector3(0.14529793, 0.17803714, 0.09570292)
+bones/24/position = Vector3(0.118225455, 0.20896417, -0.0012086034)
+bones/25/position = Vector3(0, 0.21330081, -0.17154373)
+bones/26/position = Vector3(1.9084076e-15, 0.12685852, -0.19484654)
+bones/27/position = Vector3(5.10925e-18, 0.15773912, 0.011440381)
+bones/28/position = Vector3(-3.552714e-15, 0.1884067, 0.13655879)
+bones/29/position = Vector3(0.027694607, 0.33522618, 0.31635344)
+bones/29/rotation = Quaternion(0.028331505, 0.9679371, 0.24956623, -0.0034551315)
+bones/30/position = Vector3(0.046287607, 0.6224262, 0.47507852)
+bones/30/rotation = Quaternion(0.05662124, 0.9258575, 0.3735945, -0.0030181208)
+bones/31/position = Vector3(0.08148752, 0.8572385, 0.70233446)
+bones/31/rotation = Quaternion(0.08389407, 0.86715484, 0.4909156, -0.0025268237)
+bones/32/position = Vector3(0.13012023, 1.0228581, 0.9820178)
+bones/32/rotation = Quaternion(0.10966001, 0.7928826, 0.599423, -0.001990132)
+bones/33/position = Vector3(0.18805072, 1.107429, 1.2942767)
+bones/33/rotation = Quaternion(0.1334564, 0.7043743, 0.6971687, -0.0014177114)
+bones/34/position = Vector3(-0.084121406, 0.24088202, -0.16300146)
+bones/35/position = Vector3(-0.13383693, 0.16840667, -0.07346277)
+bones/36/position = Vector3(-0.14529793, 0.17803712, 0.09570293)
+bones/37/position = Vector3(-0.118225425, 0.20896417, -0.0012086183)
+
+[node name="Peacock" parent="Visuals/peacock/Armature/Skeleton3D" index="0"]
+material_overlay = SubResource("ShaderMaterial_pllfl")
+
+[node name="GeneralEnemySFXManager" type="Node3D" parent="." index="7"]
+script = ExtResource("12_veopi")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Death" parent="GeneralEnemySFXManager" index="0" instance=ExtResource("13_q1m8v")]
+stream = SubResource("AudioStreamRandomizer_ogjm3")
+volume_db = 0.0
+
+[node name="Hit" parent="GeneralEnemySFXManager" index="1" instance=ExtResource("13_q1m8v")]
+stream = SubResource("AudioStreamRandomizer_4wb6a")
+volume_db = 0.0
 
 [editable path="Visuals/peacock"]
