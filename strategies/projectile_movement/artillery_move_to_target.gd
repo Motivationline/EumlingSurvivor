@@ -21,7 +21,9 @@ func _setup(_parent: Node, _owner: Node):
 	super (_parent, _owner)
 	start_pos = parent.position
 	parent.velocity = Vector3.ZERO
-	
+
+
+#TODO: estimate enemy position when projectile hits and correct it's path
 
 func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: float):
 	#checks if the projectile is fired from the player and adjusts the target accordingly
@@ -55,10 +57,11 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 			var x = traveled
 			# calculate the y-pos for x (how far we traveled to the target) on the parabula
 			# the parabula ranges from start_pos to target_pos
-			var y = -(x * x) + distance * x
+			var arc_factor = 2
+			var y = arc_factor/distance * (-(x * x) + distance * x)
 			# calculate the gradient (steigung) at a certain point
 			# we can use the gradient to calculate the angle our projectile should be at on every point
-			var gradient = -2 * x + distance
+			var gradient = arc_factor/distance * (- 2*x + distance)
 			
 			#parent.velocity = new_dir #* speed_mag
 			
