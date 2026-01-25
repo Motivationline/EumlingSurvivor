@@ -92,7 +92,7 @@ func physics_process(_delta: float) -> State:
 	
 	# get the closest nod to the player
 	var members: Array[Node] = get_tree().get_nodes_in_group(flock_group)
-	var closest = get_closest_node(player as Node3D, members)
+	var _closest = get_closest_node(player as Node3D, members)
 	#print(closest)
 	process_flock(_delta)
 	# if i am the closest, i am the leader
@@ -246,63 +246,67 @@ func get_closest_node(_origin: Node3D, _n_targets: Array[Node]):
 				closest = n
 		return closest
 
-var perception_radius: float = 2
-var move_speed: float = 1
-var steer_force = 50.0
-var alignment_force = 1.2
-var cohesion_force = 0.5
-var separation_force = 1.0
-var avoidance_force = 30.0
-var centralization_force = 0.5
-var centralization_force_radius = 10
-var acceleration = Vector2()
+@export_category("new flock")
+
+@export var perception_radius: float = 2
+@export var move_speed: float = 1
+@export var steer_force: float = 50.0
+@export var alignment_force: float = 1.2
+@export var cohesion_force: float = 0.5
+@export var separation_force: float = 1.0
+@export var avoidance_force: float = 30.0
+@export var centralization_force: float = 5
+@export var centralization_force_radius: float = 20
+var acceleration = Vector3()
 
 func process_flock(_delta):
+	acceleration = Vector3.ZERO
 	var neighbors = get_neighbors(perception_radius)
-	print(neighbors)
-	var player = get_tree().get_first_node_in_group("Player")
+	#print(neighbors)
 	
 	acceleration += process_alignments(neighbors) * alignment_force
 	acceleration += process_cohesion(neighbors) * cohesion_force
 	acceleration += process_separation(neighbors) * separation_force
-	acceleration += process_centralization(Vector2(player.global_position.x, player.global_position.z)) * centralization_force
+	acceleration += process_centralization(player.global_position) * centralization_force
+	
+	print(player.global_position)
 	
 	parent.velocity += Vector3(acceleration.x, 0, acceleration.y) * _delta
-	print(parent.velocity)
-	parent.velocity = parent.velocity.clamp(Vector3.ONE * -move_speed, Vector3.ONE * move_speed)
+	#print(parent.velocity)
+	parent.velocity = parent.velocity.limit_length(move_speed)
 	#parent.rotation = parent.velocity.angle()
 	parent.rotation.y = lerp_angle(parent.rotation.y,atan2(-parent.velocity.x,-parent.velocity.z),_delta* rotation_speed)
 	parent.move_and_slide()
 
-func process_centralization(center: Vector2):
-	if Vector2(parent.global_position.x, parent.global_position.z).distance_to(center) < centralization_force_radius:
-		return Vector2()
+func process_centralization(center: Vector3):
+	if parent.global_position.distance_to(center) < centralization_force_radius:
+		return Vector3()
 		
-	return steer((center - Vector2(parent.global_position.x, parent.global_position.z)).normalized() * move_speed)	
+	return steer((center - parent.global_position).normalized() * move_speed)	
 
 func process_cohesion(neighbors):
-	var vector = Vector2()
+	var vector = Vector3()
 	if neighbors.is_empty():
 		return vector
 	for member in neighbors:
-		vector += Vector2(member.position.x, member.position.z)
+		vector += member.global_position
 	vector /= neighbors.size()
 	
-	return steer((vector - Vector2(parent.global_position.x, parent.global_position.z)).normalized() * move_speed)
+	return steer((vector - parent.global_position).normalized() * move_speed)
 
 func process_alignments(neighbors):
-	var vector = Vector2()
+	var vector = Vector3()
 	if neighbors.is_empty():
 		return vector
 		
 	for member in neighbors:
-		vector += Vector2(member.velocity.x, member.velocity.z)
+		vector += member.velocity
 	vector /= neighbors.size()
 	
 	return steer(vector.normalized() * move_speed)
 
 func process_separation(neighbors):
-	var vector = Vector2()
+	var vector = Vector3()
 	var close_neighbors = []
 	for member in neighbors:
 		if parent.global_position.distance_to(member.global_position) < perception_radius:
@@ -311,7 +315,7 @@ func process_separation(neighbors):
 		return vector
 	
 	for member in close_neighbors:
-		var difference: Vector2 = Vector2(parent.global_position.x, parent.global_position.z) - Vector2(member.position.x, member.position.z)
+		var difference: Vector3 = parent.global_position - member.global_position
 		vector += difference.normalized() / difference.length()
 	#TODO: Check div by zero
 	vector /= close_neighbors.size()
@@ -319,16 +323,16 @@ func process_separation(neighbors):
 	return steer(vector.normalized() * move_speed)
 
 func steer(target):
-	var steer = target - Vector2(parent.velocity.x, parent.velocity.z)
-	steer = steer.normalized() * steer_force
+	var _steer = target - parent.velocity
+	_steer = _steer.normalized() * steer_force
 	
-	return steer
+	return _steer
 
 func get_neighbors(_radius):
-	var neighbors = []
-	neighbors = get_tree().get_nodes_in_group(flock_group)
-	neighbors.erase(parent)
-	for member in neighbors:
-		if (parent.global_position - member.global_position).length() > perception_radius:
-			neighbors.erase(member)
-	return neighbors
+	var result = []
+	for member in get_tree().get_nodes_in_group(flock_group):
+		if member == parent:
+			continue
+		if parent.global_position.distance_to(member.global_position) <= _radius:
+			result.append(member)
+	return result
