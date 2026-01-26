@@ -56,7 +56,6 @@ var is_leader: bool
 var leader_material := StandardMaterial3D.new()
 var normal_material := StandardMaterial3D.new()
 
-# TODO: fix y pos
 
 func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
@@ -120,6 +119,9 @@ func physics_process(_delta: float) -> State:
 			
 		#parent.look_at(nav_agent.get_next_path_position())
 		#var destination = nav_agent.get_next_path_position()
+
+		#TODO:use nav mesh for obstacle avoidance? Create path to player, pick next point on path, use that as goal for flocking.
+
 		var local_destination =  get_tree().get_first_node_in_group("Player").global_position - parent.global_position 
 		var direction = local_destination.normalized()
 		var speed = speed_override if (speed_override_active) else parent.speed
