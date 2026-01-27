@@ -38,8 +38,6 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 			#parabula y = x/z
 			#line: player -> targetpos
 			
-			#TODO: follow player movement?
-			
 			if not isPosLocked:
 				target_pos = target.position
 				distance = (target_pos - start_pos).length()
@@ -52,11 +50,12 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				print(target_pos, target.velocity, travel_time, adjusted_target_position)
 				
 				target_pos = adjusted_target_position
+				distance = (target_pos - start_pos).length()
 				
 				isPosLocked = true
 			
 			# set debug cube pos
-			#db_cube.global_position = target_pos
+			db_cube.global_position = target_pos
 			
 			var parent_pos = parent.position
 			#parent_pos.y = 0
@@ -86,10 +85,6 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 
 			parent.velocity = dir * speed_amp
 			
-			#aviation_time += _delta
-			#print(calculate_travel_time(parab_length, speed_amp))
-			#print(aviation_time)
-			
 			if parent.velocity.length() > 0:
 				parent.look_at(parent.global_position + parent.velocity)
 
@@ -98,6 +93,7 @@ func calculate_travel_time(_length:float, _speed: float) -> float:
 	return t
 	
 
+# die Funktionen sind von chat gpt und berechnen die Länge eines Abschnittes einer Parabel
 func _F(x: float, a: float, b: float) -> float:
 	var u = 2.0 * a * x + b
 	return (u * sqrt(1.0 + u * u) + asinh(u)) / (4.0 * a)
