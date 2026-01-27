@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://5lep1if814ha"]
+[gd_resource type="VisualShader" format=3 uid="uid://5lep1if814ha"]
 
 [ext_resource type="Texture2D" uid="uid://1583oa3cnkm" path="res://assets/vfx/projectile_realistic/Swirl 11 - 256x256.png" id="1_4okp4"]
 
@@ -45,68 +45,6 @@ op_type = 0
 operator = 2
 
 [resource]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled, ambient_light_disabled;
-
-uniform vec4 Final_Color : source_color;
-uniform vec2 fire_speed;
-uniform sampler2D tex_frg_3 : source_color;
-uniform sampler2D tex_frg_4 : source_color;
-uniform float visibilty = 1.0;
-
-
-
-void fragment() {
-// ColorParameter:2
-	vec4 n_out2p0 = Final_Color;
-
-
-// Input:8
-	float n_out8p0 = TIME;
-
-
-// Vector2Parameter:10
-	vec2 n_out10p0 = fire_speed;
-
-
-// VectorOp:9
-	vec2 n_out9p0 = vec2(n_out8p0) * n_out10p0;
-
-
-// UVFunc:7
-	vec2 n_in7p1 = vec2(1.00000, 1.00000);
-	vec2 n_out7p0 = n_out9p0 * n_in7p1 + UV;
-
-
-// Texture2D:3
-	vec4 n_out3p0 = texture(tex_frg_3, n_out7p0);
-	float n_out3p1 = n_out3p0.r;
-
-
-// Texture2D:4
-	vec4 n_out4p0 = texture(tex_frg_4, UV);
-
-
-// FloatOp:5
-	float n_out5p0 = n_out3p1 - n_out4p0.x;
-
-
-// FloatParameter:11
-	float n_out11p0 = visibilty;
-
-
-// Clamp:6
-	float n_in6p1 = 0.00000;
-	float n_out6p0 = clamp(n_out5p0, n_in6p1, n_out11p0);
-
-
-// Output:0
-	ALBEDO = vec3(n_out2p0.xyz);
-	ALPHA = n_out6p0;
-
-
-}
-"
 modes/cull = 2
 flags/unshaded = true
 flags/shadows_disabled = true
