@@ -184,6 +184,12 @@ func _physics_process(_delta: float) -> void:
 	if camera:
 		look_direction_3d = look_direction_3d.rotated(Vector3.UP, camera.rotation.y)
 	if Input.is_action_pressed("fire") or Input.get_action_strength("fire_axis") > 0.5:
+		if Data.is_on_mobile:
+			# look at closest enemy to shoot
+			var enemies = get_tree().get_nodes_in_group("Enemy")
+			if enemies.size() > 0:
+				Utils.sort_array_by_distance(enemies, self)
+				eumling_visuals.look_at(enemies[0].global_position)
 		shoot()
 	if look_direction.is_zero_approx():
 		if was_looking_somewhere and Data.is_on_mobile:

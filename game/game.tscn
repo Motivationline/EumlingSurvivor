@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bck4sy6x58mj2"]
+[gd_scene format=3 uid="uid://bck4sy6x58mj2"]
 
 [ext_resource type="Script" uid="uid://332o24o22ksb" path="res://game/game.gd" id="1_dakft"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="2_dxrkv"]
@@ -65,14 +65,14 @@ _data = {
 &"fade": SubResource("Animation_u5opy")
 }
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" unique_id=1590639331]
 script = ExtResource("1_dakft")
 
-[node name="Level" type="Node3D" parent="."]
+[node name="Level" type="Node3D" parent="." unique_id=2144892213]
 
-[node name="TouchJoystickOverlay" type="CanvasLayer" parent="."]
+[node name="TouchJoystickOverlay" type="CanvasLayer" parent="." unique_id=497649025]
 
-[node name="MovementController" parent="TouchJoystickOverlay" instance=ExtResource("2_dxrkv")]
+[node name="MovementController" parent="TouchJoystickOverlay" unique_id=1973395901 instance=ExtResource("2_dxrkv")]
 position = Vector2(418, 612)
 scale = Vector2(1.132587, 1.132587)
 base_texture = ExtResource("3_l8g03")
@@ -92,7 +92,7 @@ right_movement = "right"
 up_movement = "up"
 down_movement = "down"
 
-[node name="AttackController" parent="TouchJoystickOverlay" instance=ExtResource("2_dxrkv")]
+[node name="AttackController" parent="TouchJoystickOverlay" unique_id=1696944807 instance=ExtResource("2_dxrkv")]
 position = Vector2(1505, 612)
 scale = Vector2(1.1315652, 1.132587)
 base_texture = ExtResource("3_l8g03")
@@ -110,11 +110,12 @@ left_movement = "attack_left"
 right_movement = "attack_right"
 up_movement = "attack_up"
 down_movement = "attack_down"
+tap = "fire"
 
-[node name="SceneFadeOverlay" type="CanvasLayer" parent="."]
+[node name="SceneFadeOverlay" type="CanvasLayer" parent="." unique_id=190604314]
 layer = 120
 
-[node name="ColorRect" type="ColorRect" parent="SceneFadeOverlay"]
+[node name="ColorRect" type="ColorRect" parent="SceneFadeOverlay" unique_id=1564976176]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -123,38 +124,36 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SceneFadeOverlay"]
-libraries = {
-&"": SubResource("AnimationLibrary_y36n6")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SceneFadeOverlay" unique_id=1285537579]
+libraries/ = SubResource("AnimationLibrary_y36n6")
 
-[node name="DebugUpgradeView" parent="." instance=ExtResource("5_dxrkv")]
+[node name="DebugUpgradeView" parent="." unique_id=992518092 instance=ExtResource("5_dxrkv")]
 visible = false
 
-[node name="AreaChoiceOverlay" type="CanvasLayer" parent="."]
+[node name="AreaChoiceOverlay" type="CanvasLayer" parent="." unique_id=1812616443]
 layer = 128
 
-[node name="AreaPicker" parent="AreaChoiceOverlay" instance=ExtResource("6_3vho3")]
+[node name="AreaPicker" parent="AreaChoiceOverlay" unique_id=778756626 instance=ExtResource("6_3vho3")]
 
-[node name="MusicPlayer" parent="." groups=["MusicPlayer"] instance=ExtResource("6_dakft")]
+[node name="MusicPlayer" parent="." unique_id=527853792 groups=["MusicPlayer"] instance=ExtResource("6_dakft")]
 debug = false
 
-[node name="pauseMenuStyleTest" type="CanvasLayer" parent="."]
+[node name="pauseMenuStyleTest" type="CanvasLayer" parent="." unique_id=681765596]
 visible = false
 
-[node name="PauseMenuStyleTest" parent="pauseMenuStyleTest" instance=ExtResource("7_l8g03")]
+[node name="PauseMenuStyleTest" parent="pauseMenuStyleTest" unique_id=2049241572 instance=ExtResource("7_l8g03")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2066404027]
 visible = false
 
-[node name="PopUpStyleTest" parent="CanvasLayer" instance=ExtResource("8_j8tme")]
+[node name="PopUpStyleTest" parent="CanvasLayer" unique_id=1120283008 instance=ExtResource("8_j8tme")]
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=625735840]
 visible = false
 
-[node name="UpgradePickerStyleTest" parent="CanvasLayer2" instance=ExtResource("9_3vho3")]
+[node name="UpgradePickerStyleTest" parent="CanvasLayer2" unique_id=711554406 instance=ExtResource("9_3vho3")]
 
-[node name="UpgradeView" parent="." instance=ExtResource("10_j8tme")]
+[node name="UpgradeView" parent="." unique_id=1120486040 instance=ExtResource("10_j8tme")]
 layer = 11
 visible = false
 

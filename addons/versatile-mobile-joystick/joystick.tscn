@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://btf0iccai10qr"]
+[gd_scene format=3 uid="uid://btf0iccai10qr"]
 
 [ext_resource type="Script" uid="uid://b14ltj42nage4" path="res://addons/versatile-mobile-joystick/joystick.gd" id="1_ofv6b"]
 [ext_resource type="Texture2D" uid="uid://uuudl7yxl3ke" path="res://assets/ui/SketchJoystickBack.png" id="2_uiyn1"]
@@ -7,61 +7,63 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_46m5w"]
 radius = 4.0
 
-[node name="JoystickController" type="Node2D"]
+[node name="JoystickController" type="Node2D" unique_id=977796482]
 script = ExtResource("1_ofv6b")
 
-[node name="Joystick" type="Node2D" parent="."]
+[node name="Joystick" type="Node2D" parent="." unique_id=312843654]
 unique_name_in_owner = true
 
-[node name="Base" type="Sprite2D" parent="Joystick"]
+[node name="Base" type="Sprite2D" parent="Joystick" unique_id=192588650]
 unique_name_in_owner = true
 scale = Vector2(0.10078497, 0.10078497)
 texture = ExtResource("2_uiyn1")
 
-[node name="Tip" type="Sprite2D" parent="Joystick"]
+[node name="Tip" type="Sprite2D" parent="Joystick" unique_id=69342647]
 unique_name_in_owner = true
 scale = Vector2(0.048819296, 0.048819292)
 texture = ExtResource("3_iwdxw")
 
-[node name="TouchDetectorIndicator" type="Area2D" parent="."]
+[node name="TouchDetectorIndicator" type="Area2D" parent="." unique_id=2058746024]
 collision_layer = 0
 collision_mask = 2147483648
 monitoring = false
 monitorable = false
 
-[node name="TouchDetector" type="CollisionShape2D" parent="TouchDetectorIndicator"]
+[node name="TouchDetector" type="CollisionShape2D" parent="TouchDetectorIndicator" unique_id=138962986]
 unique_name_in_owner = true
 debug_color = Color(0.137255, 0.647059, 0, 0.0509804)
 
-[node name="FollowRegionIndicator" type="Area2D" parent="."]
+[node name="FollowRegionIndicator" type="Area2D" parent="." unique_id=2088714904]
 collision_layer = 0
 collision_mask = 2147483648
 monitoring = false
 monitorable = false
 
-[node name="FollowRegion" type="CollisionShape2D" parent="FollowRegionIndicator"]
+[node name="FollowRegion" type="CollisionShape2D" parent="FollowRegionIndicator" unique_id=726917634]
 unique_name_in_owner = true
 debug_color = Color(0.8627451, 0, 0.8666667, 0.05490196)
 
-[node name="DeadZoneIndicator" type="Area2D" parent="."]
+[node name="DeadZoneIndicator" type="Area2D" parent="." unique_id=942553363]
 
-[node name="DeadZone" type="CollisionShape2D" parent="DeadZoneIndicator"]
+[node name="DeadZone" type="CollisionShape2D" parent="DeadZoneIndicator" unique_id=1033787126]
 unique_name_in_owner = true
 debug_color = Color(1, 0, 0.133333, 0.117647)
 
-[node name="TipLimitIndicator" type="Area2D" parent="."]
+[node name="TipLimitIndicator" type="Area2D" parent="." unique_id=1435179322]
 
-[node name="TipLimit" type="CollisionShape2D" parent="TipLimitIndicator"]
+[node name="TipLimit" type="CollisionShape2D" parent="TipLimitIndicator" unique_id=71952113]
 unique_name_in_owner = true
 debug_color = Color(0.666667, 0.509804, 0, 0.117647)
 
-[node name="TouchIndicator" type="Area2D" parent="." groups=["TouchIndicator"]]
+[node name="TouchIndicator" type="Area2D" parent="." unique_id=655661917 groups=["TouchIndicator"]]
 unique_name_in_owner = true
 collision_layer = 2147483648
 collision_mask = 0
 monitoring = false
 
-[node name="Touch" type="CollisionShape2D" parent="TouchIndicator"]
+[node name="Touch" type="CollisionShape2D" parent="TouchIndicator" unique_id=1684093205]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_46m5w")
 debug_color = Color(1, 0.6, 0.701961, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=586556545]

@@ -141,6 +141,9 @@ enum JoystickMode {
 ## Links the joystick's downward direction to this input action in the project settings.
 @export var down_movement: String = "ui_down"
 
+## Input action name for taps
+@export var tap: String = ""
+
 # Touch state management
 var being_touched: bool = false:
 	set(value):
@@ -155,7 +158,7 @@ var being_touched: bool = false:
 			%Joystick.modulate.a = visibility_when_idle
 
 var active_touch_id: int = -1;
-
+var current_distance: float = 0.0;
 
 signal touch_started
 signal touch_ended
@@ -219,6 +222,9 @@ func _input(event: InputEvent) -> void:
 			touch_started.emit()
 		elif !event.pressed && event.index == active_touch_id:
 			# Touch end
+			if current_distance == 0:
+				# Touch ended inside deadzone, trigger tap
+				_trigger_tap_action()
 			being_touched = false
 			active_touch_id = -1
 			%Touch.disabled = true
@@ -259,6 +265,7 @@ func _move_and_calculate(event: InputEvent) -> void:
 	# Adjust distance considering deadzone
 	var adjusted_distance: float = max(distance - deadzone_length, 0)
 	var clamped_distance: float = clamp(adjusted_distance, 0, max_distance - deadzone_length)
+	current_distance = clamped_distance
 	
 	# Position the tip
 	var final_tip_position: Vector2 = t_init_pos + direction * min(distance, max_distance)
@@ -289,6 +296,11 @@ func _update_input_actions(output: Vector2) -> void:
 			Input.action_press(action.action, action.strength)
 		else:
 			Input.action_release(action.action)
+
+func _trigger_tap_action() -> void: 
+	Input.action_press(tap)
+	await get_tree().process_frame
+	Input.action_release(tap)
 
 func _move_to_resting_position():
 	if !enable_custom_resting_position: return
