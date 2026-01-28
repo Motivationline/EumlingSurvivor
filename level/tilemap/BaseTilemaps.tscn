@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://cpteni1gx0qfr"]
+[gd_scene format=4 uid="uid://cpteni1gx0qfr"]
 
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="1_wg8yc"]
+[ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="2_qpu6u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wg8yc"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -56,35 +57,49 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_udnil")
 
-[node name="BaseTilemaps" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n85fk"]
+albedo_texture = ExtResource("2_qpu6u")
 
-[node name="Obstacle_0_5x0_5" type="MeshInstance3D" parent="."]
+[node name="BaseTilemaps" type="Node3D" unique_id=275196242]
+
+[node name="Obstacle_0_5x0_5" type="MeshInstance3D" parent="." unique_id=2134399981]
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Obstacle_0_5x0_5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstacle_0_5x0_5" unique_id=457725511]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle_0_5x0_5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle_0_5x0_5/StaticBody3D" unique_id=1545739335]
 shape = SubResource("BoxShape3D_wg8yc")
 debug_color = Color(0.47039998, 0.4888799, 0.84, 0.59607846)
 
-[node name="MapBorder_0_5x0_5" type="MeshInstance3D" parent="."]
+[node name="MapBorder_0_5x0_5" type="MeshInstance3D" parent="." unique_id=144983187]
 mesh = SubResource("BoxMesh_13bgu")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_13bgu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MapBorder_0_5x0_5"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MapBorder_0_5x0_5" unique_id=269723116]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MapBorder_0_5x0_5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapBorder_0_5x0_5/StaticBody3D" unique_id=2029530531]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96162415, 0)
 shape = SubResource("BoxShape3D_13bgu")
 debug_color = Color(0.47039998, 0.4888799, 0.84, 1)
 
-[node name="Obstalce_Stone" type="MeshInstance3D" parent="."]
+[node name="Obstalce_Stone" type="MeshInstance3D" parent="." unique_id=521306824]
 mesh = SubResource("ArrayMesh_5nbks")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Obstalce_Stone"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstalce_Stone" unique_id=567487978]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstalce_Stone/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstalce_Stone/StaticBody3D" unique_id=1182376552]
+shape = SubResource("BoxShape3D_wg8yc")
+debug_color = Color(0.47039998, 0.4888799, 0.84, 0.59607846)
+
+[node name="Obstalce_Stone_Volcano" type="MeshInstance3D" parent="." unique_id=631194137]
+mesh = SubResource("ArrayMesh_5nbks")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_n85fk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstalce_Stone_Volcano" unique_id=586288982]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstalce_Stone_Volcano/StaticBody3D" unique_id=794884134]
 shape = SubResource("BoxShape3D_wg8yc")
 debug_color = Color(0.47039998, 0.4888799, 0.84, 0.59607846)
