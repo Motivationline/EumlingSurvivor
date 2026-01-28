@@ -7,6 +7,7 @@ var player: Player
 @onready var scene_fade_animation_player: AnimationPlayer = $SceneFadeOverlay/AnimationPlayer
 @onready var upgrade_view: CanvasLayer = $UpgradeView
 @onready var area_choice_overlay: Control = $AreaChoiceOverlay/AreaPicker
+@onready var touch_joystick_overlay: CanvasLayer = $TouchJoystickOverlay
 
 @onready var debug_upgrade_view: CanvasLayer = $DebugUpgradeView
 
@@ -21,6 +22,9 @@ func _ready() -> void:
 	# init player here.
 	player.died.connect(return_to_main_menu)
 	requestMusic.emit(false, MusicPlayer.LEVEL.MENU)
+	# remove mobile overlay if not on mobile
+	if not Data.is_on_mobile:
+		touch_joystick_overlay.queue_free()
 	
 
 var current_level: int = 0
