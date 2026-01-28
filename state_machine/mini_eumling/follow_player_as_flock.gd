@@ -45,7 +45,7 @@ enum GROUP {ENEMY, MINIEUMLING}
 @export_category("Debug")
 @export var debug_show_path: bool
 
-#var nav_agent: NavigationAgent3D
+var nav_agent: NavigationAgent3D
 var done: bool = false
 var player: CharacterBody3D
 var flock_group: String
@@ -60,14 +60,18 @@ var normal_material := StandardMaterial3D.new()
 func setup(_parent: CharacterBase, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	parent = _parent
-	#nav_agent = NavigationAgent3D.new()
-	#parent.add_child(nav_agent)
+	
+	# Nav agent, only used for obstacle avoidance
+	
+	nav_agent = NavigationAgent3D.new()
+	parent.add_child(nav_agent)
 	# anti-schwebe-zeugs - ist bisschen unklar, warum muss ich das auf 2x cell height setzen damit es richtig funktioniert? :shrug:
-	#nav_agent.path_height_offset = ProjectSettings.get_setting("navigation/3d/default_cell_height", 0.25) * 2
+	nav_agent.path_height_offset = ProjectSettings.get_setting("navigation/3d/default_cell_height", 0.25) * 2
 	#nav_agent.target_reached.connect(target_reached)
-	#nav_agent.target_desired_distance = 0.1
-	#nav_agent.path_desired_distance = 0.1
-	#nav_agent.debug_enabled = debug_show_path
+	nav_agent.target_desired_distance = 0.1
+	nav_agent.path_desired_distance = 0.1
+	nav_agent.debug_enabled = debug_show_path
+	
 	player = get_tree().get_nodes_in_group("Player")[0]
 	match group:
 		GROUP.ENEMY:
@@ -118,11 +122,10 @@ func physics_process(_delta: float) -> State:
 					sate.is_standstill = false
 			
 		#parent.look_at(nav_agent.get_next_path_position())
-		#var destination = nav_agent.get_next_path_position()
+		nav_agent.target_position = player.global_position
+		var destination = nav_agent.get_next_path_position()
 
-		#TODO:use nav mesh for obstacle avoidance? Create path to player, pick next point on path, use that as goal for flocking.
-
-		var local_destination =  get_tree().get_first_node_in_group("Player").global_position - parent.global_position 
+		var local_destination = destination - parent.global_position #get_tree().get_first_node_in_group("Player").global_position - parent.global_position 
 		var direction = local_destination.normalized()
 		var speed = speed_override if (speed_override_active) else parent.speed
 		parent.velocity = _flock(direction) * speed
