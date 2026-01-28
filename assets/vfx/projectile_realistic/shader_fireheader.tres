@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://chiexwbpmjuuj"]
+[gd_resource type="VisualShader" format=3 uid="uid://chiexwbpmjuuj"]
 
 [ext_resource type="Texture2D" uid="uid://cvfuxbsry3gdd" path="res://assets/models/projectiles/leaf_trail.png" id="1_jxcei"]
 
@@ -24,43 +24,6 @@ default_value = 1.0
 texture = ExtResource("1_jxcei")
 
 [resource]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled, ambient_light_disabled, fog_disabled;
-
-uniform vec4 ball_color : source_color;
-uniform float frensel_power;
-uniform float visibility = 1.0;
-
-
-
-void fragment() {
-// ColorParameter:2
-	vec4 n_out2p0 = ball_color;
-
-
-// FloatParameter:4
-	float n_out4p0 = frensel_power;
-
-
-// Fresnel:3
-	float n_out3p0 = pow(clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_out4p0);
-
-
-// FloatParameter:6
-	float n_out6p0 = visibility;
-
-
-// FloatOp:5
-	float n_out5p0 = n_out3p0 * n_out6p0;
-
-
-// Output:0
-	ALBEDO = vec3(n_out2p0.xyz);
-	ALPHA = n_out5p0;
-
-
-}
-"
 flags/unshaded = true
 flags/shadows_disabled = true
 flags/ambient_light_disabled = true
