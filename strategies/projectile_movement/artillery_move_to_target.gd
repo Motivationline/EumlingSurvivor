@@ -11,7 +11,7 @@ class_name ArtilleryToTargetProjectileMovementStrategy
 
 @export var arc_factor: float = 2
 
-@onready var db_cube: MeshInstance3D = $"../../DBMesh"
+#@onready var db_cube: MeshInstance3D = $"../../DBMesh"
 
 var isPosLocked: bool = false
 var start_pos: Vector3
@@ -55,7 +55,7 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				isPosLocked = true
 			
 			# set debug cube pos
-			db_cube.global_position = target_pos
+			#db_cube.global_position = target_pos
 			
 			var parent_pos = parent.position
 			#parent_pos.y = 0
