@@ -11,23 +11,16 @@ class_name ArtilleryToTargetProjectileMovementStrategy
 
 @export var arc_factor: float = 2
 
-#@onready var db_cube: MeshInstance3D = $"../../DBMesh"
-
 var isPosLocked: bool = false
 var start_pos: Vector3
 var target_pos: Vector3
 var distance: float
 var traveled: float
 
-#var aviation_time: float = 0
-
 func _setup(_parent: Node, _owner: Node):
 	super (_parent, _owner)
 	start_pos = parent.position
 	parent.velocity = Vector3.ZERO
-
-
-#TODO: estimate enemy position when projectile hits and correct it's path
 
 func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: float):
 	#checks if the projectile is fired from the player and adjusts the target accordingly
@@ -47,15 +40,10 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				# rougth estimate
 				var adjusted_target_position = target.position + target.velocity * travel_time
 				
-				print(target_pos, target.velocity, travel_time, adjusted_target_position)
-				
 				target_pos = adjusted_target_position
 				distance = (target_pos - start_pos).length()
 				
 				isPosLocked = true
-			
-			# set debug cube pos
-			#db_cube.global_position = target_pos
 			
 			var parent_pos = parent.position
 			#parent_pos.y = 0
@@ -93,7 +81,7 @@ func calculate_travel_time(_length:float, _speed: float) -> float:
 	return t
 	
 
-# die Funktionen sind von chat gpt und berechnen die Länge eines Abschnittes einer Parabel
+# die Funktionen sind von AI und berechnen die Länge eines Abschnittes einer Parabel
 func _F(x: float, a: float, b: float) -> float:
 	var u = 2.0 * a * x + b
 	return (u * sqrt(1.0 + u * u) + asinh(u)) / (4.0 * a)
