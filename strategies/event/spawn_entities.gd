@@ -24,5 +24,5 @@ func _find_child():
 			break
 	update_configuration_warnings()
 
-func event_triggered(_data):
+func execute_event(_data):
 	spawner.spawn(parent)

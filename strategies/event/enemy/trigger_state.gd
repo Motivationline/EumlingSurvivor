@@ -8,6 +8,6 @@ class_name TriggerStateEventStrategy
 func _ready() -> void:
 	pass
 
-func event_triggered(_data):
+func execute_event(_data):
 	#get StateMachine .current_state.exit()
 	state_to_execute.enter()

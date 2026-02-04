@@ -3,5 +3,5 @@ extends EventStrategy
 class_name ClearTargetsEventStrategy
 
 
-func event_triggered(_data):
+func execute_event(_data):
 	parent.clear_targets()

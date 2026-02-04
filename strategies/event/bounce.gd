@@ -10,7 +10,7 @@ class_name BounceEventStrategy
 		if Engine.is_editor_hint():
 			update_configuration_warnings()
 
-func event_triggered(_data):
+func execute_event(_data):
 	
 	if not Engine.is_editor_hint():
 		update_configuration_warnings()

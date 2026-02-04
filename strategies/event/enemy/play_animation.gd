@@ -8,7 +8,7 @@ class_name PlayAnimationEventStrategy
 @export var animation_trigger: Dictionary[String, Variant]
 
 
-func event_triggered(_data):
+func execute_event(_data):
 	if parent.animation_tree && animation_trigger.size() > 0:
 		for key in animation_trigger.keys():
 			parent.animation_tree.set(key, animation_trigger.get(key))

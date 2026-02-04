@@ -7,6 +7,6 @@ class_name SetTargetsEventStrategy
 ## if checked, clears the targets Array before adding new ones
 @export var remove_current: bool = false
 
-func event_triggered(_data):
+func execute_event(_data):
 	
 	parent.set_targets(remove_current)

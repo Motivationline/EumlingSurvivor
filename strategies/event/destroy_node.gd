@@ -12,7 +12,7 @@ class_name DestroyNodeEventStrategy
 
 var has_hit: bool = false
 
-func event_triggered(_data):
+func execute_event(_data):
 	if is_delayed and is_inside_tree():
 		await get_tree().create_timer(delay).timeout
 		

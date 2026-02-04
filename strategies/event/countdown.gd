@@ -21,7 +21,7 @@ func _setup(_parent: Node, _owner: Node):
 	event._setup(_parent, _owner)
 	current_count = count
 
-func event_triggered(_data):
+func execute_event(_data):
 	if (once && happened): return
 	current_count -= 1
 	if (current_count == 0):

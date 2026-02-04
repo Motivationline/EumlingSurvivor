@@ -12,6 +12,6 @@ func _setup(_parent: Node, _owner: Node):
 	super (_parent, _owner)
 	event._setup(_parent, _owner)
 
-func event_triggered(_data):
+func execute_event(_data):
 	await get_tree().create_timer(wait_time).timeout
 	event.event_triggered(_data)
