@@ -125,3 +125,5 @@ stream = SubResource("AudioStreamRandomizer_ygu7c")
 
 [node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=1941913015 instance=ExtResource("13_q1m8v")]
 stream = SubResource("AudioStreamRandomizer_lgepu")
+
+[connection signal="play_sound" from="Visuals/peacock" to="SoundEffectManager" method="play_sound"]
