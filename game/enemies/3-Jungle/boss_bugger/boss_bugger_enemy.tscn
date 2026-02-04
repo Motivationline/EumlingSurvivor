@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bclxhfmk8hmfi"]
+[gd_scene format=3 uid="uid://bclxhfmk8hmfi"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jhi1l"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_3utvs"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_fi40l"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_csjgc"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_c2xk5"]
-[ext_resource type="Script" path="res://strategies/event/enemy/play_sound.gd" id="13_g2myh"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="13_g2myh"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="17_epxlh"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="18_jtynk"]
 [ext_resource type="AudioStream" uid="uid://cwx0xunov8ayx" path="res://assets/sound/hit_sfx/death_1.wav" id="19_0geyp"]
@@ -89,7 +89,7 @@ stream_7/stream = ExtResource("32_8jmwl")
 stream_8/stream = ExtResource("33_jns6h")
 stream_9/stream = ExtResource("34_qefp0")
 
-[node name="BossBugger" node_paths=PackedStringArray("hurtbox", "node_with_animation_tree", "on_death", "on_hurt") instance=ExtResource("1_jhi1l")]
+[node name="BossBugger" unique_id=651925094 node_paths=PackedStringArray("hurtbox", "node_with_animation_tree", "on_death") instance=ExtResource("1_jhi1l")]
 collision_layer = 64
 collision_mask = 65
 script = ExtResource("2_unkqv")
@@ -98,20 +98,19 @@ health = 800.0
 hurtbox = NodePath("HurtBox")
 node_with_animation_tree = NodePath("Visuals/BossBugger")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/PlaySoundDeathGeneral")]
-on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral")]
 
-[node name="Healthbar3D" parent="." index="0"]
+[node name="Healthbar3D" parent="." index="0" unique_id=985815578]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4826612, 0)
 hide_when_full_after = 100.0
 hide_initially = false
 
-[node name="HealthbarEnemy3D" parent="." index="1"]
+[node name="HealthbarEnemy3D" parent="." index="1" unique_id=691291944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, -0.5)
 
-[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("ChooseStateBasedOnCost")
 
-[node name="ChooseStateBasedOnCost" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("fallback", "states")]
+[node name="ChooseStateBasedOnCost" type="Node" parent="StateMachine" index="0" unique_id=1719853730 node_paths=PackedStringArray("fallback", "states")]
 script = ExtResource("3_unkqv")
 fallback = NodePath("../Recharge/WaitForTimeXState")
 selection = "RANDOM"
@@ -120,9 +119,9 @@ animation_trigger = Dictionary[String, Variant]({
 "parameters/Salve/request": 3
 })
 
-[node name="MeleeAttack" type="Node" parent="StateMachine" index="1"]
+[node name="MeleeAttack" type="Node" parent="StateMachine" index="1" unique_id=374442772]
 
-[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/MeleeAttack" index="0" node_paths=PackedStringArray("next_state")]
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/MeleeAttack" index="0" unique_id=1468646782 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_3utvs")
 wait_time = 0.0
 stop_distance = 2.0
@@ -132,7 +131,7 @@ next_state = NodePath("../SpawnEntitiesState")
 resource_cost = 3.0
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MeleeAttack" index="1" node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MeleeAttack" index="1" unique_id=424454908 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
 start_delay = 0.5
 end_delay = 0.4
@@ -143,7 +142,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/MeleeAttack/SpawnEntitiesState" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/MeleeAttack/SpawnEntitiesState" index="0" unique_id=1482129924]
 script = ExtResource("4_fi40l")
 spawn_local = true
 entity_to_spawn = ExtResource("5_0vw1d")
@@ -152,9 +151,9 @@ time_between_entities = 1.0
 offset_distance = 0.5
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="Recharge" type="Node" parent="StateMachine" index="2"]
+[node name="Recharge" type="Node" parent="StateMachine" index="2" unique_id=739983960]
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine/Recharge" index="0" node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/Recharge" index="0" unique_id=1723687449 node_paths=PackedStringArray("next_state")]
 script = ExtResource("8_wwgv0")
 wait_time = 1.6
 next_state = NodePath("../../ChooseStateBasedOnCost")
@@ -164,9 +163,9 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="TripleShot" type="Node" parent="StateMachine" index="3"]
+[node name="TripleShot" type="Node" parent="StateMachine" index="3" unique_id=1091750091]
 
-[node name="LookAtPlayerState1" type="Node" parent="StateMachine/TripleShot" index="0" node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState1" type="Node" parent="StateMachine/TripleShot" index="0" unique_id=1551073916 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_aud5x")
 wait_time = 0.15
 rotation_speed = 20.0
@@ -176,7 +175,7 @@ next_state = NodePath("../Initial Shot")
 resource_cost = 3.0
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="Initial Shot" type="Node" parent="StateMachine/TripleShot" index="1" node_paths=PackedStringArray("next_state")]
+[node name="Initial Shot" type="Node" parent="StateMachine/TripleShot" index="1" unique_id=1397142453 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
 start_delay = 0.5
 next_state = NodePath("../LookAtPlayerState2")
@@ -186,14 +185,14 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/Initial Shot" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/Initial Shot" index="0" unique_id=1908516668]
 script = ExtResource("4_fi40l")
 entity_to_spawn = ExtResource("8_aud5x")
 offset_distance = 1.6
 target_strategy = SubResource("Resource_0v3ys")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="LookAtPlayerState2" type="Node" parent="StateMachine/TripleShot" index="2" node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState2" type="Node" parent="StateMachine/TripleShot" index="2" unique_id=202309927 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_aud5x")
 wait_time = 0.15
 rotation_speed = 20.0
@@ -205,7 +204,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="SpawnEntitiesState3" type="Node" parent="StateMachine/TripleShot" index="3" node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState3" type="Node" parent="StateMachine/TripleShot" index="3" unique_id=1204023992 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
 start_delay = 0.15
 next_state = NodePath("../LookAtPlayerState3")
@@ -215,14 +214,14 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState3" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState3" index="0" unique_id=1231547863]
 script = ExtResource("4_fi40l")
 entity_to_spawn = ExtResource("8_aud5x")
 offset_distance = 1.6
 target_strategy = SubResource("Resource_csjgc")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="LookAtPlayerState3" type="Node" parent="StateMachine/TripleShot" index="4" node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState3" type="Node" parent="StateMachine/TripleShot" index="4" unique_id=1718798854 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_aud5x")
 wait_time = 0.15
 rotation_speed = 20.0
@@ -234,7 +233,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="SpawnEntitiesState4" type="Node" parent="StateMachine/TripleShot" index="5" node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState4" type="Node" parent="StateMachine/TripleShot" index="5" unique_id=550938610 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
 start_delay = 0.15
 next_state = NodePath("../../ChooseStateBasedOnCost")
@@ -244,16 +243,16 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState4" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState4" index="0" unique_id=601080076]
 script = ExtResource("4_fi40l")
 entity_to_spawn = ExtResource("8_aud5x")
 offset_distance = 1.6
 target_strategy = SubResource("Resource_c2xk5")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="BigBomba" type="Node" parent="StateMachine" index="4"]
+[node name="BigBomba" type="Node" parent="StateMachine" index="4" unique_id=1474421880]
 
-[node name="AimForBig" type="Node" parent="StateMachine/BigBomba" index="0" node_paths=PackedStringArray("next_state")]
+[node name="AimForBig" type="Node" parent="StateMachine/BigBomba" index="0" unique_id=842497783 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_aud5x")
 wait_time = 0.15
 rotation_speed = 20.0
@@ -263,7 +262,7 @@ next_state = NodePath("../Booom")
 resource_cost = 6.0
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="Booom" type="Node" parent="StateMachine/BigBomba" index="1" node_paths=PackedStringArray("next_state")]
+[node name="Booom" type="Node" parent="StateMachine/BigBomba" index="1" unique_id=65062008 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
 start_delay = 0.5
 next_state = NodePath("../AimForBig2")
@@ -273,7 +272,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom" index="0" unique_id=1737683355]
 script = ExtResource("4_fi40l")
 entity_to_spawn = ExtResource("8_aud5x")
 amount_of_spawns = 10
@@ -282,7 +281,7 @@ target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="AimForBig2" type="Node" parent="StateMachine/BigBomba" index="2" node_paths=PackedStringArray("next_state")]
+[node name="AimForBig2" type="Node" parent="StateMachine/BigBomba" index="2" unique_id=1933510521 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_aud5x")
 wait_time = 0.15
 rotation_speed = 20.0
@@ -291,7 +290,7 @@ speed_override_active = true
 next_state = NodePath("../Booom2")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="Booom2" type="Node" parent="StateMachine/BigBomba" index="3" node_paths=PackedStringArray("next_state")]
+[node name="Booom2" type="Node" parent="StateMachine/BigBomba" index="3" unique_id=870152317 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
 start_delay = 0.5
 next_state = NodePath("../AimForBig3")
@@ -301,7 +300,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom2" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom2" index="0" unique_id=19969763]
 script = ExtResource("4_fi40l")
 entity_to_spawn = ExtResource("8_aud5x")
 amount_of_spawns = 10
@@ -310,7 +309,7 @@ target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="AimForBig3" type="Node" parent="StateMachine/BigBomba" index="4" node_paths=PackedStringArray("next_state")]
+[node name="AimForBig3" type="Node" parent="StateMachine/BigBomba" index="4" unique_id=2032870898 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_aud5x")
 wait_time = 0.15
 rotation_speed = 20.0
@@ -319,7 +318,7 @@ speed_override_active = true
 next_state = NodePath("../Booom3")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="Booom3" type="Node" parent="StateMachine/BigBomba" index="5" node_paths=PackedStringArray("next_state")]
+[node name="Booom3" type="Node" parent="StateMachine/BigBomba" index="5" unique_id=1319146550 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
 start_delay = 0.5
 next_state = NodePath("../../ChooseStateBasedOnCost")
@@ -329,7 +328,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom3" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom3" index="0" unique_id=1638190644]
 script = ExtResource("4_fi40l")
 entity_to_spawn = ExtResource("8_aud5x")
 amount_of_spawns = 10
@@ -338,29 +337,18 @@ target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" index="0" node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=1869887272 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("13_g2myh")
 sound_manager = NodePath("../../Visuals/BossBugger/SoundEffectManager")
 sound_to_play = "Death"
 needs_to_be_persistent = true
 
-[node name="PlaySoundDeathGeneral" type="Node" parent="Eventlisteners" index="1" node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("13_g2myh")
-sound_manager = NodePath("../../GeneralEnemySFXManager")
-sound_to_play = "Death"
-needs_to_be_persistent = true
-
-[node name="PlaySoundHitGeneral" type="Node" parent="Eventlisteners" index="2" node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("13_g2myh")
-sound_manager = NodePath("../../GeneralEnemySFXManager")
-sound_to_play = "Hit"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1675406726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)
 shape = SubResource("CapsuleShape3D_fngux")
 disabled = true
 
-[node name="HurtBox" type="Area3D" parent="." index="5"]
+[node name="HurtBox" type="Area3D" parent="." index="5" unique_id=130534414]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)
 collision_layer = 65
 collision_mask = 5
@@ -369,68 +357,68 @@ attached_to = 7
 can_be_hit_by = 3
 metadata/_custom_type_script = "uid://b327yqkxkrliq"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" index="0" unique_id=1917372533]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.31811523, 0)
 shape = SubResource("CapsuleShape3D_v2l6f")
 
-[node name="Hitbox" parent="." index="6" instance=ExtResource("9_fi40l")]
+[node name="Hitbox" parent="." index="6" unique_id=1072088942 instance=ExtResource("9_fi40l")]
 collision_layer = 32
 collision_mask = 8
 damage = 100.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1402503530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2463379, 0)
 shape = SubResource("CapsuleShape3D_0vw1d")
 
-[node name="BossBugger" parent="Visuals" index="0" instance=ExtResource("3_vgowq")]
+[node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("3_vgowq")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" index="0"]
-bones/0/position = Vector3(0, 1.5037339, -4.4408275e-22)
-bones/0/rotation = Quaternion(0.9986489, -2.3746314e-09, -4.563384e-08, -0.051966377)
-bones/1/scale = Vector3(0.96350557, 1.077192, 0.9635056)
-bones/5/rotation = Quaternion(-0.47999057, 9.246468e-09, 4.2393552e-08, 0.8772737)
-bones/6/rotation = Quaternion(-0.19344188, 6.2681424e-09, 1.2360343e-09, 0.9811118)
-bones/7/rotation = Quaternion(-0.19809389, -1.8660922e-14, -5.37499e-14, 0.9801831)
-bones/7/scale = Vector3(1.3401761, 1.0557948, 1.2966744)
-bones/8/rotation = Quaternion(-0.19344144, -2.4455146e-14, 7.415868e-14, 0.9811119)
-bones/9/rotation = Quaternion(-0.35915154, 5.096116e-15, -9.435298e-14, 0.93327934)
-bones/10/rotation = Quaternion(-0.35915142, -5.5467678e-14, 1.7151941e-13, 0.9332794)
-bones/11/rotation = Quaternion(-0.3591509, 8.295137e-14, -1.5931123e-13, 0.9332796)
-bones/12/rotation = Quaternion(-0.35915056, -7.177961e-14, 8.5628464e-08, 0.9332797)
-bones/17/rotation = Quaternion(0.5856169, -0.00025032522, 0.00022384996, 0.81058794)
-bones/19/rotation = Quaternion(-0.45497814, 0.491018, -0.5449249, -0.5049288)
-bones/22/rotation = Quaternion(-0.34561923, 0.5732811, -0.6362193, -0.3835638)
-bones/25/rotation = Quaternion(0.5856169, 0.00025039335, -0.00022391087, 0.81058794)
-bones/27/rotation = Quaternion(0.22685635, -0.66222036, 0.3151789, 0.64082974)
-bones/31/rotation = Quaternion(0.4549781, 0.4910181, -0.544925, 0.5049288)
-bones/34/rotation = Quaternion(0.3456191, 0.57328117, -0.6362193, 0.38356367)
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 1774926687) index="0" unique_id=1842856998]
+bones/0/position = Vector3(1.3458573e-36, 1.3626696, -4.5094e-22)
+bones/0/rotation = Quaternion(0.9974744, -4.7748614e-09, -4.5580165e-08, 0.07102737)
+bones/1/scale = Vector3(1.0098118, 0.9807241, 1.0098118)
+bones/5/rotation = Quaternion(-0.40263826, 3.2936815e-09, 5.5398026e-08, 0.9153592)
+bones/6/rotation = Quaternion(-0.22943667, 7.473739e-09, 1.7622983e-09, 0.9733236)
+bones/7/rotation = Quaternion(-0.23354377, -2.8076862e-14, -4.998052e-15, 0.9723463)
+bones/7/scale = Vector3(1.3401756, 1.0764874, 1.279545)
+bones/8/rotation = Quaternion(-0.22943681, -2.4330157e-14, 5.5359363e-14, 0.97332364)
+bones/9/rotation = Quaternion(-0.37626997, 1.5938092e-14, -3.188785e-14, 0.9265102)
+bones/10/rotation = Quaternion(-0.37627035, -2.7815158e-15, -9.639964e-15, 0.92651004)
+bones/11/rotation = Quaternion(-0.37627012, 1.3160543e-15, 2.7003005e-14, 0.92651004)
+bones/12/rotation = Quaternion(-0.37627035, 2.5190638e-14, 8.97098e-08, 0.9265099)
+bones/17/rotation = Quaternion(0.7026943, -0.0002661348, 0.00019690464, 0.7114918)
+bones/19/rotation = Quaternion(-0.51352483, 0.5542023, -0.48052222, -0.44525316)
+bones/22/rotation = Quaternion(-0.39009362, 0.64705104, -0.561027, -0.33823177)
+bones/25/rotation = Quaternion(0.7026943, 0.00026619784, -0.00019697116, 0.7114918)
+bones/27/rotation = Quaternion(0.30381274, -0.6959044, 0.23149623, 0.6081319)
+bones/31/rotation = Quaternion(0.5135248, 0.5542024, -0.48052225, 0.4452532)
+bones/34/rotation = Quaternion(0.39009356, 0.6470511, -0.561027, 0.33823168)
 
 [node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0"]
-transform = Transform3D(0.96350557, 1.0217915e-08, 2.29242e-07, 1.4703401e-08, 1.0713739, -0.10000448, -2.289525e-07, 0.11180424, 0.9583017, -2.773042e-11, 1.5008262, -0.0003034257)
+transform = Transform3D(1.0098118, 2.9919198e-09, 2.4097722e-07, -3.7195072e-08, 0.9708288, 0.14308625, -2.381093e-07, -0.13896462, 0.999623, -8.1198425e-12, 1.3600348, 0.0003771394)
 
 [node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2"]
-transform = Transform3D(-0.07608364, -0.99710155, -4.1723254e-07, -2.30968e-07, -4.7218055e-07, 0.9999999, -0.99710155, 0.07608369, -2.4586916e-07, -0.24529767, 1.5038974, -0.0015693181)
+transform = Transform3D(-0.07608376, -0.9971015, -4.90639e-07, 0, -5.2992254e-07, 0.99999994, -0.99710155, 0.076083764, 2.9802322e-08, -0.24529767, 1.3624458, -0.0015618618)
 
 [node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="3"]
-transform = Transform3D(-0.4668525, -0.8843352, -4.7683716e-07, -2.2351742e-07, -4.5448542e-07, 0.99999994, -0.88433516, 0.46685243, 7.450581e-09, -0.13967305, 1.4093663, 0.10992592)
+transform = Transform3D(-0.4668525, -0.88433516, -3.4162738e-07, -5.2154064e-08, -3.7252903e-07, 1, -0.8843351, 0.46685264, 2.9802322e-08, -0.13967305, 1.2979327, 0.1296075)
 
 [node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="4"]
-transform = Transform3D(-0.07608358, 0.99710166, 5.0663954e-07, 2.30968e-07, -4.9360096e-07, 1, 0.99710155, 0.07608373, -2.3841858e-07, 0.24529767, 1.5038974, -0.0015693182)
+transform = Transform3D(-0.0760837, 0.99710166, 6.418493e-07, 5.9604645e-08, -5.9977174e-07, 1.0000001, 0.99710155, 0.07608375, 1.4901161e-08, 0.24529767, 1.3624458, -0.0015618616)
 
 [node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="5"]
-transform = Transform3D(-0.46685255, 0.8843352, 5.6624407e-07, 1.7136335e-07, -4.8801303e-07, 0.9999999, 0.8843351, 0.46685266, 6.7055225e-08, 0.13967305, 1.4093663, 0.109925926)
+transform = Transform3D(-0.46685278, 0.88433534, 3.4382603e-07, -7.450581e-09, -3.1292439e-07, 1, 0.8843351, 0.4668527, 2.5331974e-07, 0.13967305, 1.2979327, 0.1296075)
 
-[node name="GeneralEnemySFXManager" type="Node3D" parent="." index="8"]
+[node name="GeneralEnemySFXManager" type="Node3D" parent="." index="8" unique_id=304325499]
 script = ExtResource("17_epxlh")
 metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
-[node name="Death" parent="GeneralEnemySFXManager" index="0" instance=ExtResource("18_jtynk")]
+[node name="Death" parent="GeneralEnemySFXManager" index="0" unique_id=1358446603 instance=ExtResource("18_jtynk")]
 stream = SubResource("AudioStreamRandomizer_5buwl")
 volume_db = 0.0
 
-[node name="Hit" parent="GeneralEnemySFXManager" index="1" instance=ExtResource("18_jtynk")]
+[node name="Hit" parent="GeneralEnemySFXManager" index="1" unique_id=863510825 instance=ExtResource("18_jtynk")]
 stream = SubResource("AudioStreamRandomizer_yny7f")
 volume_db = 0.0
 

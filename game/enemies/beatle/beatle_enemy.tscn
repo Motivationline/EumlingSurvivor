@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dgr2h5l5eveyh"]
+[gd_scene format=3 uid="uid://dgr2h5l5eveyh"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_bghrv"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_5qkpy"]
@@ -13,26 +13,34 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_fs8yq"]
 [ext_resource type="PackedScene" uid="uid://bu3a5g7w20saj" path="res://game/enemies/beatle/dummy_attack_visual_enemy.tscn" id="8_n4sta"]
 [ext_resource type="PackedScene" uid="uid://cnvxyg3ysg7tf" path="res://game/enemies/beatle/pol_vfx.tscn" id="10_fs8yq"]
-[ext_resource type="Script" path="res://strategies/event/enemy/play_sound.gd" id="11_7j3v0"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="11_7j3v0"]
 [ext_resource type="PackedScene" uid="uid://by87cdyijsrbs" path="res://game/shared/animation trigger component/animation_trigger_component.tscn" id="14_t2e75"]
-[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="16_k0wyt"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="17_5mrum"]
-[ext_resource type="AudioStream" uid="uid://cwx0xunov8ayx" path="res://assets/sound/hit_sfx/death_1.wav" id="18_hinxd"]
-[ext_resource type="AudioStream" uid="uid://i43phfxlj3d3" path="res://assets/sound/hit_sfx/death_2.wav" id="19_hmtyp"]
-[ext_resource type="AudioStream" uid="uid://cswruhi8fcsvd" path="res://assets/sound/hit_sfx/death_3.wav" id="20_doios"]
-[ext_resource type="AudioStream" uid="uid://dsmxr6c62vur3" path="res://assets/sound/hit_sfx/death_4.wav" id="21_d0s36"]
-[ext_resource type="AudioStream" uid="uid://drohccsrkuoxj" path="res://assets/sound/hit_sfx/death_5.wav" id="22_gwf6b"]
-[ext_resource type="AudioStream" uid="uid://6iviab80g744" path="res://assets/sound/hit_sfx/death_6.wav" id="23_i7byk"]
-[ext_resource type="AudioStream" uid="uid://cq0aaqlcgu7fy" path="res://assets/sound/hit_sfx/hit_1.wav" id="24_fexaj"]
-[ext_resource type="AudioStream" uid="uid://cb6ldc8myb4j2" path="res://assets/sound/hit_sfx/hit_2.wav" id="25_kewpn"]
-[ext_resource type="AudioStream" uid="uid://bvymuca72rd5q" path="res://assets/sound/hit_sfx/hit_3.wav" id="26_f1ekf"]
-[ext_resource type="AudioStream" uid="uid://bi7cr5c8lpmgc" path="res://assets/sound/hit_sfx/hit_4.wav" id="27_kkve1"]
-[ext_resource type="AudioStream" uid="uid://drgryjepf74r1" path="res://assets/sound/hit_sfx/hit_5.wav" id="28_et7c3"]
-[ext_resource type="AudioStream" uid="uid://grs0re4eyjty" path="res://assets/sound/hit_sfx/hit_6.wav" id="29_thd6p"]
-[ext_resource type="AudioStream" uid="uid://kmtufd4fmgod" path="res://assets/sound/hit_sfx/hit_7.wav" id="30_utaqx"]
-[ext_resource type="AudioStream" uid="uid://b1wflgot2ho1o" path="res://assets/sound/hit_sfx/hit_8.wav" id="31_lbx6r"]
-[ext_resource type="AudioStream" uid="uid://divfgafb7b3c4" path="res://assets/sound/hit_sfx/hit_9.wav" id="32_weuxt"]
-[ext_resource type="AudioStream" uid="uid://bpsnjbmf667ua" path="res://assets/sound/hit_sfx/hit_10.wav" id="33_wm7kt"]
+[ext_resource type="AudioStream" uid="uid://cklk8brngu3gh" path="res://assets/characters/enemies/rhino/sounds/buckle_up_1.wav" id="34_xmapy"]
+[ext_resource type="AudioStream" uid="uid://cs8p5h7ycx64p" path="res://assets/characters/enemies/rhino/sounds/buckle_up_2.wav" id="35_2b6o8"]
+[ext_resource type="AudioStream" uid="uid://bl1ww2jt0hkhg" path="res://assets/characters/enemies/rhino/sounds/buckle_up_3.wav" id="36_gj1s3"]
+[ext_resource type="AudioStream" uid="uid://dsi6hejcw43kf" path="res://assets/characters/enemies/rhino/sounds/buckle_up_4.wav" id="37_udmds"]
+[ext_resource type="AudioStream" uid="uid://pkwebm35ytpn" path="res://assets/characters/enemies/rhino/sounds/buckle_up_5.wav" id="38_am8so"]
+[ext_resource type="AudioStream" uid="uid://div8hvee77hux" path="res://assets/characters/enemies/rhino/sounds/buckle_up_6.wav" id="39_taa2y"]
+[ext_resource type="AudioStream" uid="uid://ctohykflw5ryd" path="res://assets/characters/enemies/rhino/sounds/charge_1.wav" id="40_roy04"]
+[ext_resource type="AudioStream" uid="uid://dl76posa5g6hh" path="res://assets/characters/enemies/rhino/sounds/charge_2.wav" id="41_d436i"]
+[ext_resource type="AudioStream" uid="uid://ctkp8abiml2my" path="res://assets/characters/enemies/rhino/sounds/charge_3.wav" id="42_a7p5m"]
+[ext_resource type="AudioStream" uid="uid://b2s1bo8mnj701" path="res://assets/characters/enemies/rhino/sounds/charge_4.wav" id="43_8erk3"]
+[ext_resource type="AudioStream" uid="uid://d0nrali8s44em" path="res://assets/characters/enemies/rhino/sounds/charge_5.wav" id="44_qhtni"]
+[ext_resource type="AudioStream" uid="uid://d3np7skxwdpkl" path="res://assets/characters/enemies/rhino/sounds/charge_6.wav" id="45_ven6c"]
+[ext_resource type="AudioStream" uid="uid://bfxt73l6ob8do" path="res://assets/characters/enemies/rhino/sounds/impact_1.wav" id="46_ql66u"]
+[ext_resource type="AudioStream" uid="uid://dxlpe6mippsw2" path="res://assets/characters/enemies/rhino/sounds/impact_2.wav" id="47_xe0qr"]
+[ext_resource type="AudioStream" uid="uid://b76mfwoqpm0pc" path="res://assets/characters/enemies/rhino/sounds/impact_3.wav" id="48_qxwjj"]
+[ext_resource type="AudioStream" uid="uid://dff5v81844xpy" path="res://assets/characters/enemies/rhino/sounds/impact_4.wav" id="49_4y0gr"]
+[ext_resource type="AudioStream" uid="uid://cq56hq5ej8up4" path="res://assets/characters/enemies/rhino/sounds/impact_5.wav" id="50_74ior"]
+[ext_resource type="AudioStream" uid="uid://dycy51gbmw5de" path="res://assets/characters/enemies/rhino/sounds/impact_6.wav" id="51_d6f3r"]
+[ext_resource type="AudioStream" uid="uid://b2u4i004arlgc" path="res://assets/characters/enemies/rhino/sounds/impact_general.wav" id="52_ejtiv"]
+[ext_resource type="AudioStream" uid="uid://o1ait5pfek7h" path="res://assets/characters/enemies/rhino/sounds/death_1.wav" id="53_sa0c1"]
+[ext_resource type="AudioStream" uid="uid://bcll7r7r8qmwy" path="res://assets/characters/enemies/rhino/sounds/death_2.wav" id="54_8ql0r"]
+[ext_resource type="AudioStream" uid="uid://bsnjaaerxnn11" path="res://assets/characters/enemies/rhino/sounds/death_3.wav" id="55_je6ng"]
+[ext_resource type="AudioStream" uid="uid://wg54akhulb01" path="res://assets/characters/enemies/rhino/sounds/death_4.wav" id="56_5gpyg"]
+[ext_resource type="AudioStream" uid="uid://bti7ljq1dk2yq" path="res://assets/characters/enemies/rhino/sounds/death_5.wav" id="57_f1jgr"]
+[ext_resource type="AudioStream" uid="uid://dwl3pbp4bbs6j" path="res://assets/characters/enemies/rhino/sounds/death_6.wav" id="58_4uioj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n4sta"]
 radius = 0.20846683
@@ -81,58 +89,87 @@ _data = {
 
 [sub_resource type="PrismMesh" id="PrismMesh_431lo"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ka3sc"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i1y5j"]
+playback_mode = 1
+random_pitch = 1.3
+random_volume_offset_db = 1.0
 streams_count = 6
-stream_0/stream = ExtResource("18_hinxd")
-stream_1/stream = ExtResource("19_hmtyp")
-stream_2/stream = ExtResource("20_doios")
-stream_3/stream = ExtResource("21_d0s36")
-stream_4/stream = ExtResource("22_gwf6b")
-stream_5/stream = ExtResource("23_i7byk")
+stream_0/stream = ExtResource("34_xmapy")
+stream_1/stream = ExtResource("35_2b6o8")
+stream_2/stream = ExtResource("36_gj1s3")
+stream_3/stream = ExtResource("37_udmds")
+stream_4/stream = ExtResource("38_am8so")
+stream_5/stream = ExtResource("39_taa2y")
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_31oiw"]
-streams_count = 10
-stream_0/stream = ExtResource("24_fexaj")
-stream_1/stream = ExtResource("25_kewpn")
-stream_2/stream = ExtResource("26_f1ekf")
-stream_3/stream = ExtResource("27_kkve1")
-stream_4/stream = ExtResource("28_et7c3")
-stream_5/stream = ExtResource("29_thd6p")
-stream_6/stream = ExtResource("30_utaqx")
-stream_7/stream = ExtResource("31_lbx6r")
-stream_8/stream = ExtResource("32_weuxt")
-stream_9/stream = ExtResource("33_wm7kt")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nhgft"]
+playback_mode = 1
+random_pitch = 1.3
+random_volume_offset_db = 1.0
+streams_count = 6
+stream_0/stream = ExtResource("40_roy04")
+stream_1/stream = ExtResource("41_d436i")
+stream_2/stream = ExtResource("42_a7p5m")
+stream_3/stream = ExtResource("43_8erk3")
+stream_4/stream = ExtResource("44_qhtni")
+stream_5/stream = ExtResource("45_ven6c")
 
-[node name="Beatle" node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree", "on_death", "on_hurt") instance=ExtResource("1_bghrv")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jdxf2"]
+playback_mode = 1
+random_pitch = 1.3
+random_volume_offset_db = 1.0
+streams_count = 6
+stream_0/stream = ExtResource("46_ql66u")
+stream_1/stream = ExtResource("47_xe0qr")
+stream_2/stream = ExtResource("48_qxwjj")
+stream_3/stream = ExtResource("49_4y0gr")
+stream_4/stream = ExtResource("50_74ior")
+stream_5/stream = ExtResource("51_d6f3r")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q8p6g"]
+playback_mode = 1
+random_pitch = 1.2
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("52_ejtiv")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pw7qf"]
+streams_count = 6
+stream_0/stream = ExtResource("53_sa0c1")
+stream_1/stream = ExtResource("54_8ql0r")
+stream_2/stream = ExtResource("55_je6ng")
+stream_3/stream = ExtResource("56_5gpyg")
+stream_4/stream = ExtResource("57_f1jgr")
+stream_5/stream = ExtResource("58_4uioj")
+
+[node name="Beatle" unique_id=306559295 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree", "on_death") instance=ExtResource("1_bghrv")]
 collision_layer = 80
 collision_mask = 65
 health = 250.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 node_with_animation_tree = NodePath("Visuals/rhino")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/PlaySoundDeathGeneral")]
-on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral")]
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 
-[node name="Healthbar3D" parent="." index="0"]
+[node name="Healthbar3D" parent="." index="0" unique_id=985815578]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7900729, 0.06912398)
 
-[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveTowardsPlayerState")
 
-[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" unique_id=1355419949 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_rwiy8")
 wait_time = 0.0
 stop_distance = 2.5
 next_state = NodePath("../MultistateState")
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="MultistateState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+[node name="MultistateState" type="Node" parent="StateMachine" index="1" unique_id=1724491819 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
 script = ExtResource("2_rbowq")
 states_to_execute = [NodePath("LookAtPlayerState"), NodePath("Wait(Charging)"), NodePath("SpawnEntitiesState")]
 states_that_need_to_finish = [NodePath("Wait(Charging)")]
 next_state = NodePath("../ChargeAttack")
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine/MultistateState" index="0" node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/MultistateState" index="0" unique_id=1020333136 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_rdo5s")
 wait_time = 2.0
 speed_override = 70.5
@@ -145,24 +182,24 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="Wait(Charging)" type="Node" parent="StateMachine/MultistateState" index="1" node_paths=PackedStringArray("next_state")]
+[node name="Wait(Charging)" type="Node" parent="StateMachine/MultistateState" index="1" unique_id=1584608032 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_5qkpy")
 wait_time = 2.0
 next_state = NodePath("../../ChargeAttack")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState" index="2" node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState" index="2" unique_id=1821245459 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_n4sta")
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0" unique_id=1173161530]
 script = ExtResource("7_fs8yq")
 ignore_relative_rotation = true
 entity_to_spawn = ExtResource("8_n4sta")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="ChargeAttack" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("next_state")]
+[node name="ChargeAttack" type="Node" parent="StateMachine" index="2" unique_id=1720604720 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_rbowq")
 max_distance = 20.0
 max_time = 1.0
@@ -174,13 +211,13 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cjkeo3brnvde2"
 
-[node name="MultistateState2" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+[node name="MultistateState2" type="Node" parent="StateMachine" index="3" unique_id=769187614 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
 script = ExtResource("2_rbowq")
 states_to_execute = [NodePath("SpawnEntitiesState"), NodePath("Wait(Stunned)")]
 states_that_need_to_finish = [NodePath("Wait(Stunned)")]
 next_state = NodePath("../MoveTowardsPlayerState")
 
-[node name="Wait(Stunned)" type="Node" parent="StateMachine/MultistateState2" index="0" node_paths=PackedStringArray("next_state")]
+[node name="Wait(Stunned)" type="Node" parent="StateMachine/MultistateState2" index="0" unique_id=428388572 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_5qkpy")
 wait_time = 2.0
 next_state = NodePath("../../MoveTowardsPlayerState")
@@ -189,234 +226,76 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState2" index="1" node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState2" index="1" unique_id=437360592 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_n4sta")
 next_state = NodePath("../../MultistateState/LookAtPlayerState")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState2/SpawnEntitiesState" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState2/SpawnEntitiesState" index="0" unique_id=814058828]
 transform = Transform3D(1, 0, 0, 0, 0.7890626, 0.61431277, 0, -0.61431277, 0.7890626, 0, 0.40301532, -0.3561021)
 script = ExtResource("7_fs8yq")
 entity_to_spawn = ExtResource("10_fs8yq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" index="0" node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=416844537 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("11_7j3v0")
-sound_manager = NodePath("../../Visuals/rhino/SoundEffectManager")
+sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = "Death"
 needs_to_be_persistent = true
 
-[node name="PlaySoundDeathGeneral" type="Node" parent="Eventlisteners" index="1" node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("11_7j3v0")
-sound_manager = NodePath("../../GeneralEnemySFXManager")
-sound_to_play = "Death"
-needs_to_be_persistent = true
-
-[node name="PlaySoundHitGeneral" type="Node" parent="Eventlisteners" index="2" node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("11_7j3v0")
-sound_manager = NodePath("../../GeneralEnemySFXManager")
-sound_to_play = "Hit"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=2139522427]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20420316, 0)
 shape = SubResource("SphereShape3D_n4sta")
 
-[node name="Hurtbox" parent="." index="5" instance=ExtResource("5_rwiy8")]
+[node name="Hurtbox" parent="." index="5" unique_id=85413306 instance=ExtResource("5_rwiy8")]
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
 can_be_hit_by = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=1803152819]
 shape = SubResource("SphereShape3D_fs8yq")
 
-[node name="Hitbox" parent="." index="6" instance=ExtResource("6_0xs35")]
+[node name="Hitbox" parent="." index="6" unique_id=504595573 instance=ExtResource("6_0xs35")]
 collision_layer = 32
 collision_mask = 8
 damage = 75.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=2134337856]
 shape = SubResource("SphereShape3D_t2e75")
 
-[node name="AnimationTriggerComponent" parent="." index="7" node_paths=PackedStringArray("node_to_connect", "animation_player") instance=ExtResource("14_t2e75")]
+[node name="AnimationTriggerComponent" parent="." index="7" unique_id=1597452394 node_paths=PackedStringArray("node_to_connect", "animation_player") instance=ExtResource("14_t2e75")]
 node_to_connect = NodePath("../Hurtbox")
 signal_to_connect = "hurt_by"
 animation_player = NodePath("../AnimationPlayer")
 animation_to_play = "health_jump"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
-libraries = {
-&"": SubResource("AnimationLibrary_ujdjm")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8" unique_id=1575891136]
+libraries/ = SubResource("AnimationLibrary_ujdjm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=133450068]
 transform = Transform3D(0.4514425, 0, 0, 0, -4.2719705e-08, 0.5626625, 0, -0.9773129, -2.4594758e-08, 0, 0.2828154, -0.07334371)
 visible = false
 mesh = SubResource("PrismMesh_431lo")
 
-[node name="rhino" parent="Visuals" index="1" instance=ExtResource("5_rdo5s")]
+[node name="rhino" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1358389603 instance=ExtResource("5_rdo5s")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, -0.123390555)
 
-[node name="Skeleton3D" parent="Visuals/rhino/Armature" index="0"]
-bones/1/position = Vector3(0.03463108, -0.18396376, 0.22051115)
-bones/1/rotation = Quaternion(0.0052401307, -0.0066874237, 0.111450754, 0.9937337)
-bones/2/rotation = Quaternion(0.020564126, -0.05255744, -0.1869057, 0.9807554)
-bones/3/position = Vector3(-0.0007176781, 0.17462909, 0.07224412)
-bones/3/rotation = Quaternion(0.584955, 0.09113163, 0.026604291, 0.8054905)
-bones/4/rotation = Quaternion(0.13506527, 0.8179777, 0.32473695, -0.45520946)
-bones/5/rotation = Quaternion(-0.1779315, 0.16137181, 0.12368356, 0.96280944)
-bones/6/rotation = Quaternion(-0.40481475, -0.44488803, -0.5845702, 0.54449743)
-bones/7/rotation = Quaternion(0.40481484, 0.444888, 0.5845703, 0.5444974)
-bones/8/rotation = Quaternion(-0.120487034, 0.8638575, 0.26933074, 0.40828168)
-bones/9/rotation = Quaternion(-0.1025226, -0.118503004, -0.16085207, 0.9744603)
-bones/11/rotation = Quaternion(0.7907745, 0.30587023, 0.097455785, -0.52117306)
-bones/14/rotation = Quaternion(-0.5778143, -0.5798378, -0.18586382, 0.54348284)
-bones/17/rotation = Quaternion(0.44615656, 0.7467404, 0.24903804, -0.42579725)
-bones/20/rotation = Quaternion(-0.00082506204, 0.9747905, 0.22308221, 0.0041564624)
-bones/21/rotation = Quaternion(-0.2944, 0.005279386, 0.0047959923, 0.95565563)
-bones/22/rotation = Quaternion(-0.18887238, -0.0016797186, -0.004410657, 0.98199034)
-bones/23/rotation = Quaternion(0.7907745, 0.30587023, 0.097455785, -0.52117306)
-bones/26/rotation = Quaternion(-0.5778143, -0.5798378, -0.18586382, 0.54348284)
-bones/29/rotation = Quaternion(0.44615656, 0.7467404, 0.24903804, -0.42579725)
-bones/32/rotation = Quaternion(-0.00082506204, 0.9747905, 0.22308221, 0.0041564624)
-bones/33/rotation = Quaternion(-0.2944, 0.005279386, 0.0047959923, 0.95565563)
-bones/34/rotation = Quaternion(-0.18887238, -0.0016797186, -0.004410657, 0.98199034)
-bones/35/rotation = Quaternion(0.7907745, 0.3058702, 0.0974558, -0.5211731)
-bones/37/rotation = Quaternion(-0.5778143, -0.57983786, -0.18586384, 0.5434828)
-bones/39/rotation = Quaternion(0.44615653, 0.74674034, 0.24903812, -0.42579728)
-bones/41/rotation = Quaternion(-0.0008250619, 0.9747905, 0.22308221, 0.0041564624)
-bones/42/rotation = Quaternion(-0.018313218, -5.420322e-08, -3.8154208e-10, 0.9998324)
-bones/43/rotation = Quaternion(0.7907745, -0.30587023, -0.097455785, -0.52117306)
-bones/46/rotation = Quaternion(-0.5930875, 0.564206, 0.17128894, 0.5482509)
-bones/49/rotation = Quaternion(-0.44931582, 0.74484366, 0.24723215, 0.42684835)
-bones/52/rotation = Quaternion(0.7907745, -0.30587023, -0.097455785, -0.52117306)
-bones/55/rotation = Quaternion(-0.5930875, 0.564206, 0.17128894, 0.5482509)
-bones/58/rotation = Quaternion(-0.44931582, 0.74484366, 0.24723215, 0.42684835)
-bones/61/rotation = Quaternion(0.7907745, -0.3058702, -0.0974558, -0.5211731)
-bones/63/rotation = Quaternion(-0.5930876, 0.564206, 0.17128895, 0.5482508)
-bones/65/rotation = Quaternion(-0.4493158, 0.7448437, 0.24723215, 0.42684832)
-bones/67/rotation = Quaternion(-0.38715792, 0.46148965, 0.6003586, 0.52602804)
-bones/68/rotation = Quaternion(0.38715816, -0.4614895, -0.6003589, 0.5260279)
-bones/69/rotation = Quaternion(-0.32753018, 0.1337706, 0.021061592, 0.9350861)
-bones/69/scale = Vector3(0.9999996, 0.9850587, 0.99998885)
-bones/70/rotation = Quaternion(0.011791001, 0.87186897, -0.48824155, 0.036411013)
-bones/70/scale = Vector3(1.0000001, 0.987825, 1.0095686)
-bones/71/rotation = Quaternion(-0.031159371, -0.48181728, 0.8739489, -0.05562991)
-bones/71/scale = Vector3(1.0003697, 1.0062523, 1.0114626)
-bones/72/rotation = Quaternion(0.26364964, -0.0046423147, 0.011604058, 0.9645376)
-bones/77/rotation = Quaternion(-0.6828881, -0.06517638, 0.37234247, 0.6251218)
-bones/77/scale = Vector3(0.99999785, 0.99485743, 0.9999999)
-bones/78/rotation = Quaternion(-0.00493301, 0.94661987, -0.32006732, -0.03799343)
-bones/78/scale = Vector3(1, 0.9976611, 1.0014557)
-bones/79/rotation = Quaternion(0.13498943, -0.5749606, 0.8042989, -0.06558591)
-bones/79/scale = Vector3(1.0003929, 1.0013264, 1.0043501)
-bones/80/rotation = Quaternion(0.14045206, -2.9656334e-08, -9.147543e-08, 0.9900875)
-bones/81/rotation = Quaternion(-0.08094708, -0.41452852, 0.8670271, 0.26434404)
-bones/81/scale = Vector3(0.9999999, 1.1055301, 0.99999976)
-bones/82/rotation = Quaternion(-0.00063457043, 0.99999946, -0.00015127659, 0.00083002256)
-bones/82/scale = Vector3(0.99999994, 1.0033916, 1.0757104)
-bones/83/rotation = Quaternion(0.8508513, 0.057935953, -0.06316034, 0.5183688)
-bones/83/scale = Vector3(0.9979985, 0.9258117, 0.9079644)
-bones/84/rotation = Quaternion(0.09688401, 0.0007551634, 0.010205855, 0.9952431)
-bones/85/rotation = Quaternion(-0.108758315, -0.464266, 0.87662655, -0.0644569)
-bones/85/scale = Vector3(0.9999999, 0.9946104, 0.9999999)
-bones/86/rotation = Quaternion(-0.00015157968, 0.7115551, -0.70262957, -0.0010537516)
-bones/86/scale = Vector3(1, 0.99345356, 1.0015489)
-bones/87/rotation = Quaternion(0.53152275, 0.1304882, 0.12391693, 0.82770824)
-bones/87/scale = Vector3(1.000756, 1.0040553, 1.0050193)
-bones/88/rotation = Quaternion(0.15477757, 0.024750015, -0.022046342, 0.9873932)
-bones/89/position = Vector3(0.10505007, 0.14088106, 0.054766614)
-bones/89/rotation = Quaternion(0.26004633, 0.023579823, -0.012266443, 0.9652303)
-bones/90/rotation = Quaternion(0.00039962525, 1.0276633e-09, 1.2053212e-07, 1)
-bones/91/rotation = Quaternion(0.26364958, -0.004642349, 0.011603924, 0.9645376)
-bones/93/position = Vector3(0.103641, 0.19159648, 0.013422631)
-bones/93/rotation = Quaternion(0.045995284, 0.07405575, 0.97058713, -0.22441256)
-bones/94/rotation = Quaternion(0.20755735, 0.8808388, 0.41414905, 0.097588465)
-bones/95/rotation = Quaternion(0.20755723, 0.8808388, 0.41414905, 0.09758836)
-bones/96/rotation = Quaternion(-0.00039961244, -1.96967e-08, -3.2155175e-08, 1)
-bones/99/position = Vector3(0.048419885, -0.17327622, 0.015139341)
-bones/99/rotation = Quaternion(-0.10401753, 0.02360441, -0.23772186, 0.9654592)
-bones/100/rotation = Quaternion(0.09688403, 0.00075515773, 0.010205914, 0.9952431)
-bones/101/rotation = Quaternion(-1.4937993e-09, 1.3547949e-09, -4.8224116e-08, 1)
-bones/102/position = Vector3(0.066868134, -0.13812703, 0.0065278173)
-bones/102/rotation = Quaternion(0.04703336, 2.0839762e-17, 0.9988933, 2.9117666e-09)
-bones/103/rotation = Quaternion(0.7429635, -0.14734355, -0.18100573, 0.6273215)
-bones/105/rotation = Quaternion(0.09513141, 8.791988e-09, 1.3054076e-09, 0.99546474)
-bones/107/position = Vector3(-0.0915344, 0.029460505, 0.017382927)
-bones/107/rotation = Quaternion(-0.1367001, -0.032247074, 0.22684318, 0.9637508)
-bones/108/rotation = Quaternion(0.14045206, -2.0533093e-08, -1.4942776e-07, 0.9900875)
-bones/109/rotation = Quaternion(-4.4603515e-11, -5.8119615e-10, 4.374107e-08, 1)
-bones/111/position = Vector3(-0.10934299, 0.06481397, 0.005947047)
-bones/111/rotation = Quaternion(2.7850017e-08, -3.3087225e-24, 1, 9.8607613e-32)
-bones/112/rotation = Quaternion(-0.13779238, 0.58476794, 0.7781022, -0.18334894)
-bones/113/rotation = Quaternion(-0.16217817, 0.68825734, 0.68825746, -0.16217816)
-bones/114/rotation = Quaternion(-0.14045206, 2.6532964e-08, 3.0980807e-08, 0.9900875)
-bones/117/position = Vector3(-0.043214723, -0.07830782, 0.04268498)
-bones/117/rotation = Quaternion(0.24411261, 0.06201332, 0.22417428, 0.94144)
-bones/118/rotation = Quaternion(0.001765747, 0.00021917264, -0.010231452, 0.9999462)
-bones/119/rotation = Quaternion(0.15277728, 0.026076939, -0.011952464, 0.9878442)
-bones/120/position = Vector3(-0.06663875, -0.033360913, 0.008428413)
-bones/120/rotation = Quaternion(-0.05552234, 0.037539344, 0.99774635, 0.003209027)
-bones/121/rotation = Quaternion(0.44121125, 0.06553219, 0.22400606, 0.86652154)
-bones/122/rotation = Quaternion(0.4412111, 0.06553216, 0.22400604, 0.86652154)
-bones/123/rotation = Quaternion(-1.167767e-08, -1.3424144e-08, 2.9218707e-09, 1)
-bones/129/position = Vector3(-2.3754756e-18, 0.20015055, 0.13191646)
-bones/130/rotation = Quaternion(-0.038951628, 0.010464581, 0.11115972, 0.9929839)
-bones/132/rotation = Quaternion(-0.080947086, -0.4145286, 0.86702704, 0.26434407)
-bones/132/scale = Vector3(1, 1.1055303, 0.99999976)
-bones/133/rotation = Quaternion(-0.0006345725, 0.99999946, -0.00015124679, 0.000830019)
-bones/133/scale = Vector3(0.9999999, 1.0033917, 1.0757103)
-bones/134/rotation = Quaternion(-0.080947034, -0.4145285, 0.86702704, 0.26434404)
-bones/134/scale = Vector3(1.1055303, 1.1055303, 1.1055298)
-bones/135/rotation = Quaternion(-0.00063248805, 0.99999946, -0.00015094875, 0.00085738)
-bones/135/scale = Vector3(1.0033904, 1.0033914, 1.0033904)
-bones/136/rotation = Quaternion(-0.108758345, -0.46426606, 0.87662655, -0.06445688)
-bones/136/scale = Vector3(0.99999994, 0.99461055, 0.9999999)
-bones/137/rotation = Quaternion(-0.00015155875, 0.7115552, -0.7026295, -0.001053757)
-bones/137/scale = Vector3(0.99999994, 0.9934536, 1.0015488)
-bones/138/rotation = Quaternion(-0.108758345, -0.4642659, 0.8766266, -0.06445695)
-bones/138/scale = Vector3(0.994571, 0.9945707, 0.99457073)
-bones/139/rotation = Quaternion(-0.00015221194, 0.71155494, -0.70262975, -0.0010544886)
-bones/139/scale = Vector3(0.9988632, 0.9988639, 0.9988632)
-bones/140/rotation = Quaternion(0.052939825, 0.066762894, 0.99324214, 0.07880536)
-bones/141/rotation = Quaternion(-0.32753012, 0.1337706, 0.02106162, 0.9350861)
-bones/141/scale = Vector3(0.9999996, 0.9850588, 0.99998873)
-bones/142/rotation = Quaternion(0.011791, 0.87186897, -0.4882415, 0.036411013)
-bones/142/scale = Vector3(1, 0.9878248, 1.0095687)
-bones/147/rotation = Quaternion(-0.32752895, 0.13377212, 0.021058021, 0.93508637)
-bones/147/scale = Vector3(0.98504937, 0.98505867, 0.9850427)
-bones/148/rotation = Quaternion(0.011821628, 0.8718638, -0.48824716, 0.036449537)
-bones/148/scale = Vector3(0.99935347, 0.9993513, 0.9993532)
-bones/149/rotation = Quaternion(-0.68288803, -0.06517638, 0.37234247, 0.6251217)
-bones/149/scale = Vector3(0.9999979, 0.99485743, 0.9999999)
-bones/150/rotation = Quaternion(-0.0049330066, 0.94661987, -0.3200673, -0.03799343)
-bones/150/scale = Vector3(1.0000001, 0.99766105, 1.0014557)
-bones/151/rotation = Quaternion(-0.68288654, -0.06517615, 0.37234268, 0.6251232)
-bones/151/scale = Vector3(0.99485356, 0.99485743, 0.9948561)
-bones/152/rotation = Quaternion(-0.004936551, 0.94661754, -0.32007352, -0.037999365)
-bones/152/scale = Vector3(0.99898225, 0.99898446, 0.9989774)
-bones/154/position = Vector3(0.017074611, 0.31293797, 0.024075458)
-bones/155/position = Vector3(-2.648644e-10, -0.0065067373, 2.1094237e-15)
-bones/155/rotation = Quaternion(-0.12379665, -1.1829228e-07, -1.4757709e-08, 0.99230766)
-bones/156/rotation = Quaternion(0.13506527, 0.81797785, 0.32473695, -0.45520946)
-bones/157/rotation = Quaternion(-0.17793152, 0.1613718, 0.12368355, 0.96280944)
-bones/158/rotation = Quaternion(-0.12048706, 0.86385757, 0.2693308, 0.4082817)
-bones/159/rotation = Quaternion(-0.10252259, -0.11850303, -0.16085209, 0.9744603)
-bones/160/rotation = Quaternion(-0.60083044, -0.028336084, -0.028335683, 0.79837155)
-bones/163/rotation = Quaternion(-0.6000844, 0.052560426, 0.052559678, 0.79647577)
+[node name="BuckleUp" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=756819873 instance=ExtResource("17_5mrum")]
+stream = SubResource("AudioStreamRandomizer_i1y5j")
 
-[node name="GeneralEnemySFXManager" type="Node3D" parent="." index="10"]
-script = ExtResource("16_k0wyt")
-metadata/_custom_type_script = "uid://fxqs1lioec3e"
+[node name="Charge" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=1419157624 instance=ExtResource("17_5mrum")]
+stream = SubResource("AudioStreamRandomizer_nhgft")
 
-[node name="Death" parent="GeneralEnemySFXManager" index="0" instance=ExtResource("17_5mrum")]
-stream = SubResource("AudioStreamRandomizer_ka3sc")
-volume_db = 0.0
+[node name="Impact" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1695076364 instance=ExtResource("17_5mrum")]
+stream = SubResource("AudioStreamRandomizer_jdxf2")
 
-[node name="Hit" parent="GeneralEnemySFXManager" index="1" instance=ExtResource("17_5mrum")]
-stream = SubResource("AudioStreamRandomizer_31oiw")
-volume_db = 0.0
+[node name="ImpactGeneral" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=2086640730 instance=ExtResource("17_5mrum")]
+stream = SubResource("AudioStreamRandomizer_q8p6g")
 
-[editable path="Visuals/rhino"]
+[node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=1259281917 instance=ExtResource("17_5mrum")]
+stream = SubResource("AudioStreamRandomizer_pw7qf")
+
+[connection signal="play_sound" from="Visuals/rhino" to="SoundEffectManager" method="play_sound"]

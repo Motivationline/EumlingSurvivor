@@ -1,28 +1,94 @@
-[gd_scene load_steps=5 format=3 uid="uid://cu1ucgco815t4"]
+[gd_scene format=3 uid="uid://cu1ucgco815t4"]
 
 [ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_axhys"]
 [ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="2_wu6ui"]
 [ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="3_3pmql"]
 [ext_resource type="PackedScene" uid="uid://cary3jj8sadl7" path="res://game/healthbarEnemy/healthbarEnemy_3d.tscn" id="3_qbujc"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="5_4ghmt"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="5_ohdoq"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="6_4ghmt"]
+[ext_resource type="AudioStream" uid="uid://cwx0xunov8ayx" path="res://assets/sound/hit_sfx/death_1.wav" id="7_l5jqn"]
+[ext_resource type="AudioStream" uid="uid://i43phfxlj3d3" path="res://assets/sound/hit_sfx/death_2.wav" id="8_tsf4b"]
+[ext_resource type="AudioStream" uid="uid://cswruhi8fcsvd" path="res://assets/sound/hit_sfx/death_3.wav" id="9_p6bpy"]
+[ext_resource type="AudioStream" uid="uid://dsmxr6c62vur3" path="res://assets/sound/hit_sfx/death_4.wav" id="10_oapxy"]
+[ext_resource type="AudioStream" uid="uid://drohccsrkuoxj" path="res://assets/sound/hit_sfx/death_5.wav" id="11_ybmbl"]
+[ext_resource type="AudioStream" uid="uid://6iviab80g744" path="res://assets/sound/hit_sfx/death_6.wav" id="12_ia1g8"]
+[ext_resource type="AudioStream" uid="uid://cq0aaqlcgu7fy" path="res://assets/sound/hit_sfx/hit_1.wav" id="13_5x6gg"]
+[ext_resource type="AudioStream" uid="uid://cb6ldc8myb4j2" path="res://assets/sound/hit_sfx/hit_2.wav" id="14_jkjde"]
+[ext_resource type="AudioStream" uid="uid://bvymuca72rd5q" path="res://assets/sound/hit_sfx/hit_3.wav" id="15_7luwo"]
+[ext_resource type="AudioStream" uid="uid://bi7cr5c8lpmgc" path="res://assets/sound/hit_sfx/hit_4.wav" id="16_vlyl6"]
+[ext_resource type="AudioStream" uid="uid://drgryjepf74r1" path="res://assets/sound/hit_sfx/hit_5.wav" id="17_h11x3"]
+[ext_resource type="AudioStream" uid="uid://grs0re4eyjty" path="res://assets/sound/hit_sfx/hit_6.wav" id="18_wjam3"]
+[ext_resource type="AudioStream" uid="uid://kmtufd4fmgod" path="res://assets/sound/hit_sfx/hit_7.wav" id="19_scfqi"]
+[ext_resource type="AudioStream" uid="uid://b1wflgot2ho1o" path="res://assets/sound/hit_sfx/hit_8.wav" id="20_bi11c"]
+[ext_resource type="AudioStream" uid="uid://divfgafb7b3c4" path="res://assets/sound/hit_sfx/hit_9.wav" id="21_tbsjp"]
+[ext_resource type="AudioStream" uid="uid://bpsnjbmf667ua" path="res://assets/sound/hit_sfx/hit_10.wav" id="22_igjq0"]
 
-[node name="BaseEnemy" type="CharacterBody3D" node_paths=PackedStringArray("healthbar", "state_machine")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bauuv"]
+streams_count = 6
+stream_0/stream = ExtResource("7_l5jqn")
+stream_1/stream = ExtResource("8_tsf4b")
+stream_2/stream = ExtResource("9_p6bpy")
+stream_3/stream = ExtResource("10_oapxy")
+stream_4/stream = ExtResource("11_ybmbl")
+stream_5/stream = ExtResource("12_ia1g8")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ji8hj"]
+streams_count = 10
+stream_0/stream = ExtResource("13_5x6gg")
+stream_1/stream = ExtResource("14_jkjde")
+stream_2/stream = ExtResource("15_7luwo")
+stream_3/stream = ExtResource("16_vlyl6")
+stream_4/stream = ExtResource("17_h11x3")
+stream_5/stream = ExtResource("18_wjam3")
+stream_6/stream = ExtResource("19_scfqi")
+stream_7/stream = ExtResource("20_bi11c")
+stream_8/stream = ExtResource("21_tbsjp")
+stream_9/stream = ExtResource("22_igjq0")
+
+[node name="BaseEnemy" type="CharacterBody3D" unique_id=1898691 node_paths=PackedStringArray("healthbar", "state_machine", "on_death", "on_hurt")]
 collision_layer = 16
 script = ExtResource("1_axhys")
 health = 10.0
 healthbar = NodePath("HealthbarEnemy3D")
 state_machine = NodePath("StateMachine")
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral")]
 
-[node name="Healthbar3D" parent="." instance=ExtResource("2_wu6ui")]
+[node name="Healthbar3D" parent="." unique_id=985815578 instance=ExtResource("2_wu6ui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.5)
 visible = false
 
-[node name="HealthbarEnemy3D" parent="." instance=ExtResource("3_qbujc")]
+[node name="HealthbarEnemy3D" parent="." unique_id=691291944 instance=ExtResource("3_qbujc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.5)
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." unique_id=2093753398]
 script = ExtResource("3_3pmql")
 metadata/_custom_type_script = "uid://cio21hucnk80k"
 
-[node name="Eventlisteners" type="Node" parent="."]
+[node name="Eventlisteners" type="Node" parent="." unique_id=1073347732]
 
-[node name="Visuals" type="Node3D" parent="."]
+[node name="PlaySoundDeathGeneral" type="Node" parent="Eventlisteners" unique_id=2056535194 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("5_4ghmt")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = "DeathGeneral"
+needs_to_be_persistent = true
+
+[node name="PlaySoundHitGeneral" type="Node" parent="Eventlisteners" unique_id=75111653 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("5_4ghmt")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = "Hit"
+
+[node name="Visuals" type="Node3D" parent="." unique_id=110309936]
+
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=212820490]
+script = ExtResource("5_ohdoq")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="DeathGeneral" parent="SoundEffectManager" unique_id=1358784307 instance=ExtResource("6_4ghmt")]
+stream = SubResource("AudioStreamRandomizer_bauuv")
+volume_db = 0.0
+
+[node name="Hit" parent="SoundEffectManager" unique_id=41969835 instance=ExtResource("6_4ghmt")]
+stream = SubResource("AudioStreamRandomizer_ji8hj")
+volume_db = 0.0
