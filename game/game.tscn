@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dlxnvjne1irpy" path="res://game/ui/StartScreen/area_picker.tscn" id="6_3vho3"]
 [ext_resource type="PackedScene" uid="uid://uyyg1ut65j1" path="res://game/sound/music_player/music_player.tscn" id="6_dakft"]
 [ext_resource type="PackedScene" uid="uid://d0caudp08babr" path="res://game/ui/styleTest/PauseMenuStyleTest.tscn" id="7_l8g03"]
+[ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/StartScreen/graphics_settings.tscn" id="7_qf6n1"]
 [ext_resource type="PackedScene" uid="uid://bfqnaivntys0e" path="res://game/ui/styleTest/popUpStyleTest.tscn" id="8_j8tme"]
 [ext_resource type="PackedScene" uid="uid://dl3hpe8wdba2d" path="res://game/ui/styleTest/UpgradePickerStyleTest.tscn" id="9_3vho3"]
 [ext_resource type="PackedScene" uid="uid://crktwqvaxeyce" path="res://game/ui/upgrades/upgrade_view.tscn" id="10_j8tme"]
@@ -134,6 +135,8 @@ visible = false
 layer = 128
 
 [node name="AreaPicker" parent="AreaChoiceOverlay" unique_id=778756626 instance=ExtResource("6_3vho3")]
+
+[node name="GraphicsSettings" parent="AreaChoiceOverlay" unique_id=1082587673 instance=ExtResource("7_qf6n1")]
 
 [node name="MusicPlayer" parent="." unique_id=527853792 groups=["MusicPlayer"] instance=ExtResource("6_dakft")]
 debug = false

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dg7idf87kxejo"]
+
+[ext_resource type="Script" uid="uid://m8calhmgu23g" path="res://game/ui/StartScreen/graphics_settings.gd" id="1_ukd82"]
+
+[node name="GraphicsSettings" type="Control" unique_id=1082587673]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ukd82")
+
+[node name="RenderScaleLabel" type="Label" parent="." unique_id=313040801]
+layout_mode = 0
+offset_left = 1499.0
+offset_top = 36.0
+offset_right = 1874.0
+offset_bottom = 103.0
+text = "3D Render Scale"
+
+[node name="RenderScaleSlider" type="HSlider" parent="." unique_id=398364305]
+custom_minimum_size = Vector2(0, 3.11)
+layout_mode = 0
+offset_left = 1499.0
+offset_top = 103.0
+offset_right = 1874.0
+offset_bottom = 184.0
+min_value = 0.1
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[connection signal="value_changed" from="RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
