@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_04kag"]
 [ext_resource type="PackedScene" uid="uid://cbbcu7gsooiql" path="res://assets/models/Jungle/Spikes/spikes.tscn" id="3_0fbkj"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_ovvjf"]
-[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="4_qh4ut"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="5_80b7e"]
 [ext_resource type="AudioStream" uid="uid://bpv4vn1vkfvsi" path="res://assets/sound/obstacle_sound_effects/objects/spikes/extend_1.wav" id="6_qh4ut"]
 [ext_resource type="AudioStream" uid="uid://b7jnpobmjahn8" path="res://assets/sound/obstacle_sound_effects/objects/spikes/extend_2.wav" id="7_0fbkj"]
@@ -196,26 +195,26 @@ stream_3/stream = ExtResource("9_o8mup")
 stream_4/stream = ExtResource("10_fc4p4")
 stream_5/stream = ExtResource("11_2ot51")
 
-[node name="SpikeTrap" node_paths=PackedStringArray("hitbox", "node_with_animation_tree") instance=ExtResource("1_bdsau")]
+[node name="SpikeTrap" unique_id=955778667 node_paths=PackedStringArray("hitbox", "node_with_animation_tree") instance=ExtResource("1_bdsau")]
 speed = 0.0
 ignore_enemy_in_level = true
 hitbox = NodePath("Hitbox")
 node_with_animation_tree = NodePath(".")
 cannot_die = true
 
-[node name="HealthbarEnemy3D" parent="." index="1"]
+[node name="HealthbarEnemy3D" parent="." index="1" unique_id=691291944]
 visible = false
 
-[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("FirstTimeDelay")
 
-[node name="FirstTimeDelay" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="FirstTimeDelay" type="Node" parent="StateMachine" index="0" unique_id=1705888172 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_04kag")
 wait_time = 0.0
 next_state = NodePath("../WaitDown")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="WaitDown" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+[node name="WaitDown" type="Node" parent="StateMachine" index="1" unique_id=718863072 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_04kag")
 wait_time = 2.0
 next_state = NodePath("../WaitUP")
@@ -225,7 +224,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="WaitUP" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("next_state")]
+[node name="WaitUP" type="Node" parent="StateMachine" index="2" unique_id=1846701812 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_04kag")
 wait_time = 2.0
 next_state = NodePath("../WaitDown")
@@ -235,45 +234,39 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="Spikes" type="Node3D" parent="Visuals" index="0"]
+[node name="Spikes" type="Node3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=700298409]
 transform = Transform3D(3.183, 0, 0, 0, 4.196, 0, 0, 0, 3.183, 0, -0.44082046, 0)
 
-[node name="Spikes" parent="Visuals/Spikes" index="0" instance=ExtResource("3_0fbkj")]
+[node name="Spikes" parent="Visuals/Spikes" index="0" unique_id=1645544321 instance=ExtResource("3_0fbkj")]
 transform = Transform3D(0.298, 0, 0, 0, 0.298, 0, 0, 0, 0.298, 0, -0.02627004, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=952092325]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21034646, 0)
 mesh = SubResource("BoxMesh_i0hom")
 
-[node name="Hitbox" parent="." index="5" instance=ExtResource("3_ovvjf")]
+[node name="Hitbox" parent="." index="5" unique_id=845681256 instance=ExtResource("3_ovvjf")]
 collision_layer = 32
 collision_mask = 8
 damage = 100.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1050211958]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_o8mup")
 disabled = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
-libraries = {
-&"": SubResource("AnimationLibrary_pb8bu")
-}
-autoplay = "Down"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=1419178406]
+libraries/ = SubResource("AnimationLibrary_pb8bu")
+autoplay = &"Down"
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="7" unique_id=500895630]
 tree_root = SubResource("AnimationNodeStateMachine_pb8bu")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/down = false
 parameters/conditions/up = false
 
-[node name="SoundEffectManager" type="Node3D" parent="." index="8"]
-script = ExtResource("4_qh4ut")
-metadata/_custom_type_script = "uid://fxqs1lioec3e"
-
-[node name="Extend" parent="SoundEffectManager" index="0" instance=ExtResource("5_80b7e")]
+[node name="Extend" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1092056025 instance=ExtResource("5_80b7e")]
 stream = SubResource("AudioStreamRandomizer_gicpd")
 volume_db = -15.0
 bus = &"SFXGeneral"
