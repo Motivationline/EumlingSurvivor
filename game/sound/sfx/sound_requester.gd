@@ -1,4 +1,4 @@
-extends Node
+class_name SoundRequester extends Node
 
 
 signal play_sound(sound:String, focus: bool, persistent: bool)
