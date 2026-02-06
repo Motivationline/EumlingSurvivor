@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://i26vdjehm6ll"]
+[gd_scene format=3 uid="uid://i26vdjehm6ll"]
 
 [ext_resource type="Script" uid="uid://fmib7n6s14vg" path="res://game/player/player.gd" id="1_b2mth"]
 [ext_resource type="Resource" uid="uid://bptl28ohdx7tg" path="res://game/ui/inventory/playerInv.tres" id="2_gb4gm"]
@@ -19,6 +19,54 @@
 [ext_resource type="Texture2D" uid="uid://cimrid30f7wjf" path="res://assets/ui/EumlingIcon.png" id="14_0e4oy"]
 [ext_resource type="PackedScene" uid="uid://cbr7504esjh25" path="res://game/ui/SketchOverlay/pause_sketch.tscn" id="16_gh012"]
 [ext_resource type="PackedScene" uid="uid://daky13b2c211v" path="res://game/player/walk_smoke/walk_smoke.tscn" id="17_gh012"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="20_kqpmw"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="21_3p3em"]
+[ext_resource type="AudioStream" uid="uid://sr0fpvdapuc2" path="res://assets/characters/eumling/V2/sounds/with_voice/attack_1.wav" id="22_0jq7b"]
+[ext_resource type="AudioStream" uid="uid://dy0e4cwb5fx4w" path="res://assets/characters/eumling/V2/sounds/with_voice/attack_2.wav" id="23_fdpga"]
+[ext_resource type="AudioStream" uid="uid://cthchtvrlqm2m" path="res://assets/characters/eumling/V2/sounds/with_voice/attack_3.wav" id="24_d76hv"]
+[ext_resource type="AudioStream" uid="uid://do5av2yur7pi8" path="res://assets/characters/eumling/V2/sounds/with_voice/attack_4.wav" id="25_6ynhj"]
+[ext_resource type="AudioStream" uid="uid://cuaqxye86unsb" path="res://assets/characters/eumling/V2/sounds/with_voice/attack_5.wav" id="26_jcmuf"]
+[ext_resource type="AudioStream" uid="uid://b0jfvbmctmlqj" path="res://assets/characters/eumling/V2/sounds/with_voice/attack_6.wav" id="27_6rcet"]
+[ext_resource type="AudioStream" uid="uid://8b8cf5fj0qhn" path="res://assets/characters/eumling/V2/sounds/with_voice/hurt_1.wav" id="28_t0o78"]
+[ext_resource type="AudioStream" uid="uid://bhj285gmp46oo" path="res://assets/characters/eumling/V2/sounds/with_voice/hurt_2.wav" id="29_524dg"]
+[ext_resource type="AudioStream" uid="uid://cleltjm1q5sp8" path="res://assets/characters/eumling/V2/sounds/with_voice/hurt_3.wav" id="30_ty5va"]
+[ext_resource type="AudioStream" uid="uid://jvagimmsn1v8" path="res://assets/characters/eumling/V2/sounds/with_voice/hurt_4.wav" id="31_5jw3h"]
+[ext_resource type="AudioStream" uid="uid://c1g2h11nbhckh" path="res://assets/characters/eumling/V2/sounds/with_voice/hurt_5.wav" id="32_2l8ud"]
+[ext_resource type="AudioStream" uid="uid://dnx4ojciavv5y" path="res://assets/characters/eumling/V2/sounds/with_voice/hurt_6.wav" id="33_fk7wc"]
+[ext_resource type="AudioStream" uid="uid://dd0f4rus3ikhh" path="res://assets/characters/eumling/V2/sounds/with_voice/death_1.wav" id="34_uit2k"]
+[ext_resource type="AudioStream" uid="uid://tgvy2k7sqm8p" path="res://assets/characters/eumling/V2/sounds/with_voice/death_2.wav" id="35_61mgu"]
+[ext_resource type="AudioStream" uid="uid://bjevq6nxdpmhk" path="res://assets/characters/eumling/V2/sounds/with_voice/death_3.wav" id="36_dtu77"]
+[ext_resource type="AudioStream" uid="uid://ndtg471hqxfc" path="res://assets/characters/eumling/V2/sounds/with_voice/death_4.wav" id="37_3nu72"]
+[ext_resource type="AudioStream" uid="uid://dik5svhbqbn87" path="res://assets/characters/eumling/V2/sounds/with_voice/death_5.wav" id="38_rwlg3"]
+[ext_resource type="AudioStream" uid="uid://d0lo60te0rc6i" path="res://assets/characters/eumling/V2/sounds/with_voice/death_6.wav" id="39_yfg1h"]
+[ext_resource type="AudioStream" uid="uid://d3q0v7xougqys" path="res://assets/characters/eumling/V2/sounds/walk_1.wav" id="40_x6fei"]
+[ext_resource type="AudioStream" uid="uid://c3esu2yovp3fs" path="res://assets/characters/eumling/V2/sounds/walk_2.wav" id="41_q4eq6"]
+[ext_resource type="AudioStream" uid="uid://cdp8jg2ymku55" path="res://assets/characters/eumling/V2/sounds/walk_3.wav" id="42_80rvt"]
+[ext_resource type="AudioStream" uid="uid://cq1qjnp85emla" path="res://assets/characters/eumling/V2/sounds/walk_4.wav" id="43_l8u4j"]
+[ext_resource type="AudioStream" uid="uid://dmruc5dd1w70o" path="res://assets/characters/eumling/V2/sounds/walk_5.wav" id="44_n6jr1"]
+[ext_resource type="AudioStream" uid="uid://n4386f22n746" path="res://assets/characters/eumling/V2/sounds/walk_6.wav" id="45_5ik15"]
+[ext_resource type="AudioStream" uid="uid://fhjbibcyr3sc" path="res://assets/characters/eumling/V2/sounds/walk_7.wav" id="46_gs6ky"]
+[ext_resource type="AudioStream" uid="uid://bd1pdp5nkt7rs" path="res://assets/characters/eumling/V2/sounds/walk_8.wav" id="47_ipfdr"]
+[ext_resource type="AudioStream" uid="uid://ckt1wmdh0i2s5" path="res://assets/characters/eumling/V2/sounds/walk_9.wav" id="48_wxabu"]
+[ext_resource type="AudioStream" uid="uid://bdu6vr8x2yl1f" path="res://assets/characters/eumling/V2/sounds/walk_10.wav" id="49_snb7b"]
+[ext_resource type="AudioStream" uid="uid://dmuvasylemjkp" path="res://assets/characters/eumling/V2/sounds/attack_1.wav" id="50_42jni"]
+[ext_resource type="AudioStream" uid="uid://oiio5087hns8" path="res://assets/characters/eumling/V2/sounds/attack_2.wav" id="51_ik7jm"]
+[ext_resource type="AudioStream" uid="uid://dkh413paolvy8" path="res://assets/characters/eumling/V2/sounds/attack_3.wav" id="52_lljjy"]
+[ext_resource type="AudioStream" uid="uid://bwn5yhbvjdds8" path="res://assets/characters/eumling/V2/sounds/attack_4.wav" id="53_lcung"]
+[ext_resource type="AudioStream" uid="uid://dhs5fq7h41xui" path="res://assets/characters/eumling/V2/sounds/attack_5.wav" id="54_7s33e"]
+[ext_resource type="AudioStream" uid="uid://8yva5wjw8ieu" path="res://assets/characters/eumling/V2/sounds/attack_6.wav" id="55_dm32l"]
+[ext_resource type="AudioStream" uid="uid://dj0h0cn0j01r4" path="res://assets/characters/eumling/V2/sounds/hurt_1.wav" id="56_rdo5y"]
+[ext_resource type="AudioStream" uid="uid://yhf12fwdsema" path="res://assets/characters/eumling/V2/sounds/hurt_2.wav" id="57_nxps2"]
+[ext_resource type="AudioStream" uid="uid://fxbqdhutf85v" path="res://assets/characters/eumling/V2/sounds/hurt_3.wav" id="58_l6uog"]
+[ext_resource type="AudioStream" uid="uid://ds7y3a1jjamq5" path="res://assets/characters/eumling/V2/sounds/hurt_4.wav" id="59_kgk65"]
+[ext_resource type="AudioStream" uid="uid://c2bofbjpicgf8" path="res://assets/characters/eumling/V2/sounds/hurt_5.wav" id="60_j7ory"]
+[ext_resource type="AudioStream" uid="uid://c50bisg3xwvlx" path="res://assets/characters/eumling/V2/sounds/hurt_6.wav" id="61_3i1tt"]
+[ext_resource type="AudioStream" uid="uid://dl1rh1gr16qvm" path="res://assets/characters/eumling/V2/sounds/death_1.wav" id="62_x4714"]
+[ext_resource type="AudioStream" uid="uid://dxtpdfm2r60hs" path="res://assets/characters/eumling/V2/sounds/death_2.wav" id="63_yhdyt"]
+[ext_resource type="AudioStream" uid="uid://bcgt2j2stqhe4" path="res://assets/characters/eumling/V2/sounds/death_3.wav" id="64_p0uwl"]
+[ext_resource type="AudioStream" uid="uid://dvbast0b3t832" path="res://assets/characters/eumling/V2/sounds/death_4.wav" id="65_v5pdl"]
+[ext_resource type="AudioStream" uid="uid://cv8gbbu0ywq5t" path="res://assets/characters/eumling/V2/sounds/death_5.wav" id="66_k3n0c"]
+[ext_resource type="AudioStream" uid="uid://dtwjmuugoxay2" path="res://assets/characters/eumling/V2/sounds/death_6.wav" id="67_m1cdu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.23
@@ -43,7 +91,75 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d4psi"]
+streams_count = 6
+stream_0/stream = ExtResource("22_0jq7b")
+stream_1/stream = ExtResource("23_fdpga")
+stream_2/stream = ExtResource("24_d76hv")
+stream_3/stream = ExtResource("25_6ynhj")
+stream_4/stream = ExtResource("26_jcmuf")
+stream_5/stream = ExtResource("27_6rcet")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_45dry"]
+streams_count = 6
+stream_0/stream = ExtResource("28_t0o78")
+stream_1/stream = ExtResource("29_524dg")
+stream_2/stream = ExtResource("30_ty5va")
+stream_3/stream = ExtResource("31_5jw3h")
+stream_4/stream = ExtResource("32_2l8ud")
+stream_5/stream = ExtResource("33_fk7wc")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oo1al"]
+streams_count = 6
+stream_0/stream = ExtResource("34_uit2k")
+stream_1/stream = ExtResource("35_61mgu")
+stream_2/stream = ExtResource("36_dtu77")
+stream_3/stream = ExtResource("37_3nu72")
+stream_4/stream = ExtResource("38_rwlg3")
+stream_5/stream = ExtResource("39_yfg1h")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3avk0"]
+random_pitch = 1.1
+streams_count = 10
+stream_0/stream = ExtResource("40_x6fei")
+stream_1/stream = ExtResource("41_q4eq6")
+stream_2/stream = ExtResource("42_80rvt")
+stream_3/stream = ExtResource("43_l8u4j")
+stream_4/stream = ExtResource("44_n6jr1")
+stream_5/stream = ExtResource("45_5ik15")
+stream_6/stream = ExtResource("46_gs6ky")
+stream_7/stream = ExtResource("47_ipfdr")
+stream_8/stream = ExtResource("48_wxabu")
+stream_9/stream = ExtResource("49_snb7b")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w1ege"]
+streams_count = 6
+stream_0/stream = ExtResource("50_42jni")
+stream_1/stream = ExtResource("51_ik7jm")
+stream_2/stream = ExtResource("52_lljjy")
+stream_3/stream = ExtResource("53_lcung")
+stream_4/stream = ExtResource("54_7s33e")
+stream_5/stream = ExtResource("55_dm32l")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hmq1g"]
+streams_count = 6
+stream_0/stream = ExtResource("56_rdo5y")
+stream_1/stream = ExtResource("57_nxps2")
+stream_2/stream = ExtResource("58_l6uog")
+stream_3/stream = ExtResource("59_kgk65")
+stream_4/stream = ExtResource("60_j7ory")
+stream_5/stream = ExtResource("61_3i1tt")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j0m7x"]
+streams_count = 6
+stream_0/stream = ExtResource("62_x4714")
+stream_1/stream = ExtResource("63_yhdyt")
+stream_2/stream = ExtResource("64_p0uwl")
+stream_3/stream = ExtResource("65_v5pdl")
+stream_4/stream = ExtResource("66_k3n0c")
+stream_5/stream = ExtResource("67_m1cdu")
+
+[node name="Player" type="CharacterBody3D" unique_id=1236976938 node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_b2mth")
@@ -79,34 +195,34 @@ min_max_values = Dictionary[int, Vector2]({
 12: Vector2(1, 10)
 })
 
-[node name="PlayerCollision" type="CollisionShape3D" parent="."]
+[node name="PlayerCollision" type="CollisionShape3D" parent="." unique_id=838597749]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4567871, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
-[node name="Eumling_v2" parent="." instance=ExtResource("4_2mv0n")]
+[node name="Eumling_v2" parent="." unique_id=111255977 instance=ExtResource("4_2mv0n")]
 
-[node name="ShittyVisual" type="Node3D" parent="."]
+[node name="ShittyVisual" type="Node3D" parent="." unique_id=375207082]
 unique_name_in_owner = true
 
-[node name="shittyVisual" type="MeshInstance3D" parent="ShittyVisual"]
+[node name="shittyVisual" type="MeshInstance3D" parent="ShittyVisual" unique_id=1773116725]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.042, -1.5)
 material_override = SubResource("StandardMaterial3D_2mv0n")
 mesh = SubResource("QuadMesh_gh012")
 skeleton = NodePath("../..")
 
-[node name="Hurtbox" parent="." instance=ExtResource("6_4ste8")]
+[node name="Hurtbox" parent="." unique_id=2128861733 instance=ExtResource("6_4ste8")]
 collision_layer = 8
 collision_mask = 32
 attached_to = 4
 can_be_hit_by = 6
 
-[node name="HurtboxCollision" type="CollisionShape3D" parent="Hurtbox"]
+[node name="HurtboxCollision" type="CollisionShape3D" parent="Hurtbox" unique_id=645596381]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39715576, 0)
 shape = SubResource("CapsuleShape3D_3ep63")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=615773595]
 
-[node name="Control" type="Control" parent="UI"]
+[node name="Control" type="Control" parent="UI" unique_id=2122143299]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,7 +230,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TimeBackground" type="Panel" parent="UI/Control"]
+[node name="TimeBackground" type="Panel" parent="UI/Control" unique_id=1945461238]
 visible = false
 clip_children = 1
 layout_mode = 0
@@ -125,7 +241,7 @@ offset_bottom = 134.00125
 scale = Vector2(0.9448688, 0.81943655)
 theme_override_styles/panel = SubResource("StyleBoxFlat_0e4oy")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Control/TimeBackground"]
+[node name="TextureRect" type="TextureRect" parent="UI/Control/TimeBackground" unique_id=430681811]
 visible = false
 layout_mode = 0
 offset_left = -9.40922
@@ -135,7 +251,7 @@ offset_bottom = 82.85076
 texture = ExtResource("10_2mv0n")
 expand_mode = 1
 
-[node name="PauseButton" type="TextureButton" parent="UI/Control"]
+[node name="PauseButton" type="TextureButton" parent="UI/Control" unique_id=670991575]
 layout_mode = 0
 offset_left = 54.0
 offset_top = 29.0
@@ -145,7 +261,7 @@ scale = Vector2(0.043695968, 0.043695968)
 texture_normal = ExtResource("6_usp30")
 texture_pressed = ExtResource("7_0e4oy")
 
-[node name="EumlingeBackground" type="Panel" parent="UI/Control"]
+[node name="EumlingeBackground" type="Panel" parent="UI/Control" unique_id=1487776872]
 visible = false
 clip_children = 1
 layout_mode = 0
@@ -156,7 +272,7 @@ offset_bottom = 134.00125
 scale = Vector2(0.94487256, 0.8194397)
 theme_override_styles/panel = SubResource("StyleBoxFlat_0e4oy")
 
-[node name="TextureRect" type="TextureRect" parent="UI/Control/EumlingeBackground"]
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EumlingeBackground" unique_id=1753739641]
 visible = false
 layout_mode = 0
 offset_left = -9.40922
@@ -166,7 +282,7 @@ offset_bottom = 82.85076
 texture = ExtResource("10_2mv0n")
 expand_mode = 1
 
-[node name="EumlingeButton" type="TextureButton" parent="UI/Control"]
+[node name="EumlingeButton" type="TextureButton" parent="UI/Control" unique_id=1274709825]
 visible = false
 layout_mode = 0
 offset_left = 1781.9999
@@ -177,7 +293,7 @@ scale = Vector2(0.033757795, 0.033757795)
 texture_normal = ExtResource("7_3ep63")
 texture_pressed = ExtResource("8_rqcxa")
 
-[node name="ReloadProgress" type="TextureProgressBar" parent="UI/Control"]
+[node name="ReloadProgress" type="TextureProgressBar" parent="UI/Control" unique_id=1772437358]
 layout_mode = 0
 offset_left = 158.0
 offset_top = 31.0
@@ -188,7 +304,7 @@ value = 1.0
 fill_mode = 4
 texture_progress = ExtResource("12_gh012")
 
-[node name="XPBar" type="TextureProgressBar" parent="UI/Control"]
+[node name="XPBar" type="TextureProgressBar" parent="UI/Control" unique_id=547109911]
 visible = false
 layout_mode = 0
 offset_left = 197.0
@@ -200,7 +316,7 @@ nine_patch_stretch = true
 texture_under = ExtResource("11_eeltd")
 texture_over = ExtResource("12_088ty")
 
-[node name="Level" type="Label" parent="UI/Control"]
+[node name="Level" type="Label" parent="UI/Control" unique_id=988273582]
 visible = false
 layout_mode = 0
 offset_left = 739.0
@@ -211,7 +327,7 @@ theme_override_fonts/font = ExtResource("13_epc1c")
 theme_override_font_sizes/font_size = 60
 text = "Level/XP"
 
-[node name="Time" type="Label" parent="UI/Control"]
+[node name="Time" type="Label" parent="UI/Control" unique_id=892413319]
 visible = false
 layout_mode = 0
 offset_left = 1549.0
@@ -222,7 +338,7 @@ theme_override_fonts/font = ExtResource("13_epc1c")
 theme_override_font_sizes/font_size = 30
 text = "XX:XX"
 
-[node name="SavedEumlings" type="Label" parent="UI/Control"]
+[node name="SavedEumlings" type="Label" parent="UI/Control" unique_id=1208249871]
 visible = false
 layout_mode = 0
 offset_left = 1756.0
@@ -233,23 +349,23 @@ theme_override_fonts/font = ExtResource("13_epc1c")
 theme_override_font_sizes/font_size = 30
 text = "YY"
 
-[node name="Sprite2D" type="Sprite2D" parent="UI/Control"]
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control" unique_id=615966881]
 visible = false
 position = Vector2(1832, 92)
 scale = Vector2(0.030777289, 0.03077728)
 texture = ExtResource("14_0e4oy")
 
-[node name="UITest" type="CanvasLayer" parent="."]
+[node name="UITest" type="CanvasLayer" parent="." unique_id=354577248]
 
-[node name="PauseSketch" parent="UITest" instance=ExtResource("16_gh012")]
+[node name="PauseSketch" parent="UITest" unique_id=2122692172 instance=ExtResource("16_gh012")]
 visible = false
 
-[node name="WalkSmoke" parent="." node_paths=PackedStringArray("player") instance=ExtResource("17_gh012")]
+[node name="WalkSmoke" parent="." unique_id=1236719875 node_paths=PackedStringArray("player") instance=ExtResource("17_gh012")]
 player = NodePath("..")
 
-[node name="DefaultAttack" type="Node3D" parent="."]
+[node name="DefaultAttack" type="Node3D" parent="." unique_id=1346295272]
 
-[node name="AttackSpawner" type="Node3D" parent="DefaultAttack"]
+[node name="AttackSpawner" type="Node3D" parent="DefaultAttack" unique_id=1701561871]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458658, 0)
 script = ExtResource("3_a4w0n")
 entity_to_spawn = ExtResource("13_3ep63")
@@ -257,12 +373,54 @@ time_between_entities = 0.05
 offset_distance = 0.1
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="AttackCooldown" type="Timer" parent="DefaultAttack"]
+[node name="AttackCooldown" type="Timer" parent="DefaultAttack" unique_id=1135107776]
 wait_time = 0.5
 one_shot = true
 
-[node name="Healthbar3D" parent="." instance=ExtResource("13_n270p")]
+[node name="Healthbar3D" parent="." unique_id=1068860318 instance=ExtResource("13_n270p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 show_health_numbers = true
 
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=1705118064]
+script = ExtResource("20_kqpmw")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Attack" parent="SoundEffectManager" unique_id=1659412483 instance=ExtResource("21_3p3em")]
+stream = SubResource("AudioStreamRandomizer_d4psi")
+volume_db = 0.0
+bus = &"SFXGeneral"
+
+[node name="Hurt" parent="SoundEffectManager" unique_id=957219765 instance=ExtResource("21_3p3em")]
+stream = SubResource("AudioStreamRandomizer_45dry")
+bus = &"SFXGeneral"
+
+[node name="Death" parent="SoundEffectManager" unique_id=1181583944 instance=ExtResource("21_3p3em")]
+stream = SubResource("AudioStreamRandomizer_oo1al")
+volume_db = 0.0
+bus = &"SFXGeneral"
+
+[node name="Walk" parent="SoundEffectManager" unique_id=71341865 instance=ExtResource("21_3p3em")]
+stream = SubResource("AudioStreamRandomizer_3avk0")
+max_polyphony = 20
+bus = &"SFXGeneral"
+
+[node name="novoice" type="Node" parent="SoundEffectManager" unique_id=1989383400]
+
+[node name="Attack" parent="SoundEffectManager/novoice" unique_id=1353459801 instance=ExtResource("21_3p3em")]
+stream = SubResource("AudioStreamRandomizer_w1ege")
+volume_db = 0.0
+bus = &"SFXGeneral"
+
+[node name="Hurt" parent="SoundEffectManager/novoice" unique_id=315302695 instance=ExtResource("21_3p3em")]
+stream = SubResource("AudioStreamRandomizer_hmq1g")
+bus = &"SFXGeneral"
+
+[node name="Death" parent="SoundEffectManager/novoice" unique_id=949157117 instance=ExtResource("21_3p3em")]
+stream = SubResource("AudioStreamRandomizer_j0m7x")
+volume_db = 0.0
+bus = &"SFXGeneral"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SoundEffectManager" unique_id=476108370]
+
+[connection signal="play_sound" from="Eumling_v2" to="SoundEffectManager" method="play_sound"]
 [connection signal="pressed" from="UI/Control/PauseButton" to="UITest/PauseSketch" method="open"]
