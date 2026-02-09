@@ -133,28 +133,28 @@ item/1/preview = SubResource("ImageTexture_tqqkl")
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbp8f"]
 size = Vector3(1.9667969, 1.8048096, 1)
 
-[sub_resource type="Gradient" id="Gradient_gxtsi"]
+[sub_resource type="Gradient" id="Gradient_8l1px"]
 offsets = PackedFloat32Array(0.25613078, 0.3133515, 0.373297)
 colors = PackedColorArray(0.32156864, 0.46666667, 0.58431375, 1, 0.68235296, 0.7372549, 0.7882353, 1, 0.6292534, 0.85100484, 0.81591386, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_weh0f"]
-gradient = SubResource("Gradient_gxtsi")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g1dqc"]
+gradient = SubResource("Gradient_8l1px")
 fill_from = Vector2(1, 1)
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vfi3j"]
-panorama = SubResource("GradientTexture2D_weh0f")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jpdpo"]
+panorama = SubResource("GradientTexture2D_g1dqc")
 
-[sub_resource type="Sky" id="Sky_826sl"]
-sky_material = SubResource("PanoramaSkyMaterial_vfi3j")
+[sub_resource type="Sky" id="Sky_aga4b"]
+sky_material = SubResource("PanoramaSkyMaterial_jpdpo")
 
-[sub_resource type="Environment" id="Environment_weh0f"]
+[sub_resource type="Environment" id="Environment_ep3q7"]
 background_mode = 2
 background_color = Color(0.2772, 0.67144, 0.77, 1)
-sky = SubResource("Sky_826sl")
+sky = SubResource("Sky_aga4b")
 ambient_light_source = 2
-ambient_light_color = Color(0.774, 0.8727, 0.9, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.8
 tonemap_mode = 4
-glow_enabled = true
 glow_intensity = 0.2
 adjustment_enabled = true
 adjustment_contrast = 1.1
@@ -236,27 +236,21 @@ transform = Transform3D(0.70710677, -0.6123722, 0.3535532, 0, 0.49999976, 0.8660
 projection = 1
 fov = 45.0
 size = 8.0
+near = 0.1
+far = 30.0
 script = ExtResource("3_tst3c")
-
-[node name="BakeLight" type="DirectionalLight3D" parent="." unique_id=1666071273]
-transform = Transform3D(1, 0, 0, 0, 0.713593, 0.700561, 0, -0.700561, 0.713593, 0, 4.44658, 0)
 
 [node name="Lights" type="Node3D" parent="." unique_id=898246771]
 
-[node name="AmbientLight" type="DirectionalLight3D" parent="Lights" unique_id=1726549627]
-transform = Transform3D(0.3134171, -0.94406617, -0.10251279, -0.46920443, -0.24780834, 0.8476074, -0.8256009, -0.21755505, -0.5206273, -5.2903, 7.71908, -5.02786)
-light_bake_mode = 1
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=1052083922]
+transform = Transform3D(0.28076243, -0.9589793, -0.039132744, 0.017691595, -0.03559476, 0.9992097, -0.95961434, -0.2812328, 0.006972207, 0, 8.41849, 0)
 shadow_enabled = true
 directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 10.3
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights" unique_id=1786904337]
-environment = SubResource("Environment_weh0f")
-
-[node name="ShadowLight" type="DirectionalLight3D" parent="Lights" unique_id=1786879289]
-transform = Transform3D(0.95531964, -0.22772446, 0.18843023, 0, 0.6375047, 0.7704465, -0.29557467, -0.73602265, 0.60902077, 0, 5.7930655, 0)
-shadow_enabled = true
-directional_shadow_split_1 = 0.013
-sky_mode = 1
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights" unique_id=1466735591]
+environment = SubResource("Environment_ep3q7")
 
 [node name="Env" type="Node3D" parent="." unique_id=1593707156]
 
