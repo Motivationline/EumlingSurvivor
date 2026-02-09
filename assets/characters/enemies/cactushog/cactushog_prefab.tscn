@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://el7nans1vkam"]
+[gd_scene format=3 uid="uid://el7nans1vkam"]
 
 [ext_resource type="PackedScene" uid="uid://b6s55jlxw1j4x" path="res://assets/characters/enemies/cactushog/cactushog.glb" id="1_guqsc"]
 [ext_resource type="Animation" uid="uid://dffuki6ujxyud" path="res://assets/characters/enemies/cactushog/hog_idle.res" id="2_gekiq"]
@@ -85,23 +85,81 @@ nodes/Shoot/node = SubResource("AnimationNodeOneShot_2twxx")
 nodes/Shoot/position = Vector2(440, 120)
 node_connections = [&"output", 0, &"Shoot", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Shoot", 0, &"Transition", &"Shoot", 1, &"Animation 3"]
 
-[node name="cactushog" instance=ExtResource("1_guqsc")]
+[node name="cactushog" unique_id=83265788 instance=ExtResource("1_guqsc")]
 
 [node name="Skeleton3D" parent="HogAramture" index="0"]
 transform = Transform3D(1, 0, 1.4210855e-14, 0, 1, 0, -1.4210855e-14, 0, 1, 0, 0, 0)
 bones/1/position = Vector3(0, -1.4901161e-08, -5.293956e-23)
 bones/2/rotation = Quaternion(0.7071068, 0, 0, 0.7071068)
-bones/2/scale = Vector3(1.0183632, 0.9642649, 1.0183632)
-bones/3/position = Vector3(3.0712816e-24, 1.3781328e-08, 0.46707442)
+bones/2/scale = Vector3(1.009338, 0.9815885, 1.009338)
+bones/3/position = Vector3(3.2644326e-24, 1.490116e-08, 0.4754613)
+
+[node name="Cube_015" parent="HogAramture/Skeleton3D" index="0"]
+layers = 2
+
+[node name="Cube_016" parent="HogAramture/Skeleton3D" index="1"]
+layers = 2
+
+[node name="Cube_017" parent="HogAramture/Skeleton3D" index="2"]
+layers = 2
+
+[node name="Cube_018" parent="HogAramture/Skeleton3D" index="3"]
+layers = 2
+
+[node name="Cube_019" parent="HogAramture/Skeleton3D" index="4"]
+layers = 2
+
+[node name="Cube_020" parent="HogAramture/Skeleton3D" index="5"]
+layers = 2
+
+[node name="Cube_021" parent="HogAramture/Skeleton3D" index="6"]
+layers = 2
+
+[node name="Cube_036" parent="HogAramture/Skeleton3D" index="7"]
+layers = 2
+
+[node name="Cube_038" parent="HogAramture/Skeleton3D" index="8"]
+layers = 2
+
+[node name="Cube_039" parent="HogAramture/Skeleton3D" index="9"]
+layers = 2
+
+[node name="Cube_040" parent="HogAramture/Skeleton3D" index="10"]
+layers = 2
+
+[node name="Cube_041" parent="HogAramture/Skeleton3D" index="11"]
+layers = 2
+
+[node name="Cube_042" parent="HogAramture/Skeleton3D" index="12"]
+layers = 2
+
+[node name="Cube_043" parent="HogAramture/Skeleton3D" index="13"]
+layers = 2
+
+[node name="Cube_044" parent="HogAramture/Skeleton3D" index="14"]
+layers = 2
+
+[node name="Cube_045" parent="HogAramture/Skeleton3D" index="15"]
+layers = 2
+
+[node name="Cube_046" parent="HogAramture/Skeleton3D" index="16"]
+layers = 2
+
+[node name="Cylinder_002" parent="HogAramture/Skeleton3D" index="17"]
+layers = 2
+
+[node name="Cylinder_003" parent="HogAramture/Skeleton3D" index="18"]
+layers = 2
+
+[node name="Cylinder_004" parent="HogAramture/Skeleton3D" index="19"]
+layers = 2
 
 [node name="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_vwm3v"),
-&"Test": SubResource("AnimationLibrary_xyhcu")
-}
-autoplay = "run_hog"
+libraries/ = SubResource("AnimationLibrary_vwm3v")
+libraries/Test = SubResource("AnimationLibrary_xyhcu")
+autoplay = &"run_hog"
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1018633670]
 tree_root = SubResource("AnimationNodeBlendTree_2twxx")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Transition/current_state = "idle"

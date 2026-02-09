@@ -330,23 +330,24 @@ stream_1/stream = ExtResource("6_ixbc8")
 stream_2/stream = ExtResource("7_dmamu")
 stream_3/stream = ExtResource("8_vofq4")
 
-[node name="ExitArea" type="Area3D"]
+[node name="ExitArea" type="Area3D" unique_id=609974398]
 collision_mask = 0
 script = ExtResource("1_47e78")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=936964363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9904785, 0.48971936)
 shape = SubResource("BoxShape3D_uile8")
 
-[node name="Visuals" type="Node3D" parent="."]
+[node name="Visuals" type="Node3D" parent="." unique_id=1541547249]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Visuals"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Visuals" unique_id=254269420]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4179616, 0.48671263)
 light_color = Color(0.04574851, 0.7896275, 0.9562871, 1)
 light_energy = 16.0
+light_cull_mask = 4294967293
 omni_range = 1.6048713
 
-[node name="exit_trunk" parent="Visuals" instance=ExtResource("1_tkqdu")]
+[node name="exit_trunk" parent="Visuals" unique_id=990160335 instance=ExtResource("1_tkqdu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="Plane_010" parent="Visuals/exit_trunk" index="13"]
@@ -358,75 +359,74 @@ transform = Transform3D(0.0077394233, 0.7896185, -0.12822941, 0.46434546, -0.108
 [node name="Plane_012" parent="Visuals/exit_trunk" index="15"]
 transform = Transform3D(0.037249293, 0.62330455, 0.06636227, 0.04684461, -0.06906152, 0.62236357, 0.62507445, -0.031968188, -0.0505961, 0.93766713, 0.9047636, 1.4619656)
 
-[node name="DoorLock" type="StaticBody3D" parent="Visuals/exit_trunk"]
+[node name="DoorLock" type="StaticBody3D" parent="Visuals/exit_trunk" unique_id=306792383]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9585117, 0, 0.2774157)
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/exit_trunk/DoorLock"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/exit_trunk/DoorLock" unique_id=1588925542]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26622462, 0.9660523, -0.29638672)
 shape = SubResource("BoxShape3D_tkqdu")
 debug_fill = false
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="Visuals"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Visuals" unique_id=577576927]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7885388, 1.3295255)
 light_color = Color(1, 0.88449997, 0.00999999, 1)
 light_energy = 4.0
+light_cull_mask = 4294967293
 omni_range = 4.115
 
-[node name="JunglePlant" parent="Visuals" instance=ExtResource("3_2dq3v")]
+[node name="JunglePlant" parent="Visuals" unique_id=123814271 instance=ExtResource("3_2dq3v")]
 transform = Transform3D(0.99946, 0, 0.032858633, 0, 1, 0, -0.032858633, 0, 0.99946, 0.29344296, 0, 0)
 
-[node name="JunglePlant2" parent="Visuals" instance=ExtResource("3_2dq3v")]
+[node name="JunglePlant2" parent="Visuals" unique_id=1419015610 instance=ExtResource("3_2dq3v")]
 transform = Transform3D(0.25375795, 0, -0.9672679, 0, 1, 0, 0.9672679, 0, 0.25375795, -0.49513775, 0, 0.2647171)
 
-[node name="JunglePlant3" parent="Visuals" instance=ExtResource("3_2dq3v")]
+[node name="JunglePlant3" parent="Visuals" unique_id=1951565834 instance=ExtResource("3_2dq3v")]
 transform = Transform3D(0.6853991, 0, -0.7281678, 0, 1, 0, 0.7281678, 0, 0.6853991, -0.38667923, 0, -0.41687965)
 
-[node name="JunglePlant4" parent="Visuals" instance=ExtResource("3_2dq3v")]
+[node name="JunglePlant4" parent="Visuals" unique_id=454840572 instance=ExtResource("3_2dq3v")]
 transform = Transform3D(0.6853991, 0, -0.7281678, 0, 1, 0, 0.7281678, 0, 0.6853991, 0.15533364, 0, -0.78194547)
 
-[node name="JunglePlant5" parent="Visuals" instance=ExtResource("3_2dq3v")]
+[node name="JunglePlant5" parent="Visuals" unique_id=71019003 instance=ExtResource("3_2dq3v")]
 transform = Transform3D(-0.98707485, 0, 0.16026026, 0, 1, 0, -0.16026026, 0, -0.98707485, 0.1505773, 0, 0.6289953)
 
-[node name="RightWall" type="StaticBody3D" parent="."]
+[node name="RightWall" type="StaticBody3D" parent="." unique_id=1710607827]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall" unique_id=713484516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26622462, 0.9660523, -0.29638672)
 shape = SubResource("BoxShape3D_tkqdu")
 debug_fill = false
 
-[node name="LeftWall" type="StaticBody3D" parent="."]
+[node name="LeftWall" type="StaticBody3D" parent="." unique_id=728389544]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall" unique_id=1642082774]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2595942, 0.9660523, -0.29638672)
 shape = SubResource("BoxShape3D_tkqdu")
 debug_fill = false
 
-[node name="Roots" type="StaticBody3D" parent="."]
+[node name="Roots" type="StaticBody3D" parent="." unique_id=1894699984]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1.4077355)
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Roots"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Roots" unique_id=686879146]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.15783691, 0.08740234, -0.36402893)
 shape = SubResource("BoxShape3D_rdd0d")
 disabled = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_47e78")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1030011118]
+libraries/ = SubResource("AnimationLibrary_47e78")
 
-[node name="SoundEffectManager" type="Node3D" parent="."]
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=453446471]
 script = ExtResource("9_2dq3v")
 metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
-[node name="Chime" parent="SoundEffectManager" instance=ExtResource("4_gva8b")]
+[node name="Chime" parent="SoundEffectManager" unique_id=1064576579 instance=ExtResource("4_gva8b")]
 
-[node name="Leaves" type="AudioStreamPlayer3D" parent="SoundEffectManager"]
+[node name="Leaves" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=857230476]
 stream = SubResource("AudioStreamRandomizer_mu12n")
 panning_strength = 2.0
 bus = &"SFXGeneral"
