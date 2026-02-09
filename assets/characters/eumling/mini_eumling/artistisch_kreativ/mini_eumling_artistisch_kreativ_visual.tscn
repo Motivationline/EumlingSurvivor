@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://xx1ogf8cudcr"]
+[gd_scene format=3 uid="uid://xx1ogf8cudcr"]
 
 [ext_resource type="PackedScene" uid="uid://gtw8ndxcf6yx" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/mini_eumling_var1.glb" id="1_few7l"]
 [ext_resource type="PackedScene" uid="uid://ktelomi1407x" path="res://assets/characters/eumling/mini_eumling/celebrate_spawner.tscn" id="2_cfxrn"]
@@ -44,46 +44,49 @@ nodes/OneShot/position = Vector2(280, 160)
 "nodes/Animation 3/position" = Vector2(-480, 420)
 node_connections = [&"output", 0, &"OneShot", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 3", &"OneShot", 0, &"Transition"]
 
-[node name="mini_eumling_var1" instance=ExtResource("1_few7l")]
+[node name="mini_eumling_var1" unique_id=427404541 instance=ExtResource("1_few7l")]
 
 [node name="Skeleton3D" parent="Aramture_MiniEumling_001" index="0"]
-bones/0/position = Vector3(0.016645158, 0.1614194, -0.0859936)
-bones/0/rotation = Quaternion(-2.9585456e-08, 0.904253, 0.4269973, -8.323282e-08)
-bones/0/scale = Vector3(1.0630351, 1.0228606, 1.0052677)
-bones/1/position = Vector3(-0.000102013975, 0.098071955, 0.003268748)
-bones/1/rotation = Quaternion(-0.065652534, -0.0009154208, -0.00045381024, 0.9978421)
-bones/1/scale = Vector3(1.0000001, 1.000185, 0.99981534)
-bones/2/rotation = Quaternion(-0.10941681, -0.0010262048, 5.2636977e-05, 0.9939954)
-bones/3/rotation = Quaternion(-0.11044204, 0.00011798234, 3.9587278e-05, 0.99388266)
-bones/3/scale = Vector3(0.9999678, 0.99975127, 1.0005356)
-bones/4/rotation = Quaternion(-0.25158125, -0.00063316134, 0.00017963813, 0.96783596)
-bones/5/rotation = Quaternion(-0.26062828, -0.00063098734, 0.00018562913, 0.9654391)
-bones/6/rotation = Quaternion(-0.21792355, -0.00063853606, 0.00015766468, 0.97596574)
-bones/7/rotation = Quaternion(0.013080378, 0.44850582, 0.89338845, -0.022989122)
-bones/7/scale = Vector3(1.0001588, 0.99851525, 1.0014082)
-bones/8/rotation = Quaternion(-2.0715036e-07, 0.99908185, -0.042842835, -1.1346563e-08)
+bones/0/position = Vector3(0.006573871, 0.11543452, -0.07057332)
+bones/0/rotation = Quaternion(-4.1250974e-08, 0.9414185, 0.3372404, -8.688652e-08)
+bones/0/scale = Vector3(1.1398942, 0.9525427, 0.9899857)
+bones/1/position = Vector3(0.00017986496, 0.09076993, -0.001996728)
+bones/1/rotation = Quaternion(0.02904758, 0.0017623294, 0.00090523314, 0.99957615)
+bones/1/scale = Vector3(1.0000023, 0.99974746, 1.0001177)
+bones/2/rotation = Quaternion(0.08372341, 0.0019608447, 0.00010468993, 0.9964872)
+bones/3/rotation = Quaternion(-0.10893913, -4.3354554e-05, -1.8568137e-05, 0.9940485)
+bones/3/scale = Vector3(0.99992496, 0.99962384, 1.0008507)
+bones/4/rotation = Quaternion(-0.2895371, 0.0016230368, -0.00044778528, 0.9571653)
+bones/5/rotation = Quaternion(-0.29848254, 0.0016192364, -0.0004628645, 0.95441365)
+bones/6/rotation = Quaternion(-0.25622603, 0.0016380287, -0.00039125406, 0.96661544)
+bones/7/rotation = Quaternion(0.011844448, 0.6633018, 0.7480224, -0.018787218)
+bones/7/scale = Vector3(1.0003248, 1.005347, 0.9955047)
+bones/8/rotation = Quaternion(-2.068784e-07, 0.9996714, -0.025636286, -1.4789571e-08)
 bones/9/rotation = Quaternion(0.96592593, 1.7381619e-07, 3.0863265e-09, -0.25881895)
-bones/10/rotation = Quaternion(0.005968573, 0.44856578, 0.89366823, -0.010495265)
-bones/10/scale = Vector3(1.0000247, 0.9986279, 1.0014113)
-bones/11/rotation = Quaternion(2.5770444e-07, 0.99908185, -0.042842805, 7.1958635e-07)
+bones/10/rotation = Quaternion(-0.006507057, 0.66325736, 0.7482958, 0.0100417705)
+bones/10/scale = Vector3(1.000072, 1.0055298, 0.9955232)
+bones/11/rotation = Quaternion(2.4527543e-07, 0.9996714, -0.025636286, 7.239814e-07)
 bones/12/rotation = Quaternion(0.96592593, 1.1277733e-08, 6.0957535e-07, -0.25881895)
-bones/13/rotation = Quaternion(-0.013114813, -0.5155973, 0.85480225, -0.057450235)
-bones/13/scale = Vector3(0.9660365, 1.0847936, 0.9546652)
-bones/14/rotation = Quaternion(0.000740225, 0.99988353, -0.015250238, 1.5324405e-05)
-bones/14/scale = Vector3(0.95732003, 1.0567061, 0.9939876)
-bones/15/rotation = Quaternion(0.055179037, -0.7115317, 0.7001173, -0.022666616)
-bones/15/scale = Vector3(1.0167935, 1.0284178, 0.8716562)
-bones/17/rotation = Quaternion(-0.008248646, -0.51673216, 0.8553652, -0.03563907)
-bones/17/scale = Vector3(0.9671198, 1.0817416, 0.95623267)
-bones/18/rotation = Quaternion(0.0005422132, 0.99988294, -0.0152965505, 9.756231e-06)
-bones/18/scale = Vector3(0.9585777, 1.0553939, 0.9934888)
-bones/19/rotation = Quaternion(0.03414523, -0.7117777, 0.7014344, -0.014013439)
-bones/19/scale = Vector3(1.0147766, 1.0272872, 0.8744382)
+bones/13/rotation = Quaternion(-0.012341086, -0.32619363, 0.9437039, -0.05355928)
+bones/13/scale = Vector3(0.9959789, 1.0046992, 1.0009247)
+bones/14/rotation = Quaternion(-0.0019512064, 0.9368616, -0.3496949, -0.00030715732)
+bones/14/scale = Vector3(1.0141606, 0.9708946, 1.0158551)
+bones/15/rotation = Quaternion(0.05509591, -0.53356403, 0.843892, -0.010973501)
+bones/15/scale = Vector3(0.87283343, 1.0194067, 1.0469663)
+bones/17/rotation = Quaternion(0.001730473, -0.3232464, 0.94628286, 0.00758963)
+bones/17/scale = Vector3(0.9940647, 1.0057973, 1.0010992)
+bones/18/rotation = Quaternion(0.00033613326, 0.9326335, -0.36082515, 7.017246e-05)
+bones/18/scale = Vector3(1.0144043, 0.9701935, 1.0164945)
+bones/19/rotation = Quaternion(-0.007869554, -0.5274073, 0.849575, 0.0013920475)
+bones/19/scale = Vector3(0.87025774, 1.0201478, 1.0485871)
+
+[node name="mini_eumling_var1_obj_001" parent="Aramture_MiniEumling_001/Skeleton3D" index="0"]
+layers = 2
 
 [node name="AnimationPlayer" parent="." index="1"]
-autoplay = "mini_eumling_idle"
+autoplay = &"mini_eumling_idle"
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1566579797]
 tree_root = SubResource("AnimationNodeBlendTree_a8pf4")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Transition/current_state = "idle"
@@ -93,4 +96,4 @@ parameters/OneShot/active = false
 parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0
 
-[node name="CelebrateSpawner" parent="." index="3" instance=ExtResource("2_cfxrn")]
+[node name="CelebrateSpawner" parent="." index="3" unique_id=1162344060 instance=ExtResource("2_cfxrn")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b8ns3hl23ic6v"]
+[gd_scene format=3 uid="uid://b8ns3hl23ic6v"]
 
 [ext_resource type="PackedScene" uid="uid://ca8qbynsv4h1r" path="res://assets/characters/enemies/bomberry/bomberry.glb" id="1_1vqqe"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="2_jh4a6"]
@@ -110,7 +110,7 @@ _data = {
 &"RESET": SubResource("Animation_hadyb")
 }
 
-[node name="bomberry" instance=ExtResource("1_1vqqe")]
+[node name="bomberry" unique_id=642251939 instance=ExtResource("1_1vqqe")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/1/position = Vector3(-0.0071651116, 0.07181065, 0.044472285)
@@ -141,23 +141,24 @@ bones/29/scale = Vector3(0.99999994, 1.0000033, 0.9999981)
 bones/31/position = Vector3(-0.004322623, 0.05305821, -0.16061457)
 bones/31/rotation = Quaternion(0.60655355, -0.36344594, -0.60655344, -0.3634459)
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+[node name="bomberry_object" parent="Armature/Skeleton3D" index="0"]
+layers = 2
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1848731534]
 tree_root = SubResource("AnimationNodeBlendTree_13fr6")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Explode/active = true
 parameters/Explode/internal_active = true
 parameters/Explode/request = 0
 
-[node name="SoundEffectManager" type="Node3D" parent="." index="3"]
+[node name="SoundEffectManager" type="Node3D" parent="." index="3" unique_id=1702995857]
 script = ExtResource("2_jh4a6")
 metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
-[node name="Charge" parent="SoundEffectManager" index="0" instance=ExtResource("3_4ahpr")]
+[node name="Charge" parent="SoundEffectManager" index="0" unique_id=1565284737 instance=ExtResource("3_4ahpr")]
 stream = SubResource("AudioStreamRandomizer_uhlw0")
 volume_db = -5.0
 
-[node name="AnimationPlayerFlash" type="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayerFlash" type="AnimationPlayer" parent="." index="4" unique_id=294874640]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_meilw")
-}
+libraries/ = SubResource("AnimationLibrary_meilw")
