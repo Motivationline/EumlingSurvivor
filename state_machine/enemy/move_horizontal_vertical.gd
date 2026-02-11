@@ -31,12 +31,18 @@ var move_direction: Vector3
 
 func setup(_parent: Enemy, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
-	#nav_agent = NavigationAgent3D.new()
-	#parent.add_child(nav_agent)
-	# anti-schwebe-zeugs - ist bisschen unklar, warum muss ich das auf 2x cell height setzen damit es richtig funktioniert? :shrug:
-	#nav_agent.path_height_offset = ProjectSettings.get_setting("navigation/3d/default_cell_height", 0.25) * 2
-	#nav_agent.navigation_finished.connect(target_reached)
-	#nav_agent.debug_enabled = debug_show_path
+	
+	#TODO: why only works once
+	
+	#TODO: look for a better way to prevent duplicates or the ray existing even after the state has been "force swapped"
+	for node in parent.get_children():
+		if node.name == "raymond":
+			node.queue_free()
+			
+	ray.name = "raymond"
+	parent.add_child(ray)
+	
+	ray.global_position = parent.position
 
 func enter():
 	super()
@@ -50,25 +56,29 @@ func physics_process(_delta: float) -> State:
 
 	parent.move_and_slide()
 	
+	print("Ray pos: ", ray.global_position)
+	print("enemy pos: ", parent.global_position)
+	
 	if ray.is_colliding():
+		print("coliding with wall")
 		#get the colliders group and check if its the level
 		if ray.get_collider().is_in_group("Level"):
+			print("hit level")
 			done = true
 	return null
 
 func get_new_direction() -> Vector3:
-	
+	# vertical direction
 	if direction:
 		var dir: Vector3 = Vector3(0,0,randf_range(-1,1)).normalized()
 		
-		ray.position = parent.position
-		ray.target_position = parent.position * (dir * ray_length)
+		ray.target_position = dir * ray_length
 		
 		if ray.is_colliding() && ray.get_collider().is_in_group("Level"):
 			#this direction is INVALID 😮😮😮
 			#try flipped direction
 			dir = -dir
-			ray.ray.target_position = parent.position * (dir * ray_length)
+			ray.ray.target_position = dir * ray_length
 		else:
 			return dir
 		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
@@ -78,17 +88,17 @@ func get_new_direction() -> Vector3:
 			return Vector3.ZERO
 		else:
 			return dir
+	# horizontal direction
 	else:
 		var dir: Vector3 = Vector3(randf_range(-1,1),0,0).normalized()
 
-		ray.position = parent.position
-		ray.target_position = parent.position * (dir * ray_length)
+		ray.target_position = dir * ray_length
 		
 		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
 			#this direction is INVALID 😮😮😮
 			#try flipped direction
 			dir = -dir
-			ray.ray.target_position = parent.position * (dir * ray_length)
+			ray.target_position = dir * ray_length
 		else:
 			return dir
 		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
@@ -98,7 +108,7 @@ func get_new_direction() -> Vector3:
 			return Vector3.ZERO
 		else:
 			return dir
-	done = false
+	#done = false
 
 func target_reached():
 	await get_tree().create_timer(wait_time).timeout

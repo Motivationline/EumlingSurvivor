@@ -32,6 +32,9 @@ class_name Enemy
 @export var on_death: Array[EventStrategy]
 @export var on_hit: Array[EventStrategy]
 @export var on_hurt: Array[EventStrategy]
+## line_of_sight_ray is needed for this to work
+@export var on_line_of_sight: Array[EventStrategy]
+@export var line_of_sight_ray: RayCast3D
 
 @export_category("Debug Stuff")
 @export var cannot_die: bool = false
@@ -95,6 +98,12 @@ func _die():
 
 func _process(delta: float) -> void:
 	if (state_machine): state_machine.process(delta)
+	
+	if not on_line_of_sight.is_empty():
+		if line_of_sight_ray.is_colliding():
+			if line_of_sight_ray.get_collider().is_in_group("Player"):
+				for ev in on_line_of_sight:
+					ev.event_triggered(null)
 
 func _physics_process(delta: float) -> void:
 	if (state_machine): state_machine.physics_process(delta)

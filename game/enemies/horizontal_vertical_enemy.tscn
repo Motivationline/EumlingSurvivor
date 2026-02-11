@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ecohwou7w230"]
+[gd_scene format=3 uid="uid://ecohwou7w230"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_32qoc"]
 [ext_resource type="Script" uid="uid://dsnnhkc4wtj0a" path="res://state_machine/enemy/move_horizontal_vertical.gd" id="2_u8giv"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_nebqs"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_mh60j"]
+[ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/player.tscn" id="5_y3mil"]
+[ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="8_mh60j"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_47hj0"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="11_eqtax"]
 
@@ -19,37 +23,50 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwq3f"]
 albedo_color = Color(0.376471, 1, 1, 1)
 
-[node name="HorizontalVerticalEnemy" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_32qoc")]
+[node name="HorizontalVerticalEnemy" unique_id=1479848487 node_paths=PackedStringArray("hitbox", "hurtbox", "line_of_sight_ray") instance=ExtResource("1_32qoc")]
 health = 100.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+line_of_sight_ray = NodePath("LineOfSight")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=2104701944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_s6jag")
 
-[node name="Healthbar3D" parent="." index="1"]
+[node name="Healthbar3D" parent="." index="1" unique_id=985815578]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.5)
 
-[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="3" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveHorizontalVerticalOnNavMeshState")
 
-[node name="MoveHorizontalVerticalOnNavMeshState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="MoveHorizontalVerticalOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=1705210938 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_u8giv")
-next_state = NodePath(".")
+wait_time = 0.0
+next_state = NodePath("../SpawnEntitiesState")
 metadata/_custom_type_script = "uid://dsnnhkc4wtj0a"
 
-[node name="Hurtbox" parent="." index="4" instance=ExtResource("10_47hj0")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=1567306097 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_nebqs")
+end_delay = 3.0
+next_state = NodePath("../MoveHorizontalVerticalOnNavMeshState")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1850869669]
+script = ExtResource("4_mh60j")
+entity_to_spawn = ExtResource("5_y3mil")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="Hurtbox" parent="." index="4" unique_id=1418653458 instance=ExtResource("10_47hj0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
 can_be_hit_by = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=451057995]
 shape = SubResource("CapsuleShape3D_s6jag")
 
-[node name="Hitbox" parent="." index="5" instance=ExtResource("11_eqtax")]
+[node name="Hitbox" parent="." index="5" unique_id=2090620139 instance=ExtResource("11_eqtax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 32
 collision_mask = 8
@@ -57,16 +74,29 @@ damage = 2.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=540510015]
 shape = SubResource("CapsuleShape3D_s6jag")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+[node name="EventStrategies" type="Node" parent="." index="6" unique_id=1281995619]
+
+[node name="on_line_of_sight" type="Node" parent="EventStrategies" index="0" unique_id=1638307661]
+
+[node name="TriggerStateEventStrategy" type="Node" parent="EventStrategies/on_line_of_sight" index="0" unique_id=1108443156 node_paths=PackedStringArray("state_to_execute")]
+script = ExtResource("8_mh60j")
+state_to_execute = NodePath("../../../StateMachine/SpawnEntitiesState")
+metadata/_custom_type_script = "uid://ce61jighdgsby"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1234285869]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CapsuleMesh_3v4v4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wn5ve")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/MeshInstance3D" index="0"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/MeshInstance3D" index="0" unique_id=437751646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335418, -0.219698)
 size = Vector3(0.373047, 0.0585938, 0.207031)
 material = SubResource("StandardMaterial3D_cwq3f")
+
+[node name="LineOfSight" type="RayCast3D" parent="." index="10" unique_id=819994098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5413951, 0)
+target_position = Vector3(0, 0, -5)
