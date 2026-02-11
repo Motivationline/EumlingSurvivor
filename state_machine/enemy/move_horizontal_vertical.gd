@@ -1,0 +1,111 @@
+@tool
+extends State
+## Uses the levels NavMesh to move the Enemy to a random point inside the level
+## 
+## Ends when the point is reached.
+class_name MoveHorizontalVerticalState
+
+## How long to wait [b]after[/b] reaching the target location before proceeding to the next state 
+@export var wait_time: float = 1:
+	set(new_value):
+		wait_time = max(new_value, 0)
+
+## true = vertical, false = horizontal
+@export var direction: bool
+
+@export_group("Overrides")
+## Movement Speed Override
+@export_range(0, 100, 0.1) var speed_override: float = 1:
+	set(new_value):
+		speed_override = max(new_value, 0)
+		update_configuration_warnings()
+# Whether to apply the speed override
+@export var speed_override_active: bool = false
+
+var nav_agent: NavigationAgent3D
+var done: bool = false
+
+var ray: RayCast3D = RayCast3D.new()
+var ray_length = 1
+var move_direction: Vector3
+
+func setup(_parent: Enemy, _animation_tree: AnimationTree):
+	super (_parent, _animation_tree)
+	#nav_agent = NavigationAgent3D.new()
+	#parent.add_child(nav_agent)
+	# anti-schwebe-zeugs - ist bisschen unklar, warum muss ich das auf 2x cell height setzen damit es richtig funktioniert? :shrug:
+	#nav_agent.path_height_offset = ProjectSettings.get_setting("navigation/3d/default_cell_height", 0.25) * 2
+	#nav_agent.navigation_finished.connect(target_reached)
+	#nav_agent.debug_enabled = debug_show_path
+
+func enter():
+	super()
+	move_direction = get_new_direction()
+
+func physics_process(_delta: float) -> State:
+	if (done): return return_next()
+	
+	var speed = speed_override if (speed_override_active) else parent.speed
+	parent.velocity = move_direction * speed
+
+	parent.move_and_slide()
+	
+	if ray.is_colliding():
+		#get the colliders group and check if its the level
+		if ray.get_collider().is_in_group("Level"):
+			done = true
+	return null
+
+func get_new_direction() -> Vector3:
+	
+	if direction:
+		var dir: Vector3 = Vector3(0,0,randf_range(-1,1)).normalized()
+		
+		ray.position = parent.position
+		ray.target_position = parent.position * (dir * ray_length)
+		
+		if ray.is_colliding() && ray.get_collider().is_in_group("Level"):
+			#this direction is INVALID 😮😮😮
+			#try flipped direction
+			dir = -dir
+			ray.ray.target_position = parent.position * (dir * ray_length)
+		else:
+			return dir
+		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
+			#now we have a problem, we stuck 😬😬😬
+			#enter next state
+			done = true
+			return Vector3.ZERO
+		else:
+			return dir
+	else:
+		var dir: Vector3 = Vector3(randf_range(-1,1),0,0).normalized()
+
+		ray.position = parent.position
+		ray.target_position = parent.position * (dir * ray_length)
+		
+		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
+			#this direction is INVALID 😮😮😮
+			#try flipped direction
+			dir = -dir
+			ray.ray.target_position = parent.position * (dir * ray_length)
+		else:
+			return dir
+		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
+			#now we have a problem, we stuck 😬😬😬
+			#enter next state
+			done = true
+			return Vector3.ZERO
+		else:
+			return dir
+	done = false
+
+func target_reached():
+	await get_tree().create_timer(wait_time).timeout
+	done = true
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := super ()
+	if (speed_override == 0 && speed_override_active): warnings.insert(0, "Using a speed of 0 means this node will never reach its target.")
+	#if (min_distance > max_distance): warnings.insert(0, "Min Distance cannot be larger than Max Distance")
+	return warnings

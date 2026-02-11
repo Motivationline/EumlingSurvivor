@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://ecohwou7w230"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_32qoc"]
+[ext_resource type="Script" uid="uid://dsnnhkc4wtj0a" path="res://state_machine/enemy/move_horizontal_vertical.gd" id="2_u8giv"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_47hj0"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="11_eqtax"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s6jag"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3v4v4"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wn5ve"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwq3f"]
+albedo_color = Color(0.376471, 1, 1, 1)
+
+[node name="HorizontalVerticalEnemy" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_32qoc")]
+health = 100.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_s6jag")
+
+[node name="Healthbar3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.5)
+
+[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveHorizontalVerticalOnNavMeshState")
+
+[node name="MoveHorizontalVerticalOnNavMeshState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_u8giv")
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://dsnnhkc4wtj0a"
+
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("10_47hj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape3D_s6jag")
+
+[node name="Hitbox" parent="." index="5" instance=ExtResource("11_eqtax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 32
+collision_mask = 8
+damage = 2.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+shape = SubResource("CapsuleShape3D_s6jag")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CapsuleMesh_3v4v4")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_wn5ve")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/MeshInstance3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335418, -0.219698)
+size = Vector3(0.373047, 0.0585938, 0.207031)
+material = SubResource("StandardMaterial3D_cwq3f")
