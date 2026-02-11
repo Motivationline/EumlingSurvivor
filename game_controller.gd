@@ -1,7 +1,7 @@
 extends Node
 class_name GameController
 
-const MAIN_MENU = preload("uid://dm5487efgho7v")
+const MAIN_MENU = preload("res://game/ui/main_menu/main_menu.tscn")
 
 var main_menu: Node3D
 var delete_current_scene: bool
