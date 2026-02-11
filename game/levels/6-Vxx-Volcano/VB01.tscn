@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bxglfcun4vtdd"]
+
+[ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_ckxew"]
+[ext_resource type="PackedScene" uid="uid://dnrlfw8cygdwx" path="res://assets/characters/enemies/boss_shark/boss_shark_prefab.tscn" id="2_ycyey"]
+
+[node name="Level" unique_id=1973423689 instance=ExtResource("1_ckxew")]
+
+[node name="FloorGridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(1440811827) index="0" unique_id=1637048433]
+data = {
+"cells": PackedInt32Array(0, 0, 1, 0, 65535, 1, 1, 65535, 1, 1, 0, 1)
+}
+
+[node name="BorderGridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(1440811827) index="1" unique_id=1833051751]
+data = {
+"cells": PackedInt32Array(10, 10, 1, 65526, 10, 1, 65527, 10, 1, 65528, 10, 1, 65529, 10, 1, 65530, 10, 1, 65531, 10, 1, 65532, 10, 1, 65533, 10, 1, 65534, 10, 1, 65535, 10, 1, 7, 10, 1, 8, 10, 1, 9, 10, 1, 6, 10, 1, 5, 10, 1, 4, 10, 1, 3, 10, 1, 2, 10, 1, 1, 10, 1, 0, 10, 1, 65525, 10, 1, 65525, 9, 1, 65525, 8, 1, 65525, 6, 1, 65525, 5, 1, 65525, 4, 1, 65525, 3, 1, 65525, 2, 1, 65525, 1, 1, 65525, 0, 1, 65525, 65535, 1, 65525, 65534, 1, 65525, 65533, 1, 65525, 65532, 1, 65525, 65530, 1, 65525, 65529, 1, 65525, 65528, 1, 65525, 65527, 1, 65525, 65526, 1, 65525, 65525, 1, 65525, 7, 1, 65525, 65531, 1, 11, 10, 1, 30, 10, 1, 12, 10, 1, 29, 10, 1, 28, 10, 1, 13, 10, 1, 15, 10, 1, 16, 10, 1, 17, 10, 1, 14, 10, 1, 18, 10, 1, 19, 10, 1, 20, 10, 1, 21, 10, 1, 22, 10, 1, 23, 10, 1, 24, 10, 1, 25, 10, 1, 26, 10, 1, 27, 10, 1, 30, 9, 1, 30, 65507, 1, 30, 65508, 1, 30, 65509, 1, 30, 65510, 1, 30, 65511, 1, 30, 65512, 1, 30, 65513, 1, 30, 65514, 1, 30, 65515, 1, 30, 65516, 1, 30, 65517, 1, 30, 65518, 1, 30, 65519, 1, 30, 65520, 1, 30, 65521, 1, 30, 65522, 1, 30, 65523, 1, 30, 65524, 1, 30, 65525, 1, 30, 65526, 1, 30, 65527, 1, 30, 65528, 1, 30, 65529, 1, 30, 65530, 1, 30, 65531, 1, 30, 65532, 1, 30, 65533, 1, 30, 65534, 1, 30, 65535, 1, 30, 0, 1, 30, 1, 1, 30, 2, 1, 30, 3, 1, 30, 4, 1, 30, 5, 1, 30, 6, 1, 30, 7, 1, 30, 8, 1, 30, 65506, 1, 30, 65505, 1, 29, 65505, 1, 28, 65505, 1, 27, 65505, 1, 26, 65505, 1, 25, 65505, 1, 24, 65505, 1, 23, 65505, 1, 22, 65505, 1, 21, 65505, 1, 20, 65505, 1, 19, 65505, 1, 18, 65505, 1, 17, 65505, 1, 16, 65505, 1, 15, 65505, 1, 14, 65505, 1, 13, 65505, 1, 12, 65505, 1, 11, 65505, 1, 10, 65505, 1, 9, 65505, 1, 8, 65505, 1, 7, 65505, 1, 6, 65505, 1, 5, 65505, 1, 4, 65505, 1, 3, 65505, 1, 2, 65505, 1, 1, 65505, 1, 0, 65505, 1, 65535, 65505, 1, 65534, 65505, 1, 65533, 65505, 1, 65532, 65505, 1, 65531, 65505, 1, 65530, 65505, 1, 65529, 65505, 1, 65528, 65505, 1, 65527, 65505, 1, 65526, 65505, 1, 65525, 65505, 1, 65525, 65506, 1, 65525, 65507, 1, 65525, 65508, 1, 65525, 65509, 1, 65525, 65510, 1, 65525, 65511, 1, 65525, 65524, 1, 65525, 65523, 1, 65525, 65522, 1, 65525, 65521, 1, 65525, 65520, 1, 65525, 65519, 1, 65525, 65518, 1, 65525, 65517, 1, 65525, 65516, 1, 65525, 65515, 1, 65525, 65514, 1, 65525, 65513, 1, 65525, 65512, 1)
+}
+
+[node name="PlayerSpawnMarker" parent="." index="1" unique_id=1539073355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.420855, 0.5, 0.44737387)
+
+[node name="GoalArea" parent="." index="2" unique_id=1533472146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6756797, -9.536743e-07, -16.478313)
+
+[node name="Bedrock" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="1" unique_id=1601940965]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.015992403, -2.0722504, -1.2509851)
+
+[node name="stone_v4" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="2" unique_id=896625930]
+visible = false
+
+[node name="stone_v5" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="3" unique_id=1022446785]
+visible = false
+
+[node name="stone_v6" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="4" unique_id=946307740]
+visible = false
+
+[node name="stone_v7" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="5" unique_id=452519681]
+visible = false
+
+[node name="stone_v8" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="6" unique_id=114026771]
+visible = false
+
+[node name="stone_v11" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="7" unique_id=85938530]
+visible = false
+
+[node name="stone_v9" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="8" unique_id=23119040]
+visible = false
+
+[node name="stone_v2" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="9" unique_id=885287626]
+visible = false
+
+[node name="stone_v12" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="10" unique_id=1220585769]
+visible = false
+
+[node name="stone_v13" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="11" unique_id=528314734]
+visible = false
+
+[node name="stone_v1" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="12" unique_id=1772594015]
+visible = false
+
+[node name="stone_v3" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="13" unique_id=718126786]
+visible = false
+
+[node name="stone_v10" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="14" unique_id=1744711598]
+visible = false
+
+[node name="Lava" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="15" unique_id=1888487937]
+transform = Transform3D(-2.625, 3.96364e-07, 1.732562e-14, 0, -1.1474239e-07, 2.625, 3.96364e-07, 2.625, 1.1474239e-07, 5.7586665, -0.41393697, -4.748145)
+
+[node name="BossShark" parent="." index="6" unique_id=1547842142 instance=ExtResource("2_ycyey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.48662496, -3)

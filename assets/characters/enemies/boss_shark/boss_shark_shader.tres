@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dfl2ysktfj1u7"]
+
+[ext_resource type="Texture2D" uid="uid://uptf47xh00x0" path="res://assets/characters/enemies/boss_shark/Shark_Emissive.png" id="1_4rsw4"]
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_p3rvx"]
+[ext_resource type="Texture2D" uid="uid://c1ls850k5xea8" path="res://assets/characters/enemies/boss_shark/BossShark_Shark_Base_color.png" id="2_4rsw4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4551p"]
+blend_mode = 1
+shading_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission_energy_multiplier = 0.0
+emission_texture = ExtResource("1_4rsw4")
+
+[sub_resource type="Gradient" id="Gradient_4551p"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.46351084, 0.6923077)
+colors = PackedColorArray(0, 0, 0, 1, 0.31431612, 0.31431612, 0.3143161, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t318c"]
+gradient = SubResource("Gradient_4551p")
+
+[sub_resource type="Gradient" id="Gradient_53krq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.90729785)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4xc5u"]
+gradient = SubResource("Gradient_53krq")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_4551p")
+shader = ExtResource("1_p3rvx")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_4rsw4")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_t318c")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_4xc5u")
+shader_parameter/rim_focus = 0.79200003762
+shader_parameter/use_diffuse_smooth_attenuation = true
