@@ -44,16 +44,18 @@ metadata/_custom_type_script = "uid://l8142vs0gken"
 
 [node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
 script = ExtResource("3_p4q1l")
-
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnRemove" index="0"]
-script = ExtResource("6_i2kb8")
-metadata/_custom_type_script = "uid://coqjh4l5f0121"
+metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
 [node name="OnCreated" type="Node" parent="EventStrategies" index="5"]
 
 [node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0" node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("5_6ma20")
 targeting_strats = [NodePath("../../../TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
+metadata/_custom_type_script = "uid://nxmo7fqigkr1"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="6"]
+script = ExtResource("6_i2kb8")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
 [node name="Hitbox" parent="." index="4" instance=ExtResource("7_ly6wf")]
 collision_layer = 32

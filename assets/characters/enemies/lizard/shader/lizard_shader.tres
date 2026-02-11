@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cidkp4680iv1u"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_x1sa1"]
+[ext_resource type="Texture2D" uid="uid://de2p48abgk71u" path="res://assets/characters/enemies/lizard/lizard_DefaultMaterial_Base_color.png" id="2_7taat"]
+
+[sub_resource type="Gradient" id="Gradient_pm8ny"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.10650887, 0.46745563)
+colors = PackedColorArray(0, 0, 0, 1, 0.37, 0.37, 0.37, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fcor1"]
+gradient = SubResource("Gradient_pm8ny")
+
+[sub_resource type="Gradient" id="Gradient_x1sa1"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7790927)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7taat"]
+gradient = SubResource("Gradient_x1sa1")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_x1sa1")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_7taat")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_fcor1")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_7taat")
+shader_parameter/rim_focus = 0.3050000144875
+shader_parameter/use_diffuse_smooth_attenuation = true
