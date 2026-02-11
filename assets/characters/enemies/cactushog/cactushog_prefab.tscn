@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b6s55jlxw1j4x" path="res://assets/characters/enemies/cactushog/cactushog.glb" id="1_guqsc"]
 [ext_resource type="Animation" uid="uid://dffuki6ujxyud" path="res://assets/characters/enemies/cactushog/hog_idle.res" id="2_gekiq"]
 [ext_resource type="Animation" uid="uid://cx78i38qg6lg4" path="res://assets/characters/enemies/cactushog/hog_run.res" id="3_46rdp"]
+[ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="4_46rdp"]
 
 [sub_resource type="Animation" id="Animation_e5xn7"]
 length = 0.001
@@ -91,8 +92,8 @@ node_connections = [&"output", 0, &"Shoot", &"Transition", 0, &"Animation", &"Tr
 transform = Transform3D(1, 0, 1.4210855e-14, 0, 1, 0, -1.4210855e-14, 0, 1, 0, 0, 0)
 bones/1/position = Vector3(0, -1.4901161e-08, -5.293956e-23)
 bones/2/rotation = Quaternion(0.7071068, 0, 0, 0.7071068)
-bones/2/scale = Vector3(1.009338, 0.9815885, 1.009338)
-bones/3/position = Vector3(3.2644326e-24, 1.490116e-08, 0.4754613)
+bones/2/scale = Vector3(1.0009195, 0.9981646, 1.0009195)
+bones/3/position = Vector3(3.2114464e-24, 1.490116e-08, 0.4834682)
 
 [node name="Cube_015" parent="HogAramture/Skeleton3D" index="0"]
 layers = 2
@@ -168,3 +169,6 @@ parameters/Transition/current_index = 0
 parameters/Shoot/active = false
 parameters/Shoot/internal_active = false
 parameters/Shoot/request = 0
+
+[node name="DecalShadow" parent="." index="3" unique_id=1002455412 instance=ExtResource("4_46rdp")]
+size = Vector3(0.6, 0.05, 0.6)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dm5487efgho7v"]
+[gd_scene format=3 uid="uid://buu4nxn8bt4tt"]
 
 [ext_resource type="Script" uid="uid://g5x2uj6jmytl" path="res://game/ui/main_menu/main_menu.gd" id="1_2ww3u"]
 [ext_resource type="PackedScene" uid="uid://yj6cb30iarbn" path="res://assets/characters/eumling/V2/eumling_main_menu.tscn" id="2_mkp5f"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5mujlqqgbrur" path="res://game/ui/main_menu/background_tile.tscn" id="3_mkp5f"]
 [ext_resource type="Texture2D" uid="uid://cx41tinmjl1ob" path="res://assets/ui/SketchButtonLangPressed.png" id="4_cwbgs"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_m1bca"]
+[ext_resource type="Script" uid="uid://b12g0nyew0m0i" path="res://global/settings/graphics_settings_component_shadow.gd" id="7_cwbgs"]
 
 [sub_resource type="Animation" id="Animation_x7xh0"]
 length = 0.001
@@ -68,22 +69,22 @@ fog_light_color = Color(0.1342243, 0.6088932, 0.7264619, 1)
 fog_density = 1.0
 fog_depth_curve = 1.6817927
 
-[node name="MainMenu" type="Node3D"]
+[node name="MainMenu" type="Node3D" unique_id=59133509]
 script = ExtResource("1_2ww3u")
 
-[node name="Anchor" type="Marker3D" parent="."]
+[node name="Anchor" type="Marker3D" parent="." unique_id=758167787]
 
-[node name="Camera3D" type="Camera3D" parent="Anchor"]
+[node name="Camera3D" type="Camera3D" parent="Anchor" unique_id=1004034311]
 transform = Transform3D(-0.98757887, 0, 0.15712401, 0, 1, 0, -0.15712401, 0, -0.987579, 0.6859336, 0.7411723, -5.47697)
 fov = 35.0
 size = 2.3674734
 
-[node name="Eumling_v3" parent="Anchor" instance=ExtResource("2_mkp5f")]
+[node name="Eumling_v3" parent="Anchor" unique_id=1527431081 instance=ExtResource("2_mkp5f")]
 transform = Transform3D(0, 0, 0.99999994, -1.4901161e-08, 1, 0, -1, -1.4901161e-08, -2.9802322e-08, 0, 0, 0)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1636785078]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=279491130]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,7 +92,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="EumlinclopediaButton" type="TextureButton" parent="CanvasLayer/Control"]
+[node name="EumlinclopediaButton" type="TextureButton" parent="CanvasLayer/Control" unique_id=457482511]
 layout_mode = 0
 offset_left = 1468.0
 offset_top = 872.0
@@ -101,7 +102,7 @@ scale = Vector2(0.11023261, 0.086632386)
 texture_normal = ExtResource("3_0p1rw")
 texture_pressed = ExtResource("4_cwbgs")
 
-[node name="TextEumlingclopedia" type="Label" parent="CanvasLayer/Control"]
+[node name="TextEumlingclopedia" type="Label" parent="CanvasLayer/Control" unique_id=2021821607]
 layout_mode = 0
 offset_left = 1471.0
 offset_top = 896.0
@@ -111,7 +112,7 @@ theme_override_fonts/font = ExtResource("4_m1bca")
 text = "Eumlingclopedia"
 horizontal_alignment = 1
 
-[node name="PlayButton" type="TextureButton" parent="CanvasLayer/Control"]
+[node name="PlayButton" type="TextureButton" parent="CanvasLayer/Control" unique_id=440277167]
 layout_mode = 0
 offset_left = 751.00006
 offset_top = 872.00006
@@ -121,7 +122,7 @@ scale = Vector2(0.08659281, 0.08659281)
 texture_normal = ExtResource("3_0p1rw")
 texture_pressed = ExtResource("4_cwbgs")
 
-[node name="TextPlay" type="Label" parent="CanvasLayer/Control"]
+[node name="TextPlay" type="Label" parent="CanvasLayer/Control" unique_id=336302969]
 layout_mode = 0
 offset_left = 720.0
 offset_top = 821.0
@@ -132,7 +133,7 @@ theme_override_font_sizes/font_size = 125
 text = "Play"
 horizontal_alignment = 1
 
-[node name="PlayButton3" type="Button" parent="CanvasLayer/Control"]
+[node name="PlayButton3" type="Button" parent="CanvasLayer/Control" unique_id=1456712270]
 visible = false
 layout_mode = 1
 anchors_preset = 7
@@ -147,7 +148,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Play"
 
-[node name="EumlingclopediaButton2" type="Button" parent="CanvasLayer/Control"]
+[node name="EumlingclopediaButton2" type="Button" parent="CanvasLayer/Control" unique_id=1621067804]
 visible = false
 layout_mode = 1
 anchors_preset = 3
@@ -161,33 +162,35 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Eumlingclopedia"
 
-[node name="Background_Tile" parent="." instance=ExtResource("3_mkp5f")]
+[node name="Background_Tile" parent="." unique_id=272850613 instance=ExtResource("3_mkp5f")]
 
-[node name="Background_Tile2" parent="." instance=ExtResource("3_mkp5f")]
+[node name="Background_Tile2" parent="." unique_id=1290413078 instance=ExtResource("3_mkp5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
 
-[node name="Background_Tile4" parent="." instance=ExtResource("3_mkp5f")]
+[node name="Background_Tile4" parent="." unique_id=1702045114 instance=ExtResource("3_mkp5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
 
-[node name="Background_Tile3" parent="." instance=ExtResource("3_mkp5f")]
+[node name="Background_Tile3" parent="." unique_id=1011784137 instance=ExtResource("3_mkp5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
-[node name="Background_Tile5" parent="." instance=ExtResource("3_mkp5f")]
+[node name="Background_Tile5" parent="." unique_id=1997982241 instance=ExtResource("3_mkp5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=190124401]
 transform = Transform3D(0.9504936, -0.137276, -0.278778, 0.24807316, -0.20507109, 0.946787, -0.18714043, -0.9690723, -0.1608642, 0, 4.583892, 0)
 light_color = Color(0.8633, 0.97, 0.96644336, 1)
 shadow_enabled = true
 shadow_opacity = 0.61
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_0ipjw")
-}
-autoplay = "run"
+[node name="GraphicsSettingsComponentShadow" type="Node" parent="DirectionalLight3D" unique_id=1546927452]
+script = ExtResource("7_cwbgs")
+metadata/_custom_type_script = "uid://b12g0nyew0m0i"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1660011751]
+libraries/ = SubResource("AnimationLibrary_0ipjw")
+autoplay = &"run"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1859118858]
 environment = SubResource("Environment_0p1rw")
 
 [connection signal="pressed" from="CanvasLayer/Control/EumlinclopediaButton" to="." method="_on_eumlingclopedia_button_pressed"]

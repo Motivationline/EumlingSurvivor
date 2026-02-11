@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bher35ljx425f" path="res://assets/characters/enemies/bomberry/sounds/charge_5.wav" id="8_snc2r"]
 [ext_resource type="AudioStream" uid="uid://ckrptc0lh1gq4" path="res://assets/characters/enemies/bomberry/sounds/charge_6.wav" id="9_4yawg"]
 [ext_resource type="Material" uid="uid://cnoq1hlmtsi46" path="res://game/shared/flash/flash_material.tres" id="10_jh4a6"]
+[ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="11_wdta4"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jh4a6"]
 animation = &"run"
@@ -162,3 +163,6 @@ volume_db = -5.0
 [node name="AnimationPlayerFlash" type="AnimationPlayer" parent="." index="4" unique_id=294874640]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_meilw")
+
+[node name="DecalShadow" parent="." index="5" unique_id=1002455412 instance=ExtResource("11_wdta4")]
+size = Vector3(0.4, 0.05, 0.4)

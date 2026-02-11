@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c15isytvugu5r"]
 
 [ext_resource type="PackedScene" uid="uid://cju58wdf0n8vk" path="res://assets/characters/enemies/cactus_crawler/cactus_crawler.glb" id="1_s6wx2"]
+[ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="2_eoi1h"]
 
 [node name="cactus_crawler" unique_id=1048041530 instance=ExtResource("1_s6wx2")]
 
@@ -18,3 +19,6 @@ layers = 2
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = &"run"
+
+[node name="DecalShadow" parent="." index="2" unique_id=1002455412 instance=ExtResource("2_eoi1h")]
+size = Vector3(0.4, 0.05, 0.4)
