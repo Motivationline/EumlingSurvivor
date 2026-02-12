@@ -33,19 +33,32 @@ func setup(_parent: Enemy, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	
 	#TODO: why only works once
-	
-	#TODO: look for a better way to prevent duplicates or the ray existing even after the state has been "force swapped"
-	for node in parent.get_children():
-		if node.name == "raymond":
-			node.queue_free()
-			
-	ray.name = "raymond"
-	parent.add_child(ray)
-	
-	ray.global_position = parent.position
 
 func enter():
 	super()
+	#TODO: look for a better way to prevent duplicates or the ray existing even after the state has been "force swapped"
+	var childs = parent.get_children()
+	
+	var ray_duplicate = childs.filter(func(node): return node.name == "raymond")
+	if ray_duplicate != null:
+		print("raymond does not exist yet")
+		ray.name = "raymond"
+		parent.add_child(ray)
+	else:
+		print("found a duplicate")
+		ray = ray_duplicate[0]
+		
+	#for node in childs:
+		#if node.name == "raymond":
+			#print("found a duplicate")
+			#ray = node
+		#else:
+			#print("raymond does not exist yet")
+			#ray.name = "raymond"
+			#parent.add_child(ray)
+	
+	ray.global_position = parent.position
+	
 	move_direction = get_new_direction()
 
 func physics_process(_delta: float) -> State:
@@ -56,8 +69,8 @@ func physics_process(_delta: float) -> State:
 
 	parent.move_and_slide()
 	
-	print("Ray pos: ", ray.global_position)
-	print("enemy pos: ", parent.global_position)
+	#print("Ray pos: ", ray.global_position)
+	#print("enemy pos: ", parent.global_position)
 	
 	if ray.is_colliding():
 		print("coliding with wall")
@@ -77,17 +90,21 @@ func get_new_direction() -> Vector3:
 		if ray.is_colliding() && ray.get_collider().is_in_group("Level"):
 			#this direction is INVALID 😮😮😮
 			#try flipped direction
-			dir = -dir
-			ray.ray.target_position = dir * ray_length
+			print("this dir is invalid: ", dir)
+			dir = dir * -1
+			ray.target_position = dir * ray_length
 		else:
+			print("this dir is valid: ", dir)
 			return dir
 		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
 			#now we have a problem, we stuck 😬😬😬
 			#enter next state
 			done = true
+			print("we are stuck")
 			return Vector3.ZERO
 		else:
 			return dir
+			print("this dir is valid: ", dir)
 	# horizontal direction
 	else:
 		var dir: Vector3 = Vector3(randf_range(-1,1),0,0).normalized()
@@ -97,7 +114,7 @@ func get_new_direction() -> Vector3:
 		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
 			#this direction is INVALID 😮😮😮
 			#try flipped direction
-			dir = -dir
+			dir = dir * -1
 			ray.target_position = dir * ray_length
 		else:
 			return dir
