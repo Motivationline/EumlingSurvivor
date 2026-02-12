@@ -149,9 +149,9 @@ shader_parameter/ProximityFade = 1.0
 shader_parameter/RippleSpeed = 4.0
 shader_parameter/SeeThrough = 0.8
 
-[node name="BossShark" unique_id=566136492 instance=ExtResource("1_f8085")]
+[node name="BossShark" unique_id=600562415 instance=ExtResource("1_f8085")]
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1369989162) index="1" unique_id=1624408568]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1996898353) index="0" unique_id=1624408568]
 transform = Transform3D(1, -4.5696025e-16, -1.7763568e-15, 1.7763568e-15, 1.6817792e-08, 1, -4.569602e-16, -1, 1.6817792e-08, 7.3285915e-16, -0.00031661987, -2.1370606)
 bone_name = "DEF_TAILFIN"
 bone_idx = 5
@@ -164,15 +164,15 @@ lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_tdynr")
 draw_pass_1 = SubResource("QuadMesh_mwvhb")
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=2002573625]
+[node name="AnimationPlayer" parent="." index="1" unique_id=201086321]
 autoplay = &"fin_walk"
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=75202033]
 tree_root = SubResource("AnimationNodeBlendTree_f8085")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Transition/current_state = "charge"
+parameters/Transition/current_state = "fin_walk"
 parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 5
+parameters/Transition/current_index = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=1615520195]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
