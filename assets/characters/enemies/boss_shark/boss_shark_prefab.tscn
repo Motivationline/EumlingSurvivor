@@ -2,15 +2,79 @@
 
 [ext_resource type="PackedScene" uid="uid://bju85d7ivy2tk" path="res://assets/characters/enemies/boss_shark/BossShark.glb" id="1_f8085"]
 [ext_resource type="Shader" uid="uid://bcr3jkq4ohhuh" path="res://game/levels/6-Vxx-Volcano/Shader/lava.tres" id="2_1oe4f"]
+[ext_resource type="Texture2D" uid="uid://sniqi7s4m1r0" path="res://assets/vfx/particle_pack/flame_05.png" id="3_lgeeb"]
+[ext_resource type="Texture2D" uid="uid://ci4ryvrg020gj" path="res://assets/vfx/particle_pack/flame_06.png" id="4_2ajlj"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_jtk2f"]
+frames = 2
+speed_scale = 6.4
+frame_0/texture = ExtResource("3_lgeeb")
+frame_1/texture = ExtResource("4_2ajlj")
+frame_1/duration = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dw5fl"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("AnimatedTexture_jtk2f")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_qrcxc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.800247, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kl2jc"]
+curve = SubResource("Curve_qrcxc")
+
+[sub_resource type="Gradient" id="Gradient_s4xx1"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.68333334, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ow06l"]
+gradient = SubResource("Gradient_s4xx1")
+
+[sub_resource type="Curve" id="Curve_i0o6h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.4089975, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_psjck"]
+curve = SubResource("Curve_i0o6h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tdynr"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 0, -1)
+spread = 30.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_psjck")
+color_ramp = SubResource("GradientTexture1D_ow06l")
+alpha_curve = SubResource("CurveTexture_kl2jc")
+
+[sub_resource type="QuadMesh" id="QuadMesh_mwvhb"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f8085"]
 animation = &"death_from_beneath"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jtk2f"]
+animation = &"charge_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dw5fl"]
+animation = &"charge_end"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1oe4f"]
 animation = &"fin_walk"
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gfhsp"]
-xfade_time = 0.1
 input_0/name = "dive_up"
 input_0/auto_advance = true
 input_0/break_loop_at_end = false
@@ -27,10 +91,18 @@ input_3/name = "death_from_beneath"
 input_3/auto_advance = false
 input_3/break_loop_at_end = false
 input_3/reset = true
-input_4/name = "charge"
-input_4/auto_advance = false
+input_4/name = "charge_start"
+input_4/auto_advance = true
 input_4/break_loop_at_end = false
 input_4/reset = true
+input_5/name = "charge"
+input_5/auto_advance = false
+input_5/break_loop_at_end = false
+input_5/reset = true
+input_6/name = "charge_end"
+input_6/auto_advance = true
+input_6/break_loop_at_end = false
+input_6/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gfhsp"]
 animation = &"charge_mouth_open"
@@ -43,9 +115,8 @@ animation = &"fin_dive"
 play_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f8085"]
-graph_offset = Vector2(-945.13684, -81.5578)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_1oe4f")
-nodes/Animation/position = Vector2(-600, -140)
+nodes/Animation/position = Vector2(-740, -180)
 nodes/Transition/node = SubResource("AnimationNodeTransition_gfhsp")
 nodes/Transition/position = Vector2(-280, -200)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_f8085")
@@ -53,10 +124,14 @@ nodes/Transition/position = Vector2(-280, -200)
 nodes/dive_down/node = SubResource("AnimationNodeAnimation_lgeeb")
 nodes/dive_down/position = Vector2(-740, 0)
 nodes/dive_up/node = SubResource("AnimationNodeAnimation_2ajlj")
-nodes/dive_up/position = Vector2(-740, -280)
+nodes/dive_up/position = Vector2(-740, -360)
 nodes/charge/node = SubResource("AnimationNodeAnimation_gfhsp")
-nodes/charge/position = Vector2(-680, 360)
-node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"dive_up", &"Transition", 1, &"Animation", &"Transition", 2, &"dive_down", &"Transition", 3, &"Animation 2", &"Transition", 4, &"charge"]
+nodes/charge/position = Vector2(-800, 520)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_jtk2f")
+"nodes/Animation 3/position" = Vector2(-760, 340)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_dw5fl")
+"nodes/Animation 4/position" = Vector2(-720, 700)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"dive_up", &"Transition", 1, &"Animation", &"Transition", 2, &"dive_down", &"Transition", 3, &"Animation 2", &"Transition", 4, &"Animation 3", &"Transition", 5, &"charge", &"Transition", 6, &"Animation 4"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_gfhsp"]
 size = Vector2(30, 30)
@@ -74,35 +149,22 @@ shader_parameter/ProximityFade = 1.0
 shader_parameter/RippleSpeed = 4.0
 shader_parameter/SeeThrough = 0.8
 
-[node name="BossShark" unique_id=1823984521 instance=ExtResource("1_f8085")]
+[node name="BossShark" unique_id=566136492 instance=ExtResource("1_f8085")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1100633461) index="0" unique_id=2137980250]
-bones/0/position = Vector3(2.0154494e-09, 0.053974085, -0.026311923)
-bones/0/rotation = Quaternion(0.020353168, 0.94129765, 0.33653185, 0.017060699)
-bones/1/rotation = Quaternion(0.018741427, 0.42806435, 0.90336215, 0.018616509)
-bones/2/rotation = Quaternion(-8.881784e-16, 0, -0.007846627, 0.99996924)
-bones/3/rotation = Quaternion(2.5800027e-31, -2.0619674e-30, -0.007846626, 0.99996924)
-bones/4/rotation = Quaternion(-7.806077e-31, -7.6358477e-31, 0.004073372, 0.9999918)
-bones/5/rotation = Quaternion(0.00027288514, -0.0227898, 0.004066934, 0.999732)
-bones/6/rotation = Quaternion(5.953746e-11, 1.2862164e-09, 0.015090879, 0.9998862)
-bones/7/rotation = Quaternion(0.46374103, -0.055430245, 0.10494416, 0.87798554)
-bones/9/rotation = Quaternion(0.020171402, -0.03536668, 0.05452256, 0.9976822)
-bones/11/position = Vector3(-0.64003617, 0.4843353, 0.28878868)
-bones/11/rotation = Quaternion(-1.5926284e-08, 2.886322e-09, -3.7761096e-09, 1)
-bones/13/position = Vector3(0.6399085, 0.48422673, 0.2884552)
-bones/13/rotation = Quaternion(-7.198591e-09, 1.8022397e-09, -6.256225e-09, 1)
-bones/15/position = Vector3(2.7433593e-08, -0.11853242, -0.46862644)
-bones/15/rotation = Quaternion(-0.69941884, -0.0050911955, -0.002968888, 0.7146879)
-bones/16/position = Vector3(-1.2567805e-08, -0.11682584, 0.96880096)
-bones/16/rotation = Quaternion(0.030817663, 0.68727916, 0.7257192, -0.0054186946)
-bones/16/scale = Vector3(0.99999994, 1, 0.99999976)
-bones/17/rotation = Quaternion(3.699097e-08, -2.4733117e-08, -1.5643997e-10, 1)
-bones/18/position = Vector3(-0.55539805, -0.42694193, 0.07994443)
-bones/18/rotation = Quaternion(-0.22058447, 0.251995, 0.71430427, 0.6145002)
-bones/20/position = Vector3(0.5553982, -0.4269419, 0.0799444)
-bones/20/rotation = Quaternion(0.22058438, 0.2519949, 0.7143042, -0.6145003)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1369989162) index="1" unique_id=1624408568]
+transform = Transform3D(1, -4.5696025e-16, -1.7763568e-15, 1.7763568e-15, 1.6817792e-08, 1, -4.569602e-16, -1, 1.6817792e-08, 7.3285915e-16, -0.00031661987, -2.1370606)
+bone_name = "DEF_TAILFIN"
+bone_idx = 5
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=480723018]
+[node name="FireTrail" type="GPUParticles3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" unique_id=2062410901]
+transform = Transform3D(0.9943552, -0.106103, -0.0002034332, -0.0001721603, 0.0003039348, -1, 0.10610307, 0.9943552, 0.00028396785, 0.029334996, -0.51598537, 0.30876982)
+material_override = SubResource("StandardMaterial3D_dw5fl")
+amount = 12
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_tdynr")
+draw_pass_1 = SubResource("QuadMesh_mwvhb")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=2002573625]
 autoplay = &"fin_walk"
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=75202033]
@@ -110,7 +172,7 @@ tree_root = SubResource("AnimationNodeBlendTree_f8085")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Transition/current_state = "charge"
 parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 4
+parameters/Transition/current_index = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=1615520195]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)

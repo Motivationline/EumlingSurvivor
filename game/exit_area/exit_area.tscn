@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bujhyll6x4iak" path="res://assets/models/Jungle/JunglePlant/jungle_plant_big.tscn" id="3_2dq3v"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="4_gva8b"]
 [ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_1.wav" id="5_2dq3v"]
+[ext_resource type="AudioStream" uid="uid://jdj6s0mg7a6p" path="res://assets/sound/obstacle_sound_effects/exit_area/chime.wav" id="6_dmamu"]
 [ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_2.wav" id="6_ixbc8"]
 [ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_3.wav" id="7_dmamu"]
 [ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_4.wav" id="8_vofq4"]
@@ -425,6 +426,7 @@ script = ExtResource("9_2dq3v")
 metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
 [node name="Chime" parent="SoundEffectManager" unique_id=1064576579 instance=ExtResource("4_gva8b")]
+stream = ExtResource("6_dmamu")
 
 [node name="Leaves" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=857230476]
 stream = SubResource("AudioStreamRandomizer_mu12n")
