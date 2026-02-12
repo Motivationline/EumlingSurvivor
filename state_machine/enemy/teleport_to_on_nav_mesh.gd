@@ -33,7 +33,7 @@ enum TARGET_TYPES { PLAYER, TEAMMEMBER, RANDOM, BACK }
 var nav_agent: NavigationAgent3D
 var done: bool = false
 
-func setup(_parent: Enemy, _animation_tree: AnimationTree):
+func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 
 func enter():

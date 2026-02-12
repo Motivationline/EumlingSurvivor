@@ -29,11 +29,11 @@ var consume_resource_on_enter: bool = false
 ## use the full path for the name, e.g. "parameters/conditions/attack" and make sure to use the correct type!
 @export var animation_trigger: Dictionary[String, Variant]
 
-var parent: Enemy
+var parent: StateMachinePoweredEntity
 var anim_player: AnimationTree
 
 ## Called once when the state machine is first initialized 
-func setup(_parent: Enemy, _animation: AnimationTree) -> void:
+func setup(_parent: StateMachinePoweredEntity, _animation: AnimationTree) -> void:
 	parent = _parent
 	anim_player = _animation
 

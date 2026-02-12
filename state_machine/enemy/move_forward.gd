@@ -25,7 +25,7 @@ var start_position: Vector3
 var timer: Timer
 
 
-func setup(_parent: Enemy, _animation_tree: AnimationTree):
+func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	timer = Timer.new()
 	timer.one_shot = true

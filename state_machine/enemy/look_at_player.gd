@@ -26,7 +26,7 @@ class_name LookAtPlayerState
 var done: bool = false
 var player: CharacterBody3D
 
-func setup(_parent: Enemy, _animation_tree: AnimationTree):
+func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	parent = _parent
 	player = get_tree().get_nodes_in_group("Player")[0]

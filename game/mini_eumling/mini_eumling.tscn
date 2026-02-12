@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2jek12j4wcgb"]
+[gd_scene format=3 uid="uid://b2jek12j4wcgb"]
 
 [ext_resource type="Script" uid="uid://7s5cfab4ondl" path="res://game/mini_eumling/mini_eumling.gd" id="1_hcopo"]
+[ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="2_tu1st"]
+[ext_resource type="Script" uid="uid://b2lasa256a4fq" path="res://state_machine/mini_eumling/follow_player_as_flock.gd" id="3_ji0ja"]
 
-[node name="mini_eumling" type="Node3D" groups=["MiniEumling"]]
+[node name="mini_eumling" type="CharacterBody3D" unique_id=1453808557 node_paths=PackedStringArray("state_machine") groups=["MiniEumling"]]
 script = ExtResource("1_hcopo")
+state_machine = NodePath("StateMachine")
+
+[node name="StateMachine" type="Node" parent="." unique_id=759936884 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_tu1st")
+initial_state = NodePath("FollowPlayerAsFlockState")
+metadata/_custom_type_script = "uid://cio21hucnk80k"
+
+[node name="FollowPlayerAsFlockState" type="Node" parent="StateMachine" unique_id=1964109298 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_ji0ja")
+min_distance = 0.2
+max_distance = 1.0
+group = 1
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://b2lasa256a4fq"
