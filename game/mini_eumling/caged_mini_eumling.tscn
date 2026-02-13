@@ -1,15 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://6lim36lw260g"]
+[gd_scene format=3 uid="uid://6lim36lw260g"]
 
-[ext_resource type="Script" uid="uid://7s5cfab4ondl" path="res://game/mini_eumling/mini_eumling.gd" id="1_wehp6"]
 [ext_resource type="PackedScene" uid="uid://csxh6oltwnjsa" path="res://assets/models/cage/Cage.glb" id="2_rt8xe"]
 
-[node name="caged_mini_eumling" type="Node3D"]
+[node name="caged_mini_eumling" type="Node3D" unique_id=1087139482]
 
-[node name="MiniEumling" type="Node3D" parent="."]
+[node name="MiniEumling" type="CharacterBody3D" parent="." unique_id=284569233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05326149, 0)
-script = ExtResource("1_wehp6")
-metadata/_custom_type_script = "uid://7s5cfab4ondl"
 
-[node name="cage" type="Node3D" parent="."]
+[node name="cage" type="Node3D" parent="." unique_id=938304996]
 
-[node name="Cage2" parent="cage" instance=ExtResource("2_rt8xe")]
+[node name="Cage2" parent="cage" unique_id=1873368903 instance=ExtResource("2_rt8xe")]
