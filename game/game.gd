@@ -25,23 +25,17 @@ func _ready() -> void:
 	# remove mobile overlay if not on mobile
 	if not Data.is_on_mobile:
 		touch_joystick_overlay.queue_free()
-	
 
-var current_level: int = 0
 var currently_loaded_level: Level
-func choose_next_level() -> String:
-	current_level += 1
-	var level_string = str(current_level).pad_zeros(3)
-	return level_string
 
 func load_level():
+	if player.dead:
+		return
+	
 	if not faded_to_black:
 		scene_fade_animation_player.play("fade")
 		await scene_fade_animation_player.animation_finished
 		faded_to_black = true
-
-	if player.health == 0:
-		player.reset()
 
 	# remove old stuff
 	var children = level_wrapper.get_children()
