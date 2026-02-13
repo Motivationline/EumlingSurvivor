@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://buu1fct1h48qb"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_5lodq"]
+[ext_resource type="PackedScene" uid="uid://dnrlfw8cygdwx" path="res://assets/characters/enemies/boss_shark/boss_shark_prefab.tscn" id="2_3ft0s"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_yjhk7"]
+[ext_resource type="Script" uid="uid://cp33buoo5xtgx" path="res://state_machine/enemy/pick_random_state.gd" id="3_pytg8"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_t2b6n"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_tvpjs"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_a5e3p"]
+[ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="4_cuk8p"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="6_cuk8p"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="7_me4rn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yjhk7"]
+radius = 0.82714844
+height = 1.6995239
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pytg8"]
+radius = 0.82714844
+height = 4.8585205
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cuk8p"]
+radius = 0.742814
+
+[node name="BossShark" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_5lodq")]
+collision_layer = 81
+collision_mask = 64
+health = 500.0
+speed = 2.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("PickRandomState")
+
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=113968388 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_yjhk7")
+min_distance = 4.0
+max_distance = 8.0
+speed_override = 2.0
+speed_override_active = true
+next_state = NodePath("../PickRandomState")
+repeat_self = 2
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "fin_walk"
+})
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="PickRandomState" type="Node" parent="StateMachine" index="1" unique_id=36666431 node_paths=PackedStringArray("states")]
+script = ExtResource("3_pytg8")
+states = [NodePath("../ChargeAttack/LookAtPlayerState"), NodePath("../MoveRandomOnNavMeshState")]
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "fin_dive"
+})
+metadata/_custom_type_script = "uid://cp33buoo5xtgx"
+
+[node name="ChargeAttack" type="Node" parent="StateMachine" index="2" unique_id=1246226805]
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/ChargeAttack" index="0" unique_id=229604355 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_t2b6n")
+wait_time = 0.8
+rotation_speed = 20.0
+next_state = NodePath("../MoveForwardState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "dive_down"
+})
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="MoveForwardState" type="Node" parent="StateMachine/ChargeAttack" index="1" unique_id=73102549 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_cuk8p")
+max_distance = 10.0
+max_time = 3.0
+speed_override = 8.0
+speed_override_active = true
+next_state = NodePath("../WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "charge_start"
+})
+metadata/_custom_type_script = "uid://cjkeo3brnvde2"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/ChargeAttack" index="2" unique_id=433905457 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_cuk8p")
+next_state = NodePath("../../PickRandomState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "charge_end"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="DeathFromBelow" type="Node" parent="StateMachine" index="3" unique_id=643794178]
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/DeathFromBelow" index="0" unique_id=584227813 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_t2b6n")
+wait_time = 0.8
+rotation_speed = 20.0
+next_state = NodePath("../MoveTowardsPlayerState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "dive_down"
+})
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/DeathFromBelow" index="1" unique_id=1816508408 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_me4rn")
+wait_time = 0.5
+stop_distance = 0.1
+rotation_speed = 50.0
+speed_override = 20.0
+speed_override_active = true
+debug_show_path = true
+next_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/DeathFromBelow" index="2" unique_id=1081690435 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_cuk8p")
+wait_time = 4.5
+next_state = NodePath("../../PickRandomState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "death_from_beneath"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="BossShark" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=566136492 instance=ExtResource("2_3ft0s")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Hitbox" parent="." index="6" unique_id=1146100980 instance=ExtResource("3_tvpjs")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=126556913]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3420411, -0.28550005)
+shape = SubResource("CapsuleShape3D_yjhk7")
+
+[node name="Hurtbox" parent="." index="7" unique_id=249427817 instance=ExtResource("4_a5e3p")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=53060399]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.34204108, 1.0665646)
+shape = SubResource("CapsuleShape3D_pytg8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="8" unique_id=2116698795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.47603652)
+shape = SubResource("SphereShape3D_cuk8p")

@@ -1,16 +1,27 @@
 [gd_scene format=3 uid="uid://bxglfcun4vtdd"]
 
 [ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_ckxew"]
-[ext_resource type="PackedScene" uid="uid://dnrlfw8cygdwx" path="res://assets/characters/enemies/boss_shark/boss_shark_prefab.tscn" id="2_ycyey"]
+[ext_resource type="PackedScene" uid="uid://buu1fct1h48qb" path="res://game/enemies/6-volcano/boss_shark/boss_shark.tscn" id="2_ycyey"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ycyey"]
+vertices = PackedVector3Array(-4.5, 1, -14.5, -4.5, 1, 4.75, 14.75, 1, 4.75, 14.75, 1, -14.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_radius = 0.25
+agent_max_climb = 0.0
+edge_max_error = 0.25
 
 [node name="Level" unique_id=1973423689 instance=ExtResource("1_ckxew")]
+is_boss_level = true
 
-[node name="FloorGridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(1440811827) index="0" unique_id=1637048433]
+[node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
+navigation_mesh = SubResource("NavigationMesh_ycyey")
+
+[node name="FloorGridMap" parent="NavigationRegion3D" index="0" unique_id=1637048433]
 data = {
 "cells": PackedInt32Array(0, 0, 1, 0, 65535, 1, 1, 65535, 1, 1, 0, 1)
 }
 
-[node name="BorderGridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(1440811827) index="1" unique_id=1833051751]
+[node name="BorderGridMap" parent="NavigationRegion3D" index="1" unique_id=1833051751]
 data = {
 "cells": PackedInt32Array(10, 10, 1, 65526, 10, 1, 65527, 10, 1, 65528, 10, 1, 65529, 10, 1, 65530, 10, 1, 65531, 10, 1, 65532, 10, 1, 65533, 10, 1, 65534, 10, 1, 65535, 10, 1, 7, 10, 1, 8, 10, 1, 9, 10, 1, 6, 10, 1, 5, 10, 1, 4, 10, 1, 3, 10, 1, 2, 10, 1, 1, 10, 1, 0, 10, 1, 65525, 10, 1, 65525, 9, 1, 65525, 8, 1, 65525, 6, 1, 65525, 5, 1, 65525, 4, 1, 65525, 3, 1, 65525, 2, 1, 65525, 1, 1, 65525, 0, 1, 65525, 65535, 1, 65525, 65534, 1, 65525, 65533, 1, 65525, 65532, 1, 65525, 65530, 1, 65525, 65529, 1, 65525, 65528, 1, 65525, 65527, 1, 65525, 65526, 1, 65525, 65525, 1, 65525, 7, 1, 65525, 65531, 1, 11, 10, 1, 30, 10, 1, 12, 10, 1, 29, 10, 1, 28, 10, 1, 13, 10, 1, 15, 10, 1, 16, 10, 1, 17, 10, 1, 14, 10, 1, 18, 10, 1, 19, 10, 1, 20, 10, 1, 21, 10, 1, 22, 10, 1, 23, 10, 1, 24, 10, 1, 25, 10, 1, 26, 10, 1, 27, 10, 1, 30, 9, 1, 30, 65507, 1, 30, 65508, 1, 30, 65509, 1, 30, 65510, 1, 30, 65511, 1, 30, 65512, 1, 30, 65513, 1, 30, 65514, 1, 30, 65515, 1, 30, 65516, 1, 30, 65517, 1, 30, 65518, 1, 30, 65519, 1, 30, 65520, 1, 30, 65521, 1, 30, 65522, 1, 30, 65523, 1, 30, 65524, 1, 30, 65525, 1, 30, 65526, 1, 30, 65527, 1, 30, 65528, 1, 30, 65529, 1, 30, 65530, 1, 30, 65531, 1, 30, 65532, 1, 30, 65533, 1, 30, 65534, 1, 30, 65535, 1, 30, 0, 1, 30, 1, 1, 30, 2, 1, 30, 3, 1, 30, 4, 1, 30, 5, 1, 30, 6, 1, 30, 7, 1, 30, 8, 1, 30, 65506, 1, 30, 65505, 1, 29, 65505, 1, 28, 65505, 1, 27, 65505, 1, 26, 65505, 1, 25, 65505, 1, 24, 65505, 1, 23, 65505, 1, 22, 65505, 1, 21, 65505, 1, 20, 65505, 1, 19, 65505, 1, 18, 65505, 1, 17, 65505, 1, 16, 65505, 1, 15, 65505, 1, 14, 65505, 1, 13, 65505, 1, 12, 65505, 1, 11, 65505, 1, 10, 65505, 1, 9, 65505, 1, 8, 65505, 1, 7, 65505, 1, 6, 65505, 1, 5, 65505, 1, 4, 65505, 1, 3, 65505, 1, 2, 65505, 1, 1, 65505, 1, 0, 65505, 1, 65535, 65505, 1, 65534, 65505, 1, 65533, 65505, 1, 65532, 65505, 1, 65531, 65505, 1, 65530, 65505, 1, 65529, 65505, 1, 65528, 65505, 1, 65527, 65505, 1, 65526, 65505, 1, 65525, 65505, 1, 65525, 65506, 1, 65525, 65507, 1, 65525, 65508, 1, 65525, 65509, 1, 65525, 65510, 1, 65525, 65511, 1, 65525, 65524, 1, 65525, 65523, 1, 65525, 65522, 1, 65525, 65521, 1, 65525, 65520, 1, 65525, 65519, 1, 65525, 65518, 1, 65525, 65517, 1, 65525, 65516, 1, 65525, 65515, 1, 65525, 65514, 1, 65525, 65513, 1, 65525, 65512, 1)
 }
@@ -66,5 +77,6 @@ visible = false
 [node name="Lava" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="15" unique_id=1888487937]
 transform = Transform3D(-2.625, 3.96364e-07, 1.732562e-14, 0, -1.1474239e-07, 2.625, 3.96364e-07, 2.625, 1.1474239e-07, 5.7586665, -0.41393697, -4.748145)
 
-[node name="BossShark" parent="." index="6" unique_id=1547842142 instance=ExtResource("2_ycyey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05500698, 0.48662496, 1.020931)
+[node name="Enemies" type="Node3D" parent="." index="6" unique_id=63218165]
+
+[node name="BossShark" parent="Enemies" index="0" unique_id=1898691 instance=ExtResource("2_ycyey")]
