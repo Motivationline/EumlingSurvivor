@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cghhnri00gbe4" path="res://assets/ui/SketchJoystickSketch.png" id="4_j8tme"]
 [ext_resource type="PackedScene" uid="uid://bojgdqih3kgwl" path="res://game/ui/debug_upgrade_view.tscn" id="5_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://dlxnvjne1irpy" path="res://game/ui/StartScreen/area_picker.tscn" id="6_3vho3"]
-[ext_resource type="PackedScene" uid="uid://uyyg1ut65j1" path="res://game/sound/music_player/music_player.tscn" id="6_dakft"]
 [ext_resource type="PackedScene" uid="uid://d0caudp08babr" path="res://game/ui/styleTest/PauseMenuStyleTest.tscn" id="7_l8g03"]
 [ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/StartScreen/graphics_settings.tscn" id="7_qf6n1"]
 [ext_resource type="PackedScene" uid="uid://bfqnaivntys0e" path="res://game/ui/styleTest/popUpStyleTest.tscn" id="8_j8tme"]
@@ -138,9 +137,6 @@ layer = 128
 
 [node name="GraphicsSettings" parent="AreaChoiceOverlay" unique_id=1082587673 instance=ExtResource("7_qf6n1")]
 
-[node name="MusicPlayer" parent="." unique_id=527853792 groups=["MusicPlayer"] instance=ExtResource("6_dakft")]
-debug = false
-
 [node name="pauseMenuStyleTest" type="CanvasLayer" parent="." unique_id=681765596]
 visible = false
 
@@ -159,5 +155,3 @@ visible = false
 [node name="UpgradeView" parent="." unique_id=1120486040 instance=ExtResource("10_j8tme")]
 layer = 11
 visible = false
-
-[connection signal="requestMusic" from="." to="MusicPlayer" method="_on_game_request_music"]

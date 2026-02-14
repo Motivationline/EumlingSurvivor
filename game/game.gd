@@ -11,7 +11,7 @@ var player: Player
 
 @onready var debug_upgrade_view: CanvasLayer = $DebugUpgradeView
 
-signal requestMusic
+#signal requestMusic
 
 var faded_to_black: bool = true
 var levels_to_load: Array[String] = []
@@ -21,7 +21,8 @@ func _ready() -> void:
 	add_child(player)
 	# init player here.
 	player.died.connect(return_to_main_menu)
-	requestMusic.emit(false, MusicPlayer.LEVEL.MENU)
+	MusicPlayer._on_game_request_music()
+	#requestMusic.emit(false, MusicPlayer.LEVEL.MENU)
 	# remove mobile overlay if not on mobile
 	if not Data.is_on_mobile:
 		touch_joystick_overlay.queue_free()
@@ -58,8 +59,8 @@ func load_level():
 		new_level.spawn_player(player)
 		new_level.level_finished.connect(level_finished)
 		new_level.level_ended.connect(level_ended)
-		
-		requestMusic.emit(false, new_level.music)
+		MusicPlayer._on_game_request_music(false, new_level.music)
+
 
 		currently_loaded_level = new_level
 	

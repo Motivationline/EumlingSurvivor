@@ -1,4 +1,4 @@
-class_name MusicPlayer extends AudioStreamPlayer
+extends AudioStreamPlayer
 
 
 
@@ -34,6 +34,7 @@ func _ready():
 	if debug:
 		debug_setup()
 		debug_ui.visible = true
+	queue_specific_track(LEVEL.CHASE)
 
 
 func debug_setup():

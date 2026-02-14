@@ -35,7 +35,8 @@ func play_sound(sounds, focus:bool = false, persistent = false):
 		if sound_list.has(sound_name):
 			var sound = sound_list[sound_name] 
 			if persistent:
-				sound.reparent(music_player)
+				print((sound.get_parent().get_parent().get_parent()))
+				sound.reparent(sound.get_parent().get_parent().get_parent())
 				sound.finished.connect(sound.queue_free)
 
 			sound.play()
