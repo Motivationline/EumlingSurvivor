@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://d2d31toherh53"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_ehkq2"]
+[ext_resource type="PackedScene" uid="uid://cxdkd7r0krykq" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball_projectile_visual.tscn" id="2_ib3xs"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_wdsns"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_dthyk"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_4kao4"]
+
+[sub_resource type="Curve" id="Curve_4kao4"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.6513934, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dthyk"]
+radius = 0.13781866
+
+[node name="Projectile" unique_id=1865303972 node_paths=PackedStringArray("hurt_box", "movement", "on_world_collision", "on_end_of_life") instance=ExtResource("1_ehkq2")]
+lifetime = 5.0
+hurt_box = NodePath("Hurtbox")
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_end_of_life = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=1663781529]
+script = ExtResource("2_wdsns")
+speed = SubResource("Curve_4kao4")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=1021987405]
+script = ExtResource("3_dthyk")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="Magma_Ball" parent="." index="2" unique_id=153719346 instance=ExtResource("2_ib3xs")]
+
+[node name="Hurtbox" parent="." index="3" unique_id=1873879224 instance=ExtResource("4_4kao4")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=34940958]
+shape = SubResource("SphereShape3D_dthyk")

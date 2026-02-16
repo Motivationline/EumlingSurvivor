@@ -13,7 +13,7 @@ fadein_time = 0.1
 fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_snqxu"]
-graph_offset = Vector2(-603.15393, -64.27841)
+graph_offset = Vector2(-743.85535, -116.82327)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_4acqn")
 nodes/Animation/position = Vector2(-240, 80)
 nodes/Shoot/node = SubResource("AnimationNodeOneShot_vd0am")
@@ -22,7 +22,7 @@ nodes/Shoot/position = Vector2(40, 60)
 "nodes/Animation 2/position" = Vector2(-240, 260)
 node_connections = [&"output", 0, &"Shoot", &"Shoot", 0, &"Animation", &"Shoot", 1, &"Animation 2"]
 
-[node name="Toad" unique_id=402255301 instance=ExtResource("1_snqxu")]
+[node name="Toad" unique_id=1388801067 instance=ExtResource("1_snqxu")]
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=185618591]
 tree_root = SubResource("AnimationNodeBlendTree_snqxu")
