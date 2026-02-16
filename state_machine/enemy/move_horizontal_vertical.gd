@@ -12,6 +12,12 @@ class_name MoveHorizontalVerticalState
 
 ## true = vertical, false = horizontal
 @export var direction: bool
+## at what distance the entity stops infront of level Geometry
+@export var stop_distance: float = 1
+## value to control how much the entity "straves"
+@export_range(0,360,1) var rotation_offset: float
+## raycast to handle pathing
+@export var path_ray: RayCast3D
 
 @export_group("Overrides")
 ## Movement Speed Override
@@ -25,39 +31,22 @@ class_name MoveHorizontalVerticalState
 var nav_agent: NavigationAgent3D
 var done: bool = false
 
-var ray: RayCast3D = RayCast3D.new()
-var ray_length = 1
 var move_direction: Vector3
+
+var ray_length = 30
+
+var pos1: Vector3
+var pos2: Vector3
 
 func setup(_parent: Enemy, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
-	
-	#TODO: why only works once
 
 func enter():
 	super()
-	#TODO: look for a better way to prevent duplicates or the ray existing even after the state has been "force swapped"
-	var childs = parent.get_children()
 	
-	var ray_duplicate = childs.filter(func(node): return node.name == "raymond")
-	if ray_duplicate != null:
-		print("raymond does not exist yet")
-		ray.name = "raymond"
-		parent.add_child(ray)
-	else:
-		print("found a duplicate")
-		ray = ray_duplicate[0]
-		
-	#for node in childs:
-		#if node.name == "raymond":
-			#print("found a duplicate")
-			#ray = node
-		#else:
-			#print("raymond does not exist yet")
-			#ray.name = "raymond"
-			#parent.add_child(ray)
+	#TODO: create 2 Raycast, shoot front and back, save collision points, move between them
 	
-	ray.global_position = parent.position
+	path_ray.global_position = parent.position
 	
 	move_direction = get_new_direction()
 
@@ -69,63 +58,55 @@ func physics_process(_delta: float) -> State:
 
 	parent.move_and_slide()
 	
-	#print("Ray pos: ", ray.global_position)
-	#print("enemy pos: ", parent.global_position)
+	# checks if the entity is in stop distance to the target position
+	if parent.global_position.distance_to(pos1) < stop_distance || parent.global_position.distance_to(pos2) < stop_distance:
+		done = true
+		parent.velocity = Vector3.ZERO
 	
-	if ray.is_colliding():
-		print("coliding with wall")
-		#get the colliders group and check if its the level
-		if ray.get_collider().is_in_group("Level"):
-			print("hit level")
-			done = true
 	return null
 
 func get_new_direction() -> Vector3:
+	
 	# vertical direction
 	if direction:
-		var dir: Vector3 = Vector3(0,0,randf_range(-1,1)).normalized()
-		
-		ray.target_position = dir * ray_length
-		
-		if ray.is_colliding() && ray.get_collider().is_in_group("Level"):
-			#this direction is INVALID 😮😮😮
-			#try flipped direction
-			print("this dir is invalid: ", dir)
-			dir = dir * -1
-			ray.target_position = dir * ray_length
-		else:
-			print("this dir is valid: ", dir)
-			return dir
-		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
-			#now we have a problem, we stuck 😬😬😬
-			#enter next state
-			done = true
-			print("we are stuck")
-			return Vector3.ZERO
-		else:
-			return dir
-			print("this dir is valid: ", dir)
+		parent.rotation.y = 0 + rotation_offset
+
 	# horizontal direction
 	else:
-		var dir: Vector3 = Vector3(randf_range(-1,1),0,0).normalized()
-
-		ray.target_position = dir * ray_length
-		
-		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
-			#this direction is INVALID 😮😮😮
-			#try flipped direction
-			dir = dir * -1
-			ray.target_position = dir * ray_length
-		else:
-			return dir
-		if ray.is_colliding()  && ray.get_collider().is_in_group("Level"):
-			#now we have a problem, we stuck 😬😬😬
-			#enter next state
-			done = true
-			return Vector3.ZERO
-		else:
-			return dir
-	#done = false
+		parent.rotation.y = 90 + rotation_offset
+	
+	#adjust for rotation offset to create "strafe like" behavior
+	path_ray.rotation.y -= rotation_offset
+	
+	#check forwards:
+	path_ray.target_position = parent.global_basis.z * ray_length
+	
+	if path_ray.is_colliding():
+		pos1 = path_ray.get_collision_point()
+		pos1.y = parent.position.y #make the entity walk on a straight plane
+	else:
+		pos1 = parent.position
+	
+	#check backwards:
+	path_ray.target_position = -parent.global_basis.z * ray_length
+	
+	if path_ray.is_colliding():
+		pos2 = path_ray.get_collision_point()
+		pos2.y = parent.position.y #make the entity walk on a straight plane
+	else:
+		pos2 = parent.position
+	
+	#pick direction based on random weights
+	var mix: float = randf_range(0,1)
+	var vec1: Vector3 = (pos1 - parent.position) * mix
+	var vec2: Vector3 = (pos2 - parent.position) * 1/mix
+	var result: Vector3 = vec1 + vec2
+	var dir = result.normalized()
+	
+	print("pos1: ", pos1)
+	print("pos2: ", pos2)
+	print("dir: ", dir)
+	return dir
 
 func target_reached():
 	await get_tree().create_timer(wait_time).timeout
