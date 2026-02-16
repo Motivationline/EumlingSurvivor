@@ -42,6 +42,8 @@ metadata/_custom_type_script = "uid://l8142vs0gken"
 
 [node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="2" unique_id=1875998004]
 script = ExtResource("4_54631")
+use_prediction = true
+prediction_factor = 1.0
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
 [node name="SetTargetsEventStrategy" type="Node" parent="MovementStrategies" index="3" unique_id=155478377 node_paths=PackedStringArray("targeting_strats")]
@@ -50,7 +52,6 @@ targeting_strats = [NodePath("../UniversalTargetingProjectileTargetStrategy")]
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
 [node name="Magma_Ball" parent="." index="2" unique_id=153719346 instance=ExtResource("2_ib3xs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27837393, 0)
 
 [node name="Hitbox" parent="." index="3" unique_id=1015019145 instance=ExtResource("7_54631")]
 collision_layer = 43
