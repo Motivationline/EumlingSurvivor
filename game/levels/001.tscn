@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://htuftvnpan0c"]
+[gd_scene format=3 uid="uid://htuftvnpan0c"]
 
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_uile8"]
@@ -39,7 +39,6 @@ ambient_light_color = Color(0.774, 0.8727, 0.9, 1)
 tonemap_mode = 4
 glow_enabled = true
 glow_intensity = 0.2
-glow_blend_mode = 1
 adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 1.51
@@ -70,23 +69,23 @@ shader_parameter/direction2 = Vector2(0.03, 0.03)
 shader_parameter/highlight_threshold = 0.394000018715
 shader_parameter/main_threshhold = 0.2090000099275
 
-[node name="001" type="Node3D" node_paths=PackedStringArray("player_spawn", "goal_area") groups=["Level"]]
+[node name="001" type="Node3D" unique_id=596384730 node_paths=PackedStringArray("player_spawn", "goal_area") groups=["Level"]]
 script = ExtResource("1_uile8")
 player_spawn = NodePath("PlayerSpawnMarker")
 goal_area = NodePath("LeaveArea")
 music = 1
 
-[node name="PlayerSpawnMarker" type="Marker3D" parent="."]
+[node name="PlayerSpawnMarker" type="Marker3D" parent="." unique_id=1607536606]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
-[node name="LeaveArea" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("2_qbpv8")]
+[node name="LeaveArea" parent="." unique_id=1304689597 node_paths=PackedStringArray("parent") instance=ExtResource("2_qbpv8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.71369)
 parent = NodePath("..")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1399171658]
 navigation_mesh = SubResource("NavigationMesh_0s0fg")
 
-[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D" unique_id=723148081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("StandardMaterial3D_j48a7")
 use_collision = true
@@ -94,27 +93,27 @@ collision_layer = 0
 collision_mask = 0
 size = Vector3(20, 1, 20)
 
-[node name="Obstacle" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="Obstacle" type="CSGBox3D" parent="NavigationRegion3D" unique_id=773700058]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 material_override = SubResource("StandardMaterial3D_fnkxu")
 use_collision = true
 collision_mask = 0
 
-[node name="Obstacle2" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="Obstacle2" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1452143612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.267578, 0.5, 4.70825)
 material_override = SubResource("StandardMaterial3D_fnkxu")
 use_collision = true
 collision_mask = 0
 size = Vector3(9.3125, 1, 1)
 
-[node name="Obstacle3" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="Obstacle3" type="CSGBox3D" parent="NavigationRegion3D" unique_id=258466775]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.267578, 0.5, -3.92039)
 material_override = SubResource("StandardMaterial3D_fnkxu")
 use_collision = true
 collision_mask = 0
 size = Vector3(9.3125, 1, 1)
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=541827332]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.104352, 12.5917, 7.49343)
 projection = 1
 fov = 45.0
@@ -123,50 +122,50 @@ near = 0.01
 far = 30.0
 script = ExtResource("1_j48a7")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1344726379]
 transform = Transform3D(0.9469659, -0.18320374, -0.26399282, 0.0877022, -0.6430056, 0.7608235, -0.30913436, -0.74362653, -0.5928369, 0, 7.560488, 0)
 
-[node name="Lights" type="Node3D" parent="."]
+[node name="Lights" type="Node3D" parent="." unique_id=1660317744]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=392173299]
 transform = Transform3D(0.8023737, -0.5798261, 0.14141548, -0.41826475, -0.37728322, 0.8262637, -0.42573592, -0.72212094, -0.54524404, -5.2903, 7.71908, -5.02786)
 light_bake_mode = 1
 shadow_enabled = true
 shadow_transmittance_bias = -0.185
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights" unique_id=612664435]
 environment = SubResource("Environment_j48a7")
 
-[node name="Weapons" type="Node3D" parent="."]
+[node name="Weapons" type="Node3D" parent="." unique_id=1564619264]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.0337)
 
-[node name="WeaponSwitch" parent="Weapons" node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
+[node name="WeaponSwitch" parent="Weapons" unique_id=1946724622 node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30828, 0.0963982, -0.00215626)
 weapon_name = "Bouncing Ball"
 weapon = NodePath("BouncingBallWeapon")
 
-[node name="BouncingBallWeapon" type="Node3D" parent="Weapons/WeaponSwitch"]
+[node name="BouncingBallWeapon" type="Node3D" parent="Weapons/WeaponSwitch" unique_id=1689576715]
 script = ExtResource("6_cf6nt")
 entity_to_spawn = ExtResource("6_geo0b")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="WeaponSwitch2" parent="Weapons" node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
+[node name="WeaponSwitch2" parent="Weapons" unique_id=1507415633 node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34403, 0.0963982, -0.00215626)
 weapon_name = "Boomerang"
 weapon = NodePath("BoomerangWeapon")
 
-[node name="BoomerangWeapon" type="Node3D" parent="Weapons/WeaponSwitch2"]
+[node name="BoomerangWeapon" type="Node3D" parent="Weapons/WeaponSwitch2" unique_id=1133557205]
 script = ExtResource("6_cf6nt")
 entity_to_spawn = ExtResource("7_geo0b")
 target_strategy = SubResource("Resource_s51n4")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="WeaponSwitch3" parent="Weapons" node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
+[node name="WeaponSwitch3" parent="Weapons" unique_id=1115072020 node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.707872, 0.0963982, -0.00215626)
 weapon_name = "curve projectile"
 weapon = NodePath("CurveWeapon")
 
-[node name="CurveWeapon" type="Node3D" parent="Weapons/WeaponSwitch3"]
+[node name="CurveWeapon" type="Node3D" parent="Weapons/WeaponSwitch3" unique_id=885834192]
 script = ExtResource("6_cf6nt")
 entity_to_spawn = ExtResource("8_crm5u")
 amount_of_spawns = 3
@@ -174,22 +173,22 @@ time_between_entities = 0.1
 time_between_bursts = 0.5
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="WeaponSwitch4" parent="Weapons" node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
+[node name="WeaponSwitch4" parent="Weapons" unique_id=1726797466 node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64899, 0.0963982, -0.00215626)
 weapon_name = "example bullet"
 weapon = NodePath("example_weapon")
 
-[node name="example_weapon" type="Node3D" parent="Weapons/WeaponSwitch4"]
+[node name="example_weapon" type="Node3D" parent="Weapons/WeaponSwitch4" unique_id=36957939]
 script = ExtResource("6_cf6nt")
 entity_to_spawn = ExtResource("9_cf6nt")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="dragster_weapon" parent="Weapons" node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
+[node name="dragster_weapon" parent="Weapons" unique_id=1696656138 node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.48525, 0.0963982, -0.00215626)
 weapon_name = "dragster projectile"
 weapon = NodePath("EntitySpawner")
 
-[node name="EntitySpawner" type="Node3D" parent="Weapons/dragster_weapon"]
+[node name="EntitySpawner" type="Node3D" parent="Weapons/dragster_weapon" unique_id=1631180396]
 script = ExtResource("6_cf6nt")
 entity_to_spawn = ExtResource("10_36van")
 amount_of_spawns = 2
@@ -197,61 +196,61 @@ time_between_entities = 0.1
 rotation_strategy = SubResource("Resource_5dbsf")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="WeaponSwitch6" parent="Weapons" node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
+[node name="WeaponSwitch6" parent="Weapons" unique_id=1626352330 node_paths=PackedStringArray("weapon") instance=ExtResource("5_u3pwt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.49825, 0.0963982, -0.00215626)
 weapon_name = "mine "
 weapon = NodePath("mineweapon")
 
-[node name="mineweapon" type="Node3D" parent="Weapons/WeaponSwitch6"]
+[node name="mineweapon" type="Node3D" parent="Weapons/WeaponSwitch6" unique_id=2076242578]
 script = ExtResource("6_cf6nt")
 entity_to_spawn = ExtResource("11_v0tj5")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="Env" type="Node3D" parent="."]
+[node name="Env" type="Node3D" parent="." unique_id=2028263595]
 
-[node name="stone_v1" parent="Env" instance=ExtResource("17_ii2cc")]
+[node name="stone_v1" parent="Env" unique_id=721679201 instance=ExtResource("17_ii2cc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.109216, -0.6396028, 9.44035)
 
-[node name="stone_v2" parent="Env" instance=ExtResource("17_ii2cc")]
+[node name="stone_v2" parent="Env" unique_id=1485923927 instance=ExtResource("17_ii2cc")]
 transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, -10.195754, -1.1358854, 8.231095)
 
-[node name="stone_v5" parent="Env" instance=ExtResource("17_ii2cc")]
+[node name="stone_v5" parent="Env" unique_id=1239015642 instance=ExtResource("17_ii2cc")]
 transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, -10.431433, -1.1358854, 3.178257)
 
-[node name="stone_v6" parent="Env" instance=ExtResource("17_ii2cc")]
+[node name="stone_v6" parent="Env" unique_id=2019805766 instance=ExtResource("17_ii2cc")]
 transform = Transform3D(0.97513, -0.22163361, 0, 0.22163361, 0.97513, 0, 0, 0, 1, -9.890802, -1.1358854, -2.7068777)
 
-[node name="stone_v3" parent="Env" instance=ExtResource("18_2lc4n")]
+[node name="stone_v3" parent="Env" unique_id=846403696 instance=ExtResource("18_2lc4n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.061667, -0.24051285, 10.247597)
 
-[node name="stone_v4" parent="Env" instance=ExtResource("19_vlj6n")]
+[node name="stone_v4" parent="Env" unique_id=515081608 instance=ExtResource("19_vlj6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.317868, -0.4551401, 10.158905)
 
-[node name="stone_v7" parent="Env" instance=ExtResource("19_vlj6n")]
+[node name="stone_v7" parent="Env" unique_id=569717351 instance=ExtResource("19_vlj6n")]
 transform = Transform3D(0.012383909, -0.0015361324, -0.99992216, 0.12309919, 0.9923944, 0, 0.99231714, -0.12308961, 0.012478818, -10.252767, -1.0899086, -9.629076)
 
-[node name="palm_v3" parent="Env" instance=ExtResource("20_h41g6")]
+[node name="palm_v3" parent="Env" unique_id=1497152550 instance=ExtResource("20_h41g6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.866741, 0, 8.225116)
 
-[node name="palm_v2" parent="Env" instance=ExtResource("21_lxhlw")]
+[node name="palm_v2" parent="Env" unique_id=494101177 instance=ExtResource("21_lxhlw")]
 transform = Transform3D(0.9898805, 0, 0.14190331, 0, 1, 0, -0.14190331, 0, 0.9898805, -11.420147, 9.536743e-07, 2.491084)
 
-[node name="Water" type="MeshInstance3D" parent="Env"]
+[node name="Water" type="MeshInstance3D" parent="Env" unique_id=520384591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40004253, 0)
 mesh = SubResource("PlaneMesh_qbpv8")
 surface_material_override/0 = SubResource("ShaderMaterial_d0xsf")
 
-[node name="Beatle" parent="." instance=ExtResource("26_8pjjy")]
+[node name="Beatle" parent="." unique_id=1570089100 instance=ExtResource("26_8pjjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.574474, 0.04018952, 5.701327)
 
-[node name="Beatle2" parent="." instance=ExtResource("26_8pjjy")]
+[node name="Beatle2" parent="." unique_id=2032105090 instance=ExtResource("26_8pjjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6181965, 0.04018952, 1.788899)
 
-[node name="Beatle3" parent="." instance=ExtResource("26_8pjjy")]
+[node name="Beatle3" parent="." unique_id=1072628796 instance=ExtResource("26_8pjjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2220669, 0.04018952, 1.8113494)
 
-[node name="Beatle4" parent="." instance=ExtResource("26_8pjjy")]
+[node name="Beatle4" parent="." unique_id=1898135013 instance=ExtResource("26_8pjjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.675255, 0.040188566, 5.657733)
 
-[node name="Beatle5" parent="." instance=ExtResource("26_8pjjy")]
+[node name="Beatle5" parent="." unique_id=565998614 instance=ExtResource("26_8pjjy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.891574, 0.040188566, 1.3429785)

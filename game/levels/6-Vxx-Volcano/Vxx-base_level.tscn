@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dlv00p3o5xd2j" path="res://assets/models/beach/stone4_prefab.tscn" id="4_g088h"]
 [ext_resource type="PackedScene" uid="uid://d4k2p7lo2xaey" path="res://assets/models/beach/stone2_prefab.tscn" id="5_bcrks"]
 [ext_resource type="PackedScene" uid="uid://ihojlm6krm5d" path="res://assets/models/beach/stone1_prefab.tscn" id="6_n214y"]
-[ext_resource type="Shader" uid="uid://bcr3jkq4ohhuh" path="res://game/levels/6-Vxx-Volcano/Shader/lava.tres" id="7_8l1px"]
+[ext_resource type="Shader" uid="uid://bcr3jkq4ohhuh" path="res://game/levels/6-Vxx-Volcano/shader/lava.tres" id="7_8l1px"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
 
@@ -63,10 +63,26 @@ image = SubResource("Image_8l1px")
 [sub_resource type="BoxShape3D" id="BoxShape3D_13bgu"]
 size = Vector3(0.6, 0.5, 0.6)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g088h"]
-resource_name = "Material.002"
-cull_mode = 2
-albedo_color = Color(0.2, 0.06666667, 0.05882353, 1)
+[sub_resource type="Gradient" id="Gradient_g1dqc"]
+offsets = PackedFloat32Array(0, 0.5102041, 1)
+colors = PackedColorArray(0.16470589, 0.12941177, 0.14117648, 1, 0.29803923, 0.21960784, 0.25490198, 1, 0.38039216, 0.2901961, 0.3019608, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jpdpo"]
+frequency = 0.0034
+fractal_octaves = 10
+fractal_gain = 0.53
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aga4b"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_jpdpo")
+color_ramp = SubResource("Gradient_g1dqc")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep3q7"]
+shading_mode = 2
+diffuse_mode = 3
+albedo_texture = SubResource("NoiseTexture2D_aga4b")
+roughness = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_j42j1"]
 _surfaces = [{
@@ -90,7 +106,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("StandardMaterial3D_g088h"),
+"material": SubResource("StandardMaterial3D_ep3q7"),
 "name": "Material.002",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -133,38 +149,12 @@ item/1/preview = SubResource("ImageTexture_tqqkl")
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbp8f"]
 size = Vector3(1.9667969, 1.8048096, 1)
 
-[sub_resource type="Gradient" id="Gradient_8l1px"]
-offsets = PackedFloat32Array(0.25613078, 0.3133515, 0.373297)
-colors = PackedColorArray(0.32156864, 0.46666667, 0.58431375, 1, 0.68235296, 0.7372549, 0.7882353, 1, 0.6292534, 0.85100484, 0.81591386, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_g1dqc"]
-gradient = SubResource("Gradient_8l1px")
-fill_from = Vector2(1, 1)
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jpdpo"]
-panorama = SubResource("GradientTexture2D_g1dqc")
-
-[sub_resource type="Sky" id="Sky_aga4b"]
-sky_material = SubResource("PanoramaSkyMaterial_jpdpo")
-
-[sub_resource type="Environment" id="Environment_ep3q7"]
-background_mode = 2
-background_color = Color(0.2772, 0.67144, 0.77, 1)
-sky = SubResource("Sky_aga4b")
-ambient_light_source = 2
-ambient_light_color = Color(1, 0.8386667, 0.56, 1)
-ambient_light_energy = 0.8
-tonemap_mode = 4
-glow_intensity = 0.2
+[sub_resource type="Environment" id="Environment_8l1px"]
+ambient_light_color = Color(0.90333873, 0.538149, 0.45114517, 1)
 adjustment_enabled = true
-adjustment_contrast = 1.1
-adjustment_saturation = 1.51
-
-[sub_resource type="BoxMesh" id="BoxMesh_7ms32"]
-size = Vector3(13, 1, 13)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmd22"]
-albedo_color = Color(0.323727, 0.12384864, 0.08160842, 1)
+adjustment_brightness = 1.06
+adjustment_contrast = 1.025
+adjustment_saturation = 1.26
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q377s"]
 size = Vector2(30, 30)
@@ -242,23 +232,16 @@ script = ExtResource("3_tst3c")
 
 [node name="Lights" type="Node3D" parent="." unique_id=898246771]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=1052083922]
-transform = Transform3D(0.28076243, -0.9589793, -0.039132744, 0.017691595, -0.03559476, 0.9992097, -0.95961434, -0.2812328, 0.006972207, 0, 8.41849, 0)
-shadow_enabled = true
-directional_shadow_mode = 0
-directional_shadow_fade_start = 1.0
-directional_shadow_max_distance = 10.3
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lights" unique_id=1466735591]
-environment = SubResource("Environment_ep3q7")
+environment = SubResource("Environment_8l1px")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=1052083922]
+transform = Transform3D(-0.91552204, 0.39784312, -0.05950278, -0.021726489, 0.098798886, 0.99487025, 0.40168113, 0.9121182, -0.0818088, 0, 8.41849, 0)
+shadow_enabled = true
+shadow_opacity = 0.8
+directional_shadow_mode = 0
 
 [node name="Env" type="Node3D" parent="." unique_id=1593707156]
-
-[node name="Rocks" type="MeshInstance3D" parent="Env" unique_id=406521155]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.067417145, -0.7271259, 0.008252621)
-visible = false
-mesh = SubResource("BoxMesh_7ms32")
-surface_material_override/0 = SubResource("StandardMaterial3D_gmd22")
 
 [node name="Bedrock" type="MeshInstance3D" parent="Env" unique_id=1601940965]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015992403, -1.2169609, -1.2509851)
