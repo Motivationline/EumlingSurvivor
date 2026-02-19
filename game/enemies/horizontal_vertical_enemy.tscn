@@ -41,8 +41,6 @@ initial_state = NodePath("MoveHorizontalVerticalOnNavMeshState")
 
 [node name="MoveHorizontalVerticalOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=1705210938 node_paths=PackedStringArray("path_ray", "next_state")]
 script = ExtResource("2_u8giv")
-wait_time = 0.0
-rotation_offset = 74.0
 path_ray = NodePath("../../PathRay")
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://dsnnhkc4wtj0a"
@@ -105,3 +103,5 @@ target_position = Vector3(0, 0, -5)
 collision_mask = 2
 
 [node name="PathRay" type="RayCast3D" parent="." index="11" unique_id=1646149778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, -30)
