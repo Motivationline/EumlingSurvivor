@@ -24,7 +24,7 @@ input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bhxjt"]
-graph_offset = Vector2(-632.69916, -8.649048)
+graph_offset = Vector2(-383.3819, 93.860016)
 nodes/output/position = Vector2(540, 120)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_cwscd")
 nodes/Animation/position = Vector2(-280, 240)
@@ -40,42 +40,11 @@ node_connections = [&"output", 0, &"Transition", &"TimeScale", 0, &"Animation", 
 
 [node name="lizard" unique_id=1314517611 instance=ExtResource("1_cwscd")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1182201942) index="0" unique_id=232585745]
-bones/0/rotation = Quaternion(5.901719e-08, 0.845075, 0.5346478, -7.543677e-08)
-bones/2/rotation = Quaternion(0.18272816, -8.921158e-08, -7.0831774e-08, 0.9831635)
-bones/3/rotation = Quaternion(0.010179541, 1.2665478e-08, -8.4189455e-09, 0.9999482)
-bones/4/rotation = Quaternion(-0.11385789, -1.8919398e-08, 1.7896584e-08, 0.9934971)
-bones/5/position = Vector3(1.6933691e-14, 0.071686774, -4.75805e-08)
-bones/5/rotation = Quaternion(-0.5271792, -1.5679238e-07, 1.90174e-07, 0.84975415)
-bones/7/rotation = Quaternion(0.105921656, 0.0843468, -0.7244788, 0.6758674)
-bones/10/rotation = Quaternion(0.10592194, -0.08434653, 0.7244788, 0.6758674)
-bones/13/rotation = Quaternion(-2.4889545e-08, 0.27566284, 0.9612544, 4.3101345e-08)
-bones/14/rotation = Quaternion(-0.024263654, 1.0662797e-09, -4.6315596e-09, 0.9997056)
-bones/15/rotation = Quaternion(0.016586585, 1.2122037e-09, 3.2039107e-09, 0.99986243)
-bones/16/rotation = Quaternion(-0.015206795, -1.492844e-09, -2.9330864e-09, 0.99988437)
-bones/17/rotation = Quaternion(-0.694803, 0.15520564, -0.35712463, 0.6046669)
-bones/17/scale = Vector3(0.9999998, 0.9999993, 0.9999997)
-bones/18/rotation = Quaternion(0.015103016, 0.9061158, -0.40124288, 0.13315591)
-bones/18/scale = Vector3(0.9999999, 0.9999989, 0.9999998)
-bones/19/rotation = Quaternion(-0.004687723, -0.5390156, 0.84225047, -0.007374334)
-bones/19/scale = Vector3(1.0000001, 1.0000005, 1.0000011)
-bones/20/rotation = Quaternion(0.026492374, 0.008244625, -0.11668694, 0.9927812)
-bones/21/rotation = Quaternion(0.02168778, -0.012140119, 0.16104688, 0.9866338)
-bones/22/rotation = Quaternion(-0.6948027, -0.15520518, 0.35712406, 0.60466766)
-bones/22/scale = Vector3(0.9999999, 0.9999997, 0.9999997)
-bones/23/rotation = Quaternion(-0.0151027925, 0.90611523, -0.40124395, -0.13315572)
-bones/23/scale = Vector3(0.9999999, 1.0000004, 0.99999976)
-bones/24/position = Vector3(4.8676746e-08, 0.11375235, 6.861442e-08)
-bones/24/rotation = Quaternion(0.0046873, -0.5390151, 0.8422509, 0.007374238)
-bones/24/scale = Vector3(1.0000002, 0.9999998, 1.0000001)
-bones/25/rotation = Quaternion(0.026492335, -0.008244658, 0.11668677, 0.9927812)
-bones/26/rotation = Quaternion(0.021687811, 0.0121400915, -0.16104676, 0.9866338)
-
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=864660537]
 tree_root = SubResource("AnimationNodeBlendTree_bhxjt")
 anim_player = NodePath("../AnimationPlayer")
 parameters/TimeScale/scale = 1.2999999999999972
-parameters/Transition/current_state = "run_fast"
+parameters/Transition/current_state = "run_slow"
 parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 1
+parameters/Transition/current_index = 0
 "parameters/TimeScale 2/scale" = 0.7999999999999972

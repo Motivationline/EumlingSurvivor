@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cm8xm0j7ly1d"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_k7wj4"]
+[ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="2_5wldd"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_52td2"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_21otp"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_52td2"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_m7dcb"]
+[ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="5_21otp"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_52td2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m7dcb"]
+radius = 0.3636794
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eafdf"]
+radius = 0.31834328
+
+[node name="MagmaToad" unique_id=1898691 node_paths=PackedStringArray("hurtbox", "node_with_animation_tree") instance=ExtResource("1_k7wj4")]
+health = 200.0
+hurtbox = NodePath("Hurtbox")
+node_with_animation_tree = NodePath("Visuals/Toad")
+
+[node name="HealthbarEnemy3D" parent="." index="1" unique_id=691291944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16429573, 0.88726676, -0.10422015)
+
+[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("WaitForTimeXState")
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" unique_id=1069441493 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_52td2")
+random = true
+min_wait_time = 0.5
+max_wait_time = 2.0
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="1" unique_id=1229150790 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_52td2")
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=1097798079 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_21otp")
+start_delay = 0.46
+next_state = NodePath("../LookAtPlayerState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Shoot/request": 1
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1650355750]
+script = ExtResource("4_m7dcb")
+spawn_local = true
+entity_to_spawn = ExtResource("5_21otp")
+offset_distance = 0.5
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("2_5wldd")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6" unique_id=1115397629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34853595, 0)
+shape = SubResource("SphereShape3D_m7dcb")
+
+[node name="Hurtbox" parent="." index="7" unique_id=573355627 instance=ExtResource("8_52td2")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=580306937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
+shape = SubResource("SphereShape3D_eafdf")

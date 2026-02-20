@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends StateMachinePoweredEntity
 class_name Enemy
 
 @export_category("Base Values")
@@ -23,11 +23,6 @@ class_name Enemy
 @export var hitbox: HitBox
 @export var hurtbox: HurtBox
 
-@export_category("Behavior")
-@export var state_machine: StateMachine
-@export var node_with_animation_tree: Node3D
-# @export var upgrades: Array[UpgradeStrategy]
-
 @export_category("Event Listeners")
 @export var on_death: Array[EventStrategy]
 @export var on_hit: Array[EventStrategy]
@@ -42,21 +37,17 @@ class_name Enemy
 
 var max_health: float
 var reset_timer: Timer
-var resource: float = 0.0
 
 var animation_tree: AnimationTree
 
 func _ready() -> void:
+	super()
 	max_health = health
 	if (healthbar): healthbar.init_health(max_health)
 	if (hitbox): hitbox.hit.connect(_hit)
 	if (hurtbox): hurtbox.hurt_by.connect(_hurt_by)
 
-	animation_tree = find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self)
-
-	if (state_machine): 
-		state_machine.setup(self, animation_tree)
-		state_machine.consumed_resource.connect(consume_resource)
+	animation_tree = Utils.find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self)
 
 	Strategy._setup_array(on_death, self, self)
 	Strategy._setup_array(on_hit, self, self)
@@ -69,14 +60,6 @@ func _ready() -> void:
 	add_child(reset_timer)
 	reset_timer.timeout.connect(reset_health)
 
-func find_first_animation_tree(node: Node3D) -> AnimationTree:
-	if (!node): return null
-	for child in node.get_children():
-		if (child is AnimationTree): return child
-		if (child.get_child_count() > 0 && child is Node3D):
-			var tree = find_first_animation_tree(child)
-			if (tree && tree is AnimationTree): return tree
-	return null
 
 func _hit(_attackee: HurtBox):
 	for ev in on_hit:
@@ -93,15 +76,7 @@ func _die():
 		ev.event_triggered(null)
 	queue_free()
 
-func _process(delta: float) -> void:
-	if (state_machine): state_machine.process(delta)
-
-func _physics_process(delta: float) -> void:
-	if (state_machine): state_machine.physics_process(delta)
 
 func reset_health():
 	if (heal_back_to_full):
 		health = max_health
-
-func consume_resource(amount: float):
-	resource -= amount

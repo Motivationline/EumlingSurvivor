@@ -1,0 +1,32 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dlrvnloxecal8"]
+
+[ext_resource type="Shader" uid="uid://bjl6apboccnlr" path="res://game/levels/6-Vxx-Volcano/VolcanoBossFloorShader.tres" id="1_pueh2"]
+
+[sub_resource type="Gradient" id="Gradient_66ia3"]
+colors = PackedColorArray(0.64, 0.41984, 0.33279997, 1, 0.54, 0.36657003, 0.31860003, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j7vlp"]
+frequency = 0.0064
+fractal_type = 3
+fractal_gain = 1.28
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rmwgy"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_j7vlp")
+color_ramp = SubResource("Gradient_66ia3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6m7b"]
+render_priority = 0
+shader = ExtResource("1_pueh2")
+shader_parameter/Ripples_Color = Color(1, 0.7435, 0.19, 1)
+shader_parameter/ProximityFade = 1.0
+shader_parameter/RippleSpeed = 2.0
+
+[resource]
+next_pass = SubResource("ShaderMaterial_c6m7b")
+specular_mode = 1
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = SubResource("NoiseTexture2D_rmwgy")
+roughness = 0.0

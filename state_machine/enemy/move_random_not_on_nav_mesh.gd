@@ -30,7 +30,7 @@ var done: bool = false
 var done_but_waiting: bool = false
 var target_position: Vector3 = Vector3.ZERO
 
-func setup(_parent: Enemy, _animation_tree: AnimationTree):
+func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 
 func enter():

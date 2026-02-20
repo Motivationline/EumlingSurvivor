@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cruy8n63gbmu1"]
+
+[ext_resource type="Texture2D" uid="uid://c887f2gcnyuci" path="res://assets/characters/enemies/toad/Frog_Emissive.png" id="1_7xfjr"]
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_t3t8q"]
+[ext_resource type="Texture2D" uid="uid://caohwvjbjdo7w" path="res://assets/characters/enemies/toad/Toad_Frog_Base_color.png" id="2_7xfjr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53408"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission_energy_multiplier = 0.21833342
+emission_texture = ExtResource("1_7xfjr")
+
+[sub_resource type="Gradient" id="Gradient_53408"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.34911242, 0.6666667)
+colors = PackedColorArray(0, 0, 0, 1, 0.37413925, 0.37413928, 0.37413922, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xau2s"]
+gradient = SubResource("Gradient_53408")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_53408")
+shader = ExtResource("1_t3t8q")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_7xfjr")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_xau2s")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_diffuse_smooth_attenuation = true

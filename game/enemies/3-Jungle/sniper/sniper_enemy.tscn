@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://dtxcbfvali8ib" path="res://assets/characters/enemies/peacock/peacock_prefab.tscn" id="2_3n5vt"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_4ah3n"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="2_qcoba"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_sm3km"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_4ah3n"]
-[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-Jungle/sniper/sniper_projectile_enemy.tscn" id="4_3xlw0"]
+[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle/sniper/sniper_projectile_enemy.tscn" id="4_3xlw0"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="6_qd5e1"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="6_yptkn"]
 [ext_resource type="Script" uid="uid://2ncl5gd1yn5a" path="res://strategies/event/activate.gd" id="7_yk45h"]
@@ -52,25 +53,33 @@ stream_3/stream = ExtResource("22_237j1")
 stream_4/stream = ExtResource("23_k5egc")
 stream_5/stream = ExtResource("24_qn7bg")
 
-[node name="SniperEnemy" unique_id=1534333626 node_paths=PackedStringArray("hurtbox", "node_with_animation_tree", "on_death", "on_hurt") instance=ExtResource("1_jj26d")]
+[node name="SniperEnemy" unique_id=1534333626 node_paths=PackedStringArray("hurtbox", "on_death", "on_hurt", "node_with_animation_tree") instance=ExtResource("1_jj26d")]
 health = 150.0
 hurtbox = NodePath("HurtBox")
-node_with_animation_tree = NodePath("Visuals/peacock")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/PlaySoundHitGeneral")]
+node_with_animation_tree = NodePath("Visuals/peacock")
 
 [node name="Healthbar3D" parent="." index="0" unique_id=985815578]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90527487, -0.07545662)
 
 [node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("LookAtPlayerState")
+initial_state = NodePath("WaitForTimeXState")
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" unique_id=1548622165 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" unique_id=2001135634 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_sm3km")
+random = true
+min_wait_time = 0.5
+max_wait_time = 1.2
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="1" unique_id=1548622165 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_4ah3n")
 next_state = NodePath("../SpawnEntitiesState")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=1220816739 node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=1220816739 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_qcoba")
 start_delay = 0.3
 next_state = NodePath("../LookAtPlayerState")

@@ -2,6 +2,7 @@
 extends Node3D
 class_name Level
 
+
 ## Where in the room the player is supposed to spawn
 @export var player_spawn: Marker3D
 
@@ -18,6 +19,8 @@ var cleared: bool = false
 var finished: bool = false
 var ends: bool = false
 var player: Player
+
+const MINI_EUMLING = preload("uid://b2jek12j4wcgb")
 const CAGED_MINI_EUMLING = preload("uid://6lim36lw260g")
 const EUMLING_CELEBRATION = preload("uid://p83xt72cksyt")
 
@@ -46,7 +49,8 @@ func spawn_player(_player: Player):
 	# spawn minis
 	if not is_boss_level:
 		for type in Data.active_mini_eumlings:
-			var mini_eumling = MiniEumling.new()
+			var something = MINI_EUMLING.instantiate()
+			var mini_eumling = something
 			mini_eumling.type = type
 			add_child(mini_eumling)
 			mini_eumling.global_position = player_spawn.global_position

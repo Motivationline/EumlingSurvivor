@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cir8dxt72i6di"]
+[gd_scene format=3 uid="uid://cir8dxt72i6di"]
 
 [ext_resource type="PackedScene" uid="uid://c4e8dv2l1561n" path="res://game/aoes/base_aoe.tscn" id="1_r5c7h"]
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="2_2glje"]
@@ -244,7 +244,7 @@ _data = {
 &"boom": SubResource("Animation_cey2i")
 }
 
-[node name="Berry_Explosion_AOE" instance=ExtResource("1_r5c7h")]
+[node name="Berry_Explosion_AOE" unique_id=1235995702 instance=ExtResource("1_r5c7h")]
 duration = 0.5
 shape = SubResource("CylinderShape3D_iw2kv")
 
@@ -261,19 +261,17 @@ can_hit = 4
 shape = SubResource("CylinderShape3D_iw2kv")
 disabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0" unique_id=1547543716]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171625, 0)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_o11xy")
 surface_material_override/0 = SubResource("ShaderMaterial_2glje")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals" index="1"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals" index="1" unique_id=1773366979]
 transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 0, 0.635102, 0)
 mesh = SubResource("PlaneMesh_o11xy")
 surface_material_override/0 = SubResource("StandardMaterial3D_6p4m7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-libraries = {
-&"": SubResource("AnimationLibrary_paseo")
-}
-autoplay = "boom"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1301190161]
+libraries/ = SubResource("AnimationLibrary_paseo")
+autoplay = &"boom"

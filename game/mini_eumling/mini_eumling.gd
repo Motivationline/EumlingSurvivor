@@ -1,4 +1,4 @@
-extends Node3D
+extends StateMachinePoweredEntity
 class_name MiniEumling
 
 static var _type_resources: Dictionary[Enum.EUMLING_TYPE, Resource] = {
@@ -10,6 +10,8 @@ static var _type_resources: Dictionary[Enum.EUMLING_TYPE, Resource] = {
 	Enum.EUMLING_TYPE.SOCIAL: preload("uid://drn335i4omarh"),
 }
 
+## How fast this entity moves when it moves
+@export_range(0, 100, 0.1) var speed: float = 1
 
 static func get_instance_of_type(_type: Enum.EUMLING_TYPE) -> Node3D:
 	return _type_resources.get(_type).instantiate() as Node3D
@@ -21,9 +23,12 @@ var visuals: Node3D
 func _ready() -> void:
 	visuals = MiniEumling.get_instance_of_type(type)
 	add_child(visuals)
+	node_with_animation_tree = visuals
 	player = get_tree().get_first_node_in_group("Player")
+	super()
 
 func _process(_delta: float) -> void:
+	super(_delta)
 	if player:
 		look_at(player.global_position)
 

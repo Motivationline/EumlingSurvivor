@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://deylycbs8xlp0"]
+[gd_scene format=3 uid="uid://deylycbs8xlp0"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_6j6bh"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_b7528"]
@@ -21,7 +21,7 @@ radius = 0.04621862
 [sub_resource type="SphereShape3D" id="SphereShape3D_wripo"]
 radius = 0.08118541
 
-[node name="Projectile" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_hurt", "on_end_of_life") instance=ExtResource("1_6j6bh")]
+[node name="Projectile" unique_id=1098182531 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_hurt", "on_end_of_life") instance=ExtResource("1_6j6bh")]
 damage = 75.0
 max_distance = 100.0
 hit_box = NodePath("Hitbox")
@@ -31,20 +31,20 @@ on_hit = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_hurt = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_end_of_life = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=412886058]
 script = ExtResource("2_b7528")
 speed = SubResource("Curve_wripo")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0"]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=750338230]
 script = ExtResource("3_4d5c3")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=1394156185]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.28753555, -1.2568578e-08)
 mesh = SubResource("CylinderMesh_s8e6k")
 
-[node name="Hitbox" parent="." index="3" instance=ExtResource("4_qda78")]
+[node name="Hitbox" parent="." index="3" unique_id=1696673246 instance=ExtResource("4_qda78")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28896308, 0)
 collision_layer = 43
 collision_mask = 11
@@ -52,10 +52,10 @@ damage = 2.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1595845773]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.04981506)
 shape = SubResource("SphereShape3D_1mk1u")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1600524182]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2871864, 0)
 shape = SubResource("SphereShape3D_wripo")

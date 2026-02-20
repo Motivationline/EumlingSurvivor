@@ -7,6 +7,7 @@ var eumlingclopedia = EUMLINGCLOPEDIA.instantiate()
 
 func _on_play_button_pressed() -> void:
 	Main.controller.load_scene(game, false)
+	game.player.reset()
 	game.load_level()
 
 func _on_eumlingclopedia_button_pressed() -> void:

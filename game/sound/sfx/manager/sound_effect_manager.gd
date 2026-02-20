@@ -23,23 +23,26 @@ func _process(_delta):
 			
 func sound_list_setup():
 	for sound in get_children():
-		if (sound is AudioStreamPlayer) or (sound is AudioStreamPlayer3D) or (sound is AudioStreamPlayer2D):
+		if (sound is AudioStreamPlayer) or (sound is AudioStreamPlayer3D) or (sound is AudioStreamPlayer2D) or (sound is SoundSequence):
 			sound_list[sound.name] = sound
 
 
-func play_sound(sound_name:String, focus:bool = false, persistent = false):
+func play_sound(sounds, focus:bool = false, persistent = false):
+	if !sounds is Array:
+		sounds = [sounds]
+	for i in sounds.size():
+		var sound_name: String = sounds[i]
+		if sound_list.has(sound_name):
+			var sound = sound_list[sound_name] 
+			if persistent:
+				sound.reparent(music_player)
+				sound.finished.connect(sound.queue_free)
 
-	if sound_list.has(sound_name):
-		var sound = sound_list[sound_name] 
-		if persistent:
-			sound.reparent(music_player)
-			sound.finished.connect(sound.queue_free)
-
-		sound.play()
-		if focus:
-			music_player.fade_in_and_out(sound.stream.get_length())
-	else:
-		print("Sound '"+sound_name+"' is missing!")
+			sound.play()
+			if focus:
+				music_player.fade_in_and_out(sound.stream.get_length())
+		else:
+			print("Sound '"+sound_name+"' is missing!")
 	
 
 	

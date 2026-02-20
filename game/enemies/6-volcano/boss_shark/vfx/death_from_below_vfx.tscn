@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://dmr83p5o725ie"]
+
+[ext_resource type="Texture2D" uid="uid://b1c6casakqkgf" path="res://assets/vfx/particle_pack/twirl_03.png" id="1_llduy"]
+[ext_resource type="Texture2D" uid="uid://btbocbwfe6rrs" path="res://assets/vfx/particle_pack/circle_01.png" id="2_85f3j"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_85f3j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_41m45"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_llduy")
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_xwm3q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23613963, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qrcxc"]
+curve = SubResource("Curve_xwm3q")
+
+[sub_resource type="Curve" id="Curve_u6b1m"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -0.01999998), 0.0, 2.587189, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2ajlj"]
+curve = SubResource("Curve_u6b1m")
+
+[sub_resource type="Gradient" id="Gradient_ebp8m"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.6166667, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s4xx1"]
+gradient = SubResource("Gradient_ebp8m")
+
+[sub_resource type="Curve" id="Curve_h8iie"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.925), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i0o6h"]
+curve = SubResource("Curve_h8iie")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_awkhq"]
+particle_flag_rotate_y = true
+angle_min = 1.0728835e-05
+angle_max = 270.0
+angular_velocity_min = 299.99997
+angular_velocity_max = 349.99997
+angular_velocity_curve = SubResource("CurveTexture_2ajlj")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.9
+scale_curve = SubResource("CurveTexture_i0o6h")
+color_ramp = SubResource("GradientTexture1D_s4xx1")
+alpha_curve = SubResource("CurveTexture_qrcxc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dajkj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jfc68"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(1, 0.14999998, 0, 1)
+albedo_texture = ExtResource("2_85f3j")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1swox"]
+size = Vector2(4, 4)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_41m45"]
+radius = 1.4089857
+
+[sub_resource type="Animation" id="Animation_85f3j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles3D/MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_41m45"]
+resource_name = "spawnAnim"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.2333333, 2.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles3D/MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwm3q"]
+_data = {
+&"RESET": SubResource("Animation_85f3j"),
+&"spawnAnim": SubResource("Animation_41m45")
+}
+
+[node name="DeathFromBelowVfx" type="Node3D" unique_id=11897885]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1988234060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+material_override = SubResource("StandardMaterial3D_41m45")
+lifetime = 3.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_awkhq")
+draw_pass_1 = SubResource("PlaneMesh_dajkj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GPUParticles3D" unique_id=311863298]
+material_override = SubResource("StandardMaterial3D_jfc68")
+mesh = SubResource("PlaneMesh_1swox")
+
+[node name="Hitbox" parent="." unique_id=1721781486 instance=ExtResource("3_85f3j")]
+collision_layer = 32
+collision_mask = 8
+damage = 25.0
+damage_cooldown = 0.25
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=436847176]
+shape = SubResource("SphereShape3D_41m45")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=806443911]
+libraries/ = SubResource("AnimationLibrary_xwm3q")
+autoplay = &"spawnAnim"

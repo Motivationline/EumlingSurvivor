@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://8jbavxhvd2hx"]
+[gd_scene format=3 uid="uid://8jbavxhvd2hx"]
 
 [ext_resource type="Script" uid="uid://bmk2foi6xphtj" path="res://game/ui/reveal_seed/reveal_seed.gd" id="1_p1l2k"]
 [ext_resource type="Texture2D" uid="uid://opqokv4kksnj" path="res://assets/ui/reveal/Element 1@0.5x.png" id="2_p1l2k"]
@@ -11,6 +11,17 @@
 [ext_resource type="PackedScene" uid="uid://dbw22bdgvggej" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/reveal/mini_realistisch_geschick_reveal.tscn" id="8_p1l2k"]
 [ext_resource type="PackedScene" uid="uid://ck5j8i6y6430r" path="res://assets/characters/eumling/mini_eumling/investigativ_forschend/reveal/mini_investigativ_forschend_reveal.tscn" id="9_8cg7f"]
 [ext_resource type="PackedScene" uid="uid://8psix5aubo38" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/reveal/mini_sozial_sozial_reveal.tscn" id="10_gqyl1"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="12_gqyl1"]
+[ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="13_fbwby"]
+[ext_resource type="Script" uid="uid://boxwy3m3i4pdu" path="res://game/sound/sfx/sound_presets/sound_sequence.gd" id="13_pw7cc"]
+[ext_resource type="AudioStream" uid="uid://cjaa8iie43p58" path="res://assets/sound/reveal/fanfare_1.wav" id="15_8f6xv"]
+[ext_resource type="AudioStream" uid="uid://bc30esggu44h6" path="res://assets/sound/reveal/fanfare_2.wav" id="16_nm1b4"]
+[ext_resource type="AudioStream" uid="uid://dptj5xh0h121u" path="res://assets/sound/reveal/fanfare_3.wav" id="17_h4xtk"]
+[ext_resource type="AudioStream" uid="uid://ch0bw4dswwe8y" path="res://assets/sound/reveal/fanfare_4.wav" id="18_8hruw"]
+[ext_resource type="AudioStream" uid="uid://cqxxucnlpn7hw" path="res://assets/sound/reveal/wiggle_1.wav" id="19_22p5r"]
+[ext_resource type="AudioStream" uid="uid://go8v7ky5evie" path="res://assets/sound/reveal/wiggle_2.wav" id="20_4xp3e"]
+[ext_resource type="AudioStream" uid="uid://bym0tt2g6t36t" path="res://assets/sound/reveal/wiggle_3.wav" id="21_ks44o"]
+[ext_resource type="AudioStream" uid="uid://cp2ipirxmy5xt" path="res://assets/sound/reveal/wiggle_4.wav" id="22_xfaou"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rd7av"]
 transparency = 1
@@ -114,12 +125,9 @@ render_priority = 0
 shader = ExtResource("4_j7odg")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_5lndm")
-shader_parameter/specular_focus = 0.5
 shader_parameter/rim_ramp = SubResource("GradientTexture1D_hk45w")
 shader_parameter/rim_focus = 0.5370000255075
-shader_parameter/use_HDR = true
 shader_parameter/use_diffuse_smooth_attenuation = true
-shader_parameter/use_specular_smooth_attenuation = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6d64s"]
 transparency = 1
@@ -319,6 +327,20 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(0.9, 0.9, 0.9), Vector3(0.9, 0.9, 0.9), Vector3(1.05, 1.05, 1.05), Vector3(0.99999994, 0.99999994, 1)]
 }
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../SoundEffectManager")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [["Fanfare", "Wiggle"], false, false],
+"method": &"play_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_5lndm"]
 resource_name = "click_02"
@@ -406,6 +428,20 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(0.9, 0.9, 0.9), Vector3(0.9, 0.9, 0.9), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../SoundEffectManager")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [["Fanfare", "Wiggle"], false, false],
+"method": &"play_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ey80x"]
@@ -495,6 +531,20 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(0.9, 0.9, 0.9), Vector3(0.9, 0.9, 0.9), Vector3(1.15, 1.15, 1.15), Vector3(1.15, 1.15, 1.15), Vector3(0.95, 0.95, 0.95), Vector3(1, 1, 1)]
 }
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../SoundEffectManager")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [["Fanfare", "Wiggle"], false, false],
+"method": &"play_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_hk45w"]
 resource_name = "reveal_kreativ"
@@ -573,6 +623,20 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../SoundEffectManager")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [["Fanfare", "Wiggle"], false, false],
+"method": &"play_sound"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5lndm"]
 _data = {
@@ -583,92 +647,116 @@ _data = {
 &"reveal": SubResource("Animation_hk45w")
 }
 
-[node name="RevealSeed" type="Node3D"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_22p5r"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_4xp3e"]
+
+[node name="RevealSeed" type="Node3D" unique_id=1603250428]
 script = ExtResource("1_p1l2k")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1983303287]
 transform = Transform3D(1, 0, 0, 0, 0.82719827, 0.56191015, 0, -0.56191015, 0.82719827, 0, 1.2917441, 1.5170482)
 projection = 1
 size = 0.87480724
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=194865124]
 transform = Transform3D(1, 0, 0, 0, 0.5720027, 0.8202517, 0, -0.8202517, 0.5720027, 0, 3.3311021, 2.0942307)
 
-[node name="Lights01" type="MeshInstance3D" parent="."]
+[node name="Lights01" type="MeshInstance3D" parent="." unique_id=1799504484]
 transform = Transform3D(2.275, 0, 0, 0, 1.8233274, 0.6943301, 0, -1.3605522, 0.93049806, -2.7931083e-08, -1.3896177, -2.202589)
 material_override = SubResource("StandardMaterial3D_rd7av")
 mesh = SubResource("QuadMesh_h88u7")
 
-[node name="Lights02" type="MeshInstance3D" parent="."]
+[node name="Lights02" type="MeshInstance3D" parent="." unique_id=1969625442]
 transform = Transform3D(0.29317948, 2.639769, 1.0033845e-08, -2.1158683, 0.23499371, 0.81021863, 1.5784428, -0.17530593, 1.0860803, -2.6798912e-08, -1.5208952, -2.3785825)
 material_override = SubResource("StandardMaterial3D_rd7av")
 mesh = SubResource("QuadMesh_h88u7")
 
-[node name="Background" type="MeshInstance3D" parent="."]
+[node name="Background" type="MeshInstance3D" parent="." unique_id=1753833018]
 transform = Transform3D(1.4313717, 2.53937, 8.598131e-09, -2.036005, 1.1476389, 0.88866866, 1.5175915, -0.85542375, 1.1922404, -2.7931081e-08, -1.5565242, -2.4265113)
 material_override = SubResource("StandardMaterial3D_p1l2k")
 mesh = SubResource("QuadMesh_h88u7")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1880248768]
 transform = Transform3D(1.7121402, 0, 0, 0, 1.3727524, 0.597625, 0, -1.0232182, 0.8017755, 2.5012604e-08, -0.8552309, -1.4859235)
 material_override = SubResource("StandardMaterial3D_h88u7")
 mesh = SubResource("QuadMesh_h88u7")
 
-[node name="Background_Animation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_h88u7")
-}
-autoplay = "background_animation"
+[node name="Background_Animation" type="AnimationPlayer" parent="." unique_id=194897674]
+libraries/ = SubResource("AnimationLibrary_h88u7")
+autoplay = &"background_animation"
 
-[node name="Seed_Anchor" type="Marker3D" parent="."]
+[node name="Seed_Anchor" type="Marker3D" parent="." unique_id=1327057389]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, -0.098, 0)
 
-[node name="Seed" type="MeshInstance3D" parent="Seed_Anchor"]
+[node name="Seed" type="MeshInstance3D" parent="Seed_Anchor" unique_id=1157114145]
 transform = Transform3D(1, 0, 0, 0, 0.8285004, 0.55998844, 0, -0.55998844, 0.8285004, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_6d64s")
 mesh = ExtResource("4_h88u7")
 skeleton = NodePath("../..")
 
-[node name="Mini_Eumling_Anchor" type="Marker3D" parent="."]
+[node name="Mini_Eumling_Anchor" type="Marker3D" parent="." unique_id=1257452568]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.109184384, 0)
 
-[node name="mini_artistisch_reveal" parent="Mini_Eumling_Anchor" instance=ExtResource("5_j7odg")]
+[node name="mini_artistisch_reveal" parent="Mini_Eumling_Anchor" unique_id=1590883750 instance=ExtResource("5_j7odg")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
-[node name="mini_conventional_reveal" parent="Mini_Eumling_Anchor" instance=ExtResource("6_5lndm")]
+[node name="mini_conventional_reveal" parent="Mini_Eumling_Anchor" unique_id=1221631519 instance=ExtResource("6_5lndm")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
-[node name="mini_entre_ehrgeiz" parent="Mini_Eumling_Anchor" instance=ExtResource("7_6d64s")]
+[node name="mini_entre_ehrgeiz" parent="Mini_Eumling_Anchor" unique_id=831722487 instance=ExtResource("7_6d64s")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
-[node name="mini_realistisch_geschick" parent="Mini_Eumling_Anchor" instance=ExtResource("8_p1l2k")]
+[node name="mini_realistisch_geschick" parent="Mini_Eumling_Anchor" unique_id=1420839898 instance=ExtResource("8_p1l2k")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
-[node name="mini_investigativ_forschend" parent="Mini_Eumling_Anchor" instance=ExtResource("9_8cg7f")]
+[node name="mini_investigativ_forschend" parent="Mini_Eumling_Anchor" unique_id=948260585 instance=ExtResource("9_8cg7f")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
-[node name="mini_sozial_sozial" parent="Mini_Eumling_Anchor" instance=ExtResource("10_gqyl1")]
+[node name="mini_sozial_sozial" parent="Mini_Eumling_Anchor" unique_id=1914438258 instance=ExtResource("10_gqyl1")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
-[node name="Flash" type="MeshInstance3D" parent="."]
+[node name="Flash" type="MeshInstance3D" parent="." unique_id=531217385]
 transform = Transform3D(2.0318098, 0, 0, 0, 1.1965057, 0.70710677, 0, -1.1965057, 0.70710677, 0, 0.5882812, 0.5882812)
 material_override = SubResource("StandardMaterial3D_6d64s")
 mesh = SubResource("QuadMesh_p1l2k")
 
-[node name="WhiteBackground" type="MeshInstance3D" parent="."]
+[node name="WhiteBackground" type="MeshInstance3D" parent="." unique_id=704300029]
 transform = Transform3D(2.0318098, 0, 0, 0, 1.1965057, 0.70710677, 0, -1.1965057, 0.70710677, 0, -0.10852739, -0.10852739)
 material_override = SubResource("StandardMaterial3D_8cg7f")
 mesh = SubResource("QuadMesh_p1l2k")
 
-[node name="seed_animation" type="AnimationPlayer" parent="."]
+[node name="seed_animation" type="AnimationPlayer" parent="." unique_id=1330658674]
 root_node = NodePath("../Seed_Anchor/Seed")
-libraries = {
-&"": SubResource("AnimationLibrary_5lndm")
-}
-autoplay = "RESET"
+libraries/ = SubResource("AnimationLibrary_5lndm")
+autoplay = &"RESET"
+
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=2000578484]
+script = ExtResource("12_gqyl1")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Fanfare" type="Node" parent="SoundEffectManager" unique_id=638764488 node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("13_pw7cc")
+audio_stream_player = NodePath("FanfarePlayer")
+audio_streams = Array[AudioStream]([ExtResource("15_8f6xv"), ExtResource("16_nm1b4"), ExtResource("17_h4xtk"), ExtResource("18_8hruw")])
+metadata/_custom_type_script = "uid://boxwy3m3i4pdu"
+
+[node name="FanfarePlayer" parent="SoundEffectManager/Fanfare" unique_id=451995016 instance=ExtResource("13_fbwby")]
+stream = SubResource("AudioStreamPolyphonic_22p5r")
+volume_db = -4.0
+
+[node name="Wiggle" type="Node" parent="SoundEffectManager" unique_id=1325455996 node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("13_pw7cc")
+audio_stream_player = NodePath("WigglePlayer")
+audio_streams = Array[AudioStream]([ExtResource("19_22p5r"), ExtResource("20_4xp3e"), ExtResource("21_ks44o"), ExtResource("22_xfaou")])
+metadata/_custom_type_script = "uid://boxwy3m3i4pdu"
+
+[node name="WigglePlayer" parent="SoundEffectManager/Wiggle" unique_id=590908864 instance=ExtResource("13_fbwby")]
+stream = SubResource("AudioStreamPolyphonic_4xp3e")
+volume_db = -4.0

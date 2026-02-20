@@ -22,7 +22,7 @@ class_name ChooseStateBasedOnCost
 
 var done: bool = false
 
-func setup(_parent: Enemy, _animation: AnimationTree) -> void:
+func setup(_parent: StateMachinePoweredEntity, _animation: AnimationTree) -> void:
 	super (_parent, _animation)
 	next_state = fallback
 

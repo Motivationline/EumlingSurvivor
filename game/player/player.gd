@@ -5,7 +5,7 @@ class_name Player
 var speed: float
 var health: float = 10.0:
 	set(new_value):
-		if health == 0 and new_value > 0:
+		if health == 0 and new_value > 0 and not dead:
 			revive()
 		if health - new_value > 0:
 			anim_player.set("parameters/GetHitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -23,6 +23,7 @@ var max_health: float:
 		max_health = value
 		if (healthbar):
 			healthbar.max_health = max_health
+var dead: bool = false
 
 signal died
 
@@ -127,6 +128,7 @@ func _ready() -> void:
 
 # reset player to its un-upgraded state
 func reset():
+	dead = false;
 	_current_values = starting_values.duplicate()
 	max_health = get_value(Enum.UPGRADE.HEALTH)
 	health = get_value(Enum.UPGRADE.HEALTH)
@@ -261,6 +263,7 @@ func get_possible_upgrades() -> Array[Upgrade]:
 	return upgrades
 
 func die():
+	dead = true
 	anim_player.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	hurtbox.process_mode = Node.PROCESS_MODE_DISABLED
 	await get_tree().create_timer(2).timeout
