@@ -14,15 +14,18 @@ global uniform float wind_strength; // between 0 and 1, controls how much the wi
 global uniform vec3 wind_direction;
 
 group_uniforms wind;
-uniform float wind_influence_start = 0.5;
-uniform float wind_influence_end = 3.0;
-uniform float stiffness : hint_range(0.0, 1.0, 0.01) = 0.5; // controls the maximum displacement of vertices, 0 = max displacment is the length of the aabb size of the mesh in local space, 1 = no displacement
+uniform float wind_influence_start : hint_range(0.0, 1.0, 0.01) = 0.01;
+uniform float wind_influence_end : hint_range(0.0, 1.0, 0.01) = 1.0;
+uniform float stiffness : hint_range(0.0, 1.0, 0.01) = 0.0; // controls the maximum displacement of vertices, 0 = max displacment is the root mean square of the aabb size of the mesh (in local space), 1 = no displacement
 uniform vec3 size = vec3(1.0); // aabb size of the mesh in local space
-uniform vec3 scaled_size = vec3(1.0); // aabb size of the mesh in local space
 group_uniforms;
 
 float inverseLerp(float a, float b, float v) {
 	return clamp(( v - a ) / ( b - a ), 0.0, 1.0);
+}
+
+float rootMeanSquare(vec3 v) {
+	return sqrt((v.x * v.x + v.y * v.y + v.z * v.z) / 3.0);
 }
 
 void vertex() {
@@ -32,13 +35,14 @@ void vertex() {
 	float noise = texture(wind_noise, wind_noise_offset).r;
     
 	vec3 world_size = size * vec3(length(MODEL_MATRIX[0]), length(MODEL_MATRIX[1]), length(MODEL_MATRIX[2]));
-	float world_length = length(world_size);
-	float displacement = noise * wind_strength * world_length;
-	
-	float distance = length(VERTEX);
-	float distance_factor = inverseLerp(wind_influence_start, wind_influence_end, distance);
+	float max_displacement = rootMeanSquare(world_size); // maximum displacement based on the size of the mesh
+	float displacement = noise * wind_strength * max_displacement;
 
+	float normalized_distance = length(VERTEX) / rootMeanSquare(size);
+    float distance_factor = inverseLerp(wind_influence_start, wind_influence_end, normalized_distance);
+	
 	float resistance_factor = 1.0 - stiffness;
+
 	displacement = displacement * distance_factor * resistance_factor;
 	
 	mat3 inv_model = inverse(mat3(MODEL_MATRIX));
