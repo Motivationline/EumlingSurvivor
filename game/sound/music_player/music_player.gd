@@ -15,7 +15,8 @@ enum LEVEL {
 	COMBAT_FOREST, 
 	BOSS_GENERIC,
 	BOSS_ISLAND, 
-	CHASE
+	CHASE,
+	GAMBA
 }
 
 @export var debug:bool
@@ -105,7 +106,8 @@ func select_track(level_type:LEVEL) -> Array[String]:
 			selected_ambient = "Island"
 		LEVEL.CHASE:
 			selected_track = "Chase"
-
+		LEVEL.GAMBA:
+			selected_track = "Gamba Jingle"
 	
 	
 	return [(selected_track+" Intro"),selected_ambient]
@@ -134,7 +136,7 @@ func get_current_stream_synchronised():
 
 
 
-func fade_volume(out:bool , duration:float, reduction_db:float = 30):
+func fade_volume(out:bool , duration:float, reduction_db:float = 100) -> Tween:
 	#print("bus"+ AudioServer.get_bus_name(1))
 	#print(AudioServer.get_bus_volume_db(1))
 	var tween = get_tree().create_tween()
@@ -146,14 +148,21 @@ func fade_volume(out:bool , duration:float, reduction_db:float = 30):
 	else:
 		tween.tween_method(func(v): AudioServer.set_bus_volume_db(BUS_IDS.MUSIC, v),  AudioServer.get_bus_volume_db(BUS_IDS.MUSIC),  init_bus_volumes[BUS_IDS.MUSIC],  duration)
 		tween.tween_method(func(v): AudioServer.set_bus_volume_db(BUS_IDS.ENVIRONMENT, v),  AudioServer.get_bus_volume_db(BUS_IDS.ENVIRONMENT),  init_bus_volumes[BUS_IDS.ENVIRONMENT],  duration)
-		#print("in")
+		print("in")
+	return tween
 	#print(AudioServer.get_bus_volume_db(1))
 
 func fade_in_and_out(length:float):
-	fade_volume(true,1)
-	await get_tree().create_timer(length-6,true,false,true).timeout
-	fade_volume(false,2)
+	var tween :Tween = fade_volume(true,1, 30)
+	await tween.finished
+	fade_volume(false,2, 30)
 
+func fade_and_stop():
+	var tween :Tween = fade_volume(true,0.5)
+	await tween.finished
+	print("a")
+	stop()
+	fade_volume(false,0)
 
 func _on_debug_list_item_clicked(index, _at_position, _mouse_button_index):
 	for key in LEVEL.values():

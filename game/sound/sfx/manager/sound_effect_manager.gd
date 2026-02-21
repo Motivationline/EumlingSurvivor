@@ -41,7 +41,7 @@ func play_sound(sounds, focus:bool = false, persistent = false):
 
 			sound.play()
 			if focus:
-				music_player.fade_in_and_out(sound.stream.get_length())
+				MusicPlayer.fade_in_and_out(sound.stream.get_length())
 		else:
 			print("Sound '"+sound_name+"' is missing!")
 	
