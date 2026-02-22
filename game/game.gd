@@ -21,7 +21,7 @@ func _ready() -> void:
 	add_child(player)
 	# init player here.
 	player.died.connect(return_to_main_menu)
-	MusicPlayer._on_game_request_music()
+	#MusicPlayer._on_game_request_music()
 	#requestMusic.emit(false, MusicPlayer.LEVEL.MENU)
 	# remove mobile overlay if not on mobile
 	if not Data.is_on_mobile:
@@ -59,7 +59,7 @@ func load_level():
 		new_level.spawn_player(player)
 		new_level.level_finished.connect(level_finished)
 		new_level.level_ended.connect(level_ended)
-		MusicPlayer._on_game_request_music(false, new_level.music)
+		#MusicPlayer._on_game_request_music(false, new_level.music)
 
 
 		currently_loaded_level = new_level

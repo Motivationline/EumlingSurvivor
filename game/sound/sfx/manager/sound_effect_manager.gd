@@ -40,8 +40,8 @@ func play_sound(sounds, focus:bool = false, persistent = false):
 				sound.finished.connect(sound.queue_free)
 
 			sound.play()
-			if focus:
-				MusicPlayer.fade_in_and_out(sound.stream.get_length())
+			#if focus:
+				##MusicPlayer.fade_in_and_out(sound.stream.get_length())
 		else:
 			print("Sound '"+sound_name+"' is missing!")
 	

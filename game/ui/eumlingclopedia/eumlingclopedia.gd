@@ -26,5 +26,4 @@ func check_for_new_eumlings(new_eumlings: Array[int]):
 
 func _on_gamble_button_pressed() -> void:
 	check_for_new_eumlings([randi_range(0, 4)])
-	MusicPlayer.fade_and_stop()
 	

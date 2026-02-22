@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmc2la5fkmscu"]
+[gd_scene format=3 uid="uid://bmc2la5fkmscu"]
 
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_wbp8f"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="2_gxtsi"]
@@ -31,43 +31,43 @@ ambient_light_color = Color(0.774, 0.8727, 0.9, 1)
 tonemap_mode = 4
 glow_enabled = true
 glow_intensity = 0.2
-glow_blend_mode = 1
 adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 1.51
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("player_spawn", "goal_area")]
+[node name="Level" type="Node3D" unique_id=824724976 node_paths=PackedStringArray("player_spawn", "goal_area")]
 script = ExtResource("1_wbp8f")
 player_spawn = NodePath("PlayerSpawnMarker")
 goal_area = NodePath("GoalArea")
+music = 0
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=141977342]
 navigation_mesh = SubResource("NavigationMesh_wbp8f")
 
-[node name="PlayerSpawnMarker" type="Marker3D" parent="."]
+[node name="PlayerSpawnMarker" type="Marker3D" parent="." unique_id=262897442]
 
-[node name="GoalArea" type="Area3D" parent="."]
+[node name="GoalArea" type="Area3D" parent="." unique_id=200222586]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalArea" unique_id=1597769655]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_wbp8f")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1814334667]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.104352, 12.5917, 7.49343)
 fov = 45.0
 script = ExtResource("2_gxtsi")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2030033814]
 transform = Transform3D(1, 0, 0, 0, 0.713593, 0.700561, 0, -0.700561, 0.713593, 0, 4.44658, 0)
 
-[node name="Lights" type="Node3D" parent="."]
+[node name="Lights" type="Node3D" parent="." unique_id=161220877]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=1182317614]
 transform = Transform3D(0.802373, -0.579826, 0.141416, 0.0617642, 0.316347, 0.946631, -0.593617, -0.750817, 0.289641, -5.2903, 7.71908, -5.02786)
 light_bake_mode = 1
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights" unique_id=791833253]
 environment = SubResource("Environment_weh0f")

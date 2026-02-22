@@ -31,7 +31,6 @@ func advance():
 		seed_animation.play("click_0" + str(progress))
 	if progress == 4:
 		reveal_emuling()
-		MusicPlayer.queue_specific_track(MusicPlayer.LEVEL.GAMBA)
 
 func reveal_emuling():
 	seed_animation.play("reveal")

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://4ga2khoaf8qm"]
+
+[ext_resource type="PackedScene" uid="uid://u2lg66a1tgah" path="res://game/sound/sound_event/events/fade.tscn" id="1_p5sf4"]
+
+[node name="RevealSeedSounds" type="Node" unique_id=1478887450]
+
+[node name="FadeIn" parent="." unique_id=1280482832 instance=ExtResource("1_p5sf4")]
+fade_type = 1
+buses = Array[int]([1])
+fade_duration = 0.01
+enabled = null
+on_ready = true
+
+[node name="FadeOut" parent="." unique_id=236370635 instance=ExtResource("1_p5sf4")]
+buses = Array[int]([1])
+fade_duration = 1.0
+enabled = null
+on_ready = true
