@@ -40,18 +40,17 @@ func _ready():
 	#set up track list
 	for i in TRACK.size():
 		tracks[i] = [ get_clip_names_from_track( TRACK.get( TRACK.keys()[i] )) ]
-		print(tracks)
-	print(tracks[TRACK.MENU])
 
-func start_playback(names:Array[String],with_ambient:bool = true):
-	var track_name = names[0]
-	var env_name = names[1]
+
+func start_playback(_names:Array[String], _with_ambient:bool = true):
+	var track_name = _names[0]
+	var env_name = _names[1]
 	if playing == false:
 		play()
 	if track_name != current_clip:
 		get_stream_playback().switch_to_clip_by_name(track_name)
 		
-	if env_name != current_env and with_ambient:
+	if env_name != current_env and _with_ambient:
 		if env_name == "":
 			ambientNoisePlayer.stop()
 		else:
@@ -75,20 +74,20 @@ func queue_random_track():
 
 
 
-func queue_specific_track(track_name:TRACK, transition:TRANSITIONS = TRANSITIONS.CROSSFADE, duration:float = 0,with_env_nose: bool = false):
-	var next_track:Array[String] = select_track(track_name)
+func queue_specific_track(_track_name:TRACK, _transition:TRANSITIONS = TRANSITIONS.CROSSFADE, _duration:float = 0, _with_env_nose: bool = false):
+	var next_track:Array[String] = select_track(_track_name)
 	start_playback(next_track)
 	
-	update_transition(current_track,transition, duration, next_track[0])
+	update_transition(current_track,_transition, _duration, next_track[0])
 	
 	current_track = next_track[0]
 	
 
 
-func update_transition(from:String, type:TRANSITIONS,duration:float, to:String = "default") -> void:
-	if to == "default":
+func update_transition(_from:String, _type:TRANSITIONS,_duration:float, _to:String = "default") -> void:
+	if _to == "default":
 		pass
-	match type:
+	match _type:
 		TRANSITIONS.INSTANT:
 			var current_stream = stream as AudioStreamInteractive
 			#current_stream.add_transition()
@@ -101,11 +100,11 @@ func update_transition(from:String, type:TRANSITIONS,duration:float, to:String =
 	
 	
 
-func select_track(track_name:TRACK) -> Array[String]:
-	#print(track_name)
+func select_track(_track_name:TRACK) -> Array[String]:
+	#print(_track_name)
 	var selected_track = "Menu"
 	var selected_ambient = ""
-	match track_name:
+	match _track_name:
 		
 		
 		TRACK.MENU:
@@ -131,10 +130,10 @@ func select_track(track_name:TRACK) -> Array[String]:
 
 
 
-func get_clip_names_from_track(track_name:TRACK) -> Array[String]:
-	#print(track_name)
+func get_clip_names_from_track(_track_name:TRACK) -> Array[String]:
+	#print(_track_name)
 	var selected_track = "Menu"
-	match track_name:
+	match _track_name:
 		
 		
 		TRACK.MENU:

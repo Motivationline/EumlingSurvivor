@@ -10,51 +10,18 @@ enum FADE_TYPE {OUT, IN}
 	set(value):
 		to_initial_volume = value
 		notify_property_list_changed()
-@export var amount_db:float = 100
+@export var amount_db:float = 30
 @export var fade_duration:float = 2.0
 
+func _validate_property(_property: Dictionary):
+	if to_initial_volume and _property.name == "amount_db":
+		_property.usage = PROPERTY_USAGE_NONE
 
-@export_category("Delay")
-@export var enabled = false:
-	set(value):
-		enabled = value
-		notify_property_list_changed()
-
-func _validate_property(property: Dictionary):
-	if to_initial_volume and property.name == "amount_db":
-		property.usage = PROPERTY_USAGE_NONE
-
-
-
-
-var delay_duration ##In seconds
-func _get_property_list():
-	var properties = []
-
-	if enabled:
-		properties.append({
-			"name": "duration",
-			"type": TYPE_FLOAT,
-			"hint": PROPERTY_HINT_RANGE,
-			"hint_string": "0.01,10, 0.01"
-		})
-	return properties
-func _get(property):
-	if property == "duration":
-		return delay_duration
-func _set(property, val):
-	if property == "duration":
-		delay_duration = val
 
 
 
 func start() -> void:
-	if enabled:
-		var timer = get_tree().create_timer(delay_duration)
-		await timer.timeout
-		fade()
-	else:
-		fade()
+	fade()
 
 func fade():
 	var out:bool
@@ -65,10 +32,10 @@ func fade():
 		FADE_TYPE.IN:
 			out = false
 	
-	var tween:Tween = GlobalAudioManager.fade_bus_volume(buses, out, fade_duration, amount_db)
+	var tween:Tween = GlobalAudioManager.fade_bus_volume(buses, out, fade_duration, amount_db, to_initial_volume)
 
 	await tween.finished
+	finished.emit()
 	if out:
-		GlobalAudioManager.stop_music()
 
-	
+		GlobalAudioManager.stop_music()
