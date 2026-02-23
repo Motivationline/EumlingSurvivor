@@ -2,11 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_riwmu"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_mb60q"]
-[ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="3_sa8tp"]
-[ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="4_fvip5"]
+[ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="3_sa8tp"]
+[ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="4_fvip5"]
 [ext_resource type="PackedScene" uid="uid://cm8xm0j7ly1d" path="res://game/enemies/6-volcano/magma_toad/magma_toad.tscn" id="5_sa8tp"]
-[ext_resource type="PackedScene" uid="uid://cxdkd7r0krykq" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball_projectile_visual.tscn" id="6_fvip5"]
-[ext_resource type="PackedScene" uid="uid://ctpdnwxhrhuts" path="res://assets/models/volcano/magma_tiles/magma_tiles.tscn" id="7_6f2qs"]
+[ext_resource type="PackedScene" uid="uid://ctpdnwxhrhuts" path="res://assets/models/6-volcano/magma_tiles/magma_tiles.tscn" id="7_6f2qs"]
+[ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="8_62l4d"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-jungle/sniper/sniper_enemy.tscn" id="8_vfhvo"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_riwmu"]
 vertices = PackedVector3Array(-3.25, 1, -3, -3, 1, -3, -3, 1, -3.25, -2.75, 1, -3.75, -2.5, 1, -3.75, -2.5, 1, -4, -4.5, 1, -4.5, -1.25, 1, -3.75, -1.25, 1, -3.5, -1, 1, -3.5, 1, 1, -4.5, -0.75, 1, -4.5, -1, 1, -2, -1.25, 1, -2, -1.25, 1, -1.75, -0.5, 1, -0.75, -0.25, 1, -0.5, 0.5, 1, -0.25, -1.5, 1, -1.75, -1.5, 1, -1.5, -1.25, 1, -0.75, -1.75, 1, -1.5, -1.75, 1, -1.25, -0.5, 1, -0.5, 0.5, 1, 0, 0.75, 1, 0, 0.75, 1, 0.25, 1, 1, 0.25, 1, 1, 1.5, 0.75, 1, 1.5, 0.75, 1, 1.75, -0.5, 1, 2, -0.5, 1, 1.75, -0.75, 1, 1.75, -0.75, 1, 2.5, -0.25, 1, 2.75, -0.25, 1, 3, 0, 1, 3, 0.25, 1, 2, 0, 1, 3.5, -0.25, 1, 3.5, -0.25, 1, 3.75, -0.75, 1, 4, -1, 1, 4, -1, 1, 4.25, -1.25, 1, 4.25, -1.25, 1, 4.5, -1, 1, 4.75, 3, 1, 4.5, 3, 1, 4.25, 2.75, 1, 4.25, 2.75, 1, 4.75, 2.75, 1, 4, 2.5, 1, 4, 2.5, 1, 3.75, 2.25, 1, 3.75, 2.25, 1, 3.5, 2, 1, 3.5, 2.25, 1, 2.25, 2.5, 1, 2.25, 2.5, 1, 2, 2, 1, 1.5, 2, 1, 1.25, 1.75, 1, 1.25, 1.75, 1, 1, 1.5, 1, 1, 2.25, 1, -0.75, 2.5, 1, -0.75, 2.5, 1, -1, 3.25, 1, -1.75, 3, 1, -1, 3, 1, -0.75, 3.25, 1, -0.75, 3.5, 1, -1.5, 3.5, 1, -1.75, 3, 1, -2.25, 3, 1, -2.5, 2.75, 1, -2.5, 2.75, 1, -3.5, 3, 1, -3.5, 3, 1, -3.75, 3.25, 1, -3.75, 3.25, 1, -4, 2, 1, 2.75, -2.75, 1, -3.25, -1.75, 1, -4, -1.75, 1, -3.75, 0.25, 1, 1.75, -0.75, 1, 1.25, -1, 1, 1.25, -0.75, 1, 2.75, -0.75, 1, 3.75, 2.25, 1, 2.75, 1.5, 1, 0.75, 1.75, 1, 0.75, 1.75, 1, 0.25, 2, 1, 0.25, 2, 1, -0.25, 2.25, 1, -0.25, 3.25, 1, -2.25, 2.5, 1, 1.5, -0.25, 1, -0.25, -4.5, 1, -1.25, -3.25, 1, -1.5, 3.25, 1, -4.5, -1.25, 1, 2.5, 3.25, 1, -0.5, 4, 1, -1.5, 1, 1, -4.75, -0.75, 1, -4.75, 4.25, 1, -4, 4.25, 1, -3.75, 4.5, 1, -3.75, 4.75, 1, -4.5, 4.25, 1, -1.75, 4, 1, -1.75, 3.25, 1, -0.25, 3.5, 1, -0.25, 3.5, 1, 0, 3.75, 1, 0, 3.75, 1, 0.25, 4, 1, 0.25, 4, 1, 1, 3.75, 1, 1, 3.75, 1, 1.25, 3.5, 1, 2, 3.5, 1, 2.25, 3.75, 1, 2.25, 3.75, 1, 2.5, 4, 1, 2.5, 4, 1, 2.75, 4.25, 1, 2.75, 4.25, 1, 4, 4, 1, 4, 4, 1, 4.25, 4.75, 1, 4.75, 4.5, 1, -2.25, 4.25, 1, -2.25, 3.25, 1, 1.25, 3.25, 1, 1.5, 3.5, 1, 4.25, 3.5, 1, 4.5, 3.25, 1.5, -3.25, 3.25, 1.5, -2.75, 3.75, 1.5, -2.75, 3.75, 1.5, -3.25, -2.75, 1.5, -2, -2.5, 1.5, -2, -2.5, 1.5, -2.25, -2.75, 1.5, -2.75, -2.25, 1.5, -2.25, -2.25, 1.5, -2.5, -2, 1.5, -2.5, -2, 1.5, -2.75, -4.25, 1, 1, -4, 1, 1, -4, 1, 0.75, -2.75, 1, 0.5, -2.75, 1, 0.75, -2.5, 1, 0.75, -2.5, 1, 1, -2.25, 1, 1, -1.75, 1, 0.75, -2.25, 1, 1.25, -2, 1, 1.25, -2, 1, 2.5, -2.25, 1, 2.5, -2.25, 1, 2.75, -2.75, 1, 3, -3, 1, 3, -3, 1, 3.25, -4, 1, 3.25, -4, 1, 3, -4.25, 1, 3, -4.5, 1, 4.75, -1.75, 1, 4.5, -1.75, 1, 4.25, -2, 1, 4.25, -2, 1, 4, -2.25, 1, 4, -2.25, 1, 3.75, -2.5, 1, 3.75, -2.5, 1, 3.25, -2.25, 1, 3.25, -2.25, 1, 3, -1.25, 1, 1.25, -1.25, 1, 1, -1.5, 1, 1, -1.5, 1, 0.75, -1.75, 1, -0.5, -1.5, 1, -0.5, -1.5, 1, -0.75, -2, 1, -1, -2.5, 1, -1, -2, 1, -1.25, -3, 1, -1.25, -3, 1, -1.5, -3.25, 1, 0.5, -4.5, 1, 1.5, -4.25, 1, 1.5, -2.75, 1, 2.75, -1.75, 1, 3, -1.75, 1, 2.75, -1.25, 1, 2.75, -2.5, 1, -1.25, -3.25, 1, 0.75, -4.25, 1, 2.25, -4.5, 1, 2.25, -0.5, 1.5, 0.25, -0.5, 1.5, 0, -0.75, 1.5, 0, -1.25, 1.5, 0.25, -1.25, 1.5, -0.25, -0.75, 1.5, -0.25, -3.25, 1.5, 2, -3, 1.5, 2, -3, 1.5, 1.5, -3.25, 1.5, 1.5, -3.75, 1.5, 1.25, -3.25, 1.5, 1.25, -3.75, 1.5, 2.75, -3.25, 1.5, 2.75)
@@ -322,9 +323,6 @@ transform = Transform3D(-0.91552186, 0.39784315, -0.059502605, -0.021726422, 0.0
 shadow_bias = 0.05
 shadow_blur = 0.458
 
-[node name="Rocks" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="0" unique_id=406521155]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.067417145, -1.3281224, 0.008252621)
-
 [node name="MagmaToad" parent="." index="6" unique_id=1898691 instance=ExtResource("5_sa8tp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03107524, 0.5, -3.2427835)
 
@@ -334,11 +332,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9674009, 0.5, -3.2751148)
 [node name="MagmaToad3" parent="." index="8" unique_id=134221624 instance=ExtResource("5_sa8tp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6114922, 0.5, -0.46147776)
 
-[node name="Magma_Ball" parent="." index="9" unique_id=153719346 instance=ExtResource("6_fvip5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -1.5)
-
-[node name="magma_tiles4" parent="." index="10" unique_id=197851 instance=ExtResource("7_6f2qs")]
+[node name="magma_tiles4" parent="." index="9" unique_id=197851 instance=ExtResource("7_6f2qs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.75, 1.75)
 
-[node name="magma_tiles5" parent="." index="11" unique_id=2030102374 instance=ExtResource("7_6f2qs")]
+[node name="magma_tiles5" parent="." index="10" unique_id=2030102374 instance=ExtResource("7_6f2qs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.75, 1.25)
+
+[node name="ExitArea" parent="." index="11" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("8_62l4d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")
+
+[node name="SniperEnemy" parent="." index="12" unique_id=1534333626 instance=ExtResource("8_vfhvo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6302893, 0.5171601, 3.042064)

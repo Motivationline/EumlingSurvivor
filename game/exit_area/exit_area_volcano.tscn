@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://dip1bn417csc2"]
+
+[ext_resource type="Script" uid="uid://ct7skgiecn1pc" path="res://game/exit_area/exit_area.gd" id="1_kgdiv"]
+[ext_resource type="PackedScene" uid="uid://bpvkvhep32a8p" path="res://assets/models/6-volcano/volcano_exit/exit_volcano.tscn" id="2_kgdiv"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="4_3b7qv"]
+[ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="5_54vu6"]
+[ext_resource type="AudioStream" uid="uid://jdj6s0mg7a6p" path="res://assets/sound/obstacle_sound_effects/exit_area/chime.wav" id="6_gfdts"]
+[ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_1.wav" id="7_elhmc"]
+[ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_2.wav" id="8_nc2l7"]
+[ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_3.wav" id="9_l0dif"]
+[ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_4.wav" id="10_ekk3c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
+size = Vector3(2.2646484, 1.980957, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tkqdu"]
+size = Vector3(0.8687744, 2.0351563, 1.6484375)
+
+[sub_resource type="Animation" id="Animation_rdd0d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/OmniLight3D2:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.9904785, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_tkqdu"]
+resource_name = "exit_open"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SoundEffectManager")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Leaves"],
+"method": &"play_sound"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SoundEffectManager")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Chime", true, true],
+"method": &"play_sound"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/OmniLight3D2:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.845]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-2, -0.25, 0, 0.5, 0.1237309, 0, -0.6333333, 0.3921302, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape3D:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0.9904785, 0, 0, 0.4, 0.06613231, 2.9904785, -0.6, 0.47201037, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_47e78"]
+_data = {
+&"RESET": SubResource("Animation_rdd0d"),
+&"exit_open": SubResource("Animation_tkqdu")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mu12n"]
+streams_count = 4
+stream_0/stream = ExtResource("7_elhmc")
+stream_1/stream = ExtResource("8_nc2l7")
+stream_2/stream = ExtResource("9_l0dif")
+stream_3/stream = ExtResource("10_ekk3c")
+
+[node name="ExitArea" type="Area3D" unique_id=609974398]
+collision_mask = 0
+script = ExtResource("1_kgdiv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=936964363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9904785, 0.48971936)
+shape = SubResource("BoxShape3D_uile8")
+
+[node name="Visuals" type="Node3D" parent="." unique_id=1541547249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.087096214, -2, 0.025318384)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Visuals" unique_id=254269420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4179616, 0.48671263)
+visible = false
+light_color = Color(0.04574851, 0.7896275, 0.9562871, 1)
+light_energy = 16.0
+light_cull_mask = 4294967293
+omni_range = 1.6048713
+
+[node name="exit_volcano" parent="Visuals" unique_id=985169330 instance=ExtResource("2_kgdiv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Visuals" unique_id=577576927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7885388, 1.3295255)
+light_color = Color(1, 0.88449997, 0.00999999, 1)
+light_energy = 4.0
+light_cull_mask = 4294967293
+omni_range = 4.115
+
+[node name="RightWall" type="StaticBody3D" parent="." unique_id=1710607827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall" unique_id=713484516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48316336, 0.9660523, -0.29638672)
+shape = SubResource("BoxShape3D_tkqdu")
+debug_fill = false
+
+[node name="LeftWall" type="StaticBody3D" parent="." unique_id=728389544]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall" unique_id=1642082774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17628121, 0.9660523, -0.29638672)
+shape = SubResource("BoxShape3D_tkqdu")
+debug_fill = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1030011118]
+libraries/ = SubResource("AnimationLibrary_47e78")
+
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=453446471]
+script = ExtResource("4_3b7qv")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Chime" parent="SoundEffectManager" unique_id=1064576579 instance=ExtResource("5_54vu6")]
+stream = ExtResource("6_gfdts")
+
+[node name="Leaves" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=857230476]
+stream = SubResource("AudioStreamRandomizer_mu12n")
+panning_strength = 2.0
+bus = &"SFXGeneral"
+attenuation_filter_cutoff_hz = 20500.0
