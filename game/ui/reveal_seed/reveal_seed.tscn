@@ -22,7 +22,6 @@
 [ext_resource type="AudioStream" uid="uid://go8v7ky5evie" path="res://assets/sound/reveal/wiggle_2.wav" id="20_4xp3e"]
 [ext_resource type="AudioStream" uid="uid://bym0tt2g6t36t" path="res://assets/sound/reveal/wiggle_3.wav" id="21_ks44o"]
 [ext_resource type="AudioStream" uid="uid://cp2ipirxmy5xt" path="res://assets/sound/reveal/wiggle_4.wav" id="22_xfaou"]
-[ext_resource type="PackedScene" uid="uid://4ga2khoaf8qm" path="res://game/sound/sound_event/events/reveal_seed_music_event.tscn" id="23_4xp3e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rd7av"]
 transparency = 1
@@ -761,9 +760,3 @@ metadata/_custom_type_script = "uid://boxwy3m3i4pdu"
 [node name="WigglePlayer" parent="SoundEffectManager/Wiggle" unique_id=590908864 instance=ExtResource("13_fbwby")]
 stream = SubResource("AudioStreamPolyphonic_4xp3e")
 volume_db = -4.0
-
-[node name="RevealSeedMusicEvent" parent="." unique_id=1478887450 instance=ExtResource("23_4xp3e")]
-on_ready = false
-
-[connection signal="completed" from="." to="RevealSeedMusicEvent" method="reset"]
-[connection signal="animation_started" from="seed_animation" to="RevealSeedMusicEvent" method="advance"]

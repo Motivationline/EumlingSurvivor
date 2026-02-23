@@ -12,6 +12,8 @@ class_name Level
 
 @export var is_boss_level: bool = false
 
+@export var music:SongList.TRACK = SongList.TRACK.MENU
+
 
 var cleared: bool = false
 var finished: bool = false

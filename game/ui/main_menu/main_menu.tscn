@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cx41tinmjl1ob" path="res://assets/ui/SketchButtonLangPressed.png" id="4_cwbgs"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_m1bca"]
 [ext_resource type="Script" uid="uid://b12g0nyew0m0i" path="res://global/settings/graphics_settings_component_shadow.gd" id="7_cwbgs"]
-[ext_resource type="Script" uid="uid://2ksn1olfjy61" path="res://game/sound/sound_event/events/request_song.gd" id="8_x7xh0"]
 
 [sub_resource type="Animation" id="Animation_x7xh0"]
 length = 0.001
@@ -193,12 +192,6 @@ autoplay = &"run"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1859118858]
 environment = SubResource("Environment_0p1rw")
-
-[node name="SongRequester" type="Node" parent="." unique_id=690312133]
-script = ExtResource("8_x7xh0")
-backround_noise = true
-on_ready = true
-metadata/_custom_type_script = "uid://2ksn1olfjy61"
 
 [connection signal="pressed" from="CanvasLayer/Control/EumlinclopediaButton" to="." method="_on_eumlingclopedia_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/PlayButton" to="." method="_on_play_button_pressed"]

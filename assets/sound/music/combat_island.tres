@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamInteractive" format=3 uid="uid://3pi5diwxqv88"]
+
+[ext_resource type="AudioStream" uid="uid://c7q6vjcw3bgv5" path="res://assets/sound/music/raw/CombatIsland_intro.ogg" id="1_rgefe"]
+[ext_resource type="AudioStream" uid="uid://b5ibf1sqhxe4f" path="res://assets/sound/music/raw/CombatIsland_loop.ogg" id="2_x4m8c"]
+[ext_resource type="AudioStream" uid="uid://blo8uedlc2xrg" path="res://assets/sound/music/raw/CombatIsland_tail.ogg" id="3_hx3il"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_g1d1m"]
+stream_count = 2
+stream_0/stream = ExtResource("2_x4m8c")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_hx3il")
+stream_1/volume = -60.0
+
+[resource]
+clip_count = 2
+clip_0/name = &"Intro"
+clip_0/stream = ExtResource("1_rgefe")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Loop"
+clip_1/stream = SubResource("AudioStreamSynchronized_g1d1m")
+clip_1/auto_advance = 1
+clip_1/next_clip = 1

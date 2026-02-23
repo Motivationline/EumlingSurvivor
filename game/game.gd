@@ -21,8 +21,7 @@ func _ready() -> void:
 	add_child(player)
 	# init player here.
 	player.died.connect(return_to_main_menu)
-	#MusicPlayer._on_game_request_music()
-	#requestMusic.emit(false, MusicPlayer.LEVEL.MENU)
+
 	# remove mobile overlay if not on mobile
 	if not Data.is_on_mobile:
 		touch_joystick_overlay.queue_free()
@@ -59,7 +58,7 @@ func load_level():
 		new_level.spawn_player(player)
 		new_level.level_finished.connect(level_finished)
 		new_level.level_ended.connect(level_ended)
-		#MusicPlayer._on_game_request_music(false, new_level.music)
+		GlobalMusicManager.request_music(new_level.music, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [4,0], true)
 
 
 		currently_loaded_level = new_level
@@ -80,6 +79,7 @@ func level_ended():
 
 func return_to_main_menu():
 	scene_fade_animation_player.play("fade")
+	GlobalMusicManager.request_music(SongList.TRACK.MENU, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [2,0], true)
 	await scene_fade_animation_player.animation_finished
 	faded_to_black = true
 	levels_to_load.clear()

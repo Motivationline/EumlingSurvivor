@@ -1,0 +1,233 @@
+[gd_scene format=3 uid="uid://uyyg1ut65j1"]
+
+[ext_resource type="AudioStream" uid="uid://byfdnm5xd5k28" path="res://assets/sound/music/raw/Menu_intro.ogg" id="1_4jx58"]
+[ext_resource type="AudioStream" uid="uid://ds6vf8g8h2h6h" path="res://assets/sound/music/raw/Menu_loop.ogg" id="2_4l1yl"]
+[ext_resource type="AudioStream" uid="uid://bp8ypixhc4mkc" path="res://assets/sound/music/raw/Menu_tail.ogg" id="3_idn17"]
+[ext_resource type="AudioStream" uid="uid://n7larc6pdf80" path="res://assets/sound/music/raw/CombatForest_intro.ogg" id="4_egont"]
+[ext_resource type="AudioStream" uid="uid://djqo3hu22b3tv" path="res://assets/sound/music/raw/BossGeneric_intro.ogg" id="4_i14vr"]
+[ext_resource type="AudioStream" uid="uid://djtsuq65vi7hr" path="res://assets/sound/music/raw/CombatForest_loop.ogg" id="5_4clt5"]
+[ext_resource type="AudioStream" uid="uid://d1qyvqcqnqo03" path="res://assets/sound/music/raw/BossGeneric_loop.ogg" id="5_wrmn7"]
+[ext_resource type="AudioStream" uid="uid://cjssvovu08m7i" path="res://assets/sound/music/raw/BossGeneric_tail.ogg" id="6_lmv7x"]
+[ext_resource type="AudioStream" uid="uid://5g63bwipx8d" path="res://assets/sound/music/raw/CombatForest_tail.ogg" id="6_oh7yp"]
+[ext_resource type="AudioStream" uid="uid://c2ustglkejkhh" path="res://assets/sound/music/raw/Chase_intro.ogg" id="7_rumds"]
+[ext_resource type="AudioStream" uid="uid://dntxh066r5awj" path="res://assets/sound/music/raw/GambaJingle_intro.ogg" id="7_w86fx"]
+[ext_resource type="AudioStream" uid="uid://dgbb2hjmmhbql" path="res://assets/sound/music/raw/GambaJingle_loop.ogg" id="8_dhhin"]
+[ext_resource type="AudioStream" uid="uid://bodhilivtehfq" path="res://assets/sound/music/raw/Chase_loop.ogg" id="8_dmraq"]
+[ext_resource type="AudioStream" uid="uid://dgsgs57us6tr8" path="res://assets/sound/music/raw/Chase_tail.ogg" id="9_6rkcp"]
+[ext_resource type="AudioStream" uid="uid://csiviuj37w047" path="res://assets/sound/music/raw/GambaJingle_tail.ogg" id="9_uk623"]
+[ext_resource type="AudioStream" uid="uid://c7q6vjcw3bgv5" path="res://assets/sound/music/raw/CombatIsland_intro.ogg" id="10_04iqn"]
+[ext_resource type="Script" uid="uid://cgdd38d2p7id8" path="res://game/sound/music_player/deprecated/bad_music_player.gd" id="10_yl7jb"]
+[ext_resource type="AudioStream" uid="uid://b5ibf1sqhxe4f" path="res://assets/sound/music/raw/CombatIsland_loop.ogg" id="11_yf3qy"]
+[ext_resource type="AudioStream" uid="uid://blo8uedlc2xrg" path="res://assets/sound/music/raw/CombatIsland_tail.ogg" id="12_q41y2"]
+[ext_resource type="AudioStream" uid="uid://6tjxnwroq282" path="res://assets/sound/music/raw/BossIsland_intro.ogg" id="13_nmt3e"]
+[ext_resource type="AudioStream" uid="uid://dxp4fgrapxtpu" path="res://assets/sound/music/raw/BossIsland_loop.ogg" id="14_0u0o4"]
+[ext_resource type="AudioStream" uid="uid://cf43rtd5p8ycp" path="res://assets/sound/music/raw/BossIsland_tail.ogg" id="15_1cfgr"]
+[ext_resource type="AudioStream" uid="uid://o88dlhile0m1" path="res://assets/sound/environment_noise/Env_Island.ogg" id="17_vk51o"]
+[ext_resource type="AudioStream" uid="uid://bkmmqpq8r6ti2" path="res://assets/sound/environment_noise/Env_Forest.ogg" id="18_gq4td"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_mm6rf"]
+stream_count = 2
+stream_0/stream = ExtResource("2_4l1yl")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_idn17")
+stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_w86fx"]
+stream_count = 2
+stream_0/stream = ExtResource("5_4clt5")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("6_oh7yp")
+stream_1/volume = 0.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_mgpo5"]
+stream_count = 2
+stream_0/stream = ExtResource("8_dhhin")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("9_uk623")
+stream_1/volume = 0.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ehp35"]
+stream_count = 2
+stream_0/stream = ExtResource("5_wrmn7")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("6_lmv7x")
+stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_fqltw"]
+stream_count = 2
+stream_0/stream = ExtResource("8_dmraq")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("9_6rkcp")
+stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_nmt3e"]
+stream_count = 2
+stream_0/stream = ExtResource("11_yf3qy")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("12_q41y2")
+stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_1g2au"]
+stream_count = 2
+stream_0/stream = ExtResource("14_0u0o4")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("15_1cfgr")
+stream_1/volume = -60.0
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_pff77"]
+clip_count = 14
+clip_0/name = &"Menu Intro"
+clip_0/stream = ExtResource("1_4jx58")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Menu Loop"
+clip_1/stream = SubResource("AudioStreamSynchronized_mm6rf")
+clip_1/auto_advance = 0
+clip_2/name = &"BossGeneric Intro"
+clip_2/stream = ExtResource("4_i14vr")
+clip_2/auto_advance = 1
+clip_2/next_clip = 3
+clip_3/name = &"BossGeneric Loop"
+clip_3/stream = SubResource("AudioStreamSynchronized_ehp35")
+clip_3/auto_advance = 0
+clip_4/name = &"Chase Intro"
+clip_4/stream = ExtResource("7_rumds")
+clip_4/auto_advance = 1
+clip_4/next_clip = 5
+clip_5/name = &"Chase Loop"
+clip_5/stream = SubResource("AudioStreamSynchronized_fqltw")
+clip_5/auto_advance = 0
+clip_6/name = &"CombatIsland Intro"
+clip_6/stream = ExtResource("10_04iqn")
+clip_6/auto_advance = 1
+clip_6/next_clip = 7
+clip_7/name = &"CombatIsland Loop"
+clip_7/stream = SubResource("AudioStreamSynchronized_nmt3e")
+clip_7/auto_advance = 0
+clip_8/name = &"BossIsland Intro"
+clip_8/stream = ExtResource("13_nmt3e")
+clip_8/auto_advance = 1
+clip_8/next_clip = 9
+clip_9/name = &"BossIsland Loop"
+clip_9/stream = SubResource("AudioStreamSynchronized_1g2au")
+clip_9/auto_advance = 0
+clip_10/name = &"CombatForest Intro"
+clip_10/stream = ExtResource("4_egont")
+clip_10/auto_advance = 1
+clip_10/next_clip = 11
+clip_11/name = &"CombatForest Loop"
+clip_11/stream = SubResource("AudioStreamSynchronized_w86fx")
+clip_11/auto_advance = 0
+clip_12/name = &"Gamba Jingle Intro"
+clip_12/stream = ExtResource("7_w86fx")
+clip_12/auto_advance = 1
+clip_12/next_clip = 13
+clip_13/name = &"Gamba Jingle Loop"
+clip_13/stream = SubResource("AudioStreamSynchronized_mgpo5")
+clip_13/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 2,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 3): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 4): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 5): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 6): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 7): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 8): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 9): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 10): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 11): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+}
+}
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_j45xg"]
+clip_count = 2
+clip_0/name = &"Island"
+clip_0/stream = ExtResource("17_vk51o")
+clip_0/auto_advance = 0
+clip_1/name = &"Forest"
+clip_1/stream = ExtResource("18_gq4td")
+clip_1/auto_advance = 0
+
+[node name="MusicPlayer" type="AudioStreamPlayer" unique_id=777857116 node_paths=PackedStringArray("ambientNoisePlayer")]
+stream = SubResource("AudioStreamInteractive_pff77")
+bus = &"Music"
+script = ExtResource("10_yl7jb")
+ambientNoisePlayer = NodePath("EnvNoisePlayer")
+
+[node name="EnvNoisePlayer" type="AudioStreamPlayer" parent="." unique_id=922069328]
+stream = SubResource("AudioStreamInteractive_j45xg")
+volume_db = 8.0
+bus = &"Environment"
