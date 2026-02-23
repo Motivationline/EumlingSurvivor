@@ -15,9 +15,13 @@ global uniform vec3 wind_direction;
 
 group_uniforms wind;
 uniform float wind_influence_start : hint_range(0.0, 1.0, 0.01) = 0.01;
-uniform float wind_influence_end : hint_range(0.0, 1.0, 0.01) = 1.0;
+uniform float wind_influence_end : hint_range(0.0, 2.0, 0.01) = 1.0;
 uniform float stiffness : hint_range(0.0, 1.0, 0.01) = 0.0; // controls the maximum displacement of vertices, 0 = max displacment is the root mean square of the aabb size of the mesh (in local space), 1 = no displacement
-uniform vec3 size = vec3(1.0); // aabb size of the mesh in local space
+group_uniforms;
+
+group_uniforms mesh;
+uniform vec3 aabb_size; // aabb size of the mesh in local space
+uniform float bounding_radius; // aabb bounding radius of the mesh centered at origin in local space
 group_uniforms;
 
 float inverseLerp(float a, float b, float v) {
@@ -34,11 +38,12 @@ void vertex() {
 	vec2 wind_noise_offset = (NODE_POSITION_WORLD.xz - TIME * wind_speed * wind_direction_normalized.xz) / wind_noise_scale;
 	float noise = texture(wind_noise, wind_noise_offset).r;
     
-	vec3 world_size = size * vec3(length(MODEL_MATRIX[0]), length(MODEL_MATRIX[1]), length(MODEL_MATRIX[2]));
-	float max_displacement = rootMeanSquare(world_size); // maximum displacement based on the size of the mesh
-	float displacement = noise * wind_strength * max_displacement;
+	vec3 world_aabb_size = aabb_size * vec3(length(MODEL_MATRIX[0]), length(MODEL_MATRIX[1]), length(MODEL_MATRIX[2]));
+	float max_displacement = rootMeanSquare(world_aabb_size); // maximum displacement based on the aabb size of the mesh
+	// float max_displacement = bounding_radius * length(MODEL_MATRIX[0]); // assuming uniform scaling
 
-	float normalized_distance = length(VERTEX) / rootMeanSquare(size);
+	float displacement = noise * wind_strength * max_displacement;
+	float normalized_distance = length(VERTEX) / bounding_radius;
     float distance_factor = inverseLerp(wind_influence_start, wind_influence_end, normalized_distance);
 	
 	float resistance_factor = 1.0 - stiffness;
@@ -51,7 +56,7 @@ void vertex() {
     VERTEX.x += direction.x * displacement;
     VERTEX.z += direction.z * displacement;
 
-    //COLOR = vec4(distance_factor * resistance_factor);
+    // COLOR = vec4(distance_factor * resistance_factor); // for debugging, visualize the distance factor and resistance factor as vertex color
 }
 
 void fragment() {
@@ -59,7 +64,7 @@ void fragment() {
 	METALLIC = metallic;
 	SPECULAR = specular;
 	ROUGHNESS = roughness;
-	//ALBEDO = COLOR.rgb;
+	// ALBEDO = COLOR.rgb; // for debugging
 }
 
 
