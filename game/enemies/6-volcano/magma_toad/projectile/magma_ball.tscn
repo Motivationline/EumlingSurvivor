@@ -9,13 +9,13 @@
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="6_vrxug"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_54631"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_m8640"]
-[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-jungle/sniper/sniper_enemy.tscn" id="8_j68gv"]
+[ext_resource type="PackedScene" uid="uid://bwmrw7fyqaxui" path="res://game/aoes/explosion/explosion_aoe.tscn" id="8_by40c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vrxug"]
-radius = 0.038965
+radius = 0.09788437
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4kao4"]
-radius = 0.097605094
+radius = 0.0991429
 
 [sub_resource type="SphereMesh" id="SphereMesh_54631"]
 radius = 0.15
@@ -46,7 +46,6 @@ rotation_speed = 0.0
 velocity_change_rate = 3.0
 speed_amp = 5.0
 arc_factor = 4.0
-use_prediction = true
 prediction_factor = 0.1
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
@@ -65,7 +64,7 @@ metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
 [node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy" index="0" unique_id=2059347249]
 script = ExtResource("7_m8640")
-entity_to_spawn = ExtResource("8_j68gv")
+entity_to_spawn = ExtResource("8_by40c")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Magma_Ball" parent="." index="2" unique_id=153719346 instance=ExtResource("2_ib3xs")]
