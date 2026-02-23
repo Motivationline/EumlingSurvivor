@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_32qoc"]
 [ext_resource type="Script" uid="uid://dsnnhkc4wtj0a" path="res://state_machine/enemy/move_horizontal_vertical.gd" id="2_u8giv"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_y3mil"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_nebqs"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_mh60j"]
 [ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/player.tscn" id="5_y3mil"]
@@ -37,15 +38,21 @@ shape = SubResource("CapsuleShape3D_s6jag")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.5)
 
 [node name="StateMachine" parent="." index="3" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("MoveHorizontalVerticalOnNavMeshState")
+initial_state = NodePath("WaitForTimeXState")
 
-[node name="MoveHorizontalVerticalOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=1705210938 node_paths=PackedStringArray("path_ray", "next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" unique_id=111245747 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_y3mil")
+next_state = NodePath("../MoveHorizontalVerticalOnNavMeshState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="MoveHorizontalVerticalOnNavMeshState" type="Node" parent="StateMachine" index="1" unique_id=1705210938 node_paths=PackedStringArray("path_ray", "next_state")]
 script = ExtResource("2_u8giv")
+stop_distance = 0.5
 path_ray = NodePath("../../PathRay")
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://dsnnhkc4wtj0a"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=1567306097 node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=1567306097 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_nebqs")
 end_delay = 3.0
 next_state = NodePath("../MoveHorizontalVerticalOnNavMeshState")
@@ -103,5 +110,6 @@ target_position = Vector3(0, 0, -5)
 collision_mask = 2
 
 [node name="PathRay" type="RayCast3D" parent="." index="11" unique_id=1646149778]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 target_position = Vector3(0, 0, -30)
+collision_mask = 257

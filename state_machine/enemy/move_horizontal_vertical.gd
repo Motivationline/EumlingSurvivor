@@ -55,6 +55,10 @@ func physics_process(_delta: float) -> State:
 	
 	move_direction = (target_position - parent.global_position).normalized()
 	
+	print("move dir: ", move_direction)
+	
+	print("velo: ", move_direction * speed)
+	
 	parent.velocity = move_direction * speed
 
 	parent.move_and_slide()
@@ -63,7 +67,7 @@ func physics_process(_delta: float) -> State:
 	#if parent.global_position.distance_to(pos1) < stop_distance || parent.global_position.distance_to(pos2) < stop_distance:
 		#done = true
 		#parent.velocity = Vector3.ZERO
-	if parent.global_position.is_equal_approx(target_position):
+	if parent.global_position.distance_to(target_position) < stop_distance:
 		print("reached target position")
 		done = true
 	
@@ -72,30 +76,36 @@ func physics_process(_delta: float) -> State:
 func get_new_target_position() -> Vector3:
 	
 	#path_ray.target_position = parent.global_basis.z * ray_length
-	print("target pos: ", path_ray.target_position)
+	print("ray target pos: ", path_ray.target_position + path_ray.global_position)
 	print("pos: ", parent.global_position + Vector3(0,0.5,0))
 	
 	var direction = randi_range(0,3)
+	
+	#parent.rotation.y = 
 	
 	match direction:
 		0:
 			parent.rotation.y = 0
 		1:
-			parent.rotation.y = 90
+			parent.rotation.y = PI/2
 		2:
-			parent.rotation.y = 180
+			parent.rotation.y = PI
 		3: 
-			parent.rotation.y = 270
+			parent.rotation.y = PI + PI/2
 		
-	print(parent.rotation.y)
+	print("rotation: ", parent.rotation.y * PI/180)
+	
+	path_ray.force_raycast_update()
 	
 	if path_ray.is_colliding():
 		pos1 = path_ray.get_collision_point()
 		pos1.y = parent.position.y #make the entity walk on a straight plane
 		print("pos1: ", pos1)
+	else:
+		print("path ray is not colliding")
 	
 	var next_target_pos: Vector3 = parent.global_position + (pos1 - parent.global_position) * randf_range(0.2,1)
-	print(next_target_pos)
+	print("nect_target_pos: ",next_target_pos)
 	return next_target_pos
 
 func target_reached():
