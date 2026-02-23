@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://c078nbg0qjgp5"]
+
+[ext_resource type="PackedScene" uid="uid://vjc83kqk3uqf" path="res://assets/characters/enemies/volcano_tortoise/volcano_tortoise.glb" id="1_5ptpm"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l5mbv"]
+animation = &"tortoise_walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s50k1"]
+animation = &"tortoise_shake"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0saar"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hno28"]
+animation = &"tortoise_idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5jbpd"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_mchdf"]
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5jbpd"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0saar"]
+fadein_time = 0.1
+fadeout_time = 0.3
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5ptpm"]
+graph_offset = Vector2(-314.12396, -22.892563)
+nodes/output/position = Vector2(1060, 80)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_hno28")
+nodes/Animation/position = Vector2(-260, 40)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_l5mbv")
+"nodes/Animation 2/position" = Vector2(-280, 260)
+nodes/shake/node = SubResource("AnimationNodeOneShot_0saar")
+nodes/shake/position = Vector2(460, 60)
+nodes/Transition/node = SubResource("AnimationNodeTransition_mchdf")
+nodes/Transition/position = Vector2(20, 120)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_s50k1")
+"nodes/Animation 3/position" = Vector2(60, 380)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5jbpd")
+nodes/TimeScale/position = Vector2(260, 300)
+nodes/hurt/node = SubResource("AnimationNodeOneShot_5jbpd")
+nodes/hurt/position = Vector2(820, 40)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_0saar")
+"nodes/Animation 4/position" = Vector2(620, 380)
+node_connections = [&"output", 0, &"hurt", &"shake", 0, &"Transition", &"shake", 1, &"TimeScale", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"TimeScale", 0, &"Animation 3", &"hurt", 0, &"shake", &"hurt", 1, &"Animation 4"]
+
+[node name="volcano_tortoise" unique_id=1249268255 instance=ExtResource("1_5ptpm")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=63976329]
+tree_root = SubResource("AnimationNodeBlendTree_5ptpm")
+anim_player = NodePath("../AnimationPlayer")
+parameters/shake/active = false
+parameters/shake/internal_active = false
+parameters/shake/request = 0
+parameters/Transition/current_state = "idle"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0
+parameters/TimeScale/scale = 1.7999999999999972
+parameters/hurt/active = false
+parameters/hurt/internal_active = false
+parameters/hurt/request = 0
