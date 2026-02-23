@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c56irah1th6j1"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_bv6x7"]
+[ext_resource type="Texture2D" uid="uid://jtpmc74i6gmu" path="res://assets/models/3-Jungle/momument/momument_MapAtlas.png" id="2_hdmkm"]
+
+[sub_resource type="Gradient" id="Gradient_d6v6d"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.26253, 0.78043)
+colors = PackedColorArray(0.168, 0.28, 0.169867, 1, 0.537906, 0.690337, 0.470236, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vf42e"]
+gradient = SubResource("Gradient_d6v6d")
+
+[sub_resource type="Gradient" id="Gradient_2nhi2"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.620843)
+colors = PackedColorArray(0, 0, 0, 1, 0.34, 0.505, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o1uvc"]
+gradient = SubResource("Gradient_2nhi2")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bv6x7")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_hdmkm")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_vf42e")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_o1uvc")
+shader_parameter/rim_focus = 0.609
+shader_parameter/use_diffuse_smooth_attenuation = true
