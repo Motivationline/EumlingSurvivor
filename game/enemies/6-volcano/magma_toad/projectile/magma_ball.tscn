@@ -19,6 +19,12 @@ radius = 0.038965
 [sub_resource type="SphereShape3D" id="SphereShape3D_4kao4"]
 radius = 0.04817569
 
+[sub_resource type="SphereMesh" id="SphereMesh_54631"]
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 4
+
 [node name="Projectile" unique_id=1865303972 node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_created") instance=ExtResource("1_ehkq2")]
 max_distance = 100.0
 lifetime = 2.0
@@ -71,3 +77,7 @@ shape = SubResource("SphereShape3D_vrxug")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=222403771]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28207266, 0)
 shape = SubResource("SphereShape3D_4kao4")
+
+[node name="ShadowCast" type="MeshInstance3D" parent="." index="5" unique_id=571648281]
+cast_shadow = 3
+mesh = SubResource("SphereMesh_54631")
