@@ -143,22 +143,25 @@ func reset():
 	update_attack_visual()
 
 var is_invulnerable: bool = false
+var active_iframes: bool = false
 func hurt_by(_area: HitBox):
 	if is_invulnerable: return
+	if active_iframes and not _area.ignores_iframes: return
 	if health == 0: return
 	health -= _area.damage
 
-	invulnerability()
+	if _area.causes_iframes:
+		enable_iframes()
 	# more hit impact with some time slowdown
 	if (_area.damage > 0):
 		Engine.time_scale = 0.3
 		await get_tree().create_timer(0.06, true, true, true).timeout
 		Engine.time_scale = 1
 
-func invulnerability():
-	is_invulnerable = true
+func enable_iframes():
+	active_iframes = true
 	await get_tree().create_timer(invulnerability_time, true).timeout
-	is_invulnerable = false
+	active_iframes = false
 
 
 var prev_direction: Vector3
