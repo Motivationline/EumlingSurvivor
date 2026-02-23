@@ -1,5 +1,5 @@
 @tool
-@icon("wind_icon.svg")
+@icon("world_wind.svg")
 class_name WorldWind extends Node3D
 
 const WIND_NOISE_UNIFORM: StringName = &"wind_noise"
@@ -37,16 +37,16 @@ func _ready() -> void:
 	wind_noise_scale = wind_noise_scale # trigger setter to update shader uniform
 	wind_speed = wind_speed # trigger setter to update shader uniform
 	wind_strength = wind_strength # trigger setter to update shader uniform
-	_set_wind_direction_uniform()
+	set_wind_direction_uniform()
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
-		_set_wind_direction_uniform()
+		set_wind_direction_uniform()
 
-func _set_wind_direction_uniform() -> void:
-	RenderingServer.global_shader_parameter_set_override(WIND_DIRECTION_UNIFORM, _get_wind_direction())
+func set_wind_direction_uniform() -> void:
+	RenderingServer.global_shader_parameter_set_override(WIND_DIRECTION_UNIFORM, get_wind_direction())
 
-func _get_wind_direction() -> Vector3:
+func get_wind_direction() -> Vector3:
 	var forward: Vector3 = -global_basis.z
 	if forward.length() > 0.00001:
 		return forward.normalized()
