@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://daky13b2c211v"]
 
+[ext_resource type="Texture2D" uid="uid://w4m6e1qjb43g" path="res://assets/vfx/particle_pack/circle_05.png" id="1_5ke7a"]
 [ext_resource type="Script" uid="uid://ddkbbxg33x4hx" path="res://game/player/walk_smoke/walk_smoke.gd" id="1_ovux6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovux6"]
@@ -11,7 +12,8 @@ disable_ambient_light = true
 disable_fog = true
 disable_specular_occlusion = true
 vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
+albedo_color = Color(1, 1, 1, 0.16862746)
+albedo_texture = ExtResource("1_5ke7a")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -19,7 +21,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_ovux6"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.69589, 0.0, 0, 0]
+_data = [Vector2(0.22381929, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.69589, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_5ke7a"]
@@ -54,15 +56,12 @@ scale_curve = SubResource("CurveTexture_xqh50")
 color_ramp = SubResource("GradientTexture1D_5ke7a")
 alpha_curve = SubResource("CurveTexture_5ke7a")
 
-[sub_resource type="SphereMesh" id="SphereMesh_v2bqr"]
-radius = 0.1
-height = 0.2
-radial_segments = 6
-rings = 3
+[sub_resource type="QuadMesh" id="QuadMesh_ipk6s"]
 
 [node name="WalkSmoke" type="GPUParticles3D" unique_id=2013258854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18456727, 0)
 material_override = SubResource("StandardMaterial3D_ovux6")
 lifetime = 0.6
 process_material = SubResource("ParticleProcessMaterial_nj8ky")
-draw_pass_1 = SubResource("SphereMesh_v2bqr")
+draw_pass_1 = SubResource("QuadMesh_ipk6s")
 script = ExtResource("1_ovux6")
