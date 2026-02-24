@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://qpw2gi1joms5"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_6pk4v"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_8m1wd"]
+[ext_resource type="Script" uid="uid://dyqkij0tfqb8h" path="res://strategies/projectile_movement/homing.gd" id="3_ombel"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_s3316"]
+[ext_resource type="Script" uid="uid://bd73xvrowdrfm" path="res://strategies/projectile_target/forward.gd" id="4_5eyop"]
+[ext_resource type="PackedScene" uid="uid://cxdkd7r0krykq" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball_projectile_visual.tscn" id="6_p45ul"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="6_t1nwo"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_t8dig"]
+[ext_resource type="PackedScene" uid="uid://db8m7lns2hnlo" path="res://game/aoes/explosion/standard_explosion.tscn" id="8_xnlkx"]
+
+[sub_resource type="Curve" id="Curve_s3316"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 2.6339285), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_6pk4v"]
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Animation" id="Animation_8m1wd"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.8810594, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s3316"]
+resource_name = "arc"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.22, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.06666667, 0.7772641, 3.261, -0.3333333, 0.063367605, 0.16661909, -0.03167476, 0, 0, 1.2283587, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.22, 3)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7465701, 0.8789668, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2, 0), Vector3(0, 3.2, 0), Vector3(0, 2.45, 0), Vector3(0, 1.615, 0), Vector3(0, 0.1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ombel"]
+_data = {
+&"RESET": SubResource("Animation_8m1wd"),
+&"arc": SubResource("Animation_s3316")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6pk4v"]
+radius = 0.20835993
+
+[node name="Projectile" unique_id=1566967946 node_paths=PackedStringArray("movement", "targeting", "on_world_collision", "on_end_of_life") instance=ExtResource("1_6pk4v")]
+collision_mask = 257
+max_distance = 500.0
+lifetime = 10.0
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+targeting = [NodePath("MovementStrategies/TargetForwardProjectileTargetStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_end_of_life = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=973699872]
+script = ExtResource("2_8m1wd")
+speed = SubResource("Curve_s3316")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="HomingProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1" unique_id=450101834]
+script = ExtResource("3_ombel")
+homing_range = 50
+metadata/_custom_type_script = "uid://dyqkij0tfqb8h"
+
+[node name="TargetForwardProjectileTargetStrategy" type="Node" parent="MovementStrategies" index="2" unique_id=295901474]
+script = ExtResource("4_5eyop")
+metadata/_custom_type_script = "uid://bd73xvrowdrfm"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=235622098]
+script = ExtResource("3_s3316")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="1" unique_id=1259293591]
+script = ExtResource("6_t1nwo")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy" index="0" unique_id=1384767942]
+script = ExtResource("7_t8dig")
+entity_to_spawn = ExtResource("8_xnlkx")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="Marker3D" type="Marker3D" parent="." index="2" unique_id=306678770]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Marker3D" index="0" unique_id=67294248]
+cast_shadow = 3
+mesh = SubResource("SphereMesh_6pk4v")
+skeleton = NodePath("../..")
+
+[node name="Magma_Ball" parent="Marker3D" index="1" unique_id=153719346 instance=ExtResource("6_p45ul")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=629488472]
+libraries/ = SubResource("AnimationLibrary_ombel")
+autoplay = &"arc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=81576333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8810594, 0)
+shape = SubResource("SphereShape3D_6pk4v")

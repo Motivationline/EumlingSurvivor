@@ -9,6 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bf0lh4o3ufbqb" path="res://assets/characters/eumling/leaf_projectile.res" id="8_aejtm"]
 [ext_resource type="Texture2D" uid="uid://dno25gc2sf2m3" path="res://assets/vfx/fireball/shockwave.png" id="8_rqm5e"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_x7orq"]
+[ext_resource type="Texture2D" uid="uid://balay1pjw25y8" path="res://assets/vfx/particle_pack/star_06.png" id="10_rqm5e"]
 [ext_resource type="Shader" uid="uid://5n35xj7sj6bq" path="res://game/projectiles/totally_basic_eumling_projectile/leaf_trail_shader.tres" id="11_ifyym"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_706qm"]
@@ -125,6 +126,45 @@ shader_parameter/TrailSpeed = Vector2(2, 0)
 [sub_resource type="QuadMesh" id="QuadMesh_e565q"]
 size = Vector2(1, 0.8)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ifyym"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("10_rqm5e")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_2uqe5"]
+colors = PackedColorArray(0.019000027, 0.38, 0, 1, 0.464, 0.87, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f7sbq"]
+gradient = SubResource("Gradient_2uqe5")
+
+[sub_resource type="Curve" id="Curve_v7dwm"]
+_data = [Vector2(0, 0), 0.0, 0.24974337, 0, 0, Vector2(0.12731005, 1), 0.0, 0.0, 0, 0, Vector2(0.33675563, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ovhqn"]
+curve = SubResource("Curve_v7dwm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n1kd3"]
+emission_shape = 1
+emission_sphere_radius = 0.3
+angle_min = -17.99999
+angle_max = 180.00002
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_ovhqn")
+color_initial_ramp = SubResource("GradientTexture1D_f7sbq")
+
+[sub_resource type="QuadMesh" id="QuadMesh_chctk"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_acb8o"]
 radius = 0.13893983
 
@@ -200,6 +240,7 @@ mesh = SubResource("SphereMesh_f7sbq")
 
 [node name="LeafParticles" type="GPUParticles3D" parent="MeshInstance3D" index="1" unique_id=1081309056]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.11776504)
+visible = false
 material_override = SubResource("StandardMaterial3D_x7orq")
 amount = 10
 lifetime = 0.5
@@ -220,6 +261,13 @@ transform = Transform3D(-2.3492953e-08, -0.338, -1.7484556e-08, 0, -1.4774449e-0
 visible = false
 material_override = SubResource("ShaderMaterial_n1kd3")
 mesh = SubResource("QuadMesh_e565q")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D" index="4" unique_id=1983252142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.104064524)
+material_override = SubResource("StandardMaterial3D_ifyym")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_n1kd3")
+draw_pass_1 = SubResource("QuadMesh_chctk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=784156339]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

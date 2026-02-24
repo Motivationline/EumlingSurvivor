@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://c078nbg0qjgp5"]
+
+[ext_resource type="PackedScene" uid="uid://vjc83kqk3uqf" path="res://assets/characters/enemies/volcano_tortoise/volcano_tortoise.glb" id="1_5ptpm"]
+[ext_resource type="Texture2D" uid="uid://vlfmdleyc6bv" path="res://assets/vfx/particle_pack/trace_06.png" id="2_4atpn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sub06"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_4atpn")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_6h4s5"]
+offsets = PackedFloat32Array(0, 0.047722343, 0.13015184)
+colors = PackedColorArray(1, 0.90000004, 0, 1, 1, 0.4666667, 0, 0.68235296, 0.46, 0.05366667, 0, 0.32156864)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_53m34"]
+gradient = SubResource("Gradient_6h4s5")
+
+[sub_resource type="Curve" id="Curve_tss3e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.37987676, 0), -3.2720268, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g2e3w"]
+curve = SubResource("Curve_tss3e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y80hq"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.1999999
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_g2e3w")
+color_ramp = SubResource("GradientTexture1D_53m34")
+
+[sub_resource type="QuadMesh" id="QuadMesh_jiyg3"]
+size = Vector2(2, 0.5)
+center_offset = Vector3(0, 0.1, 0)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l5mbv"]
+animation = &"tortoise_walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s50k1"]
+animation = &"tortoise_shake"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0saar"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hno28"]
+animation = &"tortoise_idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5jbpd"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_mchdf"]
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5jbpd"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0saar"]
+fadein_time = 0.1
+fadeout_time = 0.3
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5ptpm"]
+nodes/output/position = Vector2(1060, 80)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_hno28")
+nodes/Animation/position = Vector2(-260, 40)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_l5mbv")
+"nodes/Animation 2/position" = Vector2(-280, 260)
+nodes/shake/node = SubResource("AnimationNodeOneShot_0saar")
+nodes/shake/position = Vector2(460, 60)
+nodes/Transition/node = SubResource("AnimationNodeTransition_mchdf")
+nodes/Transition/position = Vector2(20, 120)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_s50k1")
+"nodes/Animation 3/position" = Vector2(60, 380)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5jbpd")
+nodes/TimeScale/position = Vector2(260, 300)
+nodes/hurt/node = SubResource("AnimationNodeOneShot_5jbpd")
+nodes/hurt/position = Vector2(820, 40)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_0saar")
+"nodes/Animation 4/position" = Vector2(620, 380)
+node_connections = [&"output", 0, &"hurt", &"shake", 0, &"Transition", &"shake", 1, &"TimeScale", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"TimeScale", 0, &"Animation 3", &"hurt", 0, &"shake", &"hurt", 1, &"Animation 4"]
+
+[node name="volcano_tortoise" unique_id=1249268255 instance=ExtResource("1_5ptpm")]
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(896624936) index="1" unique_id=598909619]
+transform = Transform3D(1, 1.323489e-23, -1.9721523e-31, -1.323489e-23, 1, -5.9604645e-08, -5.916457e-31, 5.9604645e-08, 1, -5.22517e-25, 0.71051973, -2.3532074e-09)
+bone_name = "DEF_TRUNK"
+bone_idx = 20
+
+[node name="Node3D" type="Node3D" parent="Armature_Tortoise/Skeleton3D/BoneAttachment3D" index="0" unique_id=1899916143]
+
+[node name="Fire" type="GPUParticles3D" parent="Armature_Tortoise/Skeleton3D/BoneAttachment3D/Node3D" index="0" unique_id=284347428]
+material_override = SubResource("StandardMaterial3D_sub06")
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_y80hq")
+draw_pass_1 = SubResource("QuadMesh_jiyg3")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=63976329]
+tree_root = SubResource("AnimationNodeBlendTree_5ptpm")
+anim_player = NodePath("../AnimationPlayer")
+parameters/shake/active = false
+parameters/shake/internal_active = false
+parameters/shake/request = 0
+parameters/Transition/current_state = "walk"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 1
+parameters/TimeScale/scale = 1.7999999999999972
+parameters/hurt/active = false
+parameters/hurt/internal_active = false
+parameters/hurt/request = 0
