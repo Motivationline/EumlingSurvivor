@@ -2,12 +2,8 @@ extends ProjectileMovementStrategy
 ## Moves the projectile in a parabolic way
 class_name ArtilleryToTargetProjectileMovementStrategy
 
-## amount to rotate when directions change
-@export_range(0.0,20.0,0.1) var rotation_speed: float = 15
-## how quick the direction of the velocity changes (grater values = faster)
-@export_range(0.0,50,0.1) var velocity_change_rate: float = 30
 ## influence how fast the projectile flies
-@export var speed_amp: float = 10
+@export var speed: float = 10
 ## how much the projectile arcs
 @export var arc_factor: float = 2
 ## activate to predict the targets position on hit time
@@ -40,7 +36,7 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				distance = (target_pos - start_pos).length()
 				
 				var parab_length = calculate_parabua_length((-arc_factor / distance), arc_factor,0 , distance)
-				var travel_time = calculate_travel_time(parab_length, speed_amp)
+				var travel_time = calculate_travel_time(parab_length, speed)
 				# rougth estimate
 				if use_prediction:
 					var adjusted_target_position = target.position + ((target.velocity * travel_time) * prediction_factor)
@@ -75,8 +71,8 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 			# build direction vector
 			var dir = horizontal_dir + Vector3.UP * slope
 			dir = dir.normalized()
-
-			parent.velocity = dir * speed_amp
+			
+			parent.velocity = dir * speed
 			
 			if parent.velocity.length() > 0:
 				parent.look_at(parent.global_position + parent.velocity)
