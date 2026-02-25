@@ -1,13 +1,9 @@
 [gd_scene format=3 uid="uid://bppbnuj7gd2bu"]
 
 [ext_resource type="Texture2D" uid="uid://2c00dsmmwedn" path="res://assets/ui/mini_eumling_thumbnails/mini_eumling_thumbnail_placeholder.png" id="1_7j2us"]
-[ext_resource type="Shader" uid="uid://dvmvnqif3yg30" path="res://game/ui/eumlingclopedia/EumlingButton/grayscale.gdshader" id="1_txhyt"]
+[ext_resource type="Script" uid="uid://cokj133c6o1oq" path="res://game/ui/eumlingclopedia/EumlingButton/eumling_button.gd" id="3_ay561"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay561"]
-shader = ExtResource("1_txhyt")
-
-[node name="TextureButton" type="TextureButton" unique_id=65845361]
-material = SubResource("ShaderMaterial_ay561")
+[node name="EumlingButton" type="TextureButton" unique_id=65845361]
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
 anchor_left = 0.5
@@ -23,8 +19,11 @@ grow_vertical = 2
 texture_normal = ExtResource("1_7j2us")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("3_ay561")
 
 [node name="NewAlert" type="ColorRect" parent="." unique_id=1722904215]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -35,6 +34,8 @@ grow_horizontal = 0
 color = Color(1, 0, 0, 1)
 
 [node name="MissingDisplay" type="Label" parent="." unique_id=1571162008]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = -11.0
 offset_top = 117.0

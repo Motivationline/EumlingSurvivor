@@ -83,6 +83,7 @@ func return_to_main_menu():
 	await scene_fade_animation_player.animation_finished
 	faded_to_black = true
 	levels_to_load.clear()
+	Data.unlocked_mini_eumlings.append_array(Data.active_mini_eumlings)
 	Data.active_mini_eumlings.clear()
 	Main.controller.load_scene(Main.controller.main_menu, false)
 

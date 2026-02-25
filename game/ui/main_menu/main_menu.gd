@@ -12,3 +12,4 @@ func _on_play_button_pressed() -> void:
 
 func _on_eumlingclopedia_button_pressed() -> void:
 	Main.controller.load_scene(eumlingclopedia, false)
+	eumlingclopedia.unlock_new_eumlings(Data.unlocked_mini_eumlings)
