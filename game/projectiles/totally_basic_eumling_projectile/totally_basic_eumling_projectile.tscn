@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://csrh8ood2mu1q"]
+[gd_scene format=3 uid="uid://csrh8ood2mu1q"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_5adta"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_yusjb"]
@@ -169,36 +169,36 @@ _data = {
 &"fly": SubResource("Animation_yusjb")
 }
 
-[node name="Projectile" node_paths=PackedStringArray("hit_box", "on_world_collision", "on_hit") instance=ExtResource("1_5adta")]
+[node name="Projectile" unique_id=374127890 node_paths=PackedStringArray("hit_box", "on_world_collision", "on_hit") instance=ExtResource("1_5adta")]
 collision_mask = 257
 critical_hit_chance = 0.1
 hit_box = NodePath("Hitbox")
 on_world_collision = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_hit = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy")]
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0"]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=214177895]
 script = ExtResource("3_yusjb")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0" unique_id=250800239]
 script = ExtResource("4_x7orq")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnHit/SpawnEntitiesEventStrategy" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnHit/SpawnEntitiesEventStrategy" index="0" unique_id=918894534]
 script = ExtResource("4_h4lxs")
 entity_to_spawn = ExtResource("5_x7orq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=973658270]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26474383, 0)
 mesh = ExtResource("8_aejtm")
 surface_material_override/0 = SubResource("StandardMaterial3D_706qm")
 
-[node name="BallAura3" type="MeshInstance3D" parent="MeshInstance3D" index="0"]
+[node name="BallAura3" type="MeshInstance3D" parent="MeshInstance3D" index="0" unique_id=325286323]
 material_override = SubResource("ShaderMaterial_f7sbq")
 mesh = SubResource("SphereMesh_f7sbq")
 
-[node name="LeafParticles" type="GPUParticles3D" parent="MeshInstance3D" index="1"]
+[node name="LeafParticles" type="GPUParticles3D" parent="MeshInstance3D" index="1" unique_id=1081309056]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.11776504)
 material_override = SubResource("StandardMaterial3D_x7orq")
 amount = 10
@@ -207,7 +207,7 @@ randomness = 0.55
 process_material = SubResource("ParticleProcessMaterial_x7orq")
 draw_pass_1 = ExtResource("8_aejtm")
 
-[node name="FallLeaves" type="GPUParticles3D" parent="MeshInstance3D" index="2"]
+[node name="FallLeaves" type="GPUParticles3D" parent="MeshInstance3D" index="2" unique_id=2054987210]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.0013983635, 0, 0.17215094)
 visible = false
 material_override = SubResource("StandardMaterial3D_x7orq")
@@ -215,28 +215,27 @@ amount = 25
 process_material = SubResource("ParticleProcessMaterial_aejtm")
 draw_pass_1 = ExtResource("8_aejtm")
 
-[node name="Trail" type="MeshInstance3D" parent="MeshInstance3D" index="3"]
+[node name="Trail" type="MeshInstance3D" parent="MeshInstance3D" index="3" unique_id=137959198]
 transform = Transform3D(-2.3492953e-08, -0.338, -1.7484556e-08, 0, -1.4774449e-08, 0.4, -0.53745615, 1.4774449e-08, 7.642742e-16, 0.001535371, 6.711853e-11, 0.2822289)
 visible = false
 material_override = SubResource("ShaderMaterial_n1kd3")
 mesh = SubResource("QuadMesh_e565q")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006139621, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=784156339]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("SphereShape3D_acb8o")
 debug_color = Color(0.929439, 2.955228e-05, 0.6627207, 0.41960785)
 
-[node name="Hitbox" parent="." index="4" instance=ExtResource("8_x7orq")]
+[node name="Hitbox" parent="." index="4" unique_id=1064757910 instance=ExtResource("8_x7orq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 collision_layer = 4
 collision_mask = 65
 attached_to = 3
 can_hit = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1468421841]
 shape = SubResource("SphereShape3D_28psj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
-libraries = {
-&"": SubResource("AnimationLibrary_h4lxs")
-}
-autoplay = "fly"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=1111576768]
+libraries/ = SubResource("AnimationLibrary_h4lxs")
+autoplay = &"fly"

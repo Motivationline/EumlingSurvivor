@@ -1,0 +1,437 @@
+[gd_scene format=3 uid="uid://bml0rn4uxx07g"]
+
+[ext_resource type="Script" uid="uid://ct7skgiecn1pc" path="res://game/exit_area/exit_area.gd" id="1_47e78"]
+[ext_resource type="PackedScene" uid="uid://be1fw7kjvhpof" path="res://game/exit_area/exit_trunk.tscn" id="1_tkqdu"]
+[ext_resource type="PackedScene" uid="uid://bujhyll6x4iak" path="res://assets/models/3-Jungle/JunglePlant/jungle_plant_big.tscn" id="3_2dq3v"]
+[ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="4_gva8b"]
+[ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_1.wav" id="5_2dq3v"]
+[ext_resource type="AudioStream" uid="uid://jdj6s0mg7a6p" path="res://assets/sound/obstacle_sound_effects/exit_area/chime.wav" id="6_dmamu"]
+[ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_2.wav" id="6_ixbc8"]
+[ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_3.wav" id="7_dmamu"]
+[ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_4.wav" id="8_vofq4"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="9_2dq3v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
+size = Vector3(2.2646484, 1.980957, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tkqdu"]
+size = Vector3(0.42266846, 2.0351563, 3.0703125)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdd0d"]
+size = Vector3(1.3156738, 0.5444336, 1.0525208)
+
+[sub_resource type="Animation" id="Animation_rdd0d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/exit_trunk/Plane_011:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.932077, -2.8693814, 1.8010651)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/exit_trunk/Plane_011:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.79999983, 0.8, 0.7999999)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/exit_trunk/Plane_011:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.8571949, 1.542643, -1.1739992)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/exit_trunk/Plane_010:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.95282936, 2.2474284, 0.2198565)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/exit_trunk/Plane_010:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.1672439, 3.0464702, 1.6670525)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visuals/exit_trunk/Plane_010:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6279332, 0.6279332, 0.62793326)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/exit_trunk/Plane_012:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.93766713, 0.9047636, 1.4619656)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visuals/exit_trunk/Plane_012:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.4375056, 2.2222006, 2.5455775)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visuals/exit_trunk/Plane_012:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6279331, 0.62793314, 0.6279334)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visuals/exit_trunk/DoorLock/CollisionShape3D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Visuals/OmniLight3D2:light_energy")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.0]
+}
+
+[sub_resource type="Animation" id="Animation_tkqdu"]
+resource_name = "exit_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/exit_trunk/Plane_011:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 1),
+"transitions": PackedFloat32Array(1.8025012, 1),
+"update": 0,
+"values": [Vector3(0.932077, -2.8693814, 1.8010651), Vector3(0.9584069, -2.7865562, 0.47680125)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/exit_trunk/Plane_011:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1),
+"transitions": PackedFloat32Array(1.8025012, 1),
+"update": 0,
+"values": [Vector3(0.79999983, 0.8, 0.7999999), Vector3(0.19999999, 0.19999997, 0.19999993)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/exit_trunk/Plane_011:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 1),
+"transitions": PackedFloat32Array(1.8025012, 1),
+"update": 0,
+"values": [Vector3(0.8571949, 1.542643, -1.1739992), Vector3(0.6760168, 1.542643, -1.0559853)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/exit_trunk/Plane_010:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.8933334),
+"transitions": PackedFloat32Array(1.8660663, 1),
+"update": 0,
+"values": [Vector3(0.95282936, 2.2474284, 0.2198565), Vector3(0.69011104, 2.099602, 0.21985652)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/exit_trunk/Plane_010:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.8933334),
+"transitions": PackedFloat32Array(1.8660663, 1),
+"update": 0,
+"values": [Vector3(-0.1672439, 3.0464702, 1.6670525), Vector3(-0.13439035, 3.0455995, 0.34906584)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visuals/exit_trunk/Plane_010:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 0.8933334),
+"transitions": PackedFloat32Array(1.8660663, 1),
+"update": 0,
+"values": [Vector3(0.6279332, 0.6279332, 0.62793326), Vector3(0.2, 0.19999999, 0.2)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/exit_trunk/Plane_012:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.79333335),
+"transitions": PackedFloat32Array(2.2191393, 1),
+"update": 0,
+"values": [Vector3(0.93766713, 0.9047636, 1.4619656), Vector3(0.6935626, 0.9047636, 1.2674558)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visuals/exit_trunk/Plane_012:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.79333335),
+"transitions": PackedFloat32Array(2.2191393, 1),
+"update": 0,
+"values": [Vector3(-1.4375056, 2.2222006, 2.5455775), Vector3(-1.4816746, 2.2304893, 1.163212)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visuals/exit_trunk/Plane_012:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.79333335),
+"transitions": PackedFloat32Array(2.2191393, 1),
+"update": 0,
+"values": [Vector3(0.6279331, 0.62793314, 0.6279334), Vector3(0.20000002, 0.2, 0.2)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visuals/exit_trunk/DoorLock/CollisionShape3D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.43, 0.56666666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SoundEffectManager")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.03333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Leaves"],
+"method": &"play_sound"
+}]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SoundEffectManager")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Chime", true, true],
+"method": &"play_sound"
+}]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Visuals/OmniLight3D2:light_energy")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.845]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_47e78"]
+_data = {
+&"RESET": SubResource("Animation_rdd0d"),
+&"exit_open": SubResource("Animation_tkqdu")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mu12n"]
+streams_count = 4
+stream_0/stream = ExtResource("5_2dq3v")
+stream_1/stream = ExtResource("6_ixbc8")
+stream_2/stream = ExtResource("7_dmamu")
+stream_3/stream = ExtResource("8_vofq4")
+
+[node name="ExitArea" type="Area3D" unique_id=609974398]
+collision_mask = 0
+script = ExtResource("1_47e78")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=936964363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9904785, 0.48971936)
+shape = SubResource("BoxShape3D_uile8")
+
+[node name="Visuals" type="Node3D" parent="." unique_id=1541547249]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Visuals" unique_id=254269420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4179616, 0.48671263)
+light_color = Color(0.04574851, 0.7896275, 0.9562871, 1)
+light_energy = 16.0
+light_cull_mask = 4294967293
+omni_range = 1.6048713
+
+[node name="exit_trunk" parent="Visuals" unique_id=990160335 instance=ExtResource("1_tkqdu")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Plane_010" parent="Visuals/exit_trunk" index="13"]
+transform = Transform3D(0.050194215, 0.62315506, 0.058808398, 0.6163057, -0.059507128, 0.10452913, 0.1093068, 0.049363825, -0.6163728, 0.95282936, 2.2474284, 0.2198565)
+
+[node name="Plane_011" parent="Visuals/exit_trunk" index="14"]
+transform = Transform3D(0.0077394233, 0.7896185, -0.12822941, 0.46434546, -0.10885508, -0.64228785, -0.6514009, -0.06821479, -0.45937285, 0.8571949, 1.542643, -1.1739992)
+
+[node name="Plane_012" parent="Visuals/exit_trunk" index="15"]
+transform = Transform3D(0.037249293, 0.62330455, 0.06636227, 0.04684461, -0.06906152, 0.62236357, 0.62507445, -0.031968188, -0.0505961, 0.93766713, 0.9047636, 1.4619656)
+
+[node name="DoorLock" type="StaticBody3D" parent="Visuals/exit_trunk" unique_id=306792383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9585117, 0, 0.2774157)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/exit_trunk/DoorLock" unique_id=1588925542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26622462, 0.9660523, -0.29638672)
+shape = SubResource("BoxShape3D_tkqdu")
+debug_fill = false
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Visuals" unique_id=577576927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7885388, 1.3295255)
+light_color = Color(1, 0.88449997, 0.00999999, 1)
+light_energy = 4.0
+light_cull_mask = 4294967293
+omni_range = 4.115
+
+[node name="JunglePlant" parent="Visuals" unique_id=123814271 instance=ExtResource("3_2dq3v")]
+transform = Transform3D(0.99946, 0, 0.032858633, 0, 1, 0, -0.032858633, 0, 0.99946, 0.29344296, 0, 0)
+
+[node name="JunglePlant2" parent="Visuals" unique_id=1419015610 instance=ExtResource("3_2dq3v")]
+transform = Transform3D(0.25375795, 0, -0.9672679, 0, 1, 0, 0.9672679, 0, 0.25375795, -0.49513775, 0, 0.2647171)
+
+[node name="JunglePlant3" parent="Visuals" unique_id=1951565834 instance=ExtResource("3_2dq3v")]
+transform = Transform3D(0.6853991, 0, -0.7281678, 0, 1, 0, 0.7281678, 0, 0.6853991, -0.38667923, 0, -0.41687965)
+
+[node name="JunglePlant4" parent="Visuals" unique_id=454840572 instance=ExtResource("3_2dq3v")]
+transform = Transform3D(0.6853991, 0, -0.7281678, 0, 1, 0, 0.7281678, 0, 0.6853991, 0.15533364, 0, -0.78194547)
+
+[node name="JunglePlant5" parent="Visuals" unique_id=71019003 instance=ExtResource("3_2dq3v")]
+transform = Transform3D(-0.98707485, 0, 0.16026026, 0, 1, 0, -0.16026026, 0, -0.98707485, 0.1505773, 0, 0.6289953)
+
+[node name="RightWall" type="StaticBody3D" parent="." unique_id=1710607827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall" unique_id=713484516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26622462, 0.9660523, -0.29638672)
+shape = SubResource("BoxShape3D_tkqdu")
+debug_fill = false
+
+[node name="LeftWall" type="StaticBody3D" parent="." unique_id=728389544]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall" unique_id=1642082774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2595942, 0.9660523, -0.29638672)
+shape = SubResource("BoxShape3D_tkqdu")
+debug_fill = false
+
+[node name="Roots" type="StaticBody3D" parent="." unique_id=1894699984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1.4077355)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Roots" unique_id=686879146]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.15783691, 0.08740234, -0.36402893)
+shape = SubResource("BoxShape3D_rdd0d")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1030011118]
+libraries/ = SubResource("AnimationLibrary_47e78")
+
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=453446471]
+script = ExtResource("9_2dq3v")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Chime" parent="SoundEffectManager" unique_id=1064576579 instance=ExtResource("4_gva8b")]
+stream = ExtResource("6_dmamu")
+
+[node name="Leaves" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=857230476]
+stream = SubResource("AudioStreamRandomizer_mu12n")
+panning_strength = 2.0
+bus = &"SFXGeneral"
+attenuation_filter_cutoff_hz = 20500.0
+
+[editable path="Visuals/exit_trunk"]

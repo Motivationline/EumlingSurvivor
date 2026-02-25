@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ca55nsl0mxktn"]
+
+[ext_resource type="Shader" uid="uid://cbylredpbytmq" path="res://game/shared/wind/wind_foliage_shader.gdshader" id="1_gxgn8"]
+[ext_resource type="Texture2D" uid="uid://b6331vlt3lss" path="res://assets/models/3-Jungle/JunglePlant/JunglePlant_JunglePlant_Base_color.png" id="2_tg8s6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_gxgn8")
+shader_parameter/albedo_texture = ExtResource("2_tg8s6")
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/roughness = 1.0
+shader_parameter/wind_influence_start = 0.01
+shader_parameter/wind_influence_end = 0.999999977648
+shader_parameter/stiffness = 0.0
+shader_parameter/aabb_size = Vector3(1.795365, 0.795029, 2.1277146)
+shader_parameter/bounding_radius = 1.2906436817211826

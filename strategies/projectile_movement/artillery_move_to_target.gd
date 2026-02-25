@@ -6,10 +6,14 @@ class_name ArtilleryToTargetProjectileMovementStrategy
 @export_range(0.0,20.0,0.1) var rotation_speed: float = 15
 ## how quick the direction of the velocity changes (grater values = faster)
 @export_range(0.0,50,0.1) var velocity_change_rate: float = 30
-
+## influence how fast the projectile flies
 @export var speed_amp: float = 10
-
+## how much the projectile arcs
 @export var arc_factor: float = 2
+## activate to predict the targets position on hit time
+@export var use_prediction: bool = false
+## how much influence the predicion has
+@export_range(0,1,0.1) var prediction_factor: float
 
 var isPosLocked: bool = false
 var start_pos: Vector3
@@ -19,7 +23,7 @@ var traveled: float
 
 func _setup(_parent: Node, _owner: Node):
 	super (_parent, _owner)
-	start_pos = parent.position
+	start_pos = parent.global_position
 	parent.velocity = Vector3.ZERO
 
 func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: float):
@@ -38,14 +42,15 @@ func apply_movement(_delta: float, _current_lifetime: float, _total_lifetime: fl
 				var parab_length = calculate_parabua_length((-arc_factor / distance), arc_factor,0 , distance)
 				var travel_time = calculate_travel_time(parab_length, speed_amp)
 				# rougth estimate
-				var adjusted_target_position = target.position + target.velocity * travel_time
+				if use_prediction:
+					var adjusted_target_position = target.position + ((target.velocity * travel_time) * prediction_factor)
 				
-				target_pos = adjusted_target_position
+					target_pos = adjusted_target_position
 				distance = (target_pos - start_pos).length()
 				
 				isPosLocked = true
 			
-			var parent_pos = parent.position
+			var parent_pos = parent.global_position
 			#parent_pos.y = 0
 			
 			traveled = ((start_pos - Vector3(0,start_pos.y,0))- (parent_pos - Vector3(0,parent_pos.y,0))).length()

@@ -42,7 +42,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dreadpon.spatial_gardener/plugin.cfg")
+enabled=PackedStringArray("res://addons/dreadpon.spatial_gardener/plugin.cfg", "res://addons/world_wind/plugin.cfg")
 
 [global_group]
 
@@ -159,6 +159,7 @@ pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
+3d_render/layer_2="cel_shaded"
 3d_render/layer_10="vfx"
 3d_physics/layer_1="world"
 3d_physics/layer_2="player"
@@ -178,3 +179,26 @@ pointing/emulate_touch_from_mouse=true
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+
+[shader_globals]
+
+wind_speed={
+"type": "float",
+"value": 0.2
+}
+wind_strength={
+"type": "float",
+"value": 0.2
+}
+wind_noise_scale={
+"type": "float",
+"value": 20.0
+}
+wind_direction={
+"type": "vec3",
+"value": Vector3(1, 0, 1)
+}
+wind_noise={
+"type": "sampler2D",
+"value": "res://game/shared/wind/global_wind_noise_texture.tres"
+}

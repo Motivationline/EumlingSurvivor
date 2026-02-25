@@ -2,4 +2,45 @@
 
 [ext_resource type="PackedScene" uid="uid://ctcdacghmg6n" path="res://assets/characters/enemies/toad/Toad.glb" id="1_snqxu"]
 
-[node name="Toad" unique_id=33657908 instance=ExtResource("1_snqxu")]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_snqxu"]
+animation = &"toad_shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vd0am"]
+animation = &"toad_slingshot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4acqn"]
+animation = &"toad_idle"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vd0am"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ps38o"]
+fadein_time = 0.1
+fadeout_time = 0.3
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_snqxu"]
+nodes/output/position = Vector2(700, 140)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_4acqn")
+nodes/Animation/position = Vector2(-240, 80)
+nodes/Shoot/node = SubResource("AnimationNodeOneShot_vd0am")
+nodes/Shoot/position = Vector2(40, 60)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_snqxu")
+"nodes/Animation 2/position" = Vector2(-240, 260)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_vd0am")
+"nodes/Animation 3/position" = Vector2(40, 420)
+nodes/Slingshot/node = SubResource("AnimationNodeOneShot_ps38o")
+nodes/Slingshot/position = Vector2(400, 80)
+node_connections = [&"output", 0, &"Slingshot", &"Shoot", 0, &"Animation", &"Shoot", 1, &"Animation 2", &"Slingshot", 0, &"Shoot", &"Slingshot", 1, &"Animation 3"]
+
+[node name="Toad" unique_id=1388801067 instance=ExtResource("1_snqxu")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=185618591]
+tree_root = SubResource("AnimationNodeBlendTree_snqxu")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Shoot/active = false
+parameters/Shoot/internal_active = false
+parameters/Shoot/request = 0
+parameters/Slingshot/active = false
+parameters/Slingshot/internal_active = false
+parameters/Slingshot/request = 0

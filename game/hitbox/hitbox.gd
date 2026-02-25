@@ -43,6 +43,12 @@ signal hit(hurtbox: HurtBox)
 ## How much should the damage be multiplied by? May get overwritten by parent.
 @export var critical_hit_damage_multiplier: float = 2.0
 
+@export_category("i-frames Overrides")
+## Can still hurt the entity even if it has active iframes
+@export var ignores_iframes: bool = false 
+## Causes iframes on the entity to trigger
+@export var causes_iframes: bool = true 
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
 	if (attached_to == Enum.HITBOX.NONE):

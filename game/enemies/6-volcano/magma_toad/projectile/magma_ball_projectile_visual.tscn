@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cxdkd7r0krykq"]
+
+[ext_resource type="Shader" uid="uid://bbjrgegu7wpoi" path="res://game/enemies/6-volcano/magma_toad/shader/magma_ball_shader.tres" id="1_evvev"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vd0am"]
+render_priority = 0
+shader = ExtResource("1_evvev")
+shader_parameter/speed = 0.305
+shader_parameter/WaveHeight = 0.05
+shader_parameter/BaseColor = Color(1, 0.2166667, 0, 1)
+shader_parameter/FrenselPower = 0.24
+shader_parameter/RimLight = Color(1, 0.6166667, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ps38o"]
+radius = 0.125
+height = 0.25
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Gradient" id="Gradient_qts45"]
+colors = PackedColorArray(1, 0.81666666, 0, 1, 1, 0.43333334, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2xesr"]
+gradient = SubResource("Gradient_qts45")
+fill = 1
+fill_from = Vector2(0.4957265, 0.50427353)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ifx0"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_texture = SubResource("GradientTexture2D_2xesr")
+
+[sub_resource type="SphereMesh" id="SphereMesh_gf58y"]
+radius = 0.07
+height = 0.14
+radial_segments = 8
+rings = 4
+
+[node name="Magma_Ball" type="MeshInstance3D" unique_id=153719346]
+material_override = SubResource("ShaderMaterial_vd0am")
+mesh = SubResource("SphereMesh_ps38o")
+
+[node name="Magma_Ball_inside" type="MeshInstance3D" parent="." unique_id=585399635]
+material_override = SubResource("StandardMaterial3D_6ifx0")
+mesh = SubResource("SphereMesh_gf58y")

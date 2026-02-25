@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cw86yq83nyyyr"]
+
+[ext_resource type="PackedScene" uid="uid://1y50kqvrjdn" path="res://assets/models/5-beach/stone_v3.glb" id="1_rsub3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_up4q5"]
+albedo_color = Color(0.38170314, 0.38170326, 0.38170317, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t10ag"]
+size = Vector3(1, 0.53222656, 1)
+
+[node name="stone_v3" instance=ExtResource("1_rsub3")]
+
+[node name="stonev3" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_up4q5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(0.80343103, 0, -0.59539783, 0, 1, 0, 0.59539783, 0, 0.80343103, 0.058649898, 0.32185423, 0.012918621)
+shape = SubResource("BoxShape3D_t10ag")
