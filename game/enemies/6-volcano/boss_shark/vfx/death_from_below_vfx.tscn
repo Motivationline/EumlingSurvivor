@@ -152,10 +152,12 @@ mesh = SubResource("PlaneMesh_1swox")
 [node name="Hitbox" parent="." unique_id=1721781486 instance=ExtResource("3_85f3j")]
 collision_layer = 32
 collision_mask = 8
-damage = 25.0
+damage = 10.0
 damage_cooldown = 0.25
 attached_to = 6
 can_hit = 4
+ignores_iframes = true
+causes_iframes = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=436847176]
 shape = SubResource("SphereShape3D_41m45")

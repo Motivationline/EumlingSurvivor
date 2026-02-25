@@ -716,6 +716,12 @@ shader_parameter/RippleSpeed = 12.0
 [sub_resource type="BoxMesh" id="BoxMesh_66ia3"]
 size = Vector3(20, 1, 20)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpdpo"]
+albedo_color = Color(0.24, 0.16048001, 0.0696, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8l1px"]
+size = Vector3(10, 1, 10)
+
 [node name="Level" unique_id=1973423689 instance=ExtResource("1_ckxew")]
 is_boss_level = true
 
@@ -723,7 +729,6 @@ is_boss_level = true
 navigation_mesh = ExtResource("2_mnqux")
 
 [node name="FloorGridMap" parent="NavigationRegion3D" index="0" unique_id=1637048433]
-visible = false
 mesh_library = null
 collision_layer = 0
 collision_mask = 0
@@ -752,6 +757,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
 visible = false
 material_override = SubResource("ShaderMaterial_mnqux")
 mesh = SubResource("BoxMesh_66ia3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" parent_id_path=PackedInt32Array(2126814094) index="1" unique_id=1857352498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+material_override = SubResource("StandardMaterial3D_jpdpo")
+mesh = SubResource("BoxMesh_8l1px")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" parent_id_path=PackedInt32Array(2126814094) index="2" unique_id=1690315744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+material_override = SubResource("StandardMaterial3D_jpdpo")
+mesh = SubResource("BoxMesh_8l1px")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" parent_id_path=PackedInt32Array(2126814094) index="3" unique_id=1348385332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+material_override = SubResource("StandardMaterial3D_jpdpo")
+mesh = SubResource("BoxMesh_8l1px")
 
 [node name="PlayerSpawnMarker" parent="." index="1" unique_id=1539073355]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.420855, 0.5, 0.44737387)
