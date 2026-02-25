@@ -103,7 +103,7 @@ func _process(delta: float) -> void:
 	
 	if not on_line_of_sight.is_empty():
 		if line_of_sight_ray.is_colliding():
-			print("player in line of sight")
+			#print("player in line of sight")
 			if not line_of_sight_switch:
 				if line_of_sight_ray.get_collider().is_in_group("Player"):
 					for ev in on_line_of_sight:
@@ -112,7 +112,7 @@ func _process(delta: float) -> void:
 		if line_of_sight_switch && not line_of_sight_ray.is_colliding():
 			#player left line of sight
 			line_of_sight_switch = false
-			print("player left line of sight")
+			#print("player left line of sight")
 
 func _physics_process(delta: float) -> void:
 	if (state_machine): state_machine.physics_process(delta)

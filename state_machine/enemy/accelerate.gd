@@ -14,10 +14,13 @@ class_name AccelerateState
 @export var stop_when_running_into_something: bool = true
 ## in units/second
 @export var acceleration: float = 5
+## resets the speed to the start speed when the state ends
+@export var reset_speed_at_end: bool = true
 
 @export var max_speed: float = 50
 
 var start_position: Vector3
+var start_speed: float
 var timer: Timer
 
 
@@ -31,6 +34,7 @@ func enter():
 	super ()
 	start_position = parent.global_position
 	timer.start(max_time)
+	start_speed = parent.speed
 
 func exit() -> void:
 	super ()
@@ -46,6 +50,8 @@ func physics_process(_delta: float) -> State:
 	parent.speed = speed
 	var collision := parent.move_and_collide((-parent.basis.z) * speed * _delta)
 	if (collision && stop_when_running_into_something):
+		if reset_speed_at_end:
+			parent.speed = start_speed
 		return return_next()
 
 	return null
