@@ -5,7 +5,7 @@ class_name HomingProjectileMovementStrategy
 ## the range in that the projectile registers Enemies
 @export var homing_range = 2
 ## amount to rotate when directions change
-@export_range(0.0,20.0,0.1) var rotation_speed: float = 15
+@export_range(0.0,100.0,0.1) var rotation_speed: float = 15
 ## inversed inertia
 @export_range(0.0,50,0.1) var velocity_change_rate: float = 30
 

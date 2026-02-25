@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_u03tj"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_iynhh"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_iteb3"]
-[ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="5_676d1"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_h7nkb"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_o104n"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_dufgo"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="9_fdew1"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="10_ca86r"]
+[ext_resource type="PackedScene" uid="uid://qpw2gi1joms5" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/animated_projectile.tscn" id="11_676d1"]
 [ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="11_oluu1"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="12_iihc2"]
 [ext_resource type="PackedScene" uid="uid://c078nbg0qjgp5" path="res://assets/characters/enemies/volcano_tortoise/volcano_tortoise_prefab.tscn" id="14_754gg"]
@@ -103,7 +103,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=349898979]
 script = ExtResource("4_iteb3")
-entity_to_spawn = ExtResource("5_676d1")
+entity_to_spawn = ExtResource("11_676d1")
 amount_of_spawns = 3
 time_between_entities = 0.1
 offset_distance = 0.2
@@ -150,7 +150,7 @@ metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
 [node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=1658945836]
 script = ExtResource("4_iteb3")
-entity_to_spawn = ExtResource("5_676d1")
+entity_to_spawn = ExtResource("11_676d1")
 amount_of_spawns = 2
 time_between_entities = 0.1
 offset_distance = 0.2
