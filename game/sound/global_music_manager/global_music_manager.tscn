@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cpu1l8kto8raw"]
+
+[ext_resource type="Script" uid="uid://c1iwclpn1rwcx" path="res://game/sound/global_music_manager/global_music_manager.gd" id="1_pabv6"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4a6qq"]
+
+[sub_resource type="Animation" id="Animation_4a6qq"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c1dhw"]
+_data = {
+&"fade": SubResource("Animation_4a6qq")
+}
+
+[node name="GlobalMusicManager" type="Node" unique_id=331684178]
+script = ExtResource("1_pabv6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=650881602]
+libraries/ = SubResource("AnimationLibrary_4a6qq")
+libraries/sound = SubResource("AnimationLibrary_c1dhw")

@@ -12,6 +12,7 @@ func _init() -> void:
 func _ready() -> void:
 	main_menu = MAIN_MENU.instantiate()
 	load_scene(main_menu, false)
+	GlobalMusicManager.request_music(SongList.TRACK.MENU,GlobalMusicManager.TRANSITIONS.INSTANT)
 
 func _clear():
 	for child in get_children():
