@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://cwnvsfbpov2w8"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_fq2mn"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_u03tj"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_iynhh"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_iteb3"]
+[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_h7nkb"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_o104n"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_dufgo"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="9_fdew1"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="10_ca86r"]
+[ext_resource type="PackedScene" uid="uid://qpw2gi1joms5" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/animated_projectile.tscn" id="11_676d1"]
+[ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="11_oluu1"]
+[ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="12_iihc2"]
+[ext_resource type="PackedScene" uid="uid://c078nbg0qjgp5" path="res://assets/characters/enemies/volcano_tortoise/volcano_tortoise_prefab.tscn" id="14_754gg"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="15_b5a6k"]
+[ext_resource type="AudioStream" uid="uid://cq74ndddkno7h" path="res://assets/characters/enemies/tortoise/sounds/shake_1.wav" id="16_73hnv"]
+[ext_resource type="AudioStream" uid="uid://dyx8o67l68hd0" path="res://assets/characters/enemies/tortoise/sounds/shake_2.wav" id="17_yjwdq"]
+[ext_resource type="AudioStream" uid="uid://dihxorvypi2is" path="res://assets/characters/enemies/tortoise/sounds/shake_3.wav" id="18_bwwvk"]
+[ext_resource type="AudioStream" uid="uid://8lj10depf48g" path="res://assets/characters/enemies/tortoise/sounds/shake_4.wav" id="19_l0h6x"]
+[ext_resource type="AudioStream" uid="uid://bx2l13samx42h" path="res://assets/characters/enemies/tortoise/sounds/shake_5.wav" id="20_3qkcd"]
+[ext_resource type="AudioStream" uid="uid://dwnb2ysso6eoy" path="res://assets/characters/enemies/tortoise/sounds/shake_6.wav" id="21_s056l"]
+[ext_resource type="AudioStream" uid="uid://br8cvyuvaedbt" path="res://assets/characters/enemies/tortoise/sounds/death_1.wav" id="22_7pr5f"]
+[ext_resource type="AudioStream" uid="uid://4qftj0c54m3m" path="res://assets/characters/enemies/tortoise/sounds/death_2.wav" id="23_cvmje"]
+[ext_resource type="AudioStream" uid="uid://b6kiqmsiue8d5" path="res://assets/characters/enemies/tortoise/sounds/death_3.wav" id="24_gsi8x"]
+[ext_resource type="AudioStream" uid="uid://brp1odc2gm6u4" path="res://assets/characters/enemies/tortoise/sounds/death_4.wav" id="25_n2xfj"]
+[ext_resource type="AudioStream" uid="uid://dqbf5uo5knv04" path="res://assets/characters/enemies/tortoise/sounds/death_5.wav" id="26_0ho87"]
+[ext_resource type="AudioStream" uid="uid://bblxqdptr1fvr" path="res://assets/characters/enemies/tortoise/sounds/death_6.wav" id="27_rsrka"]
+
+[sub_resource type="Resource" id="Resource_84v5a"]
+script = ExtResource("6_h7nkb")
+metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kafm"]
+radius = 0.439081
+height = 0.955451
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a57xe"]
+radius = 0.39281
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fgitk"]
+radius = 0.437599
+
+[sub_resource type="Resource" id="Resource_scaj3"]
+script = ExtResource("11_oluu1")
+max_negative = -180.0
+max_positive = 180.0
+metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dchbn"]
+streams_count = 6
+stream_0/stream = ExtResource("16_73hnv")
+stream_1/stream = ExtResource("17_yjwdq")
+stream_2/stream = ExtResource("18_bwwvk")
+stream_3/stream = ExtResource("19_l0h6x")
+stream_4/stream = ExtResource("20_3qkcd")
+stream_5/stream = ExtResource("21_s056l")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mr30t"]
+streams_count = 6
+stream_0/stream = ExtResource("22_7pr5f")
+stream_1/stream = ExtResource("23_cvmje")
+stream_2/stream = ExtResource("24_gsi8x")
+stream_3/stream = ExtResource("25_n2xfj")
+stream_4/stream = ExtResource("26_0ho87")
+stream_5/stream = ExtResource("27_rsrka")
+
+[node name="TortoiseEnemy" unique_id=1961314702 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "on_hurt") instance=ExtResource("1_fq2mn")]
+collision_layer = 64
+collision_mask = 65
+health = 320.0
+speed = 0.4
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+on_death = [NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/PlaySoundDeathGeneral")]
+on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlaySoundHitGeneral")]
+
+[node name="Healthbar3D" parent="." index="0" unique_id=985815578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919, 0)
+
+[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveRandomOnNavMeshState")
+
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=2117470740 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_u03tj")
+wait_time = 0.0
+max_distance = 2.5
+next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "walk"
+})
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=1031693980 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_iynhh")
+start_delay = 0.5
+end_delay = 0.8
+next_state = NodePath("../MoveRandomOnNavMeshState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/shake/request": 1
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=349898979]
+script = ExtResource("4_iteb3")
+entity_to_spawn = ExtResource("11_676d1")
+amount_of_spawns = 3
+time_between_entities = 0.1
+offset_distance = 0.2
+rotation_strategy = SubResource("Resource_84v5a")
+time_between_bursts = 0.2
+amount_of_bursts = 2
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="Hitbox" parent="." index="3" unique_id=1203355617 instance=ExtResource("7_o104n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35191, 0)
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=512498433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.066589, 0)
+shape = SubResource("CapsuleShape3D_4kafm")
+
+[node name="Hurtbox" parent="." index="4" unique_id=1188508080 instance=ExtResource("8_dufgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.334121, 0)
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=66065392]
+shape = SubResource("SphereShape3D_a57xe")
+debug_color = Color(0.883413, 0.262783, 0.530975, 0.42)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5" unique_id=874821720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388744, 0)
+shape = SubResource("SphereShape3D_fgitk")
+
+[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=1646321378]
+script = ExtResource("9_fdew1")
+sound_to_play = "Death"
+needs_to_be_persistent = true
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=728218215]
+script = ExtResource("10_ca86r")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=1658945836]
+script = ExtResource("4_iteb3")
+entity_to_spawn = ExtResource("11_676d1")
+amount_of_spawns = 2
+time_between_entities = 0.1
+offset_distance = 0.2
+rotation_strategy = SubResource("Resource_scaj3")
+time_between_bursts = 0.2
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=861193701]
+script = ExtResource("12_iihc2")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/hurt/request": 1
+})
+metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
+
+[node name="volcano_tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1249268255 instance=ExtResource("14_754gg")]
+
+[node name="Shake" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=610131262 instance=ExtResource("15_b5a6k")]
+stream = SubResource("AudioStreamRandomizer_dchbn")
+
+[node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=311950094 instance=ExtResource("15_b5a6k")]
+stream = SubResource("AudioStreamRandomizer_mr30t")

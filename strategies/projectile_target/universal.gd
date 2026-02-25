@@ -3,7 +3,7 @@ extends ProjectileTargetStrategy
 class_name UniversalTargetingProjectileTargetStrategy
 
 enum TARGET_TYPES { PLAYER, ENEMY, LEVEL }
-enum TARGET_PROPERTIES {HIT, NEW, BOTH}
+enum TARGET_PROPERTIES {BOTH, HIT, NEW}
 enum TARGET_SORTERS {ARBITRARY, RANDOM, CLOSEST, FARTHEST, STRONGEST, WEAKEST}
 
 ## preferred type of entety or Node you want to target
@@ -13,11 +13,11 @@ enum TARGET_SORTERS {ARBITRARY, RANDOM, CLOSEST, FARTHEST, STRONGEST, WEAKEST}
 ## preferred sorting of targets
 @export var target_sorter: TARGET_SORTERS
 ## the max distance in that we pick targets from
-@export_range(0,100,0.1) var max_radius: float
+@export_range(0,100,0.1) var max_radius: float = 100
 ## the min distance in that we pick targets from
 @export_range(0,100,0.1) var min_radius: float
 ## preferred maximum target amount
-@export var max_targets: int
+@export var max_targets: int = 1
 
 
 func find_target():

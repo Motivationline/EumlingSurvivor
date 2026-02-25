@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://db8m7lns2hnlo"]
+
+[ext_resource type="PackedScene" uid="uid://c4e8dv2l1561n" path="res://game/aoes/base_aoe.tscn" id="1_a55m2"]
+[ext_resource type="PackedScene" uid="uid://c7w2p50ncukck" path="res://game/vfx/standard_explosion/vfx_explosion.tscn" id="2_xwt0x"]
+[ext_resource type="PackedScene" uid="uid://b5r6jes3bmp1q" path="res://game/aoes/explosion/explosion_2.tscn" id="3_1s8id"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xwt0x"]
+height = 0.5751953
+radius = 0.35351563
+
+[sub_resource type="Animation" id="Animation_xwt0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1s8id"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape3D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cdfuc"]
+_data = {
+&"RESET": SubResource("Animation_xwt0x"),
+&"start": SubResource("Animation_1s8id")
+}
+
+[node name="standard_Explosion" unique_id=2094895290 instance=ExtResource("1_a55m2")]
+duration = 1.5
+
+[node name="Hitbox" parent="." index="0"]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+individual_hit_limit = 5
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18017578, 0)
+shape = SubResource("CylinderShape3D_xwt0x")
+
+[node name="vfx_explosion" parent="Visuals" index="0" unique_id=952714146 instance=ExtResource("2_xwt0x")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.18615037, 0)
+visible = false
+
+[node name="vfx_explosion2" parent="Visuals" index="1" unique_id=1596309124 instance=ExtResource("3_1s8id")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1764557236]
+libraries/ = SubResource("AnimationLibrary_cdfuc")
+autoplay = &"start"

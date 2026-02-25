@@ -26,4 +26,14 @@ func check_for_new_eumlings(new_eumlings: Array[int]):
 
 func _on_gamble_button_pressed() -> void:
 	check_for_new_eumlings([randi_range(0, 4)])
-	
+
+
+class EumlingUnlockable extends Resource:
+	var unlocked: bool
+	var unseen: bool
+	var id: String
+	var texture: Texture
+
+var eumlings: Dictionary = {
+	"pilot" = {unlocked = true, new = true, texture = "blabla"},
+}
