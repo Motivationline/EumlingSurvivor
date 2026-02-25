@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://ecohwou7w230"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_32qoc"]
-[ext_resource type="Script" uid="uid://dsnnhkc4wtj0a" path="res://state_machine/enemy/move_horizontal_vertical.gd" id="2_u8giv"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_y3mil"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_nebqs"]
+[ext_resource type="Script" uid="uid://csgc720x86q5e" path="res://state_machine/enemy/move_horizontal_vertical_nav_mesh.gd" id="3_y3mil"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_mh60j"]
 [ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/player.tscn" id="5_y3mil"]
+[ext_resource type="Script" uid="uid://ba7qp75nv7yl1" path="res://state_machine/enemy/accelerate.gd" id="7_te25e"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="8_mh60j"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_47hj0"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="11_eqtax"]
@@ -24,10 +25,11 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwq3f"]
 albedo_color = Color(0.376471, 1, 1, 1)
 
-[node name="HorizontalVerticalEnemy" unique_id=1479848487 node_paths=PackedStringArray("hitbox", "hurtbox", "line_of_sight_ray") instance=ExtResource("1_32qoc")]
+[node name="HorizontalVerticalEnemy" unique_id=1479848487 node_paths=PackedStringArray("hitbox", "hurtbox", "on_line_of_sight", "line_of_sight_ray") instance=ExtResource("1_32qoc")]
 health = 100.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+on_line_of_sight = [NodePath("EventStrategies/on_line_of_sight/TriggerStateEventStrategy")]
 line_of_sight_ray = NodePath("LineOfSight")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=2104701944]
@@ -45,23 +47,31 @@ script = ExtResource("2_y3mil")
 next_state = NodePath("../MoveHorizontalVerticalOnNavMeshState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="MoveHorizontalVerticalOnNavMeshState" type="Node" parent="StateMachine" index="1" unique_id=1705210938 node_paths=PackedStringArray("path_ray", "next_state")]
-script = ExtResource("2_u8giv")
-stop_distance = 0.5
+[node name="MoveHorizontalVerticalOnNavMeshState" type="Node" parent="StateMachine" index="1" unique_id=53288376 node_paths=PackedStringArray("path_ray", "next_state")]
+script = ExtResource("3_y3mil")
+wait_time = 0.0
 path_ray = NodePath("../../PathRay")
-next_state = NodePath(".")
-metadata/_custom_type_script = "uid://dsnnhkc4wtj0a"
+debug_show_path = true
+next_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://csgc720x86q5e"
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=1567306097 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_nebqs")
 end_delay = 3.0
-next_state = NodePath("../MoveHorizontalVerticalOnNavMeshState")
+next_state = NodePath("")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1850869669]
 script = ExtResource("4_mh60j")
 entity_to_spawn = ExtResource("5_y3mil")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="AccelerateState" type="Node" parent="StateMachine" index="3" unique_id=1396654949 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_te25e")
+acceleration = 100.0
+max_speed = 100.0
+next_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://ba7qp75nv7yl1"
 
 [node name="Hurtbox" parent="." index="4" unique_id=1418653458 instance=ExtResource("10_47hj0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -88,9 +98,10 @@ shape = SubResource("CapsuleShape3D_s6jag")
 
 [node name="on_line_of_sight" type="Node" parent="EventStrategies" index="0" unique_id=1638307661]
 
-[node name="TriggerStateEventStrategy" type="Node" parent="EventStrategies/on_line_of_sight" index="0" unique_id=1108443156 node_paths=PackedStringArray("state_to_execute")]
+[node name="TriggerStateEventStrategy" type="Node" parent="EventStrategies/on_line_of_sight" index="0" unique_id=1108443156 node_paths=PackedStringArray("state_machine", "state_to_execute")]
 script = ExtResource("8_mh60j")
-state_to_execute = NodePath("../../../StateMachine/SpawnEntitiesState")
+state_machine = NodePath("../../../StateMachine")
+state_to_execute = NodePath("../../../StateMachine/AccelerateState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1234285869]
@@ -111,5 +122,5 @@ collision_mask = 2
 
 [node name="PathRay" type="RayCast3D" parent="." index="11" unique_id=1646149778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-target_position = Vector3(0, 0, -30)
+target_position = Vector3(0, 0, -0.5)
 collision_mask = 257

@@ -36,6 +36,8 @@ class_name Enemy
 @export var on_line_of_sight: Array[EventStrategy]
 @export var line_of_sight_ray: RayCast3D
 
+var line_of_sight_switch: bool
+
 @export_category("Debug Stuff")
 @export var cannot_die: bool = false
 @export var heal_back_to_full: bool = false
@@ -101,9 +103,16 @@ func _process(delta: float) -> void:
 	
 	if not on_line_of_sight.is_empty():
 		if line_of_sight_ray.is_colliding():
-			if line_of_sight_ray.get_collider().is_in_group("Player"):
-				for ev in on_line_of_sight:
-					ev.event_triggered(null)
+			print("player in line of sight")
+			if not line_of_sight_switch:
+				if line_of_sight_ray.get_collider().is_in_group("Player"):
+					for ev in on_line_of_sight:
+						ev.event_triggered(null)
+					line_of_sight_switch = true
+		if line_of_sight_switch && not line_of_sight_ray.is_colliding():
+			#player left line of sight
+			line_of_sight_switch = false
+			print("player left line of sight")
 
 func _physics_process(delta: float) -> void:
 	if (state_machine): state_machine.physics_process(delta)
