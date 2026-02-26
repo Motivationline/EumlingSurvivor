@@ -60,10 +60,12 @@ func physics_process(_delta: float) -> State:
 	var speed = speed_override if (speed_override_active) else parent.speed
 	parent.velocity = direction * speed
 
-	parent.move_and_slide()
-	
-	if path_ray.is_colliding():
+	#parent.move_and_slide()
+	var collision := parent.move_and_collide(direction * speed * _delta)
+	if collision:
 		done = true
+	#if path_ray.is_colliding():
+		#done = true
 
 	#if (!direction.is_zero_approx()):
 		#parent.visuals.look_at(parent.global_position + direction)

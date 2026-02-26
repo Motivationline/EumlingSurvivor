@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://csgc720x86q5e" path="res://state_machine/enemy/move_horizontal_vertical_nav_mesh.gd" id="3_y3mil"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_mh60j"]
 [ext_resource type="PackedScene" uid="uid://i26vdjehm6ll" path="res://game/player/player.tscn" id="5_y3mil"]
-[ext_resource type="Script" uid="uid://ba7qp75nv7yl1" path="res://state_machine/enemy/accelerate.gd" id="7_te25e"]
+[ext_resource type="Script" uid="uid://ddfas4505rjgc" path="res://state_machine/enemy/accelerate_on_nav_mesh.gd" id="7_te25e"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="8_mh60j"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_47hj0"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="11_eqtax"]
@@ -68,12 +68,12 @@ script = ExtResource("4_mh60j")
 entity_to_spawn = ExtResource("5_y3mil")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="AccelerateState" type="Node" parent="StateMachine" index="3" unique_id=1396654949 node_paths=PackedStringArray("next_state")]
+[node name="AccelerateOnNavMeshState" type="Node" parent="StateMachine" index="3" unique_id=2090697089 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_te25e")
 acceleration = 20.0
-max_speed = 15.0
+max_speed = 20.0
 next_state = NodePath("../WaitForTimeXState")
-metadata/_custom_type_script = "uid://ba7qp75nv7yl1"
+metadata/_custom_type_script = "uid://ddfas4505rjgc"
 
 [node name="Hurtbox" parent="." index="4" unique_id=1418653458 instance=ExtResource("10_47hj0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -103,7 +103,7 @@ shape = SubResource("CapsuleShape3D_s6jag")
 [node name="TriggerStateEventStrategy" type="Node" parent="EventStrategies/on_line_of_sight" index="0" unique_id=1108443156 node_paths=PackedStringArray("state_machine", "state_to_execute")]
 script = ExtResource("8_mh60j")
 state_machine = NodePath("../../../StateMachine")
-state_to_execute = NodePath("../../../StateMachine/AccelerateState")
+state_to_execute = NodePath("../../../StateMachine/AccelerateOnNavMeshState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1234285869]
