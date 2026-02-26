@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_h4lxs"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="4_x7orq"]
 [ext_resource type="PackedScene" uid="uid://bov1hcmo0on0h" path="res://game/vfx/firehit/fire_hit.tscn" id="5_x7orq"]
-[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="7_aejtm"]
+[ext_resource type="Texture2D" uid="uid://w4m6e1qjb43g" path="res://assets/vfx/particle_pack/circle_05.png" id="7_rqm5e"]
 [ext_resource type="ArrayMesh" uid="uid://bf0lh4o3ufbqb" path="res://assets/characters/eumling/leaf_projectile.res" id="8_aejtm"]
 [ext_resource type="Texture2D" uid="uid://dno25gc2sf2m3" path="res://assets/vfx/fireball/shockwave.png" id="8_rqm5e"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_x7orq"]
@@ -16,23 +16,20 @@
 transparency = 1
 shading_mode = 0
 diffuse_mode = 3
-albedo_color = Color(0.861851, 1.4393815, 0.5942147, 1)
+albedo_color = Color(0.66041654, 1.439583, 0, 1)
 stencil_flags = 2
 stencil_color = Color(0.9, 0.73424995, 0.13499998, 1)
 stencil_outline_thickness = 0.029
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f7sbq"]
-render_priority = 0
-shader = ExtResource("7_aejtm")
-shader_parameter/ball_color = Color(0.8770809, 0.97906214, 0.7305308, 1)
-shader_parameter/frensel_power = 15.84
-shader_parameter/visibility = 3.21
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5f0h"]
+transparency = 4
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(0.6333333, 1, 0, 0.15294118)
+albedo_texture = ExtResource("7_rqm5e")
+albedo_texture_force_srgb = true
 
-[sub_resource type="SphereMesh" id="SphereMesh_f7sbq"]
-radius = 0.2
-height = 0.4
-radial_segments = 8
-rings = 6
+[sub_resource type="PlaneMesh" id="PlaneMesh_2uqe5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7orq"]
 transparency = 1
@@ -138,7 +135,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_2uqe5"]
-colors = PackedColorArray(0.019000027, 0.38, 0, 1, 0.464, 0.87, 0, 1)
+colors = PackedColorArray(1, 1, 0, 1, 0.464, 0.87, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_f7sbq"]
 gradient = SubResource("Gradient_2uqe5")
@@ -194,7 +191,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
@@ -230,13 +227,15 @@ entity_to_spawn = ExtResource("5_x7orq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=973658270]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26474383, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.26474383, 0)
 mesh = ExtResource("8_aejtm")
 surface_material_override/0 = SubResource("StandardMaterial3D_706qm")
 
 [node name="BallAura3" type="MeshInstance3D" parent="MeshInstance3D" index="0" unique_id=325286323]
-material_override = SubResource("ShaderMaterial_f7sbq")
-mesh = SubResource("SphereMesh_f7sbq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01968643, 0)
+material_override = SubResource("StandardMaterial3D_h5f0h")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_2uqe5")
 
 [node name="LeafParticles" type="GPUParticles3D" parent="MeshInstance3D" index="1" unique_id=1081309056]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.11776504)
@@ -262,7 +261,7 @@ visible = false
 material_override = SubResource("ShaderMaterial_n1kd3")
 mesh = SubResource("QuadMesh_e565q")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D" index="4" unique_id=1983252142]
+[node name="Glitter" type="GPUParticles3D" parent="MeshInstance3D" index="4" unique_id=1983252142]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.104064524)
 material_override = SubResource("StandardMaterial3D_ifyym")
 lifetime = 0.5

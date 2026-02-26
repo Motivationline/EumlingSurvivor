@@ -1,5 +1,14 @@
 [gd_scene format=3 uid="uid://bli8pja4rp1qc"]
 
 [ext_resource type="PackedScene" uid="uid://rcwi4m4hniol" path="res://assets/models/5-beach/palm_v1.glb" id="1_dl20o"]
+[ext_resource type="Texture2D" uid="uid://bcjb8fesk0qxg" path="res://assets/models/5-beach/Palm_Base_color.png" id="2_7f0cx"]
 
-[node name="palm_v1" instance=ExtResource("1_dl20o")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ttbdu"]
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_7f0cx")
+
+[node name="palm_v1" unique_id=566563813 instance=ExtResource("1_dl20o")]
+
+[node name="palmv1" parent="." index="0" unique_id=2057226608]
+material_override = SubResource("StandardMaterial3D_ttbdu")

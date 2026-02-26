@@ -1,29 +1,3 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://142frkyksfv0"]
 
-[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_vei23"]
-[ext_resource type="Texture2D" uid="uid://bcjb8fesk0qxg" path="res://assets/models/5-beach/Palm_Base_color.png" id="2_oqerf"]
-
-[sub_resource type="Gradient" id="Gradient_nrdla"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.47091413, 0.7423823)
-colors = PackedColorArray(0.20511743, 0.20511743, 0.20511743, 1, 0.90359825, 0.90359825, 0.9035982, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_p702t"]
-gradient = SubResource("Gradient_nrdla")
-
-[sub_resource type="Gradient" id="Gradient_vei23"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.7922438)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_oqerf"]
-gradient = SubResource("Gradient_vei23")
-
 [resource]
-render_priority = 0
-shader = ExtResource("1_vei23")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture = ExtResource("2_oqerf")
-shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_p702t")
-shader_parameter/rim_ramp = SubResource("GradientTexture1D_oqerf")
-shader_parameter/rim_focus = 0.6590000313025
-shader_parameter/use_diffuse_smooth_attenuation = true
