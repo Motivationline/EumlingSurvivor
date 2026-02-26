@@ -48,7 +48,7 @@ func spawn_player(_player: Player):
 
 	# spawn minis
 	if not is_boss_level:
-		for type in Data.active_mini_eumlings:
+		for type in Data._active_mini_eumlings:
 			var something = MINI_EUMLING.instantiate()
 			var mini_eumling = something
 			mini_eumling.type = type
@@ -91,7 +91,7 @@ func clear_level():
 func show_mini_popup():
 	var popup = EUMLING_CELEBRATION.instantiate()
 	add_child(popup)
-	Data.active_mini_eumlings.append(randi_range(0, 4))
+	Data.unlocked_eumling(randi_range(0, 4))
 	await get_tree().create_timer(2).timeout
 
 func _get_configuration_warnings() -> PackedStringArray:

@@ -67,6 +67,7 @@
 [ext_resource type="AudioStream" uid="uid://dvbast0b3t832" path="res://assets/characters/eumling/V2/sounds/death_4.wav" id="65_v5pdl"]
 [ext_resource type="AudioStream" uid="uid://cv8gbbu0ywq5t" path="res://assets/characters/eumling/V2/sounds/death_5.wav" id="66_k3n0c"]
 [ext_resource type="AudioStream" uid="uid://dtwjmuugoxay2" path="res://assets/characters/eumling/V2/sounds/death_6.wav" id="67_m1cdu"]
+[ext_resource type="Script" uid="uid://d0y7cgck1opqh" path="res://game/player/abilities/social.gd" id="68_3p3em"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.23
@@ -419,6 +420,11 @@ bus = &"SFXGeneral"
 stream = SubResource("AudioStreamRandomizer_j0m7x")
 volume_db = 0.0
 bus = &"SFXGeneral"
+
+[node name="SpecialAbilities" type="Node" parent="." unique_id=691561235]
+
+[node name="Social" type="Node" parent="SpecialAbilities" unique_id=1276571463]
+script = ExtResource("68_3p3em")
 
 [connection signal="play_sound" from="Eumling_v2" to="SoundEffectManager" method="play_sound"]
 [connection signal="pressed" from="UI/Control/PauseButton" to="UITest/PauseSketch" method="open"]

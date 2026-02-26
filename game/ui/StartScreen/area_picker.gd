@@ -44,7 +44,7 @@ func setup():
 
 func choose_area(area):
 	var level_names: Array[String] = []
-	var amount_levels = Data.active_mini_eumlings.size() + 3
+	var amount_levels = Data._active_mini_eumlings.size() + 3
 	var folder_name: String = "res://game/levels/"
 	if area.folder:
 		folder_name +=  area.folder + "/"
@@ -55,7 +55,7 @@ func choose_area(area):
 		var level = levels.pop_back()
 		if not level: break
 		level_names.append(folder_name + level + ".tscn")
-	var boss_level = area.boss_levels[clampi(Data.active_mini_eumlings.size(), 0, area.boss_levels.size() - 1)]
+	var boss_level = area.boss_levels[clampi(Data._active_mini_eumlings.size(), 0, area.boss_levels.size() - 1)]
 	level_names.append(folder_name + boss_level + ".tscn")
 	area_chosen.emit(level_names)
 	

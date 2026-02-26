@@ -215,7 +215,8 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("test")):
-		spawn_bullet()
+		#spawn_bullet()
+		Data.unlocked_eumling(Enum.EUMLING_TYPE.SOCIAL)
 		# add_upgrade(Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 2))
 
 func spawn_bullet():
