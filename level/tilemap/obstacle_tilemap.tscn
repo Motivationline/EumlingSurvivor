@@ -1,7 +1,8 @@
 [gd_scene format=4 uid="uid://cpteni1gx0qfr"]
 
-[ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="1_wg8yc"]
-[ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="2_qpu6u"]
+[ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="1_ap6k5"]
+[ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="2_3djj7"]
+[ext_resource type="Texture2D" uid="uid://bx2vit8nl77pn" path="res://assets/models/5-beach/obstacle_stone/ObstacleStone_Beach_Material_Base_color.png" id="3_5fse0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wg8yc"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -21,7 +22,7 @@ size = Vector3(0.5, 2.4232483, 0.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kqau"]
 resource_name = "Material"
 cull_mode = 2
-albedo_texture = ExtResource("1_wg8yc")
+albedo_texture = ExtResource("1_ap6k5")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_udnil"]
 _surfaces = [{
@@ -58,7 +59,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_udnil")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n85fk"]
-albedo_texture = ExtResource("2_qpu6u")
+albedo_texture = ExtResource("2_3djj7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54a7a"]
+albedo_texture = ExtResource("3_5fse0")
 
 [node name="BaseTilemaps" type="Node3D" unique_id=275196242]
 
@@ -101,5 +105,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_n85fk")
 [node name="StaticBody3D" type="StaticBody3D" parent="Obstalce_Stone_Volcano" unique_id=586288982]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstalce_Stone_Volcano/StaticBody3D" unique_id=794884134]
+shape = SubResource("BoxShape3D_wg8yc")
+debug_color = Color(0.47039998, 0.4888799, 0.84, 0.59607846)
+
+[node name="Obstalce_Stone_Beach" type="MeshInstance3D" parent="." unique_id=247406779]
+mesh = SubResource("ArrayMesh_5nbks")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_54a7a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstalce_Stone_Beach" unique_id=1919756404]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstalce_Stone_Beach/StaticBody3D" unique_id=1592893542]
 shape = SubResource("BoxShape3D_wg8yc")
 debug_color = Color(0.47039998, 0.4888799, 0.84, 0.59607846)
