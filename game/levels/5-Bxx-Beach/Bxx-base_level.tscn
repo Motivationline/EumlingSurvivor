@@ -159,7 +159,6 @@ ambient_light_color = Color(0.774, 0.8727, 0.9, 1)
 tonemap_mode = 4
 glow_enabled = true
 glow_intensity = 0.2
-glow_blend_mode = 1
 adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 1.51
@@ -196,15 +195,15 @@ size = Vector2(30, 30)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvf3w"]
 albedo_color = Color(0.25, 0.18233332, 0.11, 1)
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("player_spawn", "goal_area")]
+[node name="Level" type="Node3D" unique_id=1268816340 node_paths=PackedStringArray("player_spawn", "goal_area")]
 script = ExtResource("1_nf22f")
 player_spawn = NodePath("PlayerSpawnMarker")
 goal_area = NodePath("GoalArea")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=843824706]
 navigation_mesh = SubResource("NavigationMesh_wbp8f")
 
-[node name="FloorGridMap" type="GridMap" parent="NavigationRegion3D"]
+[node name="FloorGridMap" type="GridMap" parent="NavigationRegion3D" unique_id=2112528803]
 mesh_library = SubResource("MeshLibrary_fd66c")
 cell_size = Vector3(10, 1, 10)
 cell_center_x = false
@@ -215,8 +214,9 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="BorderGridMap" type="GridMap" parent="NavigationRegion3D"]
+[node name="BorderGridMap" type="GridMap" parent="NavigationRegion3D" unique_id=1553876842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
 mesh_library = ExtResource("2_ndj1h")
 cell_size = Vector3(0.5, 0.5, 0.5)
 collision_layer = 16
@@ -226,66 +226,66 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="PlayerSpawnMarker" type="Marker3D" parent="."]
+[node name="PlayerSpawnMarker" type="Marker3D" parent="." unique_id=1024321425]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
 
-[node name="GoalArea" type="Area3D" parent="."]
+[node name="GoalArea" type="Area3D" parent="." unique_id=1103800391]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalArea" unique_id=803607201]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_wbp8f")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1759760695]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.104352, 12.5917, 7.49343)
 fov = 45.0
 script = ExtResource("3_xepbt")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1762216889]
 transform = Transform3D(1, 0, 0, 0, 0.713593, 0.700561, 0, -0.700561, 0.713593, 0, 4.44658, 0)
 
-[node name="Lights" type="Node3D" parent="."]
+[node name="Lights" type="Node3D" parent="." unique_id=1379420829]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=87924969]
 transform = Transform3D(0.802373, -0.579826, 0.141416, 0.0617642, 0.316347, 0.946631, -0.593617, -0.750817, 0.289641, -5.2903, 7.71908, -5.02786)
 light_bake_mode = 1
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights" unique_id=61626029]
 environment = SubResource("Environment_weh0f")
 
-[node name="Env" type="Node3D" parent="."]
+[node name="Env" type="Node3D" parent="." unique_id=662491825]
 
-[node name="palm_v3" parent="Env" instance=ExtResource("4_yuro1")]
+[node name="palm_v3" parent="Env" unique_id=695849370 instance=ExtResource("4_yuro1")]
 transform = Transform3D(0.8640721, 0.013184575, -0.50319546, -0.04363761, 0.9978556, -0.04878768, 0.50147307, 0.0641143, 0.8627944, 4.797554, -0.43139696, -5.20174)
 
-[node name="palm_v2" parent="Env" instance=ExtResource("5_eyygh")]
+[node name="palm_v2" parent="Env" unique_id=478569265 instance=ExtResource("5_eyygh")]
 transform = Transform3D(-0.61575484, 0.17763439, 0.7676537, 0.2307549, 0.97219455, -0.039870575, -0.7533912, 0.15258932, -0.6396236, -5.2360168, -1.4964491, 4.6961274)
 
-[node name="palm_v4" parent="Env" instance=ExtResource("5_eyygh")]
+[node name="palm_v4" parent="Env" unique_id=817306648 instance=ExtResource("5_eyygh")]
 transform = Transform3D(-0.9966131, 0, 0.08223435, 0, 1, 0, -0.08223435, 0, -0.9966131, 5.341904, -0.43788958, 2.3993807)
 
-[node name="palm_v5" parent="Env" instance=ExtResource("5_eyygh")]
+[node name="palm_v5" parent="Env" unique_id=598949106 instance=ExtResource("5_eyygh")]
 transform = Transform3D(0.9724472, 0, -0.23312297, 0, 1, 0, 0.23312297, 0, 0.9724472, -5.2285604, -0.4949708, -4.9664707)
 
-[node name="water" parent="Env" instance=ExtResource("6_c8p5i")]
+[node name="water" parent="Env" unique_id=1725082000 instance=ExtResource("6_c8p5i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5055332, 2.5171242)
 visible = false
 
-[node name="Water" type="MeshInstance3D" parent="Env"]
+[node name="Water" type="MeshInstance3D" parent="Env" unique_id=1389564536]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.070941925, -0.9065342, 0.018875122)
 mesh = SubResource("BoxMesh_bi46t")
 surface_material_override/0 = SubResource("ShaderMaterial_6cxeu")
 
-[node name="Sand" type="MeshInstance3D" parent="Env/Water"]
+[node name="Sand" type="MeshInstance3D" parent="Env/Water" unique_id=1367147413]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("BoxMesh_7ms32")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_8cagn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Env/Water"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Env/Water" unique_id=136313282]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054949522, -1.4472942, -1.2698603)
 mesh = SubResource("PlaneMesh_q377s")
 skeleton = NodePath("../..")

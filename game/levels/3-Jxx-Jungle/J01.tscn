@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://ncnbysiqfcwu"]
 
 [ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_avtaw"]
-[ext_resource type="Shader" uid="uid://o1hcbikb7svi" path="res://game/levels/3-Jxx-Jungle/Shader/gras_shader.tres" id="2_fiefb"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_sk1xu"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_m16lx"]
 [ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-jungle/sniper/sniper_enemy.tscn" id="3_vr1k5"]
@@ -17,34 +16,6 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 5), PackedInt32Arr
 agent_radius = 0.25
 agent_max_climb = 0.0
 edge_max_error = 0.25
-
-[sub_resource type="Gradient" id="Gradient_i2d4m"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0.13151927, 0.41723356, 0.6643991)
-colors = PackedColorArray(0.014, 0.06, 0, 1, 0.018666666, 0.07, 0, 1, 0.025499998, 0.09, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_h2kg2"]
-gradient = SubResource("Gradient_i2d4m")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7yfb"]
-render_priority = 0
-shader = ExtResource("2_fiefb")
-shader_parameter/Texture2DParameter = SubResource("GradientTexture1D_h2kg2")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_uopr3"]
-lightmap_size_hint = Vector2i(214, 138)
-_surfaces = [{
-"aabb": AABB(-5, -0.5, -5, 10, 1, 10),
-"attribute_data": PackedByteArray("oP8fPwD//z7JBPo+BHNtO+D/Xz8A/X8+79R1PzRKPD/g/18/AP//Pu/UdT8Ec207oP8fPwD9fz7JBPo+NEo8P8D+vz4A/X8+XcsBP+baQT+g/x8/AAAAAOidej+U+Fk/oP8fPwD9fz5dywE/lPhZP8D+vz4AAAAA6J16P+baQT/A/r8+AACAP+Fmfz+NEn8/oP8fP8D/Pz9WlAY/3/RmP6D/Hz8AAIA/4WZ/P9/0Zj/A/r8+wP8/P1aUBj+NEn8/APn/PQD//z5U1/I+BHNtO8D+vz4A/X8+Gh8ZOzRKPD/A/r8+AP//PhofGTsEc207APn/PQD9fz5U1/I+NEo8P8D+vz4A//8+/kKsPJT4WT+g/x8/AP1/PkVp/D7m2kE/oP8fPwD//z7+Qqw85tpBP8D+vz4A/X8+RWn8PpT4WT/A/r8+wP8/PwyxIj1GiV8/oP8fPwD//z6c/QI/9aZ3P6D/Hz/A/z8/DLEiPfWmdz/A/r8+AP//Ppz9Aj9GiV8/"),
-"format": 34359742519,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("ShaderMaterial_v7yfb"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("AACgQAAAAD8AAKDAAACgwAAAAD8AAKBAAACgwAAAAD8AAKDAAACgQAAAAD8AAKBAAACgQAAAAL8AAKBAAACgwAAAAD8AAKBAAACgQAAAAD8AAKBAAACgwAAAAL8AAKBAAACgwAAAAL8AAKBAAACgwAAAAD8AAKDAAACgwAAAAD8AAKBAAACgwAAAAL8AAKDAAACgwAAAAL8AAKDAAACgQAAAAL8AAKBAAACgQAAAAL8AAKDAAACgwAAAAL8AAKBAAACgQAAAAL8AAKDAAACgQAAAAD8AAKBAAACgQAAAAD8AAKDAAACgQAAAAL8AAKBAAACgwAAAAL8AAKDAAACgQAAAAD8AAKDAAACgwAAAAD8AAKDAAACgQAAAAL8AAKDA/n/+/wAAAMD+f/7/AAAAwP5//v8AAADA/n/+/wAAAMD/f/9/AID+//9//38AgP7//3//fwCA/v//f/9/AID+/wEABIABgPz/AQAEgAGA/P8BAASAAYD8/wEABIABgPz/AIAAAP7//78AgAAA/v//vwCAAAD+//+/AIAAAP7//7/6/wCA/n/+//r/AID+f/7/+v8AgP5//v/6/wCA/n/+//7//v//f/7//v/+//9//v/+//7//3/+//7//v//f/7/")
-}]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kqau"]
 resource_name = "Material"
@@ -392,11 +363,11 @@ _surfaces = [{
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0004916191, 0.003247261, -0.00214684)
 navigation_mesh = SubResource("NavigationMesh_sk1xu")
 
-[node name="FloorGridMap" parent="NavigationRegion3D" index="0" unique_id=1012854513]
-baked_meshes = [SubResource("ArrayMesh_uopr3")]
-
-[node name="BorderGridMap" parent="NavigationRegion3D" index="1" unique_id=824927406]
+[node name="BorderGridMap" parent="NavigationRegion3D" index="0" unique_id=824927406]
 baked_meshes = [SubResource("ArrayMesh_2ob5m"), SubResource("ArrayMesh_le68w"), SubResource("ArrayMesh_uphxs"), SubResource("ArrayMesh_bd07k"), SubResource("ArrayMesh_p7s8f"), SubResource("ArrayMesh_ilu2y"), SubResource("ArrayMesh_ph1ga"), SubResource("ArrayMesh_rsri4"), SubResource("ArrayMesh_eun70"), SubResource("ArrayMesh_vdg1l"), SubResource("ArrayMesh_74y45"), SubResource("ArrayMesh_wd8hp"), SubResource("ArrayMesh_7cfr5"), SubResource("ArrayMesh_744eh")]
+
+[node name="Cube" parent="NavigationRegion3D/base_floor_10x10" parent_id_path=PackedInt32Array(257884405) index="0" unique_id=1334605973]
+surface_material_override/0 = null
 
 [node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="2" unique_id=1960325580]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
