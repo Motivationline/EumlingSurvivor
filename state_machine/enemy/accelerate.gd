@@ -35,6 +35,7 @@ func enter():
 	start_position = parent.global_position
 	timer.start(max_time)
 	start_speed = parent.speed
+	#print("start speed: ", start_speed)
 
 func exit() -> void:
 	super ()
@@ -52,6 +53,9 @@ func physics_process(_delta: float) -> State:
 	if (collision && stop_when_running_into_something):
 		if reset_speed_at_end:
 			parent.speed = start_speed
+			speed = start_speed
+			# this line is needed for the start speed to be applied
+			parent.move_and_collide((-parent.basis.z) * speed * _delta)
 		return return_next()
 
 	return null

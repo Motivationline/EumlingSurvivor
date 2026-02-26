@@ -16,6 +16,8 @@ class_name MoveHorizontalVerticalOnNavMeshState
 @export var min_distance: float = 1
 ## How far away from the current position is the maximum distance to walk to
 @export var max_distance: float = 5
+## how many attempts the pathfinding can take before exiting the state
+@export var max_pathing_trys: int = 8
 
 ## raycast to help pathing
 @export var path_ray: RayCast3D
@@ -70,23 +72,41 @@ func physics_process(_delta: float) -> State:
 	return null
 
 func find_next_goal_position():
-	var random_position := Vector3.ZERO
-	var random_orientation = randi() % 2
-	#print(random_orientation)
+	for i in range(max_pathing_trys):
+		var random_position := Vector3.ZERO
+		var random_orientation = randi() % 2
+		#print(random_orientation)
+		
+		if random_orientation == 0:
+			## were going horizontal
+			random_position.x = randf_range(-1, 1)
+		else:
+			## were going vertical
+			random_position.z = randf_range(-1, 1)
+		
+		
+		random_position = random_position.normalized() * randf_range(min_distance, max_distance)
+		nav_agent.target_position = random_position + parent.global_position
+		
+		done = false
+		nav_agent.debug_enabled = debug_show_path
+		
+		#print(random_orientation)
+		#print("final path: ", nav_agent.get_final_position())
+		#print("pos: ", parent.global_position)
+		#print("abs x: ", abs(nav_agent.get_final_position().x - parent.global_position.x))
+		#print("abs z: ", abs(nav_agent.get_final_position().z - parent.global_position.z))
+		
+		if random_orientation == 0 && abs(nav_agent.get_final_position().z - parent.global_position.z) > 0.01 || random_orientation == 1 && abs(nav_agent.get_final_position().x - parent.global_position.x) > 0.01:
+			#print("invalid path, try again")
+			
+			if i == max_pathing_trys:
+				#could not find a valid path -> exit state
+				done = true
+		else:
+			#print("found a valid path")
+			break
 	
-	if random_orientation == 0:
-		## were going horizontal
-		random_position.x = randf_range(-1, 1)
-	else:
-		## were going vertical
-		random_position.z = randf_range(-1, 1)
-	
-	
-	random_position = random_position.normalized() * randf_range(min_distance, max_distance)
-	nav_agent.target_position = random_position + parent.global_position
-	done = false
-	nav_agent.debug_enabled = debug_show_path
-
 func target_reached():
 	nav_agent.debug_enabled = false
 	await get_tree().create_timer(wait_time).timeout

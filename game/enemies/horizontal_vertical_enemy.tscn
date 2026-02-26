@@ -26,6 +26,7 @@ albedo_color = Color(1, 0, 0, 1)
 albedo_color = Color(0.376471, 1, 1, 1)
 
 [node name="HorizontalVerticalEnemy" unique_id=1479848487 node_paths=PackedStringArray("hitbox", "hurtbox", "on_line_of_sight", "line_of_sight_ray") instance=ExtResource("1_32qoc")]
+collision_mask = 3
 health = 100.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
@@ -50,8 +51,10 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 [node name="MoveHorizontalVerticalOnNavMeshState" type="Node" parent="StateMachine" index="1" unique_id=53288376 node_paths=PackedStringArray("path_ray", "next_state")]
 script = ExtResource("3_y3mil")
 wait_time = 0.0
+min_distance = 3.0
+max_distance = 10.0
 path_ray = NodePath("../../PathRay")
-debug_show_path = true
+speed_override_active = true
 next_state = NodePath("../WaitForTimeXState")
 metadata/_custom_type_script = "uid://csgc720x86q5e"
 
@@ -67,9 +70,8 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="AccelerateState" type="Node" parent="StateMachine" index="3" unique_id=1396654949 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_te25e")
-acceleration = 100.0
-reset_speed_at_end = null
-max_speed = 100.0
+acceleration = 20.0
+max_speed = 15.0
 next_state = NodePath("../WaitForTimeXState")
 metadata/_custom_type_script = "uid://ba7qp75nv7yl1"
 
