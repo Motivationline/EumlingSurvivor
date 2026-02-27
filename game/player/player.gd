@@ -148,21 +148,24 @@ func hurt_by(_area: HitBox):
 	if is_invulnerable: return
 	if active_iframes and not _area.ignores_iframes: return
 	if health == 0: return
+	if dead: return
+	
 	health -= _area.damage
 
 	if _area.causes_iframes:
 		enable_iframes()
-	# more hit impact with some time slowdown
-	if (_area.damage > 0):
-		Engine.time_scale = 0.3
-		await get_tree().create_timer(0.06, true, true, true).timeout
-		Engine.time_scale = 1
+		time_slowdown_impact()
 
 func enable_iframes():
 	active_iframes = true
 	await get_tree().create_timer(invulnerability_time, true).timeout
 	active_iframes = false
 
+func time_slowdown_impact():
+	# more hit impact with some time slowdown
+	Engine.time_scale = 0.3
+	await get_tree().create_timer(0.06, true, true, true).timeout
+	Engine.time_scale = 1
 
 var prev_direction: Vector3
 var was_looking_somewhere: bool = false
@@ -193,7 +196,7 @@ func _physics_process(_delta: float) -> void:
 			# look at closest enemy to shoot
 			var enemies = get_tree().get_nodes_in_group("Enemy")
 			if enemies.size() > 0:
-				Utils.sort_array_by_distance(enemies, self)
+				Utils.sort_array_by_distance(enemies, self )
 				eumling_visuals.look_at(enemies[0].global_position)
 		shoot()
 	if look_direction.is_zero_approx():
@@ -220,7 +223,7 @@ func _input(event: InputEvent) -> void:
 		# add_upgrade(Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 2))
 
 func spawn_bullet():
-	spawner.spawn(self, eumling_visuals)
+	spawner.spawn(self , eumling_visuals)
 
 func check_upgrades_affecting_player(upgrade: Upgrade):
 	match upgrade.type:
@@ -296,7 +299,7 @@ func shoot():
 	anim_player.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	var cooldown = get_value(Enum.UPGRADE.ATTACK_COOLDOWN)
 	attack_cooldown.start(cooldown)
-	attack_spawner.spawn(self, eumling_visuals)
+	attack_spawner.spawn(self , eumling_visuals)
 	%ShittyVisual.get_child(0).material_override.albedo_color = Color(1, 0, 0, 17.0 / 255)
 
 
