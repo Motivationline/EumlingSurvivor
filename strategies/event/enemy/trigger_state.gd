@@ -12,6 +12,4 @@ func _ready() -> void:
 
 func execute_event(_data):
 	#print("switching state")
-	state_machine.current_state.exit()
-	state_machine.current_state = state_to_execute
-	state_machine.current_state.enter()
+	state_machine.switch_to_state(state_to_execute)
