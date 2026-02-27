@@ -1,7 +1,7 @@
 extends Node
 
 var _unlocked_mini_eumlings: Array[Enum.EUMLING_TYPE] = []
-var _active_mini_eumlings: Array[Enum.EUMLING_TYPE] = []
+var _active_mini_eumlings: Array[Enum.EUMLING_TYPE] = [] # [Enum.EUMLING_TYPE.SOCIAL]
 	
 signal active_eumlings_changed(active_mini_eumlings: Array[Enum.EUMLING_TYPE])
 
@@ -12,6 +12,7 @@ func unlocked_eumling(type: Enum.EUMLING_TYPE):
 
 func end_game():
 	_active_mini_eumlings.clear()
+	active_eumlings_changed.emit(_active_mini_eumlings)
 
 
 var is_on_mobile: bool = false

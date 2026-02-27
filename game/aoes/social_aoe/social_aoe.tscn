@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://co3vv3d8hdp1s"]
+[gd_scene format=3 uid="uid://co3vv3d8hdp1s"]
 
 [ext_resource type="PackedScene" uid="uid://c4e8dv2l1561n" path="res://game/aoes/base_aoe.tscn" id="1_sng2g"]
 [ext_resource type="PackedScene" uid="uid://byqjf0sc7pi8" path="res://game/vfx/social_aoe_vfx/social_vfx.tscn" id="2_jxcy8"]
@@ -7,19 +7,18 @@
 height = 0.1
 radius = 1.0
 
-[node name="Social_AOE" instance=ExtResource("1_sng2g")]
+[node name="Social_AOE" unique_id=1057959053 instance=ExtResource("1_sng2g")]
 never_expire = true
 shape = SubResource("CylinderShape3D_jxcy8")
 
 [node name="Hitbox" parent="." index="0"]
 collision_layer = 4
 collision_mask = 64
-damage = 1.0
 attached_to = 3
 can_hit = 7
 
 [node name="CollisionShape3D" parent="Hitbox" index="0"]
 shape = SubResource("CylinderShape3D_jxcy8")
 
-[node name="SocialVFX" parent="Visuals" index="0" instance=ExtResource("2_jxcy8")]
+[node name="SocialVFX" parent="Visuals" index="0" unique_id=998023346 instance=ExtResource("2_jxcy8")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
