@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c03op2rrwafaq"]
+[gd_scene format=3 uid="uid://c03op2rrwafaq"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_ohwqb"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_lwbwl"]
@@ -101,7 +101,7 @@ _data = {
 &"RESET": SubResource("Animation_7gchl")
 }
 
-[node name="Projectile" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit") instance=ExtResource("1_ohwqb")]
+[node name="Projectile" unique_id=1490739829 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit") instance=ExtResource("1_ohwqb")]
 collision_mask = 257
 damage = 50.0
 max_distance = 10.0
@@ -111,44 +111,42 @@ movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
 on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_hit = [NodePath("EventStrategies/OnHit/RemoveEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=1817665435]
 script = ExtResource("2_lwbwl")
 speed = SubResource("Curve_860yy")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0"]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=766645043]
 script = ExtResource("3_860yy")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0" unique_id=1830058844]
 script = ExtResource("3_860yy")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="Visuals" type="Node3D" parent="." index="2"]
+[node name="Visuals" type="Node3D" parent="." index="2" unique_id=848060240]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0" unique_id=1824025288]
 transform = Transform3D(0.3225002, 0, 0, 0, -1.6036287e-08, 0.038361035, 0, -0.36686748, -1.6768141e-09, 0, 0, 0)
 mesh = SubResource("PrismMesh_7gchl")
 skeleton = NodePath("../..")
 
-[node name="Hitbox" parent="." index="3" instance=ExtResource("4_860yy")]
+[node name="Hitbox" parent="." index="3" unique_id=1037663617 instance=ExtResource("4_860yy")]
 collision_layer = 32
 collision_mask = 8
 damage = 1.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=641944810]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_860yy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1557666071]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_7gchl")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
-libraries = {
-&"": SubResource("AnimationLibrary_miqcd")
-}
-autoplay = "Leaf_Fall"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=149865635]
+libraries/ = SubResource("AnimationLibrary_miqcd")
+autoplay = &"Leaf_Fall"

@@ -1,41 +1,12 @@
 [gd_scene format=4 uid="uid://dyfl31dyxt0ty"]
 
 [ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_c1n2c"]
-[ext_resource type="Shader" uid="uid://o1hcbikb7svi" path="res://game/levels/3-Jxx-Jungle/Shader/gras_shader.tres" id="2_ls7bw"]
-[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="2_nq6oq"]
+[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-jungle/tortoise/tortoise_enemy.tscn" id="2_nq6oq"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_7tdlq"]
-[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_bl6gp"]
-[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="4_bl6gp"]
+[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-jungle/environment/spikes.tscn" id="3_bl6gp"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-jungle/sniper/sniper_enemy.tscn" id="4_bl6gp"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="4_nj8sr"]
 [ext_resource type="LightmapGIData" uid="uid://cexhcq0vl0oa0" path="res://game/levels/3-Jxx-Jungle/Lightmaps/J08.lmbake" id="5_nq6oq"]
-
-[sub_resource type="Gradient" id="Gradient_i2d4m"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0.13151927, 0.41723356, 0.6643991)
-colors = PackedColorArray(0.014, 0.06, 0, 1, 0.018666666, 0.07, 0, 1, 0.025499998, 0.09, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_h2kg2"]
-gradient = SubResource("Gradient_i2d4m")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7yfb"]
-render_priority = 0
-shader = ExtResource("2_ls7bw")
-shader_parameter/Texture2DParameter = SubResource("GradientTexture1D_h2kg2")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_i2ml5"]
-lightmap_size_hint = Vector2i(214, 138)
-_surfaces = [{
-"aabb": AABB(-5, -0.5, -5, 10, 1, 10),
-"attribute_data": PackedByteArray("oP8fPwD//z7JBPo+BHNtO+D/Xz8A/X8+79R1PzRKPD/g/18/AP//Pu/UdT8Ec207oP8fPwD9fz7JBPo+NEo8P8D+vz4A/X8+XcsBP+baQT+g/x8/AAAAAOidej+U+Fk/oP8fPwD9fz5dywE/lPhZP8D+vz4AAAAA6J16P+baQT/A/r8+AACAP+Fmfz+NEn8/oP8fP8D/Pz9WlAY/3/RmP6D/Hz8AAIA/4WZ/P9/0Zj/A/r8+wP8/P1aUBj+NEn8/APn/PQD//z5U1/I+BHNtO8D+vz4A/X8+Gh8ZOzRKPD/A/r8+AP//PhofGTsEc207APn/PQD9fz5U1/I+NEo8P8D+vz4A//8+/kKsPJT4WT+g/x8/AP1/PkVp/D7m2kE/oP8fPwD//z7+Qqw85tpBP8D+vz4A/X8+RWn8PpT4WT/A/r8+wP8/PwyxIj1GiV8/oP8fPwD//z6c/QI/9aZ3P6D/Hz/A/z8/DLEiPfWmdz/A/r8+AP//Ppz9Aj9GiV8/"),
-"format": 34359742519,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
-"material": SubResource("ShaderMaterial_v7yfb"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("AACgQAAAAD8AAKDAAACgwAAAAD8AAKBAAACgwAAAAD8AAKDAAACgQAAAAD8AAKBAAACgQAAAAL8AAKBAAACgwAAAAD8AAKBAAACgQAAAAD8AAKBAAACgwAAAAL8AAKBAAACgwAAAAL8AAKBAAACgwAAAAD8AAKDAAACgwAAAAD8AAKBAAACgwAAAAL8AAKDAAACgwAAAAL8AAKDAAACgQAAAAL8AAKBAAACgQAAAAL8AAKDAAACgwAAAAL8AAKBAAACgQAAAAL8AAKDAAACgQAAAAD8AAKBAAACgQAAAAD8AAKDAAACgQAAAAL8AAKBAAACgwAAAAL8AAKDAAACgQAAAAD8AAKDAAACgwAAAAD8AAKDAAACgQAAAAL8AAKDA/n/+/wAAAMD+f/7/AAAAwP5//v8AAADA/n/+/wAAAMD/f/9/AID+//9//38AgP7//3//fwCA/v//f/9/AID+/wEABIABgPz/AQAEgAGA/P8BAASAAYD8/wEABIABgPz/AIAAAP7//78AgAAA/v//vwCAAAD+//+/AIAAAP7//7/6/wCA/n/+//r/AID+f/7/+v8AgP5//v/6/wCA/n/+//7//v//f/7//v/+//9//v/+//7//3/+//7//v//f/7/")
-}]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kqau"]
 resource_name = "Material"
@@ -254,10 +225,7 @@ _surfaces = [{
 
 [node name="Level" unique_id=203241451 instance=ExtResource("1_c1n2c")]
 
-[node name="FloorGridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(974191959) index="0" unique_id=1012854513]
-baked_meshes = [SubResource("ArrayMesh_i2ml5")]
-
-[node name="BorderGridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(974191959) index="1" unique_id=824927406]
+[node name="BorderGridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(974191959) index="0" unique_id=824927406]
 baked_meshes = [SubResource("ArrayMesh_dpbax"), SubResource("ArrayMesh_ed61v"), SubResource("ArrayMesh_6s65o"), SubResource("ArrayMesh_77x3p"), SubResource("ArrayMesh_tl7r0"), SubResource("ArrayMesh_u0g1y"), SubResource("ArrayMesh_qjqgp"), SubResource("ArrayMesh_1tjdi"), SubResource("ArrayMesh_kyvlh"), SubResource("ArrayMesh_fapot"), SubResource("ArrayMesh_1bnlb"), SubResource("ArrayMesh_acr1b"), SubResource("ArrayMesh_l01f8"), SubResource("ArrayMesh_i6ie8")]
 
 [node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1788157863 instance=ExtResource("2_nq6oq")]

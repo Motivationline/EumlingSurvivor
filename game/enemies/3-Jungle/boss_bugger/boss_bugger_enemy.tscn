@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jhi1l"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_3utvs"]
-[ext_resource type="Script" uid="uid://d08yjq57yklyp" path="res://game/enemies/3-jungle/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
+[ext_resource type="Script" uid="uid://cu4a5yufjkwhv" path="res://game/enemies/3-jungle/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_ectag"]
 [ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="3_unkqv"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="3_vgowq"]
@@ -158,25 +158,20 @@ stream_3/stream = ExtResource("55_mmcwh")
 stream_4/stream = ExtResource("56_ajqdm")
 stream_5/stream = ExtResource("57_mp4ge")
 
-[node name="BossBugger" unique_id=651925094 node_paths=PackedStringArray("hurtbox", "node_with_animation_tree", "on_death") instance=ExtResource("1_jhi1l")]
+[node name="BossBugger" unique_id=651925094 node_paths=PackedStringArray("hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_jhi1l")]
 collision_layer = 64
 collision_mask = 65
 script = ExtResource("2_unkqv")
 MAX_FILL = 9.0
 health = 800.0
 hurtbox = NodePath("HurtBox")
-node_with_animation_tree = NodePath("Visuals/BossBugger")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/PlaySoundDeathGeneral")]
+node_with_animation_tree = NodePath("Visuals/BossBugger")
 
-[node name="Healthbar3D" parent="." index="0" unique_id=985815578]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4826612, 0)
-hide_when_full_after = 100.0
-hide_initially = false
-
-[node name="HealthbarEnemy3D" parent="." index="1" unique_id=691291944]
+[node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, -0.5)
 
-[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("ChooseStateBasedOnCost")
 
 [node name="ChooseStateBasedOnCost" type="Node" parent="StateMachine" index="0" unique_id=1719853730 node_paths=PackedStringArray("fallback", "states")]
@@ -412,6 +407,8 @@ sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = "Death"
 needs_to_be_persistent = true
 
+[node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("3_vgowq")]
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1675406726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)
 shape = SubResource("CapsuleShape3D_fngux")
@@ -440,8 +437,6 @@ can_hit = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1402503530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2463379, 0)
 shape = SubResource("CapsuleShape3D_0vw1d")
-
-[node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("3_vgowq")]
 
 [node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1216685563 instance=ExtResource("18_jtynk")]
 stream = SubResource("AudioStreamRandomizer_7rhsi")

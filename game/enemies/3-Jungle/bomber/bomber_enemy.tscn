@@ -73,10 +73,7 @@ hitbox = NodePath("HitBox")
 hurtbox = NodePath("HurtBox")
 node_with_animation_tree = NodePath("Visuals/cactushog")
 
-[node name="Healthbar3D" parent="." index="0" unique_id=985815578]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0257249, 1.2022, -0.00323331)
-
-[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("LookAtPlayerState")
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" unique_id=1559787985 node_paths=PackedStringArray("next_state")]

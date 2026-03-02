@@ -60,10 +60,7 @@ on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlis
 on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/PlaySoundHitGeneral")]
 node_with_animation_tree = NodePath("Visuals/peacock")
 
-[node name="Healthbar3D" parent="." index="0" unique_id=985815578]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90527487, -0.07545662)
-
-[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitForTimeXState")
 
 [node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" unique_id=2001135634 node_paths=PackedStringArray("next_state")]
@@ -110,6 +107,8 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
+[node name="peacock" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1599327557 instance=ExtResource("2_3n5vt")]
+
 [node name="HurtBox" type="Area3D" parent="." index="4" unique_id=1067109364]
 collision_layer = 64
 collision_mask = 5
@@ -126,8 +125,6 @@ shape = SubResource("CapsuleShape3D_6lrmx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3322754, 0)
 shape = SubResource("CapsuleShape3D_qcoba")
 debug_color = Color(0.6433014, 0.4436161, 0.73155004, 0.41960785)
-
-[node name="peacock" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1599327557 instance=ExtResource("2_3n5vt")]
 
 [node name="Slash" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=610684017 instance=ExtResource("13_q1m8v")]
 stream = SubResource("AudioStreamRandomizer_ygu7c")

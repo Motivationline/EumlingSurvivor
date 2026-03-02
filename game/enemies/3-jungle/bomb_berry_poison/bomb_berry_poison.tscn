@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ycoy5ujvbc8r"]
 
 [ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_dt8xc"]
-[ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="2_d80hu"]
+[ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/status_visuals_3d.tscn" id="2_d80hu"]
 [ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="3_ykuch"]
 [ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="4_hfkio"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="5_poxly"]
@@ -23,17 +23,16 @@ radius = 0.29065907
 [sub_resource type="SphereShape3D" id="SphereShape3D_xw6l7"]
 radius = 0.25
 
-[node name="BombBerryPoison" type="CharacterBody3D" unique_id=952786877 node_paths=PackedStringArray("healthbar", "hitbox", "hurtbox", "state_machine", "node_with_animation_tree")]
+[node name="BombBerryPoison" type="CharacterBody3D" unique_id=952786877 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree", "state_machine")]
 collision_layer = 64
 collision_mask = 65
 script = ExtResource("1_dt8xc")
 health = 80.0
 speed = 2.0
-healthbar = NodePath("Healthbar3D")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
-state_machine = NodePath("StateMachine")
 node_with_animation_tree = NodePath("Visuals/bomberry")
+state_machine = NodePath("StateMachine")
 
 [node name="Healthbar3D" parent="." unique_id=2063395816 instance=ExtResource("2_d80hu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.5)

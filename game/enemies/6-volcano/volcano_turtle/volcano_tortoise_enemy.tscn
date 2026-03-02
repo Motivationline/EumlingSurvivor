@@ -31,6 +31,12 @@
 script = ExtResource("6_h7nkb")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
 
+[sub_resource type="Resource" id="Resource_scaj3"]
+script = ExtResource("11_oluu1")
+max_negative = -180.0
+max_positive = 180.0
+metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kafm"]
 radius = 0.439081
 height = 0.955451
@@ -40,12 +46,6 @@ radius = 0.39281
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fgitk"]
 radius = 0.437599
-
-[sub_resource type="Resource" id="Resource_scaj3"]
-script = ExtResource("11_oluu1")
-max_negative = -180.0
-max_positive = 180.0
-metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dchbn"]
 streams_count = 6
@@ -75,13 +75,10 @@ hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/PlaySoundDeathGeneral")]
 on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlaySoundHitGeneral")]
 
-[node name="Healthbar3D" parent="." index="0" unique_id=985815578]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.919, 0)
-
-[node name="HealthbarEnemy3D" parent="." index="1" unique_id=691291944]
+[node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
 visible = false
 
-[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveRandomOnNavMeshState")
 
 [node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=2117470740 node_paths=PackedStringArray("next_state")]
@@ -115,6 +112,32 @@ time_between_bursts = 0.2
 amount_of_bursts = 2
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
+[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=1646321378]
+script = ExtResource("9_fdew1")
+sound_to_play = "Death"
+needs_to_be_persistent = true
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=728218215]
+script = ExtResource("10_ca86r")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=1658945836]
+script = ExtResource("4_iteb3")
+entity_to_spawn = ExtResource("11_676d1")
+amount_of_spawns = 2
+time_between_entities = 0.1
+offset_distance = 0.2
+rotation_strategy = SubResource("Resource_scaj3")
+time_between_bursts = 0.2
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=861193701]
+script = ExtResource("12_iihc2")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/hurt/request": 1
+})
+metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
+
 [node name="Hitbox" parent="." index="3" unique_id=1203355617 instance=ExtResource("7_o104n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35191, 0)
 collision_layer = 32
@@ -141,32 +164,6 @@ debug_color = Color(0.883413, 0.262783, 0.530975, 0.42)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5" unique_id=874821720]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.388744, 0)
 shape = SubResource("SphereShape3D_fgitk")
-
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=1646321378]
-script = ExtResource("9_fdew1")
-sound_to_play = "Death"
-needs_to_be_persistent = true
-
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=728218215]
-script = ExtResource("10_ca86r")
-metadata/_custom_type_script = "uid://cpx1eq3gu268a"
-
-[node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=1658945836]
-script = ExtResource("4_iteb3")
-entity_to_spawn = ExtResource("11_676d1")
-amount_of_spawns = 2
-time_between_entities = 0.1
-offset_distance = 0.2
-rotation_strategy = SubResource("Resource_scaj3")
-time_between_bursts = 0.2
-metadata/_custom_type_script = "uid://1e84fd3xrrff"
-
-[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=861193701]
-script = ExtResource("12_iihc2")
-animation_trigger = Dictionary[String, Variant]({
-"parameters/hurt/request": 1
-})
-metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
 [node name="volcano_tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1249268255 instance=ExtResource("14_754gg")]
 
