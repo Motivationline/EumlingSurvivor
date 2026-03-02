@@ -1,6 +1,6 @@
 extends Node
 
-enum BUS_ID {MASTER, MUSIC, SFX_ALL, SFX_ENEMIES, SFX_GENERAL, ENVIRONMENT}
+enum BUS_ID {MASTER, MUSIC, SFX_ALL, SFX_ENEMIES, SFX_UI, ENVIRONMENT}
 
 @onready var init_bus_volumes:Array[float] 
 var active_player:MusicPlayer
@@ -24,23 +24,17 @@ func _ready():
 		init_bus_volumes.append(AudioServer.get_bus_volume_db(i))
 
 
-
-func fade_bus_volume(_bus_ids:Array[BUS_ID], _out:bool , _duration:float, _amount_db:float = 30, _to_init_volume:bool = false):
+func fade_bus_volume(_bus_id:BUS_ID, _duration:float, _target_db:float = 30, _to_init_volume:bool = false):
 	var tween = get_tree().create_tween()
 	tween.set_ignore_time_scale(true)
-	for id in _bus_ids:
-		if _to_init_volume:
-			_amount_db = init_bus_volumes[id]
-		if _out:
-			tween.tween_method(func(v): AudioServer.set_bus_volume_db(id, v),  init_bus_volumes[id],  -_amount_db,  _duration)
-			
-		else:
-			tween.tween_method(func(v): AudioServer.set_bus_volume_db(id, v),  AudioServer.get_bus_volume_db(id),  _amount_db,  _duration)
-			
+	
+	if _to_init_volume:
+		_target_db = init_bus_volumes[_bus_id]
+	
+	tween.tween_method(func(v): AudioServer.set_bus_volume_db(_bus_id, v),  AudioServer.get_bus_volume_db(_bus_id),  _target_db,  _duration)
+		
 
-
-
-func fade(_duration:float, _target_volume_db:float = -60, _player:MusicPlayer = active_player, _stop:bool = false) -> void: ## fades the volume of [param _player] by [param _target_volume_db] in a span of time equal to [param _duration] in seconds. Will queue [param _player] to be freed if [param _stop] is true. 
+func fade_player_volume(_duration:float, _target_volume_db:float = -60, _player:MusicPlayer = active_player, _stop:bool = false) -> void: ## fades the volume of [param _player] by [param _target_volume_db] in a span of time equal to [param _duration] in seconds. Will queue [param _player] to be freed if [param _stop] is true. 
 	
 	var tween = get_tree().create_tween()
 	tween.set_ignore_time_scale(true)
@@ -63,7 +57,7 @@ func make_music_player(_song:SongList.TRACK) -> MusicPlayer:
 ## Request music track given by [param _track_name] with transition defined by [param _transition] [br]
 ## Transitions take different paramters in the Array [param _transition_parameters] depending on type: [br]
 ## CROSSFADE takes one float defining its duration, [br]
-## FADE_AND_START takes one float for the duration of the fade out and one float for the offset of the incoming track start [br]
+## FADE_AND_START takes one float for the duration of the fade_player_volume out and one float for the offset of the incoming track start [br]
 ## INSTANT doesn't need parameters
 func request_music(_track_name:SongList.TRACK, _transition : TRANSITIONS, _transition_paramteres:Array = [], _with_env_nose: bool = false, _custom_transition:StringName = ""):
 	
@@ -85,13 +79,13 @@ func request_music(_track_name:SongList.TRACK, _transition : TRANSITIONS, _trans
 		else:
 			match _transition:
 				TRANSITIONS.CROSSFADE:
-					fade(_transition_paramteres[0], -60 ,fading_player, true)
+					fade_player_volume(_transition_paramteres[0], -60 ,fading_player, true)
 					active_player.volume_db = -60
 					active_player.start_playback()
-					fade(_transition_paramteres[0], 0, active_player)
+					fade_player_volume(_transition_paramteres[0], 0, active_player)
 					
 				TRANSITIONS.FADE_AND_START:
-					fade(_transition_paramteres[0], -60 ,fading_player, true)
+					fade_player_volume(_transition_paramteres[0], -60 ,fading_player, true)
 					await get_tree().create_timer(_transition_paramteres[1]).timeout
 					active_player.start_playback()
 					
@@ -100,3 +94,18 @@ func request_music(_track_name:SongList.TRACK, _transition : TRANSITIONS, _trans
 					fading_player.stop()
 					fading_player.queue_free()
 		current_track = _track_name
+
+
+func focus_on_bus(_bus : BUS_ID, _duration:float, _reduction_db:float) -> void:
+	print(_duration)
+	var other_buses  := BUS_ID.values().duplicate()
+	other_buses.erase(_bus)
+	other_buses.erase(BUS_ID.MASTER)
+	other_buses.erase(AudioServer.get_bus_index(AudioServer.get_bus_send(_bus)))
+	for i in other_buses:
+		fade_bus_volume(i, 0.4, init_bus_volumes[i]-_reduction_db)
+
+	await get_tree().create_timer(_duration).timeout
+	
+	for i in other_buses:
+		fade_bus_volume(i, 0.4, 0, true)

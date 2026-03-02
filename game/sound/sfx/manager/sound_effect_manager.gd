@@ -27,21 +27,21 @@ func sound_list_setup():
 			sound_list[sound.name] = sound
 
 
-func play_sound(sounds, focus:bool = false, persistent = false):
-	if !sounds is Array:
-		sounds = [sounds]
-	for i in sounds.size():
-		var sound_name: String = sounds[i]
+func play_sound(_sounds, _focus:bool = false, _persistent = false):
+	if !_sounds is Array:
+		_sounds = [_sounds]
+	for i in _sounds.size():
+		var sound_name: String = _sounds[i]
 		if sound_list.has(sound_name):
 			var sound = sound_list[sound_name] 
-			if persistent:
+			if _persistent:
 				sound.reparent(sound.get_parent().get_parent().get_parent())
 				if !sound.finished.is_connected(sound.queue_free):
 					sound.finished.connect(sound.queue_free)
 
 			sound.play()
-			#if focus:
-				##MusicPlayer.fade_in_and_out(sound.stream.get_length())
+			if _focus:
+				GlobalMusicManager.focus_on_bus(GlobalMusicManager.BUS_ID.SFX_UI, clampf(sound.stream.get_length(),0.7,3)*0.4, 20)
 		else:
 			print("Sound '"+sound_name+"' is missing!")
 	
