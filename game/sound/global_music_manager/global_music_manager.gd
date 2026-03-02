@@ -53,11 +53,11 @@ func fade(_duration:float, _target_volume_db:float = -60, _player:MusicPlayer = 
 	
 
 
-func make_music_player(_song:SongList.TRACK):
+func make_music_player(_song:SongList.TRACK) -> MusicPlayer:
 	var new_stream_player := MusicPlayer.new(SongList.get_song_resource(_song))
-	active_player = new_stream_player
-	active_player.bus = "Music"
-	add_child(active_player)
+	new_stream_player.bus = "Music"
+	add_child(new_stream_player)
+	return new_stream_player
 	
 	
 ## Request music track given by [param _track_name] with transition defined by [param _transition] [br]
@@ -66,35 +66,37 @@ func make_music_player(_song:SongList.TRACK):
 ## FADE_AND_START takes one float for the duration of the fade out and one float for the offset of the incoming track start [br]
 ## INSTANT doesn't need parameters
 func request_music(_track_name:SongList.TRACK, _transition : TRANSITIONS, _transition_paramteres:Array = [], _with_env_nose: bool = false, _custom_transition:StringName = ""):
-	if active_player:
-		fading_player = active_player
-	make_music_player(_track_name)
 	
 	
-	if _custom_transition != "":
-		pass
 	if not is_playing:
+		active_player = make_music_player(_track_name)
 		is_playing = true
 		active_player.start_playback()
+		
+		
 	elif !current_track == _track_name:
 		
-		match _transition:
-			TRANSITIONS.CROSSFADE:
-				fade(_transition_paramteres[0], -60 ,fading_player, true)
-				active_player.volume_db = -60
-				active_player.start_playback()
-				fade(_transition_paramteres[0], 0, active_player)
-				
-			TRANSITIONS.FADE_AND_START:
-				fade(_transition_paramteres[0], -60 ,fading_player, true)
-				await get_tree().create_timer(_transition_paramteres[1]).timeout
-				active_player.start_playback()
-
-				
-
-				
-			TRANSITIONS.INSTANT:
-				active_player.start_playback()
-				fading_player.stop()
-				fading_player.queue_free()
+		fading_player = active_player
+		active_player = make_music_player(_track_name)
+		
+		
+		if _custom_transition != "":
+			pass
+		else:
+			match _transition:
+				TRANSITIONS.CROSSFADE:
+					fade(_transition_paramteres[0], -60 ,fading_player, true)
+					active_player.volume_db = -60
+					active_player.start_playback()
+					fade(_transition_paramteres[0], 0, active_player)
+					
+				TRANSITIONS.FADE_AND_START:
+					fade(_transition_paramteres[0], -60 ,fading_player, true)
+					await get_tree().create_timer(_transition_paramteres[1]).timeout
+					active_player.start_playback()
+					
+				TRANSITIONS.INSTANT:
+					active_player.start_playback()
+					fading_player.stop()
+					fading_player.queue_free()
 		current_track = _track_name
