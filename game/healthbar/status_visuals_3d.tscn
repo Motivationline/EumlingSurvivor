@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://hpf1ls8vm18b"]
 
-[ext_resource type="Script" uid="uid://bygod7vsyeqt8" path="res://game/healthbar/healthbar_3d.gd" id="1_o76um"]
-[ext_resource type="PackedScene" uid="uid://cwx4ps7nr715s" path="res://game/healthbar/healthbar.tscn" id="2_2fanj"]
+[ext_resource type="Script" uid="uid://chtmk0pv2i53v" path="res://game/healthbar/status_visuals.gd" id="1_42n74"]
+[ext_resource type="PackedScene" uid="uid://cwx4ps7nr715s" path="res://game/healthbar/healthbar.tscn" id="2_ya7qt"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_2fanj"]
 viewport_path = NodePath("SubViewport")
@@ -20,8 +20,8 @@ particles_anim_loop = false
 [sub_resource type="ViewportTexture" id="ViewportTexture_o76um"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Healthbar3D" type="Node3D" unique_id=444245433]
-script = ExtResource("1_o76um")
+[node name="StatusVisuals3D" type="Node3D" unique_id=444245433]
+script = ExtResource("1_42n74")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=136601365]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -33,4 +33,4 @@ texture = SubResource("ViewportTexture_o76um")
 transparent_bg = true
 size = Vector2i(502, 50)
 
-[node name="Healthbar" parent="SubViewport" unique_id=1289161521 instance=ExtResource("2_2fanj")]
+[node name="Healthbar" parent="SubViewport" unique_id=1289161521 instance=ExtResource("2_ya7qt")]

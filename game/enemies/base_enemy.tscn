@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://cu1ucgco815t4"]
 
 [ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_axhys"]
-[ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/healthbar_3d.tscn" id="2_wu6ui"]
 [ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="3_3pmql"]
-[ext_resource type="PackedScene" uid="uid://cary3jj8sadl7" path="res://game/healthbarEnemy/healthbarEnemy_3d.tscn" id="3_qbujc"]
+[ext_resource type="PackedScene" uid="uid://cary3jj8sadl7" path="res://game/healthbarEnemy/status_visuals_3d_enemy.tscn" id="3_qbujc"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="5_4ghmt"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="5_ohdoq"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="6_4ghmt"]
@@ -46,20 +45,16 @@ stream_7/stream = ExtResource("20_bi11c")
 stream_8/stream = ExtResource("21_tbsjp")
 stream_9/stream = ExtResource("22_igjq0")
 
-[node name="BaseEnemy" type="CharacterBody3D" unique_id=1898691 node_paths=PackedStringArray("healthbar", "state_machine", "on_death", "on_hurt")]
+[node name="BaseEnemy" type="CharacterBody3D" unique_id=1898691 node_paths=PackedStringArray("status_visuals", "on_death", "on_hurt", "state_machine")]
 collision_layer = 16
 script = ExtResource("1_axhys")
 health = 10.0
-healthbar = NodePath("HealthbarEnemy3D")
-state_machine = NodePath("StateMachine")
+status_visuals = NodePath("StatusVisuals3DEnemy")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral")]
+state_machine = NodePath("StateMachine")
 
-[node name="Healthbar3D" parent="." unique_id=985815578 instance=ExtResource("2_wu6ui")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.5)
-visible = false
-
-[node name="HealthbarEnemy3D" parent="." unique_id=691291944 instance=ExtResource("3_qbujc")]
+[node name="StatusVisuals3DEnemy" parent="." unique_id=691291944 instance=ExtResource("3_qbujc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.5)
 
 [node name="StateMachine" type="Node" parent="." unique_id=2093753398]

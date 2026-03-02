@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://co3vv3d8hdp1s"]
 
 [ext_resource type="PackedScene" uid="uid://c4e8dv2l1561n" path="res://game/aoes/base_aoe.tscn" id="1_sng2g"]
+[ext_resource type="Script" uid="uid://cmt5ulvw3t7e4" path="res://game/aoes/social_aoe/social_aoe.gd" id="2_1b620"]
 [ext_resource type="PackedScene" uid="uid://byqjf0sc7pi8" path="res://game/vfx/social_aoe_vfx/social_vfx.tscn" id="2_jxcy8"]
 [ext_resource type="Script" uid="uid://bl1vh3cicxm2t" path="res://game/player/abilities/social_aoe_hitbox.gd" id="2_qjumo"]
 
@@ -9,6 +10,7 @@ height = 0.1
 radius = 1.0
 
 [node name="Social_AOE" unique_id=1057959053 instance=ExtResource("1_sng2g")]
+script = ExtResource("2_1b620")
 never_expire = true
 shape = SubResource("CylinderShape3D_jxcy8")
 
@@ -16,6 +18,7 @@ shape = SubResource("CylinderShape3D_jxcy8")
 collision_layer = 4
 collision_mask = 64
 script = ExtResource("2_qjumo")
+damage_cooldown = 0.1
 attached_to = 3
 can_hit = 7
 

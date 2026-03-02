@@ -9,7 +9,7 @@ class_name Enemy
 		health = new_value
 		if (max_health > 0):
 			health = clampf(new_value, 0, max_health)
-		if (healthbar): healthbar.health = health
+		if (status_visuals): status_visuals.health = health
 		if (health <= 0 && !cannot_die):
 			_die()
 		# TODO: add damage number popup
@@ -19,7 +19,7 @@ class_name Enemy
 @export_category("Base Functionality")
 ## ignores enemy when for level finish
 @export var ignore_enemy_in_level: bool = false
-@export var healthbar: Healthbar3D
+@export var status_visuals: StatusVisualsEnemy
 @export var hitbox: HitBox
 @export var hurtbox: HurtBox
 
@@ -37,13 +37,14 @@ class_name Enemy
 
 var max_health: float
 var reset_timer: Timer
+var convince_progress: float = 0
 
 var animation_tree: AnimationTree
 
 func _ready() -> void:
 	super()
 	max_health = health
-	if (healthbar): healthbar.init_health(max_health)
+	if (status_visuals): status_visuals.init_health(max_health)
 	if (hitbox): hitbox.hit.connect(_hit)
 	if (hurtbox): hurtbox.hurt_by.connect(_hurt_by)
 
@@ -67,6 +68,10 @@ func _hit(_attackee: HurtBox):
 
 func _hurt_by(_attacker: HitBox):
 	if _attacker is SocialAOEHitBox:
+		convince_progress += _attacker.rate
+		status_visuals.social_progress = convince_progress / max_health
+		if convince_progress > max_health:
+			health = 0
 		return
 	health -= _attacker.damage
 	for ev in on_hurt:

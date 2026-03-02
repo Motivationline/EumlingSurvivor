@@ -32,7 +32,7 @@ signal died
 @export var eumling_visuals: Node3D
 @export var spawner: EntitySpawner
 
-@onready var healthbar: Healthbar3D = $Healthbar3D
+@onready var healthbar: StatusVisuals = $StatusVisuals
 @onready var hurtbox: HurtBox = $Hurtbox
 
 ## UI Stuff

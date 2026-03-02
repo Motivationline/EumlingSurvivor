@@ -6,6 +6,7 @@ var amt_eumlings: int = 0
 
 func _ready() -> void:
 	Data.active_eumlings_changed.connect(update_level)
+	_update()
 	update_level(Data._active_mini_eumlings)
 
 func update_level(active_mini_eumlings: Array[Enum.EUMLING_TYPE]):

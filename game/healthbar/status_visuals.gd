@@ -1,24 +1,19 @@
 extends Node3D
-class_name Healthbar3D
+class_name StatusVisuals
 
-## Hides the healthbar after this time if it's full. Set to negative to always show.
-@export var hide_when_full_after: float = 2.0
-## Whether to hide the healthbar initially
-@export var hide_initially: bool = true
 ## Should the health numbers be visible?
 @export var show_health_numbers: bool = false
 
 @onready var healthbar: Healthbar = $SubViewport/Healthbar
 
 func _ready():
-	healthbar.hide_when_full_after = hide_when_full_after
-	healthbar.hide_initially = hide_initially
 	healthbar.show_health_numbers = show_health_numbers
 
 var health: float = 0:
 	set = _set_health
 var max_health: float = 0:
 	set = _set_max_health
+
 
 func init_health(_health: float):
 	health = _health
