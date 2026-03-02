@@ -86,7 +86,7 @@ func find_next_goal_position():
 			## were going vertical
 			random_position.z = randf_range(-1, 1)
 		
-		
+		#create a random position based on the random direction and given min-/max_distance
 		random_position = random_position.normalized() * randf_range(min_distance, max_distance)
 		nav_agent.target_position = random_position + parent.global_position
 		
@@ -99,6 +99,7 @@ func find_next_goal_position():
 		#print("abs x: ", abs(nav_agent.get_final_position().x - parent.global_position.x))
 		#print("abs z: ", abs(nav_agent.get_final_position().z - parent.global_position.z))
 		
+		#check if the path is valid
 		if random_orientation == 0 && abs(nav_agent.get_final_position().z - parent.global_position.z) > 0.01 || random_orientation == 1 && abs(nav_agent.get_final_position().x - parent.global_position.x) > 0.01:
 			#print("invalid path, try again")
 			

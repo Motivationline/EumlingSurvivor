@@ -65,6 +65,7 @@ func physics_process(_delta: float) -> State:
 	#if (nav_agent.is_navigation_finished()): return null
 	
 	var speed = parent.speed
+	#accelerate
 	if speed < max_speed:
 		speed += acceleration * _delta
 	parent.speed = speed
@@ -77,13 +78,12 @@ func physics_process(_delta: float) -> State:
 			parent.move_and_collide((-parent.basis.z) * speed * _delta)
 		done = true
 	
+	#prevent the entity from leavng the nav_mesh
 	nav_agent.target_position = parent.global_position
 	var adjusted_final_pos = nav_agent.get_final_position()
 	adjusted_final_pos.y = parent.global_position.y
 	if  adjusted_final_pos.distance_to(parent.global_position) >= 0.001 :
 		#we left the navmesh
-		#print("parent pos: ", parent.global_position)
-		#print("target pos: ", adjusted_final_pos)
 		parent.global_position = last_valid_pos
 		done = true
 		#print("we left the navmesh")
