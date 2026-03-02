@@ -66,6 +66,8 @@ func _hit(_attackee: HurtBox):
 		ev.event_triggered(_attackee)
 
 func _hurt_by(_attacker: HitBox):
+	if _attacker is SocialAOEHitBox:
+		return
 	health -= _attacker.damage
 	for ev in on_hurt:
 		ev.event_triggered(_attacker)

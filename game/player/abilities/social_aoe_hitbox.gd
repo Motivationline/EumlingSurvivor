@@ -1,0 +1,1 @@
+class_name SocialAOEHitBox extends HitBox
