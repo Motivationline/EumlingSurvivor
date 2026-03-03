@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c61at2yo4g6s1"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_ddu6t"]
+[ext_resource type="Texture2D" uid="uid://dtv5gh7jrq6xk" path="res://assets/characters/enemies/ninja_starfish/ninja_starfish_Starfish_Base_color.png" id="2_pckv6"]
+
+[sub_resource type="Gradient" id="Gradient_4yv5p"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.42857143, 0.67460316)
+colors = PackedColorArray(0.28118676, 0.2811869, 0.28118682, 1, 0.62967473, 0.62967473, 0.6296747, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wghkc"]
+gradient = SubResource("Gradient_4yv5p")
+
+[sub_resource type="Gradient" id="Gradient_p4ubq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.6878307)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wc38n"]
+gradient = SubResource("Gradient_p4ubq")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ddu6t")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_pckv6")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_wghkc")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_wc38n")
+shader_parameter/rim_focus = 0.2730000129675
+shader_parameter/use_diffuse_smooth_attenuation = true

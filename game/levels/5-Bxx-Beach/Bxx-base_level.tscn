@@ -232,8 +232,8 @@ _surfaces = [{
 
 [sub_resource type="Gradient" id="Gradient_nf22f"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.42588726, 0.6450939, 0.79749477, 1)
-colors = PackedColorArray(0.92, 0.80638003, 0.5612, 1, 0.76, 0.64448, 0.4712, 1, 0.69, 0.59823, 0.40020004, 1, 0.54, 0.4104, 0.29700002, 1)
+offsets = PackedFloat32Array(0.42379957, 0.6450939, 0.79749477, 1)
+colors = PackedColorArray(0.75, 0.666875, 0.48749998, 1, 0.7, 0.5936, 0.434, 1, 0.65, 0.5135, 0.3575, 1, 0.6, 0.456, 0.33, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ndj1h"]
 noise_type = 3
@@ -318,35 +318,37 @@ adjustment_saturation = 1.51
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbp8f"]
 size = Vector3(1.9667969, 1.8048096, 1)
 
-[sub_resource type="Gradient" id="Gradient_n7ths"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.0792, 0.44, 0.27764007, 1)
+[sub_resource type="Gradient" id="Gradient_yuro1"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.60334027)
+colors = PackedColorArray(0, 0.66, 0.5830001, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_66g43"]
-gradient = SubResource("Gradient_n7ths")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eyygh"]
+gradient = SubResource("Gradient_yuro1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_66g43"]
 render_priority = -100
 shader = ExtResource("12_n7ths")
+shader_parameter/Viscosity = 0.4
 shader_parameter/WaveHeight = 0.1
-shader_parameter/Speed = Vector2(0, 0)
-shader_parameter/Color = SubResource("GradientTexture1D_66g43")
-shader_parameter/Ripples_Color = Color(0.43, 1, 0.93350005, 1)
-shader_parameter/ProximityFade = 0.4
+shader_parameter/Speed = Vector2(0.01, 0)
+shader_parameter/Color = SubResource("GradientTexture1D_eyygh")
+shader_parameter/Ripples_Color = Color(0.65, 1, 0.959167, 1)
+shader_parameter/ProximityFade = 0.95
 shader_parameter/RippleSpeed = 4.0
-shader_parameter/SeeThrough = 0.95
+shader_parameter/SeeThrough = 0.6
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sv6f4"]
-size = Vector2(20, 20)
-subdivide_width = 20
-subdivide_depth = 20
+size = Vector2(40, 40)
+subdivide_width = 40
+subdivide_depth = 40
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q377s"]
 size = Vector2(30, 30)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvf3w"]
 render_priority = -100
-albedo_color = Color(0.115200005, 0.64, 0.59626657, 1)
+albedo_color = Color(0, 0.2750001, 0.5, 1)
 
 [node name="Level" type="Node3D" unique_id=1268816340 node_paths=PackedStringArray("player_spawn", "goal_area")]
 script = ExtResource("1_nf22f")
@@ -431,7 +433,7 @@ material_override = SubResource("ShaderMaterial_66g43")
 mesh = SubResource("PlaneMesh_sv6f4")
 
 [node name="WaterFloor" type="MeshInstance3D" parent="Env/WaterRipples" unique_id=136313282]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015992403, -0.4833145, -1.2509851)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015992403, -1.5887985, -1.2509851)
 mesh = SubResource("PlaneMesh_q377s")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_wvf3w")
