@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://byvva0v7fo8rl"]
+
+[ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_fprfc"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_80h4o"]
+[ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_rggri"]
+
+[node name="Level" unique_id=1973423689 instance=ExtResource("1_fprfc")]
+
+[node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(1440811827) index="2" unique_id=1673071015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_80h4o")
+cell_size = Vector3(0.5, 0.5, 0.5)
+collision_layer = 16
+collision_mask = 16
+data = {
+"cells": PackedInt32Array(0, 0, 2, 65535, 0, 1048578, 65535, 65535, 1048578, 0, 65535, 1441794, 65534, 65535, 1048578, 1, 65535, 655362, 1, 65534, 2, 2, 65534, 1441794, 65535, 65534, 2, 65535, 65533, 1441794, 0, 65533, 655362, 0, 65534, 1048578)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="ExitArea" parent="." index="6" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_rggri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")

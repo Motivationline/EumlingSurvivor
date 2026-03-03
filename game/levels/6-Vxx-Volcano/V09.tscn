@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://tl4xa7cp4dx8"]
+
+[ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_kxywl"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_o63c7"]
+[ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_t11et"]
+
+[node name="Level" unique_id=1973423689 instance=ExtResource("1_kxywl")]
+
+[node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(1440811827) index="2" unique_id=680882594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_o63c7")
+cell_size = Vector3(0.5, 0.5, 0.5)
+collision_layer = 16
+collision_mask = 16
+data = {
+"cells": PackedInt32Array(65535, 65532, 1441794, 65534, 65532, 655362, 65533, 65533, 1048578, 65532, 65533, 1048578, 65532, 65534, 2, 65532, 65535, 1441794, 65533, 65535, 1441794, 65533, 0, 655362, 65533, 1, 2, 65533, 2, 1441794, 65534, 2, 655362, 65535, 2, 655362, 0, 2, 1048578, 0, 1, 2, 1, 1, 1441794, 2, 1, 655362, 3, 1, 655362, 3, 0, 655362, 4, 0, 1048578, 4, 65535, 2, 4, 65534, 2, 3, 65534, 1441794, 3, 65533, 655362, 3, 65532, 1048578, 2, 65532, 2, 1, 65532, 1441794, 0, 65532, 655362, 0, 65533, 655362, 65535, 65533, 655362, 65534, 65533, 2, 65534, 65534, 2, 65533, 65534, 655362, 65534, 65535, 1048578, 65534, 0, 2, 65534, 1, 655362, 65535, 1, 1048578, 65535, 0, 1048578, 65535, 65535, 1048578, 65535, 65534, 655362, 0, 65534, 655362, 1, 65534, 1048578, 1, 65533, 2, 2, 65533, 1441794, 2, 65534, 1048578, 2, 65535, 2, 3, 65535, 2, 2, 0, 1441794, 1, 0, 1441794, 0, 0, 1441794, 0, 65535, 655362, 1, 65535, 655362, 0, 65531, 655362, 1, 65531, 1048578, 65535, 3, 1048578, 65534, 3, 2)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="ExitArea" parent="." index="6" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_t11et")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")
