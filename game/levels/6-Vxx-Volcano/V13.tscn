@@ -4,9 +4,19 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_80h4o"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_rggri"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_80h4o"]
+vertices = PackedVector3Array(-0.75, 1, 0.5, -0.75, 1, 0.25, -1, 1, 0.25, -4.5, 1, 0.5, -1, 1, 0, -1.25, 1, 0, -1, 1, -1.5, -0.75, 1, -1.5, -0.75, 1, -1.75, 0.5, 1, -2, 0.5, 1, -1.75, 0.75, 1, -1.75, 1.5, 1, -1.25, 1.5, 1, -1, 1.75, 1, -1, 1.75, 1, -0.5, 1.5, 1, -0.5, 1.5, 1, -0.25, 4.75, 1, 0.25, 1.25, 1, -0.25, 1.25, 1, 0, 1, 1, 0, 1, 1, 0.25, 1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -0.25, 1, -1.75, -0.25, 1, -2, 0.75, 1, -1.25, -1.25, 1, -0.5, -1, 1, -0.5, 0.75, 1, -5, -0.5, 1, -5, -4.5, 1, -4.5, 4.75, 1, -4.5, 0.25, 1.5, 0, 0.5, 1.5, 0, 0.5, 1.5, -0.25, 0.75, 1.5, -0.25, 0.75, 1.5, -0.5, 0.5, 1.5, -0.75, 1, 1.5, -0.5, 1, 1.5, -0.75, 0.25, 1.5, -1, -0.25, 1.5, -1.25, -0.25, 1.5, -0.5, 0.5, 1.5, -1, 0.25, 1.5, -1.25, -0.5, 1.5, -0.5, -0.5, 1.5, 0, -0.25, 1.5, 0, -0.25, 1.5, 0.25, 0.25, 1.5, 0.25, 1, 1, 0.75, 0.75, 1, 0.75, 0.75, 1, 1, -0.5, 1, 0.75, -0.5, 1, 0.5, 0, 1, 1, 0, 1, 0.75, 4.75, 1, 4.75, -4.5, 1, 4.75)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(19, 17, 20), PackedInt32Array(20, 17, 18), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 18), PackedInt32Array(25, 24, 23), PackedInt32Array(28, 27, 26), PackedInt32Array(29, 8, 30), PackedInt32Array(30, 8, 28), PackedInt32Array(12, 31, 11), PackedInt32Array(6, 33, 32), PackedInt32Array(11, 9, 12), PackedInt32Array(12, 9, 23), PackedInt32Array(26, 35, 25), PackedInt32Array(25, 35, 34), PackedInt32Array(8, 6, 28), PackedInt32Array(28, 6, 36), PackedInt32Array(36, 6, 3), PackedInt32Array(25, 23, 26), PackedInt32Array(26, 23, 28), PackedInt32Array(28, 23, 9), PackedInt32Array(28, 9, 30), PackedInt32Array(6, 32, 3), PackedInt32Array(14, 12, 18), PackedInt32Array(18, 12, 23), PackedInt32Array(18, 23, 37), PackedInt32Array(18, 15, 14), PackedInt32Array(32, 5, 3), PackedInt32Array(40, 39, 38), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 43), PackedInt32Array(44, 42, 45), PackedInt32Array(45, 42, 43), PackedInt32Array(43, 40, 46), PackedInt32Array(46, 40, 38), PackedInt32Array(46, 38, 48), PackedInt32Array(46, 48, 47), PackedInt32Array(46, 49, 43), PackedInt32Array(47, 50, 46), PackedInt32Array(48, 53, 51), PackedInt32Array(51, 53, 52), PackedInt32Array(38, 53, 48), PackedInt32Array(38, 55, 53), PackedInt32Array(53, 55, 54), PackedInt32Array(58, 57, 56), PackedInt32Array(0, 60, 59), PackedInt32Array(59, 62, 61), PackedInt32Array(56, 22, 18), PackedInt32Array(3, 0, 59), PackedInt32Array(56, 18, 58), PackedInt32Array(58, 18, 63), PackedInt32Array(59, 61, 3), PackedInt32Array(3, 61, 64), PackedInt32Array(58, 63, 61), PackedInt32Array(61, 63, 64)]
+agent_radius = 0.25
+agent_max_climb = 0.0
+edge_max_error = 0.25
+
 [node name="Level" unique_id=1973423689 instance=ExtResource("1_fprfc")]
 
-[node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(1440811827) index="2" unique_id=1673071015]
+[node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
+navigation_mesh = SubResource("NavigationMesh_80h4o")
+
+[node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" index="2" unique_id=1673071015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = ExtResource("2_80h4o")
 cell_size = Vector3(0.5, 0.5, 0.5)
