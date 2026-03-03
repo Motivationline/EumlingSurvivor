@@ -8,6 +8,7 @@ var mini_eumling: Array[Node]
 func _ready() -> void:
 	mini_eumling = $Mini_Eumling_Anchor.get_children()
 	seed_animation.play("RESET")
+	GlobalMusicManager.fade_out(1)
 
 signal completed
 
@@ -25,6 +26,7 @@ func advance():
 	if progress >= 4:
 		if progress == 99:
 			completed.emit()
+			GlobalMusicManager.request_music(SongList.TRACK.MENU,GlobalMusicManager.TRANSITIONS.CROSSFADE,[1])
 		return
 	progress += 1;
 	if progress <= 3:
@@ -34,6 +36,7 @@ func advance():
 
 func reveal_emuling():
 	seed_animation.play("reveal")
+	GlobalMusicManager.request_music(SongList.TRACK.GAMBA,GlobalMusicManager.TRANSITIONS.INSTANT)
 	await seed_animation.animation_finished
 	progress = 99
 
