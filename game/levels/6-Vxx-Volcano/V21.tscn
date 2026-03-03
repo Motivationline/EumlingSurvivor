@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://cu61do245snrs"]
+
+[ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_efduj"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_1ws5u"]
+[ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_bd2p7"]
+[ext_resource type="PackedScene" uid="uid://ctpdnwxhrhuts" path="res://game/enemies/6-volcano/environment/magma_tiles.tscn" id="4_bd2p7"]
+
+[node name="Level" unique_id=1973423689 instance=ExtResource("1_efduj")]
+
+[node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(1440811827) index="2" unique_id=2005785868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_1ws5u")
+cell_size = Vector3(0.5, 0.5, 0.5)
+collision_layer = 16
+collision_mask = 16
+data = {
+"cells": PackedInt32Array(65529, 6, 2, 65530, 6, 1441794, 65531, 6, 655362, 65531, 7, 1441794, 65530, 7, 1441794, 65531, 5, 1441794, 5, 65528, 1441794, 6, 65528, 2, 7, 65528, 1441794, 7, 65529, 655362, 6, 65529, 655362, 7, 65530, 1048578)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="ExitArea" parent="." index="6" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")
+
+[node name="Obstacles" type="Node3D" parent="." index="7" unique_id=670855257]
+
+[node name="magma_tiles" parent="Obstacles" index="0" unique_id=2030102374 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.75, 1.75)
+
+[node name="magma_tiles2" parent="Obstacles" index="1" unique_id=46696457 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.75, 1.25)
+
+[node name="magma_tiles3" parent="Obstacles" index="2" unique_id=1673028071 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.75, 1.25)
+
+[node name="magma_tiles4" parent="Obstacles" index="3" unique_id=493539628 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.75, 0.75)
+
+[node name="magma_tiles5" parent="Obstacles" index="4" unique_id=1916881415 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.75, 0.25)
+
+[node name="magma_tiles6" parent="Obstacles" index="5" unique_id=1768160264 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.75, 0.25)
+
+[node name="magma_tiles7" parent="Obstacles" index="6" unique_id=1866699887 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.75, -0.25)
+
+[node name="magma_tiles8" parent="Obstacles" index="7" unique_id=1736614598 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.75, -0.75)
+
+[node name="magma_tiles30" parent="Obstacles" index="8" unique_id=552416100 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.75, -0.75)
+
+[node name="magma_tiles9" parent="Obstacles" index="9" unique_id=361452042 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.75, -0.75)
+
+[node name="magma_tiles10" parent="Obstacles" index="10" unique_id=1030807764 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.75, -1.25)
+
+[node name="magma_tiles11" parent="Obstacles" index="11" unique_id=624958281 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.75, -1.25)
+
+[node name="magma_tiles31" parent="Obstacles" index="12" unique_id=1472941367 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.75, -1.75)
+
+[node name="magma_tiles12" parent="Obstacles" index="13" unique_id=1885697128 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.75, -0.75)
+
+[node name="magma_tiles13" parent="Obstacles" index="14" unique_id=923528690 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, -1.75)
+
+[node name="magma_tiles14" parent="Obstacles" index="15" unique_id=1535567403 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.75, -1.75)
+
+[node name="magma_tiles15" parent="Obstacles" index="16" unique_id=1610718769 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.75, -1.75)
+
+[node name="magma_tiles16" parent="Obstacles" index="17" unique_id=33711033 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.75, -1.25)
+
+[node name="magma_tiles17" parent="Obstacles" index="18" unique_id=1202365967 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.75, -1.25)
+
+[node name="magma_tiles18" parent="Obstacles" index="19" unique_id=1209742687 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.75, -0.75)
+
+[node name="magma_tiles19" parent="Obstacles" index="20" unique_id=2086085817 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.75, -0.25)
+
+[node name="magma_tiles20" parent="Obstacles" index="21" unique_id=664154418 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.75, -0.25)
+
+[node name="magma_tiles21" parent="Obstacles" index="22" unique_id=254450815 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.75, 0.25)
+
+[node name="magma_tiles22" parent="Obstacles" index="23" unique_id=1384228600 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.75, 0.75)
+
+[node name="magma_tiles23" parent="Obstacles" index="24" unique_id=891676173 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.75, 0.75)
+
+[node name="magma_tiles24" parent="Obstacles" index="25" unique_id=767251875 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.75, 0.75)
+
+[node name="magma_tiles25" parent="Obstacles" index="26" unique_id=1902127777 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.75, 1.25)
+
+[node name="magma_tiles26" parent="Obstacles" index="27" unique_id=1249639747 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.75, 1.75)
+
+[node name="magma_tiles27" parent="Obstacles" index="28" unique_id=940743166 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.75, 1.75)
+
+[node name="magma_tiles29" parent="Obstacles" index="29" unique_id=470871742 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, 1.75)
+
+[node name="magma_tiles28" parent="Obstacles" index="30" unique_id=2120564421 instance=ExtResource("4_bd2p7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.75, 1.75)
