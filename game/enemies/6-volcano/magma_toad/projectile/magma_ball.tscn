@@ -11,6 +11,11 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_m8640"]
 [ext_resource type="PackedScene" uid="uid://db8m7lns2hnlo" path="res://game/aoes/explosion/standard_explosion.tscn" id="8_by40c"]
 
+[sub_resource type="Curve" id="Curve_by40c"]
+_limits = [0.0, 2.9768958, 0.0, 1.0]
+_data = [Vector2(0, 0.4585309), 0.0, 10.192355, 0, 0, Vector2(0.47851002, 2.9768958), -0.046070848, -0.046070848, 0, 0, Vector2(1, 0), -9.950316, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_vrxug"]
 radius = 0.09788437
 
@@ -36,13 +41,12 @@ on_created = [NodePath("MovementStrategies/SetTargetsEventStrategy")]
 [node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=619591397]
 script = ExtResource("3_ma2mw")
 target_property = 2
-target_sorter = 3
 metadata/_custom_type_script = "uid://l8142vs0gken"
 
 [node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1" unique_id=1875998004]
 script = ExtResource("4_54631")
-arc_factor = 4.0
-prediction_factor = 0.1
+flight_curve = SubResource("Curve_by40c")
+max_distance = 3.0
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
 [node name="SetTargetsEventStrategy" type="Node" parent="MovementStrategies" index="2" unique_id=155478377 node_paths=PackedStringArray("targeting_strats")]

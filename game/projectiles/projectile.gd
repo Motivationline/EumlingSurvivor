@@ -57,6 +57,8 @@ var hits: Array[Node]
 
 var obj_that_spawned_this: Node3D
 
+signal creation_completed
+
 func setup(target_pos: Vector3, _owner: Node3D):
 	target_position = target_pos
 	if (hit_box):
@@ -84,6 +86,7 @@ func setup(target_pos: Vector3, _owner: Node3D):
 		t._setup(self, _owner)
 	
 	_on_created()
+	creation_completed.emit()
 
 func setup_player(player: Player):
 	# speed
@@ -187,7 +190,7 @@ func set_targets(_remove_current: bool):
 				targets += new_targets
 	#print(targets)
 
-func get_targets():
+func get_targets() -> Array[Node]:
 	return targets
 
 func add_hit(_hit: Node):
