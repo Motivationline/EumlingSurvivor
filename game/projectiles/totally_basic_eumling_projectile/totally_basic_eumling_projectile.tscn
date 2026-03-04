@@ -162,6 +162,8 @@ color_initial_ramp = SubResource("GradientTexture1D_f7sbq")
 
 [sub_resource type="QuadMesh" id="QuadMesh_chctk"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqm5e"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_acb8o"]
 radius = 0.13893983
 
@@ -267,6 +269,11 @@ material_override = SubResource("StandardMaterial3D_ifyym")
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_n1kd3")
 draw_pass_1 = SubResource("QuadMesh_chctk")
+
+[node name="Shadow" type="MeshInstance3D" parent="MeshInstance3D" index="5" unique_id=985260567]
+material_override = SubResource("StandardMaterial3D_rqm5e")
+cast_shadow = 3
+mesh = ExtResource("8_aejtm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=784156339]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

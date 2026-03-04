@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_ng4wt"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_cwhpy"]
 [ext_resource type="Texture2D" uid="uid://bx2vit8nl77pn" path="res://assets/models/5-beach/obstacle_stone/ObstacleStone_Beach_Material_Base_color.png" id="3_bjlrd"]
+[ext_resource type="PackedScene" uid="uid://yki87lnkx75s" path="res://game/enemies/5-Beach/ninja_starfish.tscn" id="4_bjlrd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54a7a"]
 albedo_texture = ExtResource("3_bjlrd")
@@ -79,8 +80,8 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="DirectionalLight" parent="Environment" parent_id_path=PackedInt32Array(1399907702) index="1" unique_id=215308637]
-visible = false
-
 [node name="LightmapGI" parent="." index="6" unique_id=1173002347]
 environment_custom_color = Color(1, 0.896, 0.76, 1)
+
+[node name="BaseEnemy" parent="." index="7" unique_id=1898691 instance=ExtResource("4_bjlrd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.560852, 0.50964355, 1.8996582)

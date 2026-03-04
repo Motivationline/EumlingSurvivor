@@ -2,15 +2,21 @@
 
 [ext_resource type="PackedScene" uid="uid://dpn55b3c3yhbi" path="res://assets/models/5-beach/stone_v1.glb" id="1_ecwap"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7nx7q"]
+albedo_color = Color(0.3, 0.165, 0.030000009, 1)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_ecwap"]
 radius = 1.0375811
 
-[node name="stone_v1" instance=ExtResource("1_ecwap")]
+[node name="stone_v1" unique_id=790617803 instance=ExtResource("1_ecwap")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+[node name="stonev1" parent="." index="0" unique_id=1148814573]
+material_override = SubResource("StandardMaterial3D_7nx7q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1118113103]
 collision_layer = 256
 collision_mask = 256
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=333340510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.088276565, 1.019275, 0)
 shape = SubResource("SphereShape3D_ecwap")
