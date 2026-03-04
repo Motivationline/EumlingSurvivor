@@ -45,7 +45,7 @@ func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	nav_agent.path_desired_distance = 0.1
 
 func enter():
-	super()
+	super ()
 	find_new_target()
 
 func physics_process(_delta: float) -> State:
@@ -65,11 +65,23 @@ func physics_process(_delta: float) -> State:
 	return null
 
 func find_new_target():
-	var random_position := Vector3.ZERO
-	random_position.x = randf_range(-1, 1)
-	random_position.z = randf_range(-1, 1)
-	random_position = random_position.normalized() * randf_range(min_distance, max_distance)
-	nav_agent.target_position = random_position + parent.global_position
+	var best_position := Vector3.ZERO
+	var best_squared_distance: float = max_distance * max_distance + 1
+	for i in 5:
+		# try 5 times to find a spot that is closest to reachable
+		var random_position := Vector3.ZERO
+		random_position.x = randf_range(-1, 1)
+		random_position.z = randf_range(-1, 1)
+		random_position = random_position.normalized() * randf_range(min_distance, max_distance)
+		nav_agent.target_position = random_position + parent.global_position
+		var distance = nav_agent.get_final_position().distance_squared_to(nav_agent.target_position)
+		if distance < best_squared_distance:
+			best_position = random_position
+			best_squared_distance = distance
+		if distance <= 0.01:
+			break
+		
+	nav_agent.target_position = best_position + parent.global_position
 	done = false
 	nav_agent.debug_enabled = debug_show_path
 
