@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://7t81qu54b7am"]
+[gd_scene format=3 uid="uid://7t81qu54b7am"]
 
 [ext_resource type="PackedScene" uid="uid://c4e8dv2l1561n" path="res://game/aoes/base_aoe.tscn" id="1_uxcwr"]
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="2_dp0n4"]
@@ -275,44 +275,44 @@ stream_3/stream = ExtResource("10_xj8mx")
 stream_4/stream = ExtResource("11_014qx")
 stream_5/stream = ExtResource("12_5wjto")
 
-[node name="Berry_Explosion_AOE" instance=ExtResource("1_uxcwr")]
+[node name="Berry_Explosion_AOE" unique_id=449671875 instance=ExtResource("1_uxcwr")]
 duration = 4.0
 
 [node name="Hitbox" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.459361, 0)
 collision_layer = 32
 collision_mask = 8
-damage = 20.0
-damage_cooldown = 0.1
+damage = 10.0
+damage_cooldown = 0.2
 attached_to = 6
 can_hit = 4
+ignores_iframes = true
+causes_iframes = false
 
 [node name="CollisionShape3D" parent="Hitbox" index="0"]
 shape = SubResource("CylinderShape3D_uxcwr")
 disabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0" unique_id=1625701585]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.171625, 0)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_o11xy")
 surface_material_override/0 = SubResource("ShaderMaterial_2glje")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals" index="1"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals" index="1" unique_id=111821247]
 transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 0, 0.635102, 0)
 mesh = SubResource("PlaneMesh_o11xy")
 surface_material_override/0 = SubResource("StandardMaterial3D_6p4m7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" index="2" unique_id=531499005]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_paseo")
-}
-autoplay = "boom"
+libraries/ = SubResource("AnimationLibrary_paseo")
+autoplay = &"boom"
 
-[node name="SoundEffectManager" type="Node3D" parent="Visuals" index="3"]
+[node name="SoundEffectManager" type="Node3D" parent="Visuals" index="3" unique_id=1912161249]
 script = ExtResource("5_tokk7")
 metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
-[node name="Pop" parent="Visuals/SoundEffectManager" index="0" instance=ExtResource("6_4cjh1")]
+[node name="Pop" parent="Visuals/SoundEffectManager" index="0" unique_id=77683909 instance=ExtResource("6_4cjh1")]
 stream = SubResource("AudioStreamRandomizer_kfqmp")
 volume_db = 0.0
