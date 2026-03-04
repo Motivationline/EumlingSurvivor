@@ -13,12 +13,12 @@
 
 [sub_resource type="Curve" id="Curve_s3316"]
 _limits = [0.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(1, 0), -15.237387, 0.0, 0, 0]
+_data = [Vector2(0, 2.5397425), 0.0, 0.0, 0, 0, Vector2(1, 2.7857683), 0.27622083, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="SphereMesh" id="SphereMesh_6pk4v"]
-radius = 0.25
-height = 0.5
+radius = 0.15
+height = 0.3
 radial_segments = 8
 rings = 4
 
@@ -169,6 +169,7 @@ metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 [node name="HomingProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1" unique_id=1952474966]
 script = ExtResource("3_ombel")
 velocity_change_rate = 7.0
+is_active = false
 metadata/_custom_type_script = "uid://dyqkij0tfqb8h"
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=235622098]
@@ -196,7 +197,7 @@ metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
 [node name="Marker3D" type="Marker3D" parent="." index="2" unique_id=306678770]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Marker3D" index="0" unique_id=67294248]
+[node name="ShadowCast" type="MeshInstance3D" parent="Marker3D" index="0" unique_id=67294248]
 cast_shadow = 3
 mesh = SubResource("SphereMesh_6pk4v")
 skeleton = NodePath("../..")

@@ -6,7 +6,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xwt0x"]
 height = 0.5751953
-radius = 0.35351563
+radius = 0.5205078
 
 [sub_resource type="Animation" id="Animation_xwt0x"]
 length = 0.001
@@ -51,7 +51,7 @@ duration = 1.5
 collision_layer = 32
 collision_mask = 8
 damage = 50.0
-individual_hit_limit = 5
+individual_hit_limit = 1
 attached_to = 6
 can_hit = 4
 
@@ -64,6 +64,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.18615037, 0)
 visible = false
 
 [node name="vfx_explosion2" parent="Visuals" index="1" unique_id=1596309124 instance=ExtResource("3_1s8id")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1764557236]
 libraries/ = SubResource("AnimationLibrary_cdfuc")
