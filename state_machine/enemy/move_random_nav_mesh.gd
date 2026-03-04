@@ -41,6 +41,8 @@ func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	nav_agent.path_height_offset = ProjectSettings.get_setting("navigation/3d/default_cell_height", 0.25) * 2
 	nav_agent.navigation_finished.connect(target_reached)
 	nav_agent.debug_enabled = debug_show_path
+	nav_agent.target_desired_distance = 0.1
+	nav_agent.path_desired_distance = 0.1
 
 func enter():
 	super()
