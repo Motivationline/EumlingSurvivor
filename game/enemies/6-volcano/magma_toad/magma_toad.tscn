@@ -8,15 +8,22 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_m7dcb"]
 [ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="6_52td2"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_52td2"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_eafdf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m7dcb"]
-radius = 0.3636794
+radius = 0.16932635
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_eafdf"]
 radius = 0.31834328
 
-[node name="MagmaToad" unique_id=1898691 node_paths=PackedStringArray("hurtbox", "node_with_animation_tree") instance=ExtResource("1_k7wj4")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_gtm08"]
+radius = 0.26148474
+
+[node name="MagmaToad" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_k7wj4")]
+collision_layer = 64
+collision_mask = 65
 health = 200.0
+hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 node_with_animation_tree = NodePath("Visuals/Toad")
 
@@ -56,7 +63,7 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("2_5wldd")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5" unique_id=1115397629]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34853595, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2753511, 0)
 shape = SubResource("SphereShape3D_m7dcb")
 
 [node name="Hurtbox" parent="." index="6" unique_id=573355627 instance=ExtResource("8_52td2")]
@@ -68,3 +75,15 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=580306937]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
 shape = SubResource("SphereShape3D_eafdf")
+
+[node name="Hitbox" parent="." index="7" unique_id=1071015612 instance=ExtResource("9_eafdf")]
+collision_layer = 32
+collision_mask = 8
+damage = 25.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=629998434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
+shape = SubResource("SphereShape3D_gtm08")
+debug_color = Color(0.96461874, 0, 0.48390388, 0.41960785)

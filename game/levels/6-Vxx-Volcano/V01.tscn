@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="4_fvip5"]
 [ext_resource type="PackedScene" uid="uid://cm8xm0j7ly1d" path="res://game/enemies/6-volcano/magma_toad/magma_toad.tscn" id="5_sa8tp"]
 [ext_resource type="PackedScene" uid="uid://ctpdnwxhrhuts" path="res://game/enemies/6-volcano/environment/magma_tiles.tscn" id="7_6f2qs"]
-[ext_resource type="PackedScene" uid="uid://yki87lnkx75s" path="res://game/enemies/5-Beach/ninja_starfish.tscn" id="7_62l4d"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="8_62l4d"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_riwmu"]
@@ -258,20 +257,24 @@ transform = Transform3D(-0.91552186, 0.39784315, -0.059502605, -0.021726422, 0.0
 shadow_bias = 0.05
 shadow_blur = 0.458
 
-[node name="MagmaToad" parent="." index="6" unique_id=1898691 instance=ExtResource("5_sa8tp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03107524, 0.5, -3.2427835)
-
-[node name="magma_tiles4" parent="." index="7" unique_id=197851 instance=ExtResource("7_6f2qs")]
+[node name="magma_tiles4" parent="." index="6" unique_id=197851 instance=ExtResource("7_6f2qs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.75, 1.75)
 
-[node name="magma_tiles5" parent="." index="8" unique_id=2030102374 instance=ExtResource("7_6f2qs")]
+[node name="magma_tiles5" parent="." index="7" unique_id=2030102374 instance=ExtResource("7_6f2qs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.75, 1.25)
 
-[node name="ExitArea" parent="." index="9" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("8_62l4d")]
+[node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("8_62l4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
 
-[node name="Enemies" parent="." index="10" unique_id=2012922691]
+[node name="Enemies" parent="." index="9" unique_id=2012922691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3638804, 0.5, -1.5593349)
 
-[node name="BaseEnemy" parent="Enemies" index="0" unique_id=1905869129 instance=ExtResource("7_62l4d")]
+[node name="MagmaToad" parent="Enemies" index="0" unique_id=1898691 instance=ExtResource("5_sa8tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3858757, 0, 1.2535778)
+
+[node name="MagmaToad2" parent="Enemies" index="1" unique_id=1113552087 instance=ExtResource("5_sa8tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6159859, 0, 0.82031727)
+
+[node name="MagmaToad3" parent="Enemies" index="2" unique_id=1863084517 instance=ExtResource("5_sa8tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5821347, 0, 5.639218)

@@ -7,17 +7,13 @@
 [ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="5_54631"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="6_by40c"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="6_vrxug"]
-[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_54631"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_m8640"]
 [ext_resource type="PackedScene" uid="uid://db8m7lns2hnlo" path="res://game/aoes/explosion/standard_explosion.tscn" id="8_by40c"]
 
 [sub_resource type="Curve" id="Curve_by40c"]
 _limits = [0.0, 2.9768958, 0.0, 1.0]
-_data = [Vector2(0, 0.4585309), 0.0, 10.192355, 0, 0, Vector2(0.47851002, 2.9768958), -0.046070848, -0.046070848, 0, 0, Vector2(1, 0), -9.950316, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_vrxug"]
-radius = 0.09788437
+_data = [Vector2(0, 0.4585309), 0.0, 10.192355, 0, 0, Vector2(0.45546558, 2.9622478), 0.0, 0.0, 0, 0, Vector2(0.5647774, 2.9622478), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.950316, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4kao4"]
 radius = 0.0991429
@@ -28,11 +24,10 @@ height = 0.3
 radial_segments = 8
 rings = 4
 
-[node name="Projectile" unique_id=1865303972 node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_world_collision", "on_created") instance=ExtResource("1_ehkq2")]
+[node name="Projectile" unique_id=1865303972 node_paths=PackedStringArray("movement", "targeting", "on_world_collision", "on_created") instance=ExtResource("1_ehkq2")]
 damage = 0.0
 max_distance = 100.0
 lifetime = 10.0
-hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
 targeting = [NodePath("MovementStrategies/UniversalTargetingProjectileTargetStrategy")]
 on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
@@ -70,23 +65,11 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 [node name="Magma_Ball" parent="." index="2" unique_id=153719346 instance=ExtResource("2_ib3xs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38858503, 0)
 
-[node name="Hitbox" parent="." index="3" unique_id=1015019145 instance=ExtResource("7_54631")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38858503, 0)
-collision_layer = 43
-collision_mask = 11
-individual_hit_limit = 1
-attached_to = 6
-can_hit = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1730789186]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.009144962, 0)
-shape = SubResource("SphereShape3D_vrxug")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=222403771]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=222403771]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39123645, 0)
 shape = SubResource("SphereShape3D_4kao4")
 
-[node name="ShadowCast" type="MeshInstance3D" parent="." index="5" unique_id=571648281]
+[node name="ShadowCast" type="MeshInstance3D" parent="." index="4" unique_id=571648281]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40234306, 0)
 cast_shadow = 3
 mesh = SubResource("SphereMesh_54631")
