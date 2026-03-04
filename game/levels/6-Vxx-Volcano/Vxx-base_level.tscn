@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dlv00p3o5xd2j" path="res://assets/models/5-beach/stone4_prefab.tscn" id="4_g088h"]
 [ext_resource type="PackedScene" uid="uid://d4k2p7lo2xaey" path="res://assets/models/5-beach/stone2_prefab.tscn" id="5_bcrks"]
 [ext_resource type="PackedScene" uid="uid://ihojlm6krm5d" path="res://assets/models/5-beach/stone1_prefab.tscn" id="6_n214y"]
-[ext_resource type="Shader" uid="uid://bcr3jkq4ohhuh" path="res://game/levels/6-Vxx-Volcano/shader/lava.tres" id="7_8l1px"]
+[ext_resource type="Shader" uid="uid://bcr3jkq4ohhuh" path="res://game/levels/6-Vxx-Volcano/Shader/lava.tres" id="7_8l1px"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
 
@@ -309,3 +309,6 @@ transform = Transform3D(-1, -3.821371e-15, -8.742278e-08, -8.742278e-08, 4.37113
 mesh = SubResource("QuadMesh_8l1px")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_ep3q7")
+
+[node name="Enemies" type="Node3D" parent="." unique_id=2012922691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

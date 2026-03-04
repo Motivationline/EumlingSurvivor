@@ -4,6 +4,8 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_a6x3n"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_qkt3k"]
 [ext_resource type="PackedScene" uid="uid://ctpdnwxhrhuts" path="res://game/enemies/6-volcano/environment/magma_tiles.tscn" id="4_g4rf1"]
+[ext_resource type="PackedScene" uid="uid://cm8xm0j7ly1d" path="res://game/enemies/6-volcano/magma_toad/magma_toad.tscn" id="5_g4rf1"]
+[ext_resource type="PackedScene" uid="uid://cwnvsfbpov2w8" path="res://game/enemies/6-volcano/volcano_turtle/volcano_tortoise_enemy.tscn" id="6_ahcyp"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_a6x3n"]
 vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 0.75, 1, -5, -0.5, 1, -5, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, 4.75, -4.5, 1, -4.5)
@@ -447,3 +449,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.75, -1.75)
 
 [node name="magma_tiles87" parent="Obstacles" index="138" unique_id=32895909 instance=ExtResource("4_g4rf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.75, -4.25)
+
+[node name="MagmaToad" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("5_g4rf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2418137, 0, -0.45728588)
+
+[node name="MagmaToad2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1046442972 instance=ExtResource("5_g4rf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9852877, 0, -3.546751)
+
+[node name="MagmaToad3" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1741343025 instance=ExtResource("5_g4rf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9072151, 0, 2.464879)
+
+[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="3" unique_id=1961314702 instance=ExtResource("6_ahcyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5652602, 0, 0.24537277)

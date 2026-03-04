@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_fprfc"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_80h4o"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_rggri"]
+[ext_resource type="PackedScene" uid="uid://cwnvsfbpov2w8" path="res://game/enemies/6-volcano/volcano_turtle/volcano_tortoise_enemy.tscn" id="4_rggri"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_80h4o"]
 vertices = PackedVector3Array(-0.75, 1, 0.5, -0.75, 1, 0.25, -1, 1, 0.25, -4.5, 1, 0.5, -1, 1, 0, -1.25, 1, 0, -1, 1, -1.5, -0.75, 1, -1.5, -0.75, 1, -1.75, 0.5, 1, -2, 0.5, 1, -1.75, 0.75, 1, -1.75, 1.5, 1, -1.25, 1.5, 1, -1, 1.75, 1, -1, 1.75, 1, -0.5, 1.5, 1, -0.5, 1.5, 1, -0.25, 4.75, 1, 0.25, 1.25, 1, -0.25, 1.25, 1, 0, 1, 1, 0, 1, 1, 0.25, 1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -0.25, 1, -1.75, -0.25, 1, -2, 0.75, 1, -1.25, -1.25, 1, -0.5, -1, 1, -0.5, 0.75, 1, -5, -0.5, 1, -5, -4.5, 1, -4.5, 4.75, 1, -4.5, 0.25, 1.5, 0, 0.5, 1.5, 0, 0.5, 1.5, -0.25, 0.75, 1.5, -0.25, 0.75, 1.5, -0.5, 0.5, 1.5, -0.75, 1, 1.5, -0.5, 1, 1.5, -0.75, 0.25, 1.5, -1, -0.25, 1.5, -1.25, -0.25, 1.5, -0.5, 0.5, 1.5, -1, 0.25, 1.5, -1.25, -0.5, 1.5, -0.5, -0.5, 1.5, 0, -0.25, 1.5, 0, -0.25, 1.5, 0.25, 0.25, 1.5, 0.25, 1, 1, 0.75, 0.75, 1, 0.75, 0.75, 1, 1, -0.5, 1, 0.75, -0.5, 1, 0.5, 0, 1, 1, 0, 1, 0.75, 4.75, 1, 4.75, -4.5, 1, 4.75)
@@ -30,3 +31,9 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="ExitArea" parent="." index="6" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_rggri")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
+
+[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1961314702 instance=ExtResource("4_rggri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.880067, 0, -2.4519053)
+
+[node name="TortoiseEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1585345222 instance=ExtResource("4_rggri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3074772, 0, 2.5562701)
