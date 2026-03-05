@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvnp8vu3k7ul3"]
+[gd_scene format=3 uid="uid://cvnp8vu3k7ul3"]
 
 [ext_resource type="PackedScene" uid="uid://drn335i4omarh" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial_visual.tscn" id="1_d43fs"]
-[ext_resource type="Script" uid="uid://mc3425i5q6bo" path="res://game/ui/eumlingclopedia/EumlingInfoScene/eumling_info_scene.gd" id="1_sg6df"]
+[ext_resource type="Script" uid="uid://mc3425i5q6bo" path="res://game/ui/eumlingclopedia/eumling_info_scene/eumling_info_scene.gd" id="1_sg6df"]
 [ext_resource type="PackedScene" uid="uid://xx1ogf8cudcr" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/mini_eumling_artistisch_kreativ_visual.tscn" id="1_thad2"]
 [ext_resource type="PackedScene" uid="uid://bdx5nmy7mmesh" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik_visual.tscn" id="2_sg6df"]
 [ext_resource type="PackedScene" uid="uid://w0h1g2ngldyl" path="res://assets/characters/eumling/mini_eumling/entrepreneurual_ehrgeiz/mini_eumling_entrep_ehrgeiz_visual.tscn" id="3_2bcsq"]
@@ -33,79 +33,79 @@ albedo_color = Color(0.52, 0.43506667, 0.3744, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dyyf1"]
 albedo_color = Color(0.31602994, 0.31020004, 0.66, 1)
 
-[node name="EumlingInfoScene" type="Node3D"]
+[node name="EumlingInfoScene" type="Node3D" unique_id=1827825025]
 script = ExtResource("1_sg6df")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=767652815]
 environment = SubResource("Environment_d43fs")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=444024879]
 transform = Transform3D(-1, 4.809653e-08, -7.300319e-08, 0, 0.83505917, 0.55016017, 8.742278e-08, 0.55016017, -0.83505917, 0, 1.0501543, -1.1508971)
 fov = 35.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=339335317]
 transform = Transform3D(0.87057906, -0.22472186, 0.43771246, -0.49202856, -0.39761543, 0.77447397, 0, -0.88960785, -0.45672524, 0, 2.9422164, 0)
 shadow_enabled = true
 shadow_opacity = 0.54
 
-[node name="Scenes" type="Node3D" parent="."]
+[node name="Scenes" type="Node3D" parent="." unique_id=1859855572]
 unique_name_in_owner = true
 
-[node name="Artistisch" type="Node3D" parent="Scenes"]
+[node name="Artistisch" type="Node3D" parent="Scenes" unique_id=579914486]
 
-[node name="Floor" type="MeshInstance3D" parent="Scenes/Artistisch"]
+[node name="Floor" type="MeshInstance3D" parent="Scenes/Artistisch" unique_id=1863646164]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_d43fs")
 surface_material_override/0 = SubResource("StandardMaterial3D_wbhj8")
 
-[node name="mini_eumling_var1" parent="Scenes/Artistisch" instance=ExtResource("1_thad2")]
+[node name="mini_eumling_var1" parent="Scenes/Artistisch" unique_id=1872814188 instance=ExtResource("1_thad2")]
 
-[node name="Conventional" type="Node3D" parent="Scenes"]
+[node name="Conventional" type="Node3D" parent="Scenes" unique_id=207860129]
 visible = false
 
-[node name="Floor" type="MeshInstance3D" parent="Scenes/Conventional"]
+[node name="Floor" type="MeshInstance3D" parent="Scenes/Conventional" unique_id=1880938521]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_d43fs")
 surface_material_override/0 = SubResource("StandardMaterial3D_thad2")
 
-[node name="mini_conventional_logik" parent="Scenes/Conventional" instance=ExtResource("2_sg6df")]
+[node name="mini_conventional_logik" parent="Scenes/Conventional" unique_id=1697475869 instance=ExtResource("2_sg6df")]
 
-[node name="entrepreneur" type="Node3D" parent="Scenes"]
+[node name="entrepreneur" type="Node3D" parent="Scenes" unique_id=478848647]
 visible = false
 
-[node name="Floor" type="MeshInstance3D" parent="Scenes/entrepreneur"]
+[node name="Floor" type="MeshInstance3D" parent="Scenes/entrepreneur" unique_id=2087821108]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_d43fs")
 surface_material_override/0 = SubResource("StandardMaterial3D_sg6df")
 
-[node name="mini_entre_ehrgeiz" parent="Scenes/entrepreneur" instance=ExtResource("3_2bcsq")]
+[node name="mini_entre_ehrgeiz" parent="Scenes/entrepreneur" unique_id=650464741 instance=ExtResource("3_2bcsq")]
 
-[node name="investigativ" type="Node3D" parent="Scenes"]
+[node name="investigativ" type="Node3D" parent="Scenes" unique_id=523606946]
 visible = false
 
-[node name="Floor" type="MeshInstance3D" parent="Scenes/investigativ"]
+[node name="Floor" type="MeshInstance3D" parent="Scenes/investigativ" unique_id=834979119]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_d43fs")
 surface_material_override/0 = SubResource("StandardMaterial3D_2bcsq")
 
-[node name="mini_investigativ_forschend" parent="Scenes/investigativ" instance=ExtResource("4_3l11f")]
+[node name="mini_investigativ_forschend" parent="Scenes/investigativ" unique_id=1968714187 instance=ExtResource("4_3l11f")]
 
-[node name="realistisch" type="Node3D" parent="Scenes"]
+[node name="realistisch" type="Node3D" parent="Scenes" unique_id=280934874]
 visible = false
 
-[node name="Floor" type="MeshInstance3D" parent="Scenes/realistisch"]
+[node name="Floor" type="MeshInstance3D" parent="Scenes/realistisch" unique_id=669767385]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_d43fs")
 surface_material_override/0 = SubResource("StandardMaterial3D_3l11f")
 
-[node name="mini_realistisch_geschick" parent="Scenes/realistisch" instance=ExtResource("5_dyyf1")]
+[node name="mini_realistisch_geschick" parent="Scenes/realistisch" unique_id=307013486 instance=ExtResource("5_dyyf1")]
 
-[node name="sozial" type="Node3D" parent="Scenes"]
+[node name="sozial" type="Node3D" parent="Scenes" unique_id=56629981]
 visible = false
 
-[node name="Floor" type="MeshInstance3D" parent="Scenes/sozial"]
+[node name="Floor" type="MeshInstance3D" parent="Scenes/sozial" unique_id=644864414]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_d43fs")
 surface_material_override/0 = SubResource("StandardMaterial3D_dyyf1")
 
-[node name="mini_sozial_sozial" parent="Scenes/sozial" instance=ExtResource("1_d43fs")]
+[node name="mini_sozial_sozial" parent="Scenes/sozial" unique_id=946716975 instance=ExtResource("1_d43fs")]
