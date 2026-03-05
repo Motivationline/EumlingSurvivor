@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var button_container: VBoxContainer = $Control/ScrollContainer/MarginContainer/ButtonContainer
+@onready var button_container: VBoxContainer = $Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer
 
 func show_upgrades(player: Player):
 	Engine.time_scale = 0
@@ -18,6 +18,24 @@ func show_upgrades(player: Player):
 	show()
 
 func apply_upgrade(upgrade: Upgrade, player: Player):
+	player.add_upgrade(upgrade)
+
+func enable():
+	show()
+	Engine.time_scale = 0
+
+func clear_eumlings():
+	Data.end_game()
+	var minis = get_tree().get_nodes_in_group("MiniEumling")
+	for mini in minis:
+		mini.queue_free()
+
+func add_eumling(type: Enum.EUMLING_TYPE):
+	Data.unlocked_eumling(type)
+	var level = get_tree().get_first_node_in_group("Level")
+	if level:
+		level.spawn_mini_eumling(type)
+
+func close():
 	hide()
 	Engine.time_scale = 1
-	player.add_upgrade(upgrade)

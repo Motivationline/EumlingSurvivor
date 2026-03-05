@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bojgdqih3kgwl"]
+[gd_scene format=3 uid="uid://bojgdqih3kgwl"]
 
 [ext_resource type="Script" uid="uid://bi18neffxur7j" path="res://game/ui/upgrades/debug_upgrade_view.gd" id="1_hhhx2"]
+[ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/start_screen/graphics_settings.tscn" id="2_0q4mq"]
+[ext_resource type="Texture2D" uid="uid://cv0s0ys0k3p6i" path="res://assets/ui/ButtonFlatCross.png" id="2_kf8w5"]
 
-[node name="DebugUpgradeView" type="CanvasLayer"]
+[node name="DebugUpgradeView" type="CanvasLayer" unique_id=389825636]
 layer = 10
 script = ExtResource("1_hhhx2")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=901173671]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,16 +16,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=443935206]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 1039.0
 grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/ScrollContainer"]
-layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 16
@@ -31,116 +29,220 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="ButtonContainer" type="VBoxContainer" parent="Control/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=809023833]
+layout_mode = 2
+
+[node name="UpgradeLabel" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=752225134]
+layout_mode = 2
+text = "Upgrades"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=122026695]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1993094547]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="Button" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1792737596]
 layout_mode = 2
 text = "Text"
 
-[node name="Button4" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button4" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1777107495]
 layout_mode = 2
 text = "Text"
 
-[node name="Button5" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button5" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1102262951]
 layout_mode = 2
 text = "Text"
 
-[node name="Button6" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button6" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=208176341]
 layout_mode = 2
 text = "Text"
 
-[node name="Button7" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button7" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=243098805]
 layout_mode = 2
 text = "Text"
 
-[node name="Button8" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button8" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1297387489]
 layout_mode = 2
 text = "Text"
 
-[node name="Button9" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button9" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=768777414]
 layout_mode = 2
 text = "Text"
 
-[node name="Button10" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button10" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=702297914]
 layout_mode = 2
 text = "Text"
 
-[node name="Button11" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button11" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=110669897]
 layout_mode = 2
 text = "Text"
 
-[node name="Button12" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button12" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1309790569]
 layout_mode = 2
 text = "Text"
 
-[node name="Button13" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button13" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=821076568]
 layout_mode = 2
 text = "Text"
 
-[node name="Button14" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button14" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=826482972]
 layout_mode = 2
 text = "Text"
 
-[node name="Button15" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button15" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=554879828]
 layout_mode = 2
 text = "Text"
 
-[node name="Button16" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button16" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=29048278]
 layout_mode = 2
 text = "Text"
 
-[node name="Button17" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button17" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=306872029]
 layout_mode = 2
 text = "Text"
 
-[node name="Button18" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button18" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=2088954078]
 layout_mode = 2
 text = "Text"
 
-[node name="Button19" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button19" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1125017527]
 layout_mode = 2
 text = "Text"
 
-[node name="Button20" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button20" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1149957530]
 layout_mode = 2
 text = "Text"
 
-[node name="Button21" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button21" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=165414269]
 layout_mode = 2
 text = "Text"
 
-[node name="Button22" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button22" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=606258717]
 layout_mode = 2
 text = "Text"
 
-[node name="Button23" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button23" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1280722294]
 layout_mode = 2
 text = "Text"
 
-[node name="Button24" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button24" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1231031990]
 layout_mode = 2
 text = "Text"
 
-[node name="Button25" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button25" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1435264260]
 layout_mode = 2
 text = "Text"
 
-[node name="Button26" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button26" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1661473890]
 layout_mode = 2
 text = "Text"
 
-[node name="Button27" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button27" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1827113088]
 layout_mode = 2
 text = "Text"
 
-[node name="Button2" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button2" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1195990763]
 layout_mode = 2
 text = "Text"
 
-[node name="Button3" type="Button" parent="Control/ScrollContainer/MarginContainer/ButtonContainer"]
+[node name="Button3" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1131927480]
 layout_mode = 2
 text = "Text"
+
+[node name="GraphicsSettings" parent="Control" unique_id=1082587673 instance=ExtResource("2_0q4mq")]
+layout_mode = 1
+offset_left = 1049.0
+offset_top = 21.0
+offset_right = -380.0
+offset_bottom = 21.0
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=484913422]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -147.0
+offset_bottom = 147.0
+grow_horizontal = 0
+texture_normal = ExtResource("2_kf8w5")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=327537936]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -608.0
+offset_top = -304.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="UpgradeLabel2" type="Label" parent="VBoxContainer" unique_id=87079345]
+layout_mode = 2
+text = "Mini Eumlings"
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=1000173983]
+layout_mode = 2
+columns = 3
+
+[node name="A" type="Button" parent="VBoxContainer/GridContainer" unique_id=543302445]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "A"
+
+[node name="C" type="Button" parent="VBoxContainer/GridContainer" unique_id=483848925]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "C"
+
+[node name="E" type="Button" parent="VBoxContainer/GridContainer" unique_id=986218362]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "E"
+
+[node name="I" type="Button" parent="VBoxContainer/GridContainer" unique_id=91224310]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "I
+"
+
+[node name="R" type="Button" parent="VBoxContainer/GridContainer" unique_id=1719363262]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "R"
+
+[node name="S" type="Button" parent="VBoxContainer/GridContainer" unique_id=1794071252]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "S"
+
+[node name="Control" type="Control" parent="VBoxContainer/GridContainer" unique_id=372287888]
+layout_mode = 2
+
+[node name="clear" type="Button" parent="VBoxContainer/GridContainer" unique_id=1522652025]
+layout_mode = 2
+text = "clear"
+
+[node name="Label" type="Label" parent="." unique_id=798941980]
+offset_left = 1834.0
+offset_top = 760.0
+offset_right = 2021.0
+offset_bottom = 827.0
+rotation = -1.5707964
+theme_override_font_sizes/font_size = 64
+text = "DEBUG SCREEN"
+
+[connection signal="pressed" from="TextureButton" to="." method="close"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/A" to="." method="add_eumling" binds= [0]]
+[connection signal="pressed" from="VBoxContainer/GridContainer/C" to="." method="add_eumling" binds= [1]]
+[connection signal="pressed" from="VBoxContainer/GridContainer/E" to="." method="add_eumling" binds= [2]]
+[connection signal="pressed" from="VBoxContainer/GridContainer/I" to="." method="add_eumling" binds= [3]]
+[connection signal="pressed" from="VBoxContainer/GridContainer/R" to="." method="add_eumling" binds= [4]]
+[connection signal="pressed" from="VBoxContainer/GridContainer/S" to="." method="add_eumling" binds= [5]]
+[connection signal="pressed" from="VBoxContainer/GridContainer/clear" to="." method="clear_eumlings"]
