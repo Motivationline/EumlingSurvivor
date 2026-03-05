@@ -27,14 +27,18 @@ func enable():
 func clear_eumlings():
 	Data.end_game()
 	var minis = get_tree().get_nodes_in_group("MiniEumling")
-	for mini in minis:
-		mini.queue_free()
+	for m in minis:
+		m.queue_free()
 
 func add_eumling(type: Enum.EUMLING_TYPE):
 	Data.unlocked_eumling(type)
 	var level = get_tree().get_first_node_in_group("Level")
 	if level:
 		level.spawn_mini_eumling(type)
+
+func heal_player():
+	var player = get_tree().get_first_node_in_group("Player")
+	player.health = player.max_health
 
 func close():
 	hide()

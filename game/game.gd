@@ -9,7 +9,7 @@ var player: Player
 @onready var area_choice_overlay: Control = $AreaChoiceOverlay/AreaPicker
 @onready var touch_joystick_overlay: CanvasLayer = $TouchJoystickOverlay
 
-@onready var debug_upgrade_view: CanvasLayer = $DebugUpgradeView
+@onready var debug_view: CanvasLayer = $DebugView
 
 #signal requestMusic
 
@@ -27,6 +27,7 @@ func _ready() -> void:
 		touch_joystick_overlay.queue_free()
 
 var currently_loaded_level: Level
+var currently_loaded_level_location: String
 
 func load_level():
 	if player.dead:
@@ -53,6 +54,7 @@ func load_level():
 	# add new stuff
 	var level_to_load = load(level_location) as PackedScene
 	if (level_to_load && level_to_load.can_instantiate()):
+		currently_loaded_level_location = level_location
 		var new_level = level_to_load.instantiate() as Level
 		level_wrapper.add_child(new_level)
 		new_level.spawn_player(player)
@@ -86,6 +88,14 @@ func return_to_main_menu():
 	Data.end_game()
 	Main.controller.load_scene(Main.controller.main_menu, false)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("upgrade"):
-		debug_upgrade_view.show_upgrades(player)
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_menu"):
+		if not debug_view.visible:
+			debug_view.show_upgrades(player)
+		else:
+			debug_view.close()
+	if event.is_action_pressed("debug_main_menu"):
+		player.die()
+	if event.is_action_pressed("debug_reload"):
+		levels_to_load.push_front(currently_loaded_level_location)
+		load_level()

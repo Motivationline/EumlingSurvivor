@@ -216,11 +216,12 @@ func _physics_process(_delta: float) -> void:
 func _process(_delta: float) -> void:
 	reload_progress.value = 1 - attack_cooldown.time_left / attack_cooldown.wait_time
 
-func _input(event: InputEvent) -> void:
-	if (event.is_action_pressed("test")):
+func _input(_event: InputEvent) -> void:
+	# if (_event.is_action_pressed("debug_test")):
 		#spawn_bullet()
-		Data.unlocked_eumling(Enum.EUMLING_TYPE.SOCIAL)
+		# Data.unlocked_eumling(Enum.EUMLING_TYPE.SOCIAL)
 		# add_upgrade(Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.MULTIPLIER, 2))
+	pass
 
 func spawn_bullet():
 	spawner.spawn(self , eumling_visuals)

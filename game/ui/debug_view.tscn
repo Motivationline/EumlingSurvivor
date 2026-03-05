@@ -1,26 +1,43 @@
 [gd_scene format=3 uid="uid://bojgdqih3kgwl"]
 
-[ext_resource type="Script" uid="uid://bi18neffxur7j" path="res://game/ui/upgrades/debug_upgrade_view.gd" id="1_hhhx2"]
-[ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/start_screen/graphics_settings.tscn" id="2_0q4mq"]
-[ext_resource type="Texture2D" uid="uid://cv0s0ys0k3p6i" path="res://assets/ui/ButtonFlatCross.png" id="2_kf8w5"]
+[ext_resource type="Script" uid="uid://bi18neffxur7j" path="res://game/ui/debug_view.gd" id="1_wj8x7"]
+[ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/start_screen/graphics_settings.tscn" id="2_2pq5q"]
+[ext_resource type="Texture2D" uid="uid://cv0s0ys0k3p6i" path="res://assets/ui/ButtonFlatCross.png" id="3_pj8aj"]
 
-[node name="DebugUpgradeView" type="CanvasLayer" unique_id=389825636]
-layer = 10
-script = ExtResource("1_hhhx2")
+[node name="DebugView" type="CanvasLayer" unique_id=389825636]
+layer = 12
+script = ExtResource("1_wj8x7")
 
-[node name="Control" type="Control" parent="." unique_id=901173671]
-layout_mode = 3
+[node name="Background" type="Panel" parent="." unique_id=1418121094]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="DebugScreenLabel" type="Label" parent="." unique_id=798941980]
+offset_left = 1832.0
+offset_top = 649.0
+offset_right = 2306.0
+offset_bottom = 737.0
+rotation = -1.5707964
+theme_override_font_sizes/font_size = 64
+text = "DEBUG SCREEN"
+
+[node name="Control" type="Panel" parent="." unique_id=1576564989]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -874.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=443935206]
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1039.0
+grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -35,6 +52,7 @@ layout_mode = 2
 [node name="UpgradeLabel" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=752225134]
 layout_mode = 2
 text = "Upgrades"
+horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=122026695]
 layout_mode = 2
@@ -154,25 +172,21 @@ text = "Text"
 layout_mode = 2
 text = "Text"
 
-[node name="GraphicsSettings" parent="Control" unique_id=1082587673 instance=ExtResource("2_0q4mq")]
-layout_mode = 1
-offset_left = 1049.0
-offset_top = 21.0
-offset_right = -380.0
-offset_bottom = 21.0
-
-[node name="TextureButton" type="TextureButton" parent="." unique_id=484913422]
-anchors_preset = 1
+[node name="MiniEumlings" type="Panel" parent="." unique_id=2129014659]
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -147.0
-offset_bottom = 147.0
+anchor_bottom = 1.0
+offset_left = -816.0
+offset_top = -1051.0
+offset_right = -189.0
+offset_bottom = -733.0
 grow_horizontal = 0
-texture_normal = ExtResource("2_kf8w5")
-ignore_texture_size = true
-stretch_mode = 0
+grow_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=327537936]
+[node name="VBoxContainer" type="VBoxContainer" parent="MiniEumlings" unique_id=327537936]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -183,66 +197,127 @@ offset_top = -304.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="UpgradeLabel2" type="Label" parent="VBoxContainer" unique_id=87079345]
+[node name="UpgradeLabel2" type="Label" parent="MiniEumlings/VBoxContainer" unique_id=87079345]
 layout_mode = 2
 text = "Mini Eumlings"
+vertical_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=1000173983]
+[node name="GridContainer" type="GridContainer" parent="MiniEumlings/VBoxContainer" unique_id=1000173983]
 layout_mode = 2
 columns = 3
 
-[node name="A" type="Button" parent="VBoxContainer/GridContainer" unique_id=543302445]
+[node name="A" type="Button" parent="MiniEumlings/VBoxContainer/GridContainer" unique_id=543302445]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "A"
 
-[node name="C" type="Button" parent="VBoxContainer/GridContainer" unique_id=483848925]
+[node name="C" type="Button" parent="MiniEumlings/VBoxContainer/GridContainer" unique_id=483848925]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "C"
 
-[node name="E" type="Button" parent="VBoxContainer/GridContainer" unique_id=986218362]
+[node name="E" type="Button" parent="MiniEumlings/VBoxContainer/GridContainer" unique_id=986218362]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "E"
 
-[node name="I" type="Button" parent="VBoxContainer/GridContainer" unique_id=91224310]
+[node name="I" type="Button" parent="MiniEumlings/VBoxContainer/GridContainer" unique_id=91224310]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "I
 "
 
-[node name="R" type="Button" parent="VBoxContainer/GridContainer" unique_id=1719363262]
+[node name="R" type="Button" parent="MiniEumlings/VBoxContainer/GridContainer" unique_id=1719363262]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "R"
 
-[node name="S" type="Button" parent="VBoxContainer/GridContainer" unique_id=1794071252]
+[node name="S" type="Button" parent="MiniEumlings/VBoxContainer/GridContainer" unique_id=1794071252]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "S"
 
-[node name="Control" type="Control" parent="VBoxContainer/GridContainer" unique_id=372287888]
+[node name="Control" type="Control" parent="MiniEumlings/VBoxContainer/GridContainer" unique_id=372287888]
 layout_mode = 2
 
-[node name="clear" type="Button" parent="VBoxContainer/GridContainer" unique_id=1522652025]
+[node name="clear" type="Button" parent="MiniEumlings/VBoxContainer/GridContainer" unique_id=1522652025]
 layout_mode = 2
 text = "clear"
 
-[node name="Label" type="Label" parent="." unique_id=798941980]
-offset_left = 1834.0
-offset_top = 760.0
-offset_right = 2021.0
-offset_bottom = 827.0
-rotation = -1.5707964
-theme_override_font_sizes/font_size = 64
-text = "DEBUG SCREEN"
+[node name="GraphicsSettings" type="Panel" parent="." unique_id=2121078074]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -863.0
+offset_top = -406.0
+grow_horizontal = 0
+grow_vertical = 0
 
-[connection signal="pressed" from="TextureButton" to="." method="close"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/A" to="." method="add_eumling" binds= [0]]
-[connection signal="pressed" from="VBoxContainer/GridContainer/C" to="." method="add_eumling" binds= [1]]
-[connection signal="pressed" from="VBoxContainer/GridContainer/E" to="." method="add_eumling" binds= [2]]
-[connection signal="pressed" from="VBoxContainer/GridContainer/I" to="." method="add_eumling" binds= [3]]
-[connection signal="pressed" from="VBoxContainer/GridContainer/R" to="." method="add_eumling" binds= [4]]
-[connection signal="pressed" from="VBoxContainer/GridContainer/S" to="." method="add_eumling" binds= [5]]
-[connection signal="pressed" from="VBoxContainer/GridContainer/clear" to="." method="clear_eumlings"]
+[node name="Label" type="Label" parent="GraphicsSettings" unique_id=1196521600]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 19.0
+offset_right = 644.0
+offset_bottom = 86.0
+text = "Graphics Settings"
+
+[node name="GraphicsSettings" parent="GraphicsSettings" unique_id=1082587673 instance=ExtResource("2_2pq5q")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 86.0
+offset_bottom = 86.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Player" type="Panel" parent="." unique_id=132700356]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -810.0
+offset_top = -127.0
+offset_right = -521.0
+offset_bottom = 33.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Player" unique_id=1959405012]
+layout_mode = 0
+offset_left = 69.0
+offset_right = 214.0
+offset_bottom = 67.0
+text = "Player"
+
+[node name="HealButton" type="Button" parent="Player" unique_id=257478071]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 71.0
+offset_right = 267.0
+offset_bottom = 146.0
+text = "Heal to full"
+
+[node name="CloseButton" type="TextureButton" parent="." unique_id=484913422]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -147.0
+offset_bottom = 147.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_pj8aj")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/A" to="." method="add_eumling" binds= [0]]
+[connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/C" to="." method="add_eumling" binds= [1]]
+[connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/E" to="." method="add_eumling" binds= [2]]
+[connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/I" to="." method="add_eumling" binds= [3]]
+[connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/R" to="." method="add_eumling" binds= [4]]
+[connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/S" to="." method="add_eumling" binds= [5]]
+[connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/clear" to="." method="clear_eumlings"]
+[connection signal="pressed" from="Player/HealButton" to="." method="heal_player"]
+[connection signal="pressed" from="CloseButton" to="." method="close"]
