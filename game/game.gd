@@ -95,7 +95,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			debug_view.close()
 	if event.is_action_pressed("debug_main_menu"):
-		player.die()
+		player.health = 0
 	if event.is_action_pressed("debug_reload"):
 		levels_to_load.push_front(currently_loaded_level_location)
 		load_level()
