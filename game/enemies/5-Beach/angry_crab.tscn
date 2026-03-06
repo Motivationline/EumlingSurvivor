@@ -7,9 +7,11 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="5_4dx04"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_yb4gw"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_rfr6w"]
-[ext_resource type="PackedScene" uid="uid://b1084wmkhn2en" path="res://game/aoes/boss_bugger_aoe_attack/boss_bugger_aoe.tscn" id="7_ih2ok"]
+[ext_resource type="PackedScene" uid="uid://c4iley4v0m4lx" path="res://game/aoes/crab_aoe/crab_aoe_attack.tscn" id="8_yb4gw"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_ygxee"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="9_ek2ai"]
+[ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="9_m8xvy"]
+[ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="9_yb4gw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tv8h6"]
 
@@ -19,20 +21,27 @@ radius = 0.35275546
 [sub_resource type="SphereShape3D" id="SphereShape3D_gyvmt"]
 radius = 0.44002327
 
-[node name="angry_crab" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_t7wle")]
-health = 150.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_yb4gw"]
+radius = 0.2898937
+
+[node name="angry_crab" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_t7wle")]
+collision_layer = 64
+collision_mask = 65
+health = 300.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("DecideDistanceState")
 
-[node name="DecideDistanceState" type="Node" parent="StateMachine" index="0" unique_id=631152614 node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found")]
+[node name="DecideDistanceState" type="Node" parent="StateMachine" index="0" unique_id=631152614 node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found", "next_state")]
 script = ExtResource("2_ubn8g")
 distance_to_check = 3.0
 state_if_distance_is_smaller = NodePath("../ChasePlayer/MoveTowardsPlayerState")
 state_if_distance_is_larger = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
 state_if_no_node_found = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
+next_state = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
 metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
 [node name="RandomWalk" type="Node" parent="StateMachine" index="1" unique_id=939821694]
@@ -69,11 +78,27 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/Attack Player/SpawnEntitiesState" index="0" unique_id=1800799434]
 script = ExtResource("6_rfr6w")
-entity_to_spawn = ExtResource("7_ih2ok")
+entity_to_spawn = ExtResource("8_yb4gw")
 time_between_entities = 5.0
+offset_distance = 0.5
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="AttackedByPlayer" type="Node" parent="StateMachine" index="4" unique_id=784036827]
+
+[node name="MoveForwardState" type="Node" parent="StateMachine" index="5" unique_id=416422891 node_paths=PackedStringArray("next_state")]
+script = ExtResource("9_yb4gw")
+max_distance = 2.0
+max_time = 2.0
+speed_override = 5.0
+speed_override_active = true
+next_state = NodePath("../DecideDistanceState")
+metadata/_custom_type_script = "uid://cjkeo3brnvde2"
+
+[node name="TriggerStateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1065907305 node_paths=PackedStringArray("state_machine", "state_to_execute")]
+script = ExtResource("9_m8xvy")
+state_machine = NodePath("../../StateMachine")
+state_to_execute = NodePath("../../StateMachine/MoveForwardState")
+metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=578772716]
 transform = Transform3D(0.62896526, 0, 0, 0, 0.36443123, 0, 0, 0, 0.5989294, 0, 0, 0)
@@ -98,3 +123,7 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=588701172]
 shape = SubResource("SphereShape3D_gyvmt")
 debug_color = Color(0.9587366, 0.1806817, 0.24244305, 0.41960785)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7" unique_id=1241862182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3089226, 0)
+shape = SubResource("SphereShape3D_yb4gw")
