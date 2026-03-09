@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b0n6j2o6h1iq3"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_eqytl"]
+[ext_resource type="Texture2D" uid="uid://cd2yhferfq7o6" path="res://assets/characters/enemies/boss_turtle/boss_turtle_TutrtleMat_Base_color.png" id="2_e3wgw"]
+
+[sub_resource type="Gradient" id="Gradient_88qux"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.42091838)
+colors = PackedColorArray(0.23753911, 0.23753914, 0.23753911, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_otw0s"]
+gradient = SubResource("Gradient_88qux")
+
+[sub_resource type="Gradient" id="Gradient_e3wgw"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.81377554)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_88qux"]
+gradient = SubResource("Gradient_e3wgw")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_eqytl")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_e3wgw")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_otw0s")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_88qux")
+shader_parameter/rim_focus = 0.582000027645
+shader_parameter/use_diffuse_smooth_attenuation = true

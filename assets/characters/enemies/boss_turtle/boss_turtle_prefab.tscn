@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://ko8u3dvlq1cu"]
+
+[ext_resource type="PackedScene" uid="uid://c7ha5c5ktc55w" path="res://assets/characters/enemies/boss_turtle/boss_turtle.glb" id="1_8gxes"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_44813"]
+animation = &"shell_reveal"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tcv8f"]
+animation = &"shell_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1pj3j"]
+animation = &"shell_Bounce_stop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6yngb"]
+animation = &"naked_walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6bv7n"]
+animation = &"naked_dive"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kybwh"]
+animation = &"shell_shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g5pnm"]
+animation = &"naked_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ka0y7"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3vvsi"]
+animation = &"shell_stomp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c6p4e"]
+animation = &"shell_bounce"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_3vvsi"]
+input_0/name = "shell"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "turtle"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_44813"]
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "stomp"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "shell_idle"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "bounce"
+input_3/auto_advance = false
+input_3/break_loop_at_end = true
+input_3/reset = true
+input_4/name = "stop"
+input_4/auto_advance = true
+input_4/break_loop_at_end = false
+input_4/reset = true
+input_5/name = "reveal"
+input_5/auto_advance = true
+input_5/break_loop_at_end = false
+input_5/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_i53iy"]
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "dive"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "launch"
+input_3/auto_advance = true
+input_3/break_loop_at_end = false
+input_3/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s0inp"]
+graph_offset = Vector2(-1043.3143, 10.501617)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_6yngb")
+"nodes/Animation 4/position" = Vector2(-940, 1000)
+nodes/LocomotionShell/node = SubResource("AnimationNodeTransition_44813")
+nodes/LocomotionShell/position = Vector2(-420, 80)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_c6p4e")
+nodes/Animation/position = Vector2(-1000, 200)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_tcv8f")
+"nodes/Animation 2/position" = Vector2(-980, 20)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_1pj3j")
+"nodes/Animation 3/position" = Vector2(-1040, 360)
+nodes/TurtleLocomotion/node = SubResource("AnimationNodeTransition_i53iy")
+nodes/TurtleLocomotion/position = Vector2(-480, 760)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_6bv7n")
+"nodes/Animation 5/position" = Vector2(-920, 1180)
+nodes/Locomotion/node = SubResource("AnimationNodeTransition_3vvsi")
+nodes/Locomotion/position = Vector2(-20, 140)
+"nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_kybwh")
+"nodes/Animation 6/position" = Vector2(-940, 1340)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_g5pnm")
+"nodes/Animation 7/position" = Vector2(-920, 820)
+"nodes/Animation 8/node" = SubResource("AnimationNodeAnimation_ka0y7")
+"nodes/Animation 8/position" = Vector2(-780, -220)
+"nodes/Animation 9/node" = SubResource("AnimationNodeAnimation_3vvsi")
+"nodes/Animation 9/position" = Vector2(-1000, -160)
+"nodes/Animation 10/node" = SubResource("AnimationNodeAnimation_44813")
+"nodes/Animation 10/position" = Vector2(-1020, 540)
+node_connections = [&"output", 0, &"Locomotion", &"LocomotionShell", 0, &"Animation 8", &"LocomotionShell", 1, &"Animation 9", &"LocomotionShell", 2, &"Animation 2", &"LocomotionShell", 3, &"Animation", &"LocomotionShell", 4, &"Animation 3", &"LocomotionShell", 5, &"Animation 10", &"TurtleLocomotion", 0, &"Animation 7", &"TurtleLocomotion", 1, &"Animation 4", &"TurtleLocomotion", 2, &"Animation 5", &"TurtleLocomotion", 3, &"Animation 6", &"Locomotion", 0, &"LocomotionShell", &"Locomotion", 1, &"TurtleLocomotion"]
+
+[node name="boss_turtle" unique_id=1575923269 instance=ExtResource("1_8gxes")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1775129654]
+tree_root = SubResource("AnimationNodeBlendTree_s0inp")
+anim_player = NodePath("../AnimationPlayer")
+parameters/LocomotionShell/current_state = "idle"
+parameters/LocomotionShell/transition_request = ""
+parameters/LocomotionShell/current_index = 0
+parameters/TurtleLocomotion/current_state = "dive"
+parameters/TurtleLocomotion/transition_request = ""
+parameters/TurtleLocomotion/current_index = 2
+parameters/Locomotion/current_state = "shell"
+parameters/Locomotion/transition_request = ""
+parameters/Locomotion/current_index = 0
