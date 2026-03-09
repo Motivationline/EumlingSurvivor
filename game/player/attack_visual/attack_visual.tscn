@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://b8y13qxnef81t"]
+
+[ext_resource type="Script" uid="uid://44nr5bw18r2m" path="res://game/player/attack_visual/attack_visual.gd" id="1_204y1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_204y1"]
+transparency = 1
+albedo_color = Color(0.78039217, 0.53333336, 0.1882353, 0.11764706)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vujlg"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.11764706)
+
+[sub_resource type="Curve3D" id="Curve3D_t8y3u"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="AttackVisual" type="Node3D" unique_id=375290485]
+script = ExtResource("1_204y1")
+active_material = SubResource("StandardMaterial3D_204y1")
+cooldown_material = SubResource("StandardMaterial3D_vujlg")
+
+[node name="Polygon" type="CSGPolygon3D" parent="." unique_id=877620805]
+polygon = PackedVector2Array(-0.1, 0, -0.1, 0.011, 0.1, 0.01, 0.1, 0)
+mode = 2
+path_node = NodePath("../Path")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_204y1")
+
+[node name="Path" type="Path3D" parent="." unique_id=1482457678]
+curve = SubResource("Curve3D_t8y3u")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1999002559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+target_position = Vector3(0, 0, -2)
+collision_mask = 81
+hit_back_faces = false
+collide_with_areas = true

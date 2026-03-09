@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://bptl28ohdx7tg" path="res://game/ui/inventory/playerInv.tres" id="2_gb4gm"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_a4w0n"]
 [ext_resource type="PackedScene" uid="uid://dadtg2y3wb6l4" path="res://assets/characters/eumling/V2/eumling_v_2_prefab.tscn" id="4_2mv0n"]
+[ext_resource type="PackedScene" uid="uid://b8y13qxnef81t" path="res://game/player/attack_visual/attack_visual.tscn" id="4_fdpga"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_4ste8"]
 [ext_resource type="Texture2D" uid="uid://ch2hc8xdjjpyj" path="res://assets/ui/ButtonFlatPause.png" id="6_usp30"]
 [ext_resource type="Texture2D" uid="uid://s767nhl5h7j4" path="res://assets/ui/ButtonFlatPausePressed.png" id="7_0e4oy"]
@@ -203,8 +204,12 @@ shape = SubResource("CapsuleShape3D_ct7j0")
 
 [node name="Eumling_v2" parent="." unique_id=111255977 instance=ExtResource("4_2mv0n")]
 
+[node name="AttackVisual" parent="." unique_id=375290485 instance=ExtResource("4_fdpga")]
+unique_name_in_owner = true
+
 [node name="ShittyVisual" type="Node3D" parent="." unique_id=375207082]
 unique_name_in_owner = true
+visible = false
 
 [node name="shittyVisual" type="MeshInstance3D" parent="ShittyVisual" unique_id=1773116725]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.042, -1.5)
@@ -390,37 +395,37 @@ metadata/_custom_type_script = "uid://fxqs1lioec3e"
 [node name="Attack" parent="SoundEffectManager" unique_id=1659412483 instance=ExtResource("21_3p3em")]
 stream = SubResource("AudioStreamRandomizer_d4psi")
 volume_db = 0.0
-bus = &"SFXGeneral"
+bus = &"Master"
 
 [node name="Hurt" parent="SoundEffectManager" unique_id=957219765 instance=ExtResource("21_3p3em")]
 stream = SubResource("AudioStreamRandomizer_45dry")
-bus = &"SFXGeneral"
+bus = &"Master"
 
 [node name="Death" parent="SoundEffectManager" unique_id=1181583944 instance=ExtResource("21_3p3em")]
 stream = SubResource("AudioStreamRandomizer_oo1al")
 volume_db = 0.0
-bus = &"SFXGeneral"
+bus = &"Master"
 
 [node name="Walk" parent="SoundEffectManager" unique_id=71341865 instance=ExtResource("21_3p3em")]
 stream = SubResource("AudioStreamRandomizer_3avk0")
 max_polyphony = 20
-bus = &"SFXGeneral"
+bus = &"Master"
 
 [node name="novoice" type="Node" parent="SoundEffectManager" unique_id=1989383400]
 
 [node name="Attack" parent="SoundEffectManager/novoice" unique_id=1353459801 instance=ExtResource("21_3p3em")]
 stream = SubResource("AudioStreamRandomizer_w1ege")
 volume_db = 0.0
-bus = &"SFXGeneral"
+bus = &"Master"
 
 [node name="Hurt" parent="SoundEffectManager/novoice" unique_id=315302695 instance=ExtResource("21_3p3em")]
 stream = SubResource("AudioStreamRandomizer_hmq1g")
-bus = &"SFXGeneral"
+bus = &"Master"
 
 [node name="Death" parent="SoundEffectManager/novoice" unique_id=949157117 instance=ExtResource("21_3p3em")]
 stream = SubResource("AudioStreamRandomizer_j0m7x")
 volume_db = 0.0
-bus = &"SFXGeneral"
+bus = &"Master"
 
 [node name="SpecialAbilities" type="Node3D" parent="." unique_id=319074094]
 

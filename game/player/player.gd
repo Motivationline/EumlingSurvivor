@@ -108,7 +108,6 @@ func _validate_property(property: Dictionary) -> void:
 	if property.name == "starting_values":
 		_get_configuration_warnings()
 
-var initial_preview_color: Color
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
@@ -122,7 +121,6 @@ func _ready() -> void:
 	reload_progress.step = 0
 
 	attack_cooldown.timeout.connect(reset_preview_color)
-	initial_preview_color = %ShittyVisual.get_child(0).material_override.albedo_color
 
 	reset()
 
@@ -205,13 +203,13 @@ func _physics_process(_delta: float) -> void:
 		was_looking_somewhere = false
 		if not prev_direction.is_zero_approx():
 			eumling_visuals.look_at(global_position + prev_direction)
-		%ShittyVisual.hide()
+		%AttackVisual.hide()
 	else:
 		eumling_visuals.look_at(global_position + look_direction_3d)
 		was_looking_somewhere = true
-		%ShittyVisual.show()
+		%AttackVisual.show()
 		prev_direction = look_direction_3d
-	%ShittyVisual.rotation.y = eumling_visuals.rotation.y
+	%AttackVisual.rotation.y = eumling_visuals.rotation.y
 
 func _process(_delta: float) -> void:
 	reload_progress.value = 1 - attack_cooldown.time_left / attack_cooldown.wait_time
@@ -249,9 +247,8 @@ func check_upgrades_affecting_player(upgrade: Upgrade):
 
 func update_attack_visual():
 	var projectile_default_size = 0.25
-	%ShittyVisual.get_child(0).mesh.size.x = get_value(Enum.UPGRADE.PROJECTILE_SIZE) * projectile_default_size
-	%ShittyVisual.get_child(0).mesh.size.y = get_value(Enum.UPGRADE.RANGE)
-	%ShittyVisual.get_child(0).position.z = - get_value(Enum.UPGRADE.RANGE) / 2
+	%AttackVisual.max_length = get_value(Enum.UPGRADE.RANGE)
+	%AttackVisual.width = get_value(Enum.UPGRADE.PROJECTILE_SIZE) * projectile_default_size
 
 
 func add_upgrade(upgrade: Upgrade):
@@ -301,11 +298,11 @@ func shoot():
 	var cooldown = get_value(Enum.UPGRADE.ATTACK_COOLDOWN)
 	attack_cooldown.start(cooldown)
 	attack_spawner.spawn(self , eumling_visuals)
-	%ShittyVisual.get_child(0).material_override.albedo_color = Color(1, 0, 0, 17.0 / 255)
+	%AttackVisual.on_cooldown = true
 
 
 func reset_preview_color():
-	%ShittyVisual.get_child(0).material_override.albedo_color = initial_preview_color
+	%AttackVisual.on_cooldown = false
 
 
 func end_of_level():
