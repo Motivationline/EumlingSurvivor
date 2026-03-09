@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://dnrlfw8cygdwx"]
 
 [ext_resource type="PackedScene" uid="uid://bju85d7ivy2tk" path="res://assets/characters/enemies/boss_shark/BossShark.glb" id="1_f8085"]
-[ext_resource type="Shader" uid="uid://bcr3jkq4ohhuh" path="res://game/levels/6-Vxx-Volcano/shader/lava.tres" id="2_1oe4f"]
 [ext_resource type="Texture2D" uid="uid://sniqi7s4m1r0" path="res://assets/vfx/particle_pack/flame_05.png" id="3_lgeeb"]
 [ext_resource type="Texture2D" uid="uid://ci4ryvrg020gj" path="res://assets/vfx/particle_pack/flame_06.png" id="4_2ajlj"]
+[ext_resource type="Texture2D" uid="uid://nrrqjw7rn6t5" path="res://assets/vfx/particle_pack/light_02.png" id="5_2ajlj"]
+[ext_resource type="Texture2D" uid="uid://co2dlumvhahno" path="res://assets/vfx/particle_pack/smoke_04.png" id="6_jtk2f"]
+[ext_resource type="Texture2D" uid="uid://bu8auxyk3gmp4" path="res://assets/vfx/fireball/flare.png" id="8_qrcxc"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_jtk2f"]
 frames = 2
@@ -133,21 +135,84 @@ nodes/charge/position = Vector2(-800, 520)
 "nodes/Animation 4/position" = Vector2(-720, 700)
 node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"dive_up", &"Transition", 1, &"Animation", &"Transition", 2, &"dive_down", &"Transition", 3, &"Animation 2", &"Transition", 4, &"Animation 3", &"Transition", 5, &"charge", &"Transition", 6, &"Animation 4"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_gfhsp"]
-size = Vector2(30, 30)
-subdivide_width = 30
-subdivide_depth = 30
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtk2f"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_2ajlj")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lgeeb"]
-render_priority = 0
-shader = ExtResource("2_1oe4f")
-shader_parameter/Viscosity = 0.23
-shader_parameter/WaveHeight = 0.375
-shader_parameter/Speed = Vector2(0, 0)
-shader_parameter/Ripples_Color = Color(1, 0.52966666, 0.17000002, 1)
-shader_parameter/ProximityFade = 1.0
-shader_parameter/RippleSpeed = 4.0
-shader_parameter/SeeThrough = 0.8
+[sub_resource type="PlaneMesh" id="PlaneMesh_dw5fl"]
+size = Vector2(1, 1.5)
+
+[sub_resource type="Curve" id="Curve_kl2jc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9951457, 0), -3.1725094, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ow06l"]
+offsets = PackedFloat32Array(0, 0.2357513, 1)
+colors = PackedColorArray(4.0048027, 0.73387146, 0, 1, 1, 0.116666675, 0, 1, 0.4, 0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrcxc"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("6_jtk2f")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_kl2jc"]
+
+[sub_resource type="Curve" id="Curve_s4xx1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.0195913, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_i0o6h"]
+offsets = PackedFloat32Array(0, 0.2357513, 1)
+colors = PackedColorArray(4.0048027, 2.6579487, 0, 1, 1, 0.18333334, 0, 1, 0.4, 0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kl2jc"]
+render_priority = 2
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PrismMesh" id="PrismMesh_dw5fl"]
+
+[sub_resource type="Curve" id="Curve_ow06l"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.20631067, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_dw5fl"]
+offsets = PackedFloat32Array(0, 0.3523316, 1)
+colors = PackedColorArray(1, 0.49803922, 0.023529412, 1, 1, 0.8862745, 0, 1, 0.94509804, 0.35686275, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4xx1"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("8_qrcxc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qrcxc"]
+
+[sub_resource type="Curve" id="Curve_psjck"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.56310683, 0), -1.9263648, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_tdynr"]
+offsets = PackedFloat32Array(0, 0.6165803, 1)
+colors = PackedColorArray(1.7121319, 0.76296145, 0, 1, 1.753959, 0.4108141, 0, 1, 0.28, 0.19740002, 0.114800006, 0)
 
 [node name="BossShark" unique_id=600562415 instance=ExtResource("1_f8085")]
 
@@ -174,8 +239,82 @@ parameters/Transition/current_state = "fin_walk"
 parameters/Transition/transition_request = ""
 parameters/Transition/current_index = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=1615520195]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
-visible = false
-mesh = SubResource("QuadMesh_gfhsp")
-surface_material_override/0 = SubResource("ShaderMaterial_lgeeb")
+[node name="Swimtrail" type="Node3D" parent="." index="3" unique_id=726906561]
+
+[node name="LavaTrail" type="CPUParticles3D" parent="Swimtrail" index="0" unique_id=474418486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.28193432)
+material_override = SubResource("StandardMaterial3D_jtk2f")
+amount = 18
+lifetime = 1.2
+fixed_fps = 30
+mesh = SubResource("PlaneMesh_dw5fl")
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 0, -1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_amount_min = 1.5
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_kl2jc")
+color_ramp = SubResource("Gradient_ow06l")
+
+[node name="Flames" type="CPUParticles3D" parent="Swimtrail" index="1" unique_id=423415027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07392961, -0.6707741)
+material_override = SubResource("StandardMaterial3D_qrcxc")
+lifetime = 0.5
+explosiveness = 0.29
+mesh = SubResource("QuadMesh_kl2jc")
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_min = -151.2
+angle_max = 127.3
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_s4xx1")
+color_ramp = SubResource("Gradient_i0o6h")
+
+[node name="Rocks" type="CPUParticles3D" parent="Swimtrail" index="2" unique_id=822184909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07683253, 0.48893386)
+material_override = SubResource("StandardMaterial3D_kl2jc")
+amount = 18
+lifetime = 0.8
+explosiveness = 0.21
+fixed_fps = 30
+mesh = SubResource("PrismMesh_dw5fl")
+emission_shape = 2
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, -0.5)
+spread = 12.19
+initial_velocity_min = 3.0
+initial_velocity_max = 4.0
+angular_velocity_min = -190.94
+angular_velocity_max = 182.98
+angle_min = -360.0
+angle_max = 360.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_ow06l")
+color_initial_ramp = SubResource("Gradient_dw5fl")
+
+[node name="DirtTails" type="CPUParticles3D" parent="Swimtrail" index="3" unique_id=1380963778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.061703563)
+material_override = SubResource("StandardMaterial3D_s4xx1")
+amount = 32
+lifetime = 0.8
+mesh = SubResource("PlaneMesh_qrcxc")
+emission_shape = 4
+emission_points = PackedVector3Array(0.2, 0, 0.1, -0.2, 0, 0.1)
+direction = Vector3(0, 0, -1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.5
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_psjck")
+color_ramp = SubResource("Gradient_tdynr")
