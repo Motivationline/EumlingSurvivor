@@ -301,6 +301,14 @@ offset_right = 267.0
 offset_bottom = 146.0
 text = "Heal to full"
 
+[node name="InvulToggle" type="CheckButton" parent="Player" unique_id=1663465571]
+layout_mode = 0
+offset_left = 334.0
+offset_top = 71.0
+offset_right = 674.0
+offset_bottom = 146.0
+text = "Invulnerable"
+
 [node name="CloseButton" type="TextureButton" parent="." unique_id=484913422]
 anchors_preset = 1
 anchor_left = 1.0
@@ -320,4 +328,5 @@ stretch_mode = 0
 [connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/S" to="." method="add_eumling" binds= [5]]
 [connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/clear" to="." method="clear_eumlings"]
 [connection signal="pressed" from="Player/HealButton" to="." method="heal_player"]
+[connection signal="toggled" from="Player/InvulToggle" to="." method="player_invulnerability"]
 [connection signal="pressed" from="CloseButton" to="." method="close"]
