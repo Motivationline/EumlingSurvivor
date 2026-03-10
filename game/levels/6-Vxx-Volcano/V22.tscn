@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cwnvsfbpov2w8" path="res://game/enemies/6-volcano/volcano_turtle/volcano_tortoise_enemy.tscn" id="6_ahcyp"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_a6x3n"]
-vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 0.75, 1, -5, -0.5, 1, -5, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, 4.75, -4.5, 1, -4.5)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(3, 7, 2), PackedInt32Array(2, 7, 6), PackedInt32Array(0, 9, 8), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 5), PackedInt32Array(5, 0, 8), PackedInt32Array(5, 8, 10), PackedInt32Array(10, 11, 5)]
+vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 0.75, 1, -5, -0.5, 1, -5, -1, 1, -4.5, -1, 1, 4.75, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, -4.5, -4.5, 1, 4.75, -2.25, 1, 4.75, -2.25, 1, -4.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(3, 7, 2), PackedInt32Array(2, 7, 6), PackedInt32Array(9, 8, 5), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 5), PackedInt32Array(5, 0, 9), PackedInt32Array(11, 10, 0), PackedInt32Array(0, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13)]
 agent_radius = 0.25
 agent_max_climb = 0.0
 edge_max_error = 0.25
@@ -25,7 +25,10 @@ mesh_library = ExtResource("2_a6x3n")
 cell_size = Vector3(0.5, 0.5, 0.5)
 collision_layer = 16
 collision_mask = 16
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+data = {
+"cells": PackedInt32Array(65532, 65533, 1441794, 65532, 65534, 655362, 65532, 65535, 1048578, 65531, 65535, 2, 65530, 65535, 1441794, 65530, 65534, 655362, 65531, 65534, 1048578, 65531, 0, 2, 131067, 65534, 1441794, 131066, 65534, 655362, 131066, 65535, 1048578, 196602, 65534, 589826)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
 
 [node name="ExitArea" parent="." index="6" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_qkt3k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
@@ -450,14 +453,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.75, -1.75)
 [node name="magma_tiles87" parent="Obstacles" index="138" unique_id=32895909 instance=ExtResource("4_g4rf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.75, -4.25)
 
-[node name="MagmaToad" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("5_g4rf1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2418137, 0, -0.45728588)
-
-[node name="MagmaToad2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1046442972 instance=ExtResource("5_g4rf1")]
+[node name="MagmaToad2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1046442972 instance=ExtResource("5_g4rf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9852877, 0, -3.546751)
 
-[node name="MagmaToad3" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1741343025 instance=ExtResource("5_g4rf1")]
+[node name="MagmaToad3" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1741343025 instance=ExtResource("5_g4rf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9072151, 0, 2.464879)
 
-[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="3" unique_id=1961314702 instance=ExtResource("6_ahcyp")]
+[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1961314702 instance=ExtResource("6_ahcyp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5652602, 0, 0.24537277)
