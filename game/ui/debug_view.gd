@@ -40,6 +40,10 @@ func heal_player():
 	var player = get_tree().get_first_node_in_group("Player")
 	player.health = player.max_health
 
+func player_invulnerability(on: bool):
+	var player = get_tree().get_first_node_in_group("Player")
+	player.is_invulnerable = on
+
 func close():
 	hide()
 	Engine.time_scale = 1
