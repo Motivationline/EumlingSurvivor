@@ -1,0 +1,289 @@
+[gd_scene format=3 uid="uid://du3rk8ailumbh"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_vuh50"]
+[ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="2_axu1y"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_fxxdt"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_yaqj3"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="4_nwada"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_xwhj2"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_nwada"]
+[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-Jungle/sniper/sniper_projectile_enemy.tscn" id="6_b440t"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="7_1ory3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cm6xr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_56c3l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fxxdt"]
+
+[sub_resource type="Animation" id="Animation_xwhj2"]
+resource_name = "CLOSE"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../Visuals/Top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 0.08246924),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.0420314, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../Visuals/StaticBody3D/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_nwada"]
+resource_name = "OPEN"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../Visuals/Top:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.39999998),
+"transitions": PackedFloat32Array(1, 0.14358728),
+"update": 0,
+"values": [Vector3(-1.0420314, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../Visuals/StaticBody3D/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_b440t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../Visuals/Top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../Visuals/StaticBody3D/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cm6xr"]
+_data = {
+&"CLOSE": SubResource("Animation_xwhj2"),
+&"OPEN": SubResource("Animation_nwada"),
+&"RESET": SubResource("Animation_b440t")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xwhj2"]
+animation = &"CLOSE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nwada"]
+animation = &"OPEN"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_b440t"]
+input_0/name = "open"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "close"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_cm6xr"]
+graph_offset = Vector2(-397.29947, 62.909966)
+nodes/output/position = Vector2(980, 320)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_nwada")
+nodes/Animation/position = Vector2(320, 110)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_xwhj2")
+"nodes/Animation 2/position" = Vector2(330, 300)
+nodes/Transition/node = SubResource("AnimationNodeTransition_b440t")
+nodes/Transition/position = Vector2(620, 230)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwhj2"]
+size = Vector3(2.0373535, 1, 0.90625)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_di3q1"]
+size = Vector3(1.5388184, 0.25219727, 0.4650879)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lpbll"]
+size = Vector3(1.8447266, 0.86035156, 0.68847656)
+
+[node name="clam_turret" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_vuh50")]
+collision_layer = 145
+health = 200.0
+hitbox = NodePath("Visuals/Hitbox")
+hurtbox = NodePath("Visuals/Hurtbox")
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("WaitForTimeXState")
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" unique_id=913362286 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_1ory3")
+random = true
+min_wait_time = 0.5
+max_wait_time = 1.2
+next_state = NodePath("../DecideDistanceState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="DecideDistanceState" type="Node" parent="StateMachine" index="1" unique_id=679965515 node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found")]
+script = ExtResource("2_axu1y")
+distance_to_check = 3.0
+state_if_distance_is_smaller = NodePath("../Attack/WaitForTimeXState2")
+state_if_distance_is_larger = NodePath("../StayClosed/WaitForTimeXState")
+state_if_no_node_found = NodePath("../StayClosed/WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "close"
+})
+metadata/_custom_type_script = "uid://b0kknw1o07ha2"
+
+[node name="StayClosed" type="Node" parent="StateMachine" index="2" unique_id=1816077607]
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/StayClosed" index="0" unique_id=42737958 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_1ory3")
+wait_time = 0.2
+next_state = NodePath("../LookAtPlayerState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "close"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/StayClosed" index="1" unique_id=1920663766 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_nwada")
+next_state = NodePath("../../DecideDistanceState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="Attack" type="Node" parent="StateMachine" index="3" unique_id=937432065]
+
+[node name="WaitForTimeXState2" type="Node" parent="StateMachine/Attack" index="0" unique_id=727593921 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_1ory3")
+next_state = NodePath("../LookAtPlayerState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "open"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/Attack" index="1" unique_id=500443972 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_nwada")
+next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "open"
+})
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Attack" index="2" unique_id=1318957079 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_xwhj2")
+next_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/Attack/SpawnEntitiesState" index="0" unique_id=1286700168]
+script = ExtResource("5_nwada")
+entity_to_spawn = ExtResource("6_b440t")
+time_between_entities = 2.0
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/Attack" index="3" unique_id=341668013 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_1ory3")
+wait_time = 1.5
+next_state = NodePath("../../DecideDistanceState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Top" type="Node3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=454562197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.054766968, 0.2175877)
+
+[node name="Open2" type="MeshInstance3D" parent="Visuals/Top" index="0" unique_id=1338654836]
+transform = Transform3D(-1.8, 7.571035e-09, -2.1855692e-08, 0, 0.049999997, 0.43301272, 1.57361e-07, 0.086602546, -0.24999999, 1.2286345e-08, 0.24228995, -0.07704829)
+mesh = SubResource("BoxMesh_cm6xr")
+skeleton = NodePath("../..")
+
+[node name="Open" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=814485892]
+transform = Transform3D(-1.8, 0, -4.371139e-08, 0, 0.1, 0, 1.57361e-07, 0, -0.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_cm6xr")
+
+[node name="Pearl" type="MeshInstance3D" parent="Visuals/Open" index="0" unique_id=46124623]
+transform = Transform3D(0.08333335, 0, -4.440892e-16, 0, 1.5, 0, 3.5527137e-15, 0, 0.3, 2.4840425e-09, 0.91462487, -0.10229087)
+mesh = SubResource("SphereMesh_56c3l")
+skeleton = NodePath("../..")
+
+[node name="Closed" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=102397988]
+transform = Transform3D(-1.8, 0, -4.371139e-08, 0, 0.1, 0, 1.57361e-07, 0, -0.5, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_fxxdt")
+
+[node name="Closed2" type="MeshInstance3D" parent="Visuals/Closed" index="0" unique_id=1456529195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2212485, 0)
+visible = false
+mesh = SubResource("BoxMesh_fxxdt")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=152670442]
+root_node = NodePath("../../StateMachine/Attack/LookAtPlayerState")
+libraries/ = SubResource("AnimationLibrary_cm6xr")
+
+[node name="AnimationTree" type="AnimationTree" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=1704963167]
+root_node = NodePath("../../StateMachine/Attack/LookAtPlayerState")
+tree_root = SubResource("AnimationNodeBlendTree_cm6xr")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "close"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 1
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="5" unique_id=1965628314]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/StaticBody3D" index="0" unique_id=1429815610]
+shape = SubResource("BoxShape3D_xwhj2")
+
+[node name="Hitbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="6" unique_id=1487053104 instance=ExtResource("2_fxxdt")]
+collision_layer = 32
+collision_mask = 8
+damage = 25.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hitbox" index="0" unique_id=1348417688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039292857, 0.123672396, -0.00023913383)
+shape = SubResource("BoxShape3D_di3q1")
+
+[node name="Hurtbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="7" unique_id=2035818811 instance=ExtResource("3_yaqj3")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hurtbox" index="0" unique_id=261361720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1498397, 0)
+shape = SubResource("BoxShape3D_lpbll")
+debug_color = Color(0.9216081, 0.12424397, 5.7756904e-07, 0.41960785)
