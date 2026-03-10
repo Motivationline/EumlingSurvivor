@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://bqp7c4em584k2"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_bds3d"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_57msv"]
+[ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="2_8663t"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_ad351"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_ocnyn"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_25dqp"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="5_mth4q"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_4gnnh"]
+[ext_resource type="PackedScene" uid="uid://br8tr6cgsam1u" path="res://game/aoes/puffer_fish_aoe/puffer_fish_aoe.tscn" id="7_fuc5l"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_4gnnh"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ksrke"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_otycw"]
+radius = 0.32263198
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8663t"]
+radius = 0.3849951
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_72cis"]
+radius = 0.25862154
+
+[node name="puffer_fish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_bds3d")]
+collision_layer = 64
+collision_mask = 65
+health = 250.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("DecideDistanceState")
+
+[node name="DecideDistanceState" type="Node" parent="StateMachine" index="0" unique_id=863695138 node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found")]
+script = ExtResource("2_8663t")
+distance_to_check = 3.0
+state_if_distance_is_smaller = NodePath("../TargetPlayer/MoveTowardsPlayerState")
+state_if_distance_is_larger = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
+state_if_no_node_found = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
+metadata/_custom_type_script = "uid://b0kknw1o07ha2"
+
+[node name="RandomWalk" type="Node" parent="StateMachine" index="1" unique_id=912858559]
+
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine/RandomWalk" index="0" unique_id=890392008 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_ad351")
+wait_time = 0.0
+min_distance = 3.0
+next_state = NodePath("../../DecideDistanceState")
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="TargetPlayer" type="Node" parent="StateMachine" index="2" unique_id=785264002]
+
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/TargetPlayer" index="0" unique_id=473045302 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_mth4q")
+wait_time = 0.0
+stop_distance = 1.0
+next_state = NodePath("../../AttackPlayer/SpawnEntitiesState")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="AttackPlayer" type="Node" parent="StateMachine" index="3" unique_id=1552506827]
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/AttackPlayer" index="0" unique_id=1995149603 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_25dqp")
+start_delay = 0.2
+next_state = NodePath("WaitForTimeXState")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/AttackPlayer/SpawnEntitiesState" index="0" unique_id=1569424562]
+script = ExtResource("6_4gnnh")
+spawn_local = true
+entity_to_spawn = ExtResource("7_fuc5l")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/AttackPlayer/SpawnEntitiesState" index="1" unique_id=1422941199 node_paths=PackedStringArray("next_state")]
+script = ExtResource("8_4gnnh")
+wait_time = 4.5
+next_state = NodePath("../../../DecideDistanceState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1443080195]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+mesh = SubResource("SphereMesh_ksrke")
+
+[node name="Hitbox" parent="." index="5" unique_id=1736455822 instance=ExtResource("2_57msv")]
+collision_layer = 32
+collision_mask = 8
+damage = 25.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1886995735]
+shape = SubResource("SphereShape3D_otycw")
+
+[node name="Hurtbox" parent="." index="6" unique_id=1244451327 instance=ExtResource("3_ocnyn")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=1162636234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0050926954, 0, 0)
+shape = SubResource("SphereShape3D_8663t")
+debug_color = Color(0.9999998, 0.010455347, 0.05978582, 0.41960785)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7" unique_id=1076761524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0035880953, 0.19767752, 0)
+shape = SubResource("SphereShape3D_72cis")
+debug_color = Color(0.059656292, 0.63459665, 0.41232806, 0.41960785)
