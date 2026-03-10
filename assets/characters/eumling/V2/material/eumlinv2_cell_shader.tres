@@ -1,11 +1,19 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://d2f7iuup8m8v3"]
 
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="1_ilkdj"]
+[ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="1_xs750"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="2_xs750"]
 [ext_resource type="Texture2D" uid="uid://b8wn66g3jsvps" path="res://assets/characters/eumling/V2/material/Eumling_v2_EumlingMat_Base_color.png" id="3_cvb4w"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xs750"]
+render_priority = 1
+shader = ExtResource("1_xs750")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 0.005
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b3oyc"]
 render_priority = 0
+next_pass = SubResource("ShaderMaterial_xs750")
 shader = ExtResource("1_ilkdj")
 shader_parameter/ball_color = Color(1, 0, 0, 1)
 shader_parameter/frensel_power = -0.69

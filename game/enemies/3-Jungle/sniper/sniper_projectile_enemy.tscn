@@ -4,16 +4,26 @@
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_b7528"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_4d5c3"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_qda78"]
+[ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="4_uruu7"]
 
 [sub_resource type="Curve" id="Curve_wripo"]
 _limits = [0.0, 5.0, 0.0, 5.0]
 _data = [Vector2(0, 5), 0.0, 0.0, 0, 0]
 point_count = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uruu7"]
+specular_mode = 1
+albedo_color = Color(0.36862746, 0.2, 0, 1)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_s8e6k"]
 top_radius = 0.0
 bottom_radius = 0.1
 height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byxc1"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1mk1u"]
 radius = 0.04621862
@@ -42,7 +52,18 @@ metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=1394156185]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.28753555, -1.2568578e-08)
+material_override = SubResource("StandardMaterial3D_uruu7")
 mesh = SubResource("CylinderMesh_s8e6k")
+
+[node name="outline" type="MeshInstance3D" parent="MeshInstance3D" index="0" unique_id=1414549066]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.009984612, 0)
+material_override = SubResource("StandardMaterial3D_byxc1")
+mesh = SubResource("CylinderMesh_s8e6k")
+skeleton = NodePath("../..")
+
+[node name="DecalShadow" parent="MeshInstance3D" index="1" unique_id=1002455412 instance=ExtResource("4_uruu7")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.054212e-08, -0.24117559)
+size = Vector3(0.252, 0.05, 0.5)
 
 [node name="Hitbox" parent="." index="3" unique_id=1696673246 instance=ExtResource("4_qda78")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28896308, 0)

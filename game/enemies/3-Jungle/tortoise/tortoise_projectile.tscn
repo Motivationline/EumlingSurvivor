@@ -4,17 +4,50 @@
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_lwbwl"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_860yy"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_860yy"]
+[ext_resource type="ArrayMesh" uid="uid://bf0lh4o3ufbqb" path="res://assets/characters/eumling/leaf_projectile.res" id="4_iimhh"]
 
 [sub_resource type="Curve" id="Curve_860yy"]
 _limits = [0.0, 6.0, 0.0, 1.0]
 _data = [Vector2(0, 6), 0.0, -0.15139665, 0, 0, Vector2(0.11458333, 6), 0.0, 0.0, 0, 0, Vector2(0.39930555, 0), 0.15010071, 0.15010071, 0, 0]
 point_count = 3
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iimhh"]
+shading_mode = 2
+specular_mode = 1
+albedo_color = Color(0.25490198, 0.40392157, 0.08235294, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_860yy"]
 albedo_color = Color(0, 0.37354115, 1.92523e-07, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_7gchl"]
 material = SubResource("StandardMaterial3D_860yy")
+size = Vector3(0.3, 0.3, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfo1b"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pb2d"]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+vertex_color_use_as_albedo = true
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_iimhh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.38325584), -1.5078095, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_5pb2d"]
+offsets = PackedFloat32Array(0, 0.8082902)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_iimhh"]
+offsets = PackedFloat32Array(0.41968912, 0.69948184)
+colors = PackedColorArray(0.5661667, 0.79, 0, 1, 0.18000002, 0.4, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_860yy"]
 radius = 0.04102301
@@ -128,9 +161,42 @@ metadata/_custom_type_script = "uid://coqjh4l5f0121"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0" unique_id=1824025288]
-transform = Transform3D(0.3225002, 0, 0, 0, -1.6036287e-08, 0.038361035, 0, -0.36686748, -1.6768141e-09, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_iimhh")
 mesh = SubResource("PrismMesh_7gchl")
 skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals/MeshInstance3D" index="0" unique_id=1953093799]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_nfo1b")
+mesh = SubResource("PrismMesh_7gchl")
+skeleton = NodePath("../../..")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Visuals/MeshInstance3D/MeshInstance3D2" index="0" unique_id=546795063]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.13909838, -0.011417866)
+visible = false
+material_override = SubResource("StandardMaterial3D_5pb2d")
+amount = 5
+lifetime = 1.5
+fract_delta = false
+mesh = ExtResource("4_iimhh")
+emission_shape = 1
+emission_sphere_radius = 0.15
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 1)
+spread = 26.19
+gravity = Vector3(0, -8.2, 0)
+angular_velocity_min = -229.86
+angular_velocity_max = 182.54
+tangential_accel_min = -5.0
+tangential_accel_max = 5.0
+damping_min = 8.0
+damping_max = 9.5
+angle_min = -180.0
+angle_max = -180.0
+scale_amount_curve = SubResource("Curve_iimhh")
+color_ramp = SubResource("Gradient_5pb2d")
+color_initial_ramp = SubResource("Gradient_iimhh")
 
 [node name="Hitbox" parent="." index="3" unique_id=1037663617 instance=ExtResource("4_860yy")]
 collision_layer = 32
