@@ -104,10 +104,11 @@ var anim_player: AnimationTree
 @onready var hurtbox_collision: CollisionShape3D = $Hurtbox/HurtboxCollision
 var hurtbox_start_sizes: Vector2 = Vector2()
 
+var _abilities: Dictionary = {}
+
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "starting_values":
 		_get_configuration_warnings()
-
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
@@ -123,6 +124,10 @@ func _ready() -> void:
 	attack_cooldown.timeout.connect(reset_preview_color)
 
 	reset()
+
+	
+	_abilities.set(Enum.EUMLING_TYPE.SOCIAL, $SpecialAbilities/Social)
+	_abilities.set(Enum.EUMLING_TYPE.INVESTIGATIVE, $SpecialAbilities/Investigative)
 
 # reset player to its un-upgraded state
 func reset():
@@ -308,3 +313,6 @@ func reset_preview_color():
 func end_of_level():
 	var amount_to_regenerate = get_value(Enum.UPGRADE.HEALTH_REGENERATION)
 	health += amount_to_regenerate
+
+func get_ability(type: Enum.EUMLING_TYPE)-> Ability:
+	return _abilities.get(type)

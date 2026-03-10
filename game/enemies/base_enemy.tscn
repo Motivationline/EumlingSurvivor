@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://b1wflgot2ho1o" path="res://assets/sound/hit_sfx/hit_8.wav" id="20_bi11c"]
 [ext_resource type="AudioStream" uid="uid://divfgafb7b3c4" path="res://assets/sound/hit_sfx/hit_9.wav" id="21_tbsjp"]
 [ext_resource type="AudioStream" uid="uid://bpsnjbmf667ua" path="res://assets/sound/hit_sfx/hit_10.wav" id="22_igjq0"]
+[ext_resource type="PackedScene" uid="uid://crhvycqx837en" path="res://game/enemies/vulnerability_display/vulnerability_display.tscn" id="23_4ghmt"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bauuv"]
 streams_count = 6
@@ -87,3 +88,6 @@ volume_db = 0.0
 [node name="Hit" parent="SoundEffectManager" unique_id=41969835 instance=ExtResource("6_4ghmt")]
 stream = SubResource("AudioStreamRandomizer_ji8hj")
 volume_db = 0.0
+
+[node name="VulnerabilityDisplay" parent="." unique_id=1768099244 instance=ExtResource("23_4ghmt")]
+visible = false

@@ -70,6 +70,7 @@
 [ext_resource type="AudioStream" uid="uid://dtwjmuugoxay2" path="res://assets/characters/eumling/V2/sounds/death_6.wav" id="67_m1cdu"]
 [ext_resource type="Script" uid="uid://d0y7cgck1opqh" path="res://game/player/abilities/social.gd" id="68_3p3em"]
 [ext_resource type="PackedScene" uid="uid://co3vv3d8hdp1s" path="res://game/aoes/social_aoe/social_aoe.tscn" id="69_0jq7b"]
+[ext_resource type="Script" uid="uid://ca2lwyvrascpj" path="res://game/player/abilities/investigative.gd" id="71_d76hv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.23
@@ -415,6 +416,9 @@ script = ExtResource("68_3p3em")
 
 [node name="Social_AOE" parent="SpecialAbilities/Social" unique_id=1775511800 instance=ExtResource("69_0jq7b")]
 scale_affects = Vector3(1, 0, 1)
+
+[node name="Investigative" type="Node3D" parent="SpecialAbilities" unique_id=521230901]
+script = ExtResource("71_d76hv")
 
 [connection signal="play_sound" from="Eumling_v2" to="SoundEffectManager" method="play_sound"]
 [connection signal="pressed" from="UI/Control/PauseButton" to="UITest/PauseSketch" method="open"]

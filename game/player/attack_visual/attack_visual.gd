@@ -26,7 +26,6 @@ var on_cooldown: bool:
 			polygon.material = cooldown_material
 		else:
 			polygon.material = active_material
-		prints("on cooldown", on_cooldown)
 
 
 func _update_polygon():

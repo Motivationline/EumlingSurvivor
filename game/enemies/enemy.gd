@@ -34,6 +34,7 @@ class_name Enemy
 
 
 @onready var visuals: Node3D = $Visuals
+@onready var vulnerability_display: VulnerabilityDisplay = $VulnerabilityDisplay
 
 var max_health: float
 var reset_timer: Timer
@@ -42,17 +43,17 @@ var convince_progress: float = 0
 var animation_tree: AnimationTree
 
 func _ready() -> void:
-	super()
+	super ()
 	max_health = health
 	if (status_visuals): status_visuals.init_health(max_health)
 	if (hitbox): hitbox.hit.connect(_hit)
 	if (hurtbox): hurtbox.hurt_by.connect(_hurt_by)
 
-	animation_tree = Utils.find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self)
+	animation_tree = Utils.find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self )
 
-	Strategy._setup_array(on_death, self, self)
-	Strategy._setup_array(on_hit, self, self)
-	Strategy._setup_array(on_hurt, self, self)
+	Strategy._setup_array(on_death, self , self )
+	Strategy._setup_array(on_hit, self , self )
+	Strategy._setup_array(on_hurt, self , self )
 	
 	if !ignore_enemy_in_level:
 		add_to_group("Enemy")
@@ -73,6 +74,10 @@ func _hurt_by(_attacker: HitBox):
 		if convince_progress > max_health:
 			health = 0
 		return
+	var projectile = _attacker.get_parent()
+	if vulnerability_display.try_to_hit(projectile):
+		_attacker.damage *= 2 # TODO copy this value from the I ability
+
 	health -= _attacker.damage
 	for ev in on_hurt:
 		ev.event_triggered(_attacker)
