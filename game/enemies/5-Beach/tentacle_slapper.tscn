@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_8scmy"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_s5h4t"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_ehia0"]
-[ext_resource type="PackedScene" uid="uid://ojsywy2ysrj8" path="res://game/aoes/tentacle_slapper_aoe/tentacle_slapper_aoe.tscn" id="5_f2r6p"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="6_6ky1e"]
+[ext_resource type="PackedScene" uid="uid://b7cu13tpfbt6k" path="res://game/enemies/5-Beach/tentacle_slapper_attack/tentacle_attack.tscn" id="6_280ev"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_7w64y"]
 
@@ -25,27 +25,33 @@ hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("LookAtPlayerState")
+initial_state = NodePath("SpawnWait")
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" unique_id=314807900 node_paths=PackedStringArray("next_state")]
+[node name="SpawnWait" type="Node" parent="StateMachine" index="0" unique_id=1413120965 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_6ky1e")
+wait_time = 0.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="1" unique_id=314807900 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_280ev")
 wait_time = 0.5
 next_state = NodePath("../SpawnEntitiesState")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=223463380 node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=223463380 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_8scmy")
+start_delay = 0.2
 next_state = NodePath("../WaitForTimeXState")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=931220986]
 script = ExtResource("4_ehia0")
-spawn_local = true
-entity_to_spawn = ExtResource("5_f2r6p")
-offset_distance = 2.0
+entity_to_spawn = ExtResource("6_280ev")
+offset_distance = 0.3
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=1904549072 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="3" unique_id=1904549072 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_6ky1e")
 wait_time = 2.0
 next_state = NodePath("../LookAtPlayerState")

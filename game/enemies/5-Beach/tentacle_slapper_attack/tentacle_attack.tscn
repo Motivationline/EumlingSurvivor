@@ -1,0 +1,443 @@
+[gd_scene format=3 uid="uid://b7cu13tpfbt6k"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_vto4e"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_b873v"]
+[ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="2_gnpyw"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_5be5r"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="4_o4g8i"]
+[ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="5_vfhb7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vto4e"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_b873v"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gnpyw"]
+
+[sub_resource type="Animation" id="Animation_ckxmw"]
+resource_name = "Attack"
+length = 2.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Node3D/Base:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.0848045, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Node3D/Base:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -0.7742454)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Node3D/Base:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.2, 0.2, 0.2), Vector3(0.2, 0.2, 0.2), Vector3(0.2, 0.2, 0.2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Node3D/Bone1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.07742724, -0.6582475, 0), Vector3(0.07742724, 0.4265571, 0), Vector3(0.39332876, 0.1979568, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Node3D/Bone1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.3274761), Vector3(0, 0, -0.3274761), Vector3(0, 0, -1.3614441)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visuals/Node3D/Bone1:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.2, 0.2, 0.2), Vector3(0.2, 0.2, 0.2), Vector3(0.19999997, 0.19999997, 0.20000002)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/Node3D/Bone2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.095903724, -0.21541679, 0), Vector3(0.095903724, 0.86938775, 0), Vector3(0.81295305, 0.11416417, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visuals/Node3D/Bone2:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.19648917), Vector3(0, 0, 0.19648917), Vector3(0, 0, -2.0246518)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visuals/Node3D/Bone2:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.2, 0.2, 0.2), Vector3(0.2, 0.2, 0.2), Vector3(0.2, 0.2, 0.2)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visuals/Node3D/Hitbox/CollisionShape3D:shape:height")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.06347656, 1.3144531, 1.267334]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Visuals/Node3D/Hitbox/CollisionShape3D:shape:radius")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.2529297, 0.18017578, 0.24316406]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Visuals/Node3D/Hitbox/CollisionShape3D:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -1.5707964)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Visuals/Node3D/Hitbox/CollisionShape3D:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0043277442, 0.045714855, 0), Vector3(0.058562726, 0.46174335, 0), Vector3(0.43432644, 0.102706484, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Visuals/Node3D/HoleInGround:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0.005, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_fxci6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Node3D/Base:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Node3D/Base:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Node3D/Base:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2, 0.2, 0.2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Node3D/Bone1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.07742724, 0.4265571, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Node3D/Bone1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.3274761)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visuals/Node3D/Bone1:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2, 0.2, 0.2)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/Node3D/Bone2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.095903724, 0.86938775, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visuals/Node3D/Bone2:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.19648917)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visuals/Node3D/Bone2:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2, 0.2, 0.2)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visuals/Node3D/Hitbox/CollisionShape3D:shape:height")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.3144531]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Visuals/Node3D/Hitbox/CollisionShape3D:shape:radius")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.18017578]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Visuals/Node3D/Hitbox/CollisionShape3D:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Visuals/Node3D/Hitbox/CollisionShape3D:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.058562726, 0.46174335, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Visuals/Node3D/HoleInGround:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0.005, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ffpqu"]
+_data = {
+&"Attack": SubResource("Animation_ckxmw"),
+&"RESET": SubResource("Animation_fxci6")
+}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5be5r"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gnpyw"]
+height = 1.3144531
+radius = 0.18017578
+
+[node name="BaseEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox") instance=ExtResource("1_vto4e")]
+ignore_enemy_in_level = true
+hitbox = NodePath("Visuals/Node3D/Hitbox")
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("SpawnWait")
+
+[node name="SpawnWait" type="Node" parent="StateMachine" index="0" unique_id=922205256 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_o4g8i")
+wait_time = 0.0
+next_state = NodePath("../TeleportToOnNavMeshState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine" index="1" unique_id=1335814238 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_gnpyw")
+wait_time = 0.0
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="2" unique_id=1340628182 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_5be5r")
+next_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="3" unique_id=1316598777 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_o4g8i")
+wait_time = 2.5
+next_state = NodePath("../KillSelfState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="KillSelfState" type="Node" parent="StateMachine" index="4" unique_id=2140091015 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_vfhb7")
+next_state = NodePath("../SpawnWait")
+metadata/_custom_type_script = "uid://dj632w22te1th"
+
+[node name="Node3D" type="Node3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1301685618]
+transform = Transform3D(-1.172251e-07, 0, -1, 0, 1, 0, 1, 0, -1.172251e-07, 0, 0, 0)
+
+[node name="Base" type="MeshInstance3D" parent="Visuals/Node3D" index="0" unique_id=570569208]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_vto4e")
+skeleton = NodePath("../..")
+
+[node name="Bone1" type="MeshInstance3D" parent="Visuals/Node3D" index="1" unique_id=1373615193]
+transform = Transform3D(0.18937144, 0.06433086, 0, -0.06433086, 0.18937144, 0, 0, 0, 0.2, 0.07742724, 0.4265571, 0)
+mesh = SubResource("CylinderMesh_b873v")
+skeleton = NodePath("../..")
+
+[node name="Bone2" type="MeshInstance3D" parent="Visuals/Node3D" index="2" unique_id=192085853]
+transform = Transform3D(0.1961516, -0.039045453, 0, 0.039045453, 0.1961516, 0, 0, 0, 0.2, 0.095903724, 0.86938775, 0)
+mesh = SubResource("CylinderMesh_gnpyw")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/Node3D" index="3" unique_id=478582319]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_ffpqu")
+autoplay = &"Attack"
+
+[node name="HoleInGround" type="MeshInstance3D" parent="Visuals/Node3D" index="4" unique_id=2078749376]
+transform = Transform3D(0.5, 0, 0, 0, 0.005, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("CylinderMesh_5be5r")
+skeleton = NodePath("../..")
+
+[node name="Hitbox" parent="Visuals/Node3D" index="5" unique_id=695788529 instance=ExtResource("2_b873v")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Node3D/Hitbox" index="0" unique_id=743652452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.058562726, 0.46174335, 0)
+shape = SubResource("CylinderShape3D_gnpyw")
