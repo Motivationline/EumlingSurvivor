@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://cex68esqyxyua"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_qgdlt"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_2uhhv"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_280ev"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_8scmy"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_s5h4t"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_ehia0"]
+[ext_resource type="PackedScene" uid="uid://ojsywy2ysrj8" path="res://game/aoes/tentacle_slapper_aoe/tentacle_slapper_aoe.tscn" id="5_f2r6p"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="6_6ky1e"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7w64y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_53dnq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0cktx"]
+radius = 0.24812698
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_280ev"]
+radius = 0.3295225
+
+[node name="tentacle_slapper" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_qgdlt")]
+health = 150.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("LookAtPlayerState")
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" unique_id=314807900 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_280ev")
+wait_time = 0.5
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=223463380 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_8scmy")
+next_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=931220986]
+script = ExtResource("4_ehia0")
+spawn_local = true
+entity_to_spawn = ExtResource("5_f2r6p")
+offset_distance = 2.0
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=1904549072 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_6ky1e")
+wait_time = 2.0
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Head" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1529447789]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.49812138, 0)
+mesh = SubResource("SphereMesh_7w64y")
+
+[node name="Body" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1774275865]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.13953847, 0)
+mesh = SubResource("CapsuleMesh_53dnq")
+skeleton = NodePath("../Head")
+
+[node name="Hitbox" parent="." index="6" unique_id=519897081 instance=ExtResource("2_2uhhv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3544367, 0)
+collision_layer = 32
+collision_mask = 8
+damage = 25.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=403141409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12802029, 0)
+shape = SubResource("SphereShape3D_0cktx")
+
+[node name="Hurtbox" parent="." index="7" unique_id=1862865846 instance=ExtResource("3_s5h4t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55249, 0)
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=809200434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08487338, 0)
+shape = SubResource("SphereShape3D_280ev")
+debug_color = Color(0.8051653, 0.41541824, 0.082558624, 0.41960785)
