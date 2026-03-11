@@ -1,11 +1,9 @@
 @tool
 extends State
-## Uses the levels NavMesh to move the Enemy to a random point inside the level
+## Uses the levels NavMesh to move the Enemy horizontal or vertical
 ## 
 ## Ends when the point is reached.
 class_name MoveHorizontalVerticalOnNavMeshState
-
-# TODO: add controls over where we're going, e.g. values or an area or something
 
 ## How long to wait [b]after[/b] reaching the target location before proceeding to the next state 
 @export var wait_time: float = 1:
@@ -18,9 +16,6 @@ class_name MoveHorizontalVerticalOnNavMeshState
 @export var max_distance: float = 5
 ## how many attempts the pathfinding can take before exiting the state
 @export var max_pathing_trys: int = 8
-
-## raycast to help pathing
-@export var path_ray: RayCast3D
 
 @export_group("Overrides")
 ## Movement Speed Override
@@ -60,15 +55,10 @@ func physics_process(_delta: float) -> State:
 	var speed = speed_override if (speed_override_active) else parent.speed
 	parent.velocity = direction * speed
 
-	#parent.move_and_slide()
 	var collision := parent.move_and_collide(direction * speed * _delta)
 	if collision:
 		done = true
-	#if path_ray.is_colliding():
-		#done = true
 
-	#if (!direction.is_zero_approx()):
-		#parent.visuals.look_at(parent.global_position + direction)
 	parent.look_at(destination, Vector3.UP)
 
 	return null
@@ -77,13 +67,12 @@ func find_next_goal_position():
 	for i in range(max_pathing_trys):
 		var random_position := Vector3.ZERO
 		var random_orientation = randi() % 2
-		#print(random_orientation)
 		
 		if random_orientation == 0:
-			## were going horizontal
+			#were going horizontal
 			random_position.x = randf_range(-1, 1)
 		else:
-			## were going vertical
+			#were going vertical
 			random_position.z = randf_range(-1, 1)
 		
 		#create a random position based on the random direction and given min-/max_distance
@@ -93,21 +82,13 @@ func find_next_goal_position():
 		done = false
 		nav_agent.debug_enabled = debug_show_path
 		
-		#print(random_orientation)
-		#print("final path: ", nav_agent.get_final_position())
-		#print("pos: ", parent.global_position)
-		#print("abs x: ", abs(nav_agent.get_final_position().x - parent.global_position.x))
-		#print("abs z: ", abs(nav_agent.get_final_position().z - parent.global_position.z))
-		
 		#check if the path is valid
 		if random_orientation == 0 && abs(nav_agent.get_final_position().z - parent.global_position.z) > 0.01 || random_orientation == 1 && abs(nav_agent.get_final_position().x - parent.global_position.x) > 0.01:
-			#print("invalid path, try again")
 			
 			if i == max_pathing_trys:
 				#could not find a valid path -> exit state
 				done = true
 		else:
-			#print("found a valid path")
 			break
 	
 func target_reached():

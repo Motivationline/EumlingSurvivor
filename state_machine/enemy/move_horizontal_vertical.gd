@@ -1,6 +1,6 @@
 @tool
 extends State
-## Uses the levels NavMesh to move the Enemy to a random point inside the level
+## Moves the Enemy horizontal or vertical
 ## 
 ## Ends when the point is reached.
 class_name MoveHorizontalVerticalState
@@ -27,8 +27,6 @@ class_name MoveHorizontalVerticalState
 var nav_agent: NavigationAgent3D
 var done: bool = false
 
-var move_direction: Vector3
-
 var ray_length = 30
 
 var pos1: Vector3
@@ -41,11 +39,7 @@ func setup(_parent: Enemy, _animation_tree: AnimationTree):
 func enter():
 	super()
 	
-	#TODO: create 2 Raycast, shoot front and back, save collision points, move between them
-	
 	path_ray.global_position = parent.position + Vector3(0,0.5,0)
-	# move to target position
-	#move_direction = get_new_direction()
 	target_position = get_new_target_position()
 
 func physics_process(_delta: float) -> State:
@@ -53,7 +47,7 @@ func physics_process(_delta: float) -> State:
 	
 	var speed = speed_override if (speed_override_active) else parent.speed
 	
-	move_direction = (target_position - parent.global_position).normalized()
+	var move_direction: Vector3 = (target_position - parent.global_position).normalized()
 	
 	print("move dir: ", move_direction)
 	
@@ -63,10 +57,6 @@ func physics_process(_delta: float) -> State:
 
 	parent.move_and_slide()
 	
-	# checks if the entity is in stop distance to the target position
-	#if parent.global_position.distance_to(pos1) < stop_distance || parent.global_position.distance_to(pos2) < stop_distance:
-		#done = true
-		#parent.velocity = Vector3.ZERO
 	if parent.global_position.distance_to(target_position) < stop_distance:
 		print("reached target position")
 		done = true
@@ -75,7 +65,6 @@ func physics_process(_delta: float) -> State:
 
 func get_new_target_position() -> Vector3:
 	
-	#path_ray.target_position = parent.global_basis.z * ray_length
 	print("ray target pos: ", path_ray.target_position + path_ray.global_position)
 	print("pos: ", parent.global_position + Vector3(0,0.5,0))
 	
@@ -108,12 +97,9 @@ func get_new_target_position() -> Vector3:
 	print("nect_target_pos: ",next_target_pos)
 	return next_target_pos
 
-func target_reached():
-	await get_tree().create_timer(wait_time).timeout
-	done = true
-
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := super ()
 	if (speed_override == 0 && speed_override_active): warnings.insert(0, "Using a speed of 0 means this node will never reach its target.")
-	#if (min_distance > max_distance): warnings.insert(0, "Min Distance cannot be larger than Max Distance")
+	if !path_ray:
+		warnings.insert(0, "a Path Ray is required for this state to work properly")
 	return warnings
