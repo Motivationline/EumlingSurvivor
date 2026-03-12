@@ -42,7 +42,7 @@ input_4/break_loop_at_end = false
 input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ky5lm"]
-graph_offset = Vector2(-1199.2637, 21.379852)
+graph_offset = Vector2(-599.84247, 121.85031)
 nodes/Transition/node = SubResource("AnimationNodeTransition_vf3ps")
 nodes/Transition/position = Vector2(-40, 120)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_xf23m")
@@ -62,6 +62,6 @@ node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation",
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1452343018]
 tree_root = SubResource("AnimationNodeBlendTree_ky5lm")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Transition/current_state = "walk"
+parameters/Transition/current_state = "big_idle"
 parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 1
+parameters/Transition/current_index = 3

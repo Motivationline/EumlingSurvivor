@@ -1,7 +1,14 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://c61at2yo4g6s1"]
 
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_ddu6t"]
+[ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="1_pckv6"]
 [ext_resource type="Texture2D" uid="uid://dtv5gh7jrq6xk" path="res://assets/characters/enemies/ninja_starfish/ninja_starfish_Starfish_Base_color.png" id="2_pckv6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4yv5p"]
+render_priority = 0
+shader = ExtResource("1_pckv6")
+shader_parameter/color = Color(0.2, 0.027666664, 0.012000001, 1)
+shader_parameter/width = 0.005
 
 [sub_resource type="Gradient" id="Gradient_4yv5p"]
 interpolation_mode = 1
@@ -20,6 +27,7 @@ gradient = SubResource("Gradient_p4ubq")
 
 [resource]
 render_priority = 0
+next_pass = SubResource("ShaderMaterial_4yv5p")
 shader = ExtResource("1_ddu6t")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("2_pckv6")
