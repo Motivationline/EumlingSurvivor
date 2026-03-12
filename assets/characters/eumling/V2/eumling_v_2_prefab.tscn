@@ -4,9 +4,6 @@
 [ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/sound_requester.gd" id="2_2pu6i"]
 [ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="3_rna07"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4icu7"]
-animation = &"attack"
-
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_lyv7g"]
 filters = ["SoundEffectManager"]
 fadeout_time = 5.0
@@ -40,17 +37,6 @@ states/attack/node = SubResource("AnimationNodeAnimation_kkceb")
 states/attack/position = Vector2(552, 146)
 transitions = ["Start", "attack", SubResource("AnimationNodeStateMachineTransition_xpqnk"), "attack", "End", SubResource("AnimationNodeStateMachineTransition_4icu7")]
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_lo48b"]
-xfade_time = 0.1
-input_0/name = "attack_02"
-input_0/auto_advance = true
-input_0/break_loop_at_end = true
-input_0/reset = true
-input_1/name = "attack_01"
-input_1/auto_advance = true
-input_1/break_loop_at_end = true
-input_1/reset = true
-
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_4icu7"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qpw4l"]
@@ -66,7 +52,7 @@ animation = &"idle"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lo48b"]
-graph_offset = Vector2(-924.905, 245.28583)
+graph_offset = Vector2(-1170.3878, 70.66083)
 nodes/output/position = Vector2(780, 300)
 nodes/idle/node = SubResource("AnimationNodeAnimation_rna07")
 nodes/idle/position = Vector2(-940, 80)
@@ -88,19 +74,15 @@ nodes/GetHitOneShot/node = SubResource("AnimationNodeOneShot_qpw4l")
 nodes/GetHitOneShot/position = Vector2(-20, 380)
 nodes/hit/node = SubResource("AnimationNodeAnimation_xpqnk")
 nodes/hit/position = Vector2(-320, 780)
-nodes/Transition/node = SubResource("AnimationNodeTransition_lo48b")
-nodes/Transition/position = Vector2(-600, 500)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_4icu7")
-nodes/Animation/position = Vector2(-780, 700)
-node_connections = [&"output", 0, &"DeathOneShot", &"Shoot", 0, &"Idle-Walk", &"Shoot", 1, &"Transition", &"WalkSpeedScale", 0, &"walk", &"Idle-Walk", 0, &"idle", &"Idle-Walk", 1, &"WalkSpeedScale", &"DeathOneShot", 0, &"GetHitOneShot", &"DeathOneShot", 1, &"StateMachine", &"GetHitOneShot", 0, &"Shoot", &"GetHitOneShot", 1, &"hit", &"Transition", 0, &"attack", &"Transition", 1, &"Animation"]
+node_connections = [&"output", 0, &"DeathOneShot", &"Shoot", 0, &"Idle-Walk", &"Shoot", 1, &"attack", &"WalkSpeedScale", 0, &"walk", &"Idle-Walk", 0, &"idle", &"Idle-Walk", 1, &"WalkSpeedScale", &"DeathOneShot", 0, &"GetHitOneShot", &"DeathOneShot", 1, &"StateMachine", &"GetHitOneShot", 0, &"Shoot", &"GetHitOneShot", 1, &"hit"]
 
 [node name="Eumling_v2" unique_id=1494019728 instance=ExtResource("1_qpw4l")]
 script = ExtResource("2_2pu6i")
 
-[node name="bag_object" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(1207068888) index="0" unique_id=1034508430]
+[node name="bag_object" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="0" unique_id=783932814]
 layers = 2
 
-[node name="eumling_mesh" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(1207068888) index="1" unique_id=919203465]
+[node name="eumling_mesh" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="1" unique_id=2021133272]
 layers = 2
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1243012564]
@@ -118,9 +100,6 @@ parameters/DeathOneShot/request = 0
 parameters/GetHitOneShot/active = false
 parameters/GetHitOneShot/internal_active = false
 parameters/GetHitOneShot/request = 0
-parameters/Transition/current_state = "attack_01"
-parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 1
 
 [node name="DecalShadow" parent="." index="3" unique_id=1002455412 instance=ExtResource("3_rna07")]
 size = Vector3(0.5, 0.05, 0.5)
