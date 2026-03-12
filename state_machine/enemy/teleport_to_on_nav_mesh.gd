@@ -94,6 +94,7 @@ func find_new_target():
 func get_point_on_map(target_point: Vector3, min_dist_from_edge: float) -> Vector3:
 	var map := parent.get_world_3d().navigation_map
 	var closest_point := NavigationServer3D.map_get_closest_point(map, target_point)
+	closest_point.y -= ProjectSettings.get_setting("navigation/3d/default_cell_height", 0.25) * 2
 	var delta := closest_point - target_point
 	#print("target: ", target_point," , closest: ", closest_point, "delta: ", delta)
 	var is_on_map = delta.is_zero_approx()
