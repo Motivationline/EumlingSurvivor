@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dlkcov85k35uo"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_tj7oh"]
+[ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="1_xk058"]
+[ext_resource type="Texture2D" uid="uid://303in2v7s55y" path="res://assets/characters/enemies/pufferfish/Pufferfish_Pufferfish_Base_color.png" id="2_xk058"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_utod7"]
+render_priority = 0
+shader = ExtResource("1_xk058")
+shader_parameter/color = Color(0.35, 0.103250004, 0.021, 1)
+shader_parameter/width = 0.005
+
+[sub_resource type="Gradient" id="Gradient_utod7"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.37)
+colors = PackedColorArray(0.17641911, 0.17641908, 0.17641908, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0l0ma"]
+gradient = SubResource("Gradient_utod7")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_utod7")
+shader = ExtResource("1_tj7oh")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_xk058")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_0l0ma")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_diffuse_smooth_attenuation = true

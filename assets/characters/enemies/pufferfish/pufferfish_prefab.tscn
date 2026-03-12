@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://b7i8simxasxfx"]
+
+[ext_resource type="PackedScene" uid="uid://bf14dut0ildk3" path="res://assets/characters/enemies/pufferfish/Pufferfish.glb" id="1_5pdpy"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5pdpy"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t5xr5"]
+animation = &"get_big"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j1k0e"]
+animation = &"big_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wx6c2"]
+animation = &"get_big"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xf23m"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_vf3ps"]
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "get_big"
+input_2/auto_advance = true
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "big_idle"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
+input_4/name = "get_small"
+input_4/auto_advance = true
+input_4/break_loop_at_end = false
+input_4/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ky5lm"]
+graph_offset = Vector2(-1199.2637, 21.379852)
+nodes/Transition/node = SubResource("AnimationNodeTransition_vf3ps")
+nodes/Transition/position = Vector2(-40, 120)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_xf23m")
+nodes/Animation/position = Vector2(-680, 40)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_5pdpy")
+"nodes/Animation 2/position" = Vector2(-680, 220)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_t5xr5")
+"nodes/Animation 3/position" = Vector2(-680, 380)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_j1k0e")
+"nodes/Animation 4/position" = Vector2(-680, 540)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_wx6c2")
+"nodes/Animation 5/position" = Vector2(-680, 720)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 3", &"Transition", 3, &"Animation 4", &"Transition", 4, &"Animation 5"]
+
+[node name="Pufferfish" unique_id=1528906013 instance=ExtResource("1_5pdpy")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1452343018]
+tree_root = SubResource("AnimationNodeBlendTree_ky5lm")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "walk"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 1

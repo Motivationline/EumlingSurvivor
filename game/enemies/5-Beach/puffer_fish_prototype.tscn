@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_4gnnh"]
 [ext_resource type="PackedScene" uid="uid://br8tr6cgsam1u" path="res://game/aoes/puffer_fish_aoe/puffer_fish_aoe.tscn" id="7_fuc5l"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_4gnnh"]
+[ext_resource type="PackedScene" uid="uid://b7i8simxasxfx" path="res://assets/characters/enemies/pufferfish/pufferfish_prefab.tscn" id="9_fuc5l"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ksrke"]
 
@@ -20,7 +21,7 @@ radius = 0.32263198
 radius = 0.3849951
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_72cis"]
-radius = 0.25862154
+radius = 0.16382946
 
 [node name="puffer_fish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_bds3d")]
 collision_layer = 64
@@ -38,6 +39,9 @@ distance_to_check = 3.0
 state_if_distance_is_smaller = NodePath("../TargetPlayer/MoveTowardsPlayerState")
 state_if_distance_is_larger = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
 state_if_no_node_found = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "idle"
+})
 metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
 [node name="RandomWalk" type="Node" parent="StateMachine" index="1" unique_id=912858559]
@@ -47,6 +51,9 @@ script = ExtResource("3_ad351")
 wait_time = 0.0
 min_distance = 3.0
 next_state = NodePath("../../DecideDistanceState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "walk"
+})
 metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 
 [node name="TargetPlayer" type="Node" parent="StateMachine" index="2" unique_id=785264002]
@@ -55,7 +62,10 @@ metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 script = ExtResource("5_mth4q")
 wait_time = 0.0
 stop_distance = 1.0
-next_state = NodePath("../../AttackPlayer/SpawnEntitiesState")
+next_state = NodePath("../../AttackPlayer/SpawnEntitiesState/WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "walk"
+})
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="AttackPlayer" type="Node" parent="StateMachine" index="3" unique_id=1552506827]
@@ -75,12 +85,27 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 [node name="WaitForTimeXState" type="Node" parent="StateMachine/AttackPlayer/SpawnEntitiesState" index="1" unique_id=1422941199 node_paths=PackedStringArray("next_state")]
 script = ExtResource("8_4gnnh")
 wait_time = 4.5
-next_state = NodePath("../../../DecideDistanceState")
+next_state = NodePath("get_small")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "get_big"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="get_small" type="Node" parent="StateMachine/AttackPlayer/SpawnEntitiesState/WaitForTimeXState" index="0" unique_id=893581196 node_paths=PackedStringArray("next_state")]
+script = ExtResource("8_4gnnh")
+wait_time = 0.33
+next_state = NodePath("../../../../DecideDistanceState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "get_small"
+})
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1443080195]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_ksrke")
+
+[node name="Pufferfish" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1528906013 instance=ExtResource("9_fuc5l")]
 
 [node name="Hitbox" parent="." index="5" unique_id=1736455822 instance=ExtResource("2_57msv")]
 collision_layer = 32
