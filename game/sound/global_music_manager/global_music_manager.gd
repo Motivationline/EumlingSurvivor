@@ -64,7 +64,6 @@ func fade_player_volume(_duration:float, _target_volume_db:float = -60, _player:
 	if _stop:
 		_player.stop()
 		_player.queue_free()
-		is_playing = false
 	
 
 
