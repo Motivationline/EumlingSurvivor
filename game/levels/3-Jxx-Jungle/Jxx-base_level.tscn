@@ -5,15 +5,13 @@
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="3_6ii85"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_cxf2i"]
 [ext_resource type="PackedScene" uid="uid://dja7e38qqqhkd" path="res://assets/models/3-Jungle/jungle_tree/jungel_tree_prefab.tscn" id="4_ruf1u"]
-[ext_resource type="PackedScene" uid="uid://bd6al6p5ch00v" path="res://assets/models/bush/bush_prefab.tscn" id="5_egn2h"]
 [ext_resource type="Script" uid="uid://b12g0nyew0m0i" path="res://global/settings/graphics_settings_component_shadow.gd" id="5_v7yfb"]
 [ext_resource type="PackedScene" uid="uid://bkff3bbbcyrcj" path="res://assets/models/3-Jungle/momument/prefab_monument.tscn" id="6_i2d4m"]
 [ext_resource type="PackedScene" uid="uid://bujhyll6x4iak" path="res://assets/models/3-Jungle/JunglePlant/jungle_plant_big.tscn" id="7_6ii85"]
 [ext_resource type="PackedScene" uid="uid://31e8rrg543xf" path="res://assets/models/3-Jungle/JunglePlant/jungle_plant_small.tscn" id="8_ruf1u"]
-[ext_resource type="PackedScene" uid="uid://dnrfdwxcovlyc" path="res://assets/models/1-mountain/stone_v_1_dark.tscn" id="9_egn2h"]
-[ext_resource type="PackedScene" uid="uid://cw86yq83nyyyr" path="res://assets/models/1-mountain/stone_v_3_dark.tscn" id="10_i2d4m"]
 [ext_resource type="Script" uid="uid://ce3uevtwoe7te" path="res://global/settings/graphics_settings_component_global_illumination.gd" id="12_h2kg2"]
 [ext_resource type="Script" uid="uid://do4ujdcqq0nii" path="res://addons/world_wind/world_wind.gd" id="14_4y2u6"]
+[ext_resource type="PackedScene" uid="uid://d25506xweg742" path="res://assets/models/3-Jungle/stones/jungle_stone_01/jungle_stone_01.tscn" id="14_cxf2i"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
 vertices = PackedVector3Array(-4.5, 1, -4.5, -4.5, 1, 4.5, 4.5, 1, 4.5, 4.5, 1, -4.5)
@@ -314,7 +312,7 @@ background_color = Color(0.2772, 0.67144, 0.77, 1)
 sky = SubResource("Sky_cxf2i")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 1.8
+ambient_light_energy = 3.0
 tonemap_mode = 4
 glow_intensity = 0.2
 adjustment_enabled = true
@@ -416,7 +414,7 @@ metadata/_custom_type_script = "uid://do4ujdcqq0nii"
 
 [node name="Env" type="Node3D" parent="." unique_id=1339304514]
 
-[node name="Rocks" type="MeshInstance3D" parent="Env" unique_id=837812619]
+[node name="basefloor" type="MeshInstance3D" parent="Env" unique_id=837812619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.893, 0)
 gi_lightmap_texel_scale = 0.1
 mesh = SubResource("BoxMesh_7ms32")
@@ -452,46 +450,6 @@ transform = Transform3D(-0.4045066, -0.14164454, -0.9034994, -0.2602148, 0.96492
 [node name="jungel_tree_08" parent="Env" unique_id=1753429346 instance=ExtResource("4_ruf1u")]
 transform = Transform3D(0.84010315, 0, 0.54242676, 0, 1, 0, -0.54242676, 0, 0.84010315, 2.8987865, -1.3226206, -9.646373)
 
-[node name="bush" parent="Env" unique_id=880438553 instance=ExtResource("5_egn2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5454683, 0, 4.457792)
-visible = false
-
-[node name="bush2" parent="Env" unique_id=1842224536 instance=ExtResource("5_egn2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9409494, 0, 3.3660498)
-visible = false
-
-[node name="bush3" parent="Env" unique_id=1293050157 instance=ExtResource("5_egn2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.462731, -9.536743e-07, -5.314378)
-visible = false
-
-[node name="bush4" parent="Env" unique_id=86136846 instance=ExtResource("5_egn2h")]
-transform = Transform3D(0.8523573, 0, 0.5229598, 0, 1, 0, -0.5229598, 0, 0.8523573, -2.667924, -9.536743e-07, -5.436364)
-visible = false
-
-[node name="bush5" parent="Env" unique_id=305483042 instance=ExtResource("5_egn2h")]
-transform = Transform3D(0.8523573, 0, 0.5229598, 0, 1, 0, -0.5229598, 0, 0.8523573, 3.8795295, -9.536743e-07, -5.0683923)
-visible = false
-
-[node name="bush6" parent="Env" unique_id=1538734182 instance=ExtResource("5_egn2h")]
-transform = Transform3D(0.8523573, 0, 0.5229598, 0, 1, 0, -0.5229598, 0, 0.8523573, 5.666996, -1.9073486e-06, 3.9331374)
-visible = false
-
-[node name="bush7" parent="Env" unique_id=63764050 instance=ExtResource("5_egn2h")]
-transform = Transform3D(0.8523573, 0, 0.5229598, 0, 1, 0, -0.5229598, 0, 0.8523573, 5.600379, -1.9073486e-06, 4.989474)
-visible = false
-
-[node name="bush8" parent="Env" unique_id=2113891313 instance=ExtResource("5_egn2h")]
-transform = Transform3D(0.9995484, 0, 0.03005004, 0, 1, 0, -0.03005004, 0, 0.9995484, 3.5707173, -1.0159969, 6.0653043)
-visible = false
-
-[node name="bush9" parent="Env" unique_id=750960538 instance=ExtResource("5_egn2h")]
-transform = Transform3D(0.9995484, 0, 0.03005004, 0, 1, 0, -0.03005004, 0, 0.9995484, 4.748404, -0.70087385, 5.479719)
-visible = false
-
-[node name="bush10" parent="Env" unique_id=263133454 instance=ExtResource("5_egn2h")]
-transform = Transform3D(0.9995484, 0, 0.03005004, 0, 1, 0, -0.03005004, 0, 0.9995484, 2.5020523, -0.70087385, 5.1368895)
-visible = false
-
 [node name="momument" parent="Env" unique_id=1469856937 instance=ExtResource("6_i2d4m")]
 transform = Transform3D(0.7696218, 0, -1.8459909, 0, 2, 0, 1.8459909, 0, 0.7696218, -5.004555, 0.49693966, -5.149027)
 
@@ -505,7 +463,7 @@ transform = Transform3D(-1.5163506, 2.3195336, -7.5046964, 1.9759231, 7.510116, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8872247, 0.49689913, -5.08597)
 
 [node name="JunglePlant2" parent="Env" unique_id=620267230 instance=ExtResource("7_6ii85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2345066, 0.49689913, 4.4760604)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2345066, 0.49689913, 5.2374053)
 
 [node name="JunglePlant4" parent="Env" unique_id=1825046548 instance=ExtResource("7_6ii85")]
 transform = Transform3D(0.9495295, 0, -0.31367758, 0, 1, 0, 0.31367758, 0, 0.9495295, -2.5872855, -0.2908206, 7.1439075)
@@ -531,23 +489,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.846463, 0.4500005, 4.595546
 [node name="JunglePlant_small2" parent="Env" unique_id=752051069 instance=ExtResource("8_ruf1u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6191664, 0.65608835, 5.1922464)
 
-[node name="stone_v1" parent="Env" unique_id=1129045759 instance=ExtResource("9_egn2h")]
-transform = Transform3D(0.2763834, -0.3058757, 0.9110722, 0.24699035, 0.9387641, 0.24024561, -0.9287669, 0.15862611, 0.33500707, -0.43486023, -0.78509736, 5.8728423)
+[node name="Stones" type="Node3D" parent="Env" unique_id=1877690948]
 
-[node name="stone_v2" parent="Env" unique_id=1554135248 instance=ExtResource("9_egn2h")]
-transform = Transform3D(0.9082843, -0.13789009, -0.3949759, 0.41749206, 0.23820016, 0.87690437, -0.026833013, -0.9613777, 0.27392155, -5.833392, -0.78509736, -0.32892895)
+[node name="jungle_stone_01" parent="Env/Stones" unique_id=1734913509 instance=ExtResource("14_cxf2i")]
+transform = Transform3D(0.6052861, 0.7564017, -0.24796213, -0.6999454, 0.6541074, 0.28674033, 0.37908474, 0, 0.925362, -5.686955, 0.06186235, 0.13277334)
 
-[node name="stone_v4" parent="Env" unique_id=1228102946 instance=ExtResource("9_egn2h")]
-transform = Transform3D(0.6025513, -0.56127715, 0.56736225, 0.05923456, 0.7404002, 0.669551, -0.7958789, -0.36983138, 0.47937623, -5.4731016, -0.72918224, 0.5170995)
+[node name="jungle_stone_02" parent="Env/Stones" unique_id=155172310 instance=ExtResource("14_cxf2i")]
+transform = Transform3D(0.3121582, -0.26953, -0.91099435, 0.36193928, 0.92033434, -0.14827247, 0.87838316, -0.28344023, 0.38484338, -5.686955, 0.05076945, -1.3356256)
 
-[node name="stone_v5" parent="Env" unique_id=569970140 instance=ExtResource("9_egn2h")]
-transform = Transform3D(0.6025513, -0.56127715, 0.56736225, 0.05923456, 0.7404002, 0.669551, -0.7958789, -0.36983138, 0.47937623, -6.168032, -0.72918224, 5.281644)
+[node name="jungle_stone_03" parent="Env/Stones" unique_id=1609020016 instance=ExtResource("14_cxf2i")]
+transform = Transform3D(0.739126, -0.48585087, -1.2114629, 0.5429089, 1.3805014, -0.2224087, 1.1869891, -0.32888392, 0.8560912, -0.587031, 0.05076945, 6.1504383)
 
-[node name="stone_v6" parent="Env" unique_id=1172400431 instance=ExtResource("9_egn2h")]
-transform = Transform3D(0.6025513, -0.56127715, 0.56736225, 0.05923456, 0.7404002, 0.669551, -0.7958789, -0.36983138, 0.47937623, 4.8613415, -1.8217359, -8.597502)
+[node name="jungle_stone_07" parent="Env/Stones" unique_id=2102142162 instance=ExtResource("14_cxf2i")]
+transform = Transform3D(0.739126, -0.48585087, -1.2114629, 0.5429089, 1.3805014, -0.2224087, 1.1869891, -0.32888392, 0.8560912, 6.171003, -0.5842416, 1.5865395)
 
-[node name="stone_v3" parent="Env" unique_id=1295321103 instance=ExtResource("10_i2d4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -0.6, 5.5)
+[node name="jungle_stone_08" parent="Env/Stones" unique_id=1378512896 instance=ExtResource("14_cxf2i")]
+transform = Transform3D(-1.1376028, 0.8814461, -0.4229818, 0.8390247, 1.2133126, 0.2718626, 0.50189495, -0.030413955, -1.413215, 5.8824425, -0.35784858, -0.099577904)
+
+[node name="jungle_stone_04" parent="Env/Stones" unique_id=719619263 instance=ExtResource("14_cxf2i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1909614, -0.33970213, 5.434397)
+
+[node name="jungle_stone_05" parent="Env/Stones" unique_id=765040582 instance=ExtResource("14_cxf2i")]
+transform = Transform3D(0.65126145, 0.6888875, 0.31826502, -0.22685994, 0.57696706, -0.7846297, -0.72415, 0.4387974, 0.5320374, -6.4627337, 0.1032331, 4.793236)
+
+[node name="jungle_stone_06" parent="Env/Stones" unique_id=1402131534 instance=ExtResource("14_cxf2i")]
+transform = Transform3D(2, 0, 0, 0, 1.4772872, 1.3481923, 0, -1.3481923, 1.4772872, 5.33896, -1.454468, -8.714186)
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1090473868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
