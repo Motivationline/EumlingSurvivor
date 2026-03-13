@@ -14,6 +14,11 @@ signal spawn_finished
 @export var spawn_position: Marker3D
 @export var offset_distance: float = 0
 
+## Only for stuff that applies if the spawned entity is a projectile
+@export_category("Projectiles")
+## By how much should the entities base damage (if available) be multiplied if the spawned entity is a projectile.
+@export var damage_multiplier: float = 1.0
+
 @export_category("Burst")
 @export var entity_to_spawn: PackedScene
 @export_range(0, 100) var amount_of_spawns: int = 1
@@ -112,3 +117,5 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 			target_strategy.get_target_position(_relative_to) if (target_strategy) else _relative_to.global_position - _relative_to.basis.z,
 			_parent
 		)
+		if "damage" in _parent:
+			instance.damage = _parent.damage * damage_multiplier

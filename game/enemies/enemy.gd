@@ -15,6 +15,8 @@ class_name Enemy
 		# TODO: add damage number popup
 ## How fast this entity moves when it moves
 @export_range(0, 100, 0.1) var speed: float = 1
+## How much damage should this entity deal?
+@export var damage: float = 10
 
 @export_category("Base Functionality")
 ## ignores enemy when for level finish
@@ -36,7 +38,11 @@ class_name Enemy
 @onready var visuals: Node3D = $Visuals
 @onready var vulnerability_display: VulnerabilityDisplay = $VulnerabilityDisplay
 
-var max_health: float
+var max_health: float:
+	set(value):
+		if value != max_health and status_visuals:
+			status_visuals.max_health = value
+		max_health = value
 var reset_timer: Timer
 var convince_progress: float = 0
 
