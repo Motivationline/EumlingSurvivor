@@ -5,15 +5,19 @@ class_name EntitySpawner
 signal burst_finished
 signal spawn_finished
 
-## If set, spawns the entity as a child of the relevant parent, to the level otherwise. [color=red]Does not affect the position or rotation, only the parent[/color]
+## If set, spawns the entity as a child of the relevant parent, to the level otherwise.  
+## [color=red]Does not affect the position or rotation, only the parent.[/color]
+## If true, the spawned entity will move together with the parent entity
 @export var spawn_local: bool = false
 @export var ignore_relative_rotation: bool = false
+## Where should the entity be spawned (+ offset)
+@export var spawn_position: Marker3D
+@export var offset_distance: float = 0
 
 @export_category("Burst")
 @export var entity_to_spawn: PackedScene
 @export_range(0, 100) var amount_of_spawns: int = 1
 @export_range(0, 60) var time_between_entities: float = 0
-@export var offset_distance: float = 0
 
 @export var is_random_delay: bool
 @export var min_random_delay: float = 30
@@ -90,6 +94,8 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 			printerr("%s attached to %s tried to spawn on the level but level not found." % [name, _parent.name])
 			return
 	
+	if spawn_position:
+		_relative_to = spawn_position
 	instance.global_position = _relative_to.global_position
 	if !ignore_relative_rotation:
 		instance.global_rotation = _relative_to.global_rotation
