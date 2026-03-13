@@ -7,10 +7,9 @@ var counter:int = 0
 var playback :AudioStreamPlaybackPolyphonic
 func _ready():
 	audio_stream_player.play()
-	audio_stream_player
 	playback  = audio_stream_player.get_stream_playback()
 
-func play(from_position = 0.0) -> void:
+func play(_from_position = 0.0) -> void:
 	playback.play_stream(audio_streams[counter])
 	counter+= 1
 	
