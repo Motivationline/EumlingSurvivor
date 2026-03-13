@@ -1,9 +1,9 @@
 class_name MusicPlayer extends AudioStreamPlayer
 
 
-func _init(_song: AudioStreamInteractive):
-	stream = _song
-	
+func _init(song: AudioStreamInteractive):
+	stream = song
+
 
 func start_playback():
 	if stream:

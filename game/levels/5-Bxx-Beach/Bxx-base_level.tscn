@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://do4ujdcqq0nii" path="res://addons/world_wind/world_wind.gd" id="9_yuro1"]
 [ext_resource type="PackedScene" uid="uid://bli8pja4rp1qc" path="res://assets/models/5-beach/palm1_prefab.tscn" id="10_c8p5i"]
 [ext_resource type="Script" uid="uid://ce3uevtwoe7te" path="res://global/settings/graphics_settings_component_global_illumination.gd" id="10_yuro1"]
-[ext_resource type="Shader" uid="uid://38jq7gal13tn" path="res://game/levels/6-Vxx-Volcano/shader/water_ripples_shader_.tres" id="12_n7ths"]
+[ext_resource type="Shader" uid="uid://38jq7gal13tn" path="res://game/levels/6-Vxx-Volcano/Shader/water_ripples_shader_.tres" id="12_n7ths"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
 vertices = PackedVector3Array(-4.5, 1, -4.5, -4.5, 1, 4.5, 4.5, 1, 4.5, 4.5, 1, -4.5)
@@ -354,6 +354,7 @@ albedo_color = Color(0, 0.2750001, 0.5, 1)
 script = ExtResource("1_nf22f")
 player_spawn = NodePath("PlayerSpawnMarker")
 goal_area = NodePath("GoalArea")
+music = 2
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=843824706]
 navigation_mesh = SubResource("NavigationMesh_wbp8f")

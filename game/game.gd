@@ -60,7 +60,7 @@ func load_level():
 		new_level.spawn_player(player)
 		new_level.level_finished.connect(level_finished)
 		new_level.level_ended.connect(level_ended)
-		GlobalMusicManager.request_music(new_level.music, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [4,0], true)
+		GlobalMusicManager.request_music(new_level.music, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [4,0])
 
 
 		currently_loaded_level = new_level
@@ -81,7 +81,7 @@ func level_ended():
 
 func return_to_main_menu():
 	scene_fade_animation_player.play("fade")
-	GlobalMusicManager.request_music(SongList.TRACK.MENU, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [2,0], true)
+	GlobalMusicManager.request_music(SongList.TRACK.MENU, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [2,0])
 	await scene_fade_animation_player.animation_finished
 	faded_to_black = true
 	levels_to_load.clear()

@@ -4,8 +4,10 @@ enum BUS_ID {MASTER, MUSIC, SFX_ALL, SFX_ENEMIES, SFX_UI, ENVIRONMENT}
 
 @onready var init_bus_volumes:Array[float] 
 var active_player:MusicPlayer
+var env_noise_player:AudioStreamPlayer
 var fading_player:MusicPlayer
 var current_track: SongList.TRACK
+var current_noise: int
 var is_playing:bool = false
 
 
@@ -23,6 +25,11 @@ var active_tweens: Array[Array]
 func _ready():
 	for i in AudioServer.bus_count:
 		init_bus_volumes.append(AudioServer.get_bus_volume_db(i))
+		
+	var noise_player:= AudioStreamPlayer.new()
+	env_noise_player = noise_player
+	env_noise_player.bus = "Environmet"
+	add_child(env_noise_player)
 
 
 func fade_bus_volume(_bus_id:BUS_ID, _duration:float, _target_db:float = 30, _to_init_volume:bool = false) -> void:
@@ -45,7 +52,7 @@ func fade_bus_volume(_bus_id:BUS_ID, _duration:float, _target_db:float = 30, _to
 	await tween.finished
 	active_tweens.erase([TWEEN_TYPES.BUS_FADE,tween, _bus_id])
 
-func fade_player_volume(_duration:float, _target_volume_db:float = -60, _player:MusicPlayer = active_player, _stop:bool = false) -> void: ## fades the volume of [param _player] by [param _target_volume_db] in a span of time equal to [param _duration] in seconds. Will queue [param _player] to be freed if [param _stop] is true. 
+func fade_player_volume(_duration:float, _target_volume_db:float = -60, _player:AudioStreamPlayer = active_player, _stop:bool = false) -> void: ## fades the volume of [param _player] by [param _target_volume_db] in a span of time equal to [param _duration] in seconds. Will queue [param _player] to be freed if [param _stop] is true. 
 	for tween in active_tweens:
 		if tween.has(_player):
 
@@ -67,53 +74,68 @@ func fade_player_volume(_duration:float, _target_volume_db:float = -60, _player:
 	
 
 
-func make_music_player(_song:SongList.TRACK) -> MusicPlayer:
-	var new_stream_player := MusicPlayer.new(SongList.get_song_resource(_song))
+func make_music_player(song:SongList.TRACK) -> MusicPlayer:
+	var new_stream_player := MusicPlayer.new(SongList.get_song_resource(song))
 	new_stream_player.bus = "Music"
 	add_child(new_stream_player)
 	return new_stream_player
-	
-	
-## Request music track given by [param _track_name] with transition defined by [param _transition] [br]
+
+
+
+## Request music track given by [param track_name] with transition defined by [param transition] [br]
 ## Transitions take different paramters in the Array [param _transition_parameters] depending on type: [br]
 ## CROSSFADE takes one float defining its duration, [br]
 ## FADE_AND_START takes one float for the duration of the fade_player_volume out and one float for the offset of the incoming track start [br]
 ## INSTANT doesn't need parameters
-func request_music(_track_name:SongList.TRACK, _transition : TRANSITIONS, _transition_paramteres:Array = [], _with_env_nose: bool = false, _custom_transition:StringName = ""):
-	
-	
+func request_music(track_name:SongList.TRACK, transition : TRANSITIONS, transition_paramteres:Array = []):
 	if not is_playing:
-		active_player = make_music_player(_track_name)
+		active_player = make_music_player(track_name)
 		is_playing = true
 		active_player.start_playback()
 		
 		
-	elif !current_track == _track_name:
-		
+	elif !current_track == track_name:
 		fading_player = active_player
-		active_player = make_music_player(_track_name)
+		active_player = make_music_player(track_name)
 		
+
+
+		match transition:
+			TRANSITIONS.CROSSFADE:
+				fade_player_volume(transition_paramteres[0], -60 ,fading_player, true)
+				active_player.volume_db = -60
+				active_player.start_playback()
+				fade_player_volume(transition_paramteres[0], 0, active_player)
+				
+			TRANSITIONS.FADE_AND_START:
+				fade_player_volume(transition_paramteres[0], -60 ,fading_player, true)
+				await get_tree().create_timer(transition_paramteres[1]).timeout
+				active_player.start_playback()
+				
+			TRANSITIONS.INSTANT:
+				active_player.start_playback()
+				fading_player.stop()
+				fading_player.queue_free()
+				
+	var noise = SongList.get_noise_of_song(track_name)
+	if noise != current_noise:
+
 		
-		if _custom_transition != "":
-			pass
+		if noise == -1:
+			fade_player_volume(2,-60,env_noise_player)
 		else:
-			match _transition:
-				TRANSITIONS.CROSSFADE:
-					fade_player_volume(_transition_paramteres[0], -60 ,fading_player, true)
-					active_player.volume_db = -60
-					active_player.start_playback()
-					fade_player_volume(_transition_paramteres[0], 0, active_player)
-					
-				TRANSITIONS.FADE_AND_START:
-					fade_player_volume(_transition_paramteres[0], -60 ,fading_player, true)
-					await get_tree().create_timer(_transition_paramteres[1]).timeout
-					active_player.start_playback()
-					
-				TRANSITIONS.INSTANT:
-					active_player.start_playback()
-					fading_player.stop()
-					fading_player.queue_free()
-	current_track = _track_name
+			if current_noise == -1:
+				fade_player_volume(0.2,-60,env_noise_player)
+				await get_tree().create_timer(0.2).timeout
+			env_noise_player.stream = SongList.get_noise_resource(noise)
+			env_noise_player.play()
+			fade_player_volume(0.4,0,env_noise_player)
+			
+		current_noise = noise
+	current_track = track_name
+	
+		
+	
 
 func fade_out(_duration:float,_stop:bool = false) -> void: ## Fades out the currently playing music track. [param _stop] will stop playback after the fade is complete.
 	fade_player_volume(_duration, -60, active_player, _stop)
