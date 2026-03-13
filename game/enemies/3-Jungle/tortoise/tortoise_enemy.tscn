@@ -6,13 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_c3oc6"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_eq0kn"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="5_4kafm"]
-[ext_resource type="PackedScene" uid="uid://c03op2rrwafaq" path="res://game/enemies/3-jungle/tortoise/tortoise_projectile.tscn" id="5_eux68"]
+[ext_resource type="PackedScene" uid="uid://c03op2rrwafaq" path="res://game/enemies/3-Jungle/tortoise/tortoise_projectile.tscn" id="5_eux68"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_lwqy1"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="7_8vp05"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="9_l76kt"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="10_84v5a"]
 [ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="11_ql6kd"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="12_scaj3"]
+[ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="14_mc1rk"]
+[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="15_7y1eb"]
 [ext_resource type="AudioStream" uid="uid://cq74ndddkno7h" path="res://assets/characters/enemies/tortoise/sounds/shake_1.wav" id="16_0jpdq"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="16_gjal0"]
 [ext_resource type="AudioStream" uid="uid://dyx8o67l68hd0" path="res://assets/characters/enemies/tortoise/sounds/shake_2.wav" id="17_mc1rk"]
@@ -101,17 +103,18 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=349898979]
 script = ExtResource("5_lwqy1")
+offset_distance = 0.2
 entity_to_spawn = ExtResource("5_eux68")
 amount_of_spawns = 5
 time_between_entities = 0.25
-offset_distance = 0.2
 rotation_strategy = SubResource("Resource_84v5a")
 time_between_bursts = 0.2
 amount_of_bursts = 2
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=1646321378]
+[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=1646321378 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("9_l76kt")
+sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = "Death"
 needs_to_be_persistent = true
 
@@ -121,9 +124,9 @@ metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
 [node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=1658945836]
 script = ExtResource("5_lwqy1")
+offset_distance = 0.2
 entity_to_spawn = ExtResource("5_eux68")
 amount_of_spawns = 15
-offset_distance = 0.2
 rotation_strategy = SubResource("Resource_scaj3")
 time_between_bursts = 0.2
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
