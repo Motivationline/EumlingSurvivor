@@ -43,7 +43,6 @@ func enter() -> void:
 		for key in animation_trigger.keys():
 			anim_player.set(key, animation_trigger.get(key))
 	if consume_resource_on_enter: consume_resource()
-	pass
 
 ## Called every time the state is no longer the active state
 func exit() -> void:
