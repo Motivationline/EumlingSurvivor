@@ -5,10 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_2s71f"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="3_xepbt"]
 [ext_resource type="Script" uid="uid://b12g0nyew0m0i" path="res://global/settings/graphics_settings_component_shadow.gd" id="8_xepbt"]
+[ext_resource type="PackedScene" uid="uid://bb6f45cgpgqwg" path="res://assets/models/5-beach/crate/crate_v_2.tscn" id="9_eyygh"]
 [ext_resource type="Script" uid="uid://do4ujdcqq0nii" path="res://addons/world_wind/world_wind.gd" id="9_yuro1"]
 [ext_resource type="PackedScene" uid="uid://bli8pja4rp1qc" path="res://assets/models/5-beach/palm1_prefab.tscn" id="10_c8p5i"]
 [ext_resource type="Script" uid="uid://ce3uevtwoe7te" path="res://global/settings/graphics_settings_component_global_illumination.gd" id="10_yuro1"]
-[ext_resource type="Shader" uid="uid://38jq7gal13tn" path="res://game/levels/6-Vxx-Volcano/Shader/water_ripples_shader_.tres" id="12_n7ths"]
+[ext_resource type="Shader" uid="uid://38jq7gal13tn" path="res://game/levels/6-Vxx-Volcano/shader/water_ripples_shader_.tres" id="12_n7ths"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
 vertices = PackedVector3Array(-4.5, 1, -4.5, -4.5, 1, 4.5, 4.5, 1, 4.5, 4.5, 1, -4.5)
@@ -443,6 +444,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wvf3w")
 
 [node name="palm_v1" parent="Env/Trees" unique_id=566563813 instance=ExtResource("10_c8p5i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.19281, -0.21057129, -4.769043)
+
+[node name="Crates" type="Node3D" parent="Env" unique_id=1145411901]
+
+[node name="crate_v2" parent="Env/Crates" unique_id=399819802 instance=ExtResource("9_eyygh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3948503, -0.05856426, 6.3709)
 
 [node name="LightmapGI" type="LightmapGI" parent="." unique_id=1173002347]
 environment_mode = 3
