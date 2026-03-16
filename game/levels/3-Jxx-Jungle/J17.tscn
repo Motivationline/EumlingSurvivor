@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cejk33bx3mly8"]
+
+[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_f2tnl"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_a62oy"]
+[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_xdtyy"]
+[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-Jungle/bomber/bomber_enemy.tscn" id="4_h3tdc"]
+[ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="5_44sxq"]
+
+[node name="Level" unique_id=1578328013 instance=ExtResource("1_f2tnl")]
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(974191959) index="1" unique_id=1720295461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_a62oy")
+cell_size = Vector3(0.5, 0.5, 0.5)
+data = {
+"cells": PackedInt32Array(65530, 65531, 655361, 65531, 65531, 1048577, 65532, 65532, 1, 65533, 65532, 1441793, 65533, 65533, 655361, 65532, 65533, 1048577, 65531, 65533, 1, 65531, 65532, 1441793, 65530, 65532, 655361, 65529, 65532, 1048577, 65529, 65531, 1048577, 6, 3, 1, 6, 4, 1441793, 7, 4, 655361, 7, 5, 1048577, 7, 6, 1, 6, 6, 1441793, 6, 5, 655361, 5, 65528, 1048577, 6, 65528, 1, 6, 65529, 1441793, 7, 65529, 655361)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Env" parent="." index="5" unique_id=1339304514]
+visible = false
+
+[node name="Traps" type="Node3D" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=488252749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -2.5)
+
+[node name="SpikeTrap" parent="Enemies/Traps" index="0" unique_id=955778667 instance=ExtResource("3_xdtyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.25)
+
+[node name="SpikeTrap2" parent="Enemies/Traps" index="1" unique_id=1115422052 instance=ExtResource("3_xdtyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0.25)
+
+[node name="SpikeTrap3" parent="Enemies/Traps" index="2" unique_id=226370508 instance=ExtResource("3_xdtyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.25)
+
+[node name="SpikeTrap4" parent="Enemies/Traps" index="3" unique_id=1236282281 instance=ExtResource("3_xdtyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.75)
+
+[node name="SpikeTrap5" parent="Enemies/Traps" index="4" unique_id=1808253612 instance=ExtResource("3_xdtyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0.75)
+
+[node name="SpikeTrap6" parent="Enemies/Traps" index="5" unique_id=69000380 instance=ExtResource("3_xdtyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.75)
+
+[node name="Bomber" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1188674474 instance=ExtResource("4_h3tdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -2.5)
+
+[node name="Bomber2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1623141692 instance=ExtResource("4_h3tdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 2.5)
+
+[node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("5_44sxq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")

@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bar2qy0w8niee"]
+
+[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_4bkoy"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_0k7s2"]
+[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_st2qo"]
+[ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="4_isvlq"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="4_st2qo"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_st2qo"]
+vertices = PackedVector3Array(-0.5, 1, 0.5, -0.5, 1, 0.25, -0.75, 1, 0.25, -1.75, 1, 3, -1.25, 1, -0.25, -1.25, 1, -0.5, -1.5, 1, -0.5, -3.5, 1, 1.75, -1.5, 1, -1, -1.25, 1, -1, -1.25, 1, -1.25, 1.75, 1, -3.25, 0.5, 1, -1.5, 0.5, 1, -1.25, 0.75, 1, -1.25, 2, 1, -3, 2, 1, -3.25, 0.75, 1, -1, 1, 1, -1, 1, 1, -0.75, 1.25, 1, -0.75, 2.25, 1, -3, 1.25, 1, -0.5, 1.5, 1, -0.5, -4.25, 1, 2, -4, 1, 1.75, -0.75, 1, -4.5, -4.5, 1, -4.5, 1.75, 1, -4, 2, 1, -4, 2, 1, -4.25, 1, 1, -4.5, -4, 1, 2, -3.5, 1, 2, -3.25, 1, 2, -3.25, 1, 2.25, -3, 1, 2.25, -2.5, 1, 3, -2.5, 1, 3.25, -2.25, 1, 3.25, -2.25, 1, 3, -0.75, 1, -1.5, -1.75, 1, 3.25, -1.5, 1, 3.25, -0.25, 1, 0.5, -0.75, 1, -1.25, -4.5, 1, 2.5, -4.25, 1, 2.5, -0.75, 1, -0.25, 2.75, 1, -4.25, 2.75, 1, -4.5, -3, 1, 3, 1, 1, -4.75, -0.75, 1, -4.75, -1.5, 1, 3.5, 1.5, 1, 0, 1.25, 1, 0, 1.25, 1, 0.25, 1, 1, 0.25, 1, 1, 0.5, -1.5, 1, 4, -1.75, 1, 4, -1.75, 1, 4.25, 4.75, 1, 4.75, -4, 1, 4.5, -4, 1, 4.25, -4.25, 1, 4.25, -4.5, 1, 4.75, 4.25, 1, -4.5, 4.25, 1, -4.25, 4.5, 1, -4.25, 4.75, 1, -4.5, -3.25, 1, 4.5, 4.5, 1, -3.5, 4.25, 1, -3.5, 4.25, 1, -3.25, 4.5, 1, -3.25, 3.5, 1, -1.75, 4, 1, -1.75, 4.25, 1, -2, 4, 1, -2, 3.5, 1, -2, 3.25, 1, -2, 3.25, 1, -2.25, 3, 1, -2.25, 3, 1, -3, 3.25, 1, -3, 3.25, 1, -3.25, 2.75, 1, -3.25, 4.5, 1, -2.75, 2.75, 1, -3, 4.25, 1, -2.75, -3.25, 1, 4.25, -4.25, 1, 3.25, -4.5, 1, 3.25, 0.25, 1.5, -0.25, 0.25, 1.5, -0.5, 0, 1.5, -0.5, -0.25, 1.5, -0.25, -0.25, 1.5, -1, 0, 1.5, -0.75, 0.25, 1.5, -0.75, 0.25, 1.5, -1)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(10, 9, 8), PackedInt32Array(16, 15, 11), PackedInt32Array(11, 15, 12), PackedInt32Array(12, 15, 14), PackedInt32Array(12, 14, 13), PackedInt32Array(17, 14, 18), PackedInt32Array(18, 14, 15), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 15), PackedInt32Array(20, 15, 21), PackedInt32Array(22, 20, 23), PackedInt32Array(23, 20, 21), PackedInt32Array(25, 24, 8), PackedInt32Array(8, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(25, 32, 24), PackedInt32Array(34, 33, 7), PackedInt32Array(36, 35, 34), PackedInt32Array(40, 39, 37), PackedInt32Array(37, 39, 38), PackedInt32Array(26, 41, 10), PackedInt32Array(42, 3, 43), PackedInt32Array(43, 3, 0), PackedInt32Array(43, 0, 44), PackedInt32Array(41, 45, 10), PackedInt32Array(47, 46, 24), PackedInt32Array(24, 46, 27), PackedInt32Array(48, 2, 4), PackedInt32Array(4, 2, 7), PackedInt32Array(7, 2, 34), PackedInt32Array(34, 2, 3), PackedInt32Array(49, 30, 50), PackedInt32Array(50, 30, 31), PackedInt32Array(37, 51, 36), PackedInt32Array(7, 25, 6), PackedInt32Array(6, 25, 8), PackedInt32Array(26, 10, 8), PackedInt32Array(40, 37, 36), PackedInt32Array(28, 11, 31), PackedInt32Array(31, 11, 26), PackedInt32Array(26, 11, 12), PackedInt32Array(26, 12, 41), PackedInt32Array(3, 40, 36), PackedInt32Array(26, 53, 31), PackedInt32Array(31, 53, 52), PackedInt32Array(44, 54, 43), PackedInt32Array(3, 36, 34), PackedInt32Array(57, 56, 55), PackedInt32Array(59, 58, 57), PackedInt32Array(61, 60, 62), PackedInt32Array(62, 60, 63), PackedInt32Array(65, 64, 66), PackedInt32Array(66, 64, 67), PackedInt32Array(69, 68, 70), PackedInt32Array(70, 68, 71), PackedInt32Array(72, 62, 67), PackedInt32Array(67, 62, 63), PackedInt32Array(76, 75, 73), PackedInt32Array(73, 75, 74), PackedInt32Array(57, 77, 59), PackedInt32Array(59, 77, 78), PackedInt32Array(59, 78, 63), PackedInt32Array(59, 63, 60), PackedInt32Array(80, 79, 78), PackedInt32Array(78, 79, 63), PackedInt32Array(81, 77, 82), PackedInt32Array(82, 77, 23), PackedInt32Array(23, 77, 55), PackedInt32Array(83, 82, 84), PackedInt32Array(84, 82, 23), PackedInt32Array(86, 85, 87), PackedInt32Array(87, 85, 88), PackedInt32Array(76, 71, 89), PackedInt32Array(89, 71, 63), PackedInt32Array(88, 85, 90), PackedInt32Array(90, 85, 84), PackedInt32Array(91, 89, 79), PackedInt32Array(79, 89, 63), PackedInt32Array(72, 92, 62), PackedInt32Array(93, 66, 94), PackedInt32Array(94, 66, 67), PackedInt32Array(54, 44, 60), PackedInt32Array(60, 44, 59), PackedInt32Array(57, 55, 77), PackedInt32Array(73, 70, 71), PackedInt32Array(90, 84, 21), PackedInt32Array(21, 84, 23), PackedInt32Array(64, 72, 67), PackedInt32Array(76, 73, 71), PackedInt32Array(96, 95, 97), PackedInt32Array(97, 95, 98), PackedInt32Array(100, 97, 99), PackedInt32Array(99, 97, 98), PackedInt32Array(101, 100, 102), PackedInt32Array(102, 100, 99)]
+agent_radius = 0.25
+agent_max_climb = 0.0
+edge_max_error = 0.25
+
+[node name="Level" unique_id=1578328013 instance=ExtResource("1_4bkoy")]
+
+[node name="NavigationRegion3D" parent="." index="0" unique_id=974191959]
+navigation_mesh = SubResource("NavigationMesh_st2qo")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="1" unique_id=303249726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_0k7s2")
+cell_size = Vector3(0.5, 0.5, 0.5)
+data = {
+"cells": PackedInt32Array(65528, 4, 1, 65528, 5, 1441793, 65528, 6, 1048577, 65528, 7, 1, 65529, 7, 1441793, 65530, 7, 655361, 65531, 7, 1048577, 5, 65528, 1441793, 4, 65528, 1, 6, 65528, 655361, 7, 65528, 1048577, 7, 65529, 1, 7, 65530, 1441793, 7, 65531, 655361, 65535, 65534, 655361, 0, 65534, 589825, 65535, 65535, 1, 0, 65535, 1441793, 65534, 65534, 1507329, 1, 65535, 1376257)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Cube" parent="NavigationRegion3D/base_floor_10x10" parent_id_path=PackedInt32Array(257884405) index="0" unique_id=1334605973]
+surface_material_override/0 = null
+
+[node name="Traps1" type="Node3D" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=649626883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1.75)
+
+[node name="SpikeTrap2" parent="Enemies/Traps1" index="0" unique_id=1383087380 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0.5)
+
+[node name="SpikeTrap3" parent="Enemies/Traps1" index="1" unique_id=1677841730 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 1)
+
+[node name="SpikeTrap6" parent="Enemies/Traps1" index="2" unique_id=508655573 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 1.5)
+
+[node name="SpikeTrap7" parent="Enemies/Traps1" index="3" unique_id=99124390 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 2)
+
+[node name="SpikeTrap10" parent="Enemies/Traps1" index="4" unique_id=1038167118 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 2.5)
+
+[node name="SpikeTrap14" parent="Enemies/Traps1" index="5" unique_id=1737606604 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, 2.5)
+
+[node name="SpikeTrap15" parent="Enemies/Traps1" index="6" unique_id=409866610 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 2.5)
+
+[node name="SpikeTrap18" parent="Enemies/Traps1" index="7" unique_id=1013508379 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 2.5)
+
+[node name="SpikeTrap19" parent="Enemies/Traps1" index="8" unique_id=1491171431 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 2.5)
+
+[node name="Traps2" type="Node3D" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=938137182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -2)
+
+[node name="SpikeTrap" parent="Enemies/Traps2" index="0" unique_id=955778667 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.25)
+
+[node name="SpikeTrap2" parent="Enemies/Traps2" index="1" unique_id=1108018265 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.75)
+
+[node name="SpikeTrap3" parent="Enemies/Traps2" index="2" unique_id=1698851890 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -1.25)
+
+[node name="SpikeTrap4" parent="Enemies/Traps2" index="3" unique_id=758640089 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -1.75)
+
+[node name="SpikeTrap5" parent="Enemies/Traps2" index="4" unique_id=1553992619 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -2.25)
+
+[node name="SpikeTrap6" parent="Enemies/Traps2" index="5" unique_id=407471667 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -2.25)
+
+[node name="SpikeTrap7" parent="Enemies/Traps2" index="6" unique_id=424476155 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -2.25)
+
+[node name="SpikeTrap8" parent="Enemies/Traps2" index="7" unique_id=1495789005 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -2.25)
+
+[node name="SpikeTrap9" parent="Enemies/Traps2" index="8" unique_id=1811558724 instance=ExtResource("3_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -2.25)
+
+[node name="SniperEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1534333626 instance=ExtResource("4_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+
+[node name="SniperEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="3" unique_id=151894942 instance=ExtResource("4_st2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("4_isvlq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")
