@@ -9,9 +9,6 @@ class_name Level
 ## An area that when entered by a player after the complete condition is achieved, triggers a "level cleared" call
 @export var goal_area: Area3D
 
-## Level difficulty is used to select levels appropriate to player progress
-@export_range(0, 3) var difficulty: int = 0
-
 @export var is_boss_level: bool = false
 
 @export var music:SongList.TRACK = SongList.TRACK.MENU

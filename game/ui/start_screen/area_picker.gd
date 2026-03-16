@@ -9,19 +9,35 @@ var areas = [
 	{
 		name = "Jungle",
 		folder = "3-Jxx-Jungle",
-		levels = ["J01", "J02", "J03", "J04", "J05", "J06", "J07", "J08"],
-		boss_levels = ["JB01", "JB02"],
+		levels = {
+			0: ["J11", "J12", "J13", "J14"],
+			1: ["J01", "J02", "J03", "J04", "J05", "J06", "J07", "J08"],
+			2: ["J01", "J02", "J03", "J04", "J05", "J06", "J07", "J08"],
+			3: ["J01", "J02", "J03", "J04", "J05", "J06", "J07", "J08"],
+		},
+		boss_levels = {
+			0: "JB01",
+			1: "JB02",
+			2: "JB02",
+			3: "JB02",
+		},
 	},
-	# {
-	# 	name = "Volcano",
-	# 	folder = "6-Vxx-Volcano",
-	# 	levels = ["V01"],
-	# },
-	# {
-	# 	name = "Testing",
-	# 	folder = "",
-	# 	levels = ["001", "002", "003", "004", "005"],
-	# },
+	{
+		name = "Volcano",
+		folder = "6-Vxx-Volcano",
+		levels = {
+			0: ["V01", "V01", "V03", "V04"],
+			1: ["V01", "V02", "V03", "V04", "V05", "V06", "V07", "V08"],
+			2: ["V01", "V02", "V03", "V04", "V05", "V06", "V07", "V08"],
+			3: ["V01", "V02", "V03", "V04", "V05", "V06", "V07", "V08"],
+		},
+		boss_levels = {
+			0: "VB01",
+			1: "VB01",
+			2: "VB01",
+			3: "VB01",
+		},
+	},
 ]
 
 func _ready() -> void:
@@ -32,30 +48,28 @@ func setup():
 	# for child in grid_container.get_children():
 	# 	grid_container.remove_child(child)
 	# 	child.queue_free()
-	
 	# for area in areas:
 	# 	var btn = Button.new()
 	# 	btn.text = area.name
 	# 	grid_container.add_child(btn)
 	# 	btn.pressed.connect(choose_area.bind(area))
-	
-	
 	show()
 
 func choose_area(area):
 	var level_names: Array[String] = []
-	var amount_levels = Data._active_mini_eumlings.size() + 3
+	var difficulty: int = Data._active_mini_eumlings.size()
+	var amount_levels = difficulty + 3
 	var folder_name: String = "res://game/levels/"
 	if area.folder:
-		folder_name +=  area.folder + "/"
-	var levels = area.levels.duplicate()
+		folder_name += area.folder + "/"
+	var levels = area.levels[difficulty].duplicate()
 	levels.shuffle()
 	for i in amount_levels:
 		if levels.size() == 0: break
 		var level = levels.pop_back()
 		if not level: break
 		level_names.append(folder_name + level + ".tscn")
-	var boss_level = area.boss_levels[clampi(Data._active_mini_eumlings.size(), 0, area.boss_levels.size() - 1)]
+	var boss_level = area.boss_levels[difficulty]
 	level_names.append(folder_name + boss_level + ".tscn")
 	area_chosen.emit(level_names)
 	
@@ -94,5 +108,5 @@ func find_file(file_name: String, folder_location: String = "res://game/levels")
 	return ""
 
 
-func _on_jungle_pressed() -> void:
-	choose_area(areas[0])
+func _on_area_clicked(index: int) -> void:
+	choose_area(areas[index])

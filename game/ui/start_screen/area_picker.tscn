@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dlxnvjne1irpy"]
 
 [ext_resource type="Script" uid="uid://dctuhox5lephu" path="res://game/ui/start_screen/area_picker.gd" id="1_i6bfq"]
-[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="2_27jtl"]
+[ext_resource type="Shader" path="res://assets/ui/pauseMenueBlurr.gdshader" id="2_27jtl"]
 [ext_resource type="Texture2D" uid="uid://47y0pme0fbl6" path="res://assets/ui/Roadsign.png" id="3_sj2mk"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_ga7dw"]
 
@@ -60,7 +60,7 @@ func _on_button_cancel_pressed() -> void:
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27jtl"]
 bg_color = Color(0.05882353, 0.05882353, 0.05882353, 0.8901961)
 
-[node name="AreaPicker" type="Control"]
+[node name="AreaPicker" type="Control" unique_id=611539599]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,14 +69,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i6bfq")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=308826198]
 material = SubResource("ShaderMaterial_bi2ca")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(48.197548, 27.088264)
 
-[node name="Sign" type="TextureRect" parent="."]
+[node name="Sign" type="TextureRect" parent="." unique_id=392689620]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -89,7 +89,7 @@ grow_horizontal = 2
 scale = Vector2(0.2894374, 0.2894374)
 texture = ExtResource("3_sj2mk")
 
-[node name="Jungle" type="Button" parent="."]
+[node name="Jungle" type="Button" parent="." unique_id=960908343]
 layout_mode = 0
 offset_left = 704.0
 offset_top = 251.0
@@ -106,7 +106,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_dmnx1")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qr4w3")
 text = "Jungle"
 
-[node name="Vulcano" type="Button" parent="."]
+[node name="Vulcano" type="Button" parent="." unique_id=1465842258]
 layout_mode = 0
 offset_left = 743.16156
 offset_top = 599.51526
@@ -123,7 +123,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_mnp3q")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h2khj")
 text = "Vulcano"
 
-[node name="DebugButton" type="Button" parent="."]
+[node name="DebugButton" type="Button" parent="." unique_id=333295909]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -134,7 +134,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "Select Level Directly (Debug)"
 
-[node name="LevelChoiceOverlay" type="Control" parent="."]
+[node name="LevelChoiceOverlay" type="Control" parent="." unique_id=1455126237]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -144,7 +144,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_i6bfq")
 
-[node name="PanelContainer" type="PanelContainer" parent="LevelChoiceOverlay"]
+[node name="PanelContainer" type="PanelContainer" parent="LevelChoiceOverlay" unique_id=951737336]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,18 +153,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_27jtl")
 
-[node name="CenterContainer" type="CenterContainer" parent="LevelChoiceOverlay/PanelContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="LevelChoiceOverlay/PanelContainer" unique_id=994684176]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelChoiceOverlay/PanelContainer/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelChoiceOverlay/PanelContainer/CenterContainer" unique_id=1459277429]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer" unique_id=373146821]
 layout_mode = 2
 text = "Level Select"
 horizontal_alignment = 1
 
-[node name="DebugLevelInput" type="LineEdit" parent="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer"]
+[node name="DebugLevelInput" type="LineEdit" parent="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer" unique_id=1695926626]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
@@ -172,17 +172,18 @@ placeholder_text = "level name, e.g. 001"
 alignment = 1
 expand_to_text_length = true
 
-[node name="ButtonConfirm" type="Button" parent="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer"]
+[node name="ButtonConfirm" type="Button" parent="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer" unique_id=1522776198]
 layout_mode = 2
 text = "confirm
 "
 
-[node name="ButtonCancel" type="Button" parent="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer"]
+[node name="ButtonCancel" type="Button" parent="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer" unique_id=806795412]
 layout_mode = 2
 text = "cancel
 "
 
-[connection signal="pressed" from="Jungle" to="." method="_on_jungle_pressed"]
+[connection signal="pressed" from="Jungle" to="." method="_on_area_clicked" binds= [0]]
+[connection signal="pressed" from="Vulcano" to="." method="_on_area_clicked" binds= [1]]
 [connection signal="pressed" from="DebugButton" to="." method="_on_debug_button_pressed"]
 [connection signal="text_submitted" from="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer/DebugLevelInput" to="LevelChoiceOverlay" method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer/ButtonConfirm" to="LevelChoiceOverlay" method="_on_button_confirm_pressed"]
