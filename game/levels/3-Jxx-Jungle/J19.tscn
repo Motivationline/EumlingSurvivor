@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cch1t3hg3mwq3"]
+
+[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_epqyv"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_fkdff"]
+[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="3_2okvr"]
+[ext_resource type="PackedScene" uid="uid://ddty5phcxxvsi" path="res://game/enemies/3-Jungle/bomb_berry_poison/bomb_berry_poison.tscn" id="4_mjw8v"]
+[ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="5_37nbn"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_fkdff"]
+vertices = PackedVector3Array(2.75, 1, 0.5, 2.5, 1, 0.5, 2.5, 1, 0.75, 1, 1, 2.5, 0.75, 1, 2.5, 0.75, 1, 2.75, 4.75, 1, 4.75, -0.5, 1, 2.75, -0.5, 1, 2.5, -0.75, 1, 2.5, -0.75, 1, 2.25, -1, 1, 2.25, -1.75, 1, 0.75, -2, 1, 0.75, -2, 1, 1, -1, 1, 1.75, -2.5, 1, 1, -2.5, 1, 0.75, -2.75, 1, 0.75, -4.5, 1, 4.75, -2.75, 1, 0.5, -3, 1, 0.5, -2.75, 1, -0.75, -2.5, 1, -0.75, -2.5, 1, -1, -0.75, 1, -2, -0.75, 1, -2.25, -1, 1, -2.25, -2, 1, -1, -1, 1, -2.75, -0.75, 1, -2.75, -0.75, 1, -3, 3, 1, 0, 2.75, 1, 0, -3, 1, -0.25, -2.75, 1, -0.25, -4.5, 1, -4.5, -0.25, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -0.25, 1, -3, 4.75, 1, -0.25, 3, 1, -0.25, 2, 1, 0.75, 1, 1, 1.75, 0.75, 1, -2.75, 0.75, 1, -2.5, 1, 1, -2.5, 1, 1, -4.5, 1.75, 1, -1, 1, 1, -1.75, 0.75, 1, -1.75, 0.75, 1, -1.5, 1.5, 1, -0.75, 1.75, 1, -0.75, -1.75, 1, -0.75, -0.5, 1, -1.75, -0.5, 1, -2, -2, 1, -0.75, 2.5, 1, -1, 2.75, 1, -0.75, -0.75, 1, 1.75, -0.75, 1, 1.5, 0, 1, 1.5, 0, 1, 1.75, 0.25, 1, 1.75, 0.25, 1, 1.5, 1.5, 1, 0.25, 1.75, 1, 0.5, 0.75, 1, 1.5, 0.75, 1, 1.75, 2, 1, 0.5, 3, 1, -0.5, 1.75, 1, 0.25, 2.5, 1, -0.75, 2.75, 1, -0.5, 0, 1, -1.5, 0, 1, -1.75, 0, 1, -3, 0, 1, -2.75, 1, 1, -4.75, 4.75, 1, -4.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(9, 8, 7), PackedInt32Array(11, 10, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(20, 18, 21), PackedInt32Array(21, 18, 19), PackedInt32Array(24, 23, 22), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 28), PackedInt32Array(31, 30, 29), PackedInt32Array(0, 33, 32), PackedInt32Array(35, 34, 22), PackedInt32Array(22, 34, 36), PackedInt32Array(39, 38, 37), PackedInt32Array(24, 22, 29), PackedInt32Array(29, 22, 39), PackedInt32Array(39, 22, 36), PackedInt32Array(31, 39, 40), PackedInt32Array(40, 39, 37), PackedInt32Array(9, 7, 16), PackedInt32Array(16, 7, 19), PackedInt32Array(15, 11, 14), PackedInt32Array(14, 11, 16), PackedInt32Array(5, 6, 7), PackedInt32Array(7, 6, 19), PackedInt32Array(32, 42, 41), PackedInt32Array(39, 31, 29), PackedInt32Array(43, 2, 44), PackedInt32Array(44, 2, 3), PackedInt32Array(21, 19, 34), PackedInt32Array(34, 19, 36), PackedInt32Array(28, 24, 27), PackedInt32Array(27, 24, 29), PackedInt32Array(0, 32, 41), PackedInt32Array(0, 41, 2), PackedInt32Array(2, 41, 3), PackedInt32Array(3, 41, 6), PackedInt32Array(16, 11, 9), PackedInt32Array(46, 45, 47), PackedInt32Array(47, 45, 48), PackedInt32Array(54, 53, 49), PackedInt32Array(49, 53, 52), PackedInt32Array(49, 52, 50), PackedInt32Array(50, 52, 51), PackedInt32Array(58, 28, 55), PackedInt32Array(55, 28, 25), PackedInt32Array(55, 25, 56), PackedInt32Array(56, 25, 57), PackedInt32Array(41, 60, 59), PackedInt32Array(61, 15, 62), PackedInt32Array(62, 15, 12), PackedInt32Array(66, 65, 63), PackedInt32Array(63, 65, 64), PackedInt32Array(53, 67, 52), PackedInt32Array(52, 67, 63), PackedInt32Array(52, 63, 12), PackedInt32Array(52, 12, 55), PackedInt32Array(71, 43, 68), PackedInt32Array(68, 43, 44), PackedInt32Array(68, 44, 69), PackedInt32Array(69, 44, 70), PackedInt32Array(41, 42, 72), PackedInt32Array(73, 68, 67), PackedInt32Array(67, 68, 69), PackedInt32Array(67, 69, 66), PackedInt32Array(67, 66, 63), PackedInt32Array(60, 74, 59), PackedInt32Array(72, 75, 60), PackedInt32Array(77, 76, 56), PackedInt32Array(56, 76, 55), PackedInt32Array(45, 79, 78), PackedInt32Array(55, 76, 52), PackedInt32Array(80, 48, 37), PackedInt32Array(37, 48, 78), PackedInt32Array(78, 48, 45), PackedInt32Array(78, 40, 37), PackedInt32Array(60, 41, 72), PackedInt32Array(50, 47, 49), PackedInt32Array(49, 47, 59), PackedInt32Array(63, 62, 12), PackedInt32Array(47, 48, 59), PackedInt32Array(59, 48, 81), PackedInt32Array(59, 81, 41)]
+agent_radius = 0.25
+agent_max_climb = 0.0
+edge_max_error = 0.25
+
+[node name="Level" unique_id=1578328013 instance=ExtResource("1_epqyv")]
+
+[node name="NavigationRegion3D" parent="." index="0" unique_id=974191959]
+navigation_mesh = SubResource("NavigationMesh_fkdff")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="1" unique_id=703235745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_fkdff")
+cell_size = Vector3(0.5, 0.5, 0.5)
+data = {
+"cells": PackedInt32Array(65535, 4, 655361, 0, 4, 1048577, 65535, 65531, 655361, 0, 65531, 65537, 65531, 65535, 917505, 65531, 0, 393217, 4, 65535, 589825, 4, 0, 655361)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1961314702 instance=ExtResource("3_2okvr")]
+
+[node name="BombBerryPoison" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1898691 instance=ExtResource("4_mjw8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0, -3.25)
+
+[node name="BombBerryPoison2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1214541318 instance=ExtResource("4_mjw8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -3.25)
+
+[node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("5_37nbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")

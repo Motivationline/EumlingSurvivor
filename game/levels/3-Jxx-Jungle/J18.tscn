@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://ivciso8phixy"]
+
+[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_33qf2"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_3w4xh"]
+[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_woetq"]
+[ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="4_58w6i"]
+[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="4_woetq"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_woetq"]
+vertices = PackedVector3Array(0, 1, 1.5, 0, 1, 1.25, -0.25, 1, 1.25, -0.25, 1, 1.5, 0, 1, 4.75, -0.75, 1, 1.5, -0.75, 1, 1.25, -1, 1, 1.25, -1.25, 1, 0.75, -1.25, 1, 0.5, -1.5, 1, 0.5, -1.5, 1, 0, -1.25, 1, 0, -1.25, 1, -0.25, -1, 1, -0.25, -1, 1, -0.5, -1, 1, -0.75, -1, 1, -1, -1.25, 1, -1, -1.25, 1, -1.25, -1.5, 1, -1.25, -1.5, 1, -1.75, -1.25, 1, -1.75, -1.25, 1, -2, -1, 1, -2, -1, 1, -2.25, -0.75, 1, -2.25, -0.75, 1, -2.5, -4.25, 1, -1.25, -4.25, 1, -1, -4, 1, -1, -1, 1, 0.75, -4, 1, -0.25, -4.25, 1, -0.25, -4.25, 1, 0.25, 0, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -4.5, 1, 0.25, 0, 1, -0.5, 0, 1, -0.75, -4.5, 1, -4.5, -4.5, 1, -1.25, -4.5, 1, 4.75, 0, 1, -2.5, 0.25, 1, 1.5, 0.5, 1, -2.5, 0.5, 1, -2.25, 0.75, 1, -2.25, 1, 1, -4.5, 0.75, 1, -2, 1, 1, -2, 1, 1, -1.75, 1.25, 1, -1.75, 1.25, 1, -1.5, 1.5, 1, -1.5, 1.5, 1, -1, 1.25, 1, -1, 1.25, 1, -0.75, 1, 1, -0.5, 1, 1, -0.25, 1.25, 1, -0.25, 1.25, 1, 0.5, 1, 1, 0.5, 1, 1, 0.75, 0.75, 1, 1.25, 0.5, 1, 1.25, 0.5, 1, 1.5, 4.25, 1, 0.5, 4.25, 1, 0.25, 4, 1, 0.25, 4, 1, -0.5, 4.25, 1, -0.5, 4.25, 1, -0.75, 4, 1, -0.75, 4, 1, -1.25, 4.25, 1, -1.5, 4.75, 1, -4.5, 4.25, 1, -1.25, 0.75, 1, 0.75, 4.75, 1, -1.5, 1, 1, -4.75, 4.75, 1, 4.75, 4.75, 1, 0.5, 5, 1.5, -0.25, 5, 1.5, 0, 5.25, 1.5, 0, 5.25, 1.5, -1, 5, 1.5, -1, 5, 1.5, -0.75, 4.75, 1.5, -0.75, 4.75, 1.5, -0.25, -0.25, 1.5, 0.5, -0.25, 1.5, 0.75, 0, 1.5, 0.75, 0, 1.5, 0.5, -0.5, 1.5, 0, -0.5, 1.5, 0.5, 0, 1.5, 0.25, 0, 1.5, 0, 0.25, 1.5, 0.5, 0.25, 1.5, 0.25)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(13, 12, 11), PackedInt32Array(15, 14, 13), PackedInt32Array(18, 17, 16), PackedInt32Array(20, 19, 18), PackedInt32Array(23, 22, 21), PackedInt32Array(25, 24, 23), PackedInt32Array(27, 26, 25), PackedInt32Array(30, 29, 28), PackedInt32Array(8, 31, 7), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 11), PackedInt32Array(34, 11, 10), PackedInt32Array(37, 36, 35), PackedInt32Array(8, 7, 10), PackedInt32Array(10, 7, 34), PackedInt32Array(34, 7, 38), PackedInt32Array(16, 40, 15), PackedInt32Array(15, 40, 39), PackedInt32Array(5, 3, 4), PackedInt32Array(15, 13, 16), PackedInt32Array(16, 13, 18), PackedInt32Array(28, 42, 41), PackedInt32Array(13, 11, 18), PackedInt32Array(18, 11, 20), PackedInt32Array(20, 11, 32), PackedInt32Array(20, 32, 30), PackedInt32Array(5, 4, 7), PackedInt32Array(7, 4, 43), PackedInt32Array(7, 43, 38), PackedInt32Array(27, 37, 44), PackedInt32Array(44, 37, 35), PackedInt32Array(30, 21, 20), PackedInt32Array(37, 27, 25), PackedInt32Array(23, 37, 25), PackedInt32Array(23, 21, 37), PackedInt32Array(37, 21, 30), PackedInt32Array(37, 30, 28), PackedInt32Array(37, 28, 41), PackedInt32Array(0, 45, 4), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(50, 48, 51), PackedInt32Array(51, 48, 49), PackedInt32Array(53, 52, 51), PackedInt32Array(55, 54, 53), PackedInt32Array(58, 57, 56), PackedInt32Array(60, 59, 61), PackedInt32Array(61, 59, 58), PackedInt32Array(64, 63, 62), PackedInt32Array(67, 66, 65), PackedInt32Array(69, 68, 70), PackedInt32Array(70, 68, 62), PackedInt32Array(62, 68, 64), PackedInt32Array(64, 68, 65), PackedInt32Array(74, 73, 71), PackedInt32Array(71, 73, 72), PackedInt32Array(75, 55, 76), PackedInt32Array(76, 55, 53), PackedInt32Array(76, 53, 49), PackedInt32Array(76, 49, 77), PackedInt32Array(76, 78, 75), PackedInt32Array(65, 79, 64), PackedInt32Array(53, 51, 49), PackedInt32Array(39, 40, 59), PackedInt32Array(59, 40, 58), PackedInt32Array(55, 75, 56), PackedInt32Array(56, 75, 74), PackedInt32Array(77, 80, 76), PackedInt32Array(61, 58, 56), PackedInt32Array(81, 49, 35), PackedInt32Array(35, 49, 46), PackedInt32Array(35, 46, 44), PackedInt32Array(61, 56, 62), PackedInt32Array(62, 56, 71), PackedInt32Array(62, 71, 70), PackedInt32Array(67, 65, 4), PackedInt32Array(4, 65, 68), PackedInt32Array(4, 68, 83), PackedInt32Array(4, 83, 82), PackedInt32Array(56, 74, 71), PackedInt32Array(4, 45, 67), PackedInt32Array(86, 85, 84), PackedInt32Array(89, 88, 87), PackedInt32Array(89, 84, 90), PackedInt32Array(90, 84, 91), PackedInt32Array(89, 87, 84), PackedInt32Array(84, 87, 86), PackedInt32Array(95, 94, 92), PackedInt32Array(92, 94, 93), PackedInt32Array(92, 97, 98), PackedInt32Array(98, 97, 99), PackedInt32Array(99, 97, 96), PackedInt32Array(98, 101, 95), PackedInt32Array(95, 101, 100), PackedInt32Array(98, 95, 92)]
+agent_radius = 0.25
+agent_max_climb = 0.0
+edge_max_error = 0.25
+
+[node name="Level" unique_id=1578328013 instance=ExtResource("1_33qf2")]
+
+[node name="NavigationRegion3D" parent="." index="0" unique_id=974191959]
+navigation_mesh = SubResource("NavigationMesh_woetq")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="1" unique_id=168968839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_3w4xh")
+cell_size = Vector3(0.5, 0.5, 0.5)
+data = {
+"cells": PackedInt32Array(65535, 1, 1441793, 0, 1, 393217, 1, 0, 655361, 65534, 0, 720897, 65535, 0, 589825, 0, 0, 655361, 65534, 65533, 655361, 65535, 65532, 655361, 0, 65532, 917505, 1, 65533, 589825, 0, 65533, 720897, 65535, 65533, 655361, 65526, 65534, 786433, 65526, 65535, 262145, 9, 65534, 655361, 9, 65535, 1441793)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Cube" parent="NavigationRegion3D/base_floor_10x10" parent_id_path=PackedInt32Array(257884405) index="0" unique_id=1334605973]
+surface_material_override/0 = null
+
+[node name="Traps" type="Node3D" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1263022451]
+
+[node name="SpikeTrap2" parent="Enemies/Traps" index="0" unique_id=1978190008 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, -0.25)
+
+[node name="SpikeTrap3" parent="Enemies/Traps" index="1" unique_id=1146344222 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, -0.25)
+
+[node name="SpikeTrap4" parent="Enemies/Traps" index="2" unique_id=1070842218 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0, -0.25)
+
+[node name="SpikeTrap5" parent="Enemies/Traps" index="3" unique_id=1206519099 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, -0.25)
+
+[node name="SpikeTrap6" parent="Enemies/Traps" index="4" unique_id=1898506147 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.25)
+
+[node name="SpikeTrap7" parent="Enemies/Traps" index="5" unique_id=1088402483 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -0.25)
+
+[node name="SpikeTrap8" parent="Enemies/Traps" index="6" unique_id=689688272 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.25)
+
+[node name="SpikeTrap9" parent="Enemies/Traps" index="7" unique_id=1545366235 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -0.25)
+
+[node name="SpikeTrap10" parent="Enemies/Traps" index="8" unique_id=48447186 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.25)
+
+[node name="SpikeTrap11" parent="Enemies/Traps" index="9" unique_id=1814982327 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.25)
+
+[node name="SpikeTrap12" parent="Enemies/Traps" index="10" unique_id=277263885 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.25)
+
+[node name="SpikeTrap13" parent="Enemies/Traps" index="11" unique_id=1279842421 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -0.25)
+
+[node name="SpikeTrap14" parent="Enemies/Traps" index="12" unique_id=32122213 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, -0.25)
+
+[node name="SpikeTrap15" parent="Enemies/Traps" index="13" unique_id=1150178546 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, -0.25)
+
+[node name="SpikeTrap16" parent="Enemies/Traps" index="14" unique_id=2008196465 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -0.25)
+
+[node name="SpikeTrap17" parent="Enemies/Traps" index="15" unique_id=1750031354 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0, -0.25)
+
+[node name="SpikeTrap18" parent="Enemies/Traps" index="16" unique_id=1429331241 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -0.25)
+
+[node name="SpikeTrap19" parent="Enemies/Traps" index="17" unique_id=523270157 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, -0.25)
+
+[node name="SpikeTrap22" parent="Enemies/Traps" index="18" unique_id=822964215 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, -0.75)
+
+[node name="SpikeTrap23" parent="Enemies/Traps" index="19" unique_id=422252174 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -0.75)
+
+[node name="SpikeTrap24" parent="Enemies/Traps" index="20" unique_id=143130790 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0, -0.75)
+
+[node name="SpikeTrap25" parent="Enemies/Traps" index="21" unique_id=1092058589 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -0.75)
+
+[node name="SpikeTrap26" parent="Enemies/Traps" index="22" unique_id=549636888 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, -0.75)
+
+[node name="SpikeTrap27" parent="Enemies/Traps" index="23" unique_id=2085401086 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, -0.75)
+
+[node name="SpikeTrap28" parent="Enemies/Traps" index="24" unique_id=1263116879 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -0.75)
+
+[node name="SpikeTrap29" parent="Enemies/Traps" index="25" unique_id=2128247482 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.75)
+
+[node name="SpikeTrap30" parent="Enemies/Traps" index="26" unique_id=1456792247 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.75)
+
+[node name="SpikeTrap31" parent="Enemies/Traps" index="27" unique_id=1421410747 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.75)
+
+[node name="SpikeTrap32" parent="Enemies/Traps" index="28" unique_id=884933507 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -0.75)
+
+[node name="SpikeTrap33" parent="Enemies/Traps" index="29" unique_id=549565708 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.75)
+
+[node name="SpikeTrap34" parent="Enemies/Traps" index="30" unique_id=773450539 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -0.75)
+
+[node name="SpikeTrap35" parent="Enemies/Traps" index="31" unique_id=896299512 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -0.75)
+
+[node name="SpikeTrap36" parent="Enemies/Traps" index="32" unique_id=1125302293 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, -0.75)
+
+[node name="SpikeTrap37" parent="Enemies/Traps" index="33" unique_id=1594008209 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0, -0.75)
+
+[node name="SpikeTrap38" parent="Enemies/Traps" index="34" unique_id=402984163 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, -0.75)
+
+[node name="SpikeTrap39" parent="Enemies/Traps" index="35" unique_id=1174950236 instance=ExtResource("3_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, -0.75)
+
+[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1961314702 instance=ExtResource("4_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1.25)
+
+[node name="TortoiseEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=725908141 instance=ExtResource("4_woetq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -2.5)
+
+[node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("4_58w6i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")
