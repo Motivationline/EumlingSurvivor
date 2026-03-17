@@ -4,6 +4,8 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_ndj1h"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_2s71f"]
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="3_xepbt"]
+[ext_resource type="Material" uid="uid://dcqrokbtanxgb" path="res://game/levels/5-Bxx-Beach/materials/beach_sand_material.tres" id="4_eyygh"]
+[ext_resource type="PackedScene" uid="uid://di4857pgk1je4" path="res://assets/models/5-beach/islands/base_island.tscn" id="8_c8p5i"]
 [ext_resource type="Script" uid="uid://b12g0nyew0m0i" path="res://global/settings/graphics_settings_component_shadow.gd" id="8_xepbt"]
 [ext_resource type="PackedScene" uid="uid://bb6f45cgpgqwg" path="res://assets/models/5-beach/crate/crate_v_2.tscn" id="9_eyygh"]
 [ext_resource type="Script" uid="uid://do4ujdcqq0nii" path="res://addons/world_wind/world_wind.gd" id="9_yuro1"]
@@ -230,29 +232,6 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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")
 }]
 
-[sub_resource type="Gradient" id="Gradient_xepbt"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.07821229, 0.5223464, 0.801676, 1)
-colors = PackedColorArray(0.7, 0.5936, 0.434, 1, 0.6, 0.456, 0.33, 1, 0.65, 0.5135, 0.3575, 1, 0.75, 0.666875, 0.48749998, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ndj1h"]
-noise_type = 3
-frequency = 0.0093
-fractal_type = 2
-fractal_lacunarity = 0.375
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xepbt"]
-width = 256
-height = 256
-noise = SubResource("FastNoiseLite_ndj1h")
-color_ramp = SubResource("Gradient_xepbt")
-seamless = true
-invert = true
-seamless_blend_skirt = 0.606
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuro1"]
-albedo_texture = SubResource("NoiseTexture2D_xepbt")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_euww8"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lttw8"]
@@ -351,6 +330,12 @@ size = Vector2(30, 30)
 render_priority = -100
 albedo_color = Color(0, 0.2750001, 0.5, 1)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c8p5i"]
+frequency = 0.0021
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2s71f"]
+noise = SubResource("FastNoiseLite_c8p5i")
+
 [node name="Level" type="Node3D" unique_id=1268816340 node_paths=PackedStringArray("player_spawn", "goal_area")]
 script = ExtResource("1_nf22f")
 player_spawn = NodePath("PlayerSpawnMarker")
@@ -376,7 +361,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="base_floor_10x10" type="Node3D" parent="NavigationRegion3D" unique_id=257884405]
 
 [node name="Cube" type="MeshInstance3D" parent="NavigationRegion3D/base_floor_10x10" unique_id=1334605973]
-material_override = SubResource("StandardMaterial3D_yuro1")
+material_override = ExtResource("4_eyygh")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_p2l1w")
 skeleton = NodePath("")
@@ -419,6 +404,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
 script = ExtResource("9_yuro1")
 metadata/_custom_type_script = "uid://do4ujdcqq0nii"
 
+[node name="islands" type="Node3D" parent="Environment" unique_id=1173818599]
+
+[node name="base_island" parent="Environment/islands" unique_id=1953611265 instance=ExtResource("8_c8p5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7973275, 0.06766045, -2.7280493)
+
+[node name="palm_v1" parent="Environment/islands/base_island" unique_id=566563813 instance=ExtResource("10_c8p5i")]
+transform = Transform3D(0.974476, -0.22449186, 0, 0.22449186, 0.974476, 0, 0, 0, 1, -0.49841928, 0.058327317, -0.24046826)
+
+[node name="base_island2" parent="Environment/islands" unique_id=1040377223 instance=ExtResource("8_c8p5i")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6.773846, 0.06766045, -7.213686)
+
+[node name="palm_v2" parent="Environment/islands/base_island2" unique_id=1065532176 instance=ExtResource("10_c8p5i")]
+transform = Transform3D(0.487238, -0.11224593, 0, 0.11224593, 0.487238, 0, 0, 0, 0.5, -0.43895292, 0.029163659, -0.26436186)
+
+[node name="palm_v3" parent="Environment/islands/base_island2" unique_id=984990539 instance=ExtResource("10_c8p5i")]
+transform = Transform3D(0.4870275, 0.11315567, 0, -0.11184501, 0.48138636, 0.07588056, 0.01717263, -0.07391184, 0.4942086, 0.3701203, 0.029163659, 0.1330576)
+
+[node name="base_island3" parent="Environment/islands" unique_id=579780908 instance=ExtResource("8_c8p5i")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.2369695, 0.067661405, 5.910681)
+
+[node name="palm_v1" parent="Environment/islands/base_island3" unique_id=237906974 instance=ExtResource("10_c8p5i")]
+transform = Transform3D(0.48699397, -0.11330016, 0, 0.11206848, 0.48169988, 0.07352492, -0.01666077, -0.07161239, 0.49456453, -0.25364137, 0, -0.19227147)
+
+[node name="palm_v2" parent="Environment/islands/base_island3" unique_id=1905826284 instance=ExtResource("10_c8p5i")]
+transform = Transform3D(0.31381845, -0.013632756, -0.3890143, 0.11206848, 0.48169988, 0.07352493, 0.37277168, -0.13333946, 0.3053882, -0.14289641, 0, -0.6385355)
+
+[node name="palm_v3" parent="Environment/islands/base_island3" unique_id=1083505445 instance=ExtResource("10_c8p5i")]
+transform = Transform3D(0.31381845, -0.013632756, -0.3890143, 0.11206848, 0.48169988, 0.07352493, 0.37277168, -0.13333946, 0.3053882, 7.4570565, -4.7683716e-07, -1.4956567)
+
+[node name="base_island4" parent="Environment/islands" unique_id=1859478126 instance=ExtResource("8_c8p5i")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.433281, -0.21784031, 3.4862447)
+
 [node name="GoalArea" type="Area3D" parent="." unique_id=1103800391]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 collision_layer = 0
@@ -440,15 +457,16 @@ mesh = SubResource("PlaneMesh_q377s")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_wvf3w")
 
-[node name="Trees" type="Node3D" parent="Env" unique_id=1491037007]
-
-[node name="palm_v1" parent="Env/Trees" unique_id=566563813 instance=ExtResource("10_c8p5i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.19281, -0.21057129, -4.769043)
-
 [node name="Crates" type="Node3D" parent="Env" unique_id=1145411901]
 
 [node name="crate_v2" parent="Env/Crates" unique_id=399819802 instance=ExtResource("9_eyygh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3948503, -0.05856426, 6.3709)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1624246, -0.05856426, -5.0689487)
+
+[node name="crate_v4" parent="Env/Crates" unique_id=1306370519 instance=ExtResource("9_eyygh")]
+transform = Transform3D(0.804987, 0, -0.5932924, 0, 1, 0, 0.5932924, 0, 0.804987, -6.9791355, -0.058564022, 3.4224732)
+
+[node name="crate_v3" parent="Env/Crates" unique_id=1279045510 instance=ExtResource("9_eyygh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1898007, -0.05856426, -1.3938818)
 
 [node name="LightmapGI" type="LightmapGI" parent="." unique_id=1173002347]
 environment_mode = 3
@@ -457,3 +475,9 @@ environment_custom_color = Color(1, 0.8895, 0.61, 1)
 [node name="GraphicsSettingsComponentGlobalIllumination" type="Node" parent="LightmapGI" unique_id=1637280149]
 script = ExtResource("10_yuro1")
 metadata/_custom_type_script = "uid://ce3uevtwoe7te"
+
+[node name="WorldWind" type="Node3D" parent="." unique_id=1268440061]
+transform = Transform3D(-0.77484524, 0, 0.632151, 0, 1, 0, -0.632151, 0, -0.77484524, 0, 3.1637135, 0)
+script = ExtResource("9_yuro1")
+wind_noise = SubResource("NoiseTexture2D_2s71f")
+metadata/_custom_type_script = "uid://do4ujdcqq0nii"

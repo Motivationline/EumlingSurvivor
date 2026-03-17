@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bb6f45cgpgqwg"]
 
 [ext_resource type="PackedScene" uid="uid://c37t2q58y3jwl" path="res://assets/models/5-beach/crate/crate_v2.glb" id="1_wjiau"]
+[ext_resource type="Script" uid="uid://bx5nmnk2kgn24" path="res://assets/models/5-beach/crate/crate_v_2.gd" id="2_iu44y"]
 
 [sub_resource type="Animation" id="Animation_wjiau"]
 length = 0.001
@@ -65,7 +66,7 @@ _data = {
 }
 
 [node name="crate_v2" unique_id=399819802 instance=ExtResource("1_wjiau")]
+script = ExtResource("2_iu44y")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=2110007161]
 libraries/ = SubResource("AnimationLibrary_qpocc")
-autoplay = &"swim"
