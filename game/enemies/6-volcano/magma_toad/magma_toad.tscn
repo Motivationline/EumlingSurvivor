@@ -7,8 +7,40 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_52td2"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_m7dcb"]
 [ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="6_52td2"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="7_i8psu"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_52td2"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="8_pqb4c"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_eafdf"]
+[ext_resource type="AudioStream" uid="uid://ccge0eudrj8ee" path="res://assets/characters/enemies/toad/sounds/shoot_1.wav" id="9_uvvyd"]
+[ext_resource type="AudioStream" uid="uid://dhj41c6f3q7xe" path="res://assets/characters/enemies/toad/sounds/death_1.wav" id="10_4e0rj"]
+[ext_resource type="AudioStream" uid="uid://bhge7elf6veva" path="res://assets/characters/enemies/toad/sounds/shoot_2.wav" id="10_lts77"]
+[ext_resource type="AudioStream" uid="uid://6vdufmbcl37m" path="res://assets/characters/enemies/toad/sounds/death_2.wav" id="11_gqpqm"]
+[ext_resource type="AudioStream" uid="uid://b7sqf5r64oj4" path="res://assets/characters/enemies/toad/sounds/shoot_3.wav" id="11_qbq2c"]
+[ext_resource type="AudioStream" uid="uid://1sp55qnmp7n1" path="res://assets/characters/enemies/toad/sounds/shoot_4.wav" id="12_rbetc"]
+[ext_resource type="AudioStream" uid="uid://vlq3ry4emg84" path="res://assets/characters/enemies/toad/sounds/death_3.wav" id="12_vqu8f"]
+[ext_resource type="AudioStream" uid="uid://dqcwn47y1d4j1" path="res://assets/characters/enemies/toad/sounds/shoot_5.wav" id="13_vfgrb"]
+[ext_resource type="AudioStream" uid="uid://ckp5qw3vlg43t" path="res://assets/characters/enemies/toad/sounds/death_4.wav" id="13_xkv2o"]
+[ext_resource type="AudioStream" uid="uid://dkxeflfjttqol" path="res://assets/characters/enemies/toad/sounds/death_5.wav" id="14_2mold"]
+[ext_resource type="AudioStream" uid="uid://2u00rib5gav" path="res://assets/characters/enemies/toad/sounds/shoot_6.wav" id="14_aqndw"]
+[ext_resource type="AudioStream" uid="uid://dvodrmw3y5orh" path="res://assets/characters/enemies/toad/sounds/death_6.wav" id="15_c4g0k"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a32y6"]
+streams_count = 6
+stream_0/stream = ExtResource("10_4e0rj")
+stream_1/stream = ExtResource("11_gqpqm")
+stream_2/stream = ExtResource("12_vqu8f")
+stream_3/stream = ExtResource("13_xkv2o")
+stream_4/stream = ExtResource("14_2mold")
+stream_5/stream = ExtResource("15_c4g0k")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i8psu"]
+streams_count = 6
+stream_0/stream = ExtResource("9_uvvyd")
+stream_1/stream = ExtResource("10_lts77")
+stream_2/stream = ExtResource("11_qbq2c")
+stream_3/stream = ExtResource("12_rbetc")
+stream_4/stream = ExtResource("13_vfgrb")
+stream_5/stream = ExtResource("14_aqndw")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m7dcb"]
 radius = 0.16932635
@@ -19,12 +51,13 @@ radius = 0.31834328
 [sub_resource type="SphereShape3D" id="SphereShape3D_gtm08"]
 radius = 0.26148474
 
-[node name="MagmaToad" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_k7wj4")]
+[node name="MagmaToad" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_k7wj4")]
 collision_layer = 64
 collision_mask = 65
 health = 200.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 node_with_animation_tree = NodePath("Visuals/Toad")
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
@@ -60,7 +93,22 @@ script = ExtResource("4_m7dcb")
 entity_to_spawn = ExtResource("6_52td2")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
+[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1367474497 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("7_i8psu")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = "DeathSpecific"
+needs_to_be_persistent = true
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("2_5wldd")]
+
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1946630432 instance=ExtResource("8_pqb4c")]
+stream = SubResource("AudioStreamRandomizer_a32y6")
+volume_db = 0.0
+
+[node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=2117690901 instance=ExtResource("8_pqb4c")]
+stream = SubResource("AudioStreamRandomizer_i8psu")
+volume_db = -2.762
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5" unique_id=1115397629]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2753511, 0)
@@ -87,3 +135,5 @@ can_hit = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
 shape = SubResource("SphereShape3D_gtm08")
 debug_color = Color(0.96461874, 0, 0.48390388, 0.41960785)
+
+[connection signal="play_sound" from="Visuals/Toad" to="SoundEffectManager" method="play_sound"]

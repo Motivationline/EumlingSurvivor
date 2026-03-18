@@ -9,6 +9,14 @@
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="6_vrxug"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_m8640"]
 [ext_resource type="PackedScene" uid="uid://db8m7lns2hnlo" path="res://game/aoes/explosion/standard_explosion.tscn" id="8_by40c"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="9_ht0i3"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="11_m3k6y"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="12_pk2yg"]
+[ext_resource type="AudioStream" uid="uid://djb6ln67a4y0f" path="res://assets/characters/enemies/toad/sounds/explosion_1.wav" id="13_a7p8u"]
+[ext_resource type="AudioStream" uid="uid://dvi4imcc4cwin" path="res://assets/characters/enemies/toad/sounds/explosion_2.wav" id="14_xasyp"]
+[ext_resource type="AudioStream" uid="uid://bcvaycao40nu2" path="res://assets/characters/enemies/toad/sounds/explosion_3.wav" id="15_o7tfj"]
+[ext_resource type="AudioStream" uid="uid://cw4p6pg12v65w" path="res://assets/characters/enemies/toad/sounds/explosion_4.wav" id="16_abgqe"]
+[ext_resource type="AudioStream" uid="uid://b4csjhtruu2xy" path="res://assets/characters/enemies/toad/sounds/explosion_5.wav" id="17_byitt"]
 
 [sub_resource type="Curve" id="Curve_by40c"]
 _limits = [0.0, 2.9768958, 0.0, 1.0]
@@ -24,13 +32,22 @@ height = 0.3
 radial_segments = 8
 rings = 4
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k6c7p"]
+random_pitch = 1.122462
+streams_count = 5
+stream_0/stream = ExtResource("13_a7p8u")
+stream_1/stream = ExtResource("14_xasyp")
+stream_2/stream = ExtResource("15_o7tfj")
+stream_3/stream = ExtResource("16_abgqe")
+stream_4/stream = ExtResource("17_byitt")
+
 [node name="Projectile" unique_id=1865303972 node_paths=PackedStringArray("movement", "targeting", "on_world_collision", "on_created") instance=ExtResource("1_ehkq2")]
 damage = 0.0
 max_distance = 100.0
 lifetime = 10.0
 movement = [NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
 targeting = [NodePath("MovementStrategies/UniversalTargetingProjectileTargetStrategy")]
-on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/PlaySoundEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_created = [NodePath("MovementStrategies/SetTargetsEventStrategy")]
 
 [node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=619591397]
@@ -49,11 +66,18 @@ script = ExtResource("5_54631")
 targeting_strats = [NodePath("../UniversalTargetingProjectileTargetStrategy")]
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=743689288]
+[node name="PlaySoundEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=1234271980 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("9_ht0i3")
+sound_manager = NodePath("../../../SoundEffectManager")
+sound_to_play = "Explosion"
+needs_to_be_persistent = true
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="1" unique_id=743689288]
 script = ExtResource("6_vrxug")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="1" unique_id=715170125]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="2" unique_id=715170125]
 script = ExtResource("6_by40c")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
@@ -73,3 +97,11 @@ shape = SubResource("SphereShape3D_4kao4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40234306, 0)
 cast_shadow = 3
 mesh = SubResource("SphereMesh_54631")
+
+[node name="SoundEffectManager" type="Node3D" parent="." index="5" unique_id=933403561]
+script = ExtResource("11_m3k6y")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Explosion" parent="SoundEffectManager" index="0" unique_id=710197368 instance=ExtResource("12_pk2yg")]
+stream = SubResource("AudioStreamRandomizer_k6c7p")
+volume_db = -10.0
