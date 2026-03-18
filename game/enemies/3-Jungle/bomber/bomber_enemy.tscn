@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="2_82l66"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_pj1a8"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_7jdl2"]
-[ext_resource type="PackedScene" uid="uid://cfyxw5fhwmyyy" path="res://game/projectiles/artillery_projectile/artillery_projectile.tscn" id="5_pj1a8"]
+[ext_resource type="PackedScene" uid="uid://ufivfi4021l7" path="res://game/enemies/3-Jungle/bomber/projectile/bomber_projectile.tscn" id="5_qg7p4"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_rkcej"]
 [ext_resource type="Script" uid="uid://bb6m3hglcrhmq" path="res://game/hitbox/hitbox.gd" id="8_7jdl2"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="9_rkcej"]
@@ -69,6 +69,7 @@ stream_9/stream = ExtResource("27_i1pgt")
 collision_layer = 64
 collision_mask = 65
 health = 200.0
+damage = 20.0
 hitbox = NodePath("HitBox")
 hurtbox = NodePath("HurtBox")
 node_with_animation_tree = NodePath("Visuals/cactushog")
@@ -84,13 +85,16 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=1126431526 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_7jdl2")
-start_delay = 1.0
+start_delay = 0.5
 next_state = NodePath("../LookAtPlayerState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Shoot/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1393891198]
 script = ExtResource("5_rkcej")
-entity_to_spawn = ExtResource("5_pj1a8")
+entity_to_spawn = ExtResource("5_qg7p4")
 time_between_entities = 1.0
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
