@@ -11,6 +11,38 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_x66hl"]
 [ext_resource type="PackedScene" uid="uid://7t81qu54b7am" path="res://game/aoes/explosion/berry_explosion_poison_aoe.tscn" id="7_qsr43"]
 [ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="8_x66hl"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="9_wl6h4"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="10_svgcn"]
+[ext_resource type="AudioStream" uid="uid://gux8h75ckcwo" path="res://assets/characters/enemies/bomberry/sounds/charge_1.wav" id="11_r87kj"]
+[ext_resource type="AudioStream" uid="uid://drhtpeylcv5lm" path="res://assets/characters/enemies/bomberry/sounds/charge_2.wav" id="12_iwjtf"]
+[ext_resource type="AudioStream" uid="uid://bulot3ony1hxf" path="res://assets/characters/enemies/bomberry/sounds/charge_3.wav" id="13_qljmb"]
+[ext_resource type="AudioStream" uid="uid://bvb8ynp4xwto0" path="res://assets/characters/enemies/bomberry/sounds/charge_4.wav" id="14_6xron"]
+[ext_resource type="AudioStream" uid="uid://bher35ljx425f" path="res://assets/characters/enemies/bomberry/sounds/charge_5.wav" id="15_38jbc"]
+[ext_resource type="AudioStream" uid="uid://ckrptc0lh1gq4" path="res://assets/characters/enemies/bomberry/sounds/charge_6.wav" id="16_7x70f"]
+[ext_resource type="AudioStream" uid="uid://la6h3tl6asjn" path="res://assets/characters/enemies/bomberry/sounds/death_1.wav" id="17_7x70f"]
+[ext_resource type="AudioStream" uid="uid://bakryhmuuibrf" path="res://assets/characters/enemies/bomberry/sounds/death_2.wav" id="18_wl6h4"]
+[ext_resource type="AudioStream" uid="uid://djwcj0n4etxuv" path="res://assets/characters/enemies/bomberry/sounds/death_3.wav" id="19_nxgor"]
+[ext_resource type="AudioStream" uid="uid://bg18bentgbs6a" path="res://assets/characters/enemies/bomberry/sounds/death_4.wav" id="20_7xjtc"]
+[ext_resource type="AudioStream" uid="uid://cy53vxdclxn5v" path="res://assets/characters/enemies/bomberry/sounds/death_5.wav" id="21_satr4"]
+[ext_resource type="AudioStream" uid="uid://ddoke46qg8u4h" path="res://assets/characters/enemies/bomberry/sounds/death_6.wav" id="22_1s25r"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wl6h4"]
+streams_count = 6
+stream_0/stream = ExtResource("11_r87kj")
+stream_1/stream = ExtResource("12_iwjtf")
+stream_2/stream = ExtResource("13_qljmb")
+stream_3/stream = ExtResource("14_6xron")
+stream_4/stream = ExtResource("15_38jbc")
+stream_5/stream = ExtResource("16_7x70f")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57rd0"]
+streams_count = 6
+stream_0/stream = ExtResource("17_7x70f")
+stream_1/stream = ExtResource("18_wl6h4")
+stream_2/stream = ExtResource("19_nxgor")
+stream_3/stream = ExtResource("20_7xjtc")
+stream_4/stream = ExtResource("21_satr4")
+stream_5/stream = ExtResource("22_1s25r")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6mw7y"]
 radius = 0.22945888
@@ -21,11 +53,12 @@ radius = 0.29065907
 [sub_resource type="SphereShape3D" id="SphereShape3D_3nhq1"]
 radius = 0.25
 
-[node name="BombBerryPoison" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_4nvcr")]
+[node name="BombBerryPoison" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_4nvcr")]
 health = 80.0
 speed = 2.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("DecideDistanceState")
@@ -80,7 +113,22 @@ script = ExtResource("8_x66hl")
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://dj632w22te1th"
 
+[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=799045015 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("9_wl6h4")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = "DeathSpecific"
+needs_to_be_persistent = true
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
 [node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("2_awjhr")]
+
+[node name="Charge" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=13899280 instance=ExtResource("10_svgcn")]
+stream = SubResource("AudioStreamRandomizer_wl6h4")
+volume_db = -5.0
+
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=947531284 instance=ExtResource("10_svgcn")]
+stream = SubResource("AudioStreamRandomizer_57rd0")
+volume_db = 0.0
 
 [node name="Hitbox" parent="." index="5" unique_id=2112797289 instance=ExtResource("3_c6m5u")]
 collision_layer = 32
@@ -109,3 +157,5 @@ debug_color = Color(0, 0.6424242, 0.32324392, 0.41960785)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("SphereShape3D_3nhq1")
 disabled = true
+
+[connection signal="play_sound" from="Visuals/bomberry" to="SoundEffectManager" method="play_sound"]

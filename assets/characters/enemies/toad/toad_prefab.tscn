@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0stg7vcqnxrc"]
 
 [ext_resource type="PackedScene" uid="uid://ctcdacghmg6n" path="res://assets/characters/enemies/toad/Toad.glb" id="1_snqxu"]
+[ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/manager/sound_requester.gd" id="2_4acqn"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_snqxu"]
 animation = &"toad_shoot"
@@ -34,6 +35,7 @@ nodes/Slingshot/position = Vector2(400, 80)
 node_connections = [&"output", 0, &"Slingshot", &"Shoot", 0, &"Animation", &"Shoot", 1, &"Animation 2", &"Slingshot", 0, &"Shoot", &"Slingshot", 1, &"Animation 3"]
 
 [node name="Toad" unique_id=1388801067 instance=ExtResource("1_snqxu")]
+script = ExtResource("2_4acqn")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=185618591]
 tree_root = SubResource("AnimationNodeBlendTree_snqxu")
