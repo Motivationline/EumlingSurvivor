@@ -5,19 +5,23 @@ class_name AdjustAttributesElement extends Resource
 @export var attribute: String
 ## Make sure you select the correct data type
 @export var value: Variant
+@export var resource: Resource
 ## How to apply the value to the attribute.  
 ## [b]Only choose "add" or "multiply" for value types where that makes sense![/b] 
 @export_enum("add", "set", "multiply") var operation = "set"
 
 func adjust(node: Node):
-	if not node.get(attribute):
+	if not attribute in node:
 		push_warning("Attribute " + attribute + " not found on node " + node.name)
 		return
-		
-	match operation:
-		"add":
-			node.set(attribute, node.get(attribute) + value)
-		"set":
-			node.set(attribute, value)
-		"multiply":
-			node.set(attribute, node.get(attribute) * value)
+	
+	if node.get(attribute) is Resource:
+		node.set(attribute, resource)
+	else:
+		match operation:
+			"add":
+				node.set(attribute, node.get(attribute) + value)
+			"set":
+				node.set(attribute, value)
+			"multiply":
+				node.set(attribute, node.get(attribute) * value)

@@ -15,9 +15,13 @@ signal spawn_finished
 @export var offset_distance: float = 0
 
 ## Only for stuff that applies if the spawned entity is a projectile
-@export_category("Projectiles")
-## By how much should the entities base damage (if available) be multiplied if the spawned entity is a projectile.
-@export var damage_multiplier: float = 1.0
+@export_category("Projectile Overrides")
+## how much damage should the projectile deal
+@export var damage: float = 20.0
+## how much range should the projectile have
+@export var max_distance: float = 2.0
+## how much range should the projectile have
+@export var lifetime: float = 120.0
 
 @export_category("Difficulty Overrides")
 @export var difficulty_scaler: DifficultyScaler
@@ -51,9 +55,12 @@ func _ready() -> void:
 	ShaderPrecompiler.prewarm(entity_to_spawn)
 	
 	if difficulty_scaler:
-		if is_inside_tree():
-			var difficulty = get_tree().get_first_node_in_group("Level").difficulty
-			difficulty_scaler.apply(owner.owner.difficulty, self)
+		var difficulty = 0
+		if owner.owner and "difficulty" in owner.owner:
+			difficulty = owner.owner.difficulty
+		elif is_inside_tree():
+			difficulty = get_tree().get_first_node_in_group("Level").difficulty
+		difficulty_scaler.apply(owner.owner.difficulty, self)
 
 func _notification(what: int) -> void:
 	if (what == NOTIFICATION_PREDELETE && entity_to_spawn):
@@ -126,4 +133,6 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 			_parent
 		)
 		if "damage" in _parent:
-			instance.damage = _parent.damage * damage_multiplier
+			instance.damage = damage
+			instance.max_distance = max_distance
+			instance.lifetime = lifetime
