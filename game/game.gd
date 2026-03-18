@@ -14,7 +14,7 @@ var player: Player
 #signal requestMusic
 
 var faded_to_black: bool = true
-var levels_to_load: Array[String] = []
+var levels_to_load: Array = []
 
 func _ready() -> void:
 	player = player_scene.instantiate()
@@ -44,23 +44,24 @@ func load_level():
 		child.queue_free()
 	
 	Engine.time_scale = 0
-	var level_location: String = ""
 	if !levels_to_load.size() > 0:
 		area_choice_overlay.setup()
 		levels_to_load = await area_choice_overlay.area_chosen
-	level_location = levels_to_load.pop_front()
-
+	var level_info = levels_to_load.pop_front()
+	var level_location: String = level_info.id
+	var difficulty: int = level_info.difficulty
 
 	# add new stuff
 	var level_to_load = load(level_location) as PackedScene
 	if (level_to_load && level_to_load.can_instantiate()):
 		currently_loaded_level_location = level_location
 		var new_level = level_to_load.instantiate() as Level
+		new_level.difficulty = difficulty
 		level_wrapper.add_child(new_level)
 		new_level.spawn_player(player)
 		new_level.level_finished.connect(level_finished)
 		new_level.level_ended.connect(level_ended)
-		GlobalMusicManager.request_music(new_level.music, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [4,0])
+		GlobalMusicManager.request_music(new_level.music, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [4, 0])
 
 
 		currently_loaded_level = new_level
@@ -81,7 +82,7 @@ func level_ended():
 
 func return_to_main_menu():
 	scene_fade_animation_player.play("fade")
-	GlobalMusicManager.request_music(SongList.TRACK.MENU, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [2,0])
+	GlobalMusicManager.request_music(SongList.TRACK.MENU, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [2, 0])
 	await scene_fade_animation_player.animation_finished
 	faded_to_black = true
 	levels_to_load.clear()

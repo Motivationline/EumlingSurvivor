@@ -8,3 +8,16 @@ class_name AdjustAttributesElement extends Resource
 ## How to apply the value to the attribute.  
 ## [b]Only choose "add" or "multiply" for value types where that makes sense![/b] 
 @export_enum("add", "set", "multiply") var operation = "set"
+
+func adjust(node: Node):
+	if not node.get(attribute):
+		push_warning("Attribute " + attribute + " not found on node " + node.name)
+		return
+		
+	match operation:
+		"add":
+			node.set(attribute, node.get(attribute) + value)
+		"set":
+			node.set(attribute, value)
+		"multiply":
+			node.set(attribute, node.get(attribute) * value)

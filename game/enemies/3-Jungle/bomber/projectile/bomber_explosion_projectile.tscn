@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://b3i03xporqdm7"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_gidt5"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_pymgl"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_2xwyx"]
+[ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="4_j5h4b"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="5_5rh4h"]
+
+[sub_resource type="Curve" id="Curve_wripo"]
+_limits = [0.0, 5.0, 0.0, 5.0]
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
+point_count = 1
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uruu7"]
+specular_mode = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_eolb6"]
+top_radius = 0.0
+bottom_radius = 0.1
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byxc1"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_s8e6k"]
+top_radius = 0.0
+bottom_radius = 0.1
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1mk1u"]
+radius = 0.04621862
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wripo"]
+radius = 0.08118541
+
+[node name="Projectile" unique_id=1098182531 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_hurt", "on_end_of_life") instance=ExtResource("1_gidt5")]
+damage = 75.0
+max_distance = 100.0
+lifetime = 0.8
+hit_box = NodePath("Hitbox")
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_hit = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_hurt = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_end_of_life = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=412886058]
+script = ExtResource("2_pymgl")
+speed = SubResource("Curve_wripo")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=750338230]
+script = ExtResource("3_2xwyx")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=1394156185]
+transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, 0.5, 0, -0.5, -2.1855694e-08, 0, 0.28753555, -1.2568578e-08)
+material_override = SubResource("StandardMaterial3D_uruu7")
+mesh = SubResource("CylinderMesh_eolb6")
+
+[node name="outline" type="MeshInstance3D" parent="MeshInstance3D" index="0" unique_id=1414549066]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.009984612, 0)
+material_override = SubResource("StandardMaterial3D_byxc1")
+mesh = SubResource("CylinderMesh_s8e6k")
+skeleton = NodePath("../..")
+
+[node name="DecalShadow" parent="MeshInstance3D" index="1" unique_id=1002455412 instance=ExtResource("4_j5h4b")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.054212e-08, -0.24117559)
+size = Vector3(0.252, 0.05, 0.5)
+
+[node name="Hitbox" parent="." index="3" unique_id=1696673246 instance=ExtResource("5_5rh4h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28896308, 0)
+collision_layer = 43
+collision_mask = 11
+damage = 2.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1595845773]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.04981506)
+shape = SubResource("SphereShape3D_1mk1u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1600524182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2871864, 0)
+shape = SubResource("SphereShape3D_wripo")

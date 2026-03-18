@@ -18,6 +18,9 @@ class_name Enemy
 ## How much damage should this entity deal?
 @export var damage: float = 10
 
+@export_category("Difficulty Overrides")
+@export var difficulty_scaler: DifficultyScaler
+
 @export_category("Base Functionality")
 ## ignores enemy when for level finish
 @export var ignore_enemy_in_level: bool = false
@@ -67,6 +70,8 @@ func _ready() -> void:
 	reset_timer = Timer.new()
 	add_child(reset_timer)
 	reset_timer.timeout.connect(reset_health)
+	if difficulty_scaler and "difficulty" in owner:
+		difficulty_scaler.apply(owner.difficulty, self)
 
 
 func _hit(_attackee: HurtBox):

@@ -19,6 +19,9 @@ signal spawn_finished
 ## By how much should the entities base damage (if available) be multiplied if the spawned entity is a projectile.
 @export var damage_multiplier: float = 1.0
 
+@export_category("Difficulty Overrides")
+@export var difficulty_scaler: DifficultyScaler
+
 @export_category("Burst")
 @export var entity_to_spawn: PackedScene
 @export_range(0, 100) var amount_of_spawns: int = 1
@@ -46,6 +49,11 @@ func _ready() -> void:
 		return
 
 	ShaderPrecompiler.prewarm(entity_to_spawn)
+	
+	if difficulty_scaler:
+		if is_inside_tree():
+			var difficulty = get_tree().get_first_node_in_group("Level").difficulty
+			difficulty_scaler.apply(owner.owner.difficulty, self)
 
 func _notification(what: int) -> void:
 	if (what == NOTIFICATION_PREDELETE && entity_to_spawn):

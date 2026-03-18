@@ -56,7 +56,7 @@ func setup():
 	show()
 
 func choose_area(area):
-	var level_names: Array[String] = []
+	var level_names: Array = []
 	var difficulty: int = Data._active_mini_eumlings.size()
 	var amount_levels = difficulty + 3
 	var folder_name: String = "res://game/levels/"
@@ -68,9 +68,9 @@ func choose_area(area):
 		if levels.size() == 0: break
 		var level = levels.pop_back()
 		if not level: break
-		level_names.append(folder_name + level + ".tscn")
+		level_names.append({id = folder_name + level + ".tscn", difficulty = difficulty})
 	var boss_level = area.boss_levels[difficulty]
-	level_names.append(folder_name + boss_level + ".tscn")
+	level_names.append({id = folder_name + boss_level + ".tscn", difficulty = difficulty})
 	area_chosen.emit(level_names)
 	
 	hide()
@@ -79,9 +79,14 @@ func _on_debug_button_pressed() -> void:
 	level_choice_overlay.setup()
 
 func level_chosen(level_id: String):
+	var split = level_id.split(".")
+	level_id = split[0]
+	var difficulty = 0
+	if split.size() > 1:
+		difficulty = int(split[1])
 	var level_location = find_file(level_id + ".tscn", "res://game/levels")
 	if (level_location != "" and ResourceLoader.exists(level_location)):
-		area_chosen.emit([level_location] as Array[String])
+		area_chosen.emit([ {id = level_location, difficulty = difficulty}])
 		hide()
 	else:
 		printerr("Level '%s.tscn' doesn't exist in '/game/levels/' or its subfolders. Try again." % level_id)

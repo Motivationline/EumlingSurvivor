@@ -35,11 +35,10 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 1.51
 
-[node name="Level" type="Node3D" unique_id=824724976 node_paths=PackedStringArray("player_spawn", "goal_area")]
+[node name="Level" type="Node3D" unique_id=824724976 node_paths=PackedStringArray("player_spawn", "goal_area") groups=["Level"]]
 script = ExtResource("1_wbp8f")
 player_spawn = NodePath("PlayerSpawnMarker")
 goal_area = NodePath("GoalArea")
-music = 0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=141977342]
 navigation_mesh = SubResource("NavigationMesh_wbp8f")

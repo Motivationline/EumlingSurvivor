@@ -13,7 +13,7 @@ class_name Level
 
 @export var music:SongList.TRACK = SongList.TRACK.MENU
 
-
+var difficulty: int
 var cleared: bool = false
 var finished: bool = false
 var ends: bool = false
