@@ -100,3 +100,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_reload"):
 		levels_to_load.push_front(currently_loaded_level_location)
 		load_level()
+	if event.is_action_pressed("debug_kill_all"):
+		var enemies := get_tree().get_nodes_in_group("Enemy")
+		for enemy in enemies:
+			enemy.health = 0
