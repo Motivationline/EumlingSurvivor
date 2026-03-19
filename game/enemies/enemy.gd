@@ -13,6 +13,9 @@ class_name Enemy
 		if (health <= 0 && !cannot_die):
 			_die()
 		# TODO: add damage number popup
+## How much should incoming damage be
+@export var damage_reduction_relative: float
+
 ## How fast this entity moves when it moves
 @export_range(0, 100, 0.1) var speed: float = 1
 
@@ -50,6 +53,8 @@ var convince_progress: float = 0
 var animation_tree: AnimationTree
 
 func _ready() -> void:
+	if difficulty_scaler and "difficulty" in owner:
+		difficulty_scaler.apply(owner.difficulty, self)
 	super ()
 	max_health = health
 	if (status_visuals): status_visuals.init_health(max_health)
@@ -68,8 +73,6 @@ func _ready() -> void:
 	reset_timer = Timer.new()
 	add_child(reset_timer)
 	reset_timer.timeout.connect(reset_health)
-	if difficulty_scaler and "difficulty" in owner:
-		difficulty_scaler.apply(owner.difficulty, self)
 
 
 func _hit(_attackee: HurtBox):
