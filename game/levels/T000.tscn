@@ -1,12 +1,23 @@
 [gd_scene format=3 uid="uid://lymk1cp5icg4"]
 
-[ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_ba1uv"]
-[ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="2_3id6a"]
-[ext_resource type="PackedScene" uid="uid://cxge6pdtvxrls" path="res://game/enemies/bee/bee_new.tscn" id="2_dgpx2"]
+[ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_cvp71"]
+[ext_resource type="PackedScene" uid="uid://cxge6pdtvxrls" path="res://game/enemies/bee/bee_new.tscn" id="2_wjg4u"]
+[ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_35njp"]
 
-[node name="Level" unique_id=1973423689 instance=ExtResource("1_ba1uv")]
+[sub_resource type="NavigationMesh" id="NavigationMesh_cvp71"]
+vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 0.75, 1, -5, -0.5, 1, -5, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, 4.75, -4.5, 1, -4.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(3, 7, 2), PackedInt32Array(2, 7, 6), PackedInt32Array(0, 9, 8), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 5), PackedInt32Array(5, 0, 8), PackedInt32Array(5, 8, 10), PackedInt32Array(10, 11, 5)]
+agent_radius = 0.25
+agent_max_climb = 0.0
+edge_max_error = 0.25
 
-[node name="BeeEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_dgpx2")]
+[node name="Level" unique_id=1973423689 instance=ExtResource("1_cvp71")]
 
-[node name="ExitArea" parent="." index="8" unique_id=609974398 instance=ExtResource("2_3id6a")]
+[node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
+navigation_mesh = SubResource("NavigationMesh_cvp71")
+
+[node name="BeeEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_wjg4u")]
+
+[node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_35njp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")
