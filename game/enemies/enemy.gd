@@ -13,8 +13,11 @@ class_name Enemy
 		if (health <= 0 && !cannot_die):
 			_die()
 		# TODO: add damage number popup
-## How much should incoming damage be
-@export var damage_reduction_relative: float
+
+## multiplies any incoming damage with this value.
+## e.g. a value of 0.5 means you only take half the damage you normally would.
+## 1.0 means no change.
+@export var incoming_damage_multiplier: float = 1.0
 
 ## How fast this entity moves when it moves
 @export_range(0, 100, 0.1) var speed: float = 1
@@ -87,10 +90,12 @@ func _hurt_by(_attacker: HitBox):
 			health = 0
 		return
 	var projectile = _attacker.get_parent()
+	var damage = _attacker.damage
 	if vulnerability_display.try_to_hit(projectile):
-		_attacker.damage *= 2 # TODO copy this value from the I ability
+		damage *= 2 # TODO copy this value from the I ability
+	damage *= incoming_damage_multiplier
 
-	health -= _attacker.damage
+	health -= damage
 	for ev in on_hurt:
 		ev.event_triggered(_attacker)
 	if (heal_back_to_full): reset_timer.start(3)
