@@ -60,7 +60,7 @@ func _ready() -> void:
 			difficulty = owner.owner.difficulty
 		elif is_inside_tree():
 			difficulty = get_tree().get_first_node_in_group("Level").difficulty
-		difficulty_scaler.apply(owner.owner.difficulty, self)
+		difficulty_scaler.apply(difficulty, self)
 
 func _notification(what: int) -> void:
 	if (what == NOTIFICATION_PREDELETE && entity_to_spawn):

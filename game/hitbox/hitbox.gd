@@ -49,6 +49,20 @@ signal hit(hurtbox: HurtBox)
 ## Causes iframes on the entity to trigger
 @export var causes_iframes: bool = true 
 
+
+@export_category("Difficulty Overrides")
+@export var difficulty_scaler: DifficultyScaler
+
+
+func _ready() -> void:
+	if difficulty_scaler:
+		var difficulty = 0
+		if owner.owner and "difficulty" in owner.owner:
+			difficulty = owner.owner.difficulty
+		elif is_inside_tree():
+			difficulty = get_tree().get_first_node_in_group("Level").difficulty
+		difficulty_scaler.apply(difficulty, self)
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
 	if (attached_to == Enum.HITBOX.NONE):

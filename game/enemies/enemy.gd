@@ -15,8 +15,6 @@ class_name Enemy
 		# TODO: add damage number popup
 ## How fast this entity moves when it moves
 @export_range(0, 100, 0.1) var speed: float = 1
-## How much damage should this entity deal?
-@export var damage: float = 10
 
 @export_category("Difficulty Overrides")
 @export var difficulty_scaler: DifficultyScaler
