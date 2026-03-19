@@ -132,7 +132,6 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 			target_strategy.get_target_position(_relative_to) if (target_strategy) else _relative_to.global_position - _relative_to.basis.z,
 			_parent
 		)
-		if "damage" in _parent:
-			instance.damage = damage
-			instance.max_distance = max_distance
-			instance.lifetime = lifetime
+		instance.damage = damage
+		instance.max_distance = max_distance
+		instance.lifetime = lifetime
