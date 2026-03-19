@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://u7ocrnnhnci0"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_78inm"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_6q4an"]
+[ext_resource type="Script" uid="uid://l8142vs0gken" path="res://strategies/projectile_target/universal.gd" id="2_20yhb"]
+[ext_resource type="Script" uid="uid://ciibuj5lu0oho" path="res://strategies/projectile_movement/artillery_move_to_target.gd" id="3_2pt75"]
+[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="3_20yhb"]
+[ext_resource type="Shader" uid="uid://5lep1if814ha" path="res://assets/vfx/projectile_realistic/shader_vfx_realistic.tres" id="4_2pt75"]
+[ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="4_govlf"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="5_drtku"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="6_busd4"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_wp2k3"]
+[ext_resource type="PackedScene" uid="uid://bjdgq0enp4rhi" path="res://game/aoes/honey_aoe_floor/honey_aoe_floor.tscn" id="8_ccowy"]
+
+[sub_resource type="Curve" id="Curve_drtku"]
+_limits = [0.0, 2.9768958, 0.0, 1.0]
+_data = [Vector2(0, 0.4585309), 0.0, 10.192355, 0, 0, Vector2(0.45546558, 2.9622478), 0.0, 0.0, 0, 0, Vector2(0.5647774, 2.9622478), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.950316, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7wg7x"]
+radius = 0.26604587
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_drtku"]
+radius = 0.0991429
+
+[sub_resource type="SphereMesh" id="SphereMesh_hyrk1"]
+radius = 0.1
+height = 0.2
+radial_segments = 32
+rings = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61hmq"]
+albedo_color = Color(0.9529412, 0.69803923, 0.16078432, 0)
+emission_enabled = true
+emission = Color(0.83137256, 0.6039216, 0.20784314, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sb88r"]
+render_priority = -1
+next_pass = SubResource("StandardMaterial3D_61hmq")
+shader = ExtResource("3_20yhb")
+shader_parameter/ball_color = Color(1, 0.2901961, 0, 1)
+shader_parameter/frensel_power = 3.1
+shader_parameter/visibility = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drtku"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_sb88r")
+shader = ExtResource("4_2pt75")
+shader_parameter/Final_Color = Color(1, 0.92941177, 0.16078432, 1)
+shader_parameter/fire_speed = Vector2(0.05, 0.05)
+shader_parameter/visibilty = 1.0
+
+[node name="Projectile" unique_id=1567689166 node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_world_collision", "on_created") instance=ExtResource("1_78inm")]
+damage = 0.0
+max_distance = 100.0
+lifetime = 10.0
+hit_box = NodePath("Hitbox")
+movement = [NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
+targeting = [NodePath("MovementStrategies/UniversalTargetingProjectileTargetStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_created = [NodePath("MovementStrategies/SetTargetsEventStrategy")]
+
+[node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=1841632674]
+script = ExtResource("2_20yhb")
+target_property = 2
+metadata/_custom_type_script = "uid://l8142vs0gken"
+
+[node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1" unique_id=2053083556]
+script = ExtResource("3_2pt75")
+flight_curve = SubResource("Curve_drtku")
+max_distance = 4.0
+metadata/_custom_type_script = "uid://ciibuj5lu0oho"
+
+[node name="SetTargetsEventStrategy" type="Node" parent="MovementStrategies" index="2" unique_id=1780823928 node_paths=PackedStringArray("targeting_strats")]
+script = ExtResource("4_govlf")
+targeting_strats = [NodePath("../UniversalTargetingProjectileTargetStrategy")]
+metadata/_custom_type_script = "uid://nxmo7fqigkr1"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=2139586803]
+script = ExtResource("5_drtku")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="1" unique_id=1252120269]
+script = ExtResource("6_busd4")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy" index="0" unique_id=1071815544 node_paths=PackedStringArray("spawn_position")]
+script = ExtResource("7_wp2k3")
+spawn_position = NodePath("../../../../Marker3D")
+entity_to_spawn = ExtResource("8_ccowy")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="Hitbox" parent="." index="2" unique_id=1204839943 instance=ExtResource("2_6q4an")]
+visible = false
+collision_layer = 32
+collision_mask = 8
+damage = 1.0
+individual_hit_limit = 1
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1985359484]
+shape = SubResource("SphereShape3D_7wg7x")
+disabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1355476547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0009972751, 0)
+shape = SubResource("SphereShape3D_drtku")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="4" unique_id=1813067130]
+mesh = SubResource("SphereMesh_hyrk1")
+surface_material_override/0 = SubResource("ShaderMaterial_drtku")
+
+[node name="Marker3D" type="Marker3D" parent="." index="5" unique_id=1782056664]
