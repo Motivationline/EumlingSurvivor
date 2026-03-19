@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://ch75ted576gk8"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_4yckm"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="2_ay312"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_vbct3"]
+[ext_resource type="PackedScene" uid="uid://ko8u3dvlq1cu" path="res://assets/characters/enemies/boss_turtle/boss_turtle_prefab.tscn" id="4_7yf88"]
+[ext_resource type="PackedScene" uid="uid://bc6uvrrkins5w" path="res://game/projectiles/turtle_boss_projectile/sand_wave.tscn" id="4_vwaej"]
+[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="5_bjcu4"]
+[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_akffo"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="7_bjcu4"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_geoho"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_f7jcw"]
+
+[sub_resource type="Resource" id="Resource_geoho"]
+script = ExtResource("5_bjcu4")
+metadata/_custom_type_script = "uid://yd5ytc70xwp6"
+
+[sub_resource type="Resource" id="Resource_f7jcw"]
+script = ExtResource("6_akffo")
+metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s16t0"]
+radius = 0.69921875
+height = 1.9130859
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w3w5t"]
+radius = 0.7871094
+height = 2.1870117
+
+[node name="TurtleBoss" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_4yckm")]
+health = 500.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+node_with_animation_tree = NodePath("Visuals/boss_turtle")
+
+[node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4654425, -0.5)
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Normal/SpawnEntitiesState")
+
+[node name="Normal" type="Node" parent="StateMachine" index="0" unique_id=1522493653]
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Normal" index="0" unique_id=1944138119 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ay312")
+start_delay = 1.0
+end_delay = 0.4
+next_state = NodePath("../WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/LocomotionShell/transition_request": "stomp"
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/Normal/SpawnEntitiesState" index="0" unique_id=1795186278 node_paths=PackedStringArray("spawn_position")]
+script = ExtResource("3_vbct3")
+spawn_position = NodePath("../../../../Visuals/Marker3D")
+damage = 40.0
+max_distance = 10.0
+lifetime = 2.0
+entity_to_spawn = ExtResource("4_vwaej")
+amount_of_spawns = 60
+target_strategy = SubResource("Resource_geoho")
+rotation_strategy = SubResource("Resource_f7jcw")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/Normal" index="1" unique_id=2077457527 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_bjcu4")
+wait_time = 2.0
+next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/LocomotionShell/transition_request": "idle"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("4_7yf88")]
+
+[node name="Marker3D" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=2140617436]
+
+[node name="Hitbox" parent="." index="6" unique_id=2070853154 instance=ExtResource("9_geoho")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=410950074]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.5, -0.24560547)
+shape = SubResource("CapsuleShape3D_s16t0")
+
+[node name="Hurtbox" parent="." index="7" unique_id=762751782 instance=ExtResource("10_f7jcw")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=273404735]
+transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, 0.5, -0.23754883)
+shape = SubResource("CapsuleShape3D_w3w5t")

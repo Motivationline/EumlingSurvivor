@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://bc6uvrrkins5w"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_buaqn"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_iek2t"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_5jeq8"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_upxv0"]
+
+[sub_resource type="Curve" id="Curve_upxv0"]
+_limits = [0.0, 5.0, 0.0, 2.0]
+_data = [Vector2(0, 5), 0.0, 0.724374, 0, 0, Vector2(1.6468798, 0), -0.46404195, -0.34820452, 0, 0]
+point_count = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_upxv0"]
+radius = 0.486333
+
+[sub_resource type="SphereMesh" id="SphereMesh_1y8io"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jeq8"]
+albedo_color = Color(0.7019608, 0.5921569, 0.43529412, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_upxv0"]
+size = Vector3(0.564209, 0.20458984, 0.6883545)
+
+[sub_resource type="Animation" id="Animation_5jeq8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.0945005, 0.99999994, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.20296317, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_upxv0"]
+resource_name = "spike_spawn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.31, 1.6333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(2.0945005, 0.99999994, 1), Vector3(2.3984842, 0.99999994, 1), Vector3(2.0945005, 0.99999994, 1), Vector3(0.43588695, 0.99999994, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.31, 0.53333336, 1.6333333, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.20296317, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, -0.12702641, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.3666667, 1.7166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.23701847, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1y8io"]
+_data = {
+&"RESET": SubResource("Animation_5jeq8"),
+&"spike_spawn": SubResource("Animation_upxv0")
+}
+
+[node name="Projectile" unique_id=1948351313 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision") instance=ExtResource("1_buaqn")]
+collision_mask = 17
+max_distance = 10.0
+lifetime = 2.0
+hit_box = NodePath("Hitbox")
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=1238775441]
+script = ExtResource("2_iek2t")
+normalize_to_lifetime = false
+speed = SubResource("Curve_upxv0")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=594498538]
+script = ExtResource("3_5jeq8")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="Hitbox" parent="." index="2" unique_id=2132730381 instance=ExtResource("4_upxv0")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=898105645]
+transform = Transform3D(-2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_upxv0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=1546617207]
+transform = Transform3D(-9.1553524e-08, -0.99999994, 0, 2.0945005, -4.3711385e-08, 0, 0, 0, 1, 0, 0.20296317, 0)
+mesh = SubResource("SphereMesh_1y8io")
+surface_material_override/0 = SubResource("StandardMaterial3D_5jeq8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1959706775]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.39770508, 0.0013122559)
+shape = SubResource("BoxShape3D_upxv0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=395823835]
+libraries/ = SubResource("AnimationLibrary_1y8io")
+autoplay = &"spike_spawn"
