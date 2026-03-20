@@ -1,4 +1,5 @@
 @abstract
+@icon("event_emitter.svg")
 class_name EventEmitter extends Node
 
 @export var listeners: Array[EventStrategy]
