@@ -357,9 +357,9 @@ player = NodePath("..")
 [node name="AttackSpawner" type="Node3D" parent="DefaultAttack" unique_id=1701561871]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458658, 0)
 script = ExtResource("3_a4w0n")
+offset_distance = 0.1
 entity_to_spawn = ExtResource("13_3ep63")
 time_between_entities = 0.05
-offset_distance = 0.1
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="AttackCooldown" type="Timer" parent="DefaultAttack" unique_id=1135107776]
@@ -419,6 +419,8 @@ scale_affects = Vector3(1, 0, 1)
 
 [node name="Investigative" type="Node3D" parent="SpecialAbilities" unique_id=521230901]
 script = ExtResource("71_d76hv")
+weakspot_size_base = 50
+weakspot_size_additional = 50
 
 [connection signal="play_sound" from="Eumling_v2" to="SoundEffectManager" method="play_sound"]
 [connection signal="pressed" from="UI/Control/PauseButton" to="UITest/PauseSketch" method="open"]
