@@ -5,9 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="3_2okvr"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_37nbn"]
 [ext_resource type="PackedScene" uid="uid://31e8rrg543xf" path="res://assets/models/3-Jungle/JunglePlant/jungle_plant_small.tscn" id="3_mjw8v"]
-[ext_resource type="PackedScene" uid="uid://ddty5phcxxvsi" path="res://game/enemies/3-Jungle/bomb_berry_poison/bomb_berry_poison.tscn" id="4_mjw8v"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="5_37nbn"]
-[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-Jungle/bomber/bomber_enemy.tscn" id="6_w658b"]
 [ext_resource type="LightmapGIData" uid="uid://c88rk08he7riq" path="res://game/levels/3-Jxx-Jungle/Lightmaps/J19.lmbake" id="7_w658b"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_fkdff"]
@@ -101,15 +99,6 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 2.2503555, 0.9922668, -0.2517898)
 
 [node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1961314702 instance=ExtResource("3_2okvr")]
-
-[node name="Bomber" parent="Enemies/TortoiseEnemy" index="9" unique_id=1188674474 instance=ExtResource("6_w658b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.1231403)
-
-[node name="BombBerryPoison" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1898691 instance=ExtResource("4_mjw8v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0, -3.25)
-
-[node name="BombBerryPoison2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1214541318 instance=ExtResource("4_mjw8v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -3.25)
 
 [node name="LightmapGI" parent="." index="7" unique_id=1450626193]
 light_data = ExtResource("7_w658b")

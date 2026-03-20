@@ -3,9 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_uehf0"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_lcahf"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="2_x6msp"]
-[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-jungle/tortoise/tortoise_enemy.tscn" id="3_ltfdp"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_ot24m"]
-[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-jungle/sniper/sniper_enemy.tscn" id="5_x6o33"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="5_x6o33"]
 [ext_resource type="LightmapGIData" uid="uid://xstomfyjyeur" path="res://game/levels/3-Jxx-Jungle/Lightmaps/J04.lmbake" id="6_x6o33"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ot24m"]
@@ -312,13 +311,7 @@ data = {
 "cells": PackedInt32Array(3, 0, 1, 65532, 65535, 65537, 3, 3, 196609, 65532, 65532, 1, 0, 3, 1441793, 65535, 65532, 655361, 65532, 3, 655361, 3, 65532, 655361)
 }
 
-[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1756722111 instance=ExtResource("3_ltfdp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8258246, 0, -0.9265733)
-
-[node name="TortoiseEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1879653243 instance=ExtResource("3_ltfdp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8122014, 0, 0.99386454)
-
-[node name="SniperEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=276113598 instance=ExtResource("5_x6o33")]
+[node name="SniperEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=276113598 instance=ExtResource("5_x6o33")]
 
 [node name="ExitArea" parent="." index="7" unique_id=1620901077 node_paths=PackedStringArray("parent") instance=ExtResource("2_x6msp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_ps5hx"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_ac6t3"]
-[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-jungle/environment/spikes.tscn" id="2_we2a5"]
+[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="2_we2a5"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_eo0n8"]
-[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-jungle/sniper/sniper_enemy.tscn" id="4_a8tgt"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="4_a8tgt"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="5_3enss"]
 [ext_resource type="LightmapGIData" uid="uid://b425j7besscbq" path="res://game/levels/3-Jxx-Jungle/Lightmaps/J02.lmbake" id="8_mx08w"]
 
@@ -354,11 +354,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.75)
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap/SoundEffectManager" parent_id_path=PackedInt32Array(1404758094, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap2" parent="Enemies/TrapLine2" index="1" unique_id=1139025239 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.25)
 
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap2" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
+
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap2/SoundEffectManager" parent_id_path=PackedInt32Array(1139025239, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap3" parent="Enemies/TrapLine2" index="2" unique_id=200505039 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75)
@@ -366,11 +372,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75)
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap3" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap3/SoundEffectManager" parent_id_path=PackedInt32Array(200505039, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap4" parent="Enemies/TrapLine2" index="3" unique_id=361875989 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25)
 
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap4" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
+
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap4/SoundEffectManager" parent_id_path=PackedInt32Array(361875989, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap5" parent="Enemies/TrapLine2" index="4" unique_id=847830786 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.75)
@@ -378,11 +390,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.75)
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap5" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap5/SoundEffectManager" parent_id_path=PackedInt32Array(847830786, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap6" parent="Enemies/TrapLine2" index="5" unique_id=818800741 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.25)
 
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap6" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
+
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap6/SoundEffectManager" parent_id_path=PackedInt32Array(818800741, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap7" parent="Enemies/TrapLine2" index="6" unique_id=821283746 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.75)
@@ -390,11 +408,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.75)
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap7" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap7/SoundEffectManager" parent_id_path=PackedInt32Array(821283746, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap8" parent="Enemies/TrapLine2" index="7" unique_id=801676889 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.25)
 
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap8" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
+
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap8/SoundEffectManager" parent_id_path=PackedInt32Array(801676889, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap9" parent="Enemies/TrapLine2" index="8" unique_id=22848646 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
@@ -402,11 +426,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap9" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap9/SoundEffectManager" parent_id_path=PackedInt32Array(22848646, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap10" parent="Enemies/TrapLine2" index="9" unique_id=1682962534 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
 
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap10" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
+
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap10/SoundEffectManager" parent_id_path=PackedInt32Array(1682962534, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap11" parent="Enemies/TrapLine2" index="10" unique_id=501155861 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
@@ -414,11 +444,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap11" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap11/SoundEffectManager" parent_id_path=PackedInt32Array(501155861, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap12" parent="Enemies/TrapLine2" index="11" unique_id=1443500801 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.75)
 
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap12" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
+
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap12/SoundEffectManager" parent_id_path=PackedInt32Array(1443500801, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap13" parent="Enemies/TrapLine2" index="12" unique_id=317624689 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
@@ -426,11 +462,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap13" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap13/SoundEffectManager" parent_id_path=PackedInt32Array(317624689, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap14" parent="Enemies/TrapLine2" index="13" unique_id=1769865115 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.75)
 
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap14" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
+
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap14/SoundEffectManager" parent_id_path=PackedInt32Array(1769865115, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap15" parent="Enemies/TrapLine2" index="14" unique_id=1913049962 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25)
@@ -438,11 +480,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25)
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap15" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap15/SoundEffectManager" parent_id_path=PackedInt32Array(1913049962, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap16" parent="Enemies/TrapLine2" index="15" unique_id=734976099 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.75)
 
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap16" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
+
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap16/SoundEffectManager" parent_id_path=PackedInt32Array(734976099, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap17" parent="Enemies/TrapLine2" index="16" unique_id=2099613913 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.25)
@@ -450,11 +498,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.25)
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap17" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap17/SoundEffectManager" parent_id_path=PackedInt32Array(2099613913, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap18" parent="Enemies/TrapLine2" index="17" unique_id=1732289058 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.75)
 
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap18" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
+
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap18/SoundEffectManager" parent_id_path=PackedInt32Array(1732289058, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap19" parent="Enemies/TrapLine2" index="18" unique_id=1611566314 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.25)
@@ -462,20 +516,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.25)
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap19" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap19/SoundEffectManager" parent_id_path=PackedInt32Array(1611566314, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap20" parent="Enemies/TrapLine2" index="19" unique_id=495488545 instance=ExtResource("2_we2a5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.75)
 
 [node name="StateMachine" parent="Enemies/TrapLine2/SpikeTrap20" index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitUP")
 
+[node name="Extend" parent="Enemies/TrapLine2/SpikeTrap20/SoundEffectManager" parent_id_path=PackedInt32Array(495488545, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SniperEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1574851564 instance=ExtResource("4_a8tgt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5277777, 0, 0)
-
-[node name="SniperEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="3" unique_id=1695012080 instance=ExtResource("4_a8tgt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5277777, 0, -2.863977)
-
-[node name="SniperEnemy3" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="4" unique_id=378015938 instance=ExtResource("4_a8tgt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5277777, 0, 2.9861808)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
 
 [node name="ExitArea" parent="." index="7" unique_id=1344918681 node_paths=PackedStringArray("parent") instance=ExtResource("5_3enss")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cv4o1pu7i2v5e"]
+
+[ext_resource type="PackedScene" uid="uid://bhqo1nj1be3hg" path="res://game/levels/3-Jxx-Jungle/J16.tscn" id="1_0t6mh"]
+[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="2_uu5ni"]
+[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-Jungle/bomber/bomber_enemy.tscn" id="3_1jim2"]
+
+[node name="Level" unique_id=1578328013 instance=ExtResource("1_0t6mh")]
+
+[node name="TortoiseEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1961314702 instance=ExtResource("2_uu5ni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="Bomber" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="3" unique_id=1188674474 instance=ExtResource("3_1jim2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.5)

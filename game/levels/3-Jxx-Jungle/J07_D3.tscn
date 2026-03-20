@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ci4l1stba6433"]
+
+[ext_resource type="PackedScene" uid="uid://d05tkg6snifwa" path="res://game/levels/3-Jxx-Jungle/J07.tscn" id="1_x1tbp"]
+[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-Jungle/bomber/bomber_enemy.tscn" id="2_cksub"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="3_ss8sk"]
+
+[node name="Level" unique_id=1316471566 instance=ExtResource("1_x1tbp")]
+
+[node name="Bomber" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="9" unique_id=1188674474 instance=ExtResource("2_cksub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="Bomber2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="10" unique_id=2139243407 instance=ExtResource("2_cksub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="SniperEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="11" unique_id=1534333626 instance=ExtResource("3_ss8sk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="SniperEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="12" unique_id=1957251411 instance=ExtResource("3_ss8sk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)

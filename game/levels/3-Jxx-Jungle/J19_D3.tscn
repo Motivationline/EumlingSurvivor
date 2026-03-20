@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cjm32g5e4iy20"]
+
+[ext_resource type="PackedScene" uid="uid://cch1t3hg3mwq3" path="res://game/levels/3-Jxx-Jungle/J19.tscn" id="1_0irx5"]
+[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="2_nwofs"]
+[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-Jungle/bomber/bomber_enemy.tscn" id="3_km57v"]
+[ext_resource type="PackedScene" uid="uid://ddty5phcxxvsi" path="res://game/enemies/3-Jungle/bomb_berry_poison/bomb_berry_poison.tscn" id="4_km57v"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="5_8jb4k"]
+
+[node name="Level" unique_id=1578328013 instance=ExtResource("1_0irx5")]
+
+[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1961314702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5)
+
+[node name="TortoiseEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1250274301 instance=ExtResource("2_nwofs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -1.5)
+
+[node name="Bomber" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1188674474 instance=ExtResource("3_km57v")]
+
+[node name="BombBerryPoison" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="3" unique_id=1898691 instance=ExtResource("4_km57v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="BombBerryPoison2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="4" unique_id=733683110 instance=ExtResource("4_km57v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="SniperEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="5" unique_id=1534333626 instance=ExtResource("5_8jb4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="SniperEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="6" unique_id=126686676 instance=ExtResource("5_8jb4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
