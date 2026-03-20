@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://el73drd8s58x"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_4mvb8"]
+[ext_resource type="PackedScene" uid="uid://ko8u3dvlq1cu" path="res://assets/characters/enemies/boss_turtle/boss_turtle_prefab.tscn" id="2_4d1ke"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_gmr3c"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_1yahh"]
+[ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="4_dwm3f"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_e3ogy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1yahh"]
+radius = 0.7224098
+
+[node name="Shell" unique_id=1898691 node_paths=PackedStringArray("node_with_animation_tree") instance=ExtResource("1_4mvb8")]
+speed = 4.0
+ignore_enemy_in_level = true
+node_with_animation_tree = NodePath("Visuals/boss_turtle")
+
+[node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
+visible = false
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveRandomOnNavMeshState")
+
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=230172620 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_gmr3c")
+wait_time = 0.0
+min_distance = 5.0
+max_distance = 4.0
+speed_override = 10.0
+next_state = NodePath("../WaitForTimeXState")
+repeat_self = 5
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Locomotion/transition_request": "shell",
+"parameters/LocomotionShell/transition_request": "bounce"
+})
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="1" unique_id=459783235 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_1yahh")
+wait_time = 2.0
+next_state = NodePath("../KillSelfState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/LocomotionShell/transition_request": "stop"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="KillSelfState" type="Node" parent="StateMachine" index="2" unique_id=1040638459 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_dwm3f")
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://dj632w22te1th"
+
+[node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("2_4d1ke")]
+
+[node name="Hitbox" parent="." index="6" unique_id=1999330290 instance=ExtResource("4_e3ogy")]
+collision_layer = 32
+collision_mask = 8
+damage = 10.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1578435306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35875124, 0)
+shape = SubResource("SphereShape3D_1yahh")
