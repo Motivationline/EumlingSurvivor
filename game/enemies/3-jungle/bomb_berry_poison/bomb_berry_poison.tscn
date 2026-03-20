@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://ddty5phcxxvsi"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_4nvcr"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_7xjtc"]
 [ext_resource type="PackedScene" uid="uid://b8ns3hl23ic6v" path="res://assets/characters/enemies/bomberry/bomberry_prefab.tscn" id="2_awjhr"]
 [ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="2_wnsrb"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_6mw7y"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_c6m5u"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_satr4"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="4_6mw7y"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_wnsrb"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_ktm0l"]
@@ -14,7 +16,9 @@
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="9_wl6h4"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="10_svgcn"]
 [ext_resource type="AudioStream" uid="uid://gux8h75ckcwo" path="res://assets/characters/enemies/bomberry/sounds/charge_1.wav" id="11_r87kj"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="12_1s25r"]
 [ext_resource type="AudioStream" uid="uid://drhtpeylcv5lm" path="res://assets/characters/enemies/bomberry/sounds/charge_2.wav" id="12_iwjtf"]
+[ext_resource type="PackedScene" uid="uid://cir8dxt72i6di" path="res://game/aoes/explosion/berry_explosion_aoe.tscn" id="13_57rd0"]
 [ext_resource type="AudioStream" uid="uid://bulot3ony1hxf" path="res://assets/characters/enemies/bomberry/sounds/charge_3.wav" id="13_qljmb"]
 [ext_resource type="AudioStream" uid="uid://bvb8ynp4xwto0" path="res://assets/characters/enemies/bomberry/sounds/charge_4.wav" id="14_6xron"]
 [ext_resource type="AudioStream" uid="uid://bher35ljx425f" path="res://assets/characters/enemies/bomberry/sounds/charge_5.wav" id="15_38jbc"]
@@ -25,6 +29,70 @@
 [ext_resource type="AudioStream" uid="uid://bg18bentgbs6a" path="res://assets/characters/enemies/bomberry/sounds/death_4.wav" id="20_7xjtc"]
 [ext_resource type="AudioStream" uid="uid://cy53vxdclxn5v" path="res://assets/characters/enemies/bomberry/sounds/death_5.wav" id="21_satr4"]
 [ext_resource type="AudioStream" uid="uid://ddoke46qg8u4h" path="res://assets/characters/enemies/bomberry/sounds/death_6.wav" id="22_1s25r"]
+
+[sub_resource type="Resource" id="Resource_1s25r"]
+script = ExtResource("2_7xjtc")
+attribute = "health"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_57rd0"]
+script = ExtResource("2_7xjtc")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_mu1ch"]
+script = ExtResource("2_7xjtc")
+attribute = "health"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_fatpq"]
+script = ExtResource("2_7xjtc")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_avhu4"]
+script = ExtResource("3_satr4")
+introduction = Array[ExtResource("2_7xjtc")]([SubResource("Resource_mu1ch")])
+easy = Array[ExtResource("2_7xjtc")]([SubResource("Resource_1s25r")])
+medium = Array[ExtResource("2_7xjtc")]([SubResource("Resource_fatpq")])
+hard = Array[ExtResource("2_7xjtc")]([SubResource("Resource_57rd0")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_ks5p5"]
+script = ExtResource("2_7xjtc")
+attribute = "amount_of_spawns"
+value = 0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_u87jn"]
+script = ExtResource("2_7xjtc")
+attribute = "amount_of_spawns"
+value = 1
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_irnwb"]
+script = ExtResource("2_7xjtc")
+attribute = "amount_of_spawns"
+value = 0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_tk56u"]
+script = ExtResource("2_7xjtc")
+attribute = "amount_of_spawns"
+value = 1
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_77v3g"]
+script = ExtResource("3_satr4")
+introduction = Array[ExtResource("2_7xjtc")]([SubResource("Resource_irnwb")])
+easy = Array[ExtResource("2_7xjtc")]([SubResource("Resource_ks5p5")])
+medium = Array[ExtResource("2_7xjtc")]([SubResource("Resource_tk56u")])
+hard = Array[ExtResource("2_7xjtc")]([SubResource("Resource_u87jn")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wl6h4"]
 streams_count = 6
@@ -44,6 +112,38 @@ stream_3/stream = ExtResource("20_7xjtc")
 stream_4/stream = ExtResource("21_satr4")
 stream_5/stream = ExtResource("22_1s25r")
 
+[sub_resource type="Resource" id="Resource_7xjtc"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_satr4"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ndhr2"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_k6y8f"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_wywj6"]
+script = ExtResource("3_satr4")
+introduction = Array[ExtResource("2_7xjtc")]([SubResource("Resource_ndhr2")])
+easy = Array[ExtResource("2_7xjtc")]([SubResource("Resource_7xjtc")])
+medium = Array[ExtResource("2_7xjtc")]([SubResource("Resource_k6y8f")])
+hard = Array[ExtResource("2_7xjtc")]([SubResource("Resource_satr4")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_6mw7y"]
 radius = 0.22945888
 
@@ -56,9 +156,10 @@ radius = 0.25
 [node name="BombBerryPoison" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_4nvcr")]
 health = 80.0
 speed = 2.0
+difficulty_scaler = SubResource("Resource_avhu4")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("DecideDistanceState")
@@ -120,6 +221,16 @@ sound_to_play = "DeathSpecific"
 needs_to_be_persistent = true
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=53671575]
+script = ExtResource("12_1s25r")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=529013824]
+script = ExtResource("6_x66hl")
+difficulty_scaler = SubResource("Resource_77v3g")
+entity_to_spawn = ExtResource("13_57rd0")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
 [node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("2_awjhr")]
 
 [node name="Charge" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=13899280 instance=ExtResource("10_svgcn")]
@@ -136,6 +247,7 @@ collision_mask = 8
 damage = 50.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_wywj6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1545682447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109611675, 0)

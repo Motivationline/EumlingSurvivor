@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="2_82l66"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_pgmq4"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_pj1a8"]
-[ext_resource type="Script" path="res://game/shared/difficulty_scaler.gd" id="3_ldbtp"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_ldbtp"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_7jdl2"]
 [ext_resource type="PackedScene" uid="uid://ufivfi4021l7" path="res://game/enemies/3-Jungle/bomber/projectile/bomber_projectile.tscn" id="5_qg7p4"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_rkcej"]
@@ -29,8 +29,74 @@
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="28_ldbtp"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="28_pgmq4"]
 
+[sub_resource type="Resource" id="Resource_4y7xn"]
+script = ExtResource("2_pgmq4")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_r4oyv"]
+script = ExtResource("2_pgmq4")
+attribute = "health"
+value = 300.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_o183i"]
+script = ExtResource("2_pgmq4")
+attribute = "incoming_damage_multiplier"
+value = 0.9
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_i4s35"]
+script = ExtResource("2_pgmq4")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_tbj0s"]
+script = ExtResource("2_pgmq4")
+attribute = "health"
+value = 250.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
 [sub_resource type="Resource" id="Resource_5b0h0"]
 script = ExtResource("3_ldbtp")
+introduction = Array[ExtResource("2_pgmq4")]([SubResource("Resource_i4s35")])
+easy = Array[ExtResource("2_pgmq4")]([SubResource("Resource_4y7xn")])
+medium = Array[ExtResource("2_pgmq4")]([SubResource("Resource_tbj0s")])
+hard = Array[ExtResource("2_pgmq4")]([SubResource("Resource_r4oyv"), SubResource("Resource_o183i")])
+
+[sub_resource type="Resource" id="Resource_jnraw"]
+script = ExtResource("2_pgmq4")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_180uu"]
+script = ExtResource("2_pgmq4")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ldbtp"]
+script = ExtResource("2_pgmq4")
+attribute = "damage"
+value = 20.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_k02oo"]
+script = ExtResource("2_pgmq4")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_pgmq4"]
+script = ExtResource("3_ldbtp")
+introduction = Array[ExtResource("2_pgmq4")]([SubResource("Resource_ldbtp")])
+easy = Array[ExtResource("2_pgmq4")]([SubResource("Resource_jnraw")])
+medium = Array[ExtResource("2_pgmq4")]([SubResource("Resource_k02oo")])
+hard = Array[ExtResource("2_pgmq4")]([SubResource("Resource_180uu")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jpwg4"]
 radius = 0.3609349
@@ -64,6 +130,38 @@ stream_7/stream = ExtResource("25_yhsn5")
 stream_8/stream = ExtResource("26_my6wa")
 stream_9/stream = ExtResource("27_i1pgt")
 
+[sub_resource type="Resource" id="Resource_nshiq"]
+script = ExtResource("2_pgmq4")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_32en8"]
+script = ExtResource("2_pgmq4")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_b5ig4"]
+script = ExtResource("2_pgmq4")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_yhsn5"]
+script = ExtResource("2_pgmq4")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_my6wa"]
+script = ExtResource("3_ldbtp")
+introduction = Array[ExtResource("2_pgmq4")]([SubResource("Resource_b5ig4")])
+easy = Array[ExtResource("2_pgmq4")]([SubResource("Resource_nshiq")])
+medium = Array[ExtResource("2_pgmq4")]([SubResource("Resource_yhsn5")])
+hard = Array[ExtResource("2_pgmq4")]([SubResource("Resource_32en8")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_xfv6s"]
 radius = 0.32468745
 
@@ -71,7 +169,6 @@ radius = 0.32468745
 collision_layer = 64
 collision_mask = 65
 health = 200.0
-damage = 50.0
 difficulty_scaler = SubResource("Resource_5b0h0")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
@@ -97,6 +194,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1393891198]
 script = ExtResource("5_rkcej")
+difficulty_scaler = SubResource("Resource_pgmq4")
 entity_to_spawn = ExtResource("5_qg7p4")
 time_between_entities = 1.0
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -133,6 +231,7 @@ collision_mask = 8
 damage = 30.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_my6wa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1761122579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.027737707, 0)
