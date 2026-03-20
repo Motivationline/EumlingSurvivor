@@ -13,5 +13,5 @@ func enter() -> void:
 		if ev.is_active:
 			ev.event_triggered(null)
 
-func _process(_delta: float) -> void:
+func process(_delta: float) -> State:
 	return return_next()
