@@ -43,10 +43,16 @@ func load_level():
 	for child in children:
 		child.queue_free()
 	
-	Engine.time_scale = 0
 	if !levels_to_load.size() > 0:
+		if Data._unlocked_mini_eumlings.size() >= 4:
+			$AreaChoiceOverlay/GameCompleteOverlay.show()
+			await get_tree().create_timer(3).timeout
+			$AreaChoiceOverlay/GameCompleteOverlay.hide()
+			return_to_main_menu()
+			return
 		area_choice_overlay.setup()
 		levels_to_load = await area_choice_overlay.area_chosen
+	Engine.time_scale = 0
 	var level_info = levels_to_load.pop_front()
 	var level_location: String = level_info.id
 	var difficulty: int = level_info.difficulty
@@ -81,10 +87,11 @@ func level_ended():
 	load_level()
 
 func return_to_main_menu():
-	scene_fade_animation_player.play("fade")
 	GlobalMusicManager.request_music(SongList.TRACK.MENU, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [2, 0])
-	await scene_fade_animation_player.animation_finished
-	faded_to_black = true
+	if not faded_to_black:
+		scene_fade_animation_player.play("fade")
+		await scene_fade_animation_player.animation_finished
+		faded_to_black = true
 	levels_to_load.clear()
 	Data.end_game()
 	Main.controller.load_scene(Main.controller.main_menu, false)

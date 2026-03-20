@@ -134,6 +134,30 @@ layer = 128
 
 [node name="AreaPicker" parent="AreaChoiceOverlay" unique_id=778756626 instance=ExtResource("6_3vho3")]
 
+[node name="GameCompleteOverlay" type="Control" parent="AreaChoiceOverlay" unique_id=730253505]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="AreaChoiceOverlay/GameCompleteOverlay" unique_id=1219146814]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AreaChoiceOverlay/GameCompleteOverlay/CenterContainer" unique_id=667226369]
+layout_mode = 2
+text = "Yay you've rescued 4 minis!
+Time to return home and take a break,
+maybe take a look at the eumlingpedia"
+horizontal_alignment = 1
+
 [node name="pauseMenuStyleTest" type="CanvasLayer" parent="." unique_id=681765596]
 visible = false
 
@@ -145,9 +169,9 @@ visible = false
 [node name="PopUpStyleTest" parent="CanvasLayer" unique_id=1120283008 instance=ExtResource("8_j8tme")]
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=625735840]
+visible = false
 
 [node name="UpgradePickerStyleTest" parent="CanvasLayer2" unique_id=711554406 instance=ExtResource("9_3vho3")]
-visible = false
 
 [node name="UpgradeView" parent="." unique_id=1120486040 instance=ExtResource("10_j8tme")]
 layer = 11
