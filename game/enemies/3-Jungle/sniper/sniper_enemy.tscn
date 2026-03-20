@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://dtxcbfvali8ib" path="res://assets/characters/enemies/peacock/peacock_prefab.tscn" id="2_3n5vt"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_4ah3n"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="2_qcoba"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_s7hfn"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_sm3km"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_0p1ou"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_4ah3n"]
-[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle/sniper/sniper_projectile_enemy.tscn" id="4_3xlw0"]
+[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-Jungle/sniper/sniper_projectile_enemy.tscn" id="4_3xlw0"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="6_qd5e1"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="6_yptkn"]
 [ext_resource type="Script" uid="uid://2ncl5gd1yn5a" path="res://strategies/event/activate.gd" id="7_yk45h"]
@@ -24,6 +26,76 @@
 [ext_resource type="AudioStream" uid="uid://br0b2pgf7ios5" path="res://assets/characters/enemies/peacock/sounds/death_4.wav" id="22_237j1"]
 [ext_resource type="AudioStream" uid="uid://cp1lcnj843xkh" path="res://assets/characters/enemies/peacock/sounds/death_5.wav" id="23_k5egc"]
 [ext_resource type="AudioStream" uid="uid://4ggxibgyrynx" path="res://assets/characters/enemies/peacock/sounds/death_6.wav" id="24_qn7bg"]
+
+[sub_resource type="Resource" id="Resource_nhus1"]
+script = ExtResource("2_s7hfn")
+attribute = "health"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_veopi"]
+script = ExtResource("2_s7hfn")
+attribute = "health"
+value = 250.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_q1m8v"]
+script = ExtResource("2_s7hfn")
+attribute = "incoming_damage_multiplier"
+value = 0.9
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_vpm8i"]
+script = ExtResource("2_s7hfn")
+attribute = "health"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_uyo8q"]
+script = ExtResource("2_s7hfn")
+attribute = "health"
+value = 200.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_237j1"]
+script = ExtResource("3_0p1ou")
+introduction = Array[ExtResource("2_s7hfn")]([SubResource("Resource_vpm8i")])
+easy = Array[ExtResource("2_s7hfn")]([SubResource("Resource_nhus1")])
+medium = Array[ExtResource("2_s7hfn")]([SubResource("Resource_uyo8q")])
+hard = Array[ExtResource("2_s7hfn")]([SubResource("Resource_veopi"), SubResource("Resource_q1m8v")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_s7hfn"]
+script = ExtResource("2_s7hfn")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_0p1ou"]
+script = ExtResource("2_s7hfn")
+attribute = "damage"
+value = 75.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_k5egc"]
+script = ExtResource("2_s7hfn")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_qn7bg"]
+script = ExtResource("2_s7hfn")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_6xtdm"]
+script = ExtResource("3_0p1ou")
+introduction = Array[ExtResource("2_s7hfn")]([SubResource("Resource_k5egc")])
+easy = Array[ExtResource("2_s7hfn")]([SubResource("Resource_s7hfn")])
+medium = Array[ExtResource("2_s7hfn")]([SubResource("Resource_qn7bg")])
+hard = Array[ExtResource("2_s7hfn")]([SubResource("Resource_0p1ou")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lrmx"]
 radius = 0.4165039
@@ -55,6 +127,7 @@ stream_5/stream = ExtResource("24_qn7bg")
 
 [node name="SniperEnemy" unique_id=1534333626 node_paths=PackedStringArray("hurtbox", "on_death", "on_hurt", "node_with_animation_tree") instance=ExtResource("1_jj26d")]
 health = 150.0
+difficulty_scaler = SubResource("Resource_237j1")
 hurtbox = NodePath("HurtBox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/PlaySoundHitGeneral")]
@@ -87,6 +160,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=378712980]
 script = ExtResource("3_4ah3n")
+difficulty_scaler = SubResource("Resource_6xtdm")
 entity_to_spawn = ExtResource("4_3xlw0")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 

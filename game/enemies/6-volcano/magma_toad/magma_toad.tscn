@@ -3,8 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_k7wj4"]
 [ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="2_5wldd"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_52td2"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_gqpqm"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_21otp"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_52td2"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_vqu8f"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_m7dcb"]
 [ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="6_52td2"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="7_i8psu"]
@@ -23,6 +25,88 @@
 [ext_resource type="AudioStream" uid="uid://dkxeflfjttqol" path="res://assets/characters/enemies/toad/sounds/death_5.wav" id="14_2mold"]
 [ext_resource type="AudioStream" uid="uid://2u00rib5gav" path="res://assets/characters/enemies/toad/sounds/shoot_6.wav" id="14_aqndw"]
 [ext_resource type="AudioStream" uid="uid://dvodrmw3y5orh" path="res://assets/characters/enemies/toad/sounds/death_6.wav" id="15_c4g0k"]
+
+[sub_resource type="Resource" id="Resource_xkv2o"]
+script = ExtResource("2_gqpqm")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_2mold"]
+script = ExtResource("2_gqpqm")
+attribute = "health"
+value = 300.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_c4g0k"]
+script = ExtResource("2_gqpqm")
+attribute = "incoming_damage_multiplier"
+value = 0.9
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_a32y6"]
+script = ExtResource("2_gqpqm")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_lrsjf"]
+script = ExtResource("2_gqpqm")
+attribute = "health"
+value = 250.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_aj0o5"]
+script = ExtResource("3_vqu8f")
+introduction = Array[ExtResource("2_gqpqm")]([SubResource("Resource_a32y6")])
+easy = Array[ExtResource("2_gqpqm")]([SubResource("Resource_xkv2o")])
+medium = Array[ExtResource("2_gqpqm")]([SubResource("Resource_lrsjf")])
+hard = Array[ExtResource("2_gqpqm")]([SubResource("Resource_2mold"), SubResource("Resource_c4g0k")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_gqpqm"]
+script = ExtResource("2_gqpqm")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_vqu8f"]
+script = ExtResource("2_gqpqm")
+attribute = "damage"
+value = 60.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ubv4y"]
+script = ExtResource("2_gqpqm")
+attribute = "amount_of_spawns"
+value = 3
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_uvcej"]
+script = ExtResource("2_gqpqm")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_5my8y"]
+script = ExtResource("2_gqpqm")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_1wdom"]
+script = ExtResource("2_gqpqm")
+attribute = "amount_of_spawns"
+value = 2
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_uhhlj"]
+script = ExtResource("3_vqu8f")
+introduction = Array[ExtResource("2_gqpqm")]([SubResource("Resource_uvcej")])
+easy = Array[ExtResource("2_gqpqm")]([SubResource("Resource_gqpqm")])
+medium = Array[ExtResource("2_gqpqm")]([SubResource("Resource_5my8y"), SubResource("Resource_1wdom")])
+hard = Array[ExtResource("2_gqpqm")]([SubResource("Resource_vqu8f"), SubResource("Resource_ubv4y")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a32y6"]
 streams_count = 6
@@ -55,6 +139,7 @@ radius = 0.26148474
 collision_layer = 64
 collision_mask = 65
 health = 200.0
+difficulty_scaler = SubResource("Resource_aj0o5")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
@@ -90,7 +175,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1650355750]
 script = ExtResource("4_m7dcb")
+difficulty_scaler = SubResource("Resource_uhhlj")
 entity_to_spawn = ExtResource("6_52td2")
+time_between_entities = 0.15
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1367474497 node_paths=PackedStringArray("sound_manager")]
