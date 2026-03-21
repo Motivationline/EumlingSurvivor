@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_b2c2y"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_u03tj"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_iynhh"]
-[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_xug2y"]
+[ext_resource type="Script" path="res://game/shared/difficulty_scaler.gd" id="3_xug2y"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_iteb3"]
 [ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="5_hr1u6"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_o104n"]
@@ -269,7 +269,7 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 [node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=1646321378 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("9_fdew1")
 sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Death"
+sound_to_play = "DeathSpecific"
 needs_to_be_persistent = true
 
 [node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=728218215]
@@ -323,8 +323,8 @@ shape = SubResource("SphereShape3D_fgitk")
 [node name="Shake" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=610131262 instance=ExtResource("15_b5a6k")]
 stream = SubResource("AudioStreamRandomizer_dchbn")
 
-[node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=311950094 instance=ExtResource("15_b5a6k")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=311950094 instance=ExtResource("15_b5a6k")]
 stream = SubResource("AudioStreamRandomizer_mr30t")
 
-[node name="VulnerabilityDisplay" parent="." index="8" unique_id=1768099244]
+[node name="VulnerabilityDisplay" parent="." index="9" unique_id=1768099244]
 distance = 0.7

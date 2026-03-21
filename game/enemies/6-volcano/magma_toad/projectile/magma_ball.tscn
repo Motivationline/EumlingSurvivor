@@ -17,6 +17,16 @@
 [ext_resource type="AudioStream" uid="uid://bcvaycao40nu2" path="res://assets/characters/enemies/toad/sounds/explosion_3.wav" id="15_o7tfj"]
 [ext_resource type="AudioStream" uid="uid://cw4p6pg12v65w" path="res://assets/characters/enemies/toad/sounds/explosion_4.wav" id="16_abgqe"]
 [ext_resource type="AudioStream" uid="uid://b4csjhtruu2xy" path="res://assets/characters/enemies/toad/sounds/explosion_5.wav" id="17_byitt"]
+[ext_resource type="AudioStream" uid="uid://b678eyacfbi5w" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/sounds/launch_1.wav" id="18_j5b54"]
+[ext_resource type="AudioStream" uid="uid://bp3qejcqmr4uy" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/sounds/launch_2.wav" id="19_uwxwc"]
+[ext_resource type="AudioStream" uid="uid://bhc3yijge8el5" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/sounds/launch_3.wav" id="20_w8rmd"]
+[ext_resource type="AudioStream" uid="uid://cyw5ornx5duws" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/sounds/launch_4.wav" id="21_y1e01"]
+[ext_resource type="AudioStream" uid="uid://d2yj7l1oojwjb" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/sounds/launch_5.wav" id="22_bex3g"]
+[ext_resource type="AudioStream" uid="uid://cwovv0k32001l" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/sounds/launch_6.wav" id="23_a7wji"]
+[ext_resource type="AudioStream" uid="uid://bqiv1gr76yiq" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/sounds/launch_7.wav" id="24_uxhry"]
+[ext_resource type="AudioStream" uid="uid://bcbjelrtd217" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/sounds/launch_8.wav" id="25_eqyv3"]
+[ext_resource type="AudioStream" uid="uid://dy3nxbl8bte8f" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/sounds/launch_9.wav" id="26_rohh2"]
+[ext_resource type="AudioStream" uid="uid://b7yb7mvor1wk6" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/sounds/launch_10.wav" id="27_bnuqw"]
 
 [sub_resource type="Curve" id="Curve_by40c"]
 _limits = [0.0, 2.9768958, 0.0, 1.0]
@@ -41,14 +51,27 @@ stream_2/stream = ExtResource("15_o7tfj")
 stream_3/stream = ExtResource("16_abgqe")
 stream_4/stream = ExtResource("17_byitt")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u2wxb"]
+streams_count = 10
+stream_0/stream = ExtResource("18_j5b54")
+stream_1/stream = ExtResource("19_uwxwc")
+stream_2/stream = ExtResource("20_w8rmd")
+stream_3/stream = ExtResource("21_y1e01")
+stream_4/stream = ExtResource("22_bex3g")
+stream_5/stream = ExtResource("23_a7wji")
+stream_6/stream = ExtResource("24_uxhry")
+stream_7/stream = ExtResource("25_eqyv3")
+stream_8/stream = ExtResource("26_rohh2")
+stream_9/stream = ExtResource("27_bnuqw")
+
 [node name="Projectile" unique_id=1865303972 node_paths=PackedStringArray("movement", "targeting", "on_world_collision", "on_created") instance=ExtResource("1_ehkq2")]
 damage = 0.0
 max_distance = 100.0
 lifetime = 10.0
 movement = [NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
 targeting = [NodePath("MovementStrategies/UniversalTargetingProjectileTargetStrategy")]
-on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/PlaySoundEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
-on_created = [NodePath("MovementStrategies/SetTargetsEventStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/PlaySoundExplosion"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_created = [NodePath("MovementStrategies/SetTargetsEventStrategy"), NodePath("EventStrategies/PlaySoundLaunch")]
 
 [node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=619591397]
 script = ExtResource("3_ma2mw")
@@ -66,7 +89,7 @@ script = ExtResource("5_54631")
 targeting_strats = [NodePath("../UniversalTargetingProjectileTargetStrategy")]
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
-[node name="PlaySoundEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=1234271980 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundExplosion" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=1234271980 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("9_ht0i3")
 sound_manager = NodePath("../../../SoundEffectManager")
 sound_to_play = "Explosion"
@@ -85,6 +108,12 @@ metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 script = ExtResource("7_m8640")
 entity_to_spawn = ExtResource("8_by40c")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="PlaySoundLaunch" type="Node" parent="EventStrategies" index="5" unique_id=376450025 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("9_ht0i3")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = "Launch"
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="Magma_Ball" parent="." index="2" unique_id=153719346 instance=ExtResource("2_ib3xs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38858503, 0)
@@ -105,3 +134,7 @@ metadata/_custom_type_script = "uid://fxqs1lioec3e"
 [node name="Explosion" parent="SoundEffectManager" index="0" unique_id=710197368 instance=ExtResource("12_pk2yg")]
 stream = SubResource("AudioStreamRandomizer_k6c7p")
 volume_db = -10.0
+
+[node name="Launch" parent="SoundEffectManager" index="1" unique_id=1656971584 instance=ExtResource("12_pk2yg")]
+stream = SubResource("AudioStreamRandomizer_u2wxb")
+volume_db = -12.0
