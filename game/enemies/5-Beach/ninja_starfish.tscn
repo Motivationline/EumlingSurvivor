@@ -7,6 +7,20 @@
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_gykbi"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="3_ybqk6"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_gykbi"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="5_euktn"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="8_5s5xb"]
+[ext_resource type="AudioStream" uid="uid://b18c4mfuks8ox" path="res://assets/characters/enemies/ninja_starfish/sounds/attack_1.wav" id="9_euktn"]
+[ext_resource type="AudioStream" uid="uid://dmgmp1fcpyika" path="res://assets/characters/enemies/ninja_starfish/sounds/attack_2.wav" id="10_xi1ew"]
+[ext_resource type="AudioStream" uid="uid://bsjdkgm8dqoqm" path="res://assets/characters/enemies/ninja_starfish/sounds/attack_3.wav" id="11_fehwt"]
+[ext_resource type="AudioStream" uid="uid://45asfevxe30s" path="res://assets/characters/enemies/ninja_starfish/sounds/attack_4.wav" id="12_uu78y"]
+[ext_resource type="AudioStream" uid="uid://bkwunk7vme83f" path="res://assets/characters/enemies/ninja_starfish/sounds/attack_5.wav" id="13_1lrgq"]
+[ext_resource type="AudioStream" uid="uid://dvf3f6wscc2td" path="res://assets/characters/enemies/ninja_starfish/sounds/attack_6.wav" id="14_1roxp"]
+[ext_resource type="AudioStream" uid="uid://bp6s0e30yv42e" path="res://assets/characters/enemies/ninja_starfish/sounds/death_1.wav" id="16_1a06f"]
+[ext_resource type="AudioStream" uid="uid://clmyj4vgd4awm" path="res://assets/characters/enemies/ninja_starfish/sounds/death_2.wav" id="17_c17wo"]
+[ext_resource type="AudioStream" uid="uid://xvcdckg6o7kh" path="res://assets/characters/enemies/ninja_starfish/sounds/death_3.wav" id="18_cqfk8"]
+[ext_resource type="AudioStream" uid="uid://dvn4uspvuwrr7" path="res://assets/characters/enemies/ninja_starfish/sounds/death_4.wav" id="19_4dm40"]
+[ext_resource type="AudioStream" uid="uid://dhoykt7r2x1ef" path="res://assets/characters/enemies/ninja_starfish/sounds/death_5.wav" id="20_8oo2b"]
+[ext_resource type="AudioStream" uid="uid://dcc4c5ngs6m56" path="res://assets/characters/enemies/ninja_starfish/sounds/death_6.wav" id="21_ghiij"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ybqk6"]
 radius = 0.2622659
@@ -18,11 +32,30 @@ radius = 0.45214844
 [sub_resource type="SphereShape3D" id="SphereShape3D_vc6ro"]
 radius = 0.37056658
 
-[node name="NinjaStarfish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_57kab")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1a06f"]
+streams_count = 6
+stream_0/stream = ExtResource("9_euktn")
+stream_1/stream = ExtResource("10_xi1ew")
+stream_2/stream = ExtResource("11_fehwt")
+stream_3/stream = ExtResource("12_uu78y")
+stream_4/stream = ExtResource("13_1lrgq")
+stream_5/stream = ExtResource("14_1roxp")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xdgc5"]
+streams_count = 6
+stream_0/stream = ExtResource("16_1a06f")
+stream_1/stream = ExtResource("17_c17wo")
+stream_2/stream = ExtResource("18_cqfk8")
+stream_3/stream = ExtResource("19_4dm40")
+stream_4/stream = ExtResource("20_8oo2b")
+stream_5/stream = ExtResource("21_ghiij")
+
+[node name="NinjaStarfish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_57kab")]
 health = 150.0
 speed = 2.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("IdleWait")
@@ -78,6 +111,13 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
+[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=882642356 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("5_euktn")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = "DeathSpecific"
+needs_to_be_persistent = true
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
 [node name="ninja_starfish" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1168972132 instance=ExtResource("2_jg36m")]
 
 [node name="Hitbox" parent="." index="5" unique_id=564562364 instance=ExtResource("3_3topv")]
@@ -110,3 +150,11 @@ can_be_hit_by = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=2045360141]
 shape = SubResource("SphereShape3D_vc6ro")
+
+[node name="Attack" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=973602921 instance=ExtResource("8_5s5xb")]
+stream = SubResource("AudioStreamRandomizer_1a06f")
+
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=770801049 instance=ExtResource("8_5s5xb")]
+stream = SubResource("AudioStreamRandomizer_xdgc5")
+
+[connection signal="play_sound" from="Visuals/ninja_starfish" to="SoundEffectManager" method="play_sound"]
