@@ -4,7 +4,7 @@ extends State
 ## Moves the Entity towards the Player 
 ##
 ## Ends when the distance from Entity to Player is less than stop_distance
-class_name MoveTowardsPlayerState
+class_name MoveTowardsEntityState
 
 ## pause time after the destination was reached
 @export var wait_time: float = 1
@@ -12,6 +12,11 @@ class_name MoveTowardsPlayerState
 @export var stop_distance: float = 100
 ## amount to rotate when directions change
 @export_range(0.0,50.0,0.1) var rotation_speed: float = 5
+
+## Which entity group to find an entity to move towards
+@export var entity_group: String = "Player"
+## if set filters the group for an entity with this name. If unset, takes a random entity from the group
+@export var entity_name: String = ""
 
 @export_group("Overrides")
 ## Movement Speed Override
@@ -28,7 +33,7 @@ class_name MoveTowardsPlayerState
 var nav_agent: NavigationAgent3D
 var done: bool = false
 var done_but_waiting: bool = false
-var player: CharacterBody3D
+var target: CharacterBody3D
 
 func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
@@ -41,7 +46,16 @@ func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	nav_agent.target_desired_distance = 0.1
 	nav_agent.path_desired_distance = 0.1
 	nav_agent.debug_enabled = debug_show_path
-	player = get_tree().get_nodes_in_group("Player")[0]
+	var entities := get_tree().get_nodes_in_group(entity_group)
+	if not entity_name.is_empty():
+		entities.filter(filterNodesByName)
+	target = entities.pick_random()
+	if not target:
+		push_warning("Didn't find any entity in group '" + entity_group + "' (with name '" + entity_name + "' )")
+		target_reached()
+
+func filterNodesByName(node: Node):
+	return node.name == entity_name
 
 func enter():
 	super()
@@ -63,13 +77,13 @@ func physics_process(_delta: float) -> State:
 	parent.visuals.rotation.y = lerp_angle(parent.visuals.rotation.y,atan2(-parent.velocity.x,-parent.velocity.z),_delta* rotation_speed)
 	
 	parent.move_and_slide()
-	#check if the player is closer than stopping distance
-	if (player.position - parent.position).length() <= (stop_distance):
+	#check if the target is closer than stopping distance
+	if (target.position - parent.position).length() <= (stop_distance):
 		target_reached()
 	return null
 
 func update_target_location():
-	var target_position = player.position - ((player.position - parent.position).normalized() * stop_distance)
+	var target_position = target.position - ((target.position - parent.position).normalized() * stop_distance)
 	nav_agent.target_position = target_position
 	print(target_position)
 	done = false
