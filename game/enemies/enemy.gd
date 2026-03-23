@@ -99,6 +99,9 @@ func _hurt_by(_attacker: HitBox):
 	for ev in on_hurt:
 		ev.event_triggered(_attacker)
 	if (heal_back_to_full): reset_timer.start(3)
+	if damage > 0:
+		convince_progress = 0
+		status_visuals.social_progress = 0
 
 func _die():
 	for ev in on_death:
