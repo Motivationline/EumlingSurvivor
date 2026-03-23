@@ -70,7 +70,8 @@
 [ext_resource type="AudioStream" uid="uid://dtwjmuugoxay2" path="res://assets/characters/eumling/V2/sounds/death_6.wav" id="67_m1cdu"]
 [ext_resource type="Script" uid="uid://d0y7cgck1opqh" path="res://game/player/abilities/social.gd" id="68_3p3em"]
 [ext_resource type="PackedScene" uid="uid://co3vv3d8hdp1s" path="res://game/aoes/social_aoe/social_aoe.tscn" id="69_0jq7b"]
-[ext_resource type="Script" uid="uid://ca2lwyvrascpj" path="res://game/player/abilities/investigative.gd" id="71_d76hv"]
+[ext_resource type="Script" path="res://game/player/abilities/investigative.gd" id="71_d76hv"]
+[ext_resource type="Script" uid="uid://b1wawxra3pubk" path="res://game/player/artistic.gd" id="72_6ynhj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.23
@@ -153,6 +154,13 @@ stream_2/stream = ExtResource("64_p0uwl")
 stream_3/stream = ExtResource("65_v5pdl")
 stream_4/stream = ExtResource("66_k3n0c")
 stream_5/stream = ExtResource("67_m1cdu")
+
+[sub_resource type="Curve3D" id="Curve3D_6ynhj"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.075, 0, 0.117, 0, 0, 0, 0, 0, 0, 0.131, 0, 1.496, 0, 0, 0, 0, 0, 0, 0.185, 0, 3.871, 0, 0, 0, 0, 0, 0, 1.419, 0, 5.52, 0, 0, 0, 0, 0, 0, 2.677, 0, 4.465, 0, 0, 0, 0, 0, 0, 3.018, 0, 2.518),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
 
 [node name="Player" type="CharacterBody3D" unique_id=1236976938 node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
 collision_layer = 2
@@ -421,6 +429,26 @@ scale_affects = Vector3(1, 0, 1)
 script = ExtResource("71_d76hv")
 weakspot_size_base = 50
 weakspot_size_additional = 50
+
+[node name="Artistic" type="Node" parent="SpecialAbilities" unique_id=249630272]
+script = ExtResource("72_6ynhj")
+
+[node name="Tail" type="Path3D" parent="SpecialAbilities/Artistic" unique_id=231072559]
+curve = SubResource("Curve3D_6ynhj")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="SpecialAbilities/Artistic/Tail" unique_id=400713749]
+polygon = PackedVector2Array(-0.1, 0, -0.1, 0.1, 0.1, 0.1, 0.1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.05
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
 
 [connection signal="play_sound" from="Eumling_v2" to="SoundEffectManager" method="play_sound"]
 [connection signal="pressed" from="UI/Control/PauseButton" to="UITest/PauseSketch" method="open"]
