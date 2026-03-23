@@ -48,3 +48,50 @@ mouse_filter = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_opr3y")
 max_value = 1.0
 show_percentage = false
+
+[node name="UIOverlay" type="CanvasLayer" parent="." unique_id=1730585748]
+visible = false
+
+[node name="Healthbar" parent="UIOverlay" unique_id=763297352 instance=ExtResource("2_6a1hp")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+hide_initially = false
+
+[node name="DamageBar" parent="UIOverlay/Healthbar" index="0" unique_id=244960832]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 0.0
+offset_right = 151.19751
+offset_bottom = 218.3406
+grow_horizontal = 2
+
+[node name="HealthBar" parent="UIOverlay/Healthbar" index="1" unique_id=1178792853]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 0.0
+offset_right = 396.04346
+offset_bottom = 218.34059
+grow_horizontal = 2
+
+[node name="HealthPointsDisplay" parent="UIOverlay/Healthbar" index="2" unique_id=410759965]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -119.0
+offset_top = 0.0
+offset_right = 119.0
+offset_bottom = 143.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[editable path="UIOverlay/Healthbar"]
