@@ -11,6 +11,7 @@ func _ready() -> void:
 	healthbars.append($UIOverlay/Healthbar)
 	super()
 	if show_in_ui:
+		# TODO: maybe actually removing these instead of just hiding them is better for performance.
 		$Sprite3D.hide()
 		$UIOverlay.show()
 	else:
