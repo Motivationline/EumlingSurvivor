@@ -108,6 +108,15 @@ medium = Array[ExtResource("2_gqpqm")]([SubResource("Resource_5my8y"), SubResour
 hard = Array[ExtResource("2_gqpqm")]([SubResource("Resource_vqu8f"), SubResource("Resource_ubv4y")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_m7dcb"]
+radius = 0.16932635
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eafdf"]
+radius = 0.31834328
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gtm08"]
+radius = 0.26148474
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a32y6"]
 streams_count = 6
 stream_0/stream = ExtResource("10_4e0rj")
@@ -125,15 +134,6 @@ stream_2/stream = ExtResource("11_qbq2c")
 stream_3/stream = ExtResource("12_rbetc")
 stream_4/stream = ExtResource("13_vfgrb")
 stream_5/stream = ExtResource("14_aqndw")
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_m7dcb"]
-radius = 0.16932635
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_eafdf"]
-radius = 0.31834328
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_gtm08"]
-radius = 0.26148474
 
 [node name="MagmaToad" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_k7wj4")]
 collision_layer = 64
@@ -167,7 +167,7 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=1097798079 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_21otp")
 start_delay = 0.46
-next_state = NodePath("../LookAtPlayerState")
+next_state = NodePath("../WaitForTimeXState2")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Shoot/request": 1
 })
@@ -180,6 +180,13 @@ entity_to_spawn = ExtResource("6_52td2")
 time_between_entities = 0.15
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
+[node name="WaitForTimeXState2" type="Node" parent="StateMachine" index="3" unique_id=37739852 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_52td2")
+random = true
+max_wait_time = 0.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
 [node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1367474497 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("7_i8psu")
 sound_manager = NodePath("../../SoundEffectManager")
@@ -188,14 +195,6 @@ needs_to_be_persistent = true
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("2_5wldd")]
-
-[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1946630432 instance=ExtResource("8_pqb4c")]
-stream = SubResource("AudioStreamRandomizer_a32y6")
-volume_db = 0.0
-
-[node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=2117690901 instance=ExtResource("8_pqb4c")]
-stream = SubResource("AudioStreamRandomizer_i8psu")
-volume_db = -2.762
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5" unique_id=1115397629]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2753511, 0)
@@ -222,5 +221,13 @@ can_hit = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
 shape = SubResource("SphereShape3D_gtm08")
 debug_color = Color(0.96461874, 0, 0.48390388, 0.41960785)
+
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1946630432 instance=ExtResource("8_pqb4c")]
+stream = SubResource("AudioStreamRandomizer_a32y6")
+volume_db = 0.0
+
+[node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=2117690901 instance=ExtResource("8_pqb4c")]
+stream = SubResource("AudioStreamRandomizer_i8psu")
+volume_db = -2.762
 
 [connection signal="play_sound" from="Visuals/Toad" to="SoundEffectManager" method="play_sound"]

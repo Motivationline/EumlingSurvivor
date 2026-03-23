@@ -11,9 +11,6 @@
 [ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_4.wav" id="8_vofq4"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="9_2dq3v"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uile8"]
-size = Vector3(2.2646484, 1.980957, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_tkqdu"]
 size = Vector3(0.42266846, 2.0351563, 3.0703125)
 
@@ -331,13 +328,8 @@ stream_1/stream = ExtResource("6_ixbc8")
 stream_2/stream = ExtResource("7_dmamu")
 stream_3/stream = ExtResource("8_vofq4")
 
-[node name="ExitArea" type="Area3D" unique_id=609974398]
-collision_mask = 0
+[node name="ExitVisual" type="Node3D" unique_id=684710447]
 script = ExtResource("1_47e78")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=936964363]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9904785, 0.48971936)
-shape = SubResource("BoxShape3D_uile8")
 
 [node name="Visuals" type="Node3D" parent="." unique_id=1541547249]
 
