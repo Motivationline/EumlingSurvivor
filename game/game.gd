@@ -56,7 +56,7 @@ func load_level():
 	var level_info = levels_to_load.pop_front()
 	var level_location: String = level_info.id
 	var difficulty: int = level_info.difficulty
-
+	$DebugView.set_lvl(level_location, difficulty)
 	# add new stuff
 	var level_to_load = load(level_location) as PackedScene
 	if (level_to_load && level_to_load.can_instantiate()):
