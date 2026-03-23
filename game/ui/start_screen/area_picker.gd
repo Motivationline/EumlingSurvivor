@@ -17,7 +17,7 @@ var areas = [
 		},
 		boss_levels = {
 			0: "JB01",
-			1: "JB02",
+			1: "JB01",
 			2: "JB02",
 			3: "JB02",
 		},

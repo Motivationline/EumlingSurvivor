@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bclxhfmk8hmfi" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_enemy.tscn" id="2_7aecd"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="3_am3nm"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_cu2pj"]
-[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_yv2li"]
 [ext_resource type="LightmapGIData" uid="uid://lju7neg1xri3" path="res://game/levels/3-Jxx-Jungle/Lightmaps/JB01.lmbake" id="5_c68hb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kqau"]
@@ -399,110 +398,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 10)
 
 [node name="BossBugger" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1489635030 instance=ExtResource("2_7aecd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.3377893)
-
-[node name="Spikes" type="Node3D" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=790930462]
-
-[node name="SpikeTrap" parent="Enemies/Spikes" index="0" unique_id=794608594 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0.25)
-
-[node name="SpikeTrap2" parent="Enemies/Spikes" index="1" unique_id=492566308 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0.75)
-
-[node name="SpikeTrap17" parent="Enemies/Spikes" index="2" unique_id=2115050800 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -0.75)
-
-[node name="SpikeTrap18" parent="Enemies/Spikes" index="3" unique_id=1412696160 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -0.25)
-
-[node name="SpikeTrap19" parent="Enemies/Spikes" index="4" unique_id=1425989132 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.75)
-
-[node name="SpikeTrap20" parent="Enemies/Spikes" index="5" unique_id=112183329 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -0.25)
-
-[node name="SpikeTrap3" parent="Enemies/Spikes" index="6" unique_id=2030228608 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 1.25)
-
-[node name="SpikeTrap4" parent="Enemies/Spikes" index="7" unique_id=1559809512 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 1.25)
-
-[node name="SpikeTrap5" parent="Enemies/Spikes" index="8" unique_id=1740409399 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 1.25)
-
-[node name="SpikeTrap6" parent="Enemies/Spikes" index="9" unique_id=1020675148 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 1.25)
-
-[node name="SpikeTrap7" parent="Enemies/Spikes" index="10" unique_id=451501444 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 1.25)
-
-[node name="SpikeTrap8" parent="Enemies/Spikes" index="11" unique_id=1030267508 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 1.25)
-
-[node name="SpikeTrap11" parent="Enemies/Spikes" index="12" unique_id=1760177559 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -1.25)
-
-[node name="SpikeTrap12" parent="Enemies/Spikes" index="13" unique_id=60032864 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -1.25)
-
-[node name="SpikeTrap13" parent="Enemies/Spikes" index="14" unique_id=2100204541 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -1.25)
-
-[node name="SpikeTrap14" parent="Enemies/Spikes" index="15" unique_id=41092376 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -1.25)
-
-[node name="SpikeTrap33" parent="Enemies/Spikes" index="16" unique_id=883123066 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0, -1.25)
-
-[node name="SpikeTrap34" parent="Enemies/Spikes" index="17" unique_id=1814738569 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0, 1.25)
-
-[node name="SpikeTrap15" parent="Enemies/Spikes" index="18" unique_id=78943209 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -1.25)
-
-[node name="SpikeTrap16" parent="Enemies/Spikes" index="19" unique_id=1102377556 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -1.25)
-
-[node name="SpikeTrap21" parent="Enemies/Spikes" index="20" unique_id=1081958534 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 1.25)
-
-[node name="SpikeTrap22" parent="Enemies/Spikes" index="21" unique_id=1631924157 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 1.25)
-
-[node name="SpikeTrap23" parent="Enemies/Spikes" index="22" unique_id=1395131532 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0, 1.25)
-
-[node name="SpikeTrap24" parent="Enemies/Spikes" index="23" unique_id=1870028512 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 1.25)
-
-[node name="SpikeTrap25" parent="Enemies/Spikes" index="24" unique_id=1708163543 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, 1.25)
-
-[node name="SpikeTrap26" parent="Enemies/Spikes" index="25" unique_id=589964983 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, 1.25)
-
-[node name="SpikeTrap27" parent="Enemies/Spikes" index="26" unique_id=165640850 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -1.25)
-
-[node name="SpikeTrap28" parent="Enemies/Spikes" index="27" unique_id=993462360 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -1.25)
-
-[node name="SpikeTrap29" parent="Enemies/Spikes" index="28" unique_id=219636065 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, -1.25)
-
-[node name="SpikeTrap30" parent="Enemies/Spikes" index="29" unique_id=483836782 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0, -1.25)
-
-[node name="SpikeTrap31" parent="Enemies/Spikes" index="30" unique_id=216240629 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, -1.25)
-
-[node name="SpikeTrap32" parent="Enemies/Spikes" index="31" unique_id=943455178 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0, -1.25)
-
-[node name="SpikeTrap9" parent="Enemies/Spikes" index="32" unique_id=1441805322 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.75)
-
-[node name="SpikeTrap10" parent="Enemies/Spikes" index="33" unique_id=893273112 instance=ExtResource("3_yv2li")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0.25)
 
 [node name="LightmapGI" parent="." index="7" unique_id=1450626193]
 light_data = ExtResource("5_c68hb")
