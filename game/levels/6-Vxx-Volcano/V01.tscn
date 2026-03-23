@@ -4,7 +4,6 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_mb60q"]
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="3_6f2qs"]
 [ext_resource type="PackedScene" uid="uid://cm8xm0j7ly1d" path="res://game/enemies/6-volcano/magma_toad/magma_toad.tscn" id="5_sa8tp"]
-[ext_resource type="PackedScene" uid="uid://ctpdnwxhrhuts" path="res://game/enemies/6-volcano/environment/magma_tiles.tscn" id="7_6f2qs"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="8_62l4d"]
 [ext_resource type="LightmapGIData" uid="uid://by5wxe5lvmwy4" path="res://game/levels/6-Vxx-Volcano/Lightmaps/V01.lmbake" id="8_vfhvo"]
 
@@ -107,21 +106,15 @@ transform = Transform3D(-0.91552186, 0.39784315, -0.059502605, -0.021726422, 0.0
 shadow_bias = 0.05
 shadow_blur = 0.458
 
-[node name="magma_tiles4" parent="." index="6" unique_id=197851 instance=ExtResource("7_6f2qs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.75, 1.75)
-
-[node name="magma_tiles5" parent="." index="7" unique_id=2030102374 instance=ExtResource("7_6f2qs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.75, 1.25)
-
-[node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("8_62l4d")]
+[node name="ExitArea" parent="." index="6" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("8_62l4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
 
-[node name="Enemies" parent="." index="9" unique_id=2012922691]
+[node name="Enemies" parent="." index="7" unique_id=2012922691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3638804, 0.5, -1.5593349)
 
 [node name="MagmaToad" parent="Enemies" index="0" unique_id=1898691 instance=ExtResource("5_sa8tp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3858757, 0, 1.2535778)
 
-[node name="LightmapGI" parent="." index="10" unique_id=1520578396]
+[node name="LightmapGI" parent="." index="8" unique_id=1520578396]
 light_data = ExtResource("8_vfhvo")

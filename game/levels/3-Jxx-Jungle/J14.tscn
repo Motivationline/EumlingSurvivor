@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ddty5phcxxvsi" path="res://game/enemies/3-Jungle/bomb_berry_poison/bomb_berry_poison.tscn" id="3_lrtdm"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="4_0tkup"]
 [ext_resource type="LightmapGIData" uid="uid://b4s2fd6gstyib" path="res://game/levels/3-Jxx-Jungle/Lightmaps/J14.lmbake" id="5_0wvtg"]
+[ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="7_0wvtg"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0wvtg"]
 vertices = PackedVector3Array(1, 1, 2, 1, 1, 2.25, 1.25, 1, 2.25, 1.25, 1, 2, -0.75, 1, -4.5, -4.5, 1, -4.5, -2.75, 1, 2, -2, 1, 2, 3, 1, 2, 3, 1, 2.25, 3.25, 1, 2.25, 3.25, 1, 2, 4.75, 1, -4.5, 1, 1, -4.5, 2.25, 1, 2, -0.25, 1, 2, -0.25, 1, 2.25, 0.25, 1, 2.25, 0.25, 1, 2, 1.75, 1, 2, 1.75, 1, 2.25, 2.25, 1, 2.25, 3.75, 1, 2, 3.75, 1, 2.25, 4.25, 1, 2.25, 4.25, 1, 2, -4, 1, 2, -4, 1, 2.25, -2.75, 1, 2.25, -0.75, 1, 2, -2, 1, 2.25, -0.75, 1, 2.25, 1, 1, -4.75, -0.75, 1, -4.75, -4.5, 1, 2, 4.75, 1, 2, 0.5, 1, 3.25, 0.5, 1, 3, 0.25, 1, 3, 0.25, 1, 2.75, 0, 1, 2.75, 0, 1, 3, 4.75, 1, 4.75, 3.5, 1, 3.5, 2.25, 1, 3.5, -0.25, 1, 3, -0.25, 1, 3.25, -1.5, 1, 3.5, -1.5, 1, 3.25, -1.75, 1, 3.25, -1.75, 1, 3.5, -2.25, 1, 3.5, -2.75, 1, 3.5, -4.5, 1, 4.75, -3.5, 1, 3.5, -3.5, 1, 3.25, -3.75, 1, 3.25, -3.75, 1, 3.5, 1.5, 1, 3.5, -0.75, 1, 3.5, -4.25, 1, 3.5, -4.25, 1, 3.25, -4.5, 1, 3.25, 4.75, 1, 3.25, 4.25, 1, 3.25, 4.25, 1, 3.5, -0.75, 1, 3.25, -2.25, 1, 3.25, -2.75, 1, 3.25, 1.5, 1, 3.25, 3.5, 1, 3.25, 2.25, 1, 3.25)
@@ -106,3 +107,11 @@ light_data = ExtResource("5_0wvtg")
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("4_0tkup")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
+
+[node name="Breakables" parent="." index="9" unique_id=1453718420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25283366, 0.5, 2.7527754)
+
+[node name="Box" parent="Breakables" index="0" unique_id=771480293 instance=ExtResource("7_0wvtg")]
+
+[node name="Box2" parent="Breakables" index="1" unique_id=2058667644 instance=ExtResource("7_0wvtg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51054066, 0, 0)
