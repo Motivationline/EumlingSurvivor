@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ct2jqdisttlao"]
+
+[ext_resource type="PackedScene" uid="uid://d0sa2jrxsbdb1" path="res://game/levels/6-Vxx-Volcano/V08.tscn" id="1_d5v6a"]
+[ext_resource type="PackedScene" uid="uid://cwnvsfbpov2w8" path="res://game/enemies/6-volcano/volcano_turtle/volcano_tortoise_enemy.tscn" id="2_c45a0"]
+[ext_resource type="PackedScene" uid="uid://cm8xm0j7ly1d" path="res://game/enemies/6-volcano/magma_toad/magma_toad.tscn" id="3_vk1du"]
+
+[node name="Level" unique_id=1973423689 instance=ExtResource("1_d5v6a")]
+
+[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1961314702 instance=ExtResource("2_c45a0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="MagmaToad3" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="3" unique_id=1898691 instance=ExtResource("3_vk1du")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.388049, 0, 1.6413984)
