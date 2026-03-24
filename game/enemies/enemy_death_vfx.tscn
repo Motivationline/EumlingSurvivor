@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://b8tq2f11ytj2p"]
+
+[ext_resource type="Texture2D" uid="uid://w4m6e1qjb43g" path="res://assets/vfx/particle_pack/circle_05.png" id="1_x8mfi"]
+[ext_resource type="Texture2D" uid="uid://2yl2jwygyaj3" path="res://assets/vfx/particle_pack/twirl_01.png" id="2_amolh"]
+
+[sub_resource type="Animation" id="Animation_x8mfi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soul:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles3D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_amolh"]
+resource_name = "die"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soul:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.9, 1.0666667, 1.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 1, 0), Vector3(0, 5, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3oumh"]
+_data = {
+&"RESET": SubResource("Animation_x8mfi"),
+&"die": SubResource("Animation_amolh")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amolh"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_x8mfi")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+grow_amount = 1.133
+
+[sub_resource type="QuadMesh" id="QuadMesh_3oumh"]
+
+[sub_resource type="Curve" id="Curve_4ajij"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_w2thb"]
+offsets = PackedFloat32Array(0.1594203, 0.79710144)
+colors = PackedColorArray(0.060000002, 0.84333324, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_x8mfi"]
+colors = PackedColorArray(0, 0.48, 0.96, 1, 0.8, 0.98, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8mfi"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_x8mfi")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_amolh"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3oumh"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_amolh")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_4ajij"]
+
+[sub_resource type="Curve" id="Curve_w2thb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_3j7fe"]
+offsets = PackedFloat32Array(0, 0.13043478, 0.31400967, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0, 0.5833335, 1, 1, 0, 0.39999986, 1, 0)
+
+[node name="death_vfx" type="Node3D" unique_id=1740902483]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=80923860]
+libraries/ = SubResource("AnimationLibrary_3oumh")
+autoplay = &"die"
+
+[node name="Soul" type="Node3D" parent="." unique_id=1664282294]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Soul" unique_id=570776280]
+material_override = SubResource("StandardMaterial3D_amolh")
+amount = 16
+lifetime = 0.5
+lifetime_randomness = 0.46
+fixed_fps = 30
+mesh = SubResource("QuadMesh_3oumh")
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("Curve_4ajij")
+color_ramp = SubResource("Gradient_w2thb")
+color_initial_ramp = SubResource("Gradient_x8mfi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Soul" unique_id=1967508074]
+material_override = SubResource("StandardMaterial3D_x8mfi")
+mesh = SubResource("QuadMesh_amolh")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1256880147]
+material_override = SubResource("StandardMaterial3D_3oumh")
+emitting = false
+amount = 16
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.39
+lifetime_randomness = 0.1
+mesh = SubResource("QuadMesh_4ajij")
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.5
+initial_velocity_max = 1.5
+angular_velocity_min = -363.96
+angular_velocity_max = -363.96
+angle_min = -332.3
+scale_amount_min = 0.5
+scale_amount_max = 0.7
+scale_amount_curve = SubResource("Curve_w2thb")
+color_ramp = SubResource("Gradient_3j7fe")
