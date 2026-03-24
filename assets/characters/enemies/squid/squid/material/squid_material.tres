@@ -1,0 +1,34 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cjbon2fhctqrm"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_jo4fi"]
+[ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="1_oykyq"]
+[ext_resource type="Texture2D" uid="uid://e6wcjb7su323" path="res://assets/characters/enemies/squid/squid/squid_octo_mat_2D_View.png" id="2_oykyq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40h8i"]
+render_priority = 0
+shader = ExtResource("1_oykyq")
+shader_parameter/color = Color(0.15804905, 0.08133093, 0.051183544, 1)
+shader_parameter/width = 0.006
+
+[sub_resource type="Gradient" id="Gradient_40h8i"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.6167315)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gc88o"]
+gradient = SubResource("Gradient_40h8i")
+
+[sub_resource type="Gradient" id="Gradient_gmlis"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ej1a3"]
+gradient = SubResource("Gradient_gmlis")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_40h8i")
+shader = ExtResource("1_jo4fi")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_oykyq")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_gc88o")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_ej1a3")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_diffuse_smooth_attenuation = true

@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cobx6obdkk5ja"]
+
+[ext_resource type="PackedScene" uid="uid://lvdcul04xb0h" path="res://assets/characters/enemies/squid/squid/squid.glb" id="1_4hem0"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4hem0"]
+animation = &"squid_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bo2a4"]
+animation = &"squid_die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jupt2"]
+animation = &"squid_leave"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lf34c"]
+animation = &"squid_show"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_77ug8"]
+animation = &"squid_idle"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_jp825"]
+xfade_time = 0.2
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "die"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "hide"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "show"
+input_3/auto_advance = true
+input_3/break_loop_at_end = false
+input_3/reset = true
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_f5exk"]
+fadein_time = 0.1
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lie6o"]
+graph_offset = Vector2(-784.8533, -79.393425)
+nodes/output/position = Vector2(660, 60)
+nodes/Transition/node = SubResource("AnimationNodeTransition_jp825")
+nodes/Transition/position = Vector2(-40, 60)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_77ug8")
+nodes/Animation/position = Vector2(-340, 20)
+nodes/attack/node = SubResource("AnimationNodeOneShot_f5exk")
+nodes/attack/position = Vector2(360, 60)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_4hem0")
+"nodes/Animation 2/position" = Vector2(180, 240)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_bo2a4")
+"nodes/Animation 3/position" = Vector2(-340, 200)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_jupt2")
+"nodes/Animation 4/position" = Vector2(-340, 380)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_lf34c")
+"nodes/Animation 5/position" = Vector2(-320, 560)
+node_connections = [&"output", 0, &"attack", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 3", &"Transition", 2, &"Animation 4", &"Transition", 3, &"Animation 5", &"attack", 0, &"Transition", &"attack", 1, &"Animation 2"]
+
+[node name="squid" unique_id=697439437 instance=ExtResource("1_4hem0")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1743052987]
+tree_root = SubResource("AnimationNodeBlendTree_lie6o")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "idle"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0
+parameters/attack/active = false
+parameters/attack/internal_active = false
+parameters/attack/request = 0

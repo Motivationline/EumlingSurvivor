@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bfh0cfobkh20v"]
+
+[ext_resource type="PackedScene" uid="uid://cii7yl22k4615" path="res://assets/characters/enemies/squid/squid_arm/squid_arm.glb" id="1_644dl"]
+[ext_resource type="Material" uid="uid://cjbon2fhctqrm" path="res://assets/characters/enemies/squid/squid/material/squid_material.tres" id="2_4fp3s"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_644dl"]
+animation = &"arm_slap"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4fp3s"]
+animation = &"arm_leave"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oiyf5"]
+animation = &"arm_show"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_30lwt"]
+xfade_time = 0.1
+input_0/name = "show"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "slap"
+input_1/auto_advance = true
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "leave"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rd8b2"]
+graph_offset = Vector2(-717.64557, 7.2345276)
+nodes/output/position = Vector2(320, 200)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_oiyf5")
+nodes/Animation/position = Vector2(-220, 80)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_644dl")
+"nodes/Animation 2/position" = Vector2(-220, 260)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_4fp3s")
+"nodes/Animation 3/position" = Vector2(-220, 440)
+nodes/Transition/node = SubResource("AnimationNodeTransition_30lwt")
+nodes/Transition/position = Vector2(100, 160)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 3"]
+
+[node name="squid_arm" unique_id=1132374932 instance=ExtResource("1_644dl")]
+
+[node name="Squid_Armobject" parent="squid_arm_armature/Skeleton3D" parent_id_path=PackedInt32Array(1434992367) index="0" unique_id=662691619]
+material_override = ExtResource("2_4fp3s")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1884157997]
+tree_root = SubResource("AnimationNodeBlendTree_rd8b2")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "leave"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 2
