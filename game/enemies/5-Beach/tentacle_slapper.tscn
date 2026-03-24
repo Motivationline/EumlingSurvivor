@@ -8,10 +8,7 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_ehia0"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="6_6ky1e"]
 [ext_resource type="PackedScene" uid="uid://b7cu13tpfbt6k" path="res://game/enemies/5-Beach/tentacle_slapper_attack/tentacle_attack.tscn" id="6_280ev"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_7w64y"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_53dnq"]
+[ext_resource type="PackedScene" uid="uid://cobx6obdkk5ja" path="res://assets/characters/enemies/squid/squid/squid_prefab.tscn" id="7_8scmy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0cktx"]
 radius = 0.24812698
@@ -47,8 +44,8 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=931220986]
 script = ExtResource("4_ehia0")
-entity_to_spawn = ExtResource("6_280ev")
 offset_distance = 0.3
+entity_to_spawn = ExtResource("6_280ev")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="WaitForTimeXState" type="Node" parent="StateMachine" index="3" unique_id=1904549072 node_paths=PackedStringArray("next_state")]
@@ -57,14 +54,7 @@ wait_time = 2.0
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="Head" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1529447789]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.49812138, 0)
-mesh = SubResource("SphereMesh_7w64y")
-
-[node name="Body" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1774275865]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.13953847, 0)
-mesh = SubResource("CapsuleMesh_53dnq")
-skeleton = NodePath("../Head")
+[node name="squid" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=697439437 instance=ExtResource("7_8scmy")]
 
 [node name="Hitbox" parent="." index="6" unique_id=519897081 instance=ExtResource("2_2uhhv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3544367, 0)
