@@ -1,12 +1,12 @@
 [gd_scene format=4 uid="uid://dyfl31dyxt0ty"]
 
 [ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_c1n2c"]
-[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-jungle/tortoise/tortoise_enemy.tscn" id="2_nq6oq"]
+[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="2_nq6oq"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_7tdlq"]
-[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-jungle/environment/spikes.tscn" id="3_bl6gp"]
-[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-jungle/sniper/sniper_enemy.tscn" id="4_bl6gp"]
+[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_bl6gp"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="4_bl6gp"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="4_nj8sr"]
-[ext_resource type="LightmapGIData" uid="uid://cexhcq0vl0oa0" path="res://game/levels/3-Jxx-Jungle/Lightmaps/J08.lmbake" id="5_nq6oq"]
+[ext_resource type="LightmapGIData" uid="uid://8npg6va2ntmd" path="res://game/levels/3-Jxx-Jungle/Lightmaps/J08.lmbake" id="5_nq6oq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kqau"]
 resource_name = "Material"
@@ -240,11 +240,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.25)
 [node name="FirstTimeDelay" parent="Enemies/SpikeTrap/StateMachine" parent_id_path=PackedInt32Array(1320087959, 2093753398) index="0" unique_id=1705888172]
 wait_time = 0.5
 
+[node name="Extend" parent="Enemies/SpikeTrap/SoundEffectManager" parent_id_path=PackedInt32Array(1320087959, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="3" unique_id=1000608845 instance=ExtResource("3_bl6gp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0.25)
 
 [node name="FirstTimeDelay" parent="Enemies/SpikeTrap2/StateMachine" parent_id_path=PackedInt32Array(1000608845, 2093753398) index="0" unique_id=1705888172]
 wait_time = 0.5
+
+[node name="Extend" parent="Enemies/SpikeTrap2/SoundEffectManager" parent_id_path=PackedInt32Array(1000608845, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap3" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="4" unique_id=370398066 instance=ExtResource("3_bl6gp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.25)
@@ -252,11 +258,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.25)
 [node name="FirstTimeDelay" parent="Enemies/SpikeTrap3/StateMachine" parent_id_path=PackedInt32Array(370398066, 2093753398) index="0" unique_id=1705888172]
 wait_time = 0.5
 
+[node name="Extend" parent="Enemies/SpikeTrap3/SoundEffectManager" parent_id_path=PackedInt32Array(370398066, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
+
 [node name="SpikeTrap4" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="5" unique_id=1041431884 instance=ExtResource("3_bl6gp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.25)
 
 [node name="FirstTimeDelay" parent="Enemies/SpikeTrap4/StateMachine" parent_id_path=PackedInt32Array(1041431884, 2093753398) index="0" unique_id=1705888172]
 wait_time = 0.5
+
+[node name="Extend" parent="Enemies/SpikeTrap4/SoundEffectManager" parent_id_path=PackedInt32Array(1041431884, 212820490) index="0" unique_id=1092056025]
+bus = &"Master"
 
 [node name="SpikeTrap5" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="6" unique_id=1779319177 instance=ExtResource("3_bl6gp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -0.25)

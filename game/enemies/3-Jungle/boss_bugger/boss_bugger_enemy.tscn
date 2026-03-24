@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bclxhfmk8hmfi"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jhi1l"]
-[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="2_3utvs"]
-[ext_resource type="Script" uid="uid://cu4a5yufjkwhv" path="res://game/enemies/3-jungle/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="2_3utvs"]
+[ext_resource type="Script" uid="uid://d08yjq57yklyp" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_ectag"]
 [ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="3_unkqv"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="3_vgowq"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="4_vgowq"]
 [ext_resource type="PackedScene" uid="uid://b1084wmkhn2en" path="res://game/aoes/boss_bugger_aoe_attack/boss_bugger_aoe.tscn" id="5_0vw1d"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="7_aud5x"]
-[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle/sniper/sniper_projectile_enemy.tscn" id="8_aud5x"]
+[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-Jungle/sniper/sniper_projectile_enemy.tscn" id="8_aud5x"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_wwgv0"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_fi40l"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_csjgc"]
@@ -170,6 +170,7 @@ node_with_animation_tree = NodePath("Visuals/BossBugger")
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, -0.5)
+show_in_ui = true
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("ChooseStateBasedOnCost")
@@ -209,10 +210,10 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/MeleeAttack/SpawnEntitiesState" index="0" unique_id=1482129924]
 script = ExtResource("4_fi40l")
 spawn_local = true
+offset_distance = 0.5
 entity_to_spawn = ExtResource("5_0vw1d")
 amount_of_spawns = 0
 time_between_entities = 1.0
-offset_distance = 0.5
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Recharge" type="Node" parent="StateMachine" index="2" unique_id=739983960]
@@ -251,8 +252,8 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/Initial Shot" index="0" unique_id=1908516668]
 script = ExtResource("4_fi40l")
-entity_to_spawn = ExtResource("8_aud5x")
 offset_distance = 1.6
+entity_to_spawn = ExtResource("8_aud5x")
 target_strategy = SubResource("Resource_0v3ys")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
@@ -280,8 +281,8 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState3" index="0" unique_id=1231547863]
 script = ExtResource("4_fi40l")
-entity_to_spawn = ExtResource("8_aud5x")
 offset_distance = 1.6
+entity_to_spawn = ExtResource("8_aud5x")
 target_strategy = SubResource("Resource_csjgc")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
@@ -309,8 +310,8 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState4" index="0" unique_id=601080076]
 script = ExtResource("4_fi40l")
-entity_to_spawn = ExtResource("8_aud5x")
 offset_distance = 1.6
+entity_to_spawn = ExtResource("8_aud5x")
 target_strategy = SubResource("Resource_c2xk5")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
@@ -338,9 +339,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom" index="0" unique_id=1737683355]
 script = ExtResource("4_fi40l")
+offset_distance = 0.6
 entity_to_spawn = ExtResource("8_aud5x")
 amount_of_spawns = 10
-offset_distance = 0.6
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -366,9 +367,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom2" index="0" unique_id=19969763]
 script = ExtResource("4_fi40l")
+offset_distance = 0.6
 entity_to_spawn = ExtResource("8_aud5x")
 amount_of_spawns = 10
-offset_distance = 0.6
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -394,9 +395,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom3" index="0" unique_id=1638190644]
 script = ExtResource("4_fi40l")
+offset_distance = 0.6
 entity_to_spawn = ExtResource("8_aud5x")
 amount_of_spawns = 10
-offset_distance = 0.6
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -406,8 +407,6 @@ script = ExtResource("13_g2myh")
 sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = "Death"
 needs_to_be_persistent = true
-
-[node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("3_vgowq")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1675406726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)
@@ -437,6 +436,8 @@ can_hit = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1402503530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2463379, 0)
 shape = SubResource("CapsuleShape3D_0vw1d")
+
+[node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("3_vgowq")]
 
 [node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1216685563 instance=ExtResource("18_jtynk")]
 stream = SubResource("AudioStreamRandomizer_7rhsi")

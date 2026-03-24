@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="4_cuk8p"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="6_cuk8p"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="7_f6ssy"]
-[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_player.gd" id="7_me4rn"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="7_me4rn"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="9_x8n4w"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="10_du46p"]
 [ext_resource type="PackedScene" uid="uid://dmr83p5o725ie" path="res://game/enemies/6-volcano/boss_shark/vfx/death_from_below_vfx.tscn" id="11_71geg"]
@@ -25,6 +25,10 @@ height = 5.068558
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_71geg"]
 size = Vector3(0.2841797, 1.3188477, 1.373169)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_71geg"]
+radius = 0.85839844
+height = 3.964405
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pytg8"]
 radius = 1.050293
@@ -49,6 +53,10 @@ health = 500.0
 speed = 2.0
 hitbox = NodePath("Visuals/HitboxFin")
 hurtbox = NodePath("Visuals/HurtboxLaying")
+
+[node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
+show_in_ui = true
+show_health_numbers = true
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("PickRandomState")
@@ -144,8 +152,8 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 [node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/DeathFromBelow" index="2" unique_id=1816508408 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_me4rn")
 wait_time = 0.0
-stop_distance = 0.5
-rotation_speed = 15.9
+stop_distance = 0.75
+rotation_speed = 20.0
 speed_override = 5.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState")
@@ -260,8 +268,8 @@ attached_to = 6
 can_hit = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/HitboxLanding" index="0" unique_id=2064072348]
-transform = Transform3D(-0.13488556, 0.9908612, -4.3311918e-08, 0, -4.371139e-08, -1, -0.9908612, -0.13488556, 5.896035e-09, -0.9868903, 0.34204113, -0.21994722)
-shape = SubResource("CapsuleShape3D_pytg8")
+transform = Transform3D(-0.13488556, 0.9908612, -4.3311918e-08, 0, -4.371139e-08, -1, -0.9908612, -0.13488556, 5.896035e-09, -0.54102635, 0.3420411, -0.2806425)
+shape = SubResource("CapsuleShape3D_71geg")
 debug_color = Color(0.866499, 0.19587654, 0.74684644, 0.41960785)
 
 [node name="HitboxLaying" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="5" unique_id=1888766561 instance=ExtResource("3_tvpjs")]

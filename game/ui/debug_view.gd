@@ -47,3 +47,6 @@ func player_invulnerability(on: bool):
 func close():
 	hide()
 	Engine.time_scale = 1
+
+func set_lvl(lvl, difficulty):
+	$LevelLabel.text = lvl + " (" + str(difficulty) + ")"
