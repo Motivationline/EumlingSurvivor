@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dm4mgjmi078lm"]
+
+[sub_resource type="GDScript" id="GDScript_v754s"]
+script/source = "extends Node3D
+
+var text: String:
+	set(value):
+		$DamageNumberLabel.text = value
+		text = value
+"
+
+[sub_resource type="Animation" id="Animation_v754s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qhlkb"]
+resource_name = "float"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.7, 0.7, 0.7), Vector3(0.7, 0.7, 0.7), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ru7xr"]
+_data = {
+&"RESET": SubResource("Animation_v754s"),
+&"float": SubResource("Animation_qhlkb")
+}
+
+[node name="DamageNumberLabel" type="Node3D" unique_id=290456004]
+script = SubResource("GDScript_v754s")
+
+[node name="DamageNumberLabel" type="Label3D" parent="." unique_id=188368092]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+sorting_offset = 20.0
+billboard = 1
+no_depth_test = true
+fixed_size = true
+text = "100"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DamageNumberLabel" unique_id=990042896]
+libraries/ = SubResource("AnimationLibrary_ru7xr")
+autoplay = &"float"

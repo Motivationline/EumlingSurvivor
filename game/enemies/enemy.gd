@@ -45,6 +45,8 @@ class_name Enemy
 @onready var visuals: Node3D = $Visuals
 @onready var vulnerability_display: VulnerabilityDisplay = $VulnerabilityDisplay
 
+const DAMAGE_NUMBER_LABEL = preload("uid://dm4mgjmi078lm")
+
 var max_health: float:
 	set(value):
 		if value != max_health and status_visuals:
@@ -91,7 +93,8 @@ func _hurt_by(_attacker: HitBox):
 		return
 	var projectile = _attacker.get_parent()
 	var damage = _attacker.damage
-	if vulnerability_display.try_to_hit(projectile):
+	var hit_vulnerability: bool = vulnerability_display.try_to_hit(projectile)
+	if hit_vulnerability:
 		damage *= 2 # TODO copy this value from the I ability
 	damage *= incoming_damage_multiplier
 
@@ -103,6 +106,13 @@ func _hurt_by(_attacker: HitBox):
 		convince_progress = 0
 		status_visuals.social_progress = 0
 
+		var damage_number = DAMAGE_NUMBER_LABEL.instantiate() as Node3D
+		damage_number.text = "%d" % damage
+		if hit_vulnerability: damage_number.text += "!"
+		var level = get_tree().get_first_node_in_group("Level")
+		if level:
+			level.add_child(damage_number)
+			damage_number.global_position = self.global_position
 func _die():
 	for ev in on_death:
 		ev.event_triggered(null)

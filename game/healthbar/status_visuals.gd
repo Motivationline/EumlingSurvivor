@@ -4,6 +4,7 @@ class_name StatusVisuals
 ## Should the health numbers be visible?
 @export var show_health_numbers: bool = false
 
+
 var healthbars: Array[Healthbar] = []
 
 func _ready():
@@ -26,6 +27,7 @@ func _set_health(value: float):
 	health = value
 	for healthbar in healthbars:
 		healthbar.health = health
+	
 
 func _set_max_health(value: float):
 	max_health = value
