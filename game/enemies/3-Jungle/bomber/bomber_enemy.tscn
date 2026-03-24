@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_7jdl2"]
 [ext_resource type="PackedScene" uid="uid://ufivfi4021l7" path="res://game/enemies/3-Jungle/bomber/projectile/bomber_projectile.tscn" id="5_qg7p4"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_rkcej"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_ldbtp"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="10_trurq"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="11_pgmq4"]
 [ext_resource type="AudioStream" uid="uid://cwx0xunov8ayx" path="res://assets/sound/hit_sfx/death_1.wav" id="12_ldbtp"]
@@ -32,7 +33,7 @@
 [sub_resource type="Resource" id="Resource_4y7xn"]
 script = ExtResource("2_pgmq4")
 attribute = "health"
-value = 150.0
+value = 200.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_r4oyv"]
@@ -44,7 +45,7 @@ metadata/_custom_type_script = "uid://duef27t44qtoy"
 [sub_resource type="Resource" id="Resource_o183i"]
 script = ExtResource("2_pgmq4")
 attribute = "incoming_damage_multiplier"
-value = 0.9
+value = 0.7
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_i4s35"]
@@ -69,25 +70,25 @@ hard = Array[ExtResource("2_pgmq4")]([SubResource("Resource_r4oyv"), SubResource
 [sub_resource type="Resource" id="Resource_jnraw"]
 script = ExtResource("2_pgmq4")
 attribute = "damage"
-value = 30.0
+value = 50.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_180uu"]
 script = ExtResource("2_pgmq4")
 attribute = "damage"
-value = 50.0
+value = 70.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_ldbtp"]
 script = ExtResource("2_pgmq4")
 attribute = "damage"
-value = 20.0
+value = 30.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_k02oo"]
 script = ExtResource("2_pgmq4")
 attribute = "damage"
-value = 50.0
+value = 60.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_pgmq4"]
@@ -186,7 +187,7 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=1126431526 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_7jdl2")
 start_delay = 0.5
-next_state = NodePath("../LookAtPlayerState")
+next_state = NodePath("../WaitForTimeXState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Shoot/request": 1
 })
@@ -198,6 +199,13 @@ difficulty_scaler = SubResource("Resource_pgmq4")
 entity_to_spawn = ExtResource("5_qg7p4")
 time_between_entities = 1.0
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=2045705875 node_paths=PackedStringArray("next_state")]
+script = ExtResource("8_ldbtp")
+random = true
+max_wait_time = 0.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=628781066]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329481, 0)

@@ -30,19 +30,19 @@
 [sub_resource type="Resource" id="Resource_nhus1"]
 script = ExtResource("2_s7hfn")
 attribute = "health"
-value = 100.0
+value = 150.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_veopi"]
 script = ExtResource("2_s7hfn")
 attribute = "health"
-value = 250.0
+value = 300.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_q1m8v"]
 script = ExtResource("2_s7hfn")
 attribute = "incoming_damage_multiplier"
-value = 0.9
+value = 0.7
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_vpm8i"]
@@ -68,33 +68,45 @@ metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 [sub_resource type="Resource" id="Resource_s7hfn"]
 script = ExtResource("2_s7hfn")
 attribute = "damage"
-value = 40.0
+value = 50.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_0p1ou"]
 script = ExtResource("2_s7hfn")
 attribute = "damage"
-value = 75.0
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_lgepu"]
+script = ExtResource("2_s7hfn")
+attribute = "amount_of_spawns"
+value = 2
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_k5egc"]
 script = ExtResource("2_s7hfn")
 attribute = "damage"
-value = 30.0
+value = 40.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_qn7bg"]
 script = ExtResource("2_s7hfn")
 attribute = "damage"
-value = 50.0
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ygu7c"]
+script = ExtResource("2_s7hfn")
+attribute = "amount_of_spawns"
+value = 2
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_6xtdm"]
 script = ExtResource("3_0p1ou")
 introduction = Array[ExtResource("2_s7hfn")]([SubResource("Resource_k5egc")])
 easy = Array[ExtResource("2_s7hfn")]([SubResource("Resource_s7hfn")])
-medium = Array[ExtResource("2_s7hfn")]([SubResource("Resource_qn7bg")])
-hard = Array[ExtResource("2_s7hfn")]([SubResource("Resource_0p1ou")])
+medium = Array[ExtResource("2_s7hfn")]([SubResource("Resource_qn7bg"), SubResource("Resource_ygu7c")])
+hard = Array[ExtResource("2_s7hfn")]([SubResource("Resource_0p1ou"), SubResource("Resource_lgepu")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lrmx"]
@@ -152,7 +164,7 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=1220816739 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_qcoba")
 start_delay = 0.3
-next_state = NodePath("../LookAtPlayerState")
+next_state = NodePath("../WaitForTimeXState2")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/shoot/request": 1
 })
@@ -162,7 +174,15 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 script = ExtResource("3_4ah3n")
 difficulty_scaler = SubResource("Resource_6xtdm")
 entity_to_spawn = ExtResource("4_3xlw0")
+time_between_entities = 0.2
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState2" type="Node" parent="StateMachine" index="3" unique_id=421910980 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_sm3km")
+random = true
+max_wait_time = 0.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=890019704 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("6_qd5e1")
@@ -181,8 +201,6 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
-[node name="peacock" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1599327557 instance=ExtResource("2_3n5vt")]
-
 [node name="HurtBox" type="Area3D" parent="." index="4" unique_id=1067109364]
 collision_layer = 64
 collision_mask = 5
@@ -199,6 +217,8 @@ shape = SubResource("CapsuleShape3D_6lrmx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3322754, 0)
 shape = SubResource("CapsuleShape3D_qcoba")
 debug_color = Color(0.6433014, 0.4436161, 0.73155004, 0.41960785)
+
+[node name="peacock" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1599327557 instance=ExtResource("2_3n5vt")]
 
 [node name="Slash" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=610684017 instance=ExtResource("13_q1m8v")]
 stream = SubResource("AudioStreamRandomizer_ygu7c")
