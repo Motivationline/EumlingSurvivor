@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://divfgafb7b3c4" path="res://assets/sound/hit_sfx/hit_9.wav" id="21_tbsjp"]
 [ext_resource type="AudioStream" uid="uid://bpsnjbmf667ua" path="res://assets/sound/hit_sfx/hit_10.wav" id="22_igjq0"]
 [ext_resource type="PackedScene" uid="uid://crhvycqx837en" path="res://game/enemies/vulnerability_display/vulnerability_display.tscn" id="23_4ghmt"]
+[ext_resource type="PackedScene" uid="uid://cx8bq0vslyips" path="res://game/enemies/death_particles.tscn" id="24_l5jqn"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bauuv"]
 streams_count = 6
@@ -93,3 +94,5 @@ volume_db = 0.0
 
 [node name="VulnerabilityDisplay" parent="." unique_id=1768099244 instance=ExtResource("23_4ghmt")]
 visible = false
+
+[node name="DeathParticles" parent="." unique_id=2028934734 instance=ExtResource("24_l5jqn")]

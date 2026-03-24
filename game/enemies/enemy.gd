@@ -111,11 +111,13 @@ func _hurt_by(_attacker: HitBox):
 		if hit_vulnerability: damage_number.text += "!"
 		var level = get_tree().get_first_node_in_group("Level")
 		if level:
-			damage_number.global_position = self.global_position
+			damage_number.position = self.global_position
 			level.add_child(damage_number)
 func _die():
 	for ev in on_death:
 		ev.event_triggered(null)
+	$DeathParticles.emitting = true
+	$DeathParticles.reparent(get_parent())
 	queue_free()
 
 

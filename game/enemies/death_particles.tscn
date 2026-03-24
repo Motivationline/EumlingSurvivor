@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cx8bq0vslyips"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_p7sg8"]
+radius = 0.1
+height = 0.2
+
+[node name="DeathParticles" type="CPUParticles3D" unique_id=2028934734]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.3
+mesh = SubResource("SphereMesh_p7sg8")
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 5.0
+linear_accel_min = -1.0
+linear_accel_max = -1.0
+hue_variation_min = -0.56
+hue_variation_max = 0.59

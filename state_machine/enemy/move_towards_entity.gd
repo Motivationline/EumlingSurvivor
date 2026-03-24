@@ -85,7 +85,6 @@ func physics_process(_delta: float) -> State:
 func update_target_location():
 	var target_position = target.position - ((target.position - parent.position).normalized() * stop_distance)
 	nav_agent.target_position = target_position
-	print(target_position)
 	done = false
 	nav_agent.debug_enabled = debug_show_path
 
