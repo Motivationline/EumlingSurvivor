@@ -3,10 +3,17 @@
 [sub_resource type="GDScript" id="GDScript_v754s"]
 script/source = "extends Node3D
 
+## How far from the center of the entity can the damage number be offset
+@export var max_offset: float = 0.2
+
 var text: String:
 	set(value):
 		$DamageNumberLabel.text = value
 		text = value
+
+func _ready() -> void:
+	position.x += randf_range(-max_offset, max_offset)
+	position.z += randf_range(-max_offset, max_offset)
 "
 
 [sub_resource type="Animation" id="Animation_v754s"]
@@ -65,7 +72,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {

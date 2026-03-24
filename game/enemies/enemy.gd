@@ -111,8 +111,8 @@ func _hurt_by(_attacker: HitBox):
 		if hit_vulnerability: damage_number.text += "!"
 		var level = get_tree().get_first_node_in_group("Level")
 		if level:
-			level.add_child(damage_number)
 			damage_number.global_position = self.global_position
+			level.add_child(damage_number)
 func _die():
 	for ev in on_death:
 		ev.event_triggered(null)
