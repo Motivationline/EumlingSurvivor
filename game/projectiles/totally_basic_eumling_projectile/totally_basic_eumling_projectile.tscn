@@ -231,8 +231,9 @@ metadata/_custom_type_script = "uid://coqjh4l5f0121"
 script = ExtResource("4_x7orq")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnHit/SpawnEntitiesEventStrategy" index="0" unique_id=918894534]
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnHit/SpawnEntitiesEventStrategy" index="0" unique_id=918894534 node_paths=PackedStringArray("spawn_position")]
 script = ExtResource("4_h4lxs")
+spawn_position = NodePath("../../../../particle_spawn_pos")
 entity_to_spawn = ExtResource("5_x7orq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
@@ -312,3 +313,6 @@ shape = SubResource("SphereShape3D_28psj")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=1111576768]
 libraries/ = SubResource("AnimationLibrary_h4lxs")
 autoplay = &"fly"
+
+[node name="particle_spawn_pos" type="Marker3D" parent="." index="6" unique_id=179677703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27889585, 0)

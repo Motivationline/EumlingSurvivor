@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cii7yl22k4615" path="res://assets/characters/enemies/squid/squid_arm/squid_arm.glb" id="1_644dl"]
 [ext_resource type="Material" uid="uid://cjbon2fhctqrm" path="res://assets/characters/enemies/squid/squid/material/squid_material.tres" id="2_4fp3s"]
+[ext_resource type="Texture2D" uid="uid://w4m6e1qjb43g" path="res://assets/vfx/particle_pack/circle_05.png" id="3_4fp3s"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_644dl"]
 animation = &"arm_slap"
@@ -28,7 +29,7 @@ input_2/break_loop_at_end = false
 input_2/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rd8b2"]
-graph_offset = Vector2(-703.9854, 79.40167)
+graph_offset = Vector2(-402.1302, -25.306274)
 nodes/output/position = Vector2(320, 200)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_oiyf5")
 nodes/Animation/position = Vector2(-220, 80)
@@ -40,14 +41,57 @@ nodes/Transition/node = SubResource("AnimationNodeTransition_30lwt")
 nodes/Transition/position = Vector2(100, 160)
 node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 3"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oiyf5"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_4fp3s")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_30lwt"]
+
+[sub_resource type="Curve" id="Curve_rd8b2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.7505236, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_d0fty"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_4h3m3"]
+colors = PackedColorArray(1, 0.78999996, 0.39999998, 1, 1, 0.36666667, 0, 1)
+
 [node name="squid_arm" unique_id=1132374932 instance=ExtResource("1_644dl")]
 
-[node name="Squid_Armobject" parent="squid_arm_armature/Skeleton3D" parent_id_path=PackedInt32Array(1719171283) index="0" unique_id=492387000]
+[node name="Squid_Armobject" parent="squid_arm_armature/Skeleton3D" parent_id_path=PackedInt32Array(1434992367) index="0" unique_id=662691619]
 material_override = ExtResource("2_4fp3s")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1884157997]
 tree_root = SubResource("AnimationNodeBlendTree_rd8b2")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Transition/current_state = "show"
+parameters/Transition/current_state = "leave"
 parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 0
+parameters/Transition/current_index = 2
+
+[node name="show_vfxs" type="Node3D" parent="." index="3" unique_id=1697275739]
+
+[node name="sand_show" type="CPUParticles3D" parent="show_vfxs" index="0" unique_id=1042781596]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013061523, 0)
+material_override = SubResource("StandardMaterial3D_oiyf5")
+emitting = false
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.8
+mesh = SubResource("QuadMesh_30lwt")
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0, 0.2)
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+scale_amount_curve = SubResource("Curve_rd8b2")
+color = Color(1, 0.67, 0.45, 1)
+color_ramp = SubResource("Gradient_d0fty")
+color_initial_ramp = SubResource("Gradient_4h3m3")
