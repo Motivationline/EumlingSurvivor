@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ciyhp1yy70dph" path="res://assets/characters/enemies/lizard/lizard_prefab.tscn" id="2_7gjff"]
 [ext_resource type="Script" path="res://state_machine/enemy/move_horizontal_vertical.gd" id="2_cfv8o"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_pdoqc"]
+[ext_resource type="Script" uid="uid://y7luksnh2gwr" path="res://strategies/event_emitter/raycast_event_emitter.gd" id="4_pdoqc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cfv8o"]
 radius = 0.25761178
@@ -20,7 +21,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="MoveHorizontalVerticalState" type="Node" parent="StateMachine" index="1" unique_id=1477608986 node_paths=PackedStringArray("distance_check_ray", "next_state")]
 script = ExtResource("2_cfv8o")
-distance_check_ray = NodePath("../../RayCast3D")
+distance_check_ray = NodePath("../../Visuals/RayCast3D")
 next_state = NodePath("../WaitForTimeXState")
 
 [node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=848512822 node_paths=PackedStringArray("next_state")]
@@ -29,13 +30,22 @@ wait_time = 3.0
 next_state = NodePath("../WaitForTimeXState2")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
+[node name="Attack" type="Node" parent="StateMachine" index="3" unique_id=669223869]
+
+[node name="RaycastEventEmitter" type="Node" parent="EventEmitters" parent_id_path=PackedInt32Array(1816335374) index="0" unique_id=1794461559 node_paths=PackedStringArray("ray")]
+script = ExtResource("4_pdoqc")
+ray = NodePath("../../Visuals/RayCast3D")
+trigger_mode = "repeating"
+metadata/_custom_type_script = "uid://y7luksnh2gwr"
+
 [node name="lizard" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1314517611 instance=ExtResource("2_7gjff")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="." index="7" unique_id=1282947738]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.3922424, 0.23113191)
+[node name="RayCast3D" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1282947738]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3922424, -0.2156215)
+target_position = Vector3(0, -0.5, 0)
 collision_mask = 17
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="8" unique_id=431978157]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7" unique_id=431978157]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26597768, 0)
 shape = SubResource("SphereShape3D_cfv8o")
