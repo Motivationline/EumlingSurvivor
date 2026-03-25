@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="2_gnpyw"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_5be5r"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="4_o4g8i"]
+[ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="5_o4g8i"]
 [ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="5_vfhb7"]
 [ext_resource type="PackedScene" uid="uid://bfh0cfobkh20v" path="res://assets/characters/enemies/squid/squid_arm/squid_arm_prefab.tscn" id="6_5be5r"]
 
-[node name="BaseEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox") instance=ExtResource("1_vto4e")]
+[node name="BaseEnemy" unique_id=1898691 instance=ExtResource("1_vto4e")]
 ignore_enemy_in_level = true
-hitbox = NodePath("")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("SpawnWait")
@@ -24,20 +24,35 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("2_gnpyw")
 wait_time = 0.0
 next_state = NodePath("../LookAtPlayerState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "show"
+})
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine" index="2" unique_id=1340628182 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_5be5r")
+rotation_speed = 8.0
 next_state = NodePath("../WaitForTimeXState")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="WaitForTimeXState" type="Node" parent="StateMachine" index="3" unique_id=1316598777 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_o4g8i")
-wait_time = 2.5
 next_state = NodePath("../KillSelfState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "slap"
+})
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="KillSelfState" type="Node" parent="StateMachine" index="4" unique_id=2140091015 node_paths=PackedStringArray("next_state")]
+[node name="ActivatorState" type="Node" parent="StateMachine" index="4" unique_id=834714894]
+script = ExtResource("5_o4g8i")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="WaitForTimeXState2" type="Node" parent="StateMachine" index="5" unique_id=294796444]
+script = ExtResource("4_o4g8i")
+wait_time = 1.5
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="KillSelfState" type="Node" parent="StateMachine" index="6" unique_id=2140091015 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_vfhb7")
 next_state = NodePath("../SpawnWait")
 metadata/_custom_type_script = "uid://dj632w22te1th"
