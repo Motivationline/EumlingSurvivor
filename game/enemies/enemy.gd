@@ -22,6 +22,9 @@ class_name Enemy
 ## How fast this entity moves when it moves
 @export_range(0, 100, 0.1) var speed: float = 1
 
+@export_category("Death")
+@export var death_effect: PackedScene
+
 @export_category("Difficulty Overrides")
 @export var difficulty_scaler: DifficultyScaler
 
@@ -116,8 +119,10 @@ func _hurt_by(_attacker: HitBox):
 func _die():
 	for ev in on_death:
 		ev.event_triggered(null)
-	$DeathParticles.emitting = true
-	$DeathParticles.reparent(get_parent())
+	if not ignore_enemy_in_level:
+		var effect = death_effect.instantiate()
+		get_parent().add_child(effect)
+		effect.global_position = global_position
 	queue_free()
 
 

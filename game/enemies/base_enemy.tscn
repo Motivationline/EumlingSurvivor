@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cu1ucgco815t4"]
 
 [ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_axhys"]
+[ext_resource type="PackedScene" path="res://game/enemies/enemy_death_vfx.tscn" id="2_l5jqn"]
 [ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="3_3pmql"]
 [ext_resource type="PackedScene" uid="uid://cary3jj8sadl7" path="res://game/healthbar/healthbar_enemy/status_visuals_3d_enemy.tscn" id="3_qbujc"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="5_4ghmt"]
@@ -23,7 +24,6 @@
 [ext_resource type="AudioStream" uid="uid://divfgafb7b3c4" path="res://assets/sound/hit_sfx/hit_9.wav" id="21_tbsjp"]
 [ext_resource type="AudioStream" uid="uid://bpsnjbmf667ua" path="res://assets/sound/hit_sfx/hit_10.wav" id="22_igjq0"]
 [ext_resource type="PackedScene" uid="uid://crhvycqx837en" path="res://game/enemies/vulnerability_display/vulnerability_display.tscn" id="23_4ghmt"]
-[ext_resource type="PackedScene" uid="uid://cx8bq0vslyips" path="res://game/enemies/death_particles.tscn" id="24_l5jqn"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bauuv"]
 streams_count = 6
@@ -51,6 +51,7 @@ stream_9/stream = ExtResource("22_igjq0")
 collision_layer = 16
 script = ExtResource("1_axhys")
 health = 10.0
+death_effect = ExtResource("2_l5jqn")
 status_visuals = NodePath("StatusVisuals3DEnemy")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral")]
@@ -94,5 +95,3 @@ volume_db = 0.0
 
 [node name="VulnerabilityDisplay" parent="." unique_id=1768099244 instance=ExtResource("23_4ghmt")]
 visible = false
-
-[node name="DeathParticles" parent="." unique_id=2028934734 instance=ExtResource("24_l5jqn")]
