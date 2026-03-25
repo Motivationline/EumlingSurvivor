@@ -4,6 +4,7 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_qu5mx"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_jxfdy"]
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="3_qu5mx"]
+[ext_resource type="PackedScene" uid="uid://bfi1hkkxrugg8" path="res://game/enemies/6-volcano/charger/charger_enemy.tscn" id="5_h5lji"]
 [ext_resource type="LightmapGIData" uid="uid://8bep4q4vr8da" path="res://game/levels/6-Vxx-Volcano/Lightmaps/V05.lmbake" id="5_jxfdy"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_11st2"]
@@ -277,6 +278,9 @@ metadata/_editor_floor_ = Vector3(0, -1, 0)
 [node name="ExitArea" parent="." index="6" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_jxfdy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
+
+[node name="Charger" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("5_h5lji")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.256379, 0, -0.31850123)
 
 [node name="LightmapGI" parent="." index="8" unique_id=1520578396]
 light_data = ExtResource("5_jxfdy")
