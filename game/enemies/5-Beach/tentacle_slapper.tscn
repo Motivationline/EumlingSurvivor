@@ -8,18 +8,25 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_ehia0"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="6_6ky1e"]
 [ext_resource type="PackedScene" uid="uid://b7cu13tpfbt6k" path="res://game/enemies/5-Beach/tentacle_slapper_attack/tentacle_attack.tscn" id="6_280ev"]
+[ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="7_6ky1e"]
 [ext_resource type="PackedScene" uid="uid://cobx6obdkk5ja" path="res://assets/characters/enemies/squid/squid/squid_prefab.tscn" id="7_8scmy"]
+[ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="7_ehia0"]
+[ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="7_f2r6p"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0cktx"]
-radius = 0.24812698
+radius = 0.5125733
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_280ev"]
-radius = 0.3295225
+radius = 0.74622554
 
-[node name="tentacle_slapper" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_qgdlt")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_f2r6p"]
+radius = 0.38494918
+
+[node name="tentacle_slapper" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_qgdlt")]
 health = 150.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("SpawnWait")
@@ -40,6 +47,9 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 script = ExtResource("3_8scmy")
 start_delay = 0.2
 next_state = NodePath("../WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/attack/request": 1
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=931220986]
@@ -54,6 +64,50 @@ script = ExtResource("6_6ky1e")
 wait_time = 2.0
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="OnHit" type="Node" parent="StateMachine" index="4" unique_id=7283249]
+
+[node name="ActivatorState" type="Node" parent="StateMachine/OnHit" index="0" unique_id=2093795961 node_paths=PackedStringArray("disable", "next_state")]
+script = ExtResource("7_6ky1e")
+disable = [NodePath("../../../Hitbox"), NodePath("../../../Hurtbox")]
+next_state = NodePath("../HideWait")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="HideWait" type="Node" parent="StateMachine/OnHit" index="1" unique_id=45306687 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_6ky1e")
+next_state = NodePath("../TeleportToOnNavMeshState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "hide"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine/OnHit" index="2" unique_id=1299748473 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_f2r6p")
+wait_time = 2.0
+target = 2
+next_state = NodePath("../ActivatorState2")
+metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
+
+[node name="ActivatorState2" type="Node" parent="StateMachine/OnHit" index="3" unique_id=871820908 node_paths=PackedStringArray("enable", "next_state")]
+script = ExtResource("7_6ky1e")
+enable = [NodePath("../../../Hitbox"), NodePath("../../../Hurtbox")]
+next_state = NodePath("../ShowWait")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="ShowWait" type="Node" parent="StateMachine/OnHit" index="4" unique_id=1639216617 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_6ky1e")
+wait_time = 2.0
+next_state = NodePath("../../SpawnWait")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "show"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="TriggerStateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=558371586 node_paths=PackedStringArray("state_machine", "state_to_execute")]
+script = ExtResource("7_ehia0")
+state_machine = NodePath("../../StateMachine")
+state_to_execute = NodePath("../../StateMachine/OnHit/ActivatorState")
+metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="squid" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=697439437 instance=ExtResource("7_8scmy")]
 
@@ -80,3 +134,8 @@ can_be_hit_by = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08487338, 0)
 shape = SubResource("SphereShape3D_280ev")
 debug_color = Color(0.8051653, 0.41541824, 0.082558624, 0.41960785)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="9" unique_id=1622170228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41393352, 0)
+shape = SubResource("SphereShape3D_f2r6p")
+debug_color = Color(0.28544828, 0.63087994, 3.85046e-07, 0.41960785)

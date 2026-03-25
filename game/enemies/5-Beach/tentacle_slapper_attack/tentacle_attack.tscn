@@ -7,20 +7,32 @@
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="5_o4g8i"]
 [ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="5_vfhb7"]
 [ext_resource type="PackedScene" uid="uid://bfh0cfobkh20v" path="res://assets/characters/enemies/squid/squid_arm/squid_arm_prefab.tscn" id="6_5be5r"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_vfhb7"]
 
-[node name="BaseEnemy" unique_id=1898691 instance=ExtResource("1_vto4e")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t3syi"]
+radius = 0.2006836
+height = 1.6103516
+
+[node name="BaseEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox") instance=ExtResource("1_vto4e")]
 ignore_enemy_in_level = true
+hitbox = NodePath("Visuals/Hitbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("SpawnWait")
+initial_state = NodePath("ActivatorState2")
 
-[node name="SpawnWait" type="Node" parent="StateMachine" index="0" unique_id=922205256 node_paths=PackedStringArray("next_state")]
+[node name="ActivatorState2" type="Node" parent="StateMachine" index="0" unique_id=1921158989 node_paths=PackedStringArray("disable", "next_state")]
+script = ExtResource("5_o4g8i")
+disable = [NodePath("../../Visuals/Hitbox")]
+next_state = NodePath("../SpawnWait")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="SpawnWait" type="Node" parent="StateMachine" index="1" unique_id=922205256 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_o4g8i")
 wait_time = 0.0
 next_state = NodePath("../TeleportToOnNavMeshState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine" index="1" unique_id=1335814238 node_paths=PackedStringArray("next_state")]
+[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine" index="2" unique_id=1335814238 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_gnpyw")
 wait_time = 0.0
 next_state = NodePath("../LookAtPlayerState")
@@ -29,35 +41,48 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="2" unique_id=1340628182 node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="3" unique_id=1340628182 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_5be5r")
 rotation_speed = 8.0
 next_state = NodePath("../WaitForTimeXState")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="3" unique_id=1316598777 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="4" unique_id=1316598777 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_o4g8i")
-next_state = NodePath("../KillSelfState")
+wait_time = 0.2
+next_state = NodePath("../ActivatorState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "slap"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="ActivatorState" type="Node" parent="StateMachine" index="4" unique_id=834714894]
+[node name="ActivatorState" type="Node" parent="StateMachine" index="5" unique_id=834714894 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("5_o4g8i")
+enable = [NodePath("../../Visuals/Hitbox")]
+next_state = NodePath("../WaitForTimeXState2")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="WaitForTimeXState2" type="Node" parent="StateMachine" index="5" unique_id=294796444]
+[node name="WaitForTimeXState2" type="Node" parent="StateMachine" index="6" unique_id=294796444 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_o4g8i")
-wait_time = 1.5
+wait_time = 2.3
+next_state = NodePath("../KillSelfState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="KillSelfState" type="Node" parent="StateMachine" index="6" unique_id=2140091015 node_paths=PackedStringArray("next_state")]
+[node name="KillSelfState" type="Node" parent="StateMachine" index="7" unique_id=2140091015 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_vfhb7")
 next_state = NodePath("../SpawnWait")
 metadata/_custom_type_script = "uid://dj632w22te1th"
 
 [node name="squid_arm" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1132374932 instance=ExtResource("6_5be5r")]
 
-[node name="DeathParticles" parent="." index="7" unique_id=2028934734]
-visible = false
+[node name="Hitbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=504839055 instance=ExtResource("8_vfhb7")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+individual_hit_limit = 1
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hitbox" index="0" unique_id=1481071548]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.09161654, -0.66845703)
+shape = SubResource("CapsuleShape3D_t3syi")
