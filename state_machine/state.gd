@@ -32,6 +32,9 @@ var consume_resource_on_enter: bool = false
 var parent: StateMachinePoweredEntity
 var anim_player: AnimationTree
 
+signal entered
+signal exited
+
 ## Called once when the state machine is first initialized 
 func setup(_parent: StateMachinePoweredEntity, _animation: AnimationTree) -> void:
 	parent = _parent
@@ -43,12 +46,13 @@ func enter() -> void:
 		for key in animation_trigger.keys():
 			anim_player.set(key, animation_trigger.get(key))
 	if consume_resource_on_enter: consume_resource()
+	entered.emit()
 
 ## Called every time the state is no longer the active state
 func exit() -> void:
 	# if (anim_player && animation_trigger.size() > 0): 
 	# 	anim_player.set("parameters/conditions/" + animation_trigger, false)
-	pass
+	exited.emit()
 
 ## While active, this is called with the parents regular _process() function
 func process(_delta: float) -> State:

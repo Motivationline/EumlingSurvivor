@@ -1,6 +1,6 @@
 extends EventStrategy
 ## Activates the given Strategies from the Array
-class_name ActivateEventStrategy
+class_name ActivateStrategiesEventStrategy
 
 ## Add Activation Strategy pool inside this Array
 @export var strategies_to_activate: Array[Strategy]
