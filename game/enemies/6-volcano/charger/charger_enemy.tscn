@@ -14,7 +14,7 @@
 [sub_resource type="Resource" id="Resource_bfwf6"]
 script = ExtResource("5_03efp")
 attribute = "speed"
-value = 6.0
+value = 3.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_tkqte"]
@@ -47,7 +47,7 @@ script = ExtResource("3_03efp")
 events = [NodePath("../../Eventlisteners/SlowEvent")]
 next_state = NodePath("../MoveHorizontalVerticalState")
 animation_trigger = Dictionary[String, Variant]({
-"res://assets/characters/enemies/lizard/lizard_prefab.tscn::AnimationNodeBlendTree_bhxjt": "run_slow"
+"parameters/Transition/transition_request": "run_slow"
 })
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
@@ -64,7 +64,7 @@ metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 [node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=1673902286]
 script = ExtResource("6_03efp")
 animation_trigger = Dictionary[String, Variant]({
-"res://assets/characters/enemies/lizard/lizard_prefab.tscn::AnimationNodeBlendTree_bhxjt": "run_fast"
+"parameters/Transition/transition_request": "run_fast"
 })
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
