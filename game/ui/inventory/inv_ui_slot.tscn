@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://34ncdps2t868"]
+[gd_scene format=3 uid="uid://34ncdps2t868"]
 
 [ext_resource type="Script" uid="uid://bfouhfdm0a7er" path="res://game/ui/inventory/inv_ui_slot.gd" id="1_bolq4"]
 [ext_resource type="Texture2D" uid="uid://dgieeuysbx3fy" path="res://assets/ui/ItemBackground.png" id="1_j5w3o"]
@@ -18,20 +18,20 @@ anti_aliasing = false
 
 [sub_resource type="GDScript" id="GDScript_igmd3"]
 
-[node name="invUiSlot" type="Panel"]
+[node name="invUiSlot" type="Panel" unique_id=1886281078]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(195, 200)
 offset_right = 195.0
 offset_bottom = 200.0
 script = ExtResource("1_bolq4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=477883931]
 visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_j5w3o")
 centered = false
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=631180998]
 clip_children = 1
 layout_mode = 0
 offset_right = 40.0
@@ -39,7 +39,7 @@ offset_bottom = 40.0
 scale = Vector2(4.885914, 4.885914)
 theme_override_styles/panel = SubResource("StyleBoxFlat_yl8u6")
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=659550169]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -47,7 +47,7 @@ scale = Vector2(1.0409706, 1.0409706)
 texture = ExtResource("3_igmd3")
 expand_mode = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1034684314]
 custom_minimum_size = Vector2(195, 200)
 layout_mode = 0
 offset_left = 26.0
@@ -56,11 +56,11 @@ offset_right = 221.0
 offset_bottom = 225.0
 scale = Vector2(0.7129965, 0.7129965)
 
-[node name="Panel" type="Panel" parent="CenterContainer"]
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=686965566]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(195, 200)
 layout_mode = 2
 
-[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel" unique_id=1764742504]
 position = Vector2(100, 104)
 script = SubResource("GDScript_igmd3")
