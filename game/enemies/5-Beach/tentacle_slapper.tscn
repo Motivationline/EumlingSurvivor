@@ -19,9 +19,6 @@ radius = 0.5125733
 [sub_resource type="SphereShape3D" id="SphereShape3D_280ev"]
 radius = 0.74622554
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_f2r6p"]
-radius = 0.38494918
-
 [node name="tentacle_slapper" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_qgdlt")]
 health = 150.0
 hitbox = NodePath("Hitbox")
@@ -134,8 +131,3 @@ can_be_hit_by = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08487338, 0)
 shape = SubResource("SphereShape3D_280ev")
 debug_color = Color(0.8051653, 0.41541824, 0.082558624, 0.41960785)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="9" unique_id=1622170228]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41393352, 0)
-shape = SubResource("SphereShape3D_f2r6p")
-debug_color = Color(0.28544828, 0.63087994, 3.85046e-07, 0.41960785)

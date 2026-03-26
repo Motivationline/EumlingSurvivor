@@ -18,9 +18,9 @@ ignore_enemy_in_level = true
 hitbox = NodePath("Visuals/Hitbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("ActivatorState2")
+initial_state = NodePath("DisableHitbox")
 
-[node name="ActivatorState2" type="Node" parent="StateMachine" index="0" unique_id=1921158989 node_paths=PackedStringArray("disable", "next_state")]
+[node name="DisableHitbox" type="Node" parent="StateMachine" index="0" unique_id=1921158989 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("5_o4g8i")
 disable = [NodePath("../../Visuals/Hitbox")]
 next_state = NodePath("../SpawnWait")
@@ -50,25 +50,36 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 [node name="WaitForTimeXState" type="Node" parent="StateMachine" index="4" unique_id=1316598777 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_o4g8i")
 wait_time = 0.2
-next_state = NodePath("../ActivatorState")
+next_state = NodePath("../EnableHitbox")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "slap"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="ActivatorState" type="Node" parent="StateMachine" index="5" unique_id=834714894 node_paths=PackedStringArray("enable", "next_state")]
+[node name="EnableHitbox" type="Node" parent="StateMachine" index="5" unique_id=834714894 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("5_o4g8i")
 enable = [NodePath("../../Visuals/Hitbox")]
-next_state = NodePath("../WaitForTimeXState2")
+next_state = NodePath("../WaitForAnimation")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="WaitForTimeXState2" type="Node" parent="StateMachine" index="6" unique_id=294796444 node_paths=PackedStringArray("next_state")]
+[node name="WaitForAnimation" type="Node" parent="StateMachine" index="6" unique_id=294796444 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_o4g8i")
-wait_time = 1.5
+next_state = NodePath("../DisableHitboxAgain")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="DisableHitboxAgain" type="Node" parent="StateMachine" index="7" unique_id=1163834385 node_paths=PackedStringArray("disable", "next_state")]
+script = ExtResource("5_o4g8i")
+disable = [NodePath("../../Visuals/Hitbox")]
+next_state = NodePath("../WaitForAnimationEnd")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="WaitForAnimationEnd" type="Node" parent="StateMachine" index="8" unique_id=789656957 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_o4g8i")
+wait_time = 0.5
 next_state = NodePath("../KillSelfState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="KillSelfState" type="Node" parent="StateMachine" index="7" unique_id=2140091015 node_paths=PackedStringArray("next_state")]
+[node name="KillSelfState" type="Node" parent="StateMachine" index="9" unique_id=2140091015 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_vfhb7")
 next_state = NodePath("../SpawnWait")
 metadata/_custom_type_script = "uid://dj632w22te1th"
