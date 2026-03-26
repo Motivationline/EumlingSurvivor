@@ -3,49 +3,109 @@
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_wlu14"]
 [ext_resource type="PackedScene" uid="uid://ciyhp1yy70dph" path="res://assets/characters/enemies/lizard/lizard_prefab.tscn" id="2_7gjff"]
 [ext_resource type="Script" path="res://state_machine/enemy/move_horizontal_vertical.gd" id="2_cfv8o"]
-[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_pdoqc"]
+[ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="3_03efp"]
+[ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="4_7qhmb"]
 [ext_resource type="Script" uid="uid://y7luksnh2gwr" path="res://strategies/event_emitter/raycast_event_emitter.gd" id="4_pdoqc"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="5_03efp"]
+[ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="6_03efp"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_tkqte"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_f8btt"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_cfv8o"]
-radius = 0.25761178
+[sub_resource type="Resource" id="Resource_bfwf6"]
+script = ExtResource("5_03efp")
+attribute = "speed"
+value = 6.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
 
-[node name="Charger" unique_id=1898691 instance=ExtResource("1_wlu14")]
+[sub_resource type="Resource" id="Resource_tkqte"]
+script = ExtResource("5_03efp")
+attribute = "speed"
+value = 1.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a5ivj"]
+radius = 0.18085398
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tkqte"]
+radius = 0.36457208
+
+[node name="Charger" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_wlu14")]
+health = 250.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveHorizontalVerticalState")
 
-[node name="WaitForTimeXState2" type="Node" parent="StateMachine" index="0" unique_id=736279576 node_paths=PackedStringArray("next_state")]
-script = ExtResource("3_pdoqc")
-next_state = NodePath("../MoveHorizontalVerticalState")
-metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="MoveHorizontalVerticalState" type="Node" parent="StateMachine" index="1" unique_id=1477608986 node_paths=PackedStringArray("distance_check_ray", "next_state")]
+[node name="MoveHorizontalVerticalState" type="Node" parent="StateMachine" index="0" unique_id=1477608986 node_paths=PackedStringArray("distance_check_ray", "next_state")]
 script = ExtResource("2_cfv8o")
-distance_check_ray = NodePath("../../Visuals/RayCast3D")
-next_state = NodePath("../WaitForTimeXState")
+distance_check_ray = NodePath("../../Visuals/CollisionRay")
+next_state = NodePath("../TriggerEventState")
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=848512822 node_paths=PackedStringArray("next_state")]
-script = ExtResource("3_pdoqc")
-wait_time = 3.0
-next_state = NodePath("../WaitForTimeXState2")
-metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+[node name="TriggerEventState" type="Node" parent="StateMachine" index="1" unique_id=1850581144 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("3_03efp")
+events = [NodePath("../../Eventlisteners/SlowEvent")]
+next_state = NodePath("../MoveHorizontalVerticalState")
+animation_trigger = Dictionary[String, Variant]({
+"res://assets/characters/enemies/lizard/lizard_prefab.tscn::AnimationNodeBlendTree_bhxjt": "run_slow"
+})
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
-[node name="Attack" type="Node" parent="StateMachine" index="3" unique_id=669223869]
+[node name="FastEvent" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=670773985]
+script = ExtResource("4_7qhmb")
+changes = Array[ExtResource("5_03efp")]([SubResource("Resource_bfwf6")])
+metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
-[node name="RaycastEventEmitter" type="Node" parent="EventEmitters" parent_id_path=PackedInt32Array(1816335374) index="0" unique_id=1794461559 node_paths=PackedStringArray("ray")]
+[node name="SlowEvent" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=1223289867]
+script = ExtResource("4_7qhmb")
+changes = Array[ExtResource("5_03efp")]([SubResource("Resource_tkqte")])
+metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
+
+[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=1673902286]
+script = ExtResource("6_03efp")
+animation_trigger = Dictionary[String, Variant]({
+"res://assets/characters/enemies/lizard/lizard_prefab.tscn::AnimationNodeBlendTree_bhxjt": "run_fast"
+})
+metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
+
+[node name="RaycastEventEmitter" type="Node" parent="EventEmitters" parent_id_path=PackedInt32Array(1816335374) index="0" unique_id=1794461559 node_paths=PackedStringArray("ray", "listeners")]
 script = ExtResource("4_pdoqc")
 ray = NodePath("../../Visuals/RayCast3D")
 trigger_mode = "repeating"
+listeners = [NodePath("../../Eventlisteners/FastEvent"), NodePath("../../Eventlisteners/PlayAnimationEventStrategy")]
 metadata/_custom_type_script = "uid://y7luksnh2gwr"
 
 [node name="lizard" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1314517611 instance=ExtResource("2_7gjff")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1282947738]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3922424, -0.2156215)
-target_position = Vector3(0, -0.5, 0)
+[node name="CollisionRay" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1282947738]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.17266813, -0.2156215)
+target_position = Vector3(0, -0.3, 0)
 collision_mask = 17
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7" unique_id=431978157]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26597768, 0)
-shape = SubResource("SphereShape3D_cfv8o")
+[node name="RayCast3D" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=221770472]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.24929065, 0)
+target_position = Vector3(0, -8, 0)
+collision_mask = 2
+
+[node name="Hitbox" parent="." index="7" unique_id=597015863 instance=ExtResource("9_tkqte")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=906582094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004000306, 0.388, -0.251)
+shape = SubResource("SphereShape3D_a5ivj")
+debug_color = Color(0.9993934, 0, 0.12844995, 0.41960785)
+
+[node name="Hurtbox" parent="." index="8" unique_id=485805678 instance=ExtResource("10_f8btt")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=260127164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3277039, 0)
+shape = SubResource("SphereShape3D_tkqte")
