@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://kpp1jxkuw8rf" path="res://assets/characters/eumling/V2/Eumling_v2.glb" id="1_qpw4l"]
 [ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/manager/sound_requester.gd" id="2_2pu6i"]
+[ext_resource type="PackedScene" uid="uid://dsjk3pvm382wq" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial.glb" id="3_kkceb"]
 [ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="3_rna07"]
+[ext_resource type="PackedScene" uid="uid://dqru3ipa22rvk" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik.glb" id="4_xpqnk"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_lyv7g"]
 filters = ["SoundEffectManager"]
@@ -52,7 +54,7 @@ animation = &"idle"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lo48b"]
-graph_offset = Vector2(-1170.3878, 70.66083)
+graph_offset = Vector2(-1032.9835, 131.75934)
 nodes/output/position = Vector2(780, 300)
 nodes/idle/node = SubResource("AnimationNodeAnimation_rna07")
 nodes/idle/position = Vector2(-940, 80)
@@ -85,6 +87,129 @@ layers = 2
 [node name="eumling_mesh" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="1" unique_id=2021133272]
 layers = 2
 
+[node name="spring_bone_one" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="2" unique_id=1304950153]
+transform = Transform3D(-0.9984086, -0.055527166, -0.009837801, -0.052501827, 0.8516094, 0.52154064, -0.020581663, 0.5212274, -0.8531691, 0.011468625, 0.13743576, 0.11815087)
+setting_count = 1
+settings/0/root_bone_name = "DEF_BAG_BAG.R"
+settings/0/root_bone = 32
+settings/0/end_bone_name = "DEF_BAG_BAG.R"
+settings/0/end_bone = 32
+settings/0/extend_end_bone = true
+settings/0/end_bone/direction = 6
+settings/0/end_bone/length = 0.1
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 1
+settings/0/radius/value = 0.02
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 2.5
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.4
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "DEF_BAG_BAG.R"
+settings/0/joints/0/bone = 32
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="attachment_one" type="BoneAttachment3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="3" unique_id=160024342]
+transform = Transform3D(-1, -2.8387172e-08, -5.8913912e-08, -2.8651778e-08, 0.999998, 0.0018688398, 5.8860337e-08, 0.0018688394, -0.9999983, 0.16084158, 0.23232873, 0.21490693)
+bone_name = "DEF_BAG_BAG.R"
+bone_idx = 32
+
+[node name="scaler" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_one" index="0" unique_id=1836534381]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="offset" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_one/scaler" index="0" unique_id=647879082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.595524e-14, 0.07719688, 0.0041611753)
+
+[node name="anchor_one" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_one/scaler/offset" index="0" unique_id=67396767]
+transform = Transform3D(-4.371139e-08, -0.39073113, 0.92050487, 0, 0.92050487, 0.39073113, -1, 1.70794e-08, -4.0236547e-08, 0.036210254, 0.14037034, -0.0074095814)
+
+[node name="mini_sozial_sozial" parent="Eumling_Armature/Skeleton3D/attachment_one/scaler/offset/anchor_one" index="0" unique_id=1922232123 instance=ExtResource("3_kkceb")]
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="spring_bone_two" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="4" unique_id=1560766667]
+setting_count = 1
+settings/0/root_bone_name = "DEF_BAG_BAG.L"
+settings/0/root_bone = 31
+settings/0/end_bone_name = "DEF_BAG_BAG.L"
+settings/0/end_bone = 31
+settings/0/extend_end_bone = true
+settings/0/end_bone/direction = 6
+settings/0/end_bone/length = 0.1
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 1
+settings/0/radius/value = 0.02
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 2.5
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.4
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "DEF_BAG_BAG.L"
+settings/0/joints/0/bone = 31
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="attachment_two" type="BoneAttachment3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="5" unique_id=2007910805]
+transform = Transform3D(-1, -2.8387172e-08, 2.4307772e-07, -2.8087404e-08, 0.999998, 0.0018688398, -2.4313078e-07, 0.0018688393, -0.9999983, -0.16084161, 0.23232871, 0.2149069)
+bone_name = "DEF_BAG_BAG.L"
+bone_idx = 31
+
+[node name="scaler" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_two" index="0" unique_id=436605765]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="offset" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_two/scaler" index="0" unique_id=530226186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.595524e-14, 0.07719688, 0.0041611753)
+
+[node name="anchor_two" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_two/scaler/offset" index="0" unique_id=1923936542]
+transform = Transform3D(-4.371139e-08, 0.39073113, -0.92050487, 0, 0.92050487, 0.39073113, 1, 1.70794e-08, -4.0236547e-08, -0.036, 0.14, -0.007)
+
+[node name="mini_conventional_logik" parent="Eumling_Armature/Skeleton3D/attachment_two/scaler/offset/anchor_two" index="0" unique_id=1250653920 instance=ExtResource("4_xpqnk")]
+
+[node name="SpringBoneLeaf" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="6" unique_id=454523896]
+setting_count = 1
+settings/0/root_bone_name = "DEF_LEAFTOP1"
+settings/0/root_bone = 16
+settings/0/end_bone_name = "DEF_LEAFTOP4"
+settings/0/end_bone = 19
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = true
+settings/0/joint_count = 4
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/radius = 0.044
+settings/0/joints/0/stiffness = 4.0
+settings/0/joints/0/drag = 1.0
+settings/0/joints/0/gravity = 0.0
+settings/0/joints/0/gravity_direction = Vector3(0, -1, 0)
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/radius = 0.044
+settings/0/joints/1/stiffness = 3.0
+settings/0/joints/1/drag = 1.0
+settings/0/joints/1/gravity = 0.0
+settings/0/joints/1/gravity_direction = Vector3(0, -1, 0)
+settings/0/joints/2/rotation_axis = 3
+settings/0/joints/2/radius = 0.044
+settings/0/joints/2/stiffness = 1.0
+settings/0/joints/2/drag = 1.0
+settings/0/joints/2/gravity = 0.0
+settings/0/joints/2/gravity_direction = Vector3(0, -1, 0)
+settings/0/joints/3/rotation_axis = 3
+settings/0/joints/3/radius = 0.044
+settings/0/joints/3/stiffness = 1.0
+settings/0/joints/3/drag = 1.0
+settings/0/joints/3/gravity = 0.0
+settings/0/joints/3/gravity_direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1243012564]
 tree_root = SubResource("AnimationNodeBlendTree_lo48b")
 anim_player = NodePath("../AnimationPlayer")
@@ -92,7 +217,7 @@ parameters/Shoot/active = false
 parameters/Shoot/internal_active = false
 parameters/Shoot/request = 0
 parameters/WalkSpeedScale/scale = 1.0
-parameters/Idle-Walk/blend_amount = 0.0
+parameters/Idle-Walk/blend_amount = 1.0
 parameters/StateMachine/conditions/reset = false
 parameters/DeathOneShot/active = false
 parameters/DeathOneShot/internal_active = false
