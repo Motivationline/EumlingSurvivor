@@ -49,9 +49,10 @@ start_delay = 0.2
 next_state = NodePath("../WaitForTimeXState")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=931220986]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=931220986 node_paths=PackedStringArray("spawn_position")]
 script = ExtResource("4_ehia0")
 ignore_relative_rotation = true
+spawn_position = NodePath("")
 offset_distance = 0.3
 entity_to_spawn = ExtResource("6_280ev")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
