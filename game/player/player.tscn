@@ -70,7 +70,7 @@
 [ext_resource type="AudioStream" uid="uid://dtwjmuugoxay2" path="res://assets/characters/eumling/V2/sounds/death_6.wav" id="67_m1cdu"]
 [ext_resource type="Script" uid="uid://d0y7cgck1opqh" path="res://game/player/abilities/social.gd" id="68_3p3em"]
 [ext_resource type="PackedScene" uid="uid://co3vv3d8hdp1s" path="res://game/aoes/social_aoe/social_aoe.tscn" id="69_0jq7b"]
-[ext_resource type="Script" path="res://game/player/abilities/investigative.gd" id="71_d76hv"]
+[ext_resource type="Script" uid="uid://ca2lwyvrascpj" path="res://game/player/abilities/investigative.gd" id="71_d76hv"]
 [ext_resource type="Script" uid="uid://b1wawxra3pubk" path="res://game/player/artistic.gd" id="72_6ynhj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
@@ -156,11 +156,6 @@ stream_4/stream = ExtResource("66_k3n0c")
 stream_5/stream = ExtResource("67_m1cdu")
 
 [sub_resource type="Curve3D" id="Curve3D_6ynhj"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.075, 0, 0.117, 0, 0, 0, 0, 0, 0, 0.131, 0, 1.496, 0, 0, 0, 0, 0, 0, 0.185, 0, 3.871, 0, 0, 0, 0, 0, 0, 1.419, 0, 5.52, 0, 0, 0, 0, 0, 0, 2.677, 0, 4.465, 0, 0, 0, 0, 0, 0, 3.018, 0, 2.518),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
-}
-point_count = 6
 
 [node name="Player" type="CharacterBody3D" unique_id=1236976938 node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
 collision_layer = 2
@@ -203,6 +198,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4567871, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
 [node name="Eumling_v2" parent="." unique_id=111255977 instance=ExtResource("4_2mv0n")]
+script = null
 
 [node name="AttackVisual" parent="." unique_id=375290485 instance=ExtResource("4_fdpga")]
 unique_name_in_owner = true
@@ -450,5 +446,16 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
-[connection signal="play_sound" from="Eumling_v2" to="SoundEffectManager" method="play_sound"]
+[node name="CollisionArea" type="Area3D" parent="SpecialAbilities/Artistic" unique_id=1936686753]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+
+[node name="Polygon" type="CollisionPolygon3D" parent="SpecialAbilities/Artistic/CollisionArea" unique_id=148092460]
+depth = 0.5
+polygon = PackedVector2Array(0.61784196, 0.36518896, 0.9101424, -0.097498894, 1.5115657, 0.38720232)
+
+[node name="VisiblePolygon" type="CSGPolygon3D" parent="SpecialAbilities/Artistic" unique_id=2060959812]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, 0)
+polygon = PackedVector2Array()
+depth = 0.2
+
 [connection signal="pressed" from="UI/Control/PauseButton" to="UITest/PauseSketch" method="open"]
