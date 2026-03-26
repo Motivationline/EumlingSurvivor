@@ -13,5 +13,8 @@ class_name Eumling extends Resource
 @export_multiline var info: String
 @export var image: Texture
 
+@export_category("Other Info")
+@export_enum("Studium", "Ausbildung") var education: String = "Studium"
+
 
 var progress: Enum.EUMLING_UNLOCK_PROGRESS = Enum.EUMLING_UNLOCK_PROGRESS.LOCKED
