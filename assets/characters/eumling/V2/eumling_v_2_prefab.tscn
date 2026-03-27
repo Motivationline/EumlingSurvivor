@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://kpp1jxkuw8rf" path="res://assets/characters/eumling/V2/Eumling_v2.glb" id="1_qpw4l"]
 [ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/manager/sound_requester.gd" id="2_2pu6i"]
-[ext_resource type="PackedScene" uid="uid://dsjk3pvm382wq" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial.glb" id="3_kkceb"]
 [ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="3_rna07"]
 [ext_resource type="PackedScene" uid="uid://dqru3ipa22rvk" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik.glb" id="4_xpqnk"]
 
@@ -128,8 +127,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.595524e-14, 0.07719688, 0.0
 [node name="anchor_one" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_one/scaler/offset" index="0" unique_id=67396767]
 transform = Transform3D(-4.371139e-08, -0.39073113, 0.92050487, 0, 0.92050487, 0.39073113, -1, 1.70794e-08, -4.0236547e-08, 0.036210254, 0.14037034, -0.0074095814)
 
-[node name="mini_sozial_sozial" parent="Eumling_Armature/Skeleton3D/attachment_one/scaler/offset/anchor_one" index="0" unique_id=1922232123 instance=ExtResource("3_kkceb")]
-transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="mini_conventional_logik" parent="Eumling_Armature/Skeleton3D/attachment_one/scaler/offset/anchor_one" index="0" unique_id=1250653920 instance=ExtResource("4_xpqnk")]
 
 [node name="spring_bone_two" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="4" unique_id=1560766667]
 setting_count = 1
@@ -171,7 +169,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.595524e-14, 0.07719688, 0.0
 [node name="anchor_two" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_two/scaler/offset" index="0" unique_id=1923936542]
 transform = Transform3D(-4.371139e-08, 0.39073113, -0.92050487, 0, 0.92050487, 0.39073113, 1, 1.70794e-08, -4.0236547e-08, -0.036, 0.14, -0.007)
 
-[node name="mini_conventional_logik" parent="Eumling_Armature/Skeleton3D/attachment_two/scaler/offset/anchor_two" index="0" unique_id=1250653920 instance=ExtResource("4_xpqnk")]
+[node name="mini_conventional_logik" parent="Eumling_Armature/Skeleton3D/attachment_two/scaler/offset/anchor_two" index="0" unique_id=1600411388 instance=ExtResource("4_xpqnk")]
 
 [node name="SpringBoneLeaf" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="6" unique_id=454523896]
 setting_count = 1
@@ -209,6 +207,21 @@ settings/0/joints/3/gravity = 0.0
 settings/0/joints/3/gravity_direction = Vector3(0, -1, 0)
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
+
+[node name="attachment_three" type="BoneAttachment3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="7" unique_id=937021426]
+transform = Transform3D(-1, -7.0008824e-08, 2.1198659e-08, 4.992681e-08, -0.44404826, 0.89600235, -5.3315304e-08, 0.89600265, 0.44404837, -1.5305886e-08, 0.5882118, 0.15764317)
+bone_name = "DEF_BAGLID2"
+bone_idx = 28
+
+[node name="scaler" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_three" index="0" unique_id=2144639255]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="offset" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_three/scaler" index="0" unique_id=1582913432]
+
+[node name="anchor_three" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_three/scaler/offset" index="0" unique_id=1864426905]
+transform = Transform3D(-0.8944496, -0.36465406, 0.25881913, 0.39631656, -0.3783829, 0.8365164, -0.20710626, 0.8507963, 0.4829628, -0.2759178, -0.08118112, -0.11662161)
+
+[node name="mini_conventional_logik" parent="Eumling_Armature/Skeleton3D/attachment_three/scaler/offset/anchor_three" index="0" unique_id=683163314 instance=ExtResource("4_xpqnk")]
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1243012564]
 tree_root = SubResource("AnimationNodeBlendTree_lo48b")
