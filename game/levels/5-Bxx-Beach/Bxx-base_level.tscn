@@ -11,11 +11,14 @@
 [ext_resource type="Script" uid="uid://do4ujdcqq0nii" path="res://addons/world_wind/world_wind.gd" id="9_yuro1"]
 [ext_resource type="PackedScene" uid="uid://bli8pja4rp1qc" path="res://assets/models/5-beach/palm1_prefab.tscn" id="10_c8p5i"]
 [ext_resource type="Script" uid="uid://ce3uevtwoe7te" path="res://global/settings/graphics_settings_component_global_illumination.gd" id="10_yuro1"]
-[ext_resource type="Shader" uid="uid://38jq7gal13tn" path="res://game/levels/6-Vxx-Volcano/Shader/water_ripples_shader_.tres" id="12_n7ths"]
+[ext_resource type="Shader" uid="uid://38jq7gal13tn" path="res://game/levels/6-Vxx-Volcano/shader/water_ripples_shader_.tres" id="12_n7ths"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
-vertices = PackedVector3Array(-4.5, 1, -4.5, -4.5, 1, 4.5, 4.5, 1, 4.5, 4.5, 1, -4.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+[sub_resource type="NavigationMesh" id="NavigationMesh_c8p5i"]
+vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -4.5, 1, 4.75, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, -4.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(0, 6, 5), PackedInt32Array(4, 7, 3)]
+agent_radius = 0.25
+agent_max_climb = 0.0
+edge_max_error = 0.25
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_am3nm"]
 resource_name = "Material"
@@ -343,11 +346,10 @@ goal_area = NodePath("GoalArea")
 music = 2
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=843824706]
-navigation_mesh = SubResource("NavigationMesh_wbp8f")
+navigation_mesh = SubResource("NavigationMesh_c8p5i")
 
 [node name="BorderGridMap" type="GridMap" parent="NavigationRegion3D" unique_id=1553876842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-visible = false
 mesh_library = ExtResource("2_ndj1h")
 cell_size = Vector3(0.5, 0.5, 0.5)
 collision_layer = 16
