@@ -4,12 +4,57 @@
 [ext_resource type="PackedScene" uid="uid://ciyhp1yy70dph" path="res://assets/characters/enemies/lizard/lizard_prefab.tscn" id="2_7gjff"]
 [ext_resource type="Script" path="res://state_machine/enemy/move_horizontal_vertical.gd" id="2_cfv8o"]
 [ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="3_03efp"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_f8btt"]
 [ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="4_7qhmb"]
 [ext_resource type="Script" uid="uid://y7luksnh2gwr" path="res://strategies/event_emitter/raycast_event_emitter.gd" id="4_pdoqc"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="5_03efp"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="6_03efp"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_tkqte"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_f8btt"]
+
+[sub_resource type="Resource" id="Resource_f8btt"]
+script = ExtResource("5_03efp")
+attribute = "health"
+value = 200.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ysnym"]
+script = ExtResource("5_03efp")
+attribute = "health"
+value = 350.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_h1yg0"]
+script = ExtResource("5_03efp")
+attribute = "incoming_damage_multiplier"
+value = 0.6
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_8ilme"]
+script = ExtResource("5_03efp")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_67x5m"]
+script = ExtResource("5_03efp")
+attribute = "health"
+value = 250.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_8mft5"]
+script = ExtResource("5_03efp")
+attribute = "incoming_damage_multiplier"
+value = 0.8
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_a5ivj"]
+script = ExtResource("3_f8btt")
+introduction = Array[ExtResource("5_03efp")]([SubResource("Resource_8ilme")])
+easy = Array[ExtResource("5_03efp")]([SubResource("Resource_f8btt")])
+medium = Array[ExtResource("5_03efp")]([SubResource("Resource_67x5m"), SubResource("Resource_8mft5")])
+hard = Array[ExtResource("5_03efp")]([SubResource("Resource_ysnym"), SubResource("Resource_h1yg0")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="Resource" id="Resource_bfwf6"]
 script = ExtResource("5_03efp")
@@ -23,6 +68,38 @@ attribute = "speed"
 value = 1.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
+[sub_resource type="Resource" id="Resource_ewb6w"]
+script = ExtResource("5_03efp")
+attribute = "damage"
+value = 55.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_fnnys"]
+script = ExtResource("5_03efp")
+attribute = "damage"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_iulfk"]
+script = ExtResource("5_03efp")
+attribute = "damage"
+value = 45.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_6a4c0"]
+script = ExtResource("5_03efp")
+attribute = "damage"
+value = 75.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_01dnf"]
+script = ExtResource("3_f8btt")
+introduction = Array[ExtResource("5_03efp")]([SubResource("Resource_iulfk")])
+easy = Array[ExtResource("5_03efp")]([SubResource("Resource_ewb6w")])
+medium = Array[ExtResource("5_03efp")]([SubResource("Resource_6a4c0")])
+hard = Array[ExtResource("5_03efp")]([SubResource("Resource_fnnys")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_a5ivj"]
 radius = 0.18085398
 
@@ -31,6 +108,7 @@ radius = 0.36457208
 
 [node name="Charger" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_wlu14")]
 health = 250.0
+difficulty_scaler = SubResource("Resource_a5ivj")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
@@ -94,6 +172,7 @@ collision_mask = 8
 damage = 50.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_01dnf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=906582094]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004000306, 0.388, -0.251)
