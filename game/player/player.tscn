@@ -72,6 +72,7 @@
 [ext_resource type="PackedScene" uid="uid://co3vv3d8hdp1s" path="res://game/aoes/social_aoe/social_aoe.tscn" id="69_0jq7b"]
 [ext_resource type="Script" path="res://game/player/abilities/investigative.gd" id="71_d76hv"]
 [ext_resource type="Script" uid="uid://b1wawxra3pubk" path="res://game/player/artistic.gd" id="72_6ynhj"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="73_jcmuf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.23
@@ -445,10 +446,14 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
-[node name="CollisionArea" type="Area3D" parent="SpecialAbilities/Artistic" unique_id=1936686753]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+[node name="CollisionArea" parent="SpecialAbilities/Artistic" unique_id=755660189 instance=ExtResource("73_jcmuf")]
+collision_layer = 4
+collision_mask = 64
+attached_to = 3
+can_hit = 7
 
 [node name="Polygon" type="CollisionPolygon3D" parent="SpecialAbilities/Artistic/CollisionArea" unique_id=148092460]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 depth = 0.5
 
 [node name="VisiblePolygon" type="CSGPolygon3D" parent="SpecialAbilities/Artistic" unique_id=2060959812]

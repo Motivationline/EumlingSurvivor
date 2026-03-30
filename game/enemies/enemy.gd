@@ -96,9 +96,11 @@ func _hurt_by(_attacker: HitBox):
 		return
 	var projectile = _attacker.get_parent()
 	var damage = _attacker.damage
-	var hit_vulnerability: bool = vulnerability_display.try_to_hit(projectile)
-	if hit_vulnerability:
-		damage *= 2 # TODO copy this value from the I ability
+	var hit_vulnerability: bool = false
+	if projectile is Projectile:
+		hit_vulnerability = vulnerability_display.try_to_hit(projectile)
+		if hit_vulnerability:
+			damage *= 2 # TODO copy this value from the I ability
 	damage *= incoming_damage_multiplier
 
 	health -= damage

@@ -3,6 +3,9 @@ extends Ability
 @export var tail_duration_base: float = 1.0
 @export var tail_duration_additional: float = 0.5
 
+@export var damage_base: float = 10.0
+@export var damage_additional: float = 5.0
+
 @export var squared_distance_to_check: float = 0.1
 @export var minimum_area_to_trigger: float = 0.5
 
@@ -23,8 +26,8 @@ func _ready() -> void:
 func _update():
 	if amt_eumlings == 0 and points.size() > 0:
 		clear_points()
-	tail_duration = tail_duration_base + amt_eumlings * tail_duration_additional
-
+	tail_duration = tail_duration_base + (amt_eumlings - 1) * tail_duration_additional
+	$CollisionArea.damage = damage_base + (amt_eumlings - 1) * damage_additional
 
 var current_time: float = 0.0
 var prev_point: Vector3 = Vector3.ZERO
@@ -71,8 +74,16 @@ func _process(delta: float) -> void:
 				if absf(area) < minimum_area_to_trigger:
 					# we're checking from the furthest possible point, if this one doesn't work, we don't need to check futher.
 					break
-				hitbox_polygon.polygon = points_2d.slice(i)
-				visible_polygon.polygon = hitbox_polygon.polygon
+				var polygon = points_2d.slice(i)
+				visible_polygon.polygon = polygon
+				
+				var hitbox_poly: PackedVector2Array = []
+				hitbox_poly.resize(ceili(polygon.size() / 4.0))
+				for k in polygon.size():
+					if k % 4 == 0:
+						hitbox_poly[floori(k / 4.0)] = polygon[k]
+				hitbox_polygon.polygon = hitbox_poly
+				hitbox_polygon.global_position.y = owner.global_position.y
 				visible_polygon.global_position.y = owner.global_position.y
 				clear_points()
 				break
