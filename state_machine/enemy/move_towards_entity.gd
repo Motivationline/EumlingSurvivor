@@ -17,6 +17,8 @@ class_name MoveTowardsEntityState
 @export var entity_group: String = "Player"
 ## if set filters the group for an entity with this name. If unset, takes a random entity from the group
 @export var entity_name: String = ""
+## whether to remove the entity once you've reached it, no effect if entity_group is Player
+@export var remove_target_entity: bool = false
 
 @export_group("Overrides")
 ## Movement Speed Override
@@ -88,12 +90,14 @@ func update_target_location():
 	if not target or not target.is_inside_tree():
 		target_reached()
 		return
-	var target_position = target.position - ((target.position - parent.position).normalized() * stop_distance)
+	var target_position = target.position
 	nav_agent.target_position = target_position
 	done = false
 	nav_agent.debug_enabled = debug_show_path
 
 func target_reached():
+	if target and remove_target_entity and entity_group != "Player":
+		target.queue_free()
 	nav_agent.debug_enabled = false
 	done_but_waiting = true
 	await get_tree().create_timer(wait_time).timeout

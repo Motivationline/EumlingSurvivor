@@ -11,6 +11,11 @@ func prewarm(_scene: PackedScene) -> void:
 	var instance = _scene.instantiate();
 	registry[_scene] = instance
 	add_child(instance)
+	
+	var groups = instance.get_groups()
+	for group in groups:
+		instance.remove_from_group(group)
+	instance.add_to_group("ShaderPrecompiler")
 
 # Release the instance of a prewarmed scene, leaving a null entry to mark it handled.
 func release(_scene: PackedScene) -> void:
