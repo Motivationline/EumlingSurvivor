@@ -46,19 +46,21 @@ func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	nav_agent.target_desired_distance = 0.1
 	nav_agent.path_desired_distance = 0.1
 	nav_agent.debug_enabled = debug_show_path
-	var entities := get_tree().get_nodes_in_group(entity_group)
-	if not entity_name.is_empty():
-		entities.filter(filterNodesByName)
-	target = entities.pick_random()
-	if not target:
-		push_warning("Didn't find any entity in group '" + entity_group + "' (with name '" + entity_name + "' )")
-		target_reached()
 
 func filterNodesByName(node: Node):
 	return node.name == entity_name
 
 func enter():
 	super()
+	
+	var entities := get_tree().get_nodes_in_group(entity_group)
+	if not entity_name.is_empty():
+		entities = entities.filter(filterNodesByName)
+	if entities.is_empty():
+		push_warning("Didn't find any entity in group '" + entity_group + "' (with name '" + entity_name + "' )")
+		target_reached()
+		return
+	target = entities.pick_random()
 	update_target_location()
 	done_but_waiting = false
 
@@ -83,6 +85,9 @@ func physics_process(_delta: float) -> State:
 	return null
 
 func update_target_location():
+	if not target or not target.is_inside_tree():
+		target_reached()
+		return
 	var target_position = target.position - ((target.position - parent.position).normalized() * stop_distance)
 	nav_agent.target_position = target_position
 	done = false
