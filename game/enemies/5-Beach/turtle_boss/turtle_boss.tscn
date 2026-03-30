@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://el73drd8s58x" path="res://game/enemies/5-Beach/turtle_boss/turtle_boss_shell.tscn" id="11_wbfbl"]
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="12_2wn3u"]
 [ext_resource type="Script" uid="uid://cp33buoo5xtgx" path="res://state_machine/enemy/pick_random_state.gd" id="13_17bdl"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="14_7nljg"]
 
 [sub_resource type="Resource" id="Resource_wbfbl"]
 script = ExtResource("9_w3w5t")
@@ -46,14 +47,15 @@ radius = 0.7871094
 height = 2.1870117
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2wn3u"]
+radius = 0.27678946
 
 [node name="TurtleBoss" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_4yckm")]
 collision_layer = 64
 collision_mask = 65
 health = 500.0
 incoming_damage_multiplier = 1.5
-hitbox = NodePath("Hitbox")
-hurtbox = NodePath("Hurtbox")
+hitbox = NodePath("Visuals/Hitbox")
+hurtbox = NodePath("Visuals/Hurtbox")
 node_with_animation_tree = NodePath("Visuals/boss_turtle")
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
@@ -79,7 +81,7 @@ metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
 [node name="PickRandomState" type="Node" parent="StateMachine" index="1" unique_id=1791194373 node_paths=PackedStringArray("states")]
 script = ExtResource("13_17bdl")
-states = [NodePath("../Normal/SpawnEntitiesState"), NodePath("../Normal/SpawnEntitiesState"), NodePath("../Normal/SpawnEntitiesState"), NodePath("../LaunchShell/SpawnShell")]
+states = [NodePath("../Normal/SpawnEntitiesState"), NodePath("../LaunchShell/SpawnShell")]
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Locomotion/transition_request": "shell"
 })
@@ -159,20 +161,36 @@ metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 script = ExtResource("12_2wn3u")
 wait_time = 0.2
 flee_distance = 100.0
+time_based = true
 target_flee_time = 5.0
 debug_show_path = true
-next_state = NodePath("../BackIntoShell")
+next_state = NodePath("../MoveTowardsEntityState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/TurtleLocomotion/transition_request": "walk"
 })
 metadata/_custom_type_script = "uid://mycfudgv475a"
 
-[node name="BackIntoShell" type="Node" parent="StateMachine/Naked" index="1" unique_id=78432022 node_paths=PackedStringArray("next_state")]
+[node name="MoveTowardsEntityState" type="Node" parent="StateMachine/Naked" index="1" unique_id=377656284 node_paths=PackedStringArray("next_state")]
+script = ExtResource("14_7nljg")
+wait_time = 0.3
+stop_distance = 0.0
+rotation_speed = 8.0
+entity_group = "Enemy"
+entity_name = "Shell"
+remove_target_entity = null
+speed_override = 2.0
+speed_override_active = true
+debug_show_path = true
+next_state = NodePath("../BackIntoShell")
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="BackIntoShell" type="Node" parent="StateMachine/Naked" index="2" unique_id=78432022 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_bjcu4")
 wait_time = 0.7
 next_state = NodePath("../../ShellStart")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/TurtleLocomotion/transition_request": "dive"
+"parameters/Locomotion/transition_request": "shell",
+"parameters/LocomotionShell/transition_request": "reveal"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
@@ -180,27 +198,27 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Marker3D" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=2140617436]
 
-[node name="Hitbox" parent="." index="6" unique_id=2070853154 instance=ExtResource("9_geoho")]
+[node name="Hitbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=2070853154 instance=ExtResource("9_geoho")]
 collision_layer = 32
 collision_mask = 8
 damage = 50.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=410950074]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hitbox" index="0" unique_id=410950074]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.5, -0.24560547)
 shape = SubResource("CapsuleShape3D_s16t0")
 
-[node name="Hurtbox" parent="." index="7" unique_id=762751782 instance=ExtResource("10_f7jcw")]
+[node name="Hurtbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=762751782 instance=ExtResource("10_f7jcw")]
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
 can_be_hit_by = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=273404735]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hurtbox" index="0" unique_id=273404735]
 transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, 0.5, -0.23754883)
 shape = SubResource("CapsuleShape3D_w3w5t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="8" unique_id=1914465485]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6" unique_id=1914465485]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47281113, 0)
 shape = SubResource("SphereShape3D_2wn3u")

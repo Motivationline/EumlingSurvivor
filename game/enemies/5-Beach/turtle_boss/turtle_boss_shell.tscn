@@ -4,13 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://ko8u3dvlq1cu" path="res://assets/characters/enemies/boss_turtle/boss_turtle_prefab.tscn" id="2_4d1ke"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_gmr3c"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_1yahh"]
-[ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="4_dwm3f"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_e3ogy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1yahh"]
 radius = 0.7224098
 
-[node name="Shell" unique_id=1898691 node_paths=PackedStringArray("node_with_animation_tree") instance=ExtResource("1_4mvb8")]
+[node name="Shell" unique_id=1898691 node_paths=PackedStringArray("node_with_animation_tree") groups=["Enemy"] instance=ExtResource("1_4mvb8")]
 speed = 4.0
 ignore_enemy_in_level = true
 node_with_animation_tree = NodePath("Visuals/boss_turtle")
@@ -24,8 +23,7 @@ initial_state = NodePath("MoveRandomOnNavMeshState")
 [node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=230172620 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_gmr3c")
 wait_time = 0.0
-min_distance = 5.0
-max_distance = 4.0
+min_distance = 4.0
 speed_override = 10.0
 next_state = NodePath("../WaitForTimeXState")
 repeat_self = 5
@@ -38,16 +36,16 @@ metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 [node name="WaitForTimeXState" type="Node" parent="StateMachine" index="1" unique_id=459783235 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_1yahh")
 wait_time = 2.0
-next_state = NodePath("../KillSelfState")
+next_state = NodePath("../WaitForEver")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/LocomotionShell/transition_request": "stop"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="KillSelfState" type="Node" parent="StateMachine" index="2" unique_id=1040638459 node_paths=PackedStringArray("next_state")]
-script = ExtResource("4_dwm3f")
+[node name="WaitForEver" type="Node" parent="StateMachine" index="2" unique_id=754164947 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_1yahh")
 next_state = NodePath(".")
-metadata/_custom_type_script = "uid://dj632w22te1th"
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("2_4d1ke")]
 
