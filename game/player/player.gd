@@ -314,5 +314,8 @@ func end_of_level():
 	var amount_to_regenerate = get_value(Enum.UPGRADE.HEALTH_REGENERATION)
 	health += amount_to_regenerate
 
+func level_start():
+	%Artistic.level_start()
+
 func get_ability(type: Enum.EUMLING_TYPE)-> Ability:
 	return _abilities.get(type)

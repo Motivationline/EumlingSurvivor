@@ -49,6 +49,8 @@ func spawn_player(_player: Player):
 	if not is_boss_level:
 		for type in Data._active_mini_eumlings:
 			spawn_mini_eumling(type)
+	
+	player.level_start()
 
 func spawn_mini_eumling(type: Enum.EUMLING_TYPE):
 	var mini_eumling = MINI_EUMLING.instantiate() as MiniEumling
@@ -92,7 +94,7 @@ func clear_level():
 func show_mini_popup():
 	var popup = EUMLING_CELEBRATION.instantiate()
 	add_child(popup)
-	Data.unlocked_eumling([Enum.EUMLING_TYPE.SOCIAL, Enum.EUMLING_TYPE.INVESTIGATIVE].pick_random())
+	Data.unlocked_eumling([Enum.EUMLING_TYPE.SOCIAL, Enum.EUMLING_TYPE.INVESTIGATIVE, Enum.EUMLING_TYPE.ARTISTIC].pick_random())
 	await get_tree().create_timer(2).timeout
 
 func _get_configuration_warnings() -> PackedStringArray:
