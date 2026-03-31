@@ -21,7 +21,7 @@ func enter():
 func physics_process(_delta: float) -> State:
 	if distance_check_ray.is_colliding():
 		return return_next()
-	parent.velocity = parent.transform.basis * Vector3.FORWARD * parent.speed
+	parent.velocity = parent.visuals.transform.basis * Vector3.FORWARD * parent.speed
 
 	parent.move_and_slide()
 	return null
@@ -30,7 +30,7 @@ func find_new_direction():
 	var directions: Array[int] = [0, 1, 2, 3]
 	directions.shuffle()
 	for direction in directions:
-		parent.rotation.y = direction * PI / 2
+		parent.visuals.rotation.y = direction * PI / 2
 		distance_check_ray.force_raycast_update()
 		if not distance_check_ray.is_colliding():
 			return
