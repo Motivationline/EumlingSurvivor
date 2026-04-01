@@ -123,7 +123,7 @@ input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_cm6xr"]
-graph_offset = Vector2(-397.29947, 62.909966)
+graph_offset = Vector2(-159.07034, 55.54538)
 nodes/output/position = Vector2(980, 320)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_nwada")
 nodes/Animation/position = Vector2(320, 110)
@@ -162,9 +162,9 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 [node name="DecideDistanceState" type="Node" parent="StateMachine" index="1" unique_id=679965515 node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found")]
 script = ExtResource("2_axu1y")
 distance_to_check = 3.0
-state_if_distance_is_smaller = NodePath("../Attack/WaitForTimeXState2")
-state_if_distance_is_larger = NodePath("../StayClosed/WaitForTimeXState")
-state_if_no_node_found = NodePath("../StayClosed/WaitForTimeXState")
+state_if_distance_is_smaller = NodePath("../StayClosed/WaitForTimeXState")
+state_if_distance_is_larger = NodePath("../Attack/WaitForTimeXState2")
+state_if_no_node_found = NodePath("../Attack/WaitForTimeXState2")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "close"
 })
