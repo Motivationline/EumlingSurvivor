@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bnysxsdygcrse"]
+
+[ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_bsc77"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_lbnsb"]
+
+[node name="Level" unique_id=1268816340 instance=ExtResource("1_bsc77")]
+
+[node name="BorderGridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(843824706) index="0" unique_id=1553876842]
+visible = false
+
+[node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(843824706) index="1" unique_id=265180136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_lbnsb")
+cell_size = Vector3(0.5, 0.5, 0.5)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
