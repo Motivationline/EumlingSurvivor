@@ -26,7 +26,7 @@ radius = 0.211186
 radius = 0.24511719
 height = 0.6078688
 
-[node name="CactusHog" node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_c2tdt")]
+[node name="CactusHog" unique_id=2065096656 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_c2tdt")]
 collision_layer = 64
 collision_mask = 65
 health = 180.0
@@ -34,20 +34,16 @@ hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 node_with_animation_tree = NodePath("Visuals/cactushog")
 
-[node name="Healthbar3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928938, -0.0283241)
-hide_when_full_after = 0.5
-
-[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MultistateState")
 
-[node name="MultistateState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+[node name="MultistateState" type="Node" parent="StateMachine" index="0" unique_id=1849235337 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
 script = ExtResource("2_7gcdu")
 states_to_execute = [NodePath("MoveTowardsPlayer"), NodePath("SpawnEntitiesState")]
 states_that_need_to_finish = [NodePath("SpawnEntitiesState")]
 next_state = NodePath(".")
 
-[node name="MoveTowardsPlayer" type="Node" parent="StateMachine/MultistateState" index="0"]
+[node name="MoveTowardsPlayer" type="Node" parent="StateMachine/MultistateState" index="0" unique_id=431688426]
 script = ExtResource("2_xfdg2")
 wait_time = 0.0
 stop_distance = 0.1
@@ -56,7 +52,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState" index="1" node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState" index="1" unique_id=9699493 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_leyq8")
 start_delay = 2.0
 next_state = NodePath(".")
@@ -65,7 +61,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0" unique_id=482693713]
 script = ExtResource("5_0es7d")
 spawn_local = true
 entity_to_spawn = ExtResource("6_g5j0o")
@@ -73,38 +69,38 @@ amount_of_spawns = 4
 rotation_strategy = SubResource("Resource_httce")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="Hurtbox" parent="." index="3" instance=ExtResource("6_0es7d")]
+[node name="TriggerStateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=292608124 node_paths=PackedStringArray("state_to_execute")]
+script = ExtResource("8_leyq8")
+state_to_execute = NodePath("../../StateMachine/MultistateState/MoveTowardsPlayer")
+metadata/_custom_type_script = "uid://ce61jighdgsby"
+
+[node name="Hurtbox" parent="." index="3" unique_id=31748685 instance=ExtResource("6_0es7d")]
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
 can_be_hit_by = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=619863228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.257471, -0.0230474)
 shape = SubResource("SphereShape3D_aprxc")
 debug_color = Color(0.57628113, 0.4531935, 0.8296638, 0.41960785)
 
-[node name="Hitbox" parent="." index="4" instance=ExtResource("7_g5j0o")]
+[node name="Hitbox" parent="." index="4" unique_id=1170467774 instance=ExtResource("7_g5j0o")]
 collision_layer = 32
 collision_mask = 8
 damage = 40.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1659732643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.197845, -0.0194751)
 shape = SubResource("SphereShape3D_3m8wi")
 debug_color = Color(0.686648, 0.0638954, 0.198134, 0.42)
 
-[node name="Collider" type="CollisionShape3D" parent="." index="5"]
+[node name="Collider" type="CollisionShape3D" parent="." index="5" unique_id=142263367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34179613, 0)
 shape = SubResource("CapsuleShape3D_bht06")
 debug_color = Color(0.358393, 0.60428, 0.373735, 0.42)
 
-[node name="TriggerStateEventStrategy" type="Node" parent="Eventlisteners" index="0" node_paths=PackedStringArray("state_to_execute")]
-script = ExtResource("8_leyq8")
-state_to_execute = NodePath("../../StateMachine/MultistateState/MoveTowardsPlayer")
-metadata/_custom_type_script = "uid://ce61jighdgsby"
-
-[node name="cactushog" parent="Visuals" index="0" instance=ExtResource("5_leyq8")]
+[node name="cactushog" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=722912443 instance=ExtResource("5_leyq8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

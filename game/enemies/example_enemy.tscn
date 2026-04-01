@@ -35,41 +35,38 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwq3f"]
 albedo_color = Color(0.376471, 1, 1, 1)
 
-[node name="ExampleEnemy" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_cwq3f")]
+[node name="ExampleEnemy" unique_id=641090097 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_cwq3f")]
 health = 100.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=1752208680]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_s6jag")
 
-[node name="Healthbar3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.5)
-
-[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MultistateState")
 
-[node name="MultistateState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+[node name="MultistateState" type="Node" parent="StateMachine" index="0" unique_id=1625302504 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
 script = ExtResource("2_3v4v4")
 states_to_execute = [NodePath("MoveTowardsPlayerState"), NodePath("SpawnEntitiesState")]
 states_that_need_to_finish = [NodePath("MoveTowardsPlayerState")]
 next_state = NodePath("../FleeFromPlayerState")
 metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
 
-[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/MultistateState" index="0" node_paths=PackedStringArray("next_state")]
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/MultistateState" index="0" unique_id=1369724840 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_wn5ve")
 stop_distance = 2.0
 next_state = NodePath("../SpawnEntitiesState")
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState" index="1" node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/MultistateState" index="1" unique_id=1447261730 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_6hmvo")
 end_delay = 1.0
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0" unique_id=218879691]
 script = ExtResource("5_0j7li")
 entity_to_spawn = ExtResource("6_v5eku")
 amount_of_spawns = 4
@@ -77,23 +74,23 @@ target_strategy = SubResource("Resource_2kfiv")
 rotation_strategy = SubResource("Resource_yelrx")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="FleeFromPlayerState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+[node name="FleeFromPlayerState" type="Node" parent="StateMachine" index="1" unique_id=1988726462 node_paths=PackedStringArray("next_state")]
 script = ExtResource("9_85rxk")
 flee_distance = 5.0
 next_state = NodePath("../MultistateState")
 metadata/_custom_type_script = "uid://mycfudgv475a"
 
-[node name="Hurtbox" parent="." index="4" instance=ExtResource("4_jenlb")]
+[node name="Hurtbox" parent="." index="4" unique_id=1145701073 instance=ExtResource("4_jenlb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
 can_be_hit_by = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=6782301]
 shape = SubResource("CapsuleShape3D_s6jag")
 
-[node name="Hitbox" parent="." index="5" instance=ExtResource("5_hwqec")]
+[node name="Hitbox" parent="." index="5" unique_id=1372972297 instance=ExtResource("5_hwqec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 32
 collision_mask = 8
@@ -101,19 +98,19 @@ damage = 2.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=925300612]
 shape = SubResource("CapsuleShape3D_s6jag")
 
-[node name="AOE" parent="." index="7" instance=ExtResource("12_wn5ve")]
+[node name="AOE" parent="." index="7" unique_id=1671754671 instance=ExtResource("12_wn5ve")]
 never_expire = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1564729079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CapsuleMesh_3v4v4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wn5ve")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/MeshInstance3D" index="0"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Visuals/MeshInstance3D" index="0" unique_id=146174453]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335418, -0.219698)
 size = Vector3(0.373047, 0.0585938, 0.207031)
 material = SubResource("StandardMaterial3D_cwq3f")

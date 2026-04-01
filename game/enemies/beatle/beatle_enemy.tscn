@@ -141,19 +141,16 @@ stream_3/stream = ExtResource("56_5gpyg")
 stream_4/stream = ExtResource("57_f1jgr")
 stream_5/stream = ExtResource("58_4uioj")
 
-[node name="Beatle" unique_id=306559295 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree", "on_death") instance=ExtResource("1_bghrv")]
+[node name="Beatle" unique_id=306559295 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_bghrv")]
 collision_layer = 80
 collision_mask = 65
 health = 250.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
-node_with_animation_tree = NodePath("Visuals/rhino")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
+node_with_animation_tree = NodePath("Visuals/rhino")
 
-[node name="Healthbar3D" parent="." index="0" unique_id=985815578]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7900729, 0.06912398)
-
-[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveTowardsPlayerState")
 
 [node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" unique_id=1355419949 node_paths=PackedStringArray("next_state")]

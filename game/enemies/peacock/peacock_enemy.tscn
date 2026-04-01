@@ -21,10 +21,7 @@ health = 220.0
 hurtbox = NodePath("Hurtbox")
 node_with_animation_tree = NodePath("Visuals/peacock")
 
-[node name="Healthbar3D" parent="." index="0" unique_id=985815578]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6338918, -0.01400128)
-
-[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveTowardsPlayerState")
 
 [node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" unique_id=194244346 node_paths=PackedStringArray("next_state")]
@@ -48,8 +45,8 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1513672399]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.592237)
 script = ExtResource("4_7a53i")
-entity_to_spawn = ExtResource("5_dg07b")
 offset_distance = 0.5
+entity_to_spawn = ExtResource("5_dg07b")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1156369529]

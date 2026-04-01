@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfmaa13n0k6rb"]
+[gd_scene format=3 uid="uid://bfmaa13n0k6rb"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_ljiym"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="2_6408y"]
@@ -8,11 +8,6 @@
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="5_3wsa6"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_owye1"]
 [ext_resource type="PackedScene" uid="uid://mvv6hdvfjfw5" path="res://game/enemies/box/wood_explosion_particle.tscn" id="7_ck6od"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2rk3"]
-albedo_color = Color(0.87276894, 0.086816885, 3.85046e-07, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_eu15o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_812sx"]
 
@@ -55,67 +50,67 @@ _data = {
 &"hurt": SubResource("Animation_812sx")
 }
 
-[node name="Box_1" node_paths=PackedStringArray("hurtbox", "on_death") instance=ExtResource("1_ljiym")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2rk3"]
+albedo_color = Color(0.87276894, 0.086816885, 3.85046e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eu15o"]
+
+[node name="Box_1" unique_id=1323225342 node_paths=PackedStringArray("hurtbox", "on_death") instance=ExtResource("1_ljiym")]
 health = 1.0
 speed = 0.0
 ignore_enemy_in_level = true
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("SpawnEntitiesEventStrategy")]
 
-[node name="Healthbar3D" parent="." index="0"]
-visible = false
-
-[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitForTimeXState")
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" unique_id=2051533122 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_y2rk3")
 wait_time = 10.0
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_y2rk3")
-mesh = SubResource("BoxMesh_eu15o")
-skeleton = NodePath("../..")
-
-[node name="breakable_stone03" parent="Visuals" index="1" instance=ExtResource("3_owye1")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=495412288]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_812sx")
 
-[node name="Hurtbox" parent="." index="5" instance=ExtResource("2_6408y")]
+[node name="Hurtbox" parent="." index="5" unique_id=1463329704 instance=ExtResource("2_6408y")]
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
 can_be_hit_by = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=1711717978]
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_g6trh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
-libraries = {
-&"": SubResource("AnimationLibrary_812sx")
-}
-autoplay = "hurt"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=141590117]
+libraries/ = SubResource("AnimationLibrary_812sx")
+autoplay = &"hurt"
 
-[node name="AnimationTriggerComponent" parent="." index="7" node_paths=PackedStringArray("node_to_connect", "animation_player") instance=ExtResource("4_eu15o")]
+[node name="AnimationTriggerComponent" parent="." index="7" unique_id=26319518 node_paths=PackedStringArray("node_to_connect", "animation_player") instance=ExtResource("4_eu15o")]
 node_to_connect = NodePath("../Hurtbox")
 signal_to_connect = "hurt_by"
 animation_player = NodePath("../AnimationPlayer")
 animation_to_play = "hurt"
 force_stop_animation = true
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="." index="8"]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="." index="8" unique_id=1232616252]
 script = ExtResource("5_3wsa6")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="EntitySpawner" type="Node3D" parent="SpawnEntitiesEventStrategy" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="SpawnEntitiesEventStrategy" index="0" unique_id=894958944]
 script = ExtResource("6_owye1")
 entity_to_spawn = ExtResource("7_ck6od")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1838306006]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_y2rk3")
+mesh = SubResource("BoxMesh_eu15o")
+skeleton = NodePath("../..")
+
+[node name="breakable_stone03" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=23736495 instance=ExtResource("3_owye1")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
