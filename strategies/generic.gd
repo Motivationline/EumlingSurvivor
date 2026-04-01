@@ -22,5 +22,6 @@ func _setup(_parent: CharacterBody3D, _owner: Node3D) -> void:
 
 ## Helper function to set up all strategies in an array
 static func _setup_array(_arr: Array, _parent: CharacterBody3D, _owner: Node3D):
+	if Engine.is_editor_hint(): return
 	for s in _arr:
 		if (s && s is Strategy): s._setup(_parent, _owner)

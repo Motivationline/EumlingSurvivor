@@ -55,13 +55,9 @@ signal hit(hurtbox: HurtBox)
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
 	if difficulty_scaler:
-		var difficulty = 0
-		if owner.owner and "difficulty" in owner.owner:
-			difficulty = owner.owner.difficulty
-		elif is_inside_tree():
-			difficulty = get_tree().get_first_node_in_group("Level").difficulty
-		difficulty_scaler.apply(difficulty, self)
+		difficulty_scaler.setup_and_apply(self, owner.owner)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []

@@ -55,12 +55,7 @@ func _ready() -> void:
 	ShaderPrecompiler.prewarm(entity_to_spawn)
 	
 	if difficulty_scaler:
-		var difficulty = 0
-		if owner.owner and "difficulty" in owner.owner:
-			difficulty = owner.owner.difficulty
-		elif is_inside_tree():
-			difficulty = get_tree().get_first_node_in_group("Level").difficulty
-		difficulty_scaler.apply(difficulty, self)
+		difficulty_scaler.setup_and_apply(self, owner.owner)
 
 func _notification(what: int) -> void:
 	if (what == NOTIFICATION_PREDELETE && entity_to_spawn):

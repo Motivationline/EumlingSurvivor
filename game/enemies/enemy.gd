@@ -61,8 +61,8 @@ var convince_progress: float = 0
 var animation_tree: AnimationTree
 
 func _ready() -> void:
-	if difficulty_scaler and "difficulty" in owner:
-		difficulty_scaler.apply(owner.difficulty, self)
+	if difficulty_scaler:
+		difficulty_scaler.setup_and_apply(self, owner)
 	super ()
 	max_health = health
 	if (status_visuals): status_visuals.init_health(max_health)
