@@ -1,0 +1,1070 @@
+[gd_scene format=3 uid="uid://depr7ah0nt5qw"]
+
+[ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_6owkd"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_xpjlv"]
+[ext_resource type="PackedScene" uid="uid://yki87lnkx75s" path="res://game/enemies/5-Beach/ninja_starfish.tscn" id="3_xiwok"]
+[ext_resource type="LightmapGIData" uid="uid://dlruwshu4mf6x" path="res://game/levels/5-Bxx-Beach/Lightmaps/B14.lmbake" id="3_ypdhm"]
+[ext_resource type="PackedScene" uid="uid://cex68esqyxyua" path="res://game/enemies/5-Beach/tentacle_slapper.tscn" id="4_ypdhm"]
+[ext_resource type="PackedScene" uid="uid://bqp7c4em584k2" path="res://game/enemies/5-Beach/puffer_fish.tscn" id="5_ptgs5"]
+[ext_resource type="PackedScene" uid="uid://cbiqexo8lchvg" path="res://game/enemies/5-Beach/environment/quick_sand.tscn" id="7_njed1"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_roh4s"]
+vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -4.5, 1, 4.75, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, -4.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(0, 6, 5), PackedInt32Array(4, 7, 3)]
+agent_radius = 0.25
+agent_max_climb = 0.0
+edge_max_error = 0.25
+
+[node name="Level" unique_id=1268816340 instance=ExtResource("1_6owkd")]
+
+[node name="NavigationRegion3D" parent="." index="0" unique_id=843824706]
+navigation_mesh = SubResource("NavigationMesh_roh4s")
+
+[node name="BorderGridMap" parent="NavigationRegion3D" index="0" unique_id=1553876842]
+visible = false
+
+[node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" index="1" unique_id=374347570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_xpjlv")
+cell_size = Vector3(0.5, 0.5, 0.5)
+collision_layer = 16
+collision_mask = 16
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="LightmapGI" parent="." index="6" unique_id=1173002347]
+light_data = ExtResource("3_ypdhm")
+
+[node name="NinjaStarfish" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("3_xiwok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.888442, 0, 0)
+
+[node name="NinjaStarfish2" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=843742298 instance=ExtResource("3_xiwok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.982316, 0, 0)
+
+[node name="tentacle_slapper" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="2" unique_id=655439629 instance=ExtResource("4_ypdhm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -3.5)
+
+[node name="puffer_fish" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="3" unique_id=556027955 instance=ExtResource("5_ptgs5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5326977, 0, -2.6913445)
+
+[node name="QuickSand" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="0" unique_id=288921100 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, -4.75)
+
+[node name="QuickSand2" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="1" unique_id=402076784 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, -4.75)
+
+[node name="QuickSand3" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="2" unique_id=1410756734 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, -4.75)
+
+[node name="QuickSand4" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="3" unique_id=225099942 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, -4.75)
+
+[node name="QuickSand5" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="4" unique_id=1646640042 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, -4.75)
+
+[node name="QuickSand6" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="5" unique_id=473192831 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, -4.75)
+
+[node name="QuickSand7" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="6" unique_id=1691934075 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, -4.75)
+
+[node name="QuickSand8" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="7" unique_id=267447392 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, -4.75)
+
+[node name="QuickSand9" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="8" unique_id=1832943639 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, -4.25)
+
+[node name="QuickSand10" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="9" unique_id=6757768 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, -4.25)
+
+[node name="QuickSand11" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="10" unique_id=202326786 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, -4.25)
+
+[node name="QuickSand12" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="11" unique_id=1179028377 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, -4.25)
+
+[node name="QuickSand13" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="12" unique_id=1310948238 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, -4.25)
+
+[node name="QuickSand14" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="13" unique_id=1132815601 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, -4.25)
+
+[node name="QuickSand15" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="14" unique_id=1089112308 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, -4.25)
+
+[node name="QuickSand16" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="15" unique_id=2061418526 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, -3.75)
+
+[node name="QuickSand17" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="16" unique_id=1550465858 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, -3.75)
+
+[node name="QuickSand18" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="17" unique_id=881224569 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, -3.75)
+
+[node name="QuickSand19" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="18" unique_id=2039934629 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, -3.75)
+
+[node name="QuickSand20" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="19" unique_id=1874199858 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, -3.75)
+
+[node name="QuickSand21" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="20" unique_id=537608430 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, -3.25)
+
+[node name="QuickSand22" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="21" unique_id=853392552 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, -3.25)
+
+[node name="QuickSand23" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="22" unique_id=958645926 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, -3.25)
+
+[node name="QuickSand24" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="23" unique_id=674442138 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, -3.25)
+
+[node name="QuickSand25" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="24" unique_id=1601566099 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, -3.25)
+
+[node name="QuickSand26" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="25" unique_id=913658381 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, -2.75)
+
+[node name="QuickSand27" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="26" unique_id=1245366620 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, -2.75)
+
+[node name="QuickSand28" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="27" unique_id=210067407 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, -2.75)
+
+[node name="QuickSand29" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="28" unique_id=784286235 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, -2.75)
+
+[node name="QuickSand30" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="29" unique_id=1987030029 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, -2.75)
+
+[node name="QuickSand31" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="30" unique_id=150583364 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, -2.75)
+
+[node name="QuickSand32" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="31" unique_id=1962970953 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, -2.75)
+
+[node name="QuickSand33" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="32" unique_id=1257327008 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, -2.25)
+
+[node name="QuickSand34" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="33" unique_id=1669076379 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, -2.25)
+
+[node name="QuickSand35" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="34" unique_id=1747436777 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, -1.25)
+
+[node name="QuickSand36" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="35" unique_id=1215166968 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, -2.25)
+
+[node name="QuickSand37" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="36" unique_id=806499684 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, -2.25)
+
+[node name="QuickSand38" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="37" unique_id=198023031 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, -2.25)
+
+[node name="QuickSand39" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="38" unique_id=1868880436 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, -2.25)
+
+[node name="QuickSand40" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="39" unique_id=1301959033 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, -1.75)
+
+[node name="QuickSand41" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="40" unique_id=413692794 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, -1.75)
+
+[node name="QuickSand42" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="41" unique_id=1167896312 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, -1.75)
+
+[node name="QuickSand43" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="42" unique_id=1276123861 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, -1.75)
+
+[node name="QuickSand44" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="43" unique_id=296713853 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, -1.75)
+
+[node name="QuickSand45" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="44" unique_id=2100854665 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, -1.25)
+
+[node name="QuickSand46" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="45" unique_id=305189489 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, -1.25)
+
+[node name="QuickSand47" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="46" unique_id=153668494 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, -2.25)
+
+[node name="QuickSand48" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="47" unique_id=406046477 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, -1.25)
+
+[node name="QuickSand49" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="48" unique_id=425430148 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, -1.25)
+
+[node name="QuickSand50" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="49" unique_id=408624289 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, -0.75)
+
+[node name="QuickSand51" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="50" unique_id=1131829025 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, -0.75)
+
+[node name="QuickSand52" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="51" unique_id=1282626778 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, -0.75)
+
+[node name="QuickSand53" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="52" unique_id=1103454685 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, -0.75)
+
+[node name="QuickSand54" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="53" unique_id=1285113030 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, -0.75)
+
+[node name="QuickSand55" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="54" unique_id=1053648944 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, -0.75)
+
+[node name="QuickSand56" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="55" unique_id=708838788 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, -0.75)
+
+[node name="QuickSand57" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="56" unique_id=84656637 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, -0.25)
+
+[node name="QuickSand58" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="57" unique_id=1558534882 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, -0.25)
+
+[node name="QuickSand59" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="58" unique_id=774618576 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, -0.25)
+
+[node name="QuickSand60" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="59" unique_id=193378306 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, -0.25)
+
+[node name="QuickSand61" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="60" unique_id=806101584 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, -0.25)
+
+[node name="QuickSand62" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="61" unique_id=307002262 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, -0.25)
+
+[node name="QuickSand63" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="62" unique_id=2049266950 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, -0.25)
+
+[node name="QuickSand64" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="63" unique_id=1449040095 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, 0.25)
+
+[node name="QuickSand65" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="64" unique_id=744447777 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, 0.25)
+
+[node name="QuickSand66" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="65" unique_id=1894539454 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, 0.25)
+
+[node name="QuickSand67" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="66" unique_id=468897020 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, 0.25)
+
+[node name="QuickSand68" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="67" unique_id=799358722 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, 0.25)
+
+[node name="QuickSand69" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="68" unique_id=1519611074 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, 0.25)
+
+[node name="QuickSand70" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="69" unique_id=1022539480 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, 0.25)
+
+[node name="QuickSand71" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="70" unique_id=522961631 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, 0.75)
+
+[node name="QuickSand72" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="71" unique_id=246810030 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, 0.75)
+
+[node name="QuickSand73" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="72" unique_id=602683840 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, 0.75)
+
+[node name="QuickSand74" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="73" unique_id=310252863 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, 0.75)
+
+[node name="QuickSand75" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="74" unique_id=1147258832 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, 0.75)
+
+[node name="QuickSand76" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="75" unique_id=1219629189 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, 1.25)
+
+[node name="QuickSand77" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="76" unique_id=650373532 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, 1.25)
+
+[node name="QuickSand78" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="77" unique_id=1360661317 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, 1.25)
+
+[node name="QuickSand79" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="78" unique_id=1300318000 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, 1.25)
+
+[node name="QuickSand80" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="79" unique_id=1094647897 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, 1.25)
+
+[node name="QuickSand81" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="80" unique_id=338740576 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, 1.75)
+
+[node name="QuickSand82" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="81" unique_id=1831358653 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, 1.75)
+
+[node name="QuickSand83" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="82" unique_id=1834813259 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, 1.75)
+
+[node name="QuickSand84" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="83" unique_id=1636948538 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, 1.75)
+
+[node name="QuickSand85" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="84" unique_id=924261464 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, 1.75)
+
+[node name="QuickSand86" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="85" unique_id=234347224 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, 1.75)
+
+[node name="QuickSand87" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="86" unique_id=1372854832 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, 1.75)
+
+[node name="QuickSand88" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="87" unique_id=1247969279 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, 2.25)
+
+[node name="QuickSand89" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="88" unique_id=1930836154 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, 2.25)
+
+[node name="QuickSand90" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="89" unique_id=36317031 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, 2.25)
+
+[node name="QuickSand91" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="90" unique_id=454904150 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, 2.25)
+
+[node name="QuickSand92" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="91" unique_id=1853916468 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, 2.25)
+
+[node name="QuickSand93" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="92" unique_id=228910511 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, 2.75)
+
+[node name="QuickSand94" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="93" unique_id=1720202651 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, 2.75)
+
+[node name="QuickSand95" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="94" unique_id=260341665 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, 2.75)
+
+[node name="QuickSand96" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="95" unique_id=1707868101 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, 2.75)
+
+[node name="QuickSand97" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="96" unique_id=1436340331 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, 2.75)
+
+[node name="QuickSand98" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="97" unique_id=1505300506 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, 3.25)
+
+[node name="QuickSand99" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="98" unique_id=354609572 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, 3.25)
+
+[node name="QuickSand100" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="99" unique_id=867929259 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, 3.25)
+
+[node name="QuickSand101" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="100" unique_id=99522226 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, 3.25)
+
+[node name="QuickSand102" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="101" unique_id=345823680 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, 3.25)
+
+[node name="QuickSand103" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="102" unique_id=1766776421 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, 2.25)
+
+[node name="QuickSand104" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="103" unique_id=1944681054 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, 2.25)
+
+[node name="QuickSand105" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="104" unique_id=1945871076 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, 3.75)
+
+[node name="QuickSand106" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="105" unique_id=57304261 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, 3.75)
+
+[node name="QuickSand107" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="106" unique_id=1274720295 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, 3.75)
+
+[node name="QuickSand108" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="107" unique_id=1936720688 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, 3.75)
+
+[node name="QuickSand109" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="108" unique_id=507591060 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, 3.75)
+
+[node name="QuickSand110" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="109" unique_id=1062102106 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, 3.75)
+
+[node name="QuickSand111" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="110" unique_id=769973483 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, 3.75)
+
+[node name="QuickSand112" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="111" unique_id=1069833048 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, 4.25)
+
+[node name="QuickSand113" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="112" unique_id=144924992 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, 4.25)
+
+[node name="QuickSand114" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="113" unique_id=1152325022 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, 4.25)
+
+[node name="QuickSand115" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="114" unique_id=1690600274 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, 4.25)
+
+[node name="QuickSand116" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="115" unique_id=1348280195 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, 4.25)
+
+[node name="QuickSand117" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="116" unique_id=1189177569 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, 4.25)
+
+[node name="QuickSand118" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="117" unique_id=2014010230 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, 4.25)
+
+[node name="QuickSand119" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="118" unique_id=759784025 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.507, 4.75)
+
+[node name="QuickSand120" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="119" unique_id=919852445 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.507, 4.75)
+
+[node name="QuickSand121" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="120" unique_id=1928294057 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.507, 4.75)
+
+[node name="QuickSand122" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="121" unique_id=1573324310 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 0.507, 4.75)
+
+[node name="QuickSand123" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="122" unique_id=796983239 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0.507, 4.75)
+
+[node name="QuickSand124" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="123" unique_id=903054542 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.25, 0.507, 4.75)
+
+[node name="QuickSand125" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="124" unique_id=460581456 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 0.507, 4.75)
+
+[node name="QuickSand126" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="125" unique_id=609678756 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, 4.75)
+
+[node name="QuickSand127" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="126" unique_id=1506782990 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, 4.75)
+
+[node name="QuickSand128" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="127" unique_id=1060801662 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, 4.25)
+
+[node name="QuickSand129" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="128" unique_id=18634708 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, 4.25)
+
+[node name="QuickSand130" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="129" unique_id=358244175 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, 3.75)
+
+[node name="QuickSand131" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="130" unique_id=651675286 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, 3.75)
+
+[node name="QuickSand132" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="131" unique_id=1384422215 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, 3.25)
+
+[node name="QuickSand133" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="132" unique_id=1475850792 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, 3.25)
+
+[node name="QuickSand134" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="133" unique_id=1934733653 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, 2.75)
+
+[node name="QuickSand135" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="134" unique_id=1953915783 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, 2.75)
+
+[node name="QuickSand136" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="135" unique_id=670844909 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, 2.75)
+
+[node name="QuickSand137" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="136" unique_id=1609371997 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, 2.75)
+
+[node name="QuickSand138" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="137" unique_id=1741563097 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, 2.75)
+
+[node name="QuickSand139" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="138" unique_id=430548376 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, 2.25)
+
+[node name="QuickSand142" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="139" unique_id=1705762529 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, 2.25)
+
+[node name="QuickSand143" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="140" unique_id=268389326 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, 2.25)
+
+[node name="QuickSand144" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="141" unique_id=24550465 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, 1.75)
+
+[node name="QuickSand145" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="142" unique_id=104059060 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, 1.75)
+
+[node name="QuickSand148" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="143" unique_id=1254794905 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, 1.75)
+
+[node name="QuickSand149" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="144" unique_id=1926216771 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, 1.25)
+
+[node name="QuickSand150" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="145" unique_id=1728610482 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, 1.25)
+
+[node name="QuickSand151" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="146" unique_id=706462555 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, 1.25)
+
+[node name="QuickSand152" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="147" unique_id=1486554275 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, 0.75)
+
+[node name="QuickSand153" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="148" unique_id=1414375359 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, 0.75)
+
+[node name="QuickSand154" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="149" unique_id=1521409187 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, 0.75)
+
+[node name="QuickSand155" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="150" unique_id=1423498256 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, 0.25)
+
+[node name="QuickSand156" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="151" unique_id=591847428 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, 0.25)
+
+[node name="QuickSand157" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="152" unique_id=1185617118 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, 0.25)
+
+[node name="QuickSand158" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="153" unique_id=338506071 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, 1.25)
+
+[node name="QuickSand159" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="154" unique_id=2076338368 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, 1.25)
+
+[node name="QuickSand160" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="155" unique_id=976060184 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, -0.25)
+
+[node name="QuickSand161" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="156" unique_id=1762721067 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, -0.25)
+
+[node name="QuickSand162" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="157" unique_id=261945488 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, -0.25)
+
+[node name="QuickSand163" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="158" unique_id=1814278002 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, -0.25)
+
+[node name="QuickSand164" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="159" unique_id=1858443196 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, -0.25)
+
+[node name="QuickSand165" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="160" unique_id=372961003 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, -0.75)
+
+[node name="QuickSand166" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="161" unique_id=980056323 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, -0.75)
+
+[node name="QuickSand167" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="162" unique_id=1800276926 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, -0.75)
+
+[node name="QuickSand168" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="163" unique_id=500149956 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, -0.75)
+
+[node name="QuickSand169" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="164" unique_id=600039830 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, -0.75)
+
+[node name="QuickSand170" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="165" unique_id=402831389 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, -1.25)
+
+[node name="QuickSand173" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="166" unique_id=200787278 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, -1.25)
+
+[node name="QuickSand174" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="167" unique_id=645827757 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, -1.75)
+
+[node name="QuickSand177" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="168" unique_id=1336269019 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, -1.75)
+
+[node name="QuickSand178" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="169" unique_id=1664794325 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, -2.25)
+
+[node name="QuickSand179" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="170" unique_id=1879230533 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, -2.25)
+
+[node name="QuickSand180" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="171" unique_id=1216263124 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, -2.25)
+
+[node name="QuickSand181" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="172" unique_id=1983788583 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, -2.25)
+
+[node name="QuickSand182" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="173" unique_id=519451750 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, -2.25)
+
+[node name="QuickSand183" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="174" unique_id=465649963 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, -2.75)
+
+[node name="QuickSand184" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="175" unique_id=1804594622 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, -2.75)
+
+[node name="QuickSand185" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="176" unique_id=448957208 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, -2.75)
+
+[node name="QuickSand186" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="177" unique_id=1026968630 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, -2.75)
+
+[node name="QuickSand187" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="178" unique_id=2115678690 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, -2.75)
+
+[node name="QuickSand188" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="179" unique_id=2065047174 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, -3.25)
+
+[node name="QuickSand189" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="180" unique_id=913790005 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, -3.25)
+
+[node name="QuickSand190" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="181" unique_id=898991443 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, -3.25)
+
+[node name="QuickSand191" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="182" unique_id=1958604030 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, -3.25)
+
+[node name="QuickSand192" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="183" unique_id=552181822 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, -3.25)
+
+[node name="QuickSand193" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="184" unique_id=1684304434 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, -3.75)
+
+[node name="QuickSand194" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="185" unique_id=1697334464 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, -3.75)
+
+[node name="QuickSand195" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="186" unique_id=667689570 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, -3.75)
+
+[node name="QuickSand196" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="187" unique_id=1521464190 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, -4.25)
+
+[node name="QuickSand197" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="188" unique_id=316926358 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, -4.25)
+
+[node name="QuickSand198" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="189" unique_id=1316516623 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, -4.25)
+
+[node name="QuickSand199" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="190" unique_id=540231244 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, -4.75)
+
+[node name="QuickSand200" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="191" unique_id=91183485 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.507, -4.75)
+
+[node name="QuickSand201" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="192" unique_id=886494011 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.507, -4.75)
+
+[node name="QuickSand202" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="193" unique_id=571326694 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, -4.75)
+
+[node name="QuickSand203" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="194" unique_id=1096102098 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, -4.75)
+
+[node name="QuickSand204" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="195" unique_id=1387640491 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, -1.75)
+
+[node name="QuickSand205" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="196" unique_id=1955583701 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, -1.25)
+
+[node name="QuickSand206" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="197" unique_id=98058151 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, 3.25)
+
+[node name="QuickSand207" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="198" unique_id=1226846638 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, 3.75)
+
+[node name="QuickSand208" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="199" unique_id=30129295 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, 4.25)
+
+[node name="QuickSand209" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="200" unique_id=1672640282 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.507, 4.75)
+
+[node name="QuickSand210" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="201" unique_id=394424081 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, 4.75)
+
+[node name="QuickSand211" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="202" unique_id=553386378 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, 4.75)
+
+[node name="QuickSand212" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="203" unique_id=1070553944 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, 3.25)
+
+[node name="QuickSand213" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="204" unique_id=598194317 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, 3.25)
+
+[node name="QuickSand214" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="205" unique_id=1520225243 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, 4.75)
+
+[node name="QuickSand215" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="206" unique_id=1258825964 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, 4.75)
+
+[node name="QuickSand216" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="207" unique_id=899305128 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, 4.75)
+
+[node name="QuickSand217" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="208" unique_id=344487154 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, 4.75)
+
+[node name="QuickSand218" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="209" unique_id=1622626332 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, 4.75)
+
+[node name="QuickSand219" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="210" unique_id=969877843 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, 4.25)
+
+[node name="QuickSand220" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="211" unique_id=1016892855 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, 4.25)
+
+[node name="QuickSand221" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="212" unique_id=446405719 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, 4.25)
+
+[node name="QuickSand222" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="213" unique_id=1088546453 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, 4.25)
+
+[node name="QuickSand223" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="214" unique_id=1152287760 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, 4.25)
+
+[node name="QuickSand224" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="215" unique_id=1078026831 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, 3.75)
+
+[node name="QuickSand225" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="216" unique_id=689696449 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, 3.75)
+
+[node name="QuickSand226" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="217" unique_id=2035157154 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, 3.75)
+
+[node name="QuickSand227" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="218" unique_id=1424342494 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, 3.75)
+
+[node name="QuickSand228" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="219" unique_id=1465982492 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, 3.75)
+
+[node name="QuickSand229" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="220" unique_id=573657694 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, 3.25)
+
+[node name="QuickSand230" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="221" unique_id=1723369934 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, 3.25)
+
+[node name="QuickSand231" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="222" unique_id=615635547 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, 3.25)
+
+[node name="QuickSand232" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="223" unique_id=2257529 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, 3.25)
+
+[node name="QuickSand233" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="224" unique_id=923641649 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, 3.25)
+
+[node name="QuickSand234" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="225" unique_id=177489682 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, 2.75)
+
+[node name="QuickSand235" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="226" unique_id=1901716557 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, 2.75)
+
+[node name="QuickSand236" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="227" unique_id=1064776603 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, 2.75)
+
+[node name="QuickSand237" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="228" unique_id=801413400 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, 2.25)
+
+[node name="QuickSand238" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="229" unique_id=1753263969 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, 1.75)
+
+[node name="QuickSand239" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="230" unique_id=1439284615 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, 1.75)
+
+[node name="QuickSand240" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="231" unique_id=336600420 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, 1.75)
+
+[node name="QuickSand241" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="232" unique_id=1850235239 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, 1.75)
+
+[node name="QuickSand242" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="233" unique_id=1450290463 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, 1.75)
+
+[node name="QuickSand243" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="234" unique_id=1834994711 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, 2.25)
+
+[node name="QuickSand244" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="235" unique_id=1493265614 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, 2.25)
+
+[node name="QuickSand245" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="236" unique_id=462788840 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, 1.25)
+
+[node name="QuickSand246" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="237" unique_id=1580765361 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, 1.25)
+
+[node name="QuickSand247" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="238" unique_id=1560392811 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, 1.25)
+
+[node name="QuickSand248" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="239" unique_id=41758876 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, 1.25)
+
+[node name="QuickSand249" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="240" unique_id=488060791 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, 1.25)
+
+[node name="QuickSand250" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="241" unique_id=898779331 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, 0.75)
+
+[node name="QuickSand251" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="242" unique_id=289818199 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, 0.75)
+
+[node name="QuickSand252" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="243" unique_id=562583614 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, 0.75)
+
+[node name="QuickSand253" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="244" unique_id=2136181440 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, 0.75)
+
+[node name="QuickSand254" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="245" unique_id=1387448244 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, 0.75)
+
+[node name="QuickSand255" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="246" unique_id=47741153 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, 0.25)
+
+[node name="QuickSand256" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="247" unique_id=313852546 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, 0.25)
+
+[node name="QuickSand257" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="248" unique_id=784157175 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, 0.25)
+
+[node name="QuickSand258" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="249" unique_id=205772239 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, -0.25)
+
+[node name="QuickSand259" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="250" unique_id=939740832 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, -0.25)
+
+[node name="QuickSand260" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="251" unique_id=137828072 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, -0.25)
+
+[node name="QuickSand261" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="252" unique_id=1944387961 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, -0.75)
+
+[node name="QuickSand262" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="253" unique_id=1939910672 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, -0.75)
+
+[node name="QuickSand263" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="254" unique_id=116984438 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, -0.75)
+
+[node name="QuickSand264" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="255" unique_id=2030263578 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, -0.75)
+
+[node name="QuickSand265" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="256" unique_id=454714468 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, -0.75)
+
+[node name="QuickSand266" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="257" unique_id=199345368 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, -1.25)
+
+[node name="QuickSand267" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="258" unique_id=1834684200 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, -1.25)
+
+[node name="QuickSand268" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="259" unique_id=2001889193 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, -1.25)
+
+[node name="QuickSand269" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="260" unique_id=914415773 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, -1.25)
+
+[node name="QuickSand270" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="261" unique_id=413524196 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, -1.25)
+
+[node name="QuickSand271" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="262" unique_id=2077390895 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, -1.75)
+
+[node name="QuickSand273" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="263" unique_id=2051461395 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, -1.75)
+
+[node name="QuickSand274" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="264" unique_id=1394712194 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, -2.25)
+
+[node name="QuickSand275" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="265" unique_id=2047035890 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, -2.25)
+
+[node name="QuickSand276" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="266" unique_id=1390427769 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, -2.25)
+
+[node name="QuickSand277" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="267" unique_id=1821566475 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, -2.75)
+
+[node name="QuickSand278" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="268" unique_id=349475323 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, -2.75)
+
+[node name="QuickSand279" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="269" unique_id=531239032 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, -2.75)
+
+[node name="QuickSand280" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="270" unique_id=690285651 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, -3.25)
+
+[node name="QuickSand281" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="271" unique_id=1907705899 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, -3.25)
+
+[node name="QuickSand282" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="272" unique_id=175795355 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, -3.25)
+
+[node name="QuickSand283" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="273" unique_id=1543185472 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, -3.75)
+
+[node name="QuickSand284" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="274" unique_id=1284639072 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, -3.75)
+
+[node name="QuickSand285" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="275" unique_id=112241566 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, -3.75)
+
+[node name="QuickSand286" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="276" unique_id=1787741171 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, -4.25)
+
+[node name="QuickSand287" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="277" unique_id=1487218797 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, -4.25)
+
+[node name="QuickSand288" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="278" unique_id=2134911148 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, -4.25)
+
+[node name="QuickSand289" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="279" unique_id=1773821985 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.507, -4.75)
+
+[node name="QuickSand290" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="280" unique_id=1145468486 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, -4.75)
+
+[node name="QuickSand291" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="281" unique_id=353136142 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.507, -4.75)
+
+[node name="QuickSand292" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="282" unique_id=1827034873 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, -2.75)
+
+[node name="QuickSand293" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="283" unique_id=1814120575 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, -2.75)
+
+[node name="QuickSand294" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="284" unique_id=862849198 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, -3.25)
+
+[node name="QuickSand295" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="285" unique_id=131160211 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, -3.25)
+
+[node name="QuickSand296" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="286" unique_id=202901877 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, -3.75)
+
+[node name="QuickSand297" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="287" unique_id=20357354 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, -3.75)
+
+[node name="QuickSand298" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="288" unique_id=1736778426 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, -4.25)
+
+[node name="QuickSand299" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="289" unique_id=1648249168 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, -4.25)
+
+[node name="QuickSand300" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="290" unique_id=1367328165 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, -4.75)
+
+[node name="QuickSand301" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="291" unique_id=169831262 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, -4.75)
+
+[node name="QuickSand302" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="292" unique_id=136515843 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, -4.75)
+
+[node name="QuickSand303" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="293" unique_id=690101344 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, -4.75)
+
+[node name="QuickSand304" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="294" unique_id=1377123166 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, -4.75)
+
+[node name="QuickSand305" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="295" unique_id=1114650011 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, -4.25)
+
+[node name="QuickSand310" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="296" unique_id=390304605 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, -3.75)
+
+[node name="QuickSand311" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="297" unique_id=466208598 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, -3.25)
+
+[node name="QuickSand312" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="298" unique_id=142631954 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, -3.25)
+
+[node name="QuickSand313" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="299" unique_id=2119502355 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, -3.25)
+
+[node name="QuickSand314" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="300" unique_id=1948750055 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, -2.75)
+
+[node name="QuickSand315" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="301" unique_id=273832908 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, -2.75)
+
+[node name="QuickSand316" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="302" unique_id=1188615644 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, -2.75)
+
+[node name="QuickSand317" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="303" unique_id=375512158 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, -2.25)
+
+[node name="QuickSand318" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="304" unique_id=296915741 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, -2.25)
+
+[node name="QuickSand319" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="305" unique_id=925633120 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, -2.25)
+
+[node name="QuickSand320" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="306" unique_id=566086808 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, -1.75)
+
+[node name="QuickSand321" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="307" unique_id=970193316 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, -1.75)
+
+[node name="QuickSand322" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="308" unique_id=1219166121 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, -1.75)
+
+[node name="QuickSand323" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="309" unique_id=1830796004 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, -1.25)
+
+[node name="QuickSand324" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="310" unique_id=1259430585 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, -1.25)
+
+[node name="QuickSand325" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="311" unique_id=478862995 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, -1.25)
+
+[node name="QuickSand326" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="312" unique_id=2074682435 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, -0.75)
+
+[node name="QuickSand327" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="313" unique_id=828310726 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, -0.75)
+
+[node name="QuickSand328" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="314" unique_id=929430167 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, -0.75)
+
+[node name="QuickSand329" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="315" unique_id=2075785430 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, -0.25)
+
+[node name="QuickSand330" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="316" unique_id=1486245118 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, 0.25)
+
+[node name="QuickSand331" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="317" unique_id=1192521838 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, 0.75)
+
+[node name="QuickSand332" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="318" unique_id=213667618 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, 0.75)
+
+[node name="QuickSand333" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="319" unique_id=832112067 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, 0.75)
+
+[node name="QuickSand334" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="320" unique_id=1721432843 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, 1.25)
+
+[node name="QuickSand335" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="321" unique_id=1860868026 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, 1.25)
+
+[node name="QuickSand336" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="322" unique_id=1286796109 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, 1.25)
+
+[node name="QuickSand337" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="323" unique_id=1122371271 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, 1.75)
+
+[node name="QuickSand338" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="324" unique_id=2120734875 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, 1.75)
+
+[node name="QuickSand339" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="325" unique_id=1693599173 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, 1.75)
+
+[node name="QuickSand340" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="326" unique_id=1382030105 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, 2.25)
+
+[node name="QuickSand341" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="327" unique_id=611250869 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, 2.25)
+
+[node name="QuickSand342" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="328" unique_id=1084581186 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, 2.25)
+
+[node name="QuickSand343" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="329" unique_id=465556450 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, 2.75)
+
+[node name="QuickSand344" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="330" unique_id=166963463 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, 2.75)
+
+[node name="QuickSand345" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="331" unique_id=614886494 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, 2.75)
+
+[node name="QuickSand346" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="332" unique_id=2018101664 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, 3.25)
+
+[node name="QuickSand347" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="333" unique_id=366061615 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, 3.25)
+
+[node name="QuickSand348" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="334" unique_id=1707616059 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, 3.25)
+
+[node name="QuickSand349" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="335" unique_id=470601250 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, 3.75)
+
+[node name="QuickSand350" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="336" unique_id=10482181 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, 4.25)
+
+[node name="QuickSand351" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="337" unique_id=1789010551 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 0.507, 4.75)
+
+[node name="QuickSand352" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="338" unique_id=844026585 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0.507, 4.75)
+
+[node name="QuickSand353" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="339" unique_id=595778258 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, 4.75)
+
+[node name="QuickSand272" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="340" unique_id=1045852519 instance=ExtResource("7_njed1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.507, -1.75)

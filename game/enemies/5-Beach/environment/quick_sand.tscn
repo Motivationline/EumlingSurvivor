@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cbiqexo8lchvg"]
+
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="1_eo60a"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wjgt7"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64lyc"]
+albedo_color = Color(0.35971323, 0.25022113, 0.17496285, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u1ns6"]
+size = Vector3(0.5078125, 0.5977173, 0.49902344)
+
+[node name="QuickSand" type="Node3D" unique_id=288921100]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=256803960]
+mesh = SubResource("PlaneMesh_wjgt7")
+surface_material_override/0 = SubResource("StandardMaterial3D_64lyc")
+
+[node name="Hitbox" parent="." unique_id=2042063630 instance=ExtResource("1_eo60a")]
+collision_layer = 32
+collision_mask = 8
+attached_to = 6
+can_hit = 4
+causes_iframes = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=813206959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29525757, 0)
+shape = SubResource("BoxShape3D_u1ns6")
