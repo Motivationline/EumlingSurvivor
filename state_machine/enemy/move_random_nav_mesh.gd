@@ -5,16 +5,20 @@ extends State
 ## Ends when the point is reached.
 class_name MoveRandomOnNavMeshState
 
-# TODO: add controls over where we're going, e.g. values or an area or something
-
 ## How long to wait [b]after[/b] reaching the target location before proceeding to the next state 
 @export var wait_time: float = 1:
 	set(new_value):
 		wait_time = max(new_value, 0)
 
-## How far away from the current position is the minimum distance to walk to
+# TODO: add more controls over where we're going, e.g. an area or something
+enum TARGET_TYPES {SELF, PLAYER}
+@export_group("Where to go")
+## Around which point to find a new target position
+@export var target: TARGET_TYPES = TARGET_TYPES.SELF
+
+## How far away from the target position is the minimum distance to walk to
 @export var min_distance: float = 1
-## How far away from the current position is the maximum distance to walk to
+## How far away from the target position is the maximum distance to walk to
 @export var max_distance: float = 5
 
 @export_group("Overrides")
@@ -67,13 +71,22 @@ func physics_process(_delta: float) -> State:
 func find_new_target():
 	var best_position := Vector3.ZERO
 	var best_squared_distance: float = max_distance * max_distance + 1
+	var target_position: Vector3 = Vector3.ZERO
+	match target:
+		TARGET_TYPES.SELF:
+			target_position = parent.global_position
+		TARGET_TYPES.PLAYER:
+			var player = get_tree().get_first_node_in_group("Player") as Player
+			if player:
+				target_position = player.global_position
+
 	for i in 5:
 		# try 5 times to find a spot that is closest to reachable
 		var random_position := Vector3.ZERO
 		random_position.x = randf_range(-1, 1)
 		random_position.z = randf_range(-1, 1)
 		random_position = random_position.normalized() * randf_range(min_distance, max_distance)
-		nav_agent.target_position = random_position + parent.global_position
+		nav_agent.target_position = random_position + target_position
 		var distance = nav_agent.get_final_position().distance_squared_to(nav_agent.target_position)
 		if distance < best_squared_distance:
 			best_position = random_position
@@ -81,7 +94,7 @@ func find_new_target():
 		if distance <= 0.01:
 			break
 		
-	nav_agent.target_position = best_position + parent.global_position
+	nav_agent.target_position = best_position + target_position
 	done = false
 	nav_agent.debug_enabled = debug_show_path
 
