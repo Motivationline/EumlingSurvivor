@@ -20,8 +20,10 @@ class_name LookAtPlayerState
 	set(new_value):
 		speed_override = max(new_value, 0)
 		update_configuration_warnings()
-# Whether to apply the speed override
+## Whether to apply the speed override
 @export var speed_override_active: bool = false
+## Rotate instantly, ignoring rotation speed
+@export var rotate_instantly: bool = false
 
 var done: bool = false
 var player: CharacterBody3D
@@ -39,7 +41,10 @@ func enter():
 func physics_process(_delta: float) -> State:
 	var target_vec = (player.position - parent.position).normalized()
 	var target_rotation = atan2(-target_vec.x, -target_vec.z)
-	parent.visuals.rotation.y = lerp_angle(parent.visuals.rotation.y, target_rotation ,_delta* rotation_speed)
+	if rotate_instantly:
+		parent.visuals.rotation.y = target_rotation
+	else:
+		parent.visuals.rotation.y = lerp_angle(parent.visuals.rotation.y, target_rotation ,_delta* rotation_speed)
 	if(done) : return return_next()
 	return null
 

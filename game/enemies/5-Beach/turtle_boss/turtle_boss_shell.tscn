@@ -1,15 +1,22 @@
 [gd_scene format=3 uid="uid://el73drd8s58x"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_4mvb8"]
+[ext_resource type="Script" uid="uid://dlsg4m2a304o0" path="res://state_machine/enemy/move_forward_and_bounce.gd" id="2_1yahh"]
 [ext_resource type="PackedScene" uid="uid://ko8u3dvlq1cu" path="res://assets/characters/enemies/boss_turtle/boss_turtle_prefab.tscn" id="2_4d1ke"]
-[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_gmr3c"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_dwm3f"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_1yahh"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_e3ogy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1yahh"]
 radius = 0.7224098
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1yahh"]
+height = 0.60498047
+radius = 0.76708984
+
 [node name="Shell" unique_id=1898691 node_paths=PackedStringArray("node_with_animation_tree") groups=["Enemy"] instance=ExtResource("1_4mvb8")]
+collision_layer = 0
+collision_mask = 769
 speed = 4.0
 ignore_enemy_in_level = true
 node_with_animation_tree = NodePath("Visuals/boss_turtle")
@@ -18,22 +25,27 @@ node_with_animation_tree = NodePath("Visuals/boss_turtle")
 visible = false
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("MoveRandomOnNavMeshState")
+initial_state = NodePath("LookAtPlayerState")
 
-[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=230172620 node_paths=PackedStringArray("next_state")]
-script = ExtResource("2_gmr3c")
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" unique_id=1649740486 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_dwm3f")
 wait_time = 0.0
-min_distance = 4.0
-speed_override = 10.0
+rotate_instantly = true
+next_state = NodePath("../MoveForwardAndBounceState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="MoveForwardAndBounceState" type="Node" parent="StateMachine" index="1" unique_id=394585890 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_1yahh")
+max_time = 10.0
+stop_when_running_into_something = false
 next_state = NodePath("../WaitForTimeXState")
-repeat_self = 5
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Locomotion/transition_request": "shell",
 "parameters/LocomotionShell/transition_request": "bounce"
 })
-metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+metadata/_custom_type_script = "uid://dlsg4m2a304o0"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="1" unique_id=459783235 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=459783235 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_1yahh")
 wait_time = 2.0
 next_state = NodePath("../WaitForEver")
@@ -42,7 +54,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="WaitForEver" type="Node" parent="StateMachine" index="2" unique_id=754164947 node_paths=PackedStringArray("next_state")]
+[node name="WaitForEver" type="Node" parent="StateMachine" index="3" unique_id=754164947 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_1yahh")
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
@@ -59,3 +71,7 @@ can_hit = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1578435306]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35875124, 0)
 shape = SubResource("SphereShape3D_1yahh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="8" unique_id=655806061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3273508, -0.10874775)
+shape = SubResource("CylinderShape3D_1yahh")

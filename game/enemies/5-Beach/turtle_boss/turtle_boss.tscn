@@ -15,8 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_f7jcw"]
 [ext_resource type="PackedScene" uid="uid://el73drd8s58x" path="res://game/enemies/5-Beach/turtle_boss/turtle_boss_shell.tscn" id="11_wbfbl"]
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="12_2wn3u"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="12_6p51q"]
 [ext_resource type="Script" uid="uid://cp33buoo5xtgx" path="res://state_machine/enemy/pick_random_state.gd" id="13_17bdl"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="14_7nljg"]
+[ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="14_jimkv"]
 
 [sub_resource type="Resource" id="Resource_wbfbl"]
 script = ExtResource("9_w3w5t")
@@ -31,6 +33,12 @@ metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 [sub_resource type="Resource" id="Resource_f7jcw"]
 script = ExtResource("6_akffo")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[sub_resource type="Resource" id="Resource_paqa2"]
+script = ExtResource("14_jimkv")
+max_negative = -180.0
+max_positive = 180.0
+metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
 
 [sub_resource type="Resource" id="Resource_17bdl"]
 script = ExtResource("9_w3w5t")
@@ -81,7 +89,7 @@ metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
 [node name="PickRandomState" type="Node" parent="StateMachine" index="1" unique_id=1791194373 node_paths=PackedStringArray("states")]
 script = ExtResource("13_17bdl")
-states = [NodePath("../Normal/SpawnEntitiesState"), NodePath("../LaunchShell/SpawnShell")]
+states = [NodePath("../Normal/SpawnEntitiesState"), NodePath("../LaunchShell/LookAtPlayerState")]
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Locomotion/transition_request": "shell"
 })
@@ -125,7 +133,12 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="LaunchShell" type="Node" parent="StateMachine" index="3" unique_id=1595853023]
 
-[node name="SpawnShell" type="Node" parent="StateMachine/LaunchShell" index="0" unique_id=727713856 node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/LaunchShell" index="0" unique_id=1401893524 node_paths=PackedStringArray("next_state")]
+script = ExtResource("12_6p51q")
+next_state = NodePath("../SpawnShell")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnShell" type="Node" parent="StateMachine/LaunchShell" index="1" unique_id=727713856 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_ay312")
 start_delay = 1.25
 end_delay = 0.75
@@ -139,9 +152,10 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/LaunchShell/SpawnShell" index="0" unique_id=1189513944]
 script = ExtResource("3_vbct3")
 entity_to_spawn = ExtResource("11_wbfbl")
+rotation_strategy = SubResource("Resource_paqa2")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="TurtleNaked" type="Node" parent="StateMachine/LaunchShell" index="1" unique_id=361992033 node_paths=PackedStringArray("events", "next_state")]
+[node name="TurtleNaked" type="Node" parent="StateMachine/LaunchShell" index="2" unique_id=361992033 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("8_w3w5t")
 events = [NodePath("AdjustAttributesEventStrategy")]
 next_state = NodePath("../../Naked/FleeFromPlayerState")
@@ -177,7 +191,7 @@ stop_distance = 0.0
 rotation_speed = 8.0
 entity_group = "Enemy"
 entity_name = "Shell"
-remove_target_entity = null
+remove_target_entity = true
 speed_override = 2.0
 speed_override_active = true
 debug_show_path = true
