@@ -8,6 +8,40 @@
 [ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="5_vfhb7"]
 [ext_resource type="PackedScene" uid="uid://bfh0cfobkh20v" path="res://assets/characters/enemies/squid/squid_arm/squid_arm_prefab.tscn" id="6_5be5r"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_vfhb7"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="9_jl4g0"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="10_mml1p"]
+
+[sub_resource type="Resource" id="Resource_qel13"]
+script = ExtResource("9_jl4g0")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_an0ai"]
+script = ExtResource("9_jl4g0")
+attribute = "damage"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_e614o"]
+script = ExtResource("9_jl4g0")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_iad3d"]
+script = ExtResource("9_jl4g0")
+attribute = "damage"
+value = 75.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_eqoe5"]
+script = ExtResource("10_mml1p")
+introduction = Array[ExtResource("9_jl4g0")]([SubResource("Resource_e614o")])
+easy = Array[ExtResource("9_jl4g0")]([SubResource("Resource_qel13")])
+medium = Array[ExtResource("9_jl4g0")]([SubResource("Resource_iad3d")])
+hard = Array[ExtResource("9_jl4g0")]([SubResource("Resource_an0ai")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t3syi"]
 radius = 0.2006836
@@ -73,9 +107,8 @@ wait_time = 0.5
 next_state = NodePath("../KillSelfState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="KillSelfState" type="Node" parent="StateMachine" index="8" unique_id=2140091015 node_paths=PackedStringArray("next_state")]
+[node name="KillSelfState" type="Node" parent="StateMachine" index="8" unique_id=2140091015]
 script = ExtResource("5_vfhb7")
-next_state = NodePath("")
 metadata/_custom_type_script = "uid://dj632w22te1th"
 
 [node name="squid_arm" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1132374932 instance=ExtResource("6_5be5r")]
@@ -87,6 +120,7 @@ damage = 50.0
 individual_hit_limit = 1
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_eqoe5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hitbox" index="0" unique_id=1481071548]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.09161654, -0.66845703)

@@ -1,16 +1,54 @@
 [gd_scene format=3 uid="uid://bqp7c4em584k2"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_bds3d"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_8sj24"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_57msv"]
 [ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="2_8663t"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_ad351"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_aono6"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_ocnyn"]
-[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_25dqp"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="5_mth4q"]
-[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_4gnnh"]
-[ext_resource type="PackedScene" uid="uid://br8tr6cgsam1u" path="res://game/aoes/puffer_fish_aoe/puffer_fish_aoe.tscn" id="7_fuc5l"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_4gnnh"]
+[ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="8_c8qu1"]
 [ext_resource type="PackedScene" uid="uid://b7i8simxasxfx" path="res://assets/characters/enemies/pufferfish/pufferfish_prefab.tscn" id="9_fuc5l"]
+
+[sub_resource type="Resource" id="Resource_nrnw2"]
+script = ExtResource("2_8sj24")
+attribute = "health"
+value = 200.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_1uvux"]
+script = ExtResource("2_8sj24")
+attribute = "health"
+value = 400.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_rqj8m"]
+script = ExtResource("2_8sj24")
+attribute = "incoming_damage_multiplier"
+value = 0.7
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_neuwv"]
+script = ExtResource("2_8sj24")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_gkb0e"]
+script = ExtResource("2_8sj24")
+attribute = "health"
+value = 300.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_dpwa5"]
+script = ExtResource("3_aono6")
+introduction = Array[ExtResource("2_8sj24")]([SubResource("Resource_neuwv")])
+easy = Array[ExtResource("2_8sj24")]([SubResource("Resource_nrnw2")])
+medium = Array[ExtResource("2_8sj24")]([SubResource("Resource_gkb0e")])
+hard = Array[ExtResource("2_8sj24")]([SubResource("Resource_1uvux"), SubResource("Resource_rqj8m")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="SphereMesh" id="SphereMesh_ksrke"]
 
@@ -23,10 +61,46 @@ radius = 0.3849951
 [sub_resource type="SphereShape3D" id="SphereShape3D_72cis"]
 radius = 0.16382946
 
+[sub_resource type="Resource" id="Resource_c8qu1"]
+script = ExtResource("2_8sj24")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_rult3"]
+script = ExtResource("2_8sj24")
+attribute = "damage"
+value = 75.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_8sj24"]
+script = ExtResource("2_8sj24")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_aono6"]
+script = ExtResource("2_8sj24")
+attribute = "damage"
+value = 75.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ohyny"]
+script = ExtResource("3_aono6")
+introduction = Array[ExtResource("2_8sj24")]([SubResource("Resource_8sj24")])
+easy = Array[ExtResource("2_8sj24")]([SubResource("Resource_c8qu1")])
+medium = Array[ExtResource("2_8sj24")]([SubResource("Resource_aono6")])
+hard = Array[ExtResource("2_8sj24")]([SubResource("Resource_rult3")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rult3"]
+radius = 0.5085375
+
 [node name="puffer_fish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_bds3d")]
 collision_layer = 64
 collision_mask = 65
 health = 250.0
+difficulty_scaler = SubResource("Resource_dpwa5")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
@@ -61,8 +135,8 @@ metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 [node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/TargetPlayer" index="0" unique_id=473045302 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_mth4q")
 wait_time = 0.0
-stop_distance = 1.0
-next_state = NodePath("../../AttackPlayer/SpawnEntitiesState/WaitForTimeXState")
+stop_distance = 0.8
+next_state = NodePath("../../AttackPlayer/WaitForTimeXState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
 })
@@ -70,35 +144,37 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="AttackPlayer" type="Node" parent="StateMachine" index="3" unique_id=1552506827]
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/AttackPlayer" index="0" unique_id=1995149603 node_paths=PackedStringArray("next_state")]
-script = ExtResource("5_25dqp")
-start_delay = 0.2
-next_state = NodePath("WaitForTimeXState")
-metadata/_custom_type_script = "uid://c1j50itv0hwo2"
-
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/AttackPlayer/SpawnEntitiesState" index="0" unique_id=1569424562]
-script = ExtResource("6_4gnnh")
-spawn_local = true
-entity_to_spawn = ExtResource("7_fuc5l")
-metadata/_custom_type_script = "uid://1e84fd3xrrff"
-
-[node name="WaitForTimeXState" type="Node" parent="StateMachine/AttackPlayer/SpawnEntitiesState" index="1" unique_id=1422941199 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/AttackPlayer" index="0" unique_id=1422941199 node_paths=PackedStringArray("next_state")]
 script = ExtResource("8_4gnnh")
 wait_time = 4.5
-next_state = NodePath("get_small")
+next_state = NodePath("../EnableAttackHitBox")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "get_big"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="get_small" type="Node" parent="StateMachine/AttackPlayer/SpawnEntitiesState/WaitForTimeXState" index="0" unique_id=893581196 node_paths=PackedStringArray("next_state")]
+[node name="EnableAttackHitBox" type="Node" parent="StateMachine/AttackPlayer" index="1" unique_id=1586234887 node_paths=PackedStringArray("enable", "disable", "next_state")]
+script = ExtResource("8_c8qu1")
+enable = [NodePath("../../../AttackHitbox")]
+disable = [NodePath("../../../Hitbox")]
+next_state = NodePath("../get_small")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="get_small" type="Node" parent="StateMachine/AttackPlayer" index="2" unique_id=893581196 node_paths=PackedStringArray("next_state")]
 script = ExtResource("8_4gnnh")
 wait_time = 0.33
-next_state = NodePath("../../../../DecideDistanceState")
+next_state = NodePath("../DisableAttackHitbox")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "get_small"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="DisableAttackHitbox" type="Node" parent="StateMachine/AttackPlayer" index="3" unique_id=1664287085 node_paths=PackedStringArray("enable", "disable", "next_state")]
+script = ExtResource("8_c8qu1")
+enable = [NodePath("../../../Hitbox")]
+disable = [NodePath("../../../AttackHitbox")]
+next_state = NodePath("../../DecideDistanceState")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1443080195]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
@@ -110,7 +186,7 @@ mesh = SubResource("SphereMesh_ksrke")
 [node name="Hitbox" parent="." index="5" unique_id=1736455822 instance=ExtResource("2_57msv")]
 collision_layer = 32
 collision_mask = 8
-damage = 25.0
+damage = 50.0
 attached_to = 6
 can_hit = 4
 
@@ -132,3 +208,15 @@ debug_color = Color(0.9999998, 0.010455347, 0.05978582, 0.41960785)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0035880953, 0.19767752, 0)
 shape = SubResource("SphereShape3D_72cis")
 debug_color = Color(0.059656292, 0.63459665, 0.41232806, 0.41960785)
+
+[node name="AttackHitbox" parent="." index="10" unique_id=390149678 instance=ExtResource("2_57msv")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+difficulty_scaler = SubResource("Resource_ohyny")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox" index="0" unique_id=433568621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52435994, 0)
+shape = SubResource("SphereShape3D_rult3")

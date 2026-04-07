@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_qgdlt"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_2uhhv"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_7b0cm"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_280ev"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_8scmy"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_52eqb"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_s5h4t"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_ehia0"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="6_6ky1e"]
@@ -13,6 +15,38 @@
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="7_ehia0"]
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="7_f2r6p"]
 
+[sub_resource type="Resource" id="Resource_ev1ev"]
+script = ExtResource("2_7b0cm")
+attribute = "health"
+value = 200.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_q0m84"]
+script = ExtResource("2_7b0cm")
+attribute = "health"
+value = 350.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_m6p5x"]
+script = ExtResource("2_7b0cm")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_lmrcd"]
+script = ExtResource("2_7b0cm")
+attribute = "health"
+value = 250.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_0x3t0"]
+script = ExtResource("3_52eqb")
+introduction = Array[ExtResource("2_7b0cm")]([SubResource("Resource_m6p5x")])
+easy = Array[ExtResource("2_7b0cm")]([SubResource("Resource_ev1ev")])
+medium = Array[ExtResource("2_7b0cm")]([SubResource("Resource_lmrcd")])
+hard = Array[ExtResource("2_7b0cm")]([SubResource("Resource_q0m84")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_0cktx"]
 radius = 0.5125733
 
@@ -21,6 +55,7 @@ radius = 0.74622554
 
 [node name="tentacle_slapper" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_qgdlt")]
 health = 150.0
+difficulty_scaler = SubResource("Resource_0x3t0")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
