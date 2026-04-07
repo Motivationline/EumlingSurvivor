@@ -27,7 +27,7 @@ func _ready() -> void:
 		touch_joystick_overlay.queue_free()
 
 var currently_loaded_level: Level
-var currently_loaded_level_location: String
+var currently_loaded_level_info: Dictionary
 
 func load_level():
 	if player.dead:
@@ -60,7 +60,7 @@ func load_level():
 	# add new stuff
 	var level_to_load = load(level_location) as PackedScene
 	if (level_to_load && level_to_load.can_instantiate()):
-		currently_loaded_level_location = level_location
+		currently_loaded_level_info = level_info
 		var new_level = level_to_load.instantiate() as Level
 		new_level.difficulty = difficulty
 		level_wrapper.add_child(new_level)
@@ -105,7 +105,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_main_menu"):
 		player.health = 0
 	if event.is_action_pressed("debug_reload"):
-		levels_to_load.push_front(currently_loaded_level_location)
+		levels_to_load.push_front(currently_loaded_level_info)
 		load_level()
 	if event.is_action_pressed("debug_kill_all"):
 		var enemies := get_tree().get_nodes_in_group("Enemy")
