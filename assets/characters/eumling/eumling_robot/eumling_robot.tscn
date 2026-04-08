@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://iu00eeesfs5v"]
+
+[ext_resource type="PackedScene" uid="uid://c3ulybc78i1ng" path="res://assets/characters/eumling/eumling_robot/eumling_robot.glb" id="1_g06lv"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g06lv"]
+animation = &"repair"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_21y6x"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kxhmn"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pjdnt"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_efnok"]
+animation = &"repair"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_pjdnt"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_xcngg"]
+xfade_time = 0.1
+input_0/name = "broken"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "summon"
+input_1/auto_advance = true
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "idle"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "walk"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
+input_4/name = "attack"
+input_4/auto_advance = false
+input_4/break_loop_at_end = false
+input_4/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ns0y1"]
+graph_offset = Vector2(-804.34656, 100.72385)
+nodes/Transition/node = SubResource("AnimationNodeTransition_xcngg")
+nodes/Transition/position = Vector2(40, 100)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_efnok")
+nodes/Animation/position = Vector2(-620, 20)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_pjdnt")
+nodes/TimeScale/position = Vector2(-420, 40)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_g06lv")
+"nodes/Animation 2/position" = Vector2(-720, 160)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_21y6x")
+"nodes/Animation 3/position" = Vector2(-720, 500)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_kxhmn")
+"nodes/Animation 4/position" = Vector2(-720, 660)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_pjdnt")
+"nodes/Animation 5/position" = Vector2(-720, 340)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"TimeScale", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 5", &"Transition", 3, &"Animation 3", &"Transition", 4, &"Animation 4", &"TimeScale", 0, &"Animation"]
+
+[node name="eumling_robot" unique_id=1664501692 instance=ExtResource("1_g06lv")]
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(756396854) index="4" unique_id=2016699446]
+transform = Transform3D(1, -2.2204457e-16, -6.617444e-23, -6.617445e-24, -3.5762784e-07, 0.9999999, -2.2204459e-16, -0.9999999, -3.5762784e-07, 4.6867235e-18, 0.307296, 0.04238986)
+bone_name = "DEF_DRIVER"
+bone_idx = 43
+
+[node name="DriverSeat" type="Node3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" unique_id=60268122]
+
+[node name="Leaf01" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(756396854) index="5" unique_id=260360788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13305664, 0, 0)
+setting_count = 1
+settings/0/root_bone_name = "DEF_LEAF01_1"
+settings/0/root_bone = 15
+settings/0/end_bone_name = "DEF_LEAF01_2"
+settings/0/end_bone = 16
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.05
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 0.79
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.8
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "DEF_LEAF01_1"
+settings/0/joints/0/bone = 15
+settings/0/joints/1/bone_name = "DEF_LEAF01_2"
+settings/0/joints/1/bone = 16
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="Leaf02" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(756396854) index="6" unique_id=84286812]
+setting_count = 1
+settings/0/root_bone_name = "DEF_LEAF02_1"
+settings/0/root_bone = 17
+settings/0/end_bone_name = "DEF_LEAF02_2"
+settings/0/end_bone = 18
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.05
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 0.79
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.8
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "DEF_LEAF02_1"
+settings/0/joints/0/bone = 17
+settings/0/joints/1/bone_name = "DEF_LEAF02_2"
+settings/0/joints/1/bone = 18
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="Leaf03" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(756396854) index="7" unique_id=1166511493]
+setting_count = 1
+settings/0/root_bone_name = "DEF_LEAF03_1"
+settings/0/root_bone = 19
+settings/0/end_bone_name = "DEF_LEAF03_2"
+settings/0/end_bone = 20
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.05
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 0.79
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.8
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "DEF_LEAF03_1"
+settings/0/joints/0/bone = 19
+settings/0/joints/1/bone_name = "DEF_LEAF03_2"
+settings/0/joints/1/bone = 20
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=2022322627]
+tree_root = SubResource("AnimationNodeBlendTree_ns0y1")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "idle"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 2
+parameters/TimeScale/scale = 0.0

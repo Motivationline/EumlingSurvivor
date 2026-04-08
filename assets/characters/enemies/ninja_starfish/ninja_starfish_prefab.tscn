@@ -6,6 +6,12 @@
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_64rui"]
 animation = &"start_spin"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k7oft"]
+animation = &"spin"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m1g8l"]
+animation = &"end_spin"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fmm4y"]
 animation = &"idle"
 
@@ -15,22 +21,34 @@ input_0/name = "idle"
 input_0/auto_advance = false
 input_0/break_loop_at_end = false
 input_0/reset = true
-input_1/name = "attack"
+input_1/name = "start_spin"
 input_1/auto_advance = true
 input_1/break_loop_at_end = false
 input_1/reset = true
+input_2/name = "spin"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "end_spin"
+input_3/auto_advance = true
+input_3/break_loop_at_end = false
+input_3/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_64rui"]
-graph_offset = Vector2(-982.8887, -210.2531)
+graph_offset = Vector2(-920.3715, -79.35422)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_fmm4y")
 nodes/Animation/position = Vector2(-420, 20)
 nodes/Transition/node = SubResource("AnimationNodeTransition_fmm4y")
 nodes/Transition/position = Vector2(0, 80)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_64rui")
 "nodes/Animation 2/position" = Vector2(-420, 220)
-node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2"]
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_k7oft")
+"nodes/Animation 3/position" = Vector2(-420, 400)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_m1g8l")
+"nodes/Animation 4/position" = Vector2(-420, 560)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 3", &"Transition", 3, &"Animation 4"]
 
-[node name="ninja_starfish" unique_id=1168972132 instance=ExtResource("1_fmm4y")]
+[node name="ninja_starfish" unique_id=725910630 instance=ExtResource("1_fmm4y")]
 script = ExtResource("2_64rui")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=3456080]

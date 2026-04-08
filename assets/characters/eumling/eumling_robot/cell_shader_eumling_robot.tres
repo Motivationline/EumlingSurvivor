@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://d32ql5owjxtth"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_20v5j"]
+[ext_resource type="Texture2D" uid="uid://dwspp5ushq61p" path="res://assets/characters/eumling/eumling_robot/eumling_robot_UVMat_2D_View.png" id="2_f7f30"]
+
+[sub_resource type="Gradient" id="Gradient_20v5j"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.46275395)
+colors = PackedColorArray(0.24477637, 0.2447764, 0.24477637, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f7f30"]
+gradient = SubResource("Gradient_20v5j")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_20v5j")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_f7f30")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_f7f30")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_diffuse_smooth_attenuation = true
