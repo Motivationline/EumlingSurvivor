@@ -11,6 +11,12 @@ var text: String:
 		$DamageNumberLabel.text = value
 		text = value
 
+var healing: bool = false:
+	set(value):
+		healing = value
+		if healing:
+			$DamageNumberLabel.modulate = Color(0, 1, 0)
+
 func _ready() -> void:
 	position.x += randf_range(-max_offset, max_offset)
 	position.z += randf_range(-max_offset, max_offset)

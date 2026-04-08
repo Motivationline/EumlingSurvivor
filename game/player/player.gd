@@ -3,13 +3,17 @@ extends CharacterBody3D
 class_name Player
 
 var speed: float
+
 var health: float = 10.0:
 	set(new_value):
 		if health == 0 and new_value > 0 and not dead:
 			revive()
-		if health - new_value > 0:
+		var change = health - new_value
+		if change > 0:
 			anim_player.set("parameters/GetHitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
+			Utils.create_damage_number(self, "%d" % change)
+		elif change < 0:
+			Utils.create_damage_number(self, "%d" % abs(change), true)
 		if (max_health <= 0):
 			health = new_value
 		else:
@@ -319,5 +323,5 @@ func end_of_level(level: Level):
 func level_start():
 	%Artistic.level_start()
 
-func get_ability(type: Enum.EUMLING_TYPE)-> Ability:
+func get_ability(type: Enum.EUMLING_TYPE) -> Ability:
 	return _abilities.get(type)

@@ -2,6 +2,8 @@ extends Node
 
 class_name Utils
 
+const DAMAGE_NUMBER_LABEL = preload("uid://dm4mgjmi078lm")
+
 # returns the closest Node from the given Array 
 static func get_closest_node(_origin: Node3D, _targets: Array[Node3D]):
 	if len(_targets) > 0:
@@ -32,3 +34,13 @@ static func find_first_animation_tree(node: Node3D) -> AnimationTree:
 			var tree = find_first_animation_tree(child)
 			if (tree && tree is AnimationTree): return tree
 	return null
+
+static func create_damage_number(entity: Node3D, text: String, healing: bool = false):
+	if not entity.is_inside_tree(): return
+	var level: Level = entity.get_tree().get_first_node_in_group("Level")
+	if not level: return
+	var damage_label := DAMAGE_NUMBER_LABEL.instantiate() as Node3D
+	damage_label.text = text
+	damage_label.healing = healing
+	level.add_child(damage_label)
+	damage_label.global_position = entity.global_position

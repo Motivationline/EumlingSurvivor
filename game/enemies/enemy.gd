@@ -111,13 +111,10 @@ func _hurt_by(_attacker: HitBox):
 		convince_progress = 0
 		status_visuals.social_progress = 0
 
-		var damage_number = DAMAGE_NUMBER_LABEL.instantiate() as Node3D
-		damage_number.text = "%d" % damage
-		if hit_vulnerability: damage_number.text += "!"
-		var level = get_tree().get_first_node_in_group("Level")
-		if level:
-			damage_number.position = self.global_position
-			level.add_child(damage_number)
+		var dmgText = "%d" % damage
+		if hit_vulnerability: dmgText += "!"
+		Utils.create_damage_number(self, dmgText)
+		
 func _die():
 	for ev in on_death:
 		ev.event_triggered(null)
