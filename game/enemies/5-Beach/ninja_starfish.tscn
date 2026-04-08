@@ -143,7 +143,7 @@ script = ExtResource("2_3topv")
 wait_time = 0.4
 next_state = NodePath("../EnableAttackHitbox")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Transition/transition_request": "attack"
+"parameters/Transition/transition_request": "start_spin"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
@@ -158,8 +158,8 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 script = ExtResource("3_gykbi")
 wait_time = 0.0
 target = 1
-min_distance = 3.0
-max_distance = 3.1
+min_distance = 0.0
+max_distance = 1.5
 next_state = NodePath("../DisableAttackHitbox")
 metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 
@@ -173,9 +173,12 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 [node name="WaitForTimeAfterAttack" type="Node" parent="StateMachine" index="5" unique_id=901248911 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_3topv")
 wait_time = 1.5
+random = true
+min_wait_time = 1.0
+max_wait_time = 1.5
 next_state = NodePath("../IdleWait")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Transition/transition_request": "attack"
+"parameters/Transition/transition_request": "end_spin"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
@@ -186,7 +189,7 @@ sound_to_play = "DeathSpecific"
 needs_to_be_persistent = true
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
-[node name="ninja_starfish" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1168972132 instance=ExtResource("2_jg36m")]
+[node name="ninja_starfish" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=725910630 instance=ExtResource("2_jg36m")]
 
 [node name="Hitbox" parent="." index="5" unique_id=564562364 instance=ExtResource("3_3topv")]
 collision_layer = 32
