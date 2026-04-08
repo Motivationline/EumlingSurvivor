@@ -12,6 +12,7 @@ var seen_eumlings: Array[String] = []
 
 func _ready() -> void:
 	load_eumlings()
+	update_buttons()
 	#unlock_new_eumlings([randi_range(0, 4), randi_range(0, 4)])
 
 func _on_close_button_pressed() -> void:
@@ -28,13 +29,14 @@ var locked_eumlings: Dictionary = {
 }
 var eumlings: Dictionary = {}
 
-func load_eumlings():
-	var files = DirAccess.get_files_at(EUMLING_PATH);
+func load_eumlings(current_path: String = ""):
+	var path = EUMLING_PATH + current_path
+	var files = DirAccess.get_files_at(path);
 	for file in files:
 		if (file.get_extension() == "remap"):
 			file = file.replace(".remap", "")
 		if (file.get_extension() == "tres"):
-			var eumling = ResourceLoader.load(EUMLING_PATH + file) as Eumling
+			var eumling = ResourceLoader.load(path + file) as Eumling
 			eumlings[eumling.id] = eumling
 			if unlocked_eumlings.has(eumling.id):
 				eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED
@@ -42,7 +44,10 @@ func load_eumlings():
 				eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.SEEN
 			else:
 				locked_eumlings[eumling.type].append(eumling)
-	update_buttons()
+	var folders := DirAccess.get_directories_at(path)
+	for folder in folders:
+		load_eumlings(current_path + folder + "/")
+	
 
 func update_buttons():
 	for wrapper in %UnlockedEumlings.get_children():
