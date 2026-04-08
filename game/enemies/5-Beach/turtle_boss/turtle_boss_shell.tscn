@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_dwm3f"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_1yahh"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_e3ogy"]
+[ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="5_dwm3f"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1yahh"]
 radius = 0.7224098
@@ -17,7 +18,7 @@ radius = 0.76708984
 [node name="Shell" unique_id=1898691 node_paths=PackedStringArray("node_with_animation_tree") groups=["Enemy"] instance=ExtResource("1_4mvb8")]
 collision_layer = 0
 collision_mask = 769
-speed = 4.0
+speed = 6.0
 ignore_enemy_in_level = true
 node_with_animation_tree = NodePath("Visuals/boss_turtle")
 
@@ -36,7 +37,7 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="MoveForwardAndBounceState" type="Node" parent="StateMachine" index="1" unique_id=394585890 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_1yahh")
-max_time = 10.0
+max_time = 5.0
 stop_when_running_into_something = false
 next_state = NodePath("../WaitForTimeXState")
 animation_trigger = Dictionary[String, Variant]({
@@ -48,23 +49,30 @@ metadata/_custom_type_script = "uid://dlsg4m2a304o0"
 [node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=459783235 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_1yahh")
 wait_time = 2.0
-next_state = NodePath("../WaitForEver")
+next_state = NodePath("../WaitForAWhile")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/LocomotionShell/transition_request": "stop"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="WaitForEver" type="Node" parent="StateMachine" index="3" unique_id=754164947 node_paths=PackedStringArray("next_state")]
+[node name="WaitForAWhile" type="Node" parent="StateMachine" index="3" unique_id=754164947 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_1yahh")
-next_state = NodePath(".")
+wait_time = 10.0
+next_state = NodePath("../KillSelfState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="KillSelfState" type="Node" parent="StateMachine" index="4" unique_id=1724595110 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_dwm3f")
+next_state = NodePath("../WaitForAWhile")
+metadata/_custom_type_script = "uid://dj632w22te1th"
 
 [node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("2_4d1ke")]
 
 [node name="Hitbox" parent="." index="6" unique_id=1999330290 instance=ExtResource("4_e3ogy")]
 collision_layer = 32
 collision_mask = 8
-damage = 10.0
+damage = 50.0
+damage_cooldown = 1.0
 attached_to = 6
 can_hit = 4
 

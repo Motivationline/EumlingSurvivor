@@ -23,7 +23,7 @@
 [sub_resource type="Resource" id="Resource_wbfbl"]
 script = ExtResource("9_w3w5t")
 attribute = "incoming_damage_multiplier"
-value = 0.5
+value = 0.2
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_geoho"]
@@ -70,9 +70,32 @@ node_with_animation_tree = NodePath("Visuals/boss_turtle")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4654425, -0.5)
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("ShellStart")
+initial_state = NodePath("InitialShellStart")
 
-[node name="ShellStart" type="Node" parent="StateMachine" index="0" unique_id=1628526716 node_paths=PackedStringArray("events", "next_state")]
+[node name="InitialShellStart" type="Node" parent="StateMachine" index="0" unique_id=1890555065 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("8_w3w5t")
+events = [NodePath("AdjustAttributesEventStrategy")]
+next_state = NodePath("../InitialWaitTime")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Locomotion/transition_request": "shell",
+"parameters/LocomotionShell/transition_request": "idle"
+})
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="AdjustAttributesEventStrategy" type="Node" parent="StateMachine/InitialShellStart" index="0" unique_id=413247047]
+script = ExtResource("8_s16t0")
+changes = Array[ExtResource("9_w3w5t")]([SubResource("Resource_wbfbl")])
+metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
+
+[node name="InitialWaitTime" type="Node" parent="StateMachine" index="1" unique_id=1041845556 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_bjcu4")
+random = true
+min_wait_time = 1.5
+max_wait_time = 2.5
+next_state = NodePath("../PickRandomState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="ShellStart" type="Node" parent="StateMachine" index="2" unique_id=1628526716 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("8_w3w5t")
 events = [NodePath("AdjustAttributesEventStrategy")]
 next_state = NodePath("../PickRandomState")
@@ -87,7 +110,7 @@ script = ExtResource("8_s16t0")
 changes = Array[ExtResource("9_w3w5t")]([SubResource("Resource_wbfbl")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
-[node name="PickRandomState" type="Node" parent="StateMachine" index="1" unique_id=1791194373 node_paths=PackedStringArray("states")]
+[node name="PickRandomState" type="Node" parent="StateMachine" index="3" unique_id=1791194373 node_paths=PackedStringArray("states")]
 script = ExtResource("13_17bdl")
 states = [NodePath("../Normal/SpawnEntitiesState"), NodePath("../LaunchShell/LookAtPlayerState")]
 animation_trigger = Dictionary[String, Variant]({
@@ -95,7 +118,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cp33buoo5xtgx"
 
-[node name="Normal" type="Node" parent="StateMachine" index="2" unique_id=1522493653]
+[node name="Normal" type="Node" parent="StateMachine" index="4" unique_id=1522493653]
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine/Normal" index="0" unique_id=1944138119 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_ay312")
@@ -131,7 +154,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="LaunchShell" type="Node" parent="StateMachine" index="3" unique_id=1595853023]
+[node name="LaunchShell" type="Node" parent="StateMachine" index="5" unique_id=1595853023]
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine/LaunchShell" index="0" unique_id=1401893524 node_paths=PackedStringArray("next_state")]
 script = ExtResource("12_6p51q")
@@ -169,7 +192,7 @@ script = ExtResource("8_s16t0")
 changes = Array[ExtResource("9_w3w5t")]([SubResource("Resource_17bdl")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
-[node name="Naked" type="Node" parent="StateMachine" index="4" unique_id=327813577]
+[node name="Naked" type="Node" parent="StateMachine" index="6" unique_id=327813577]
 
 [node name="FleeFromPlayerState" type="Node" parent="StateMachine/Naked" index="0" unique_id=1264551 node_paths=PackedStringArray("next_state")]
 script = ExtResource("12_2wn3u")
@@ -186,7 +209,7 @@ metadata/_custom_type_script = "uid://mycfudgv475a"
 
 [node name="MoveTowardsEntityState" type="Node" parent="StateMachine/Naked" index="1" unique_id=377656284 node_paths=PackedStringArray("next_state")]
 script = ExtResource("14_7nljg")
-wait_time = 0.3
+wait_time = 0.0
 stop_distance = 0.0
 rotation_speed = 8.0
 entity_group = "Enemy"
@@ -200,7 +223,6 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="BackIntoShell" type="Node" parent="StateMachine/Naked" index="2" unique_id=78432022 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_bjcu4")
-wait_time = 0.7
 next_state = NodePath("../../ShellStart")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Locomotion/transition_request": "shell",
