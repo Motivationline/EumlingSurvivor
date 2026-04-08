@@ -156,7 +156,6 @@ ambient_light_color = Color(0.774, 0.8727, 0.9, 1)
 tonemap_mode = 4
 glow_enabled = true
 glow_intensity = 0.2
-glow_blend_mode = 1
 adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 1.51
@@ -173,15 +172,15 @@ size = Vector2(30, 30)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6snc"]
 albedo_color = Color(0.14327875, 0.10561857, 0.04273735, 1)
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("player_spawn", "goal_area")]
+[node name="Level" type="Node3D" unique_id=1274628168 node_paths=PackedStringArray("player_spawn", "goal_area")]
 script = ExtResource("1_i8d2g")
 player_spawn = NodePath("PlayerSpawnMarker")
 goal_area = NodePath("GoalArea")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=2081127798]
 navigation_mesh = SubResource("NavigationMesh_wbp8f")
 
-[node name="FloorGridMap" type="GridMap" parent="NavigationRegion3D"]
+[node name="FloorGridMap" type="GridMap" parent="NavigationRegion3D" unique_id=1148399419]
 mesh_library = SubResource("MeshLibrary_7qx2j")
 cell_size = Vector3(10, 1, 10)
 cell_center_x = false
@@ -192,64 +191,64 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="BorderGridMap" type="GridMap" parent="NavigationRegion3D"]
+[node name="BorderGridMap" type="GridMap" parent="NavigationRegion3D" unique_id=2061328752]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = ExtResource("2_w8dl8")
 cell_size = Vector3(0.5, 0.5, 0.5)
-collision_layer = 16
-collision_mask = 16
+collision_layer = 512
+collision_mask = 0
 data = {
 "cells": PackedInt32Array(10, 8, 1, 10, 7, 1, 10, 6, 1, 10, 5, 1, 10, 4, 1, 10, 3, 1, 10, 2, 1, 10, 1, 1, 10, 0, 1, 10, 65535, 1, 10, 65534, 1, 10, 65533, 1, 10, 65532, 1, 10, 65531, 1, 10, 65530, 1, 10, 65529, 1, 10, 65528, 1, 10, 65527, 1, 10, 65526, 1, 10, 9, 1, 10, 10, 1, 65526, 10, 1, 65527, 10, 1, 65528, 10, 1, 65529, 10, 1, 65530, 10, 1, 65531, 10, 1, 65532, 10, 1, 65533, 10, 1, 65534, 10, 1, 65535, 10, 1, 7, 10, 1, 8, 10, 1, 9, 10, 1, 6, 10, 1, 5, 10, 1, 4, 10, 1, 3, 10, 1, 2, 10, 1, 1, 10, 1, 0, 10, 1, 65525, 10, 1, 65525, 9, 1, 65525, 8, 1, 65525, 6, 1, 65525, 5, 1, 65525, 4, 1, 65525, 3, 1, 65525, 2, 1, 65525, 1, 1, 65525, 0, 1, 65525, 65535, 1, 65525, 65534, 1, 65525, 65533, 1, 65525, 65532, 1, 65525, 65530, 1, 65525, 65529, 1, 65525, 65528, 1, 65525, 65527, 1, 65525, 65526, 1, 65525, 65525, 1, 65526, 65525, 1, 65525, 7, 1, 65527, 65525, 1, 65528, 65525, 1, 65529, 65525, 1, 65530, 65525, 1, 65531, 65525, 1, 65532, 65525, 1, 65533, 65525, 1, 2, 65525, 1, 3, 65525, 1, 4, 65525, 1, 5, 65525, 1, 6, 65525, 1, 7, 65525, 1, 8, 65525, 1, 9, 65525, 1, 10, 65525, 1, 65533, 65524, 1, 65533, 65523, 1, 65533, 65522, 1, 65533, 65520, 1, 65533, 65519, 1, 65534, 65519, 1, 65535, 65519, 1, 0, 65519, 1, 1, 65519, 1, 2, 65519, 1, 2, 65524, 1, 2, 65523, 1, 2, 65522, 1, 2, 65521, 1, 2, 65520, 1, 65533, 65521, 1, 65525, 65531, 1)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="PlayerSpawnMarker" type="Marker3D" parent="."]
+[node name="PlayerSpawnMarker" type="Marker3D" parent="." unique_id=1268602934]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
 
-[node name="GoalArea" type="Area3D" parent="."]
+[node name="GoalArea" type="Area3D" parent="." unique_id=1435346078]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalArea" unique_id=1505897220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_wbp8f")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1908357777]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.104352, 12.5917, 7.49343)
 fov = 45.0
 script = ExtResource("3_gv032")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=682111440]
 transform = Transform3D(1, 0, 0, 0, 0.713593, 0.700561, 0, -0.700561, 0.713593, 0, 4.44658, 0)
 
-[node name="Lights" type="Node3D" parent="."]
+[node name="Lights" type="Node3D" parent="." unique_id=812292997]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=280122383]
 transform = Transform3D(0.802373, -0.579826, 0.141416, 0.0617642, 0.316347, 0.946631, -0.593617, -0.750817, 0.289641, -5.2903, 7.71908, -5.02786)
 light_bake_mode = 1
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights" unique_id=897261680]
 environment = SubResource("Environment_weh0f")
 
-[node name="Env" type="Node3D" parent="."]
+[node name="Env" type="Node3D" parent="." unique_id=2141286735]
 
-[node name="Rocks" type="MeshInstance3D" parent="Env"]
+[node name="Rocks" type="MeshInstance3D" parent="Env" unique_id=351744148]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.067417145, -0.89269066, 0.008252621)
 mesh = SubResource("BoxMesh_7ms32")
 surface_material_override/0 = SubResource("StandardMaterial3D_ejc1f")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Env"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Env" unique_id=605874503]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015992403, -1.3538284, -1.2509851)
 mesh = SubResource("PlaneMesh_q377s")
 surface_material_override/0 = SubResource("StandardMaterial3D_y6snc")
 
-[node name="jungel_tree_01" parent="Env" instance=ExtResource("4_vwa4q")]
+[node name="jungel_tree_01" parent="Env" unique_id=1224688996 instance=ExtResource("4_vwa4q")]
 transform = Transform3D(0.32860383, 0.9427875, -0.05630976, -0.92601335, 0.30988175, -0.21557485, -0.18579194, 0.12298233, 0.97486234, 0.01871109, -3.6613808, -4.8108673)
 
-[node name="jungel_tree_02" parent="Env" instance=ExtResource("4_vwa4q")]
+[node name="jungel_tree_02" parent="Env" unique_id=1894710552 instance=ExtResource("4_vwa4q")]
 transform = Transform3D(-0.18151112, 0.13377173, 0.97424775, -0.9113958, 0.3492033, -0.21774954, -0.36933923, -0.92744935, 0.058534715, -4.439361, -4.138774, -0.3712511)
 
-[node name="jungel_tree_03" parent="Env" instance=ExtResource("4_vwa4q")]
+[node name="jungel_tree_03" parent="Env" unique_id=1522321616 instance=ExtResource("4_vwa4q")]
 transform = Transform3D(-0.40642014, -0.6806266, 0.60956556, -0.83202726, 0.55138016, 0.060914278, -0.37756222, -0.48241848, -0.79039186, -1.568696, -4.253603, 3.5375018)
