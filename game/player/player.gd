@@ -310,8 +310,10 @@ func reset_preview_color():
 	%AttackVisual.on_cooldown = false
 
 
-func end_of_level():
-	var amount_to_regenerate = get_value(Enum.UPGRADE.HEALTH_REGENERATION)
+func end_of_level(level: Level):
+	var amount_to_regenerate: float = get_value(Enum.UPGRADE.HEALTH_REGENERATION)
+	if level.is_boss_level:
+		amount_to_regenerate += floorf(max_health / 2 + amount_to_regenerate)
 	health += amount_to_regenerate
 
 func level_start():
