@@ -70,7 +70,7 @@
 [ext_resource type="AudioStream" uid="uid://dtwjmuugoxay2" path="res://assets/characters/eumling/V2/sounds/death_6.wav" id="67_m1cdu"]
 [ext_resource type="Script" uid="uid://d0y7cgck1opqh" path="res://game/player/abilities/social.gd" id="68_3p3em"]
 [ext_resource type="PackedScene" uid="uid://co3vv3d8hdp1s" path="res://game/aoes/social_aoe/social_aoe.tscn" id="69_0jq7b"]
-[ext_resource type="Script" path="res://game/player/abilities/investigative.gd" id="71_d76hv"]
+[ext_resource type="Script" uid="uid://ca2lwyvrascpj" path="res://game/player/abilities/investigative.gd" id="71_d76hv"]
 [ext_resource type="Script" uid="uid://b1wawxra3pubk" path="res://game/player/abilities/artistic/artistic.gd" id="72_6ynhj"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="73_jcmuf"]
 
@@ -159,8 +159,8 @@ stream_5/stream = ExtResource("67_m1cdu")
 [sub_resource type="Curve3D" id="Curve3D_6ynhj"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1236976938 node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
-collision_layer = 2
-collision_mask = 17
+collision_layer = 514
+collision_mask = 529
 script = ExtResource("1_b2mth")
 eumling_visuals = NodePath("Eumling_v2")
 spawner = NodePath("DefaultAttack/AttackSpawner")
