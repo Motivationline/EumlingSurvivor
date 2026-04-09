@@ -4,10 +4,8 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_38s5d"]
 [ext_resource type="Texture2D" uid="uid://bx2vit8nl77pn" path="res://assets/models/5-beach/obstacle_stone/ObstacleStone_Beach_Material_Base_color.png" id="3_0v6up"]
 [ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="3_6of2o"]
-[ext_resource type="PackedScene" uid="uid://cex68esqyxyua" path="res://game/enemies/5-Beach/tentacle_slapper.tscn" id="3_crdrx"]
 [ext_resource type="LightmapGIData" uid="uid://vvj4j8wgtor3" path="res://game/levels/5-Bxx-Beach/Lightmaps/B19.lmbake" id="4_eswm8"]
 [ext_resource type="PackedScene" uid="uid://bqp7c4em584k2" path="res://game/enemies/5-Beach/puffer_fish.tscn" id="4_f6dke"]
-[ext_resource type="PackedScene" uid="uid://yki87lnkx75s" path="res://game/enemies/5-Beach/ninja_starfish.tscn" id="5_0v6up"]
 [ext_resource type="PackedScene" uid="uid://cbiqexo8lchvg" path="res://game/enemies/5-Beach/environment/quick_sand.tscn" id="7_eswm8"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_bhqsj"]
@@ -163,17 +161,8 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="LightmapGI" parent="." index="6" unique_id=1173002347]
 light_data = ExtResource("4_eswm8")
 
-[node name="tentacle_slapper" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("3_crdrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -4)
-
-[node name="puffer_fish" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=788670397 instance=ExtResource("4_f6dke")]
+[node name="puffer_fish" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=788670397 instance=ExtResource("4_f6dke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0.5)
-
-[node name="NinjaStarfish" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="2" unique_id=1368277908 instance=ExtResource("5_0v6up")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -2)
-
-[node name="NinjaStarfish2" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="3" unique_id=925816424 instance=ExtResource("5_0v6up")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 
 [node name="Box" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="0" unique_id=1837394296 instance=ExtResource("3_6of2o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, 1.25)
