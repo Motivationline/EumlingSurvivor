@@ -11,10 +11,10 @@ extends Ability
 ## How many degrees should the base weakspot have?
 @export_range(0, 360) var weakspot_size_base: int = 20
 ## Weakspots additional size per additional eumling 
-@export_range(0, 360) var weakspot_size_additional: int = 20
+@export_range(-360, 360) var weakspot_size_additional: int = 20
 
 ## How much more damage should a projectile do if it hits the weakspot?
-# @export var damage_multiplier: float = 2.0
+@export var damage_multiplier: float = 2.0
 
 var degrees: float: 
 	get(): 
