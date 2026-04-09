@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bi6j4ck348x3r"]
+
+[ext_resource type="PackedScene" uid="uid://cliwcq4c6wxo" path="res://game/levels/5-Bxx-Beach/B13.tscn" id="1_p47a0"]
+[ext_resource type="PackedScene" uid="uid://yki87lnkx75s" path="res://game/enemies/5-Beach/ninja_starfish.tscn" id="2_45x3l"]
+[ext_resource type="PackedScene" uid="uid://cex68esqyxyua" path="res://game/enemies/5-Beach/tentacle_slapper.tscn" id="3_ccx6i"]
+[ext_resource type="PackedScene" uid="uid://du3rk8ailumbh" path="res://game/enemies/5-Beach/clam_turret.tscn" id="4_mun7l"]
+
+[node name="Level" unique_id=1268816340 instance=ExtResource("1_p47a0")]
+
+[node name="NinjaStarfish2" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=1898691 instance=ExtResource("2_45x3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3845172, 0, 2.385214)
+
+[node name="NinjaStarfish3" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="2" unique_id=700406659 instance=ExtResource("2_45x3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3845172, 0, -2.350661)
+
+[node name="tentacle_slapper" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="3" unique_id=555977843 instance=ExtResource("3_ccx6i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29022026, 0, -1.240034)
+
+[node name="clam_turret" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="4" unique_id=1608973688 instance=ExtResource("4_mun7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2902212, 0, -3.7860618)

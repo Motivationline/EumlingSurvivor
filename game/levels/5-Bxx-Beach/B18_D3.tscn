@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ng217wy0jij7"]
+
+[ext_resource type="PackedScene" uid="uid://bu4bmaq4t15ur" path="res://game/levels/5-Bxx-Beach/B18_D1.tscn" id="1_302f1"]
+[ext_resource type="PackedScene" uid="uid://du3rk8ailumbh" path="res://game/enemies/5-Beach/clam_turret.tscn" id="2_q88rv"]
+[ext_resource type="PackedScene" uid="uid://bqp7c4em584k2" path="res://game/enemies/5-Beach/puffer_fish.tscn" id="3_f6c1w"]
+[ext_resource type="PackedScene" uid="uid://yki87lnkx75s" path="res://game/enemies/5-Beach/ninja_starfish.tscn" id="4_8i8vm"]
+
+[node name="Level" unique_id=1268816340 instance=ExtResource("1_302f1")]
+
+[node name="clam_turret" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="2" unique_id=1898691 instance=ExtResource("2_q88rv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -3)
+
+[node name="puffer_fish" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="3" unique_id=747634150 instance=ExtResource("3_f6c1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.76431847, 0, -0.56318265)
+
+[node name="NinjaStarfish" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="4" unique_id=1201923662 instance=ExtResource("4_8i8vm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.982504, 0, 0)

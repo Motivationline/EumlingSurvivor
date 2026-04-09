@@ -4,9 +4,7 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_lbnsb"]
 [ext_resource type="PackedScene" uid="uid://cex68esqyxyua" path="res://game/enemies/5-Beach/tentacle_slapper.tscn" id="3_qbhcm"]
 [ext_resource type="Texture2D" uid="uid://bx2vit8nl77pn" path="res://assets/models/5-beach/obstacle_stone/ObstacleStone_Beach_Material_Base_color.png" id="3_vip6t"]
-[ext_resource type="PackedScene" uid="uid://bqp7c4em584k2" path="res://game/enemies/5-Beach/puffer_fish.tscn" id="4_kukyi"]
 [ext_resource type="LightmapGIData" uid="uid://cpf0rxde71hf" path="res://game/levels/5-Bxx-Beach/Lightmaps/B12.lmbake" id="4_ls5ad"]
-[ext_resource type="PackedScene" uid="uid://yki87lnkx75s" path="res://game/enemies/5-Beach/ninja_starfish.tscn" id="5_23txd"]
 [ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="6_kukyi"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_23txd"]
@@ -102,12 +100,6 @@ light_data = ExtResource("4_ls5ad")
 
 [node name="tentacle_slapper" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("3_qbhcm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3507769)
-
-[node name="puffer_fish" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=855579770 instance=ExtResource("4_kukyi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.214046, 0, 0)
-
-[node name="NinjaStarfish" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="2" unique_id=1856848981 instance=ExtResource("5_23txd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.207329, 0, -0.9251132)
 
 [node name="Box" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="0" unique_id=1837394296 instance=ExtResource("6_kukyi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2668843, 0, 0.25337708)
