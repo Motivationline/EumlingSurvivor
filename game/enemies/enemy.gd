@@ -100,7 +100,7 @@ func _hurt_by(_attacker: HitBox):
 	if projectile is Projectile:
 		hit_vulnerability = vulnerability_display.try_to_hit(projectile)
 		if hit_vulnerability:
-			damage *= 2 # TODO copy this value from the I ability
+			damage *= Player.player.get_ability(Enum.EUMLING_TYPE.INVESTIGATIVE).multiplier
 	damage *= incoming_damage_multiplier
 
 	health -= damage

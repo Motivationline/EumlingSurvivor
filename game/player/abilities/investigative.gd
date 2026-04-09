@@ -13,8 +13,10 @@ extends Ability
 ## Weakspots additional size per additional eumling 
 @export_range(-360, 360) var weakspot_size_additional: int = 20
 
-## How much more damage should a projectile do if it hits the weakspot?
-@export var damage_multiplier: float = 2.0
+## With what amount should the projectile damage be multiplied if it hits the weakspot?
+@export var damage_multiplier_base: float = 2.0
+## Additional multiplier per eumling (same formula as all others, base + (eumling-1) * additional)?
+@export var damage_multiplier_additional: float = 1.0
 
 var degrees: float: 
 	get(): 
@@ -22,6 +24,10 @@ var degrees: float:
 var cooldown: float: 
 	get(): 
 		return max(minimum_reappear_time, reappear_time_base * pow(reappear_time_multiplier, (amt_eumlings - 1)))
+
+var multiplier: float:
+	get():
+		return damage_multiplier_base + (amt_eumlings - 1) * damage_multiplier_additional
 
 func _ready() -> void:
 	_type = Enum.EUMLING_TYPE.INVESTIGATIVE

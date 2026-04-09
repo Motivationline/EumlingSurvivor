@@ -2,6 +2,8 @@
 extends CharacterBody3D
 class_name Player
 
+static var player: Player
+
 var speed: float
 
 var health: float = 10.0:
@@ -132,6 +134,8 @@ func _ready() -> void:
 	
 	_abilities.set(Enum.EUMLING_TYPE.SOCIAL, $SpecialAbilities/Social)
 	_abilities.set(Enum.EUMLING_TYPE.INVESTIGATIVE, $SpecialAbilities/Investigative)
+
+	Player.player = self
 
 # reset player to its un-upgraded state
 func reset():
