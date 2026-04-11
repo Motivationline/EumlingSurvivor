@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamInteractive" format=3 uid="uid://bmx8bqhoe4jv1"]
+
+[ext_resource type="AudioStream" uid="uid://bk38g6dakvpyv" path="res://assets/sound/music/raw/CombatVolcano_intro.ogg" id="1_i4cls"]
+[ext_resource type="AudioStream" uid="uid://b1jpwx6rwg4t0" path="res://assets/sound/music/raw/CombatVolcano_loop.ogg" id="2_lrq7i"]
+[ext_resource type="AudioStream" uid="uid://872wibpd63q0" path="res://assets/sound/music/raw/CombatVolcano_tail.ogg" id="3_todnn"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_g1d1m"]
+stream_count = 2
+stream_0/stream = ExtResource("2_lrq7i")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_todnn")
+stream_1/volume = -60.0
+
+[resource]
+clip_count = 2
+clip_0/name = &"Intro"
+clip_0/stream = ExtResource("1_i4cls")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Loop"
+clip_1/stream = SubResource("AudioStreamSynchronized_g1d1m")
+clip_1/auto_advance = 1
+clip_1/next_clip = 1

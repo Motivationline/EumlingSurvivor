@@ -1,14 +1,15 @@
 class_name SongList extends Node
 
 enum TRACK {
-	MENU, 
-	COMBAT_FOREST, 
-	COMBAT_ISLAND,
-	BOSS_GENERIC,
-	BOSS_ISLAND, 
-	BOSS_VOLCANO,
-	CHASE,
-	GAMBA
+	MENU = 0, 
+	COMBAT_FOREST = 1, 
+	COMBAT_ISLAND = 2,
+	COMBAT_VOLCANO = 8,
+	BOSS_GENERIC = 3,
+	BOSS_ISLAND = 4, 
+	BOSS_VOLCANO = 5,
+	CHASE = 6,
+	GAMBA = 7
 }
 enum ENVNOISE {
 	FOREST,
@@ -19,6 +20,7 @@ static var tracks:Dictionary[TRACK, Array] = {
 	TRACK.MENU :["res://assets/sound/music/menu.tres", null],
 	TRACK.COMBAT_FOREST:["res://assets/sound/music/combat_forest.tres",ENVNOISE.FOREST], 
 	TRACK.COMBAT_ISLAND:["res://assets/sound/music/combat_island.tres", ENVNOISE.ISLAND],
+	TRACK.COMBAT_VOLCANO:["res://assets/sound/music/combat_volcano.tres", ENVNOISE.VOLCANO],
 	TRACK.BOSS_GENERIC:["res://assets/sound/music/boss_generic.tres", ENVNOISE.FOREST],
 	TRACK.BOSS_ISLAND:["res://assets/sound/music/boss_island.tres", ENVNOISE.ISLAND], 
 	TRACK.BOSS_VOLCANO:["res://assets/sound/music/boss_volcano.tres", ENVNOISE.VOLCANO],
