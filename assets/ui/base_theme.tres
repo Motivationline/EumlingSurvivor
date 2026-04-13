@@ -1,9 +1,42 @@
 [gd_resource type="Theme" format=3 uid="uid://u1iy4y0s7n01"]
 
+[ext_resource type="Texture2D" uid="uid://dslle4mecxwob" path="res://assets/ui/Buttons/SliderKnobLiane.png" id="1_srpco"]
+[ext_resource type="Texture2D" uid="uid://dwdgcisp8i7v" path="res://assets/ui/Buttons/SliderFillLiane.png" id="2_vf4fy"]
+[ext_resource type="Texture2D" uid="uid://dxasw76npp8te" path="res://assets/ui/Buttons/SliderFillGreyLiane.png" id="3_tljjm"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_oa6i2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_laso1"]
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srpco"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tljjm"]
 bg_color = Color(0.6627046, 0.4965092, 0.932826, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tljjm"]
+atlas = ExtResource("2_vf4fy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oa6i2"]
+texture = SubResource("AtlasTexture_tljjm")
+expand_margin_top = 15.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p80ec"]
+atlas = ExtResource("2_vf4fy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_my0ym"]
+texture = SubResource("AtlasTexture_p80ec")
+expand_margin_top = 15.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa6i2"]
+atlas = ExtResource("3_tljjm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p80ec"]
+texture = SubResource("AtlasTexture_oa6i2")
+expand_margin_top = 15.0
+expand_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa6i2"]
 bg_color = Color(0.85765445, 0.493878, 0.24525294, 1)
@@ -19,13 +52,23 @@ bg_color = Color(0.12036122, 0.70451176, 0.49857086, 1)
 
 [resource]
 Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("4_oa6i2")
+Button/styles/normal = SubResource("StyleBoxTexture_laso1")
 COMMON/base_type = &"PanelContainer"
 COMMON/styles/panel = SubResource("StyleBoxFlat_srpco")
 EPIC/base_type = &"PanelContainer"
 EPIC/styles/panel = SubResource("StyleBoxFlat_tljjm")
+HSlider/constants/center_grabber = 10
+HSlider/icons/grabber = ExtResource("1_srpco")
+HSlider/icons/grabber_disabled = ExtResource("1_srpco")
+HSlider/icons/grabber_highlight = ExtResource("1_srpco")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_oa6i2")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_my0ym")
+HSlider/styles/slider = SubResource("StyleBoxTexture_p80ec")
 LEGENDARY/base_type = &"PanelContainer"
 LEGENDARY/styles/panel = SubResource("StyleBoxFlat_oa6i2")
 Label/font_sizes/font_size = 48
+Label/fonts/font = ExtResource("4_oa6i2")
 LineEdit/colors/font_color = Color(0.10374334, 0.10374365, 0.10374341, 1)
 LineEdit/colors/font_placeholder_color = Color(0.08855977, 0.08855999, 0.088559784, 0.6)
 LineEdit/styles/normal = SubResource("StyleBoxFlat_f0rfe")

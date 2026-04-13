@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://mxqf8msxqbla"]
+
+[ext_resource type="Texture2D" uid="uid://3snkp15vytln" path="res://assets/ui/pauseMenu/BackdropBackpack.png" id="1_p4w6n"]
+[ext_resource type="Texture2D" uid="uid://bcw4gmyo2mhym" path="res://assets/ui/Eumlex/ButtonStickerSquare.png" id="2_1lmq3"]
+[ext_resource type="Texture2D" uid="uid://bsh5cti8q2hqs" path="res://assets/ui/pauseMenu/PaperRectangleInfo.png" id="3_anhw7"]
+[ext_resource type="Texture2D" uid="uid://8bqwxkcdktcv" path="res://assets/ui/Buttons/HomeButton.png" id="4_o7o6c"]
+[ext_resource type="Theme" uid="uid://u1iy4y0s7n01" path="res://assets/ui/base_theme.tres" id="4_x5f4c"]
+[ext_resource type="Texture2D" uid="uid://dkppdxscctjp0" path="res://assets/ui/Buttons/LanguageButton.png" id="5_jiye4"]
+[ext_resource type="Texture2D" uid="uid://b4puyhx8d2gim" path="res://assets/ui/Buttons/PlayButton.png" id="6_mcc2h"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="7_1lmq3"]
+[ext_resource type="Texture2D" uid="uid://dslle4mecxwob" path="res://assets/ui/Buttons/SliderKnobLiane.png" id="7_070v4"]
+[ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/StartScreen/graphics_settings.tscn" id="8_anhw7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5f4c"]
+texture = ExtResource("7_070v4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4w6n"]
+texture = ExtResource("7_070v4")
+
+[node name="BasePauseMenu" type="Control" unique_id=1966773529]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackdropBackpack" type="TextureRect" parent="." unique_id=860696233]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -942.0
+offset_top = -431.5
+offset_right = 236.0
+offset_bottom = 431.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_p4w6n")
+
+[node name="EumlingeGrid" type="GridContainer" parent="." unique_id=1871950785]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -641.0
+offset_top = -160.99997
+offset_right = -172.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3163819, 1.3163819)
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="EumlingSticker1" type="TextureButton" parent="EumlingeGrid" unique_id=1925753235]
+layout_mode = 2
+texture_normal = ExtResource("2_1lmq3")
+
+[node name="EumlingSticker2" type="TextureButton" parent="EumlingeGrid" unique_id=963138109]
+layout_mode = 2
+texture_normal = ExtResource("2_1lmq3")
+
+[node name="EumlingSticker3" type="TextureButton" parent="EumlingeGrid" unique_id=2089497161]
+layout_mode = 2
+texture_normal = ExtResource("2_1lmq3")
+
+[node name="EumlingSticker4" type="TextureButton" parent="EumlingeGrid" unique_id=2141189077]
+layout_mode = 2
+texture_normal = ExtResource("2_1lmq3")
+
+[node name="EumlingSticker5" type="TextureButton" parent="EumlingeGrid" unique_id=465539317]
+layout_mode = 2
+texture_normal = ExtResource("2_1lmq3")
+
+[node name="EumlingSticker6" type="TextureButton" parent="EumlingeGrid" unique_id=1604060642]
+layout_mode = 2
+texture_normal = ExtResource("2_1lmq3")
+
+[node name="Buttons" type="HBoxContainer" parent="." unique_id=833906292]
+layout_mode = 0
+offset_left = 1259.0
+offset_top = 115.0
+offset_right = 1859.0
+offset_bottom = 259.0
+theme_override_constants/separation = 90
+
+[node name="HomeButton" type="TextureButton" parent="Buttons" unique_id=816544524]
+layout_mode = 2
+texture_normal = ExtResource("4_o7o6c")
+
+[node name="LanguageButton" type="TextureButton" parent="Buttons" unique_id=1331616518]
+layout_mode = 2
+texture_normal = ExtResource("5_jiye4")
+
+[node name="PlayButton" type="TextureButton" parent="Buttons" unique_id=555258968]
+layout_mode = 2
+texture_normal = ExtResource("6_mcc2h")
+
+[node name="SettingsTabContainer" type="TabContainer" parent="." unique_id=1951920544]
+layout_mode = 0
+offset_left = 1263.0
+offset_top = 292.0
+offset_right = 1859.0
+offset_bottom = 961.0
+theme_override_fonts/font = ExtResource("7_1lmq3")
+theme_override_font_sizes/font_size = 30
+current_tab = 1
+
+[node name="Graphics" type="TabBar" parent="SettingsTabContainer" unique_id=303924558]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_1lmq3")
+metadata/_tab_index = 0
+
+[node name="GraphicsSettings" parent="SettingsTabContainer/Graphics" unique_id=1082587673 instance=ExtResource("8_anhw7")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -1380.0
+offset_top = -13.0
+offset_right = -1380.0
+offset_bottom = -13.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=288030327]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="SliderContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound" unique_id=469909064]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 17.0
+offset_right = 564.0
+offset_bottom = 507.0
+theme_override_constants/separation = 20
+
+[node name="MusicContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound/SliderContainer" unique_id=1679276315]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="SettingsTabContainer/Sound/SliderContainer/MusicContainer" unique_id=1760563457]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsTabContainer/Sound/SliderContainer/MusicContainer" unique_id=1512688196]
+layout_mode = 2
+theme = ExtResource("4_x5f4c")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_x5f4c")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p4w6n")
+
+[node name="SFXContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound/SliderContainer" unique_id=1330793806]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="SettingsTabContainer/Sound/SliderContainer/SFXContainer" unique_id=856575242]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="SettingsTabContainer/Sound/SliderContainer/SFXContainer" unique_id=1827583631]
+layout_mode = 2
+theme = ExtResource("4_x5f4c")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_x5f4c")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p4w6n")
+
+[node name="AmbienceContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound/SliderContainer" unique_id=2139129672]
+layout_mode = 2
+
+[node name="AmbienceLabel" type="Label" parent="SettingsTabContainer/Sound/SliderContainer/AmbienceContainer" unique_id=1172880172]
+layout_mode = 2
+text = "Ambience"
+
+[node name="AmbienceSlider" type="HSlider" parent="SettingsTabContainer/Sound/SliderContainer/AmbienceContainer" unique_id=1212931515]
+layout_mode = 2
+theme = ExtResource("4_x5f4c")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_x5f4c")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p4w6n")
+
+[node name="InfoEumling" type="TextureRect" parent="." unique_id=686867953]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 296.0
+offset_top = 134.0
+offset_right = 904.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_anhw7")

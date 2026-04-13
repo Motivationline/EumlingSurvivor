@@ -96,3 +96,7 @@ func find_file(file_name: String, folder_location: String = "res://game/levels")
 
 func _on_jungle_pressed() -> void:
 	choose_area(areas[0])
+
+
+func _on_vulcano_island_pressed() -> void:
+	choose_area(areas[2])

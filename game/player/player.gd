@@ -35,8 +35,6 @@ signal died
 @onready var healthbar: StatusVisuals = $StatusVisuals
 @onready var hurtbox: HurtBox = $Hurtbox
 
-## UI Stuff
-@export var inv: Inv
 
 ## How long after being hit should the player be invulnerable
 @export var invulnerability_time: float = 0.5
@@ -99,7 +97,7 @@ var anim_player: AnimationTree
 
 @onready var attack_spawner: EntitySpawner = $DefaultAttack/AttackSpawner
 @onready var attack_cooldown: Timer = $DefaultAttack/AttackCooldown
-@onready var reload_progress: TextureProgressBar = $UI/Control/ReloadProgress
+
 
 @onready var hurtbox_collision: CollisionShape3D = $Hurtbox/HurtboxCollision
 var hurtbox_start_sizes: Vector2 = Vector2()
@@ -118,8 +116,6 @@ func _ready() -> void:
 
 	anim_player = eumling_visuals.find_child("AnimationTree")
 	
-	reload_progress.max_value = 1
-	reload_progress.step = 0
 
 	attack_cooldown.timeout.connect(reset_preview_color)
 	initial_preview_color = %ShittyVisual.get_child(0).material_override.albedo_color
@@ -212,9 +208,6 @@ func _physics_process(_delta: float) -> void:
 		%ShittyVisual.show()
 		prev_direction = look_direction_3d
 	%ShittyVisual.rotation.y = eumling_visuals.rotation.y
-
-func _process(_delta: float) -> void:
-	reload_progress.value = 1 - attack_cooldown.time_left / attack_cooldown.wait_time
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("test")):

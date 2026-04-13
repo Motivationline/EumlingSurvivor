@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://dr3up4v422lgg"]
+
+[ext_resource type="PackedScene" uid="uid://cvnp8vu3k7ul3" path="res://game/ui/Eumlex/EumlingInfoScene/eumling_info_scene.tscn" id="2_71bnp"]
+[ext_resource type="Texture2D" uid="uid://bioci7ev3qfh8" path="res://assets/ui/Eumlex/EumlingBackdropS.png" id="2_d8n6m"]
+[ext_resource type="Texture2D" uid="uid://q5d0meprymy7" path="res://assets/ui/Eumlex/Banner.png" id="3_1j0op"]
+[ext_resource type="Texture2D" uid="uid://cat8pebbs6orm" path="res://assets/ui/Eumlex/SquareFrame.png" id="3_3l5pn"]
+[ext_resource type="Texture2D" uid="uid://cjj03lo1voxow" path="res://assets/ui/Eumlex/TagBaseA.png" id="4_3l5pn"]
+[ext_resource type="Texture2D" uid="uid://bvb4cns6l455k" path="res://assets/ui/Eumlex/TagBaseC.png" id="5_3u4jb"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="5_d8n6m"]
+[ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="6_d8n6m"]
+[ext_resource type="Texture2D" uid="uid://biubocdcd3g0x" path="res://assets/ui/Buttons/SquareButton.png" id="10_a4y71"]
+[ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="11_2f624"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3u4jb"]
+viewport_path = NodePath("EumlingPreview/SubViewport")
+
+[node name="EumlexInfoPage" type="Control" unique_id=1340831237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1186.0
+offset_bottom = -238.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorBackground" type="TextureRect" parent="." unique_id=415432338]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 722.0
+offset_bottom = 830.0
+texture = ExtResource("2_d8n6m")
+
+[node name="Banner" type="TextureRect" parent="." unique_id=1121522541]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 28.0
+offset_right = 682.0
+offset_bottom = 169.0
+texture = ExtResource("3_1j0op")
+
+[node name="Name" type="Label" parent="." unique_id=888141994]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 40.0
+offset_right = 576.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_d8n6m")
+theme_override_font_sizes/font_size = 60
+text = "Game Name"
+horizontal_alignment = 1
+
+[node name="Beruf" type="Label" parent="." unique_id=386384428]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 140.0
+offset_right = 543.0
+offset_bottom = 207.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_d8n6m")
+theme_override_font_sizes/font_size = 35
+text = "Job Titel"
+horizontal_alignment = 1
+
+[node name="Taglines" type="HBoxContainer" parent="." unique_id=706411811]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 213.0
+offset_right = 473.0
+offset_bottom = 273.0
+theme_override_constants/separation = 10
+
+[node name="Tagline1" type="TextureRect" parent="Taglines" unique_id=1530801634]
+layout_mode = 2
+texture = ExtResource("4_3l5pn")
+
+[node name="Tagline2" type="TextureRect" parent="Taglines" unique_id=706823415]
+layout_mode = 2
+texture = ExtResource("5_3u4jb")
+
+[node name="Tagline3" type="TextureRect" parent="Taglines" unique_id=777719808]
+layout_mode = 2
+texture = ExtResource("6_d8n6m")
+
+[node name="EumlingPreview" type="TextureRect" parent="." unique_id=1356534360]
+layout_mode = 0
+offset_left = 74.00018
+offset_top = 307.0
+offset_right = 638.132
+offset_bottom = 901.1638
+scale = Vector2(0.53609973, 0.53609973)
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_3u4jb")
+
+[node name="SubViewport" type="SubViewport" parent="EumlingPreview" unique_id=1541320579]
+own_world_3d = true
+
+[node name="EumlingInfoScene" parent="EumlingPreview/SubViewport" unique_id=561343103 instance=ExtResource("2_71bnp")]
+
+[node name="frameScene" type="TextureRect" parent="." unique_id=740379524]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 301.0
+offset_right = 511.0
+offset_bottom = 744.0
+scale = Vector2(0.7058372, 0.7401608)
+texture = ExtResource("3_3l5pn")
+
+[node name="BeschreibungText" type="Label" parent="." unique_id=1758753502]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 305.0
+offset_right = 696.0
+offset_bottom = 623.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_d8n6m")
+theme_override_font_sizes/font_size = 35
+text = "Beschreibung"
+autowrap_mode = 2
+clip_text = true
+
+[node name="Faehigkeiten" type="HBoxContainer" parent="." unique_id=1276648284]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 650.0
+offset_right = 658.0
+offset_bottom = 789.0
+theme_override_constants/separation = 20
+
+[node name="Faehigkeit1" type="TextureRect" parent="Faehigkeiten" unique_id=1057545239]
+layout_mode = 2
+texture = ExtResource("10_a4y71")
+
+[node name="Faehigkeit2" type="TextureRect" parent="Faehigkeiten" unique_id=1071056857]
+layout_mode = 2
+texture = ExtResource("10_a4y71")
+
+[node name="Faehigkeit3" type="TextureRect" parent="Faehigkeiten" unique_id=1976911201]
+layout_mode = 2
+texture = ExtResource("10_a4y71")
+
+[node name="Faehigkeit4" type="TextureRect" parent="Faehigkeiten" unique_id=916347572]
+layout_mode = 2
+texture = ExtResource("10_a4y71")
+
+[node name="ExternalLink" type="TextureButton" parent="." unique_id=1603087190]
+visible = false
+layout_mode = 0
+offset_left = 403.0
+offset_top = 546.0
+offset_right = 668.0
+offset_bottom = 625.0
+texture_normal = ExtResource("11_2f624")

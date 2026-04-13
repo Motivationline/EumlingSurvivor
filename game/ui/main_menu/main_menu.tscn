@@ -2,11 +2,17 @@
 
 [ext_resource type="Script" uid="uid://g5x2uj6jmytl" path="res://game/ui/main_menu/main_menu.gd" id="1_2ww3u"]
 [ext_resource type="PackedScene" uid="uid://yj6cb30iarbn" path="res://assets/characters/eumling/V2/eumling_main_menu.tscn" id="2_mkp5f"]
-[ext_resource type="Texture2D" uid="uid://3hp5vwntnr0t" path="res://assets/ui/SketchButtonLang.png" id="3_0p1rw"]
 [ext_resource type="PackedScene" uid="uid://c5mujlqqgbrur" path="res://game/ui/main_menu/background_tile.tscn" id="3_mkp5f"]
-[ext_resource type="Texture2D" uid="uid://cx41tinmjl1ob" path="res://assets/ui/SketchButtonLangPressed.png" id="4_cwbgs"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_m1bca"]
+[ext_resource type="Texture2D" uid="uid://cugrushbfcx1k" path="res://assets/ui/startScreen/SSLeaf.png" id="6_k3ypk"]
 [ext_resource type="Script" uid="uid://b12g0nyew0m0i" path="res://global/settings/graphics_settings_component_shadow.gd" id="7_cwbgs"]
+[ext_resource type="Texture2D" uid="uid://ojhxwshovvum" path="res://assets/ui/startScreen/SSBranch.png" id="7_gscod"]
+[ext_resource type="Texture2D" uid="uid://bt5558nvt0n4" path="res://assets/ui/startScreen/SSPaper.png" id="8_1r6yo"]
+[ext_resource type="Texture2D" uid="uid://bwncwvrcqyodu" path="res://assets/ui/startScreen/SSArrow.png" id="9_egypv"]
+[ext_resource type="Texture2D" uid="uid://b7hqfx627sp1b" path="res://assets/ui/startScreen/EumlingLogoText.png" id="10_o0d2s"]
+[ext_resource type="Texture2D" uid="uid://c40q8petlro1j" path="res://assets/ui/Buttons/ButtonBook.png" id="11_orue0"]
+[ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="12_lnduv"]
+[ext_resource type="Texture2D" uid="uid://balp1dnlnfddm" path="res://assets/ui/Buttons/ButtonSettings.png" id="13_0bhyy"]
 
 [sub_resource type="Animation" id="Animation_x7xh0"]
 length = 0.001
@@ -75,16 +81,16 @@ script = ExtResource("1_2ww3u")
 [node name="Anchor" type="Marker3D" parent="." unique_id=758167787]
 
 [node name="Camera3D" type="Camera3D" parent="Anchor" unique_id=1004034311]
-transform = Transform3D(-0.98757887, 0, 0.15712401, 0, 1, 0, -0.15712401, 0, -0.987579, 0.6859336, 0.7411723, -5.47697)
+transform = Transform3D(-0.9875789, 0, 0.15712403, 0, 1, 0, -0.15712403, 0, -0.98757887, -0.45651042, 0.7411723, -5.47697)
 fov = 35.0
 size = 2.3674734
 
 [node name="Eumling_v3" parent="Anchor" unique_id=1527431081 instance=ExtResource("2_mkp5f")]
 transform = Transform3D(0, 0, 0.99999994, -1.4901161e-08, 1, 0, -1, -1.4901161e-08, -2.9802322e-08, 0, 0, 0)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1636785078]
+[node name="UIOverlay" type="CanvasLayer" parent="." unique_id=1636785078]
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=279491130]
+[node name="StaticUI" type="Control" parent="UIOverlay" unique_id=279491130]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,75 +98,100 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="EumlinclopediaButton" type="TextureButton" parent="CanvasLayer/Control" unique_id=457482511]
+[node name="leafOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1773096225]
 layout_mode = 0
-offset_left = 1468.0
-offset_top = 872.0
-offset_right = 5022.0
-offset_bottom = 2226.0
-scale = Vector2(0.11023261, 0.086632386)
-texture_normal = ExtResource("3_0p1rw")
-texture_pressed = ExtResource("4_cwbgs")
+offset_right = 1922.0
+offset_bottom = 1080.0
+texture = ExtResource("6_k3ypk")
 
-[node name="TextEumlingclopedia" type="Label" parent="CanvasLayer/Control" unique_id=2021821607]
+[node name="branchOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=854031140]
 layout_mode = 0
-offset_left = 1471.0
-offset_top = 896.0
-offset_right = 1853.0
-offset_bottom = 966.0
+offset_left = 674.0
+offset_top = 114.0
+offset_right = 1920.0
+offset_bottom = 893.0
+texture = ExtResource("7_gscod")
+
+[node name="paperOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1776084821]
+layout_mode = 0
+offset_left = 1183.0
+offset_top = 261.0
+offset_right = 1809.0
+offset_bottom = 1032.0
+texture = ExtResource("8_1r6yo")
+stretch_mode = 2
+
+[node name="arrowOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=2026483528]
+layout_mode = 0
+offset_left = 1479.0
+offset_top = 41.0
+offset_right = 1914.0
+offset_bottom = 387.0
+texture = ExtResource("9_egypv")
+stretch_mode = 2
+
+[node name="eumlingLogo" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1054500430]
+layout_mode = 0
+offset_left = 1049.0
+offset_top = 117.0
+offset_right = 2612.0
+offset_bottom = 1017.0
+texture = ExtResource("10_o0d2s")
+
+[node name="motivationlineLogo" type="Label" parent="UIOverlay/StaticUI" unique_id=309874239]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 1014.0
+offset_right = 277.0
+offset_bottom = 1063.0
 theme_override_fonts/font = ExtResource("4_m1bca")
-text = "Eumlingclopedia"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 30
+text = "motivationline©"
 
-[node name="PlayButton" type="TextureButton" parent="CanvasLayer/Control" unique_id=440277167]
+[node name="boostlineLoggo" type="Label" parent="UIOverlay/StaticUI" unique_id=183309719]
 layout_mode = 0
-offset_left = 751.00006
-offset_top = 872.00006
-offset_right = 4305.0
-offset_bottom = 2226.0
-scale = Vector2(0.08659281, 0.08659281)
-texture_normal = ExtResource("3_0p1rw")
-texture_pressed = ExtResource("4_cwbgs")
+offset_left = 321.0
+offset_top = 1014.0
+offset_right = 778.0
+offset_bottom = 1061.0
+theme_override_fonts/font = ExtResource("4_m1bca")
+theme_override_font_sizes/font_size = 30
+text = "Projekt BOoSTline©"
 
-[node name="TextPlay" type="Label" parent="CanvasLayer/Control" unique_id=336302969]
+[node name="EumlexButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1883851251]
 layout_mode = 0
-offset_left = 720.0
+offset_left = 44.0
+offset_top = 790.0
+offset_right = 310.0
+offset_bottom = 1017.0
+scale = Vector2(0.7946278, 0.7946278)
+texture_normal = ExtResource("11_orue0")
+
+[node name="playButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=877629100]
+layout_mode = 0
+offset_left = 1323.0
+offset_top = 633.0
+offset_right = 1591.3545
+offset_bottom = 713.0
+texture_normal = ExtResource("12_lnduv")
+
+[node name="Play" type="Label" parent="UIOverlay/StaticUI/playButton" unique_id=1330015026]
+layout_mode = 0
+offset_left = 83.0
+offset_top = -1.0
+offset_right = 179.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_m1bca")
+text = "Play"
+
+[node name="settingButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1014587333]
+layout_mode = 0
+offset_left = 311.0
 offset_top = 821.0
-offset_right = 1102.0
-offset_bottom = 1044.0
-theme_override_fonts/font = ExtResource("4_m1bca")
-theme_override_font_sizes/font_size = 125
-text = "Play"
-horizontal_alignment = 1
-
-[node name="PlayButton3" type="Button" parent="CanvasLayer/Control" unique_id=1456712270]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -52.5
-offset_top = -75.0
-offset_right = 52.5
-grow_horizontal = 2
-grow_vertical = 0
-text = "Play"
-
-[node name="EumlingclopediaButton2" type="Button" parent="CanvasLayer/Control" unique_id=1621067804]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -105.0
-offset_top = -75.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Eumlingclopedia"
+offset_right = 443.0
+offset_bottom = 960.0
+texture_normal = ExtResource("13_0bhyy")
 
 [node name="Background_Tile" parent="." unique_id=272850613 instance=ExtResource("3_mkp5f")]
 
@@ -193,7 +224,5 @@ autoplay = &"run"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1859118858]
 environment = SubResource("Environment_0p1rw")
 
-[connection signal="pressed" from="CanvasLayer/Control/EumlinclopediaButton" to="." method="_on_eumlingclopedia_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/PlayButton3" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/EumlingclopediaButton2" to="." method="_on_eumlingclopedia_button_pressed"]
+[connection signal="pressed" from="UIOverlay/StaticUI/EumlexButton" to="." method="_on_eumlex_button_pressed"]
+[connection signal="pressed" from="UIOverlay/StaticUI/playButton" to="." method="_on_play_button_pressed"]
