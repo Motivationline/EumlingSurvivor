@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://iu00eeesfs5v"]
 
 [ext_resource type="PackedScene" uid="uid://c3ulybc78i1ng" path="res://assets/characters/eumling/eumling_robot/eumling_robot.glb" id="1_g06lv"]
+[ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="2_21y6x"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g06lv"]
 animation = &"repair"
@@ -16,6 +17,8 @@ animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_efnok"]
 animation = &"repair"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_g06lv"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_pjdnt"]
 
@@ -37,28 +40,26 @@ input_3/name = "walk"
 input_3/auto_advance = false
 input_3/break_loop_at_end = false
 input_3/reset = true
-input_4/name = "attack"
-input_4/auto_advance = false
-input_4/break_loop_at_end = false
-input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ns0y1"]
-graph_offset = Vector2(-804.34656, 100.72385)
+nodes/output/position = Vector2(520, 140)
 nodes/Transition/node = SubResource("AnimationNodeTransition_xcngg")
 nodes/Transition/position = Vector2(40, 100)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_efnok")
-nodes/Animation/position = Vector2(-620, 20)
+nodes/Animation/position = Vector2(-720, -20)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_pjdnt")
-nodes/TimeScale/position = Vector2(-420, 40)
+nodes/TimeScale/position = Vector2(-500, -60)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_g06lv")
 "nodes/Animation 2/position" = Vector2(-720, 160)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_21y6x")
 "nodes/Animation 3/position" = Vector2(-720, 500)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_kxhmn")
-"nodes/Animation 4/position" = Vector2(-720, 660)
+"nodes/Animation 4/position" = Vector2(-40, 520)
 "nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_pjdnt")
 "nodes/Animation 5/position" = Vector2(-720, 340)
-node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"TimeScale", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 5", &"Transition", 3, &"Animation 3", &"Transition", 4, &"Animation 4", &"TimeScale", 0, &"Animation"]
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_g06lv")
+nodes/OneShot/position = Vector2(280, 260)
+node_connections = [&"output", 0, &"OneShot", &"Transition", 0, &"TimeScale", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 5", &"Transition", 3, &"Animation 3", &"TimeScale", 0, &"Animation", &"OneShot", 0, &"Transition", &"OneShot", 1, &"Animation 4"]
 
 [node name="eumling_robot" unique_id=1664501692 instance=ExtResource("1_g06lv")]
 
@@ -68,6 +69,9 @@ bone_name = "DEF_DRIVER"
 bone_idx = 43
 
 [node name="DriverSeat" type="Node3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" unique_id=60268122]
+transform = Transform3D(0.99970144, 0.024432378, 3.8213714e-15, -1.067969e-09, 4.3698343e-08, -1.0000001, -0.024432372, 0.9997016, 4.3711392e-08, 5.552422e-05, 0.0094050225, 0.10300323)
+
+[node name="mini_realistisch_geschick" parent="Armature/Skeleton3D/BoneAttachment3D/DriverSeat" index="0" unique_id=1002739651 instance=ExtResource("2_21y6x")]
 
 [node name="Leaf01" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(756396854) index="5" unique_id=260360788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13305664, 0, 0)
@@ -155,3 +159,6 @@ parameters/Transition/current_state = "idle"
 parameters/Transition/transition_request = ""
 parameters/Transition/current_index = 2
 parameters/TimeScale/scale = 0.0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
