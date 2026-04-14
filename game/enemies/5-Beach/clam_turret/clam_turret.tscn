@@ -140,6 +140,9 @@ distance_to_check = 3.0
 state_if_distance_is_smaller = NodePath("../StayClosed/StayClosedDisableHurtbox")
 state_if_distance_is_larger = NodePath("../Attack/AttackActivateHurtbox")
 state_if_no_node_found = NodePath("../Attack/AttackActivateHurtbox")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/turn/blend_amount": 0.0
+})
 metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
 [node name="StayClosed" type="Node" parent="StateMachine" index="2" unique_id=1816077607]
@@ -163,6 +166,9 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("4_nwada")
 rotation_speed = 3.0
 next_state = NodePath("../../DecideDistanceState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/turn/blend_amount": 1.0
+})
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="Attack" type="Node" parent="StateMachine" index="3" unique_id=937432065]
@@ -186,6 +192,9 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("4_nwada")
 rotation_speed = 3.0
 next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/turn/blend_amount": 1.0
+})
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine/Attack" index="3" unique_id=1318957079 node_paths=PackedStringArray("next_state")]
