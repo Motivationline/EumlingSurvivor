@@ -74,7 +74,8 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=625866388]
 script = ExtResource("4_m4lhv")
-max_distance = 100.0
+max_distance = 10.0
+lifetime = 1.8
 entity_to_spawn = ExtResource("5_m4lhv")
 amount_of_spawns = 10
 target_strategy = SubResource("Resource_5jds6")
@@ -95,6 +96,8 @@ metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
 [node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=493523713]
 script = ExtResource("4_m4lhv")
+max_distance = 10.0
+lifetime = 1.0
 entity_to_spawn = ExtResource("5_m4lhv")
 amount_of_spawns = 5
 target_strategy = SubResource("Resource_e4mls")

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="4_smaht"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_smaht"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_bn1p0"]
-[ext_resource type="PackedScene" uid="uid://moxemctnhju3" path="res://game/projectiles/dandelion_projectile/dandelion_projectile.tscn" id="7_on31h"]
+[ext_resource type="PackedScene" uid="uid://cmnvm6eui325k" path="res://game/projectiles/briar_knight_projectile/briar_knight_projectile.tscn" id="8_13mcr"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="8_fjwid"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="9_ry7xu"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="11_13mcr"]
@@ -88,7 +88,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/Attack/SpawnEntitiesState" index="0" unique_id=1897141963]
 script = ExtResource("6_bn1p0")
-entity_to_spawn = ExtResource("7_on31h")
+max_distance = 10.0
+lifetime = 1.8
+entity_to_spawn = ExtResource("8_13mcr")
 amount_of_spawns = 5
 target_strategy = SubResource("Resource_jgt0k")
 rotation_strategy = SubResource("Resource_g6d0x")
