@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cobx6obdkk5ja"]
 
 [ext_resource type="PackedScene" uid="uid://lvdcul04xb0h" path="res://assets/characters/enemies/squid/squid/squid.glb" id="1_4hem0"]
+[ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/manager/sound_requester.gd" id="2_bo2a4"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4hem0"]
 animation = &"squid_attack"
@@ -41,7 +42,7 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lie6o"]
-graph_offset = Vector2(-826.9684, -7.073677)
+graph_offset = Vector2(-612.2791, -81.20172)
 nodes/output/position = Vector2(660, 60)
 nodes/Transition/node = SubResource("AnimationNodeTransition_jp825")
 nodes/Transition/position = Vector2(-40, 60)
@@ -60,6 +61,7 @@ nodes/attack/position = Vector2(360, 60)
 node_connections = [&"output", 0, &"attack", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 3", &"Transition", 2, &"Animation 4", &"Transition", 3, &"Animation 5", &"attack", 0, &"Transition", &"attack", 1, &"Animation 2"]
 
 [node name="squid" unique_id=697439437 instance=ExtResource("1_4hem0")]
+script = ExtResource("2_bo2a4")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1743052987]
 tree_root = SubResource("AnimationNodeBlendTree_lie6o")

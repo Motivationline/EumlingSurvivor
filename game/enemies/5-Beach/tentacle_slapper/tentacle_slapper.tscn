@@ -14,6 +14,25 @@
 [ext_resource type="PackedScene" uid="uid://cobx6obdkk5ja" path="res://assets/characters/enemies/squid/squid/squid_prefab.tscn" id="7_8scmy"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="7_ehia0"]
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="7_f2r6p"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_52e3t"]
+[ext_resource type="AudioStream" uid="uid://bnxax3xh1ah3i" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_1.wav" id="14_03chf"]
+[ext_resource type="AudioStream" uid="uid://c0xnnjtum0jlc" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_2.wav" id="15_n8f8l"]
+[ext_resource type="AudioStream" uid="uid://bl24xl52qj4xf" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_3.wav" id="16_ug6ep"]
+[ext_resource type="AudioStream" uid="uid://b4xhv3hdenp5l" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_4.wav" id="17_0kbys"]
+[ext_resource type="AudioStream" uid="uid://c0jh64k78dmi2" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_5.wav" id="18_b3fnu"]
+[ext_resource type="AudioStream" uid="uid://bffns6512ui4t" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_6.wav" id="19_7hqhh"]
+[ext_resource type="AudioStream" uid="uid://cbtbqb0u3gi2v" path="res://assets/characters/enemies/squid/squid/sounds/head_attack_1.wav" id="20_rbnkd"]
+[ext_resource type="AudioStream" uid="uid://7mnunc5pytl7" path="res://assets/characters/enemies/squid/squid/sounds/head_attack_2.wav" id="21_30yp5"]
+[ext_resource type="AudioStream" uid="uid://cv6bh06r61jd3" path="res://assets/characters/enemies/squid/squid/sounds/head_attack_3.wav" id="22_acsjl"]
+[ext_resource type="AudioStream" uid="uid://dmjwhfcam4r0a" path="res://assets/characters/enemies/squid/squid/sounds/head_attack_4.wav" id="23_pp6qd"]
+[ext_resource type="AudioStream" uid="uid://3o4p06nsxo0d" path="res://assets/characters/enemies/squid/squid/sounds/head_attack_5.wav" id="24_rydu8"]
+[ext_resource type="AudioStream" uid="uid://dp176omisofga" path="res://assets/characters/enemies/squid/squid/sounds/head_attack_6.wav" id="25_v604u"]
+[ext_resource type="AudioStream" uid="uid://b46bw7ujrcljg" path="res://assets/characters/enemies/squid/squid/sounds/head_disappear_1.wav" id="26_kcops"]
+[ext_resource type="AudioStream" uid="uid://jukvaaheb0ae" path="res://assets/characters/enemies/squid/squid/sounds/head_disappear_2.wav" id="27_reefw"]
+[ext_resource type="AudioStream" uid="uid://pq4o8ww11a6" path="res://assets/characters/enemies/squid/squid/sounds/head_disappear_3.wav" id="28_3apxr"]
+[ext_resource type="AudioStream" uid="uid://8kuh5kq6v0c6" path="res://assets/characters/enemies/squid/squid/sounds/head_disappear_4.wav" id="29_l6xqn"]
+[ext_resource type="AudioStream" uid="uid://cv5dfdd4hjek3" path="res://assets/characters/enemies/squid/squid/sounds/head_disappear_5.wav" id="30_ieagg"]
+[ext_resource type="AudioStream" uid="uid://bbsnk88e7dwe6" path="res://assets/characters/enemies/squid/squid/sounds/head_disappear_6.wav" id="31_4bjjy"]
 
 [sub_resource type="Resource" id="Resource_ev1ev"]
 script = ExtResource("2_7b0cm")
@@ -46,6 +65,33 @@ easy = Array[ExtResource("2_7b0cm")]([SubResource("Resource_ev1ev")])
 medium = Array[ExtResource("2_7b0cm")]([SubResource("Resource_lmrcd")])
 hard = Array[ExtResource("2_7b0cm")]([SubResource("Resource_q0m84")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_52e3t"]
+streams_count = 6
+stream_0/stream = ExtResource("14_03chf")
+stream_1/stream = ExtResource("15_n8f8l")
+stream_2/stream = ExtResource("16_ug6ep")
+stream_3/stream = ExtResource("17_0kbys")
+stream_4/stream = ExtResource("18_b3fnu")
+stream_5/stream = ExtResource("19_7hqhh")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rxphi"]
+streams_count = 6
+stream_0/stream = ExtResource("20_rbnkd")
+stream_1/stream = ExtResource("21_30yp5")
+stream_2/stream = ExtResource("22_acsjl")
+stream_3/stream = ExtResource("23_pp6qd")
+stream_4/stream = ExtResource("24_rydu8")
+stream_5/stream = ExtResource("25_v604u")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qpc14"]
+streams_count = 6
+stream_0/stream = ExtResource("26_kcops")
+stream_1/stream = ExtResource("27_reefw")
+stream_2/stream = ExtResource("28_3apxr")
+stream_3/stream = ExtResource("29_l6xqn")
+stream_4/stream = ExtResource("30_ieagg")
+stream_5/stream = ExtResource("31_4bjjy")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0cktx"]
 radius = 0.5125733
@@ -148,6 +194,18 @@ metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="squid" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=697439437 instance=ExtResource("7_8scmy")]
 
+[node name="Appear" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1952633455 instance=ExtResource("13_52e3t")]
+stream = SubResource("AudioStreamRandomizer_52e3t")
+volume_db = -4.0
+
+[node name="Attack" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=412054081 instance=ExtResource("13_52e3t")]
+stream = SubResource("AudioStreamRandomizer_rxphi")
+volume_db = -5.0
+
+[node name="Disappear" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1498762659 instance=ExtResource("13_52e3t")]
+stream = SubResource("AudioStreamRandomizer_qpc14")
+volume_db = -3.0
+
 [node name="Hitbox" parent="." index="6" unique_id=519897081 instance=ExtResource("2_2uhhv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3544367, 0)
 collision_layer = 32
@@ -171,3 +229,5 @@ can_be_hit_by = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08487338, 0)
 shape = SubResource("SphereShape3D_280ev")
 debug_color = Color(0.8051653, 0.41541824, 0.082558624, 0.41960785)
+
+[connection signal="play_sound" from="Visuals/squid" to="SoundEffectManager" method="play_sound"]

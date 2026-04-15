@@ -1,7 +1,7 @@
 class_name SoundEffectManager extends Node3D
 
 var sound_list:Dictionary
-var debug:bool
+@export var debug:bool = false
 var debug_sound:String
 
 
@@ -12,8 +12,9 @@ var debug_list
 func _ready() :
 	sound_list_setup()
 	if debug:
-		debug_ui = $DebugUI
-		debug_list = $DebugUI/DebugSelector
+		pass
+		#debug_ui = $DebugUI
+		#debug_list = $DebugUI/DebugSelector
 		#debug_list_setup()
 
 func _process(_delta):
@@ -32,6 +33,8 @@ func play_sound(_sounds, _focus:bool = false, _persistent = false):
 		_sounds = [_sounds]
 	for i in _sounds.size():
 		var sound_name: String = _sounds[i]
+		if debug:
+				print("Sound " + sound_name)
 		if sound_list.has(sound_name):
 			var sound = sound_list[sound_name] 
 			if _persistent:
@@ -42,6 +45,7 @@ func play_sound(_sounds, _focus:bool = false, _persistent = false):
 			sound.play()
 			if _focus:
 				GlobalMusicManager.focus_on_bus(GlobalMusicManager.BUS_ID.SFX_UI, clampf(sound.stream.get_length(),0.7,3)*0.4, 20)
+			
 		else:
 			print("Sound '"+sound_name+"' is missing!")
 	
