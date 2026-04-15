@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_nmvb0"]
 [ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="3_3f0dq"]
 [ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="5_3f0dq"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="6_njorm"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="7_v5w0l"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_gddrh"]
 
@@ -12,11 +14,21 @@
 
 [sub_resource type="TorusMesh" id="TorusMesh_3f0dq"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3f0dq"]
-radius = 0.19384766
-height = 0.91223145
+[sub_resource type="SphereShape3D" id="SphereShape3D_poh6r"]
+radius = 0.28639454
 
-[node name="VenusFlytrap" unique_id=1898691 instance=ExtResource("1_63olg")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f4dm6"]
+radius = 0.17138672
+height = 1.3603516
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3f0dq"]
+radius = 0.09814453
+height = 0.6203613
+
+[node name="VenusFlytrap" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_63olg")]
+health = 100.0
+hitbox = NodePath("Visuals/Hitbox")
+hurtbox = NodePath("Visuals/Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("SpawnWait")
@@ -76,6 +88,29 @@ mesh = SubResource("SphereMesh_ah053")
 transform = Transform3D(0.2, 0, 0, 0, 0.3, 0, 0, 0, 0.2, 0, 0.7971696, -0.16950202)
 mesh = SubResource("TorusMesh_3f0dq")
 
+[node name="Hitbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=90185859 instance=ExtResource("6_njorm")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hitbox" index="0" unique_id=1938039715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7988713, -0.061836302)
+shape = SubResource("SphereShape3D_poh6r")
+debug_color = Color(0.9977191, 0, 0.16986793, 0.41960785)
+
+[node name="Hurtbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=2008997959 instance=ExtResource("7_v5w0l")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hurtbox" index="0" unique_id=259584305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5612289, 0)
+shape = SubResource("CapsuleShape3D_f4dm6")
+debug_color = Color(0.18114832, 0.64312917, 0, 0.41960785)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7" unique_id=640186275]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5606071, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29998696, 0)
 shape = SubResource("CapsuleShape3D_3f0dq")
