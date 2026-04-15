@@ -10,12 +10,21 @@
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_3u7q3"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_88q82"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="6_agu07"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="9_agu07"]
 
 [sub_resource type="Resource" id="Resource_5jds6"]
 script = ExtResource("6_agu07")
 metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 
 [sub_resource type="Resource" id="Resource_88q82"]
+script = ExtResource("6_3u7q3")
+metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[sub_resource type="Resource" id="Resource_e4mls"]
+script = ExtResource("6_agu07")
+metadata/_custom_type_script = "uid://yd5ytc70xwp6"
+
+[sub_resource type="Resource" id="Resource_0e1di"]
 script = ExtResource("6_3u7q3")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
 
@@ -36,10 +45,11 @@ height = 1.1035156
 [sub_resource type="SphereShape3D" id="SphereShape3D_88q82"]
 radius = 0.12129377
 
-[node name="Dandelion" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_wl26b")]
+[node name="Dandelion" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_wl26b")]
 health = 200.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("SpawnWait")
@@ -78,6 +88,18 @@ min_wait_time = 0.5
 max_wait_time = 1.5
 next_state = NodePath("../SpawnWait")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=202545683]
+script = ExtResource("9_agu07")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=493523713]
+script = ExtResource("4_m4lhv")
+entity_to_spawn = ExtResource("5_m4lhv")
+amount_of_spawns = 5
+target_strategy = SubResource("Resource_e4mls")
+rotation_strategy = SubResource("Resource_0e1di")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Stem" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1856270511]
 transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, 0, 0.21587467, 0)
