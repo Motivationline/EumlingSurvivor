@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="DecideDistanceState" type="Node" parent="StateMachine" index="1" unique_id=1195399972 node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found")]
 script = ExtResource("3_3f0dq")
-distance_to_check = 3.0
+distance_to_check = 4.0
 state_if_distance_is_smaller = NodePath("../Aggressive/AggresiveLook")
 state_if_distance_is_larger = NodePath("../Passive/PassiveLook")
 state_if_no_node_found = NodePath("../Passive/PassiveLook")
@@ -58,14 +58,15 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="AggresiveLook" type="Node" parent="StateMachine/Aggressive" index="0" unique_id=1372256175 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_nmvb0")
+wait_time = 0.5
 next_state = NodePath("../MoveForwardState")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="MoveForwardState" type="Node" parent="StateMachine/Aggressive" index="1" unique_id=525038512 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_3f0dq")
-max_distance = 6.0
+max_distance = 4.0
 max_time = 2.0
-speed_override = 3.0
+speed_override = 5.0
 speed_override_active = true
 next_state = NodePath("../Dazed")
 metadata/_custom_type_script = "uid://cjkeo3brnvde2"
