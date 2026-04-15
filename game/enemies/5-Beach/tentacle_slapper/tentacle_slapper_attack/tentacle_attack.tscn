@@ -10,6 +10,25 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_vfhb7"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="9_jl4g0"]
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="10_mml1p"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="11_xid0n"]
+[ext_resource type="AudioStream" uid="uid://dns62sj3ohg2s" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_1.wav" id="12_fqqlg"]
+[ext_resource type="AudioStream" uid="uid://b7pbmjhqc5b3j" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_2.wav" id="13_7ouve"]
+[ext_resource type="AudioStream" uid="uid://cfk1lhvo7fb7b" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_3.wav" id="14_brvkn"]
+[ext_resource type="AudioStream" uid="uid://cwjj120d5rk37" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_4.wav" id="15_8tbb8"]
+[ext_resource type="AudioStream" uid="uid://d3buyw6sx318k" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_5.wav" id="16_lewwc"]
+[ext_resource type="AudioStream" uid="uid://dlhkjr5u2uwco" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_6.wav" id="17_x8gun"]
+[ext_resource type="AudioStream" uid="uid://bien0omdh8jan" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_attack_1.wav" id="18_ycv7d"]
+[ext_resource type="AudioStream" uid="uid://d0o53ejns847a" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_attack_2.wav" id="19_0uty4"]
+[ext_resource type="AudioStream" uid="uid://demxpekv2g30g" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_attack_3.wav" id="20_xk2jh"]
+[ext_resource type="AudioStream" uid="uid://c75cn6trfglt3" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_attack_4.wav" id="21_x5bvj"]
+[ext_resource type="AudioStream" uid="uid://doww2w8nxa1ec" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_attack_5.wav" id="22_elnud"]
+[ext_resource type="AudioStream" uid="uid://eqbbhalqkj1v" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_attack_6.wav" id="23_cjdnl"]
+[ext_resource type="AudioStream" uid="uid://ts1wkvr2d2vb" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_disappear_1.wav" id="24_gu44p"]
+[ext_resource type="AudioStream" uid="uid://b4ca2xiiolrb8" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_disappear_2.wav" id="25_e7j3g"]
+[ext_resource type="AudioStream" uid="uid://6oeqsx87gs7w" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_disappear_3.wav" id="26_fmv8t"]
+[ext_resource type="AudioStream" uid="uid://dx00jpvqrh1ly" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_disappear_4.wav" id="27_1l5ap"]
+[ext_resource type="AudioStream" uid="uid://be3188q52s127" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_disappear_5.wav" id="28_15wud"]
+[ext_resource type="AudioStream" uid="uid://y8hkirctbg2q" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_disappear_6.wav" id="29_7wdiq"]
 
 [sub_resource type="Resource" id="Resource_qel13"]
 script = ExtResource("9_jl4g0")
@@ -46,6 +65,33 @@ metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t3syi"]
 radius = 0.2006836
 height = 1.6103516
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ycv7d"]
+streams_count = 6
+stream_0/stream = ExtResource("12_fqqlg")
+stream_1/stream = ExtResource("13_7ouve")
+stream_2/stream = ExtResource("14_brvkn")
+stream_3/stream = ExtResource("15_8tbb8")
+stream_4/stream = ExtResource("16_lewwc")
+stream_5/stream = ExtResource("17_x8gun")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gu44p"]
+streams_count = 6
+stream_0/stream = ExtResource("18_ycv7d")
+stream_1/stream = ExtResource("19_0uty4")
+stream_2/stream = ExtResource("20_xk2jh")
+stream_3/stream = ExtResource("21_x5bvj")
+stream_4/stream = ExtResource("22_elnud")
+stream_5/stream = ExtResource("23_cjdnl")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pwssb"]
+streams_count = 6
+stream_0/stream = ExtResource("24_gu44p")
+stream_1/stream = ExtResource("25_e7j3g")
+stream_2/stream = ExtResource("26_fmv8t")
+stream_3/stream = ExtResource("27_1l5ap")
+stream_4/stream = ExtResource("28_15wud")
+stream_5/stream = ExtResource("29_7wdiq")
 
 [node name="BaseEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox") instance=ExtResource("1_vto4e")]
 ignore_enemy_in_level = true
@@ -111,6 +157,12 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("5_vfhb7")
 metadata/_custom_type_script = "uid://dj632w22te1th"
 
+[node name="PlaySoundDeathGeneral" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=2056535194]
+is_active = false
+
+[node name="PlaySoundHitGeneral" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=75111653]
+is_active = false
+
 [node name="squid_arm" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1132374932 instance=ExtResource("6_5be5r")]
 
 [node name="Hitbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=504839055 instance=ExtResource("8_vfhb7")]
@@ -125,3 +177,17 @@ difficulty_scaler = SubResource("Resource_eqoe5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hitbox" index="0" unique_id=1481071548]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.09161654, -0.66845703)
 shape = SubResource("CapsuleShape3D_t3syi")
+
+[node name="Appear" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=873902143 instance=ExtResource("11_xid0n")]
+stream = SubResource("AudioStreamRandomizer_ycv7d")
+volume_db = -7.0
+
+[node name="Slap" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=254085176 instance=ExtResource("11_xid0n")]
+stream = SubResource("AudioStreamRandomizer_gu44p")
+volume_db = -4.0
+
+[node name="Retract" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=1594548476 instance=ExtResource("11_xid0n")]
+stream = SubResource("AudioStreamRandomizer_pwssb")
+volume_db = -10.0
+
+[connection signal="play_sound" from="Visuals/squid_arm" to="SoundEffectManager" method="play_sound"]
