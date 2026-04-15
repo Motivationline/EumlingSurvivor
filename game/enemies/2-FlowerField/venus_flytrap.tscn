@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://cvwf24te1o5vd"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_63olg"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_ah053"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_nmvb0"]
+[ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="3_3f0dq"]
+[ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="5_3f0dq"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gddrh"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ah053"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_3f0dq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3f0dq"]
+radius = 0.19384766
+height = 0.91223145
+
+[node name="VenusFlytrap" unique_id=1898691 instance=ExtResource("1_63olg")]
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("SpawnWait")
+
+[node name="SpawnWait" type="Node" parent="StateMachine" index="0" unique_id=1278284290 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ah053")
+next_state = NodePath("../DecideDistanceState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="DecideDistanceState" type="Node" parent="StateMachine" index="1" unique_id=1195399972 node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found")]
+script = ExtResource("3_3f0dq")
+distance_to_check = 3.0
+state_if_distance_is_smaller = NodePath("../Aggressive/AggresiveLook")
+state_if_distance_is_larger = NodePath("../Passive/PassiveLook")
+state_if_no_node_found = NodePath("../Passive/PassiveLook")
+metadata/_custom_type_script = "uid://b0kknw1o07ha2"
+
+[node name="Passive" type="Node" parent="StateMachine" index="2" unique_id=1810179880]
+
+[node name="PassiveLook" type="Node" parent="StateMachine/Passive" index="0" unique_id=1351363517 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_nmvb0")
+wait_time = 0.0
+next_state = NodePath("../../DecideDistanceState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="Aggressive" type="Node" parent="StateMachine" index="3" unique_id=721551890]
+
+[node name="AggresiveLook" type="Node" parent="StateMachine/Aggressive" index="0" unique_id=1372256175 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_nmvb0")
+next_state = NodePath("../MoveForwardState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="MoveForwardState" type="Node" parent="StateMachine/Aggressive" index="1" unique_id=525038512 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_3f0dq")
+max_distance = 6.0
+max_time = 2.0
+speed_override = 3.0
+speed_override_active = true
+next_state = NodePath("../Dazed")
+metadata/_custom_type_script = "uid://cjkeo3brnvde2"
+
+[node name="Dazed" type="Node" parent="StateMachine/Aggressive" index="2" unique_id=851143001 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ah053")
+wait_time = 2.5
+next_state = NodePath("../../DecideDistanceState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Stem" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=353308654]
+transform = Transform3D(0.2, 0, 0, 0, 0.3, 0, 0, 0, 0.2, 0, 0.32320696, 0)
+mesh = SubResource("CylinderMesh_gddrh")
+
+[node name="Head" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=974072305]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.78587425, 0)
+mesh = SubResource("SphereMesh_ah053")
+
+[node name="Mouth" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=863390487]
+transform = Transform3D(0.2, 0, 0, 0, 0.3, 0, 0, 0, 0.2, 0, 0.7971696, -0.16950202)
+mesh = SubResource("TorusMesh_3f0dq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7" unique_id=640186275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5606071, 0)
+shape = SubResource("CapsuleShape3D_3f0dq")

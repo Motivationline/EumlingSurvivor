@@ -70,12 +70,18 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="MoveTowardsEntityState" type="Node" parent="StateMachine/WalkToPlayer" index="1" unique_id=1948557774 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_13mcr")
-stop_distance = 1.0
+stop_distance = 1.1
 rotation_speed = 2.0
 speed_override = 3.0
 speed_override_active = true
-next_state = NodePath("../../SpawnWait")
+next_state = NodePath("../ExhaustedState")
 metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="ExhaustedState" type="Node" parent="StateMachine/WalkToPlayer" index="2" unique_id=1909374069 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_0133d")
+wait_time = 2.5
+next_state = NodePath("../../SpawnWait")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Attack" type="Node" parent="StateMachine" index="3" unique_id=889713175]
 
