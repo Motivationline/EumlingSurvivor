@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cobx6obdkk5ja" path="res://assets/characters/enemies/squid/squid/squid_prefab.tscn" id="7_8scmy"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="7_ehia0"]
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="7_f2r6p"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="12_30yp5"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_52e3t"]
 [ext_resource type="AudioStream" uid="uid://bnxax3xh1ah3i" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_1.wav" id="14_03chf"]
 [ext_resource type="AudioStream" uid="uid://c0xnnjtum0jlc" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_2.wav" id="15_n8f8l"]
@@ -33,6 +34,12 @@
 [ext_resource type="AudioStream" uid="uid://8kuh5kq6v0c6" path="res://assets/characters/enemies/squid/squid/sounds/head_disappear_4.wav" id="29_l6xqn"]
 [ext_resource type="AudioStream" uid="uid://cv5dfdd4hjek3" path="res://assets/characters/enemies/squid/squid/sounds/head_disappear_5.wav" id="30_ieagg"]
 [ext_resource type="AudioStream" uid="uid://bbsnk88e7dwe6" path="res://assets/characters/enemies/squid/squid/sounds/head_disappear_6.wav" id="31_4bjjy"]
+[ext_resource type="AudioStream" uid="uid://rxux25cy7his" path="res://assets/characters/enemies/squid/squid/sounds/die_1.wav" id="33_reefw"]
+[ext_resource type="AudioStream" uid="uid://b5plslqd23na7" path="res://assets/characters/enemies/squid/squid/sounds/die_2.wav" id="34_3apxr"]
+[ext_resource type="AudioStream" uid="uid://dhdk3crqe0tki" path="res://assets/characters/enemies/squid/squid/sounds/die_3.wav" id="35_l6xqn"]
+[ext_resource type="AudioStream" uid="uid://2a64lpi3qeyy" path="res://assets/characters/enemies/squid/squid/sounds/die_4.wav" id="36_ieagg"]
+[ext_resource type="AudioStream" uid="uid://c52i555jaqqpo" path="res://assets/characters/enemies/squid/squid/sounds/die_5.wav" id="37_4bjjy"]
+[ext_resource type="AudioStream" uid="uid://0r2wbxvcljbr" path="res://assets/characters/enemies/squid/squid/sounds/die_6.wav" id="38_obh41"]
 
 [sub_resource type="Resource" id="Resource_ev1ev"]
 script = ExtResource("2_7b0cm")
@@ -93,17 +100,27 @@ stream_3/stream = ExtResource("29_l6xqn")
 stream_4/stream = ExtResource("30_ieagg")
 stream_5/stream = ExtResource("31_4bjjy")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xstyl"]
+streams_count = 6
+stream_0/stream = ExtResource("33_reefw")
+stream_1/stream = ExtResource("34_3apxr")
+stream_2/stream = ExtResource("35_l6xqn")
+stream_3/stream = ExtResource("36_ieagg")
+stream_4/stream = ExtResource("37_4bjjy")
+stream_5/stream = ExtResource("38_obh41")
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_0cktx"]
 radius = 0.5125733
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_280ev"]
 radius = 0.74622554
 
-[node name="tentacle_slapper" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_qgdlt")]
+[node name="tentacle_slapper" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "on_hurt") instance=ExtResource("1_qgdlt")]
 health = 150.0
 difficulty_scaler = SubResource("Resource_0x3t0")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -192,6 +209,13 @@ state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/OnHit/ActivatorState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
 
+[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=1868866727 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("12_30yp5")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = "Death"
+needs_to_be_persistent = true
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
 [node name="squid" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=697439437 instance=ExtResource("7_8scmy")]
 
 [node name="Appear" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1952633455 instance=ExtResource("13_52e3t")]
@@ -205,6 +229,10 @@ volume_db = -5.0
 [node name="Disappear" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1498762659 instance=ExtResource("13_52e3t")]
 stream = SubResource("AudioStreamRandomizer_qpc14")
 volume_db = -3.0
+
+[node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=198879947 instance=ExtResource("13_52e3t")]
+stream = SubResource("AudioStreamRandomizer_xstyl")
+volume_db = 0.0
 
 [node name="Hitbox" parent="." index="6" unique_id=519897081 instance=ExtResource("2_2uhhv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3544367, 0)
