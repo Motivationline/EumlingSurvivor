@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bi18neffxur7j" path="res://game/ui/debug_view.gd" id="1_wj8x7"]
 [ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/start_screen/graphics_settings.tscn" id="2_2pq5q"]
-[ext_resource type="Texture2D" uid="uid://cv0s0ys0k3p6i" path="res://assets/ui/ButtonFlatCross.png" id="3_pj8aj"]
 
 [node name="DebugView" type="CanvasLayer" unique_id=389825636]
 layer = 12
@@ -310,16 +309,14 @@ offset_right = 674.0
 offset_bottom = 146.0
 text = "Invulnerable"
 
-[node name="CloseButton" type="TextureButton" parent="." unique_id=484913422]
+[node name="CloseButton" type="Button" parent="." unique_id=1164177162]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -147.0
 offset_bottom = 147.0
 grow_horizontal = 0
-texture_normal = ExtResource("3_pj8aj")
-ignore_texture_size = true
-stretch_mode = 0
+text = "X"
 
 [node name="LevelLabel" type="Label" parent="." unique_id=2000021367]
 offset_left = 1045.0
