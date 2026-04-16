@@ -26,6 +26,7 @@ radius = 0.09814453
 height = 0.6203613
 
 [node name="VenusFlytrap" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_63olg")]
+collision_mask = 513
 health = 100.0
 hitbox = NodePath("Visuals/Hitbox")
 hurtbox = NodePath("Visuals/Hurtbox")
@@ -64,7 +65,7 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="MoveForwardState" type="Node" parent="StateMachine/Aggressive" index="1" unique_id=525038512 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_3f0dq")
-max_distance = 4.0
+max_distance = 10.0
 max_time = 2.0
 speed_override = 5.0
 speed_override_active = true
