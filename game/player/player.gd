@@ -13,22 +13,22 @@ var health: float = 10.0:
 		var change = health - new_value
 		if change > 0:
 			anim_player.set("parameters/GetHitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			Utils.create_damage_number(self, "%d" % change)
+			Utils.create_damage_number(self , "%d" % change)
 		elif change < 0:
-			Utils.create_damage_number(self, "%d" % abs(change), true)
+			Utils.create_damage_number(self , "%d" % abs(change), true)
 		if (max_health <= 0):
 			health = new_value
 		else:
 			health = clampf(new_value, 0, max_health)
-		if (healthbar):
-			healthbar.health = health
+		if (status_visuals):
+			status_visuals.health = health
 		if (health == 0):
 			die()
 var max_health: float:
 	set(value):
 		max_health = value
-		if (healthbar):
-			healthbar.max_health = max_health
+		if (status_visuals):
+			status_visuals.max_health = max_health
 var dead: bool = false
 
 signal died
@@ -38,7 +38,7 @@ signal died
 @export var eumling_visuals: Node3D
 @export var spawner: EntitySpawner
 
-@onready var healthbar: StatusVisuals = $StatusVisuals
+@onready var status_visuals: StatusVisualsPlayer = $StatusVisuals
 @onready var hurtbox: HurtBox = $Hurtbox
 
 
@@ -141,7 +141,7 @@ func reset():
 	health = get_value(Enum.UPGRADE.HEALTH)
 	speed = get_value(Enum.UPGRADE.MOVEMENT_SPEED)
 
-	if (healthbar): healthbar.init_health(max_health)
+	if (status_visuals): status_visuals.init_health(max_health)
 	if (hurtbox and not hurtbox.hurt_by.is_connected(hurt_by)): hurtbox.hurt_by.connect(hurt_by)
 	eumling_visuals.scale = Vector3.ONE * get_value(Enum.UPGRADE.SIZE)
 	
@@ -177,6 +177,10 @@ func time_slowdown_impact():
 var prev_direction: Vector3
 var was_looking_somewhere: bool = false
 var camera: Camera3D
+
+func _process(_delta: float) -> void:
+	if status_visuals:
+		status_visuals.reload_progress = 1 - attack_cooldown.time_left / attack_cooldown.wait_time
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return

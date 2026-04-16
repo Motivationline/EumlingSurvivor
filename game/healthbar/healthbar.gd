@@ -1,8 +1,8 @@
 extends Control
 class_name Healthbar
 
-@onready var damage_bar: ProgressBar = $DamageBar
-@onready var health_bar: ProgressBar = $HealthBar
+@onready var damage_bar: TextureProgressBar = $DamageBar
+@onready var health_bar: TextureProgressBar = $HealthBar
 @onready var health_points_display: Label = $HealthPointsDisplay
 @onready var timer: Timer = $Timer
 

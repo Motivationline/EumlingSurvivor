@@ -4,7 +4,7 @@ class_name StatusVisualsEnemy extends StatusVisuals
 ## Show the Healthbar in the UI instead of above the enemy
 @export var show_in_ui: bool = false
 
-@onready var socialbar: ProgressBar = $SubViewport/SocialBar
+@onready var socialbar: TextureProgressBar = $SubViewport/SocialBar
 
 
 func _ready() -> void:
