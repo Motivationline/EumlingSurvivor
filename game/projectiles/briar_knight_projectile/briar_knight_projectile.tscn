@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cmnvm6eui325k"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_synua"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_4qp7y"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_ssrks"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_iw5dc"]
+
+[sub_resource type="Curve" id="Curve_iw5dc"]
+_limits = [0.0, 6.0, 0.0, 1.0]
+_data = [Vector2(0, 5.8978524), 0.0, 0.0, 0, 0, Vector2(0.1463768, 5.8978524), 0.0, 0.0, 0, 0, Vector2(0.41449273, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4qp7y"]
+top_radius = 0.0
+bottom_radius = 0.1
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iw5dc"]
+radius = 0.051225405
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ucmnn"]
+radius = 0.08
+
+[node name="Projectile" unique_id=756255346 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit") instance=ExtResource("1_synua")]
+max_distance = 10.0
+lifetime = 1.8
+hit_box = NodePath("Hitbox")
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_hit = [NodePath("EventStrategies/OnHit/RemoveEventStrategy")]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=930689596]
+script = ExtResource("2_4qp7y")
+speed = SubResource("Curve_iw5dc")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=1519493148]
+script = ExtResource("3_iw5dc")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0" unique_id=385646062]
+script = ExtResource("3_iw5dc")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=1230328662]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.2, 0)
+mesh = SubResource("CylinderMesh_4qp7y")
+
+[node name="Hitbox" parent="." index="3" unique_id=1176081427 instance=ExtResource("2_ssrks")]
+collision_layer = 32
+collision_mask = 8
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=564696450]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.19919226, -0.082620434)
+shape = SubResource("SphereShape3D_iw5dc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=344970444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("SphereShape3D_ucmnn")
+debug_color = Color(0.8556256, 0.118935384, 0.84004277, 0.41960785)

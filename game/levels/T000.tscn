@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://lymk1cp5icg4"]
 
 [ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_cvp71"]
-[ext_resource type="PackedScene" uid="uid://cxge6pdtvxrls" path="res://game/enemies/bee/bee_new.tscn" id="2_wjg4u"]
+[ext_resource type="PackedScene" uid="uid://b0trivf47pxan" path="res://game/enemies/2-FlowerField/dandelion/dandelion_enemy.tscn" id="2_cvp71"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_35njp"]
-[ext_resource type="PackedScene" uid="uid://cex68esqyxyua" path="res://game/enemies/5-Beach/tentacle_slapper.tscn" id="3_wjg4u"]
+[ext_resource type="PackedScene" uid="uid://6a7sqb7k1j5w" path="res://game/enemies/2-FlowerField/briar_knight/briar_knight.tscn" id="3_wjg4u"]
+[ext_resource type="PackedScene" uid="uid://cvwf24te1o5vd" path="res://game/enemies/2-FlowerField/venus_flytrap/venus_flytrap.tscn" id="4_35njp"]
+[ext_resource type="PackedScene" uid="uid://by2aif67p55s1" path="res://game/enemies/2-FlowerField/buttercup/buttercup.tscn" id="5_srnvc"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cvp71"]
 vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 0.75, 1, -5, -0.5, 1, -5, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, 4.75, -4.5, 1, -4.5)
@@ -17,11 +19,21 @@ edge_max_error = 0.25
 [node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
 navigation_mesh = SubResource("NavigationMesh_cvp71")
 
-[node name="BeeEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_wjg4u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.699792, 0, -2.4442022)
+[node name="BorderGridMap" parent="NavigationRegion3D" index="1" unique_id=1833051751]
+data = {
+"cells": PackedInt32Array(10, 8, 1, 10, 7, 1, 10, 6, 1, 10, 5, 1, 10, 4, 1, 10, 3, 1, 10, 2, 1, 10, 1, 1, 10, 0, 1, 10, 65535, 1, 10, 65534, 1, 10, 65533, 1, 10, 65532, 1, 10, 65531, 1, 10, 65530, 1, 10, 65529, 1, 10, 65528, 1, 10, 65527, 1, 10, 65526, 1, 10, 9, 1, 10, 10, 1, 65526, 10, 1, 65527, 10, 1, 65528, 10, 1, 65529, 10, 1, 65530, 10, 1, 65531, 10, 1, 65532, 10, 1, 65533, 10, 1, 65534, 10, 1, 65535, 10, 1, 7, 10, 1, 8, 10, 1, 9, 10, 1, 6, 10, 1, 5, 10, 1, 4, 10, 1, 3, 10, 1, 2, 10, 1, 1, 10, 1, 0, 10, 1, 65525, 10, 1, 65525, 9, 1, 65525, 8, 1, 65525, 6, 1, 65525, 5, 1, 65525, 4, 1, 65525, 3, 1, 65525, 2, 1, 65525, 1, 1, 65525, 0, 1, 65525, 65535, 1, 65525, 65534, 1, 65525, 65533, 1, 65525, 65532, 1, 65525, 65530, 1, 65525, 65529, 1, 65525, 65528, 1, 65525, 65527, 1, 65525, 65526, 1, 65525, 65525, 1, 65526, 65525, 1, 65525, 7, 1, 65527, 65525, 1, 65528, 65525, 1, 65529, 65525, 1, 65530, 65525, 1, 65531, 65525, 1, 65532, 65525, 1, 65533, 65525, 1, 2, 65525, 1, 3, 65525, 1, 4, 65525, 1, 5, 65525, 1, 6, 65525, 1, 7, 65525, 1, 8, 65525, 1, 9, 65525, 1, 10, 65525, 1, 65533, 65524, 1, 65533, 65523, 1, 65533, 65522, 1, 65533, 65520, 1, 65533, 65519, 1, 65534, 65519, 1, 65535, 65519, 1, 0, 65519, 1, 1, 65519, 1, 2, 65519, 1, 2, 65524, 1, 2, 65523, 1, 2, 65522, 1, 2, 65521, 1, 2, 65520, 1, 65533, 65521, 1, 65525, 65531, 1, 1, 65532, 655362, 2, 65533, 655362, 2, 65530, 655362, 1, 65531, 655362, 1, 65530, 655362, 2, 65531, 655360, 2, 65532, 655360)
+}
 
-[node name="tentacle_slapper" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1510371569 instance=ExtResource("3_wjg4u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1559112, 0, -2.7211504)
+[node name="Dandelion" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_cvp71")]
+
+[node name="BriarKnight" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1464242866 instance=ExtResource("3_wjg4u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1507878, 0, 0)
+
+[node name="VenusFlytrap" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=964431389 instance=ExtResource("4_35njp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1222835, 0, 1.4589524)
+
+[node name="Buttercup" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="3" unique_id=836921612 instance=ExtResource("5_srnvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2836819, 0, -2.843275)
 
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_35njp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

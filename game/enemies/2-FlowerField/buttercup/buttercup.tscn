@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://by2aif67p55s1"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_x178y"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_5ussy"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_wwlhl"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_r4w2i"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_f5mb5"]
+[ext_resource type="PackedScene" uid="uid://ev4gnhc3yoji" path="res://game/projectiles/buttercup_projectile/buttercup_projectile.tscn" id="6_vop2s"]
+[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="7_r4w2i"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_vop2s"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="9_uftnh"]
+
+[sub_resource type="Resource" id="Resource_f5mb5"]
+script = ExtResource("7_r4w2i")
+metadata/_custom_type_script = "uid://yd5ytc70xwp6"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bwcvr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_51r5d"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_owduv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3j84c"]
+radius = 0.115722656
+height = 0.90625
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3uofj"]
+radius = 0.15185547
+height = 0.9160156
+
+[node name="Buttercup" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_x178y")]
+health = 100.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("SpawnWait")
+
+[node name="SpawnWait" type="Node" parent="StateMachine" index="0" unique_id=167220592 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_5ussy")
+wait_time = 1.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="1" unique_id=1007158436 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_wwlhl")
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=1431914366 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_r4w2i")
+start_delay = 0.5
+end_delay = 0.4
+next_state = NodePath("../Delay")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=2065453923 node_paths=PackedStringArray("spawn_position")]
+script = ExtResource("5_f5mb5")
+spawn_position = NodePath("../../../Visuals/Marker3D")
+entity_to_spawn = ExtResource("6_vop2s")
+target_strategy = SubResource("Resource_f5mb5")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="Delay" type="Node" parent="StateMachine" index="3" unique_id=1670619578 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_5ussy")
+random = true
+min_wait_time = 1.0
+max_wait_time = 1.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Stem" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=437153432]
+transform = Transform3D(0.2, 0, 0, 0, 0.3, 0, 0, 0, 0.2, 0, 0.3244313, 0)
+mesh = SubResource("CylinderMesh_bwcvr")
+
+[node name="Head" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1915041086]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.6960752, 0)
+mesh = SubResource("SphereMesh_51r5d")
+
+[node name="Eyes" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=1173443420]
+transform = Transform3D(-4.371139e-09, -0.1, -4.371139e-09, 0, -4.371139e-09, 0.1, -0.1, 4.371139e-09, 1.9106856e-16, -1.8104911e-06, 0.6948947, -0.1223156)
+mesh = SubResource("CapsuleMesh_owduv")
+
+[node name="Marker3D" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=356282317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.427)
+
+[node name="Hitbox" parent="." index="7" unique_id=2086272226 instance=ExtResource("8_vop2s")]
+collision_layer = 32
+collision_mask = 8
+damage = 25.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1886599307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4062243, 0)
+shape = SubResource("CapsuleShape3D_3j84c")
+
+[node name="Hurtbox" parent="." index="8" unique_id=368364602 instance=ExtResource("9_uftnh")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=325378534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37293816, 0)
+shape = SubResource("CapsuleShape3D_3uofj")
+debug_color = Color(0.9914326, 0, 0.2716451, 0.41960785)

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://ev4gnhc3yoji"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_qmmig"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_tm1ac"]
+[ext_resource type="Script" uid="uid://00ua1d2dsp1k" path="res://strategies/event/bounce.gd" id="3_wwqq4"]
+[ext_resource type="Script" uid="uid://dafjuq1vey0x6" path="res://strategies/event/countdown.gd" id="4_nmr0k"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="5_qs8bt"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="6_wwqq4"]
+
+[sub_resource type="Curve" id="Curve_mwtwv"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0.0014492758, 1.2205343), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_tm1ac"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwqq4"]
+albedo_color = Color(0.7210586, 0.71684796, 3.85046e-07, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nmr0k"]
+radius = 0.16649072
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qs8bt"]
+radius = 0.114210404
+
+[node name="Projectile" unique_id=1302486386 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision") instance=ExtResource("1_qmmig")]
+collision_mask = 513
+max_distance = 100.0
+hit_box = NodePath("Hitbox")
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/BounceEventStrategy"), NodePath("EventStrategies/OnWorldCollision/CountdownEventStrategy")]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=353315741]
+script = ExtResource("2_tm1ac")
+speed = SubResource("Curve_mwtwv")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="BounceEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=17397406 node_paths=PackedStringArray("ray_cast")]
+script = ExtResource("3_wwqq4")
+ray_cast = NodePath("../../../RayCast3D")
+metadata/_custom_type_script = "uid://00ua1d2dsp1k"
+
+[node name="CountdownEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="1" unique_id=627764113 node_paths=PackedStringArray("event")]
+script = ExtResource("4_nmr0k")
+count = 20
+event = NodePath("../RemoveAfter2Bounces")
+metadata/_custom_type_script = "uid://dafjuq1vey0x6"
+
+[node name="RemoveAfter2Bounces" type="Node" parent="EventStrategies/OnWorldCollision" index="2" unique_id=233738006]
+script = ExtResource("5_qs8bt")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=1425037825]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.35810304, 0)
+mesh = SubResource("SphereMesh_tm1ac")
+surface_material_override/0 = SubResource("StandardMaterial3D_wwqq4")
+
+[node name="Hitbox" parent="." index="3" unique_id=1589674921 instance=ExtResource("6_wwqq4")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=692088279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37022644, 0)
+shape = SubResource("SphereShape3D_nmr0k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=2139756868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34979576, 0)
+shape = SubResource("SphereShape3D_qs8bt")
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="5" unique_id=2056903210]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.24265113, -0.07382965)
+target_position = Vector3(0, -0.5, 0)

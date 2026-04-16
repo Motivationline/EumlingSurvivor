@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="1_ap6k5"]
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="2_3djj7"]
 [ext_resource type="Texture2D" uid="uid://bx2vit8nl77pn" path="res://assets/models/5-beach/obstacle_stone/ObstacleStone_Beach_Material_Base_color.png" id="3_5fse0"]
+[ext_resource type="ArrayMesh" uid="uid://bys65qmhytlet" path="res://assets/models/2-flower_field/obstacle_stone/obstacle_stone_flower.res" id="4_5fse0"]
+[ext_resource type="Texture2D" uid="uid://c0q0qcuyms7fg" path="res://assets/models/2-flower_field/obstacle_stone/obstacle_stone_leaf_texture.png" id="5_54a7a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wg8yc"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -64,6 +66,16 @@ albedo_texture = ExtResource("2_3djj7")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54a7a"]
 albedo_texture = ExtResource("3_5fse0")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7y2r8"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("5_54a7a")
+metallic_specular = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_krvp3"]
+size = Vector3(0.5, 0.5, 0.5)
+
 [node name="BaseTilemaps" type="Node3D" unique_id=275196242]
 
 [node name="Obstacle_0_5x0_5" type="MeshInstance3D" parent="." unique_id=2134399981]
@@ -118,3 +130,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_54a7a")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstalce_Stone_Beach/StaticBody3D" unique_id=1592893542]
 shape = SubResource("BoxShape3D_wg8yc")
 debug_color = Color(0.47039998, 0.4888799, 0.84, 0.59607846)
+
+[node name="Obstacle_Stone_Flower" type="MeshInstance3D" parent="." unique_id=734333116]
+mesh = ExtResource("4_5fse0")
+surface_material_override/0 = SubResource("StandardMaterial3D_7y2r8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Obstacle_Stone_Flower" unique_id=318131048]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle_Stone_Flower/StaticBody3D" unique_id=1624095361]
+shape = SubResource("BoxShape3D_krvp3")
