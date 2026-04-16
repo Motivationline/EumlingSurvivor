@@ -58,6 +58,18 @@ metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 script = ExtResource("12_5klh4")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fngux"]
+radius = 0.38916016
+height = 1.8376465
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v2l6f"]
+radius = 0.82714844
+height = 2.6362305
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0vw1d"]
+radius = 0.2553711
+height = 2.4926758
+
 [sub_resource type="Gradient" id="Gradient_vkxpk"]
 colors = PackedColorArray(0.78431374, 0.05490196, 0.13333334, 1, 0.7437567, 0, 0.10945506, 1)
 
@@ -74,19 +86,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(0.06241829, 0.078127824)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fngux"]
-radius = 0.38916016
-height = 1.8376465
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v2l6f"]
-radius = 0.82714844
-height = 2.6362305
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0vw1d"]
-radius = 0.2553711
-height = 2.4926758
+shader_parameter/wobble = Vector2(-0.014191083, -0.098987944)
 
 [node name="BossBugger" unique_id=1635816600 node_paths=PackedStringArray("hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_c86we")]
 collision_layer = 64
@@ -98,6 +98,9 @@ speed = 1.1
 hurtbox = NodePath("HurtBox")
 on_death = [NodePath("Eventlisteners/PlaySoundEventStrategy")]
 node_with_animation_tree = NodePath("Visuals/BossBugger")
+
+[node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
+show_in_ui = true
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("ChooseStateBasedOnCost")
@@ -137,10 +140,10 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/MeleeAttack/SpawnEntitiesState" index="0" unique_id=1453722295]
 script = ExtResource("6_0irvu")
 spawn_local = true
+offset_distance = 0.5
 entity_to_spawn = ExtResource("7_irclo")
 amount_of_spawns = 0
 time_between_entities = 1.0
-offset_distance = 0.5
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Recharge" type="Node" parent="StateMachine" index="2" unique_id=1782100878]
@@ -152,8 +155,8 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/Recharge/SpawnEntitiesState" index="0" unique_id=1353193784]
 script = ExtResource("6_0irvu")
-entity_to_spawn = ExtResource("8_bopa3")
 offset_distance = 1.0
+entity_to_spawn = ExtResource("8_bopa3")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="WaitForTimeXState" type="Node" parent="StateMachine/Recharge" index="1" unique_id=818271355 node_paths=PackedStringArray("next_state")]
@@ -190,9 +193,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/Initial Shot" index="0" unique_id=2018637419]
 script = ExtResource("6_0irvu")
+offset_distance = 1.6
 entity_to_spawn = ExtResource("10_5vwgk")
 amount_of_spawns = 3
-offset_distance = 1.6
 target_strategy = SubResource("Resource_p8oh0")
 rotation_strategy = SubResource("Resource_bopa3")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -221,9 +224,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState3" index="0" unique_id=333741779]
 script = ExtResource("6_0irvu")
+offset_distance = 1.6
 entity_to_spawn = ExtResource("10_5vwgk")
 amount_of_spawns = 3
-offset_distance = 1.6
 target_strategy = SubResource("Resource_csjgc")
 rotation_strategy = SubResource("Resource_7gnyv")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -252,9 +255,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState4" index="0" unique_id=2096881438]
 script = ExtResource("6_0irvu")
+offset_distance = 1.6
 entity_to_spawn = ExtResource("10_5vwgk")
 amount_of_spawns = 3
-offset_distance = 1.6
 target_strategy = SubResource("Resource_c2xk5")
 rotation_strategy = SubResource("Resource_0irvu")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -283,9 +286,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom" index="0" unique_id=1099277765]
 script = ExtResource("6_0irvu")
+offset_distance = 0.6
 entity_to_spawn = ExtResource("10_5vwgk")
 amount_of_spawns = 20
-offset_distance = 0.6
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -311,9 +314,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom2" index="0" unique_id=737046938]
 script = ExtResource("6_0irvu")
+offset_distance = 0.6
 entity_to_spawn = ExtResource("10_5vwgk")
 amount_of_spawns = 20
-offset_distance = 0.6
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -339,9 +342,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom3" index="0" unique_id=1099679009]
 script = ExtResource("6_0irvu")
+offset_distance = 0.6
 entity_to_spawn = ExtResource("10_5vwgk")
 amount_of_spawns = 20
-offset_distance = 0.6
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -350,47 +353,6 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 script = ExtResource("13_hg0gv")
 sound_to_play = "Death"
 needs_to_be_persistent = true
-
-[node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=604116715 instance=ExtResource("16_ekuuj")]
-
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(604116715, 331510593) index="0" unique_id=1995794519]
-bones/0/position = Vector3(1.5046328e-36, 1.2575892, -3.7763122e-22)
-bones/0/rotation = Quaternion(0.9998046, 9.0345187e-10, -4.5686654e-08, 0.019771127)
-bones/1/scale = Vector3(1.0203317, 0.9605717, 1.0203317)
-bones/5/rotation = Quaternion(-0.34694254, 2.6863378e-09, 3.086654e-08, 0.9378864)
-bones/6/rotation = Quaternion(-0.119806126, 3.8425148e-09, 4.6617343e-10, 0.9927974)
-bones/7/rotation = Quaternion(-0.12399875, -1.6561534e-14, 1.642771e-14, 0.9922824)
-bones/7/scale = Vector3(1.3401753, 1.0223765, 1.3231783)
-bones/8/rotation = Quaternion(-0.1198062, -2.367962e-15, 2.527791e-14, 0.9927974)
-bones/9/rotation = Quaternion(-0.31087154, 4.3910643e-16, -2.6980607e-14, 0.95045197)
-bones/10/rotation = Quaternion(-0.31087133, -2.6247935e-15, -1.9869182e-14, 0.9504521)
-bones/11/rotation = Quaternion(-0.31087157, -1.2610431e-14, -1.09826665e-14, 0.95045197)
-bones/12/rotation = Quaternion(-0.3108714, -1.28749245e-14, 7.411753e-08, 0.9504521)
-bones/17/rotation = Quaternion(0.67854226, -0.00025342696, 0.00021618078, 0.7345613)
-bones/19/rotation = Quaternion(-0.49001077, 0.5288257, -0.5083161, -0.471007)
-bones/22/rotation = Quaternion(-0.37223145, 0.61742294, -0.59347725, -0.3577954)
-bones/25/rotation = Quaternion(0.67854226, 0.00025349646, -0.00021624009, 0.7345613)
-bones/27/rotation = Quaternion(0.2722203, -0.6831144, 0.2668861, 0.6229147)
-bones/31/rotation = Quaternion(0.4900108, 0.52882576, -0.5083161, 0.47100696)
-bones/34/rotation = Quaternion(0.37223142, 0.617423, -0.59347725, 0.3577954)
-
-[node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0" unique_id=160595167]
-transform = Transform3D(1.0203317, -3.470644e-09, 2.431931e-07, -5.930842e-09, 0.95982057, 0.040338326, -2.4314875e-07, -0.03797574, 1.019534, 9.41908e-12, 1.2549844, 0.000103063445)
-
-[node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" index="0" unique_id=450284212]
-material_override = SubResource("ShaderMaterial_p8oh0")
-
-[node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2" unique_id=525651175]
-transform = Transform3D(-0.076083876, -0.99710155, -4.768372e-07, -1.937151e-07, -4.307367e-07, 0.9999999, -0.9971014, 0.076083854, -1.937151e-07, -0.24529767, 1.2575266, -0.0015765722)
-
-[node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="3" unique_id=2129402415]
-transform = Transform3D(-0.4668525, -0.88433516, -3.5762784e-07, -1.3411045e-07, -3.2410026e-07, 0.9999999, -0.88433504, 0.46685252, 4.4703484e-08, -0.13967305, 1.1799148, 0.122293256)
-
-[node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="4" unique_id=1002716327]
-transform = Transform3D(-0.0760837, 0.99710166, 4.768372e-07, 1.3038516e-07, -4.877802e-07, 1, 0.99710137, 0.07608374, -1.9744039e-07, 0.24529767, 1.2575266, -0.0015765722)
-
-[node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="5" unique_id=831899753]
-transform = Transform3D(-0.4668523, 0.88433534, 4.4703484e-07, 1.2665987e-07, -4.991889e-07, 0.9999998, 0.884335, 0.4668525, 4.0978193e-08, 0.13967305, 1.1799148, 0.122293256)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=711175495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)
@@ -420,5 +382,46 @@ can_hit = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1208266895]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2463379, 0)
 shape = SubResource("CapsuleShape3D_0vw1d")
+
+[node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=604116715 instance=ExtResource("16_ekuuj")]
+
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(604116715, 1334940378) index="0" unique_id=1536921969]
+bones/0/position = Vector3(1.5046328e-36, 1.3086524, -4.443291e-22)
+bones/0/rotation = Quaternion(0.9961572, -4.9633107e-09, -4.5519982e-08, 0.08758348)
+bones/1/scale = Vector3(1.0178295, 0.96530116, 1.0178295)
+bones/5/rotation = Quaternion(-0.37767482, 2.1161726e-09, 5.336807e-08, 0.9259384)
+bones/6/rotation = Quaternion(-0.21919921, 7.1296236e-09, 1.6030586e-09, 0.97568023)
+bones/7/rotation = Quaternion(-0.2235063, -4.0918596e-14, 5.1618347e-14, 0.9747025)
+bones/7/scale = Vector3(1.3401754, 1.07038, 1.2846539)
+bones/8/rotation = Quaternion(-0.21919958, -1.0190156e-14, 4.4776316e-14, 0.97568005)
+bones/9/rotation = Quaternion(-0.3709879, 2.3202496e-14, -4.5503484e-14, 0.9286377)
+bones/10/rotation = Quaternion(-0.37098846, -1.0483602e-15, 4.827076e-15, 0.92863744)
+bones/11/rotation = Quaternion(-0.37098798, 1.0056926e-14, -8.246442e-17, 0.9286377)
+bones/12/rotation = Quaternion(-0.3709883, 1.0065103e-15, 8.8450555e-08, 0.9286376)
+bones/17/rotation = Quaternion(0.72167164, -0.00026679077, 0.00019484675, 0.6922355)
+bones/19/rotation = Quaternion(-0.52084875, 0.5621063, -0.47125188, -0.4366633)
+bones/22/rotation = Quaternion(-0.39565715, 0.65627927, -0.5502035, -0.33170652)
+bones/25/rotation = Quaternion(0.72167164, 0.0002668528, -0.00019491419, 0.6922355)
+bones/27/rotation = Quaternion(0.3138706, -0.699653, 0.21990685, 0.60300237)
+bones/31/rotation = Quaternion(0.5208487, 0.5621063, -0.47125193, 0.43666333)
+bones/34/rotation = Quaternion(0.39565712, 0.6562792, -0.55020356, 0.33170652)
+
+[node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0" unique_id=160595167]
+transform = Transform3D(1.0178295, 1.8484352e-09, 2.428408e-07, -4.4293337e-08, 0.95049167, 0.17760496, -2.387751e-07, -0.16843908, 1.0022142, -5.016519e-12, 1.3060728, 0.00045713142)
+
+[node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" index="0" unique_id=450284212]
+material_override = SubResource("ShaderMaterial_p8oh0")
+
+[node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2" unique_id=525651175]
+transform = Transform3D(-0.07608376, -0.99710166, -4.887774e-07, -1.0430813e-07, -3.9394945e-07, 1.0000001, -0.99710155, 0.07608366, -4.4703484e-08, -0.24529767, 1.3083768, -0.0015535672)
+
+[node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="3" unique_id=2129402415]
+transform = Transform3D(-0.4668525, -0.8843351, -2.8016117e-07, -7.4505806e-08, -3.2782555e-07, 0.99999994, -0.884335, 0.46685258, -2.9802322e-08, -0.13967305, 1.2482557, 0.13168597)
+
+[node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="4" unique_id=1002716327]
+transform = Transform3D(-0.07608358, 0.99710166, 5.2450156e-07, 3.1292439e-07, -5.355105e-07, 1.0000001, 0.99710155, 0.07608357, -2.8312206e-07, 0.24529767, 1.3083768, -0.0015535671)
+
+[node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="5" unique_id=831899753]
+transform = Transform3D(-0.46685243, 0.8843354, 3.1588525e-07, 1.7881393e-07, -2.2351742e-07, 0.9999999, 0.88433516, 0.46685252, -2.9802322e-08, 0.13967305, 1.2482557, 0.13168599)
 
 [editable path="Visuals/BossBugger"]
