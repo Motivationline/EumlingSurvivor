@@ -1,4 +1,4 @@
-extends PanelContainer
+extends TextureButton
 class_name UpgradeOption
 
 @onready var title: Label = %Title
@@ -14,4 +14,4 @@ func setup(upgrade: Upgrade):
 	else:
 		info.text = "x "
 	info.text += str(upgrade.value)
-	theme_type_variation = Enum.RARITY.keys()[upgrade.rarity]
+	%Panel.theme_type_variation = Enum.RARITY.keys()[upgrade.rarity]

@@ -44,13 +44,13 @@ func show_upgrades(possible_upgrades: Array[Upgrade]):
 		var upgrade_option = UPGRADE_OPTION.instantiate() as UpgradeOption
 		upgrade_container.add_child(upgrade_option)
 		upgrade_option.setup(upgrade)
-		upgrade_option.gui_input.connect(upgrade_input.bind(upgrade))
-	
+		upgrade_option.pressed.connect(upgrade_input.bind(upgrade))
+	upgrade_container.get_child(0).grab_focus()
 	show()
 
-func upgrade_input(event: InputEvent, option: Upgrade):
-	if not event is InputEventScreenTouch: return
-	if not event.pressed: return 
+func upgrade_input(option: Upgrade):
+	# if not event is InputEventScreenTouch: return
+	# if not event.pressed: return 
 	upgrade_chosen.emit(option) 
 	Engine.time_scale = 1
 	hide()
