@@ -10,6 +10,8 @@ class_name MoveTowardsEntityState
 @export var wait_time: float = 1
 ## distance to the Player where this State ends
 @export var stop_distance: float = 100
+## How long should the entity follow the player max? negative numbers = no max.
+@export var max_follow_time: float = -1 
 ## amount to rotate when directions change
 @export_range(0.0,50.0,0.1) var rotation_speed: float = 5
 
@@ -26,7 +28,7 @@ class_name MoveTowardsEntityState
 	set(new_value):
 		speed_override = max(new_value, 0)
 		update_configuration_warnings()
-# Whether to apply the speed override
+## Whether to apply the speed override
 @export var speed_override_active: bool = false
 
 @export_category("Debug")
@@ -65,6 +67,7 @@ func enter():
 	target = entities.pick_random()
 	update_target_location()
 	done_but_waiting = false
+	start_timer()
 
 func physics_process(_delta: float) -> State:
 	if (done): return return_next()
@@ -102,3 +105,9 @@ func target_reached():
 	done_but_waiting = true
 	await get_tree().create_timer(wait_time).timeout
 	done = true
+
+func start_timer():
+	if max_follow_time < 0: return
+	await get_tree().create_timer(max_follow_time).timeout
+	if not done:
+		target_reached()
