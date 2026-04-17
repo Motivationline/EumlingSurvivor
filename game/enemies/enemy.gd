@@ -89,6 +89,7 @@ func _hit(_attackee: HurtBox):
 
 func _hurt_by(_attacker: HitBox):
 	if _attacker is SocialAOEHitBox:
+		if ignore_enemy_in_level: return
 		convince_progress += _attacker.rate
 		status_visuals.social_progress = convince_progress / max_health
 		if convince_progress > max_health:
