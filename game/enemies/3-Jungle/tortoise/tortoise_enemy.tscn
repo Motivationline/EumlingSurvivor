@@ -355,6 +355,9 @@ on_death = [NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventli
 on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlaySoundHitGeneral")]
 node_with_animation_tree = NodePath("Visuals/tortoise")
 
+[node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveRandomOnNavMeshState")
 
@@ -453,7 +456,7 @@ shape = SubResource("SphereShape3D_fgitk")
 
 [node name="tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1904037027 instance=ExtResource("2_s8eqa")]
 
-[node name="Skeleton3D" parent="Visuals/tortoise/Armature_Tortoise" parent_id_path=PackedInt32Array(1904037027, 1142317907) index="0" unique_id=464183457]
+[node name="Skeleton3D" parent="Visuals/tortoise/Armature_Tortoise" parent_id_path=PackedInt32Array(1904037027, 986621653) index="0" unique_id=1903414315]
 bones/0/position = Vector3(-1.423398e-24, 0.1424511, -6.4104144e-09)
 bones/0/rotation = Quaternion(2.9802322e-08, 9.8607613e-32, -6.617445e-24, 1)
 bones/1/position = Vector3(5.2243773e-25, 0.28947428, 2.3528504e-09)
@@ -644,7 +647,7 @@ bones/92/rotation = Quaternion(0.866433, -0.09795106, -0.4521889, -0.18768226)
 bones/93/position = Vector3(-0.107516035, 0.21416913, -0.4395425)
 bones/93/rotation = Quaternion(0.90565443, -0.043571174, -0.4106814, -0.09608537)
 
-[node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" index="0" unique_id=341822147]
+[node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" index="0" unique_id=71782891]
 material_overlay = SubResource("ShaderMaterial_62ngo")
 
 [node name="Shake" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=610131262 instance=ExtResource("16_gjal0")]
