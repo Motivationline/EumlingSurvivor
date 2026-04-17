@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bt5558nvt0n4" path="res://assets/ui/startScreen/SSPaper.png" id="8_1r6yo"]
 [ext_resource type="Texture2D" uid="uid://bwncwvrcqyodu" path="res://assets/ui/startScreen/SSArrow.png" id="9_egypv"]
 [ext_resource type="Texture2D" uid="uid://b7hqfx627sp1b" path="res://assets/ui/startScreen/EumlingLogoText.png" id="10_o0d2s"]
+[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/rectangleStickerButtonFocused.png" id="11_egypv"]
 [ext_resource type="Texture2D" uid="uid://c40q8petlro1j" path="res://assets/ui/Buttons/ButtonBook.png" id="11_orue0"]
 [ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="12_lnduv"]
 [ext_resource type="Texture2D" uid="uid://balp1dnlnfddm" path="res://assets/ui/Buttons/ButtonSettings.png" id="13_0bhyy"]
@@ -165,7 +166,11 @@ offset_top = 790.0
 offset_right = 310.0
 offset_bottom = 1017.0
 scale = Vector2(0.7946278, 0.7946278)
+focus_neighbor_right = NodePath("../settingButton")
+focus_next = NodePath("../settingButton")
+focus_previous = NodePath("../playButton")
 texture_normal = ExtResource("11_orue0")
+texture_focused = ExtResource("11_egypv")
 
 [node name="playButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=877629100]
 layout_mode = 0
@@ -173,7 +178,11 @@ offset_left = 1323.0
 offset_top = 633.0
 offset_right = 1591.3545
 offset_bottom = 713.0
+focus_neighbor_left = NodePath("../settingButton")
+focus_next = NodePath("../EumlexButton")
+focus_previous = NodePath("../settingButton")
 texture_normal = ExtResource("12_lnduv")
+texture_focused = ExtResource("11_egypv")
 
 [node name="Play" type="Label" parent="UIOverlay/StaticUI/playButton" unique_id=1330015026]
 layout_mode = 0
@@ -191,7 +200,12 @@ offset_left = 311.0
 offset_top = 821.0
 offset_right = 443.0
 offset_bottom = 960.0
+focus_neighbor_left = NodePath("../EumlexButton")
+focus_neighbor_right = NodePath("../playButton")
+focus_next = NodePath("../playButton")
+focus_previous = NodePath("../EumlexButton")
 texture_normal = ExtResource("13_0bhyy")
+texture_focused = ExtResource("11_egypv")
 
 [node name="Background_Tile" parent="." unique_id=272850613 instance=ExtResource("3_mkp5f")]
 
@@ -225,5 +239,6 @@ autoplay = &"run"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1859118858]
 environment = SubResource("Environment_0p1rw")
 
+[connection signal="tree_entered" from="." to="UIOverlay/StaticUI/playButton" method="grab_focus" flags=3 binds= [false]]
 [connection signal="pressed" from="UIOverlay/StaticUI/EumlexButton" to="." method="_on_eumlex_button_pressed"]
 [connection signal="pressed" from="UIOverlay/StaticUI/playButton" to="." method="_on_play_button_pressed"]

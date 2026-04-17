@@ -61,6 +61,7 @@ var areas = [
 func _ready() -> void:
 	level_choice_overlay.abort.connect(level_choice_aborted)
 	level_choice_overlay.level_chosen.connect(level_chosen)
+	$JungleIsland.grab_focus.call_deferred()
 
 func setup():
 	# for child in grid_container.get_children():
@@ -72,6 +73,7 @@ func setup():
 	# 	grid_container.add_child(btn)
 	# 	btn.pressed.connect(choose_area.bind(area))
 	show()
+	$JungleIsland.grab_focus.call_deferred()
 
 func choose_area(area):
 	var level_names: Array = []
