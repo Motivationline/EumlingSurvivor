@@ -8,8 +8,15 @@ animation = &"idle_open"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_blvwe"]
 animation = &"turn"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ikg08"]
+animation = &"shoot"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dhl8s"]
 animation = &"idle_closed"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_weu00"]
+fadein_time = 0.1
+fadeout_time = 0.5
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ikg08"]
 xfade_time = 0.1
@@ -27,8 +34,8 @@ filter_enabled = true
 filters = ["Armature/Skeleton3D:DEF_BOTTOM", "Armature/Skeleton3D:DEF_FOOT.L", "Armature/Skeleton3D:DEF_FOOT.R", "Armature/Skeleton3D:DEF_SHIN.L", "Armature/Skeleton3D:DEF_SHIN.R", "Armature/Skeleton3D:DEF_UPPERLEG.L", "Armature/Skeleton3D:DEF_UPPERLEG.R"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_otspv"]
-graph_offset = Vector2(-468, 130)
-nodes/output/position = Vector2(540, 140)
+graph_offset = Vector2(-417.54987, -29.685394)
+nodes/output/position = Vector2(860, 160)
 nodes/Transition/node = SubResource("AnimationNodeTransition_ikg08")
 nodes/Transition/position = Vector2(-20, 100)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_dhl8s")
@@ -39,11 +46,15 @@ nodes/Animation/position = Vector2(-380, 100)
 "nodes/Animation 3/position" = Vector2(-180, 440)
 nodes/turn/node = SubResource("AnimationNodeBlend2_weu00")
 nodes/turn/position = Vector2(300, 180)
-node_connections = [&"output", 0, &"turn", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"turn", 0, &"Transition", &"turn", 1, &"Animation 3"]
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_ikg08")
+"nodes/Animation 4/position" = Vector2(360, 480)
+nodes/Shoot/node = SubResource("AnimationNodeOneShot_weu00")
+nodes/Shoot/position = Vector2(620, 240)
+node_connections = [&"output", 0, &"Shoot", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"turn", 0, &"Transition", &"turn", 1, &"Animation 3", &"Shoot", 0, &"turn", &"Shoot", 1, &"Animation 4"]
 
-[node name="clam" unique_id=259916453 instance=ExtResource("1_ksify")]
+[node name="clam" unique_id=553851633 instance=ExtResource("1_ksify")]
 
-[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(344253885) index="1" unique_id=1628545250]
+[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1536685153) index="1" unique_id=1628545250]
 setting_count = 1
 settings/0/root_bone_name = "DEF_TAIl01"
 settings/0/root_bone = 1
@@ -74,7 +85,10 @@ settings/0/exclude_collision_count = 0
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1787351513]
 tree_root = SubResource("AnimationNodeBlendTree_otspv")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Transition/current_state = "idle_closed"
+parameters/Transition/current_state = "idle_open"
 parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 0
+parameters/Transition/current_index = 1
 parameters/turn/blend_amount = 1.0
+parameters/Shoot/active = false
+parameters/Shoot/internal_active = false
+parameters/Shoot/request = 0
