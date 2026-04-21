@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://eu5t5sjl02y1"]
+
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="1_kbdsb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p7416"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbdsb"]
+albedo_color = Color(0.08592158, 0.29272947, 1.2513996e-06, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g01ct"]
+size = Vector3(0.5078125, 0.5977173, 0.49902344)
+
+[node name="TallGrass" type="Node3D" unique_id=1616110423]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2008189722]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("PlaneMesh_p7416")
+surface_material_override/0 = SubResource("StandardMaterial3D_kbdsb")
+
+[node name="Hitbox" parent="." unique_id=371724390 instance=ExtResource("1_kbdsb")]
+collision_layer = 32
+collision_mask = 8
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1623995322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29525757, 0)
+shape = SubResource("BoxShape3D_g01ct")
