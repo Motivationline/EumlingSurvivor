@@ -1,15 +1,38 @@
 [gd_scene format=3 uid="uid://cbiqexo8lchvg"]
 
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="1_eo60a"]
+[ext_resource type="Texture2D" uid="uid://jbvwd5wtj06d" path="res://assets/vfx/quick_sand/Layer_2.png" id="1_wjgt7"]
+[ext_resource type="Texture2D" uid="uid://cjlctfc656nqs" path="res://assets/vfx/particle_pack/twirl_02.png" id="3_64lyc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wjgt7"]
-size = Vector2(0.5, 0.5)
+size = Vector2(0.6, 0.6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64lyc"]
-albedo_color = Color(0.35971323, 0.25022113, 0.17496285, 1)
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.39, 0.25428003, 0.1638, 1)
+albedo_texture = ExtResource("1_wjgt7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u1ns6"]
 size = Vector3(0.5078125, 0.5977173, 0.49902344)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wjgt7"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_64lyc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_64lyc"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_wjgt7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_64lyc"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.7458194, 1)
+colors = PackedColorArray(0.4, 0.23453334, 0.107999995, 0, 0.11, 0.05225, 0.0275, 1, 0.33, 0.152625, 0.0825, 0)
 
 [node name="QuickSand" type="Node3D" unique_id=288921100]
 
@@ -27,3 +50,18 @@ causes_iframes = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=813206959]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29525757, 0)
 shape = SubResource("BoxShape3D_u1ns6")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=166217134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.023667559, 0)
+material_override = SubResource("StandardMaterial3D_wjgt7")
+lifetime = 5.0
+preprocess = 1.0
+mesh = SubResource("PlaneMesh_64lyc")
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = 132.81
+angular_velocity_max = 132.81
+angle_max = 230.1
+scale_amount_curve = SubResource("Curve_wjgt7")
+color_ramp = SubResource("Gradient_64lyc")
