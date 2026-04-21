@@ -50,13 +50,17 @@
 [ext_resource type="AudioStream" uid="uid://ds7y3a1jjamq5" path="res://assets/characters/eumling/V2/sounds/hurt_4.wav" id="59_kgk65"]
 [ext_resource type="AudioStream" uid="uid://c2bofbjpicgf8" path="res://assets/characters/eumling/V2/sounds/hurt_5.wav" id="60_j7ory"]
 [ext_resource type="AudioStream" uid="uid://c50bisg3xwvlx" path="res://assets/characters/eumling/V2/sounds/hurt_6.wav" id="61_3i1tt"]
+[ext_resource type="Script" uid="uid://nmf3f7xinks3" path="res://game/player/abilities/conventional/conventional.gd" id="62_5en5a"]
 [ext_resource type="AudioStream" uid="uid://dl1rh1gr16qvm" path="res://assets/characters/eumling/V2/sounds/death_1.wav" id="62_x4714"]
+[ext_resource type="Texture2D" uid="uid://dbqxunehgsecx" path="res://assets/ui/Eumlex/RedDop.png" id="63_ydmue"]
 [ext_resource type="AudioStream" uid="uid://dxtpdfm2r60hs" path="res://assets/characters/eumling/V2/sounds/death_2.wav" id="63_yhdyt"]
+[ext_resource type="Script" uid="uid://chbii87hffl0a" path="res://game/player/abilities/conventional/quests/move_quest.gd" id="64_2qewa"]
 [ext_resource type="AudioStream" uid="uid://bcgt2j2stqhe4" path="res://assets/characters/eumling/V2/sounds/death_3.wav" id="64_p0uwl"]
+[ext_resource type="Texture2D" uid="uid://dfff5rs4gl666" path="res://strategies/strategy.svg" id="65_2qewa"]
 [ext_resource type="AudioStream" uid="uid://dvbast0b3t832" path="res://assets/characters/eumling/V2/sounds/death_4.wav" id="65_v5pdl"]
 [ext_resource type="AudioStream" uid="uid://cv8gbbu0ywq5t" path="res://assets/characters/eumling/V2/sounds/death_5.wav" id="66_k3n0c"]
 [ext_resource type="AudioStream" uid="uid://dtwjmuugoxay2" path="res://assets/characters/eumling/V2/sounds/death_6.wav" id="67_m1cdu"]
-[ext_resource type="Script" uid="uid://d0y7cgck1opqh" path="res://game/player/abilities/social.gd" id="68_3p3em"]
+[ext_resource type="Script" uid="uid://d0y7cgck1opqh" path="res://game/player/abilities/social/social.gd" id="68_3p3em"]
 [ext_resource type="PackedScene" uid="uid://co3vv3d8hdp1s" path="res://game/aoes/social_aoe/social_aoe.tscn" id="69_0jq7b"]
 [ext_resource type="Script" uid="uid://ca2lwyvrascpj" path="res://game/player/abilities/investigative.gd" id="71_d76hv"]
 [ext_resource type="Script" uid="uid://b1wawxra3pubk" path="res://game/player/abilities/artistic/artistic.gd" id="72_6ynhj"]
@@ -139,6 +143,19 @@ stream_4/stream = ExtResource("66_k3n0c")
 stream_5/stream = ExtResource("67_m1cdu")
 
 [sub_resource type="Curve3D" id="Curve3D_6ynhj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qewa"]
+bg_color = Color(0, 0, 0, 0.22745098)
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40jwy"]
+bg_color = Color(0.9372549, 0.24313726, 0.36078432, 0.7882353)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
 
 [node name="Player" type="CharacterBody3D" unique_id=1236976938 node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
 collision_layer = 2
@@ -255,6 +272,7 @@ volume_db = 0.0
 bus = &"Master"
 
 [node name="SpecialAbilities" type="Node3D" parent="." unique_id=319074094]
+unique_name_in_owner = true
 
 [node name="Social" type="Node3D" parent="SpecialAbilities" unique_id=2125123127]
 script = ExtResource("68_3p3em")
@@ -268,7 +286,6 @@ weakspot_size_base = 90
 weakspot_size_additional = -25
 
 [node name="Artistic" type="Node" parent="SpecialAbilities" unique_id=249630272]
-unique_name_in_owner = true
 script = ExtResource("72_6ynhj")
 
 [node name="Tail" type="Path3D" parent="SpecialAbilities/Artistic" unique_id=231072559]
@@ -293,5 +310,92 @@ collision_layer = 4
 collision_mask = 64
 attached_to = 3
 can_hit = 7
+
+[node name="Conventional" type="Node3D" parent="SpecialAbilities" unique_id=1450601977]
+script = ExtResource("62_5en5a")
+
+[node name="QuestDisplay" type="CanvasLayer" parent="SpecialAbilities/Conventional" unique_id=98028271]
+unique_name_in_owner = true
+visible = false
+
+[node name="Control" type="Control" parent="SpecialAbilities/Conventional/QuestDisplay" unique_id=745809387]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuestProgress" type="Control" parent="SpecialAbilities/Conventional/QuestDisplay/Control" unique_id=426358315]
+layout_mode = 1
+anchor_top = 0.097
+anchor_right = 0.147
+anchor_bottom = 0.23522224
+offset_top = 0.23999786
+offset_right = -0.23999023
+offset_bottom = -0.040008545
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="QuestProgressBar" type="ProgressBar" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=1459785066]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_2qewa")
+theme_override_styles/fill = SubResource("StyleBoxFlat_40jwy")
+value = 50.0
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=1706770471]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress/HBoxContainer" unique_id=707745158]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="QuestLabel" type="Label" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress/HBoxContainer/VBoxContainer" unique_id=1027857774]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(185, 75)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_font_sizes/font_size = 32
+text = "Attack Anything"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="QuestProgressLabel" type="Label" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress/HBoxContainer/VBoxContainer" unique_id=2014980565]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(185, 75)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_font_sizes/font_size = 32
+text = "0 / 8"
+horizontal_alignment = 1
+
+[node name="QuestIcon" type="TextureRect" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress/HBoxContainer" unique_id=1757481272]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("63_ydmue")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="MoveQuest" type="Node3D" parent="SpecialAbilities/Conventional" unique_id=1404887968]
+script = ExtResource("64_2qewa")
+icon = ExtResource("65_2qewa")
+text = "Move"
 
 [connection signal="play_sound" from="Eumling_v2" to="SoundEffectManager" method="play_sound"]

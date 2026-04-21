@@ -54,8 +54,9 @@ signal died
 		update_configuration_warnings()
 
 var _current_values: Dictionary[Enum.UPGRADE, float] = {}
+var _temporary_values: Dictionary[Enum.UPGRADE, float] = {}
 func get_value(upgrade: Enum.UPGRADE) -> float:
-	return _current_values.get(upgrade, 0)
+	return _current_values.get(upgrade, 0) + _temporary_values.get(upgrade, 0)
 signal upgrade_added
 ## Limits to the upgradeable values. x is minimum, y is maximum. If not specified, values can go from 0 to infinity.
 @export var min_max_values: Dictionary[Enum.UPGRADE, Vector2] = {}
@@ -136,6 +137,7 @@ func _ready() -> void:
 # reset player to its un-upgraded state
 func reset():
 	dead = false;
+	_temporary_values.clear()
 	_current_values = starting_values.duplicate()
 	max_health = get_value(Enum.UPGRADE.HEALTH)
 	health = get_value(Enum.UPGRADE.HEALTH)
@@ -265,14 +267,15 @@ func update_attack_visual():
 	%AttackVisual.width = get_value(Enum.UPGRADE.PROJECTILE_SIZE) * projectile_default_size
 
 
-func add_upgrade(upgrade: Upgrade):
-	var value = _current_values.get_or_add(upgrade.type, 0)
+func add_upgrade(upgrade: Upgrade, temporary: bool = false):
+	var values = _current_values if not temporary else _temporary_values
+	var value = values.get_or_add(upgrade.type, 0)
 	var new_value = upgrade.apply(value)
 	if new_value < 0: return
 	if min_max_values.has(upgrade.type):
 		var limits: Vector2 = min_max_values.get(upgrade.type)
 		new_value = clamp(new_value, limits.x, limits.y)
-	_current_values.set(upgrade.type, new_value)
+	values.set(upgrade.type, new_value)
 	upgrade_added.emit(upgrade)
 	check_upgrades_affecting_player(upgrade)
 
@@ -319,14 +322,21 @@ func reset_preview_color():
 	%AttackVisual.on_cooldown = false
 
 
-func end_of_level(level: Level):
+func level_completed(level: Level) -> void:
 	var amount_to_regenerate: float = get_value(Enum.UPGRADE.HEALTH_REGENERATION)
 	if level.is_boss_level:
 		amount_to_regenerate += floorf(max_health / 2 + amount_to_regenerate)
 	health += amount_to_regenerate
 
-func level_start():
-	%Artistic.level_start()
+	for ability in %SpecialAbilities.get_children():
+		if ability is Ability:
+			ability.level_completed()
+
+func level_start() -> void:
+	_temporary_values.clear()
+	for ability in %SpecialAbilities.get_children():
+		if ability is Ability:
+			ability.level_start()
 
 func get_ability(type: Enum.EUMLING_TYPE) -> Ability:
 	return _abilities.get(type)

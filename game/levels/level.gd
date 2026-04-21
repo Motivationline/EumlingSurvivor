@@ -77,7 +77,7 @@ func _process(_delta: float) -> void:
 
 
 func clear_level():
-	player.end_of_level(self)
+	player.level_completed(self)
 	for me in mini_eumlings:
 		me.celebrate()
 	

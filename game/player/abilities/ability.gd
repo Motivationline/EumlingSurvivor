@@ -9,12 +9,15 @@ func _ready() -> void:
 	_update()
 	update_level(Data._active_mini_eumlings)
 
-func update_level(active_mini_eumlings: Array[Enum.EUMLING_TYPE]):
+func update_level(active_mini_eumlings: Array[Enum.EUMLING_TYPE]) -> void:
 	var prev_amount = amt_eumlings
 	amt_eumlings = 0
 	amt_eumlings = active_mini_eumlings.count(_type)
 	if prev_amount != amt_eumlings:
 		_update()
 
+
+func level_start() -> void: pass
+func level_completed() -> void: pass
 @abstract
-func _update()
+func _update() -> void
