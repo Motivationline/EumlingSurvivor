@@ -179,8 +179,12 @@ var was_looking_somewhere: bool = false
 var camera: Camera3D
 
 func _process(_delta: float) -> void:
+	if Engine.is_editor_hint(): return
 	if status_visuals:
-		status_visuals.reload_progress = 1 - attack_cooldown.time_left / attack_cooldown.wait_time
+		if attack_cooldown.is_stopped():
+			status_visuals.reload_progress = 1
+		else:
+			status_visuals.reload_progress = 1 - attack_cooldown.time_left / attack_cooldown.wait_time
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -203,7 +207,7 @@ func _physics_process(_delta: float) -> void:
 	if camera:
 		look_direction_3d = look_direction_3d.rotated(Vector3.UP, camera.rotation.y)
 	if Input.is_action_pressed("fire") or Input.get_action_strength("fire_axis") > 0.5:
-		if Data.is_on_mobile or true:
+		if Data.is_on_mobile or not was_looking_somewhere:
 			# look at closest enemy to shoot
 			var enemies = get_tree().get_nodes_in_group("Enemy")
 			if enemies.size() > 0:
