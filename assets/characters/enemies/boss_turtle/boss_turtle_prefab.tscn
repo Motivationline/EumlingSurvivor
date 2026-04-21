@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ko8u3dvlq1cu"]
 
 [ext_resource type="PackedScene" uid="uid://c7ha5c5ktc55w" path="res://assets/characters/enemies/boss_turtle/boss_turtle.glb" id="1_8gxes"]
+[ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/manager/sound_requester.gd" id="2_1pj3j"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_44813"]
 animation = &"shell_reveal"
@@ -89,7 +90,7 @@ input_3/break_loop_at_end = false
 input_3/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s0inp"]
-graph_offset = Vector2(-842.25024, 407.4132)
+graph_offset = Vector2(-1144.3815, -111.34296)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_6yngb")
 "nodes/Animation 4/position" = Vector2(-940, 1000)
 nodes/LocomotionShell/node = SubResource("AnimationNodeTransition_44813")
@@ -119,6 +120,7 @@ nodes/Locomotion/position = Vector2(-20, 140)
 node_connections = [&"output", 0, &"Locomotion", &"LocomotionShell", 0, &"Animation 8", &"LocomotionShell", 1, &"Animation 9", &"LocomotionShell", 2, &"Animation 2", &"LocomotionShell", 3, &"Animation", &"LocomotionShell", 4, &"Animation 3", &"LocomotionShell", 5, &"Animation 10", &"TurtleLocomotion", 0, &"Animation 7", &"TurtleLocomotion", 1, &"Animation 4", &"TurtleLocomotion", 2, &"Animation 5", &"TurtleLocomotion", 3, &"Animation 6", &"Locomotion", 0, &"LocomotionShell", &"Locomotion", 1, &"TurtleLocomotion"]
 
 [node name="boss_turtle" unique_id=1575923269 instance=ExtResource("1_8gxes")]
+script = ExtResource("2_1pj3j")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1775129654]
 tree_root = SubResource("AnimationNodeBlendTree_s0inp")

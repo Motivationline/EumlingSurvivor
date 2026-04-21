@@ -19,6 +19,19 @@
 [ext_resource type="Script" uid="uid://cp33buoo5xtgx" path="res://state_machine/enemy/pick_random_state.gd" id="13_17bdl"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="14_7nljg"]
 [ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="14_jimkv"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="20_oe1bn"]
+[ext_resource type="AudioStream" uid="uid://tmat8rj8l6mt" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_1.wav" id="21_4dvdo"]
+[ext_resource type="AudioStream" uid="uid://cu67rmnokr8uu" path="res://assets/characters/enemies/boss_turtle/sounds/slam_1.wav" id="21_ybxiq"]
+[ext_resource type="AudioStream" uid="uid://b2ledrarkxt7u" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_2.wav" id="22_8exau"]
+[ext_resource type="AudioStream" uid="uid://bgdqg8x3y5lay" path="res://assets/characters/enemies/boss_turtle/sounds/slam_2.wav" id="22_gaoxt"]
+[ext_resource type="AudioStream" uid="uid://bpkn7voq3hycj" path="res://assets/characters/enemies/boss_turtle/sounds/slam_3.wav" id="23_6tb3e"]
+[ext_resource type="AudioStream" uid="uid://dxm5vd7u72x05" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_3.wav" id="23_rftic"]
+[ext_resource type="AudioStream" uid="uid://bs7cuqgv8ibb5" path="res://assets/characters/enemies/boss_turtle/sounds/slam_4.wav" id="24_2o50i"]
+[ext_resource type="AudioStream" uid="uid://cu46rmgas2f8u" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_4.wav" id="24_b0mh3"]
+[ext_resource type="AudioStream" uid="uid://cbnglu38bcf1j" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_5.wav" id="25_fp5du"]
+[ext_resource type="AudioStream" uid="uid://cy6c11i4a8xkp" path="res://assets/characters/enemies/boss_turtle/sounds/slam_5.wav" id="25_yabel"]
+[ext_resource type="AudioStream" uid="uid://cn1jegr1dl5gl" path="res://assets/characters/enemies/boss_turtle/sounds/slam_6.wav" id="26_mxtkc"]
+[ext_resource type="AudioStream" uid="uid://dba6ecxt5462i" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_6.wav" id="26_ybxiq"]
 
 [sub_resource type="Resource" id="Resource_wbfbl"]
 script = ExtResource("9_w3w5t")
@@ -53,6 +66,24 @@ height = 1.9130859
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w3w5t"]
 radius = 0.7871094
 height = 2.1870117
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_asnmi"]
+streams_count = 6
+stream_0/stream = ExtResource("21_ybxiq")
+stream_1/stream = ExtResource("22_gaoxt")
+stream_2/stream = ExtResource("23_6tb3e")
+stream_3/stream = ExtResource("24_2o50i")
+stream_4/stream = ExtResource("25_yabel")
+stream_5/stream = ExtResource("26_mxtkc")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gaoxt"]
+streams_count = 6
+stream_0/stream = ExtResource("21_4dvdo")
+stream_1/stream = ExtResource("22_8exau")
+stream_2/stream = ExtResource("23_rftic")
+stream_3/stream = ExtResource("24_b0mh3")
+stream_4/stream = ExtResource("25_fp5du")
+stream_5/stream = ExtResource("26_ybxiq")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2wn3u"]
 radius = 0.27678946
@@ -256,6 +287,16 @@ can_be_hit_by = 3
 transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, 0.5, -0.23754883)
 shape = SubResource("CapsuleShape3D_w3w5t")
 
+[node name="Slam" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1014397162 instance=ExtResource("20_oe1bn")]
+stream = SubResource("AudioStreamRandomizer_asnmi")
+volume_db = -3.0
+
+[node name="ShellShoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=479375374 instance=ExtResource("20_oe1bn")]
+stream = SubResource("AudioStreamRandomizer_gaoxt")
+volume_db = -6.0
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6" unique_id=1914465485]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47281113, 0)
 shape = SubResource("SphereShape3D_2wn3u")
+
+[connection signal="play_sound" from="Visuals/boss_turtle" to="SoundEffectManager" method="play_sound"]

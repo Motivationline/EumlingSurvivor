@@ -47,7 +47,8 @@ func play_sound(_sounds, _focus:bool = false, _persistent = false):
 				GlobalMusicManager.focus_on_bus(GlobalMusicManager.BUS_ID.SFX_UI, clampf(sound.stream.get_length(),0.7,3)*0.4, 20)
 			
 		else:
-			print("Sound '"+sound_name+"' is missing!")
+			pass
+			#print("Sound '"+sound_name+"' is missing!")
 	
 
 	
@@ -56,7 +57,6 @@ func debug_list_setup():
 	debug_ui.focus_mode = 2
 	debug_ui.call_deferred("grab_focus")
 	for sound in sound_list.keys():
-		#print(sound)
 		debug_list.add_item(sound)
 
 
