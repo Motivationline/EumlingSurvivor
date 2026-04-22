@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://crktwqvaxeyce"]
+[gd_scene format=3 uid="uid://crktwqvaxeyce"]
 
 [ext_resource type="Script" uid="uid://clewmwfe2bmum" path="res://game/ui/upgrades/upgrade_view.gd" id="1_qclys"]
 [ext_resource type="PackedScene" uid="uid://b8nr8s04nxds6" path="res://game/ui/upgrades/upgrade_option.tscn" id="2_264sj"]
 
-[node name="UpgradeView" type="CanvasLayer"]
+[node name="UpgradeView" type="CanvasLayer" unique_id=170594717]
 script = ExtResource("1_qclys")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1190492386]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,15 +19,15 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="UpgradeContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="UpgradeContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1058302816]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="UpgradeOption" parent="MarginContainer/UpgradeContainer" instance=ExtResource("2_264sj")]
+[node name="UpgradeOption" parent="MarginContainer/UpgradeContainer" unique_id=1866871251 instance=ExtResource("2_264sj")]
 layout_mode = 2
 
-[node name="UpgradeOption2" parent="MarginContainer/UpgradeContainer" instance=ExtResource("2_264sj")]
+[node name="UpgradeOption2" parent="MarginContainer/UpgradeContainer" unique_id=461538500 instance=ExtResource("2_264sj")]
 layout_mode = 2
 
-[node name="UpgradeOption3" parent="MarginContainer/UpgradeContainer" instance=ExtResource("2_264sj")]
+[node name="UpgradeOption3" parent="MarginContainer/UpgradeContainer" unique_id=1925201768 instance=ExtResource("2_264sj")]
 layout_mode = 2

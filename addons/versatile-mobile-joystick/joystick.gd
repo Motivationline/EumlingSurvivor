@@ -297,7 +297,8 @@ func _update_input_actions(output: Vector2) -> void:
 		else:
 			Input.action_release(action.action)
 
-func _trigger_tap_action() -> void: 
+func _trigger_tap_action() -> void:
+	if not tap: return
 	Input.action_press(tap)
 	await get_tree().process_frame
 	Input.action_release(tap)
