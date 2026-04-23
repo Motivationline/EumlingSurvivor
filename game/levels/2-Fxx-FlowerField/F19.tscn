@@ -2,11 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://cbg7uy7lrlyxp" path="res://game/levels/2-Fxx-FlowerField/Fxx_base_level.tscn" id="1_2ej18"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_csrvm"]
+[ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="3_cigiw"]
 [ext_resource type="Script" uid="uid://dieiojnt518h" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_node.gd" id="3_pih76"]
 [ext_resource type="Script" uid="uid://c4s4x5b27vdf6" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_manager.gd" id="4_dypyl"]
 [ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="5_piqli"]
+[ext_resource type="PackedScene" uid="uid://cxge6pdtvxrls" path="res://game/enemies/bee/bee_new.tscn" id="7_281me"]
+[ext_resource type="PackedScene" uid="uid://6a7sqb7k1j5w" path="res://game/enemies/2-FlowerField/briar_knight/briar_knight.tscn" id="8_4eo3v"]
+[ext_resource type="PackedScene" uid="uid://b0trivf47pxan" path="res://game/enemies/2-FlowerField/dandelion/dandelion_enemy.tscn" id="9_oa7wu"]
+[ext_resource type="PackedScene" uid="uid://eu5t5sjl02y1" path="res://game/enemies/2-FlowerField/environment/tall_grass.tscn" id="10_k26uk"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cigiw"]
+vertices = PackedVector3Array(-1.25, 1, -3, -1.25, 1, -2.75, -1, 1, -2.75, -1, 1, -1.75, -1.25, 1, -1.75, -1.25, 1, -1.5, -1.25, 1, -1, -1.25, 1, -0.75, -1, 1, -0.75, -1, 1, 0.75, -1.25, 1, 0.75, -1.25, 1, 1, -1.25, 1, 1.5, -1.25, 1, 1.75, -1, 1, 1.75, 1.25, 1, 3, 1.25, 1, 2.75, 1, 1, 2.75, 1, 1, 1.75, 1.25, 1, 1.75, 1.25, 1, 1.5, 1.25, 1, 1, 1.25, 1, 0.75, 1, 1, 0.75, 1, 1, -0.75, 1.25, 1, -0.75, 1.25, 1, -1, 1.25, 1, -1.5, 1.25, 1, -1.75, 1, 1, -1.75, 1, 1, -2.75, 1.25, 1, -2.75, 1.25, 1, -3, -1.75, 1, -1.5, -1.75, 1, -1, -1.75, 1, 1, -1.75, 1, 1.5, 1, 1, -4.5, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 1.75, 1, 1.5, 1.75, 1, 1, 1.75, 1, -1, 1.75, 1, -1.5, 1.75, 1, 4.75, 1.75, 1, 3, -1, 1, 2.75, -1, 1, 4.75, -1.75, 1, -4.5, -1.75, 1, -3, 1.75, 1, -3, 1.75, 1, -4.5, -1.25, 1, 2.75, -1.25, 1, 3, -2.25, 1, 3, -2.25, 1, 2.75, -2.5, 1, 2.75, -2.5, 1, 1.75, -2.25, 1, 1.75, -2.25, 1, 1.5, -2.25, 1, 1, -2.25, 1, 0.75, -2.5, 1, 0.75, -4.5, 1, 4.75, -2.5, 1, -0.75, -2.25, 1, -0.75, -2.25, 1, -1, -2.25, 1, -1.5, -2.25, 1, -1.75, -2.5, 1, -1.75, -2.5, 1, -2.75, -2.25, 1, -2.75, -2.25, 1, -3, -4.5, 1, -4.5, 2.25, 1, -3, 2.25, 1, -2.75, 2.5, 1, -2.75, 2.5, 1, -1.75, 2.25, 1, -1.75, 2.25, 1, -1.5, 2.25, 1, -1, 2.25, 1, -0.75, 2.5, 1, -0.75, 4.75, 1, -4.5, 2.5, 1, 0.75, 2.25, 1, 0.75, 2.25, 1, 1, 2.25, 1, 1.5, 2.25, 1, 1.75, 2.5, 1, 1.75, 2.5, 1, 2.75, 2.25, 1, 2.75, 2.25, 1, 3, 4.75, 1, 4.75, -2, 1.5, -2.5, -2, 1.5, -2, -1.5, 1.5, -2, -1.5, 1.5, -2.5, 1.5, 1.5, -2.5, 1.5, 1.5, -2, 2, 1.5, -2, 2, 1.5, -2.5, -2, 1.5, -0.5, -2, 1.5, 0, -1.5, 1.5, 0, -1.5, 1.5, -0.5, 1.5, 1.5, -0.5, 1.5, 1.5, 0, 2, 1.5, 0, 2, 1.5, -0.5, -2, 1.5, 2, -2, 1.5, 2.5, -1.5, 1.5, 2.5, -1.5, 1.5, 2, 1.5, 1.5, 2, 1.5, 1.5, 2.5, 2, 1.5, 2.5, 2, 1.5, 2, 9.5, 1.5, 2.5, 9.5, 1.5, 3, 10, 1.5, 3, 10, 1.5, 2.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(17, 16, 15), PackedInt32Array(20, 19, 18), PackedInt32Array(23, 22, 21), PackedInt32Array(26, 25, 24), PackedInt32Array(29, 28, 27), PackedInt32Array(32, 31, 30), PackedInt32Array(6, 34, 5), PackedInt32Array(5, 34, 33), PackedInt32Array(9, 8, 23), PackedInt32Array(23, 8, 24), PackedInt32Array(12, 36, 11), PackedInt32Array(11, 36, 35), PackedInt32Array(40, 39, 37), PackedInt32Array(37, 39, 38), PackedInt32Array(21, 42, 20), PackedInt32Array(20, 42, 41), PackedInt32Array(32, 30, 37), PackedInt32Array(37, 30, 40), PackedInt32Array(40, 30, 2), PackedInt32Array(40, 2, 0), PackedInt32Array(27, 44, 26), PackedInt32Array(26, 44, 43), PackedInt32Array(3, 2, 29), PackedInt32Array(29, 2, 30), PackedInt32Array(6, 5, 3), PackedInt32Array(12, 11, 9), PackedInt32Array(21, 20, 18), PackedInt32Array(27, 26, 24), PackedInt32Array(27, 24, 29), PackedInt32Array(29, 24, 8), PackedInt32Array(29, 8, 6), PackedInt32Array(29, 6, 3), PackedInt32Array(21, 18, 23), PackedInt32Array(23, 18, 14), PackedInt32Array(23, 14, 12), PackedInt32Array(23, 12, 9), PackedInt32Array(15, 46, 45), PackedInt32Array(15, 45, 17), PackedInt32Array(17, 45, 47), PackedInt32Array(47, 45, 48), PackedInt32Array(50, 49, 0), PackedInt32Array(0, 49, 40), PackedInt32Array(51, 32, 52), PackedInt32Array(52, 32, 37), PackedInt32Array(18, 17, 14), PackedInt32Array(14, 17, 47), PackedInt32Array(53, 47, 54), PackedInt32Array(54, 47, 48), PackedInt32Array(57, 56, 55), PackedInt32Array(60, 59, 58), PackedInt32Array(62, 61, 63), PackedInt32Array(63, 61, 58), PackedInt32Array(63, 58, 64), PackedInt32Array(67, 66, 65), PackedInt32Array(70, 69, 68), PackedInt32Array(73, 72, 71), PackedInt32Array(61, 35, 60), PackedInt32Array(60, 35, 36), PackedInt32Array(74, 71, 70), PackedInt32Array(68, 33, 67), PackedInt32Array(67, 33, 34), PackedInt32Array(65, 63, 74), PackedInt32Array(74, 63, 64), PackedInt32Array(61, 60, 58), PackedInt32Array(67, 65, 68), PackedInt32Array(68, 65, 70), PackedInt32Array(55, 48, 57), PackedInt32Array(57, 48, 64), PackedInt32Array(58, 57, 64), PackedInt32Array(49, 50, 73), PackedInt32Array(74, 70, 65), PackedInt32Array(73, 71, 49), PackedInt32Array(49, 71, 74), PackedInt32Array(55, 54, 48), PackedInt32Array(77, 76, 75), PackedInt32Array(80, 79, 78), PackedInt32Array(82, 81, 83), PackedInt32Array(83, 81, 78), PackedInt32Array(83, 78, 84), PackedInt32Array(87, 86, 85), PackedInt32Array(90, 89, 88), PackedInt32Array(93, 92, 91), PackedInt32Array(81, 43, 80), PackedInt32Array(80, 43, 44), PackedInt32Array(78, 77, 84), PackedInt32Array(88, 41, 87), PackedInt32Array(87, 41, 42), PackedInt32Array(83, 84, 85), PackedInt32Array(85, 84, 94), PackedInt32Array(81, 80, 78), PackedInt32Array(87, 85, 88), PackedInt32Array(88, 85, 90), PackedInt32Array(94, 90, 85), PackedInt32Array(94, 91, 90), PackedInt32Array(75, 51, 52), PackedInt32Array(45, 46, 93), PackedInt32Array(75, 52, 77), PackedInt32Array(77, 52, 84), PackedInt32Array(93, 91, 45), PackedInt32Array(45, 91, 94), PackedInt32Array(98, 97, 95), PackedInt32Array(95, 97, 96), PackedInt32Array(102, 101, 99), PackedInt32Array(99, 101, 100), PackedInt32Array(106, 105, 103), PackedInt32Array(103, 105, 104), PackedInt32Array(110, 109, 107), PackedInt32Array(107, 109, 108), PackedInt32Array(114, 113, 111), PackedInt32Array(111, 113, 112), PackedInt32Array(118, 117, 115), PackedInt32Array(115, 117, 116), PackedInt32Array(122, 121, 119), PackedInt32Array(119, 121, 120)]
 agent_radius = 0.25
 agent_max_climb = 0.0
 edge_max_error = 0.25
@@ -177,7 +184,7 @@ script = ExtResource("4_dypyl")
 root_octree_node = SubResource("Resource_n3l6c")
 metadata/class = "MMIOctreeManager"
 
-[sub_resource type="Resource" id="Resource_ormqw"]
+[sub_resource type="Resource" id="Resource_cigiw"]
 resource_local_to_scene = true
 script = ExtResource("5_piqli")
 octree_managers = [SubResource("Resource_4eo3v"), SubResource("Resource_k26uk"), SubResource("Resource_k8g5i"), SubResource("Resource_fe5lx"), SubResource("Resource_u3diw"), SubResource("Resource_06o2l"), SubResource("Resource_vrgwi")]
@@ -193,14 +200,562 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = ExtResource("2_csrvm")
 cell_size = Vector3(0.5, 0.5, 0.5)
 data = {
-"cells": PackedInt32Array(19, 5, 4)
+"cells": PackedInt32Array(19, 5, 4, 3, 0, 1441796, 3, 65535, 1441796, 65532, 0, 1441796, 65532, 65535, 1441796, 3, 4, 1441796, 65532, 4, 1441796, 65532, 65531, 1441796, 3, 65531, 1441796)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Gardener" parent="." index="7" unique_id=1386894013]
-arborist = SubResource("Resource_ormqw")
+[node name="Camera3D3" type="Camera3D" parent="." index="3" unique_id=921292540]
+transform = Transform3D(0.7071066, -0.6123725, 0.3535537, 0, 0.5000003, 0.86602527, -0.70710695, -0.61237216, 0.35355353, -1.9757385, 11.085632, 4.2108154)
+projection = 1
+current = true
+fov = 45.0
+size = 5.5
+near = 0.1
+far = 30.0
+script = ExtResource("3_cigiw")
 
-[node name="Obstacles" type="Node3D" parent="." index="10" unique_id=1446888862]
+[node name="Camera3D4" type="Camera3D" parent="." index="4" unique_id=225327776]
+transform = Transform3D(0.7071066, -0.6123725, 0.3535537, 0, 0.5000003, 0.86602527, -0.70710695, -0.61237216, 0.35355353, -1.9757385, 11.085632, -2.7891846)
+projection = 1
+current = true
+fov = 45.0
+size = 5.5
+near = 0.1
+far = 30.0
+script = ExtResource("3_cigiw")
+
+[node name="Gardener" parent="." index="9" unique_id=1386894013]
+arborist = SubResource("Resource_cigiw")
+
+[node name="BeeEnemy" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="0" unique_id=1898691 instance=ExtResource("7_281me")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 0)
+
+[node name="BeeEnemy5" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="1" unique_id=795031690 instance=ExtResource("7_281me")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, 0)
+
+[node name="BriarKnight" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="2" unique_id=145666777 instance=ExtResource("8_4eo3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -3.5)
+
+[node name="BriarKnight2" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="3" unique_id=1031383435 instance=ExtResource("8_4eo3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -3.5)
+
+[node name="Dandelion" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="4" unique_id=24572201 instance=ExtResource("9_oa7wu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, 4)
+
+[node name="Dandelion3" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="5" unique_id=1963549337 instance=ExtResource("9_oa7wu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, -4)
+
+[node name="Dandelion4" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="6" unique_id=879623376 instance=ExtResource("9_oa7wu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, -4)
+
+[node name="Dandelion2" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="7" unique_id=252166419 instance=ExtResource("9_oa7wu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, 4)
+
+[node name="Obstacles" type="Node3D" parent="." index="12" unique_id=1446888862]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 0.75)
+
+[node name="TallGrass" parent="Obstacles" index="0" unique_id=1616110423 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -5.5)
+
+[node name="TallGrass2" parent="Obstacles" index="1" unique_id=1746860676 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -5)
+
+[node name="TallGrass3" parent="Obstacles" index="2" unique_id=113687956 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -4.5)
+
+[node name="TallGrass4" parent="Obstacles" index="3" unique_id=1249439778 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -4)
+
+[node name="TallGrass5" parent="Obstacles" index="4" unique_id=1243667116 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -3.5)
+
+[node name="TallGrass6" parent="Obstacles" index="5" unique_id=263336203 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="TallGrass7" parent="Obstacles" index="6" unique_id=993824481 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -3)
+
+[node name="TallGrass8" parent="Obstacles" index="7" unique_id=1249923317 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="TallGrass9" parent="Obstacles" index="8" unique_id=1415070141 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -3)
+
+[node name="TallGrass10" parent="Obstacles" index="9" unique_id=699693898 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+
+[node name="TallGrass11" parent="Obstacles" index="10" unique_id=254244307 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -3)
+
+[node name="TallGrass12" parent="Obstacles" index="11" unique_id=347067022 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -3)
+
+[node name="TallGrass13" parent="Obstacles" index="12" unique_id=1501740696 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3.5)
+
+[node name="TallGrass14" parent="Obstacles" index="13" unique_id=724213396 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -3.5)
+
+[node name="TallGrass15" parent="Obstacles" index="14" unique_id=2017884095 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3.5)
+
+[node name="TallGrass16" parent="Obstacles" index="15" unique_id=782436578 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -3.5)
+
+[node name="TallGrass17" parent="Obstacles" index="16" unique_id=2132896404 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3.5)
+
+[node name="TallGrass18" parent="Obstacles" index="17" unique_id=201483557 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -3.5)
+
+[node name="TallGrass19" parent="Obstacles" index="18" unique_id=1668343197 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="TallGrass20" parent="Obstacles" index="19" unique_id=815835466 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -4)
+
+[node name="TallGrass21" parent="Obstacles" index="20" unique_id=1404414682 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)
+
+[node name="TallGrass22" parent="Obstacles" index="21" unique_id=1791402123 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -4)
+
+[node name="TallGrass23" parent="Obstacles" index="22" unique_id=1535625441 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="TallGrass24" parent="Obstacles" index="23" unique_id=306456147 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -4)
+
+[node name="TallGrass25" parent="Obstacles" index="24" unique_id=996097473 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4.5)
+
+[node name="TallGrass26" parent="Obstacles" index="25" unique_id=913793330 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -4.5)
+
+[node name="TallGrass27" parent="Obstacles" index="26" unique_id=1905011995 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4.5)
+
+[node name="TallGrass28" parent="Obstacles" index="27" unique_id=1006399149 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -4.5)
+
+[node name="TallGrass29" parent="Obstacles" index="28" unique_id=1516856602 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4.5)
+
+[node name="TallGrass30" parent="Obstacles" index="29" unique_id=993764017 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -4.5)
+
+[node name="TallGrass31" parent="Obstacles" index="30" unique_id=2130965628 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5)
+
+[node name="TallGrass32" parent="Obstacles" index="31" unique_id=631618095 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -5)
+
+[node name="TallGrass33" parent="Obstacles" index="32" unique_id=1549723143 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
+
+[node name="TallGrass34" parent="Obstacles" index="33" unique_id=829698953 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -5)
+
+[node name="TallGrass35" parent="Obstacles" index="34" unique_id=324261434 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5)
+
+[node name="TallGrass36" parent="Obstacles" index="35" unique_id=172279269 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -5)
+
+[node name="TallGrass37" parent="Obstacles" index="36" unique_id=511277933 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5.5)
+
+[node name="TallGrass38" parent="Obstacles" index="37" unique_id=1818993710 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -5.5)
+
+[node name="TallGrass39" parent="Obstacles" index="38" unique_id=1856972450 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5.5)
+
+[node name="TallGrass40" parent="Obstacles" index="39" unique_id=519636539 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -5.5)
+
+[node name="TallGrass41" parent="Obstacles" index="40" unique_id=1826550058 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -5.5)
+
+[node name="TallGrass42" parent="Obstacles" index="41" unique_id=1308530756 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -5.5)
+
+[node name="TallGrass44" parent="Obstacles" index="42" unique_id=392682688 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 2)
+
+[node name="TallGrass45" parent="Obstacles" index="43" unique_id=953669887 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 2.5)
+
+[node name="TallGrass46" parent="Obstacles" index="44" unique_id=220278643 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 3)
+
+[node name="TallGrass47" parent="Obstacles" index="45" unique_id=1068005927 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 3.5)
+
+[node name="TallGrass85" parent="Obstacles" index="46" unique_id=511447839 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 4)
+
+[node name="TallGrass48" parent="Obstacles" index="47" unique_id=346111788 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="TallGrass49" parent="Obstacles" index="48" unique_id=114002188 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 4)
+
+[node name="TallGrass50" parent="Obstacles" index="49" unique_id=664549549 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4)
+
+[node name="TallGrass51" parent="Obstacles" index="50" unique_id=535548675 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 4)
+
+[node name="TallGrass52" parent="Obstacles" index="51" unique_id=725943940 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="TallGrass53" parent="Obstacles" index="52" unique_id=337715031 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 4)
+
+[node name="TallGrass54" parent="Obstacles" index="53" unique_id=468092781 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 4)
+
+[node name="TallGrass55" parent="Obstacles" index="54" unique_id=447876153 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3.5)
+
+[node name="TallGrass56" parent="Obstacles" index="55" unique_id=1634235769 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 3.5)
+
+[node name="TallGrass57" parent="Obstacles" index="56" unique_id=574305082 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3.5)
+
+[node name="TallGrass58" parent="Obstacles" index="57" unique_id=1921058693 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 3.5)
+
+[node name="TallGrass59" parent="Obstacles" index="58" unique_id=2007010862 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3.5)
+
+[node name="TallGrass60" parent="Obstacles" index="59" unique_id=1076047583 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 3.5)
+
+[node name="TallGrass61" parent="Obstacles" index="60" unique_id=501304319 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+
+[node name="TallGrass62" parent="Obstacles" index="61" unique_id=260782652 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 3)
+
+[node name="TallGrass63" parent="Obstacles" index="62" unique_id=43130934 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+
+[node name="TallGrass64" parent="Obstacles" index="63" unique_id=440288396 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 3)
+
+[node name="TallGrass65" parent="Obstacles" index="64" unique_id=1927762009 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3)
+
+[node name="TallGrass66" parent="Obstacles" index="65" unique_id=1248098794 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 3)
+
+[node name="TallGrass67" parent="Obstacles" index="66" unique_id=1934166432 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2.5)
+
+[node name="TallGrass68" parent="Obstacles" index="67" unique_id=1314542813 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
+
+[node name="TallGrass69" parent="Obstacles" index="68" unique_id=1086745096 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2.5)
+
+[node name="TallGrass70" parent="Obstacles" index="69" unique_id=148001988 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 2.5)
+
+[node name="TallGrass71" parent="Obstacles" index="70" unique_id=1955511552 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2.5)
+
+[node name="TallGrass72" parent="Obstacles" index="71" unique_id=163893307 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 2.5)
+
+[node name="TallGrass73" parent="Obstacles" index="72" unique_id=560352765 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="TallGrass74" parent="Obstacles" index="73" unique_id=1617158836 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2)
+
+[node name="TallGrass75" parent="Obstacles" index="74" unique_id=1883836471 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
+
+[node name="TallGrass76" parent="Obstacles" index="75" unique_id=1860367456 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 2)
+
+[node name="TallGrass77" parent="Obstacles" index="76" unique_id=1780847600 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="TallGrass78" parent="Obstacles" index="77" unique_id=2083620758 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 2)
+
+[node name="TallGrass79" parent="Obstacles" index="78" unique_id=686453255 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1.5)
+
+[node name="TallGrass80" parent="Obstacles" index="79" unique_id=1738205656 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 1.5)
+
+[node name="TallGrass81" parent="Obstacles" index="80" unique_id=1065999792 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1.5)
+
+[node name="TallGrass82" parent="Obstacles" index="81" unique_id=68260208 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 1.5)
+
+[node name="TallGrass83" parent="Obstacles" index="82" unique_id=690578558 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1.5)
+
+[node name="TallGrass84" parent="Obstacles" index="83" unique_id=442934914 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 1.5)
+
+[node name="TallGrass86" parent="Obstacles" index="84" unique_id=289486199 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1.5)
+
+[node name="TallGrass87" parent="Obstacles" index="85" unique_id=414071074 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2)
+
+[node name="TallGrass88" parent="Obstacles" index="86" unique_id=608933664 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2.5)
+
+[node name="TallGrass89" parent="Obstacles" index="87" unique_id=1312523888 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
+
+[node name="TallGrass90" parent="Obstacles" index="88" unique_id=770440163 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3.5)
+
+[node name="TallGrass91" parent="Obstacles" index="89" unique_id=932177473 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4)
+
+[node name="TallGrass92" parent="Obstacles" index="90" unique_id=90315861 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 4)
+
+[node name="TallGrass93" parent="Obstacles" index="91" unique_id=2122470795 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="TallGrass94" parent="Obstacles" index="92" unique_id=1706798913 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 4)
+
+[node name="TallGrass95" parent="Obstacles" index="93" unique_id=683215751 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
+
+[node name="TallGrass96" parent="Obstacles" index="94" unique_id=204298763 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 4)
+
+[node name="TallGrass97" parent="Obstacles" index="95" unique_id=346739398 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="TallGrass98" parent="Obstacles" index="96" unique_id=730025198 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 4)
+
+[node name="TallGrass99" parent="Obstacles" index="97" unique_id=1562393081 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 3.5)
+
+[node name="TallGrass100" parent="Obstacles" index="98" unique_id=1789446225 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 3.5)
+
+[node name="TallGrass101" parent="Obstacles" index="99" unique_id=1372861798 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 3.5)
+
+[node name="TallGrass102" parent="Obstacles" index="100" unique_id=893911076 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3.5)
+
+[node name="TallGrass103" parent="Obstacles" index="101" unique_id=1631845772 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 3.5)
+
+[node name="TallGrass104" parent="Obstacles" index="102" unique_id=1511089096 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3.5)
+
+[node name="TallGrass105" parent="Obstacles" index="103" unique_id=1379719086 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 3)
+
+[node name="TallGrass106" parent="Obstacles" index="104" unique_id=745214172 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 3)
+
+[node name="TallGrass107" parent="Obstacles" index="105" unique_id=1326328722 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 3)
+
+[node name="TallGrass108" parent="Obstacles" index="106" unique_id=1074902884 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+
+[node name="TallGrass109" parent="Obstacles" index="107" unique_id=1073243234 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 3)
+
+[node name="TallGrass110" parent="Obstacles" index="108" unique_id=1510262500 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+
+[node name="TallGrass111" parent="Obstacles" index="109" unique_id=1585175801 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 2.5)
+
+[node name="TallGrass112" parent="Obstacles" index="110" unique_id=654546427 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2.5)
+
+[node name="TallGrass113" parent="Obstacles" index="111" unique_id=1936554756 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 2.5)
+
+[node name="TallGrass114" parent="Obstacles" index="112" unique_id=1200429157 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2.5)
+
+[node name="TallGrass115" parent="Obstacles" index="113" unique_id=1293500039 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 2.5)
+
+[node name="TallGrass116" parent="Obstacles" index="114" unique_id=1199865331 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2.5)
+
+[node name="TallGrass117" parent="Obstacles" index="115" unique_id=1673483859 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 2)
+
+[node name="TallGrass118" parent="Obstacles" index="116" unique_id=940240584 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="TallGrass119" parent="Obstacles" index="117" unique_id=635129271 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 2)
+
+[node name="TallGrass120" parent="Obstacles" index="118" unique_id=1759735698 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+
+[node name="TallGrass121" parent="Obstacles" index="119" unique_id=1537435891 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 2)
+
+[node name="TallGrass122" parent="Obstacles" index="120" unique_id=1411935335 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="TallGrass123" parent="Obstacles" index="121" unique_id=1244634807 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 1.5)
+
+[node name="TallGrass124" parent="Obstacles" index="122" unique_id=1986049749 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1.5)
+
+[node name="TallGrass125" parent="Obstacles" index="123" unique_id=217741978 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 1.5)
+
+[node name="TallGrass126" parent="Obstacles" index="124" unique_id=66313498 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1.5)
+
+[node name="TallGrass127" parent="Obstacles" index="125" unique_id=1527915467 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 1.5)
+
+[node name="TallGrass129" parent="Obstacles" index="126" unique_id=600654134 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5.5)
+
+[node name="TallGrass130" parent="Obstacles" index="127" unique_id=1789936409 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
+
+[node name="TallGrass131" parent="Obstacles" index="128" unique_id=1082579502 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4.5)
+
+[node name="TallGrass132" parent="Obstacles" index="129" unique_id=1715116061 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4)
+
+[node name="TallGrass133" parent="Obstacles" index="130" unique_id=1931961455 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3.5)
+
+[node name="TallGrass134" parent="Obstacles" index="131" unique_id=715270140 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+
+[node name="TallGrass135" parent="Obstacles" index="132" unique_id=737528089 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -3)
+
+[node name="TallGrass136" parent="Obstacles" index="133" unique_id=711125337 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+
+[node name="TallGrass137" parent="Obstacles" index="134" unique_id=121590523 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -3)
+
+[node name="TallGrass138" parent="Obstacles" index="135" unique_id=1496565530 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="TallGrass139" parent="Obstacles" index="136" unique_id=1710553039 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -3)
+
+[node name="TallGrass141" parent="Obstacles" index="137" unique_id=305818700 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+
+[node name="TallGrass142" parent="Obstacles" index="138" unique_id=1211864860 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -3.5)
+
+[node name="TallGrass143" parent="Obstacles" index="139" unique_id=1669246134 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3.5)
+
+[node name="TallGrass144" parent="Obstacles" index="140" unique_id=1580406221 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -3.5)
+
+[node name="TallGrass145" parent="Obstacles" index="141" unique_id=1128242669 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3.5)
+
+[node name="TallGrass146" parent="Obstacles" index="142" unique_id=1081280743 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -3.5)
+
+[node name="TallGrass147" parent="Obstacles" index="143" unique_id=1471909883 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3.5)
+
+[node name="TallGrass148" parent="Obstacles" index="144" unique_id=671166664 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -4)
+
+[node name="TallGrass149" parent="Obstacles" index="145" unique_id=1485675480 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="TallGrass150" parent="Obstacles" index="146" unique_id=60833199 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -4)
+
+[node name="TallGrass151" parent="Obstacles" index="147" unique_id=1716790034 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4)
+
+[node name="TallGrass152" parent="Obstacles" index="148" unique_id=926915322 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -4)
+
+[node name="TallGrass153" parent="Obstacles" index="149" unique_id=873429382 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="TallGrass154" parent="Obstacles" index="150" unique_id=425256412 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -4.5)
+
+[node name="TallGrass155" parent="Obstacles" index="151" unique_id=116810217 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4.5)
+
+[node name="TallGrass156" parent="Obstacles" index="152" unique_id=1320558403 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -4.5)
+
+[node name="TallGrass157" parent="Obstacles" index="153" unique_id=1641470752 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4.5)
+
+[node name="TallGrass158" parent="Obstacles" index="154" unique_id=25868579 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -4.5)
+
+[node name="TallGrass159" parent="Obstacles" index="155" unique_id=249398602 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4.5)
+
+[node name="TallGrass160" parent="Obstacles" index="156" unique_id=2063319993 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -5)
+
+[node name="TallGrass161" parent="Obstacles" index="157" unique_id=988107188 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
+
+[node name="TallGrass162" parent="Obstacles" index="158" unique_id=179397802 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -5)
+
+[node name="TallGrass163" parent="Obstacles" index="159" unique_id=1506598340 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
+
+[node name="TallGrass164" parent="Obstacles" index="160" unique_id=676647551 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -5)
+
+[node name="TallGrass165" parent="Obstacles" index="161" unique_id=1788740957 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5)
+
+[node name="TallGrass166" parent="Obstacles" index="162" unique_id=1486378064 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -5.5)
+
+[node name="TallGrass167" parent="Obstacles" index="163" unique_id=1949344083 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5.5)
+
+[node name="TallGrass168" parent="Obstacles" index="164" unique_id=2083069253 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -5.5)
+
+[node name="TallGrass169" parent="Obstacles" index="165" unique_id=1486545892 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5.5)
+
+[node name="TallGrass170" parent="Obstacles" index="166" unique_id=1894932190 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -5.5)
+
+[node name="TallGrass171" parent="Obstacles" index="167" unique_id=1177387532 instance=ExtResource("10_k26uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5.5)
 
 [editable path="Env/grass/grass__v2"]
