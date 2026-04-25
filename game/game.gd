@@ -51,7 +51,9 @@ func load_level():
 			return_to_main_menu()
 			return
 		area_choice_overlay.setup()
+		GlobalMusicManager.request_music(SongList.TRACK.MENU, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [2, 0])
 		levels_to_load = await area_choice_overlay.area_chosen
+
 	Engine.time_scale = 0
 	var level_info = levels_to_load.pop_front()
 	var level_location: String = level_info.id
