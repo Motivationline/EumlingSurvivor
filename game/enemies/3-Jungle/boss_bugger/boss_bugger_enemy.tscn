@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="4_vgowq"]
 [ext_resource type="PackedScene" uid="uid://b1084wmkhn2en" path="res://game/aoes/boss_bugger_aoe_attack/boss_bugger_aoe.tscn" id="5_0vw1d"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="7_aud5x"]
-[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle/sniper/sniper_projectile_enemy.tscn" id="8_aud5x"]
+[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-Jungle/sniper/sniper_projectile_enemy.tscn" id="8_aud5x"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_wwgv0"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_fi40l"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_csjgc"]
@@ -181,7 +181,7 @@ fallback = NodePath("../Recharge/WaitForTimeXState")
 selection = "RANDOM"
 states = [NodePath("../MeleeAttack/MoveTowardsPlayerState"), NodePath("../TripleShot/LookAtPlayerState1"), NodePath("../BigBomba/AimForBig")]
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Salve/request": 3
+"parameters/Transition/transition_request": "normal"
 })
 
 [node name="MeleeAttack" type="Node" parent="StateMachine" index="1" unique_id=374442772]
@@ -203,7 +203,7 @@ end_delay = 0.4
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = 3.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/hit/request": 1
+"parameters/hit/request": "Fire"
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -224,7 +224,7 @@ wait_time = 1.6
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = -9.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Suck/request": 1
+"parameters/Suck/request": "Fire"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
@@ -232,7 +232,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="LookAtPlayerState1" type="Node" parent="StateMachine/TripleShot" index="0" unique_id=1551073916 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_aud5x")
-wait_time = 0.15
+wait_time = 1.01
 rotation_speed = 20.0
 speed_override = 0.0
 speed_override_active = true
@@ -249,7 +249,7 @@ start_delay = 0.5
 next_state = NodePath("../LookAtPlayerState2")
 resource_cost = 1.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Salve/request": 1
+"parameters/OneShot/request": "Fire"
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -268,7 +268,7 @@ speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState3")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Salve/request": 3
+"parameters/OneShot/request": "Fire"
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
@@ -277,9 +277,6 @@ script = ExtResource("3_ectag")
 start_delay = 0.15
 next_state = NodePath("../LookAtPlayerState3")
 resource_cost = 1.0
-animation_trigger = Dictionary[String, Variant]({
-"parameters/Salve/request": 1
-})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState3" index="0" unique_id=1231547863]
@@ -297,7 +294,7 @@ speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState4")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Salve/request": 3
+"parameters/OneShot/request": "Fire"
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
@@ -306,9 +303,6 @@ script = ExtResource("3_ectag")
 start_delay = 0.15
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = 1.0
-animation_trigger = Dictionary[String, Variant]({
-"parameters/Salve/request": 1
-})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState4" index="0" unique_id=601080076]
@@ -336,7 +330,7 @@ start_delay = 0.5
 next_state = NodePath("../AimForBig2")
 resource_cost = 2.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Boom/request": 1
+"parameters/Boom/request": "Fire"
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -364,7 +358,7 @@ start_delay = 0.5
 next_state = NodePath("../AimForBig3")
 resource_cost = 2.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Boom/request": 1
+"parameters/Boom/request": "Fire"
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -392,7 +386,7 @@ start_delay = 0.5
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = 2.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Boom/request": 1
+"parameters/Boom/request": "Fire"
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
