@@ -8,9 +8,6 @@
 [ext_resource type="Script" uid="uid://c4s4x5b27vdf6" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_manager.gd" id="4_aehhd"]
 [ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="5_dqpp6"]
 [ext_resource type="LightmapGIData" uid="uid://b5exvr0ftcvv7" path="res://game/levels/2-Fxx-FlowerField/lightmaps2/F16.lmbake" id="5_vus2x"]
-[ext_resource type="PackedScene" uid="uid://6a7sqb7k1j5w" path="res://game/enemies/2-FlowerField/briar_knight/briar_knight.tscn" id="6_dqpp6"]
-[ext_resource type="PackedScene" uid="uid://b0trivf47pxan" path="res://game/enemies/2-FlowerField/dandelion/dandelion_enemy.tscn" id="7_u7rcj"]
-[ext_resource type="PackedScene" uid="uid://cxge6pdtvxrls" path="res://game/enemies/bee/bee_new.tscn" id="8_7mjv3"]
 [ext_resource type="PackedScene" uid="uid://eu5t5sjl02y1" path="res://game/enemies/2-FlowerField/environment/tall_grass.tscn" id="9_7uxho"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_u7rcj"]
@@ -483,7 +480,7 @@ script = ExtResource("4_aehhd")
 root_octree_node = SubResource("Resource_3qefn")
 metadata/class = "MMIOctreeManager"
 
-[sub_resource type="Resource" id="Resource_pr5c7"]
+[sub_resource type="Resource" id="Resource_dqpp6"]
 resource_local_to_scene = true
 script = ExtResource("5_dqpp6")
 octree_managers = [SubResource("Resource_7uxho"), SubResource("Resource_vus2x"), SubResource("Resource_ehght"), SubResource("Resource_5qv1a"), SubResource("Resource_wnwdp"), SubResource("Resource_kxlm7"), SubResource("Resource_yaxnw")]
@@ -511,34 +508,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 light_data = ExtResource("5_vus2x")
 
 [node name="Gardener" parent="." index="7" unique_id=1386894013]
-arborist = SubResource("Resource_pr5c7")
-
-[node name="BriarKnight" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="0" unique_id=1898691 instance=ExtResource("6_dqpp6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.6063209)
-
-[node name="Dandelion" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="1" unique_id=856551750 instance=ExtResource("7_u7rcj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
-
-[node name="Dandelion2" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="2" unique_id=2027079976 instance=ExtResource("7_u7rcj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
-
-[node name="Dandelion3" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="3" unique_id=421836579 instance=ExtResource("7_u7rcj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
-
-[node name="Dandelion4" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="4" unique_id=844124158 instance=ExtResource("7_u7rcj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01960373, 1, -1.2561332)
-
-[node name="BeeEnemy" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="5" unique_id=745893021 instance=ExtResource("8_7mjv3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.145829, 0.5, 2.6599722)
-
-[node name="BeeEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="6" unique_id=2022814466 instance=ExtResource("8_7mjv3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0871334, 0.5, -2.1414285)
-
-[node name="BeeEnemy3" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="7" unique_id=312968616 instance=ExtResource("8_7mjv3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.848681, 0.5, -2.2001252)
-
-[node name="BeeEnemy4" parent="Enemies" parent_id_path=PackedInt32Array(727241348) index="8" unique_id=1002515120 instance=ExtResource("8_7mjv3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8604212, 0.5, 2.2490952)
+arborist = SubResource("Resource_dqpp6")
 
 [node name="Obstacles" type="Node3D" parent="." index="10" unique_id=1355849032]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 0.75)
