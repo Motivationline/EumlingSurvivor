@@ -46,19 +46,20 @@ func spawn_player(_player: Player):
 	player.global_rotation = player_spawn.global_rotation
 
 	# spawn minis
-	if not is_boss_level:
-		for type in Data._active_mini_eumlings:
-			spawn_mini_eumling(type)
+	for type in Data._active_mini_eumlings:
+		spawn_mini_eumling(type)
 	
 	player.level_start()
 
 func spawn_mini_eumling(type: Enum.EUMLING_TYPE):
-	var mini_eumling = MINI_EUMLING.instantiate() as MiniEumling
-	mini_eumling.type = type
-	add_child(mini_eumling)
-	mini_eumling.global_position = player_spawn.global_position
-	mini_eumling.translate(Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)))
-	mini_eumlings.push_back(mini_eumling)
+	# only spawn minis that need to follow player
+	if type == Enum.EUMLING_TYPE.ENTERPRISING or type == Enum.EUMLING_TYPE.REALISTIC:
+		var mini_eumling = MINI_EUMLING.instantiate() as MiniEumling
+		mini_eumling.type = type
+		add_child(mini_eumling)
+		mini_eumling.global_position = player_spawn.global_position
+		mini_eumling.translate(Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)))
+		mini_eumlings.push_back(mini_eumling)
 
 func _process(_delta: float) -> void:
 	if (Engine.is_editor_hint()): return

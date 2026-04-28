@@ -118,6 +118,8 @@ var hurtbox_start_sizes: Vector2 = Vector2()
 
 var _abilities: Dictionary = {}
 
+var mini_eumling_slots: Array[Node3D] = []
+
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "starting_values":
 		_get_configuration_warnings()
@@ -140,6 +142,14 @@ func _ready() -> void:
 	_abilities.set(Enum.EUMLING_TYPE.INVESTIGATIVE, $SpecialAbilities/Investigative)
 
 	Player.player = self
+
+	mini_eumling_slots = [
+		eumling_visuals.find_child("attachment_one"),
+		eumling_visuals.find_child("attachment_two"),
+		eumling_visuals.find_child("attachment_three"),
+	]
+	Data.active_eumlings_changed.connect(update_eumling_visuals)
+	update_eumling_visuals(Data._active_mini_eumlings)
 
 # reset player to its un-upgraded state
 func reset():
@@ -360,3 +370,14 @@ func clear_temporary_upgrades():
 
 func get_ability(type: Enum.EUMLING_TYPE) -> Ability:
 	return _abilities.get(type)
+
+func update_eumling_visuals(active_mini_eumlings: Array[Enum.EUMLING_TYPE]):
+	for node in mini_eumling_slots:
+		node.hide()
+	
+	var index: int = 0
+	for eumling in active_mini_eumlings:
+		if eumling == Enum.EUMLING_TYPE.ENTERPRISING or eumling == Enum.EUMLING_TYPE.REALISTIC: continue
+		if index >= mini_eumling_slots.size(): break
+		mini_eumling_slots[index].show()
+		index += 1
