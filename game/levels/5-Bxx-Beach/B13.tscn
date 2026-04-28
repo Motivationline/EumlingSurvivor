@@ -67,15 +67,10 @@ _surfaces = [{
 [node name="NavigationRegion3D" parent="." index="0" unique_id=843824706]
 navigation_mesh = SubResource("NavigationMesh_umtwc")
 
-[node name="BorderGridMap" parent="NavigationRegion3D" index="0" unique_id=1553876842]
-visible = false
-
 [node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" index="1" unique_id=376107134]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = ExtResource("2_avikd")
 cell_size = Vector3(0.5, 0.5, 0.5)
-collision_layer = 16
-collision_mask = 16
 baked_meshes = [SubResource("ArrayMesh_gai8e"), SubResource("ArrayMesh_aci2f"), SubResource("ArrayMesh_rmbq8")]
 data = {
 "cells": PackedInt32Array(5, 65528, 1048579, 6, 65528, 1048579, 7, 65528, 655363, 7, 65529, 1441795, 65533, 65534, 1441795, 65534, 65535, 1441795, 65535, 65535, 655363, 0, 65535, 3, 1, 65534, 3, 65528, 5, 1441795, 65529, 5, 655363, 65529, 6, 1048579, 65529, 7, 3, 65528, 65529, 3, 65529, 65528, 3)
@@ -228,3 +223,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, 1.75)
 
 [node name="QuickSand47" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="46" unique_id=192287235 instance=ExtResource("5_4ndhn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0.507, 2.75)
+
+[editable path="ExitVisual"]
