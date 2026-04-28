@@ -58,13 +58,22 @@
 [ext_resource type="AudioStream" uid="uid://bcgt2j2stqhe4" path="res://assets/characters/eumling/V2/sounds/death_3.wav" id="64_p0uwl"]
 [ext_resource type="Texture2D" uid="uid://dfff5rs4gl666" path="res://strategies/strategy.svg" id="65_2qewa"]
 [ext_resource type="AudioStream" uid="uid://dvbast0b3t832" path="res://assets/characters/eumling/V2/sounds/death_4.wav" id="65_v5pdl"]
+[ext_resource type="Script" uid="uid://d18mqghpyc88h" path="res://strategies/upgrade/base.gd" id="66_40jwy"]
 [ext_resource type="AudioStream" uid="uid://cv8gbbu0ywq5t" path="res://assets/characters/eumling/V2/sounds/death_5.wav" id="66_k3n0c"]
+[ext_resource type="Script" uid="uid://d2b0rn6nu1uy5" path="res://game/player/abilities/conventional/quests/attack_generic_quest.gd" id="67_3p3em"]
 [ext_resource type="AudioStream" uid="uid://dtwjmuugoxay2" path="res://assets/characters/eumling/V2/sounds/death_6.wav" id="67_m1cdu"]
+[ext_resource type="Texture2D" uid="uid://bwncwvrcqyodu" path="res://assets/ui/startScreen/SSArrow.png" id="68_0jq7b"]
 [ext_resource type="Script" uid="uid://d0y7cgck1opqh" path="res://game/player/abilities/social/social.gd" id="68_3p3em"]
 [ext_resource type="PackedScene" uid="uid://co3vv3d8hdp1s" path="res://game/aoes/social_aoe/social_aoe.tscn" id="69_0jq7b"]
+[ext_resource type="Script" uid="uid://cs7cumj4fkyug" path="res://game/player/abilities/conventional/quests/attack_target_quest.gd" id="69_fdpga"]
+[ext_resource type="PackedScene" uid="uid://ci0u03k3qthaj" path="res://game/player/abilities/conventional/quests/target_visuals.tscn" id="70_6ynhj"]
+[ext_resource type="Texture2D" uid="uid://c7b617pf4p3oj" path="res://assets/ui/ReloadCircle.png" id="70_d76hv"]
 [ext_resource type="Script" uid="uid://ca2lwyvrascpj" path="res://game/player/abilities/investigative.gd" id="71_d76hv"]
 [ext_resource type="Script" uid="uid://b1wawxra3pubk" path="res://game/player/abilities/artistic/artistic.gd" id="72_6ynhj"]
+[ext_resource type="Script" uid="uid://dlvair4vb8o18" path="res://game/player/abilities/conventional/quests/kill_target_quest.gd" id="72_jcmuf"]
+[ext_resource type="Script" uid="uid://b7r3ukosetjdd" path="res://game/player/abilities/conventional/quests/dodge_projectiles_quest.gd" id="73_6rcet"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="73_jcmuf"]
+[ext_resource type="Texture2D" uid="uid://opqokv4kksnj" path="res://assets/ui/reveal/Element 1@0.5x.png" id="74_t0o78"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ct7j0"]
 radius = 0.23
@@ -156,6 +165,36 @@ corner_radius_bottom_right = 10
 bg_color = Color(0.9372549, 0.24313726, 0.36078432, 0.7882353)
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
+
+[sub_resource type="Resource" id="Resource_kqpmw"]
+script = ExtResource("66_40jwy")
+value = 0.2
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_fdpga"]
+script = ExtResource("66_40jwy")
+type = 1
+method = 1
+value = 0.9
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_6ynhj"]
+script = ExtResource("66_40jwy")
+type = 6
+method = 1
+value = 1.2
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_524dg"]
+script = ExtResource("66_40jwy")
+type = 4
+method = 1
+value = 0.75
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ty5va"]
+height = 1.0
+radius = 0.75
 
 [node name="Player" type="CharacterBody3D" unique_id=1236976938 node_paths=PackedStringArray("eumling_visuals", "spawner") groups=["Player"]]
 collision_layer = 2
@@ -325,6 +364,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="QuestProgress" type="Control" parent="SpecialAbilities/Conventional/QuestDisplay/Control" unique_id=426358315]
 layout_mode = 1
@@ -397,5 +437,44 @@ stretch_mode = 5
 script = ExtResource("64_2qewa")
 icon = ExtResource("65_2qewa")
 text = "Move"
+temporary_reward = SubResource("Resource_kqpmw")
+
+[node name="AttackGenericQuest" type="Node3D" parent="SpecialAbilities/Conventional" unique_id=1471515311]
+script = ExtResource("67_3p3em")
+icon = ExtResource("68_0jq7b")
+text = "Attack"
+temporary_reward = SubResource("Resource_fdpga")
+
+[node name="AttackTargetQuest" type="Node3D" parent="SpecialAbilities/Conventional" unique_id=2029666691]
+script = ExtResource("69_fdpga")
+target_visuals = ExtResource("70_6ynhj")
+icon = ExtResource("70_d76hv")
+text = "Attack Target"
+temporary_reward = SubResource("Resource_6ynhj")
+metadata/_custom_type_script = "uid://cs7cumj4fkyug"
+
+[node name="KillTargetQuest" type="Node3D" parent="SpecialAbilities/Conventional" unique_id=1201408456]
+script = ExtResource("72_jcmuf")
+target_visuals = ExtResource("70_6ynhj")
+icon = ExtResource("63_ydmue")
+text = "Kill Target"
+can_be_repeated = false
+
+[node name="DodgeProjectilesQuest" type="Node3D" parent="SpecialAbilities/Conventional" unique_id=2063221084]
+script = ExtResource("73_6rcet")
+dodge_amount_required = 8
+icon = ExtResource("74_t0o78")
+text = "Dodge Projectiles"
+temporary_reward = SubResource("Resource_524dg")
+
+[node name="DodgeArea" type="Area3D" parent="SpecialAbilities/Conventional/DodgeProjectilesQuest" unique_id=765005236]
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpecialAbilities/Conventional/DodgeProjectilesQuest/DodgeArea" unique_id=1191940918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_ty5va")
 
 [connection signal="play_sound" from="Eumling_v2" to="SoundEffectManager" method="play_sound"]

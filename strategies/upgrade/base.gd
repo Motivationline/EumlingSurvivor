@@ -6,7 +6,7 @@ class_name Upgrade
 @export var value: float
 @export var rarity: Enum.RARITY
 
-func _init(_type: Enum.UPGRADE, _method: Enum.UPGRADE_METHOD, _value: float, _rarity: Enum.RARITY = Enum.RARITY.COMMON) -> void:
+func _init(_type: Enum.UPGRADE = Enum.UPGRADE.MOVEMENT_SPEED, _method: Enum.UPGRADE_METHOD = Enum.UPGRADE_METHOD.ABSOLUTE, _value: float = 0, _rarity: Enum.RARITY = Enum.RARITY.COMMON) -> void:
 	type = _type
 	method = _method
 	value = _value

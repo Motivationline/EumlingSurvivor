@@ -32,6 +32,8 @@ var max_health: float:
 var dead: bool = false
 
 signal died
+signal hurt
+signal attacked
 
 # @export var weapon: Weapon
 
@@ -54,9 +56,14 @@ signal died
 		update_configuration_warnings()
 
 var _current_values: Dictionary[Enum.UPGRADE, float] = {}
-var _temporary_values: Dictionary[Enum.UPGRADE, float] = {}
+var _temporary_upgrades: Dictionary[Enum.UPGRADE, Array] = {}
 func get_value(upgrade: Enum.UPGRADE) -> float:
-	return _current_values.get(upgrade, 0) + _temporary_values.get(upgrade, 0)
+	var value: float = _current_values.get(upgrade, 0)
+	var upgrades = _temporary_upgrades.get(upgrade)
+	if upgrades:
+		value = Upgrade.apply_all(value, upgrades)
+	# TODO: clamp to max values
+	return value
 signal upgrade_added
 ## Limits to the upgradeable values. x is minimum, y is maximum. If not specified, values can go from 0 to infinity.
 @export var min_max_values: Dictionary[Enum.UPGRADE, Vector2] = {}
@@ -137,7 +144,7 @@ func _ready() -> void:
 # reset player to its un-upgraded state
 func reset():
 	dead = false;
-	_temporary_values.clear()
+	_temporary_upgrades.clear()
 	_current_values = starting_values.duplicate()
 	max_health = get_value(Enum.UPGRADE.HEALTH)
 	health = get_value(Enum.UPGRADE.HEALTH)
@@ -160,6 +167,7 @@ func hurt_by(_area: HitBox):
 	if dead: return
 	
 	health -= _area.damage
+	hurt.emit()
 
 	if _area.causes_iframes:
 		enable_iframes()
@@ -268,14 +276,18 @@ func update_attack_visual():
 
 
 func add_upgrade(upgrade: Upgrade, temporary: bool = false):
-	var values = _current_values if not temporary else _temporary_values
-	var value = values.get_or_add(upgrade.type, 0)
-	var new_value = upgrade.apply(value)
-	if new_value < 0: return
-	if min_max_values.has(upgrade.type):
-		var limits: Vector2 = min_max_values.get(upgrade.type)
-		new_value = clamp(new_value, limits.x, limits.y)
-	values.set(upgrade.type, new_value)
+	if temporary:
+		var array: Array[Upgrade] = _temporary_upgrades.get_or_add(upgrade.type, [] as Array[Upgrade])
+		array.append(upgrade)
+	else:
+		var values = _current_values
+		var value = values.get_or_add(upgrade.type, 0)
+		var new_value = upgrade.apply(value)
+		if new_value < 0: return
+		if min_max_values.has(upgrade.type):
+			var limits: Vector2 = min_max_values.get(upgrade.type)
+			new_value = clamp(new_value, limits.x, limits.y)
+		values.set(upgrade.type, new_value)
 	upgrade_added.emit(upgrade)
 	check_upgrades_affecting_player(upgrade)
 
@@ -316,6 +328,7 @@ func shoot():
 	attack_cooldown.start(cooldown)
 	attack_spawner.spawn(self , eumling_visuals)
 	%AttackVisual.on_cooldown = true
+	attacked.emit()
 
 
 func reset_preview_color():
@@ -333,10 +346,17 @@ func level_completed(level: Level) -> void:
 			ability.level_completed()
 
 func level_start() -> void:
-	_temporary_values.clear()
+	clear_temporary_upgrades()
 	for ability in %SpecialAbilities.get_children():
 		if ability is Ability:
 			ability.level_start()
+
+func clear_temporary_upgrades():
+	var keys = _temporary_upgrades.keys()
+	_temporary_upgrades.clear()
+	for key in keys:
+		check_upgrades_affecting_player(Upgrade.new(key))
+
 
 func get_ability(type: Enum.EUMLING_TYPE) -> Ability:
 	return _abilities.get(type)

@@ -4,6 +4,8 @@ extends Ability
 
 var active_quest: Quest
 var unavailable_quests: Array[Quest] = []
+var recent_quests: Array[Quest] = []
+var level_ended = true
 
 func _ready() -> void:
 	_type = Enum.EUMLING_TYPE.CONVENTIONAL
@@ -13,7 +15,7 @@ func _process(_delta: float) -> void:
 	if amt_eumlings == 0:
 		return
 	if active_quest:
-		active_quest.process()
+		active_quest.process(_delta)
 
 func _update():
 	if amt_eumlings == 0:
@@ -27,6 +29,7 @@ func _update():
 	
 
 func level_start() -> void:
+	level_ended = false
 	if amt_eumlings == 0: return
 	_reset_possible_quests()
 	_start_quest()
@@ -35,6 +38,7 @@ func _reset_possible_quests():
 	unavailable_quests.clear()
 
 func _start_quest() -> void:
+	if level_ended: return
 	if active_quest:
 		_end_quest()
 	active_quest = _select_next_quest()
@@ -62,6 +66,9 @@ func _end_quest() -> void:
 	if not active_quest: return
 	active_quest.abort()
 
+	recent_quests.push_front(active_quest)
+	recent_quests.resize(2)
+
 	active_quest.progress.disconnect(_quest_progress)
 	active_quest.completed.disconnect(_quest_complete)
 	active_quest.failed.disconnect(_quest_failed)
@@ -75,8 +82,9 @@ func _select_next_quest() -> Quest:
 	for quest in get_children():
 		if not quest is Quest: continue
 		if unavailable_quests.has(quest): continue
-		if quest.precondition_is_met():
-			possible_quests.append(quest)
+		if recent_quests.has(quest): continue
+		if not quest.precondition_is_met(): continue
+		possible_quests.append(quest)
 	
 	return possible_quests.pick_random()
 
@@ -97,4 +105,9 @@ func _quest_failed() -> void:
 
 
 func level_completed() -> void:
+	level_ended = true
 	_end_quest()
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_abort_quest"):
+		_quest_failed()

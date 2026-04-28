@@ -50,6 +50,9 @@ class_name Enemy
 
 const DAMAGE_NUMBER_LABEL = preload("uid://dm4mgjmi078lm")
 
+signal died
+signal hurt
+
 var max_health: float:
 	set(value):
 		if value != max_health and status_visuals:
@@ -104,6 +107,8 @@ func _hurt_by(_attacker: HitBox):
 			damage *= Player.player.get_ability(Enum.EUMLING_TYPE.INVESTIGATIVE).multiplier
 	damage *= incoming_damage_multiplier
 
+	if damage > 0:
+		hurt.emit()
 	health -= damage
 	for ev in on_hurt:
 		ev.event_triggered(_attacker)
@@ -117,6 +122,7 @@ func _hurt_by(_attacker: HitBox):
 		Utils.create_damage_number(self, dmgText)
 		
 func _die():
+	died.emit()
 	for ev in on_death:
 		ev.event_triggered(null)
 	if not ignore_enemy_in_level:
