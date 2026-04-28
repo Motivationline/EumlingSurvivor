@@ -94,7 +94,7 @@ func clear_level():
 func show_mini_popup():
 	var popup = EUMLING_CELEBRATION.instantiate()
 	add_child(popup)
-	Data.unlocked_eumling([Enum.EUMLING_TYPE.SOCIAL, Enum.EUMLING_TYPE.INVESTIGATIVE, Enum.EUMLING_TYPE.ARTISTIC].pick_random())
+	Data.unlocked_eumling([Enum.EUMLING_TYPE.SOCIAL, Enum.EUMLING_TYPE.INVESTIGATIVE, Enum.EUMLING_TYPE.ARTISTIC, Enum.EUMLING_TYPE.CONVENTIONAL].pick_random())
 	await get_tree().create_timer(2).timeout
 
 func _get_configuration_warnings() -> PackedStringArray:
