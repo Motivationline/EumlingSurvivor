@@ -1,6 +1,7 @@
 @tool
 class_name MoveForwardAndBounceState extends MoveForwardState
 
+signal bounced
 
 var velocity: Vector3 = Vector3.BACK
 func enter():
@@ -18,6 +19,7 @@ func physics_process(_delta: float) -> State:
 	var collision := parent.move_and_collide(new_velocity)
 	if collision:
 		velocity = velocity.bounce(collision.get_normal())
+		bounced.emit()
 	
 	
 	return null
