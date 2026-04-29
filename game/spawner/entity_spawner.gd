@@ -123,6 +123,7 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 	instance.translate(Vector3.FORWARD * offset_distance)
 
 	if (instance is Projectile):
+		instance.shooter = _parent
 		instance.setup(
 			target_strategy.get_target_position(_relative_to) if (target_strategy) else _relative_to.global_position - _relative_to.basis.z,
 			_parent

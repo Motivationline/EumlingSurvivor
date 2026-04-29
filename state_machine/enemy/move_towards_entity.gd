@@ -73,6 +73,11 @@ func physics_process(_delta: float) -> State:
 	if (done): return return_next()
 	if done_but_waiting: return null
 	
+	#check if the target is closer than stopping distance
+	if target.global_position.distance_to(parent.global_position) <= stop_distance:
+		target_reached()
+		return null
+	
 	update_target_location()
 	
 	#parent.look_at(nav_agent.get_next_path_position())
@@ -84,9 +89,6 @@ func physics_process(_delta: float) -> State:
 	parent.visuals.rotation.y = lerp_angle(parent.visuals.rotation.y,atan2(-parent.velocity.x,-parent.velocity.z),_delta* rotation_speed)
 	
 	parent.move_and_slide()
-	#check if the target is closer than stopping distance
-	if (target.position - parent.position).length() <= (stop_distance):
-		target_reached()
 	return null
 
 func update_target_location():

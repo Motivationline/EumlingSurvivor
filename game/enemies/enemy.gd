@@ -19,9 +19,6 @@ class_name Enemy
 ## 1.0 means no change.
 @export var incoming_damage_multiplier: float = 1.0
 
-## How fast this entity moves when it moves
-@export_range(0, 100, 0.1) var speed: float = 1
-
 @export_category("Death")
 @export var death_effect: PackedScene
 
@@ -120,7 +117,9 @@ func _hurt_by(_attacker: HitBox):
 		var dmgText = "%d" % damage
 		if hit_vulnerability: dmgText += "!"
 		Utils.create_damage_number(self, dmgText)
-		
+	if projectile is Projectile and projectile.shooter == Player.player:
+		Player.player.hit.emit(self)
+
 func _die():
 	died.emit()
 	for ev in on_death:

@@ -10,9 +10,6 @@ static var _type_resources: Dictionary[Enum.EUMLING_TYPE, Resource] = {
 	Enum.EUMLING_TYPE.SOCIAL: preload("uid://drn335i4omarh"),
 }
 
-## How fast this entity moves when it moves
-@export_range(0, 100, 0.1) var speed: float = 1
-
 static func get_instance_of_type(_type: Enum.EUMLING_TYPE) -> Node3D:
 	return _type_resources.get(_type).instantiate() as Node3D
 

@@ -57,6 +57,8 @@ var hits: Array[Node]
 
 var obj_that_spawned_this: Node3D
 
+var shooter: Node3D
+
 signal creation_completed
 
 func setup(target_pos: Vector3, _owner: Node3D):

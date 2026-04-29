@@ -33,6 +33,7 @@ var dead: bool = false
 
 signal died
 signal hurt
+signal hit(enemy: Enemy)
 signal attacked
 
 # @export var weapon: Weapon

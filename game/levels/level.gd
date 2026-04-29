@@ -22,6 +22,7 @@ var player: Player
 const MINI_EUMLING = preload("uid://b2jek12j4wcgb")
 const CAGED_MINI_EUMLING = preload("uid://6lim36lw260g")
 const EUMLING_CELEBRATION = preload("uid://p83xt72cksyt")
+const MINI_EUMLING_E = preload("uid://cd212gh71k5cn")
 
 ## level done condition completed
 signal level_cleared
@@ -53,13 +54,18 @@ func spawn_player(_player: Player):
 
 func spawn_mini_eumling(type: Enum.EUMLING_TYPE):
 	# only spawn minis that need to follow player
-	if type == Enum.EUMLING_TYPE.ENTERPRISING or type == Enum.EUMLING_TYPE.REALISTIC:
-		var mini_eumling = MINI_EUMLING.instantiate() as MiniEumling
+	var mini_eumling
+	if type == Enum.EUMLING_TYPE.ENTERPRISING:
+		mini_eumling = MINI_EUMLING_E.instantiate()
+	elif type == Enum.EUMLING_TYPE.REALISTIC:
+		mini_eumling = MINI_EUMLING.instantiate() as MiniEumling
 		mini_eumling.type = type
+		mini_eumlings.push_back(mini_eumling)
+
+	if mini_eumling:
 		add_child(mini_eumling)
 		mini_eumling.global_position = player_spawn.global_position
 		mini_eumling.translate(Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)))
-		mini_eumlings.push_back(mini_eumling)
 
 func _process(_delta: float) -> void:
 	if (Engine.is_editor_hint()): return
@@ -95,7 +101,7 @@ func clear_level():
 func show_mini_popup():
 	var popup = EUMLING_CELEBRATION.instantiate()
 	add_child(popup)
-	Data.unlocked_eumling([Enum.EUMLING_TYPE.SOCIAL, Enum.EUMLING_TYPE.INVESTIGATIVE, Enum.EUMLING_TYPE.ARTISTIC, Enum.EUMLING_TYPE.CONVENTIONAL].pick_random())
+	Data.unlocked_eumling([Enum.EUMLING_TYPE.SOCIAL, Enum.EUMLING_TYPE.INVESTIGATIVE, Enum.EUMLING_TYPE.ARTISTIC, Enum.EUMLING_TYPE.CONVENTIONAL, Enum.EUMLING_TYPE.ENTERPRISING].pick_random())
 	await get_tree().create_timer(2).timeout
 
 func _get_configuration_warnings() -> PackedStringArray:

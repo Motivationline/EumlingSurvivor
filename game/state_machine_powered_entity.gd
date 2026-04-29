@@ -5,6 +5,8 @@ class_name StateMachinePoweredEntity
 @export var node_with_animation_tree: Node3D
 @export var state_machine: StateMachine
 
+## How fast this entity moves when it moves
+@export_range(0, 100, 0.1) var speed: float = 1
 
 var resource: float = 0.0
 
