@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="3_qxqvm"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="4_uveg6"]
 [ext_resource type="AudioStream" uid="uid://jdj6s0mg7a6p" path="res://assets/sound/obstacle_sound_effects/exit_area/chime.wav" id="5_l5v63"]
-[ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_1.wav" id="6_7hvtw"]
-[ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_2.wav" id="7_xqs1q"]
-[ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_3.wav" id="8_1uaeg"]
-[ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_4.wav" id="9_84bm4"]
+[ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_1.wav" id="6_7hvtw"]
+[ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_2.wav" id="7_xqs1q"]
+[ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_3.wav" id="8_1uaeg"]
+[ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_4.wav" id="9_84bm4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tkqdu"]
 size = Vector3(1.5387268, 3.8623047, 0.4255371)
@@ -64,7 +64,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.03333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": ["Leaves"],
+"args": ["Noise"],
 "method": &"play_sound"
 }]
 }
@@ -179,10 +179,11 @@ metadata/_custom_type_script = "uid://fxqs1lioec3e"
 stream = ExtResource("5_l5v63")
 bus = &"SFXUI"
 
-[node name="Leaves" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=857230476]
+[node name="Noise" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=857230476]
 stream = SubResource("AudioStreamRandomizer_mu12n")
 volume_db = -80.0
 panning_strength = 2.0
+bus = &"SFXAll"
 attenuation_filter_cutoff_hz = 20500.0
 
 [node name="Block" type="StaticBody3D" parent="." unique_id=571840104]

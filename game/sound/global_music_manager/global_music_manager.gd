@@ -28,7 +28,8 @@ func _ready():
 		
 	var noise_player:= AudioStreamPlayer.new()
 	env_noise_player = noise_player
-	env_noise_player.bus = "Environmet"
+	env_noise_player.bus = "Environment"
+	print(env_noise_player.bus)
 	add_child(env_noise_player)
 
 

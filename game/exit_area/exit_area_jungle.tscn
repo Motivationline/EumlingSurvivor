@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://be1fw7kjvhpof" path="res://game/exit_area/exit_trunk.tscn" id="1_tkqdu"]
 [ext_resource type="PackedScene" uid="uid://bujhyll6x4iak" path="res://assets/models/3-Jungle/JunglePlant/jungle_plant_big.tscn" id="3_2dq3v"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="4_gva8b"]
-[ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_1.wav" id="5_2dq3v"]
+[ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_1.wav" id="5_2dq3v"]
 [ext_resource type="AudioStream" uid="uid://jdj6s0mg7a6p" path="res://assets/sound/obstacle_sound_effects/exit_area/chime.wav" id="6_dmamu"]
-[ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_2.wav" id="6_ixbc8"]
-[ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_3.wav" id="7_dmamu"]
-[ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/leaves_receding_4.wav" id="8_vofq4"]
+[ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_2.wav" id="6_ixbc8"]
+[ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_3.wav" id="7_dmamu"]
+[ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_4.wav" id="8_vofq4"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="9_2dq3v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tkqdu"]
@@ -424,6 +424,7 @@ bus = &"SFXUI"
 [node name="Leaves" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=857230476]
 stream = SubResource("AudioStreamRandomizer_mu12n")
 panning_strength = 2.0
+bus = &"SFXAll"
 attenuation_filter_cutoff_hz = 20500.0
 
 [editable path="Visuals/exit_trunk"]
