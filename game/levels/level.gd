@@ -19,10 +19,10 @@ var finished: bool = false
 var ends: bool = false
 var player: Player
 
-const MINI_EUMLING = preload("uid://b2jek12j4wcgb")
 const CAGED_MINI_EUMLING = preload("uid://6lim36lw260g")
 const EUMLING_CELEBRATION = preload("uid://p83xt72cksyt")
 const MINI_EUMLING_E = preload("uid://cd212gh71k5cn")
+const MINI_EUMLING_R = preload("uid://ecxm5futmmj4")
 
 ## level done condition completed
 signal level_cleared
@@ -38,8 +38,6 @@ func _ready() -> void:
 	add_to_group("Level")
 	if (goal_area):
 		goal_area.set_collision_mask_value(2, true)
-
-var mini_eumlings: Array[MiniEumling] = []
 
 func spawn_player(_player: Player):
 	player = _player
@@ -58,9 +56,7 @@ func spawn_mini_eumling(type: Enum.EUMLING_TYPE):
 	if type == Enum.EUMLING_TYPE.ENTERPRISING:
 		mini_eumling = MINI_EUMLING_E.instantiate()
 	elif type == Enum.EUMLING_TYPE.REALISTIC:
-		mini_eumling = MINI_EUMLING.instantiate() as MiniEumling
-		mini_eumling.type = type
-		mini_eumlings.push_back(mini_eumling)
+		mini_eumling = MINI_EUMLING_R.instantiate()
 
 	if mini_eumling:
 		add_child(mini_eumling)
@@ -85,8 +81,8 @@ func _process(_delta: float) -> void:
 
 func clear_level():
 	player.level_completed(self)
-	for me in mini_eumlings:
-		me.celebrate()
+	# for me in mini_eumlings:
+	# 	me.celebrate()
 	
 	# TODO: Do stuff that needs to be done before the level can be unloaded, like collecting all the xp / items or something
 	if is_boss_level:

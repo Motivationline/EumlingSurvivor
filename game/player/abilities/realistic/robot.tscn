@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://6yrxe41rhgei"]
+
+[ext_resource type="Script" uid="uid://cy6yrrk7wmqf7" path="res://game/player/abilities/realistic/robot.gd" id="1_sjb5n"]
+[ext_resource type="PackedScene" uid="uid://iu00eeesfs5v" path="res://assets/characters/eumling/eumling_robot/eumling_robot.tscn" id="2_jmjnl"]
+[ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="2_ytxv7"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_4wctg"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="4_u7e5b"]
+[ext_resource type="PackedScene" uid="uid://hpf1ls8vm18b" path="res://game/healthbar/status_visuals_3d.tscn" id="5_85hww"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_y2li0"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_b6kjj"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="6_nw2gf"]
+[ext_resource type="PackedScene" uid="uid://drxpnv8uvkih2" path="res://game/player/abilities/realistic/mini_eumling_robot_aoe.tscn" id="7_y2li0"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="8_b6kjj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jmjnl"]
+height = 1.0
+radius = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b6kjj"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_001pj"]
+resource_local_to_scene = true
+transparency = 1
+depth_draw_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_b6kjj")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_r4cm2"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u7e5b"]
+radius = 0.4
+
+[node name="MiniEumlingRobot" type="CharacterBody3D" unique_id=1814085372 node_paths=PackedStringArray("repair_area", "repaired_state", "broken_state", "level_completed_state", "status_visuals", "hurtbox", "node_with_animation_tree", "state_machine") groups=["Interactable"]]
+script = ExtResource("1_sjb5n")
+max_health = 100.0
+repair_per_second = 25.0
+repair_area = NodePath("RepairArea")
+repaired_state = NodePath("StateMachine/Repaired/RepairAnimation")
+broken_state = NodePath("StateMachine/WaitToBeRepairedState")
+level_completed_state = NodePath("StateMachine/AllEnemiesClearedState")
+status_visuals = NodePath("StatusVisuals3D")
+hurtbox = NodePath("Hurtbox")
+node_with_animation_tree = NodePath("Visuals")
+state_machine = NodePath("StateMachine")
+
+[node name="StateMachine" type="Node" parent="." unique_id=550035960 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_ytxv7")
+initial_state = NodePath("WaitToBeRepairedState")
+metadata/_custom_type_script = "uid://cio21hucnk80k"
+
+[node name="WaitToBeRepairedState" type="Node" parent="StateMachine" unique_id=829384148 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_4wctg")
+next_state = NodePath(".")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "broken"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Repaired" type="Node" parent="StateMachine" unique_id=1771760162]
+
+[node name="RepairAnimation" type="Node" parent="StateMachine/Repaired" unique_id=389994548 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_4wctg")
+wait_time = 2.0
+next_state = NodePath("../MoveTowardsEntityState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "summon"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="MoveTowardsEntityState" type="Node" parent="StateMachine/Repaired" unique_id=583125577 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_u7e5b")
+wait_time = 0.0
+stop_distance = 1.0
+selection_strategy = "closest"
+entity_group = "Enemy"
+next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "walk"
+})
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Repaired" unique_id=805113639 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_y2li0")
+start_delay = 0.6
+end_delay = 1.6
+next_state = NodePath("../MoveTowardsEntityState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/OneShot/request": 1,
+"parameters/Transition/transition_request": "idle"
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/Repaired/SpawnEntitiesState" unique_id=154277291]
+script = ExtResource("6_b6kjj")
+entity_to_spawn = ExtResource("7_y2li0")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="AllEnemiesClearedState" type="Node" parent="StateMachine" unique_id=1510291184 node_paths=PackedStringArray("next_state")]
+script = ExtResource("8_b6kjj")
+wait_time = 0.0
+target = 1
+min_distance = 1.5
+max_distance = 3.0
+next_state = NodePath("WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "walk"
+})
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/AllEnemiesClearedState" unique_id=1342286368 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_4wctg")
+wait_time = 3.0
+next_state = NodePath("..")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "idle"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="RepairArea" type="Area3D" parent="." unique_id=2001852190]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RepairArea" unique_id=1530548736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_jmjnl")
+
+[node name="Visuals" type="Node3D" parent="." unique_id=1318759447]
+
+[node name="eumling_robot" parent="Visuals" unique_id=1664501692 instance=ExtResource("2_jmjnl")]
+
+[node name="StatusVisuals3D" parent="." unique_id=444245433 instance=ExtResource("5_85hww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Sprite3D" parent="StatusVisuals3D" index="0" unique_id=136601365]
+material_override = SubResource("StandardMaterial3D_001pj")
+texture = SubResource("ViewportTexture_r4cm2")
+
+[node name="ReloadBar" parent="StatusVisuals3D/SubViewport" parent_id_path=PackedInt32Array(444245433, 1922379261) index="1" unique_id=570337419]
+visible = false
+
+[node name="Hurtbox" parent="." unique_id=1773216534 instance=ExtResource("6_nw2gf")]
+collision_layer = 8
+collision_mask = 32
+monitoring = false
+monitorable = false
+attached_to = 4
+can_be_hit_by = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=170466852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46150106, 0)
+shape = SubResource("SphereShape3D_u7e5b")
+
+[editable path="StatusVisuals3D"]

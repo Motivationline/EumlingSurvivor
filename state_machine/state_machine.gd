@@ -37,7 +37,7 @@ func physics_process(delta: float):
 func switch_to_state(next_state: State):
 	if (!next_state): return
 
-	if (current_state):
+	if current_state:
 		current_state.exit()
 		if current_state.consumed_resource.is_connected(consume_resources):
 			current_state.consumed_resource.disconnect(consume_resources)

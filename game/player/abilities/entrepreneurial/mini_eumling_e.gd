@@ -1,9 +1,7 @@
-extends StateMachinePoweredEntity
+extends MiniEumling
 
 @export var attack_enemy_state: State
 @export var follow_player: State
-
-@onready var visuals: Node3D = $Visuals
 
 func _ready() -> void:
 	super()

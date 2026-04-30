@@ -63,17 +63,29 @@ node_connections = [&"output", 0, &"OneShot", &"Transition", 0, &"TimeScale", &"
 
 [node name="eumling_robot" unique_id=1664501692 instance=ExtResource("1_g06lv")]
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(756396854) index="4" unique_id=2016699446]
-transform = Transform3D(0.98106027, 0.10291143, -0.16410363, 0.08715575, 0.52206856, 0.8484387, 0.17298742, -0.846672, 0.50321144, 0.011744857, 0.30913365, -0.0035178922)
+[node name="AnimationTree" type="AnimationTree" parent="." index="0" unique_id=2022322627]
+tree_root = SubResource("AnimationNodeBlendTree_ns0y1")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "broken"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0
+parameters/TimeScale/scale = 0.0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(370319518) index="4" unique_id=2016699446]
+transform = Transform3D(1, -2.2204457e-16, -6.617444e-23, -6.617445e-24, -3.5762784e-07, 0.9999999, -2.2204459e-16, -0.9999999, -3.5762784e-07, 4.6867235e-18, 0.307296, 0.04238986)
 bone_name = "DEF_DRIVER"
 bone_idx = 43
 
 [node name="DriverSeat" type="Node3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" unique_id=60268122]
 transform = Transform3D(0.99970144, 0.024432378, 3.8213714e-15, -1.067969e-09, 4.3698343e-08, -1.0000001, -0.024432372, 0.9997016, 4.3711392e-08, 5.552422e-05, 0.0094050225, 0.10300323)
+visible = false
 
 [node name="mini_realistisch_geschick" parent="Armature/Skeleton3D/BoneAttachment3D/DriverSeat" index="0" unique_id=1002739651 instance=ExtResource("2_21y6x")]
 
-[node name="Leaf01" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(756396854) index="5" unique_id=260360788]
+[node name="Leaf01" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(370319518) index="5" unique_id=260360788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13305664, 0, 0)
 setting_count = 1
 settings/0/root_bone_name = "DEF_LEAF01_1"
@@ -100,7 +112,7 @@ settings/0/joints/1/bone = 16
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="Leaf02" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(756396854) index="6" unique_id=84286812]
+[node name="Leaf02" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(370319518) index="6" unique_id=84286812]
 setting_count = 1
 settings/0/root_bone_name = "DEF_LEAF02_1"
 settings/0/root_bone = 17
@@ -126,7 +138,7 @@ settings/0/joints/1/bone = 18
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="Leaf03" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(756396854) index="7" unique_id=1166511493]
+[node name="Leaf03" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(370319518) index="7" unique_id=1166511493]
 setting_count = 1
 settings/0/root_bone_name = "DEF_LEAF03_1"
 settings/0/root_bone = 19
@@ -151,14 +163,3 @@ settings/0/joints/1/bone_name = "DEF_LEAF03_2"
 settings/0/joints/1/bone = 20
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
-
-[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=2022322627]
-tree_root = SubResource("AnimationNodeBlendTree_ns0y1")
-anim_player = NodePath("../AnimationPlayer")
-parameters/Transition/current_state = "idle"
-parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 2
-parameters/TimeScale/scale = 0.0
-parameters/OneShot/active = false
-parameters/OneShot/internal_active = false
-parameters/OneShot/request = 0

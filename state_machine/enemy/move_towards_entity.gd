@@ -14,6 +14,8 @@ class_name MoveTowardsEntityState
 @export var max_follow_time: float = -1 
 ## amount to rotate when directions change
 @export_range(0.0,50.0,0.1) var rotation_speed: float = 5
+## how to choose from a potential list of enemies 
+@export_enum("random", "closest", "furthest") var selection_strategy = "random"
 
 ## Which entity group to find an entity to move towards
 @export var entity_group: String = "Player"
@@ -64,7 +66,15 @@ func enter():
 		push_warning("Didn't find any entity in group '" + entity_group + "' (with name '" + entity_name + "' )")
 		target_reached()
 		return
-	target = entities.pick_random()
+	match selection_strategy:
+		"nearest":
+			Utils.sort_array_by_distance(entities, parent)
+		"furthest":
+			Utils.sort_array_by_distance(entities, parent)
+			entities.reverse()
+		_:
+			entities.shuffle()
+	target = entities[0]
 	update_target_location()
 	done_but_waiting = false
 	start_timer()
