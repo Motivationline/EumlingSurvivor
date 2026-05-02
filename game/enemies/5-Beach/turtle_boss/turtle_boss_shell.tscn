@@ -7,11 +7,27 @@
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_1yahh"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_e3ogy"]
 [ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="5_dwm3f"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="6_55h62"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="7_jjgd4"]
 [ext_resource type="AudioStream" uid="uid://dpmbmrg7ebd4w" path="res://assets/characters/enemies/boss_turtle/sounds/spin_stop.wav" id="8_3rox8"]
 [ext_resource type="AudioStream" uid="uid://c38qtwb564dxl" path="res://assets/characters/enemies/boss_turtle/sounds/spin_1.wav" id="8_yfw8p"]
 [ext_resource type="AudioStream" uid="uid://dh3i0yibyhpup" path="res://assets/characters/enemies/boss_turtle/sounds/spin_2.wav" id="9_3rox8"]
 [ext_resource type="AudioStream" uid="uid://gic4lfpcx25n" path="res://assets/characters/enemies/boss_turtle/sounds/spin_3.wav" id="10_5sm7x"]
+[ext_resource type="AudioStream" uid="uid://b8uhvwa6lwo7g" path="res://assets/characters/enemies/boss_turtle/sounds/rebound_1.wav" id="10_418st"]
+[ext_resource type="AudioStream" uid="uid://br1mtkao76o4i" path="res://assets/characters/enemies/boss_turtle/sounds/rebound_2.wav" id="11_kofj2"]
+[ext_resource type="AudioStream" uid="uid://dl063c85gahne" path="res://assets/characters/enemies/boss_turtle/sounds/rebound_3.wav" id="12_ppfhd"]
+[ext_resource type="AudioStream" uid="uid://c7jmh6wt14exy" path="res://assets/characters/enemies/boss_turtle/sounds/rebound_4.wav" id="13_krywc"]
+[ext_resource type="AudioStream" uid="uid://dfqws34nlcooq" path="res://assets/characters/enemies/boss_turtle/sounds/rebound_5.wav" id="14_6er22"]
+[ext_resource type="AudioStream" uid="uid://cxusjxib8fmwo" path="res://assets/characters/enemies/boss_turtle/sounds/rebound_6.wav" id="15_ulyht"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q20po"]
+streams_count = 6
+stream_0/stream = ExtResource("10_418st")
+stream_1/stream = ExtResource("11_kofj2")
+stream_2/stream = ExtResource("12_ppfhd")
+stream_3/stream = ExtResource("13_krywc")
+stream_4/stream = ExtResource("14_6er22")
+stream_5/stream = ExtResource("15_ulyht")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kvsen"]
 streams_count = 3
@@ -29,9 +45,9 @@ radius = 0.76708984
 [node name="Shell" unique_id=1898691 node_paths=PackedStringArray("node_with_animation_tree") groups=["Enemy"] instance=ExtResource("1_4mvb8")]
 collision_layer = 0
 collision_mask = 769
-speed = 6.0
 ignore_enemy_in_level = true
 node_with_animation_tree = NodePath("Visuals/boss_turtle")
+speed = 6.0
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
 visible = false
@@ -77,13 +93,24 @@ script = ExtResource("5_dwm3f")
 next_state = NodePath("../WaitForAWhile")
 metadata/_custom_type_script = "uid://dj632w22te1th"
 
+[node name="PlaySoundRebound" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=2022492772 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("6_55h62")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = "Rebound"
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
 [node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("2_4d1ke")]
 
 [node name="SpinStop" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=2064507989 instance=ExtResource("7_jjgd4")]
 stream = ExtResource("8_3rox8")
 
-[node name="Spin" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=592601252 instance=ExtResource("7_jjgd4")]
+[node name="Rebound" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=209551134 instance=ExtResource("7_jjgd4")]
+stream = SubResource("AudioStreamRandomizer_q20po")
+volume_db = -13.0
+
+[node name="Spin" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=592601252 instance=ExtResource("7_jjgd4")]
 stream = SubResource("AudioStreamRandomizer_kvsen")
+volume_db = -10.0
 
 [node name="Hitbox" parent="." index="6" unique_id=1999330290 instance=ExtResource("4_e3ogy")]
 collision_layer = 32
@@ -101,4 +128,5 @@ shape = SubResource("SphereShape3D_1yahh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3273508, -0.10874775)
 shape = SubResource("CylinderShape3D_1yahh")
 
+[connection signal="bounced" from="StateMachine/MoveForwardAndBounceState" to="Eventlisteners/PlaySoundRebound" method="execute_event" binds= ["nothing to see here"]]
 [connection signal="play_sound" from="Visuals/boss_turtle" to="SoundEffectManager" method="play_sound"]
