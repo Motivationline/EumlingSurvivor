@@ -123,7 +123,7 @@ metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 [node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine/RandomWalk" index="0" unique_id=890392008 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ad351")
 wait_time = 0.0
-min_distance = 3.0
+max_distance = 1.5
 next_state = NodePath("../../DecideDistanceState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
