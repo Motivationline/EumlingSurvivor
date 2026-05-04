@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="4_02mkn"]
 [ext_resource type="PackedScene" uid="uid://ddty5phcxxvsi" path="res://game/enemies/3-Jungle/bomb_berry_poison/bomb_berry_poison.tscn" id="5_02mkn"]
 [ext_resource type="LightmapGIData" uid="uid://bdb8caijp3ben" path="res://game/levels/3-Jxx-Jungle/lightmaps2/J06.lmbake" id="6_r2xbu"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_r2xbu"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_r2xbu"]
 vertices = PackedVector3Array(-1.5, 1, -2, -1.75, 1, -2, -1.75, 1, -1.75, 1.75, 1, -1.75, -2, 1, -1.75, -2, 1, -1.5, 2, 1, -1.5, 2, 1, -1.75, 1.75, 1, -3.25, 1.25, 1, -4.5, 1, 1, -4.5, 1, 1, -4.75, -1, 1, -4.75, -1, 1, -4.5, -4.5, 1, -1, -4.5, 1, 4.75, 4.75, 1, 4.75, 4.75, 1, -1.25, -1.5, 1, -3.25, -3.25, 1, -1.5, 3.25, 1, -1.5, -3.5, 1, -1.5, -3.5, 1, -1.75, -3.75, 1, -1.75, -3.75, 1, -2.5, -3.5, 1, -2.5, -3.5, 1, -2.75, -4.5, 1, -4.5, -2.75, 1, -3.5, -2.5, 1, -3.5, -2.5, 1, -3.75, -1.75, 1, -3.75, -1.75, 1, -3.5, -1.5, 1, -3.5, -2.75, 1, -2.75, 1.75, 1, -3.5, 2, 1, -3.5, 2, 1, -3.75, 2.75, 1, -3.75, 2.75, 1, -3.5, 3, 1, -3.5, 4.75, 1, -4.5, 3.75, 1, -2.75, 3.75, 1, -2.5, 4, 1, -2.5, 4, 1, -2, 3.75, 1, -2, 3.75, 1, -1.75, 3.5, 1, -1.75, 3.5, 1, -1.5, 3, 1, -2.75)
@@ -283,10 +284,10 @@ data = {
 }
 
 [node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=2040587425 instance=ExtResource("3_mldid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5752609, 0, -3.5722237)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -1)
 
 [node name="TortoiseEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1173534300 instance=ExtResource("3_mldid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7062218, 0, -3.5728612)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -1)
 
 [node name="BaseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1898691 instance=ExtResource("5_02mkn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.122187, 0, 4.1089244)
@@ -303,3 +304,6 @@ light_data = ExtResource("6_r2xbu")
 [node name="ExitArea" parent="." index="8" unique_id=530961080 node_paths=PackedStringArray("parent") instance=ExtResource("4_02mkn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(9488913) index="0" unique_id=1814085372 instance=ExtResource("8_r2xbu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9319496, 0, 0)

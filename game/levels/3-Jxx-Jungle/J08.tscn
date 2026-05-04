@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="4_bl6gp"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="4_nj8sr"]
 [ext_resource type="LightmapGIData" uid="uid://8npg6va2ntmd" path="res://game/levels/3-Jxx-Jungle/lightmaps2/J08.lmbake" id="5_nq6oq"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_ls7bw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kqau"]
 resource_name = "Material"
@@ -327,6 +328,9 @@ light_data = ExtResource("5_nq6oq")
 [node name="ExitArea" parent="." index="8" unique_id=189300084 node_paths=PackedStringArray("parent") instance=ExtResource("4_nj8sr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(9488913) index="0" unique_id=1814085372 instance=ExtResource("8_ls7bw")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -1.1633942, 0, 1.100853)
 
 [editable path="Enemies/SpikeTrap"]
 [editable path="Enemies/SpikeTrap2"]

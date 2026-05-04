@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_xdtyy"]
 [ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-Jungle/bomber/bomber_enemy.tscn" id="4_h3tdc"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="5_44sxq"]
-[ext_resource type="LightmapGIData" uid="uid://b3bj4ufciwvjk" path="res://game/levels/3-Jxx-Jungle/Lightmaps/J17.lmbake" id="7_44sxq"]
+[ext_resource type="LightmapGIData" uid="uid://b3bj4ufciwvjk" path="res://game/levels/3-Jxx-Jungle/lightmaps2/J17.lmbake" id="7_44sxq"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="9_44sxq"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_a62oy"]
 vertices = PackedVector3Array(-3.5, 1, -1.25, -3.5, 1, -1.5, -3.75, 1, -1.5, -4.5, 1, -0.75, -3.75, 1, -2.5, -3.5, 1, -2.5, -3.5, 1, -2.75, -4.5, 1, -4.5, -3.25, 1, -2.75, -3.25, 1, -3, -2.5, 1, -3, -2.5, 1, -2.75, -2.25, 1, -2.75, -2.25, 1, -3, 4.25, 1, -3, 4, 1, -2.75, 4, 1, 1.5, 4.25, 1, 1.75, -1.75, 1, -3, -1.75, 1, -2.75, -1.5, 1, -2.75, -0.75, 1, -4.5, -1, 1, -2.25, -1, 1, -2, -0.75, 1, -2, -0.75, 1, -1, -1, 1, -1, -1, 1, -0.75, 4, 1, 1.75, 4.5, 1, 3, 4.25, 1, 3, 4.25, 1, 3.25, 4.5, 1, 3.25, 2.5, 1, -2.75, 2.25, 1, -3.5, 1, 1, -4.5, 4.5, 1, 3.75, 4.25, 1, 3.75, 4.25, 1, 4, 4.75, 1, 4.75, 3.25, 1, -4.5, 3.25, 1, -4.25, 3.5, 1, -4.25, 4, 1, -4, 4, 1, -3.75, 4.25, 1, -3.75, 4.75, 1, -4.5, 4, 1, -3, 2.75, 1, -2.5, 2.75, 1, -2.75, 2.25, 1, -4, 2.5, 1, -4, 2.5, 1, -4.25, 2.75, 1, -4.25, 2.75, 1, -4.5, 3.5, 1, 1.25, 3.5, 1, 1.5, 4.25, 1, 2.25, 4.5, 1, 2.25, 3.5, 1, -4, -1.5, 1, -2.25, 3.25, 1, -2.75, 3.25, 1, -2.5, 2.5, 1, -3.5, 3.75, 1, 4, 3.75, 1, 4.75, -3.25, 1, -1.25, 3.25, 1, 1.25, 1, 1, -4.75, -0.75, 1, -4.75, 3.5, 1, 4, 3.5, 1, 3.75, 3.25, 1, 3.75, 3.25, 1, 4, -1.75, 1, -0.5, -2.5, 1, -0.5, -4.5, 1, 4.75, 2.5, 1, 3.75, 2.5, 1, 3, 2.75, 1, 4, 2.75, 1, 3.75, 2.75, 1, 3, 2.75, 1, 2.75, 2.5, 1, 2.75, 3, 1, 1.25, 2.75, 1, 1.5, 3, 1, 1.5, -2.5, 1, -0.75, -2.75, 1, -0.75, 2.5, 1, 2, 2.75, 1, 2, -2.75, 1, -1.25, -1.75, 1, -0.75)
@@ -120,3 +121,6 @@ light_data = ExtResource("7_44sxq")
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("5_44sxq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(9488913) index="0" unique_id=1814085372 instance=ExtResource("9_44sxq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1699054, 0, -0.866024)

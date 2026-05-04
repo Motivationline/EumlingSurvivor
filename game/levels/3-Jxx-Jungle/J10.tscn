@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_o1vw5"]
 [ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-Jungle/bomber/bomber_enemy.tscn" id="3_syem8"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="5_o1vw5"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="7_syem8"]
 [ext_resource type="LightmapGIData" uid="uid://vsm2irhjs4cr" path="res://game/levels/3-Jxx-Jungle/lightmaps2/J10.lmbake" id="8_7dthd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_7dthd"]
@@ -314,3 +315,6 @@ light_data = ExtResource("8_7dthd")
 [node name="ExitArea" parent="." index="8" unique_id=791253528 node_paths=PackedStringArray("parent") instance=ExtResource("5_o1vw5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(9488913) index="0" unique_id=1814085372 instance=ExtResource("7_syem8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.215358, 0, 0)
