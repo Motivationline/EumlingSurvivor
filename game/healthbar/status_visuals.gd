@@ -2,7 +2,11 @@ extends Node3D
 class_name StatusVisuals
 
 ## Should the health numbers be visible?
-@export var show_health_numbers: bool = false
+@export var show_health_numbers: bool = false:
+	set(value):
+		show_health_numbers = value
+		for healthbar in healthbars:
+			healthbar.show_health_numbers = show_health_numbers
 
 
 var healthbars: Array[Healthbar] = []
