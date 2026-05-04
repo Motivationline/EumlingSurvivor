@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_rggri"]
 [ext_resource type="PackedScene" uid="uid://cwnvsfbpov2w8" path="res://game/enemies/6-volcano/volcano_turtle/volcano_tortoise_enemy.tscn" id="4_rggri"]
 [ext_resource type="LightmapGIData" uid="uid://boiseakteuwtl" path="res://game/levels/6-Vxx-Volcano/lightmaps2/V13.lmbake" id="6_jsgb6"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="7_jsgb6"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_80h4o"]
 vertices = PackedVector3Array(-0.75, 1, 0.5, -0.75, 1, 0.25, -1, 1, 0.25, -4.5, 1, 0.5, -1, 1, 0, -1.25, 1, 0, -1, 1, -1.5, -0.75, 1, -1.5, -0.75, 1, -1.75, 0.5, 1, -2, 0.5, 1, -1.75, 0.75, 1, -1.75, 1.5, 1, -1.25, 1.5, 1, -1, 1.75, 1, -1, 1.75, 1, -0.5, 1.5, 1, -0.5, 1.5, 1, -0.25, 4.75, 1, 0.25, 1.25, 1, -0.25, 1.25, 1, 0, 1, 1, 0, 1, 1, 0.25, 1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -0.25, 1, -1.75, -0.25, 1, -2, 0.75, 1, -1.25, -1.25, 1, -0.5, -1, 1, -0.5, 0.75, 1, -5, -0.5, 1, -5, -4.5, 1, -4.5, 4.75, 1, -4.5, 1, 1, 0.75, 0.75, 1, 0.75, 0.75, 1, 1, -0.5, 1, 0.75, -0.5, 1, 0.5, 0, 1, 1, 0, 1, 0.75, 4.75, 1, 4.75, -4.5, 1, 4.75)
@@ -101,3 +102,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6032324, 0, -0.4780333)
 
 [node name="LightmapGI" parent="." index="8" unique_id=1520578396]
 light_data = ExtResource("6_jsgb6")
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(614762836) index="0" unique_id=1814085372 instance=ExtResource("7_jsgb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5113766, 0, 0.52162695)

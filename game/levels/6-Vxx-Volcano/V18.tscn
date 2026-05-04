@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="3_cmjxi"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_gufto"]
 [ext_resource type="PackedScene" uid="uid://cwnvsfbpov2w8" path="res://game/enemies/6-volcano/volcano_turtle/volcano_tortoise_enemy.tscn" id="4_gufto"]
-[ext_resource type="LightmapGIData" uid="uid://b8yb7lxrqapor" path="res://game/levels/6-Vxx-Volcano/Lightmaps/V18.lmbake" id="6_doawo"]
+[ext_resource type="LightmapGIData" uid="uid://b8yb7lxrqapor" path="res://game/levels/6-Vxx-Volcano/lightmaps2/V18.lmbake" id="6_doawo"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="7_doawo"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_bnv2i"]
 vertices = PackedVector3Array(-1.75, 1, -1.25, -2, 1, -1.25, -2, 1, -1, -2.25, 1, -0.5, -2.5, 1, -0.5, -2.5, 1, -0.25, -1.75, 1, 1, -1, 1, 1.25, -3.75, 1, -0.25, -3.75, 1, -0.5, -4, 1, -0.5, -3, 1, 3.75, -3, 1, 3.5, -3.25, 1, 3.5, -3.25, 1, 3.25, -3.5, 1, 3.25, -3.5, 1, 3, -3.75, 1, 3, -4.25, 1, 4.5, -3.75, 1, 2.75, -4, 1, 2.75, -4, 1, 1.75, -3.75, 1, 1.75, -3.75, 1, 1.5, -3.5, 1, 1.5, -3.5, 1, 1.25, -1, 1, 1.5, -0.75, 1, 1.5, 1.25, 1, -1, 1.25, 1, -1.25, 1, 1, -1.25, 0.75, 1, -1.75, 0.75, 1, -2, 0.5, 1, -2, 0.5, 1, -3.25, 0.75, 1, -3.25, 0.75, 1, -3.5, 1.5, 1, -3.75, 1.75, 1, -3.75, 1.75, 1, -4, 4, 1, -3.75, 4, 1, -3.5, 4.25, 1, -3.5, 4.5, 1, -4.25, 0.75, 1, -4.25, 0.75, 1, -4.5, 0.5, 1, -4.5, -0.25, 1, -4.5, -0.5, 1, -4.5, -0.5, 1, -4.25, -2.25, 1, -1, -4, 1, -1, -4.25, 1, -1, -3, 1, 1.25, -3, 1, 1, 1, 1, -1.75, -2.75, 1, 4.5, -2.75, 1, 3.75, -1.75, 1, 1.25, 1.5, 1, -3.5, 0.5, 1, -4.75, -0.25, 1, -4.75, -1.75, 1, -2.25, 2.75, 1, -4, 2.75, 1, -3.75, 4.25, 1, -2.25, 4.5, 1, -2, -0.75, 1, -4.25, -0.75, 1, 1.75, 1.5, 1, -1, -4, 1, -1.75, -3.75, 1, -1.75, -3.75, 1, -2, -4.25, 1, -4.25, -3.5, 1, -2, -3.5, 1, -2.25, -3.25, 1, -2.25, -3.25, 1, -2.5, -3, 1, -2.5, -3, 1, -2.75, -2, 1, -2.75, -2, 1, -2.5, -1.75, 1, -2.5, -0.75, 1, 2.75, -1, 1, 2.75, -1, 1, 3, 4.5, 1, 4.5, -1.25, 1, 3, -1.25, 1, 3.25, -1.5, 1, 3.25, -1.5, 1, 3.5, -1.75, 1, 3.5, -1.75, 1, 3.75, 4, 1, -2.25, 4, 1, -2, 3, 1, -1.5, 2.75, 1, -1.5, 2.75, 1, -1.25, 2.5, 1, -1.25, 2.5, 1, -1, 3.5, 1, -2, 3.5, 1, -1.75, 3, 1, -1.75)
@@ -82,7 +83,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
 
 [node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1961314702 instance=ExtResource("4_gufto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09900069, 0, 0.3691461)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7730176, 0, 0.3691461)
 
 [node name="LightmapGI" parent="." index="8" unique_id=1520578396]
 light_data = ExtResource("6_doawo")
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(614762836) index="0" unique_id=1814085372 instance=ExtResource("7_doawo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15218449, 0, 0)
