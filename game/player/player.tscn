@@ -125,30 +125,82 @@ bg_color = Color(0.9372549, 0.24313726, 0.36078432, 0.7882353)
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 
-[sub_resource type="Resource" id="Resource_kqpmw"]
+[sub_resource type="Resource" id="Resource_2qewa"]
 script = ExtResource("66_40jwy")
 value = 0.2
 metadata/_custom_type_script = "uid://d18mqghpyc88h"
 
-[sub_resource type="Resource" id="Resource_fdpga"]
+[sub_resource type="Resource" id="Resource_40jwy"]
+script = ExtResource("66_40jwy")
+value = 0.3
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_kqpmw"]
+script = ExtResource("66_40jwy")
+value = 0.5
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_5en5a"]
 script = ExtResource("66_40jwy")
 type = 1
 method = 1
 value = 0.9
 metadata/_custom_type_script = "uid://d18mqghpyc88h"
 
-[sub_resource type="Resource" id="Resource_6ynhj"]
+[sub_resource type="Resource" id="Resource_n0ei1"]
+script = ExtResource("66_40jwy")
+type = 1
+method = 1
+value = 0.8
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_ydmue"]
+script = ExtResource("66_40jwy")
+type = 1
+method = 1
+value = 0.7
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_mbvee"]
 script = ExtResource("66_40jwy")
 type = 6
 method = 1
 value = 1.2
 metadata/_custom_type_script = "uid://d18mqghpyc88h"
 
-[sub_resource type="Resource" id="Resource_524dg"]
+[sub_resource type="Resource" id="Resource_ddimf"]
+script = ExtResource("66_40jwy")
+type = 6
+method = 1
+value = 1.5
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_od043"]
+script = ExtResource("66_40jwy")
+type = 6
+method = 1
+value = 1.75
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_5fa84"]
+script = ExtResource("66_40jwy")
+type = 4
+method = 1
+value = 0.9
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_tlda6"]
 script = ExtResource("66_40jwy")
 type = 4
 method = 1
 value = 0.75
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[sub_resource type="Resource" id="Resource_a55ai"]
+script = ExtResource("66_40jwy")
+type = 4
+method = 1
+value = 0.6
 metadata/_custom_type_script = "uid://d18mqghpyc88h"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ty5va"]
@@ -388,24 +440,25 @@ stretch_mode = 5
 script = ExtResource("64_2qewa")
 icon = ExtResource("65_2qewa")
 text = "Move"
-temporary_reward = SubResource("Resource_kqpmw")
+temporary_rewards = Array[ExtResource("66_40jwy")]([SubResource("Resource_2qewa"), SubResource("Resource_40jwy"), SubResource("Resource_kqpmw")])
 
 [node name="AttackGenericQuest" type="Node3D" parent="SpecialAbilities/Conventional" unique_id=1471515311]
 script = ExtResource("67_3p3em")
 icon = ExtResource("68_0jq7b")
 text = "Attack"
-temporary_reward = SubResource("Resource_fdpga")
+temporary_rewards = Array[ExtResource("66_40jwy")]([SubResource("Resource_5en5a"), SubResource("Resource_n0ei1"), SubResource("Resource_ydmue")])
 
 [node name="AttackTargetQuest" type="Node3D" parent="SpecialAbilities/Conventional" unique_id=2029666691]
 script = ExtResource("69_fdpga")
 target_visuals = ExtResource("70_6ynhj")
 icon = ExtResource("70_d76hv")
 text = "Attack Target"
-temporary_reward = SubResource("Resource_6ynhj")
+temporary_rewards = Array[ExtResource("66_40jwy")]([SubResource("Resource_mbvee"), SubResource("Resource_ddimf"), SubResource("Resource_od043")])
 metadata/_custom_type_script = "uid://cs7cumj4fkyug"
 
 [node name="KillTargetQuest" type="Node3D" parent="SpecialAbilities/Conventional" unique_id=1201408456]
 script = ExtResource("72_jcmuf")
+heal_amounts = Array[int]([50, 100, 200])
 target_visuals = ExtResource("70_6ynhj")
 icon = ExtResource("63_ydmue")
 text = "Kill Target"
@@ -416,7 +469,7 @@ script = ExtResource("73_6rcet")
 dodge_amount_required = 8
 icon = ExtResource("74_t0o78")
 text = "Dodge Projectiles"
-temporary_reward = SubResource("Resource_524dg")
+temporary_rewards = Array[ExtResource("66_40jwy")]([SubResource("Resource_5fa84"), SubResource("Resource_tlda6"), SubResource("Resource_a55ai")])
 
 [node name="DodgeArea" type="Area3D" parent="SpecialAbilities/Conventional/DodgeProjectilesQuest" unique_id=765005236]
 collision_layer = 0

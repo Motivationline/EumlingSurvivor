@@ -42,6 +42,7 @@ func _start_quest() -> void:
 	if active_quest:
 		_end_quest()
 	active_quest = _select_next_quest()
+	active_quest.level = amt_eumlings
 
 	active_quest.progress.connect(_quest_progress)
 	active_quest.completed.connect(_quest_complete)

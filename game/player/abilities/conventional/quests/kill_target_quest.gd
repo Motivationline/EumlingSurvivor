@@ -1,6 +1,6 @@
 class_name KillTargetQuest extends Quest
 
-@export var heal_amount: int = 50
+@export var heal_amounts: Array[int] = [50]
 @export var target_visuals: PackedScene
 
 var attacks_performed: int = 0
@@ -21,7 +21,8 @@ func choose_target():
 
 
 func killed():
-	Player.player.health += heal_amount
+	var index: int = clampi(level - 1, 0, heal_amounts.size() - 1)
+	Player.player.health += heal_amounts[index]
 	complete()
 
 func precondition_is_met() -> bool:
