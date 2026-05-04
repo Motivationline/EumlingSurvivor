@@ -4,6 +4,7 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_ulnw1"]
 [ext_resource type="PackedScene" uid="uid://cbiqexo8lchvg" path="res://game/enemies/5-Beach/environment/quick_sand.tscn" id="3_ulnw1"]
 [ext_resource type="PackedScene" uid="uid://cex68esqyxyua" path="res://game/enemies/5-Beach/tentacle_slapper/tentacle_slapper.tscn" id="3_wx8jn"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="5_wx8jn"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_2t61n"]
 vertices = PackedVector3Array(-4.25, 1, 2.5, -4, 1, 2.5, -4, 1, 2.25, -4.5, 1, 2.25, -3.75, 1, 2.25, -3.75, 1, 2, -3.25, 1, 2, -3.25, 1, 2.25, -3, 1, 2.25, -3, 1, 3, -3.25, 1, 3, -3.25, 1, 3.25, -3, 1, 3.25, -2.75, 1, 3.5, -2.75, 1, 4, 4.75, 1, 4.75, -3, 1, 3.5, -3, 1, 4, -3, 1, 4.25, -3.25, 1, 4.25, -3.25, 1, 4.5, -3, 1, 4.75, 3.5, 1, -4.5, 3.5, 1, -4.25, 3.75, 1, -4.25, 4.25, 1, -4, 4.25, 1, -3.75, 4.5, 1, -3.75, 4.75, 1, -4.5, 4.5, 1, -3, 4.25, 1, -3, 4.25, 1, -2.75, 3.5, 1, -2.75, 3.5, 1, -3, 3.25, 1, -3, 3.25, 1, -3.25, 3, 1, -3.25, 3, 1, -3.5, 2.75, 1, -3.5, 2.75, 1, -3.75, 2.5, 1, -3.75, 2.5, 1, -4.25, 2.75, 1, -4.25, 2.75, 1, -4.5, 1, 1, -4.5, -2.75, 1, -4.5, -2.75, 1, -4.25, -2.5, 1, -4.25, -0.75, 1, -4.5, -2.5, 1, -4, -2.25, 1, -4, -2.25, 1, -3.75, -2, 1, -3.75, -2, 1, -3, -2.25, 1, -3, -2.25, 1, -2.75, -2.75, 1, -2.5, -3, 1, -2.5, -3, 1, -2.25, -3.25, 1, -2.25, -3.25, 1, -2, -3.75, 1, -2, -3.75, 1, -2.25, -4, 1, -2.25, -4.25, 1, -3.5, -4, 1, -3.5, -4, 1, -3.75, -4.5, 1, -4.5, -3.75, 1, -3.75, -3.75, 1, -4, -3.5, 1, -4, -3.5, 1, -4.25, -3.25, 1, -4.25, -3.25, 1, -4.5, 3.75, 1, -4, -2.75, 1, -2.75, -4, 1, -2.75, -4.25, 1, -2.75, 1, 1, -4.75, -0.75, 1, -4.75, -3.5, 1.5, -3.5, -3.5, 1.5, -3, -3, 1.5, -3, -3, 1.5, -3.5, -3.75, 1, 4.5, -3.75, 1, 4.25, -4, 1, 4.25, -4.5, 1, 4.75, -4, 1, 3.75, -4.25, 1, 3.75)
@@ -289,5 +290,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.507, -0.25)
 
 [node name="QuickSand89" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="85" unique_id=1513811248 instance=ExtResource("3_ulnw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.507, -0.25)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(111514245) index="0" unique_id=1814085372 instance=ExtResource("5_wx8jn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8264863, 0, 2.930206)
 
 [editable path="ExitVisual"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_ses7p"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_44kh4"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="5_44kh4"]
 [ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="5_a781b"]
 [ext_resource type="PackedScene" uid="uid://bqp7c4em584k2" path="res://game/enemies/5-Beach/puffer_fish.tscn" id="5_i365r"]
 
@@ -75,5 +76,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7407746, 0, -1.2395458)
 
 [node name="Box16" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="15" unique_id=1565216580 instance=ExtResource("5_a781b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2407746, 0, -1.2395458)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(111514245) index="0" unique_id=1814085372 instance=ExtResource("5_44kh4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.597323, 0, 3.0288327)
 
 [editable path="ExitVisual"]

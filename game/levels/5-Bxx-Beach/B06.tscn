@@ -4,6 +4,7 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_0yxqs"]
 [ext_resource type="PackedScene" uid="uid://yki87lnkx75s" path="res://game/enemies/5-Beach/ninja_starfish.tscn" id="3_sv4rx"]
 [ext_resource type="PackedScene" uid="uid://cbiqexo8lchvg" path="res://game/enemies/5-Beach/environment/quick_sand.tscn" id="4_g6tg2"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="5_td7dl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sv4rx"]
 vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -4.5, 1, 4.75, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, -4.5)
@@ -256,5 +257,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0.507, -2.25)
 
 [node name="QuickSand77" parent="Obstales" parent_id_path=PackedInt32Array(618270164) index="76" unique_id=241480602 instance=ExtResource("4_g6tg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.507, -2.25)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(111514245) index="0" unique_id=1814085372 instance=ExtResource("5_td7dl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2071154, 0, 0.89733887)
 
 [editable path="ExitVisual"]

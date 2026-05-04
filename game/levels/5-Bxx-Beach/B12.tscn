@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_bsc77"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_lbnsb"]
 [ext_resource type="PackedScene" uid="uid://cex68esqyxyua" path="res://game/enemies/5-Beach/tentacle_slapper/tentacle_slapper.tscn" id="3_qbhcm"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="5_qbhcm"]
 [ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="6_kukyi"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_23txd"]
@@ -40,5 +41,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.237927, 0, -0.73841244)
 
 [node name="Box4" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="3" unique_id=1238387634 instance=ExtResource("6_kukyi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.237927, 0, -0.23841244)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(111514245) index="0" unique_id=1814085372 instance=ExtResource("5_qbhcm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5752621, 0, 1.6763499)
 
 [editable path="ExitVisual"]
