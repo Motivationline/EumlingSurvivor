@@ -286,7 +286,7 @@ func update_attack_visual():
 	%AttackVisual.width = get_value(Enum.UPGRADE.PROJECTILE_SIZE) * projectile_default_size
 
 
-func add_upgrade(upgrade: Upgrade, temporary: bool = false):
+func add_upgrade(upgrade: Upgrade, temporary: bool = false) -> void:
 	if temporary:
 		var array: Array[Upgrade] = _temporary_upgrades.get_or_add(upgrade.type, [] as Array[Upgrade])
 		array.append(upgrade)
@@ -301,6 +301,15 @@ func add_upgrade(upgrade: Upgrade, temporary: bool = false):
 		values.set(upgrade.type, new_value)
 	upgrade_added.emit(upgrade)
 	check_upgrades_affecting_player(upgrade)
+
+func remove_temporary_upgrade(upgrade: Upgrade) -> void:
+	var array: Array = _temporary_upgrades.get(upgrade.type)
+	if not array: return
+	var index: int = array.find(upgrade)
+	if index < 0: return
+	array.remove_at(index)
+	check_upgrades_affecting_player(upgrade)
+
 
 func get_possible_upgrades() -> Array[Upgrade]:
 	var upgrades: Array[Upgrade] = [] # weapon.get_possible_upgrades().duplicate()
@@ -382,3 +391,20 @@ func update_eumling_visuals(active_mini_eumlings: Array[Enum.EUMLING_TYPE]):
 		if index >= mini_eumling_slots.size(): break
 		mini_eumling_slots[index].show()
 		index += 1
+
+var upgrade_area_upgrades: Dictionary[Upgrade, int] = {}
+func upgrade_area_enter(upgrade: Upgrade) -> void:
+	var amount: int = upgrade_area_upgrades.get_or_add(upgrade, 0)
+	if amount == 0:
+		add_upgrade(upgrade, true)
+	upgrade_area_upgrades.set(upgrade, amount + 1)
+
+func upgrade_area_exit(upgrade: Upgrade) -> void:
+	if not upgrade_area_upgrades.has(upgrade): return
+	var amount: int = upgrade_area_upgrades.get(upgrade)
+	
+	if amount <= 1:
+		upgrade_area_upgrades.erase(upgrade)
+		remove_temporary_upgrade(upgrade)
+	else:
+		upgrade_area_upgrades.set(upgrade, amount - 1)
