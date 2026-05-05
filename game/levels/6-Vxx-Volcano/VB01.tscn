@@ -4,9 +4,10 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_66ia3"]
 [ext_resource type="NavigationMesh" uid="uid://c60v4w0nd7xde" path="res://game/levels/6-Vxx-Volcano/navmeshs2/vb01_navmesh.res" id="2_mnqux"]
 [ext_resource type="PackedScene" uid="uid://buu1fct1h48qb" path="res://game/enemies/6-volcano/boss_shark/boss_shark.tscn" id="2_ycyey"]
-[ext_resource type="Shader" path="res://game/levels/6-Vxx-Volcano/VolcanoBossFloorShader.tres" id="3_j7vlp"]
+[ext_resource type="Shader" uid="uid://bjl6apboccnlr" path="res://game/levels/6-Vxx-Volcano/VolcanoBossFloorShader.tres" id="3_j7vlp"]
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="3_mnqux"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="4_6xc33"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_6xc33"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n85fk"]
 albedo_texture = ExtResource("3_mnqux")
@@ -803,3 +804,6 @@ transform = Transform3D(-0.22352439, -0.17020634, -0.9597222, -0.31566513, 0.944
 
 [node name="BossShark" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_ycyey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.596092, 0.09344214, -5.4342937)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(614762836) index="0" unique_id=1814085372 instance=ExtResource("8_6xc33")]
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 2.7414706, 0, -2.5000827)
