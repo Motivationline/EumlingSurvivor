@@ -12,11 +12,11 @@
 [ext_resource type="ArrayMesh" uid="uid://dorop2fuykl0l" path="res://assets/models/2-flower_field/grass/grass_mesh_instance.res" id="9_a5usy"]
 [ext_resource type="Script" uid="uid://dieiojnt518h" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_node.gd" id="10_nq1vd"]
 [ext_resource type="Script" uid="uid://c4s4x5b27vdf6" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_manager.gd" id="11_3myir"]
-[ext_resource type="ArrayMesh" uid="uid://dohikxm7iugrn" path="res://assets/models/2-flower_field/flowers/flower_pink.res" id="13_3myir"]
-[ext_resource type="ArrayMesh" uid="uid://cbx1dg20be7ut" path="res://assets/models/2-flower_field/flowers/flower_orange.res" id="14_lgubg"]
-[ext_resource type="ArrayMesh" uid="uid://5s65n8aabsag" path="res://assets/models/2-flower_field/flowers/flower_white.res" id="15_xaljl"]
-[ext_resource type="ArrayMesh" uid="uid://duw3760k0ltru" path="res://assets/models/2-flower_field/grains/grain_01.res" id="16_c6cgr"]
-[ext_resource type="ArrayMesh" uid="uid://0d4kcbkg8egh" path="res://assets/models/2-flower_field/grains/grain_02.res" id="17_qneh5"]
+[ext_resource type="ArrayMesh" uid="uid://dtutnfxc2js6r" path="res://assets/models/2-flower_field/flowers/flower_pink.res" id="13_3myir"]
+[ext_resource type="ArrayMesh" uid="uid://cjb4p145dvylj" path="res://assets/models/2-flower_field/flowers/flower_orange.res" id="14_lgubg"]
+[ext_resource type="ArrayMesh" uid="uid://c87lxjc2xbf0j" path="res://assets/models/2-flower_field/flowers/flower_white.res" id="15_xaljl"]
+[ext_resource type="ArrayMesh" uid="uid://dme1a1uxxwalp" path="res://assets/models/2-flower_field/grains/grain_01.res" id="16_c6cgr"]
+[ext_resource type="ArrayMesh" uid="uid://cq8jqxqy6cjo5" path="res://assets/models/2-flower_field/grains/grain_02.res" id="17_qneh5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_yhqm7"]
 vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -4.5, 1, 4.75, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, -4.5)
@@ -199,7 +199,7 @@ is_leaf = true
 center_pos = Vector3(11.365826, 10.456686, -8.251268)
 extent = 39.815117
 bounds = AABB(-28.449291, -29.35843, -48.066383, 79.63023, 79.63023, 79.63023)
-max_bounds_to_center_dist = 68.96180534947891
+max_bounds_to_center_dist = 68.96180555329933
 min_bounds_to_center_dist = 39.815117
 active_LOD_index = 0
 metadata/class = "MMIOctreeNode"
@@ -481,5 +481,8 @@ multimesh = SubResource("MultiMesh_mdywc")
 
 [node name="MultiMeshInstance3D5" type="MultiMeshInstance3D" parent="Baked_Gardener" unique_id=1619741349]
 multimesh = SubResource("MultiMesh_sb5gb")
+
+[node name="Robot" type="Node3D" parent="." unique_id=1680544015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [editable path="Env/grass/grass__v2"]

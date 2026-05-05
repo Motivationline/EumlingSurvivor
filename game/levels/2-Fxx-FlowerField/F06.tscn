@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="4_oagvg"]
 [ext_resource type="LightmapGIData" uid="uid://cb706754sjaxj" path="res://game/levels/2-Fxx-FlowerField/lightmaps2/F06.lmbake" id="5_7hua6"]
 [ext_resource type="PackedScene" uid="uid://eu5t5sjl02y1" path="res://game/enemies/2-FlowerField/environment/tall_grass.tscn" id="9_li0qx"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="10_mswpk"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_21gq5"]
 vertices = PackedVector3Array(-3.5, 1, -1.25, -3.25, 1, -1.25, -3.25, 1, -1.5, -4.5, 1, -4.5, -1.75, 1, -1.5, -1.75, 1, -1.25, -1.5, 1, -1.25, -1.5, 1, -2.75, -1.25, 1, -2.75, -1.25, 1, -3, 1.25, 1, -3, 1.25, 1, -2.75, 1.5, 1, -2.75, 1.5, 1, -1.25, 1.75, 1, -1.25, 1.75, 1, -1.5, 3.25, 1, -1.5, 3.25, 1, -1.25, 3.5, 1, -1.25, 4.75, 1, -4.5, 1, 1, -4.5, -0.75, 1, -4.5, -4.5, 1, 0, -3.5, 1, 0, 3.5, 1, 0, 4.75, 1, 0, 1, 1, -4.75, -0.75, 1, -4.75, -1.5, 1, 1.25, -1.25, 1, 1.25, -1.25, 1, 1, 1.25, 1, 1, 1.25, 1, 1.25, 1.5, 1, 1.25, 1.25, 1, -1.25, 1.25, 1, -1, -1.25, 1, -1, -1.25, 1, -1.25, 3.5, 1, 1.25, 3.25, 1, 1.25, 3.25, 1, 1.5, 4.75, 1, 4.75, 1.75, 1, 1.5, 1.75, 1, 1.25, 1.5, 1, 2.75, 1.25, 1, 2.75, 1.25, 1, 3, -1.25, 1, 3, -1.25, 1, 2.75, -1.5, 1, 2.75, -1.75, 1, 1.25, -1.75, 1, 1.5, -3.25, 1, 1.5, -3.25, 1, 1.25, -3.5, 1, 1.25, -4.5, 1, 4.75, 9.5, 1.5, 2.5, 9.5, 1.5, 3, 10, 1.5, 3, 10, 1.5, 2.5)
@@ -658,5 +659,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
 
 [node name="TallGrass44" parent="Obstacles" index="43" unique_id=1675867236 instance=ExtResource("9_li0qx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(1680544015) index="0" unique_id=1814085372 instance=ExtResource("10_mswpk")]
+transform = Transform3D(-0.7290762, 0, 0.68443257, 0, 1, 0, -0.68443257, 0, -0.7290762, 1.704936, 0, -1.6894376)
 
 [editable path="Env/grass/grass__v2"]

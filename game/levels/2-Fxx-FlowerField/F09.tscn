@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="4_yj0f2"]
 [ext_resource type="LightmapGIData" uid="uid://c6rm36yi7epev" path="res://game/levels/2-Fxx-FlowerField/lightmaps2/F09.lmbake" id="5_scfsk"]
 [ext_resource type="PackedScene" uid="uid://eu5t5sjl02y1" path="res://game/enemies/2-FlowerField/environment/tall_grass.tscn" id="9_8j6ev"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="10_3kb1s"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_15f6j"]
 vertices = PackedVector3Array(-2, 1, 0.75, -1.75, 1, 0.75, -1.75, 1, 0.5, -1.75, 1, -0.5, -1.75, 1, -0.75, -2, 1, -0.75, -2, 1, -1.75, -1.75, 1, -1.75, -1.75, 1, -2, 1, 1, -4.5, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -4.5, 1, 1.5, -4.5, 1, -4.5, 0, 1, 0.5, 0, 1, -0.5, 1.5, 1, -2, 1.5, 1, -4.5, -2, 1, 1.5, 1.75, 1, -2, 1.75, 1, -1.75, 2, 1, -1.75, 2, 1, -0.75, 1.75, 1, -0.75, 1.75, 1, -0.5, 1.75, 1, 0.5, 1.75, 1, 0.75, 2, 1, 0.75, 2, 1, 1.75, 1.75, 1, 1.75, 1.75, 1, 2, 4.75, 1, 4.75, -1.75, 1, 2, -1.75, 1, 1.75, -2, 1, 1.75, -4.5, 1, 4.75, 4.75, 1, -4.5, -0.25, 1.5, -1, -0.25, 1.5, -1.25, -0.5, 1.5, -1.25, -0.5, 1.5, -1.5, -0.75, 1.5, -1.5, -0.75, 1.5, -1.25, -1.5, 1.5, -1, -1.25, 1.5, -1.25, -1.25, 1.5, -1.5, -1.5, 1.5, -1.5, 1.5, 1.5, -1.5, 1.25, 1.5, -1.5, 1.25, 1.5, -1.25, 1.5, 1.5, -1, 0.25, 1.5, -1, 1, 1.5, -1.25, 0.5, 1.5, -1.25, 0.25, 1.5, -1.25, 1, 1.5, -1.5, 0.5, 1.5, -1.5, 1, 1.5, 1, 0.75, 1.5, 1, 0.75, 1.5, 1.25, 1, 1.5, 1.5, -0.25, 1.5, 1.5, 0.5, 1.5, 1.25, 0, 1.5, 1.25, -0.25, 1.5, 1.25, 0.5, 1.5, 1, 0, 1.5, 1, 9.5, 1.5, 2.5, 9.5, 1.5, 3, 10, 1.5, 3, 10, 1.5, 2.5)
@@ -851,5 +852,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.25)
 
 [node name="TallGrass108" parent="Obstacles" index="107" unique_id=1769735994 instance=ExtResource("9_8j6ev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0.25)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(1680544015) index="0" unique_id=1814085372 instance=ExtResource("10_3kb1s")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0.11523354)
 
 [editable path="Env/grass/grass__v2"]

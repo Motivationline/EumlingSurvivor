@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c4s4x5b27vdf6" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_manager.gd" id="4_dypyl"]
 [ext_resource type="LightmapGIData" uid="uid://bghqd2c7es83s" path="res://game/levels/2-Fxx-FlowerField/lightmaps2/F19.lmbake" id="5_281me"]
 [ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="5_piqli"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="10_cigiw"]
 [ext_resource type="PackedScene" uid="uid://eu5t5sjl02y1" path="res://game/enemies/2-FlowerField/environment/tall_grass.tscn" id="10_k26uk"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_csrvm"]
@@ -1003,5 +1004,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 2.5)
 
 [node name="TallGrass164" parent="Obstacles" index="163" unique_id=873870277 instance=ExtResource("10_k26uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 0)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(1680544015) index="0" unique_id=1814085372 instance=ExtResource("10_cigiw")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [editable path="Env/grass/grass__v2"]

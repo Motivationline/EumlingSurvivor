@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="5_1lfbq"]
 [ext_resource type="LightmapGIData" uid="uid://4ld1rifs1gc4" path="res://game/levels/2-Fxx-FlowerField/lightmaps2/F11.lmbake" id="5_8fb20"]
 [ext_resource type="PackedScene" uid="uid://eu5t5sjl02y1" path="res://game/enemies/2-FlowerField/environment/tall_grass.tscn" id="6_8fb20"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="10_1lfbq"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_licao"]
 vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -4.5, 1, 4.75, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, -4.5, 9.5, 1.5, 2.5, 9.5, 1.5, 3, 10, 1.5, 3, 10, 1.5, 2.5)
@@ -435,7 +436,7 @@ script = ExtResource("4_rfmob")
 root_octree_node = SubResource("Resource_seixj")
 metadata/class = "MMIOctreeManager"
 
-[sub_resource type="Resource" id="Resource_5wka2"]
+[sub_resource type="Resource" id="Resource_8fb20"]
 resource_local_to_scene = true
 script = ExtResource("5_1lfbq")
 octree_managers = [SubResource("Resource_5np17"), SubResource("Resource_spi5d"), SubResource("Resource_fxdq5"), SubResource("Resource_np4lv"), SubResource("Resource_7lri1"), SubResource("Resource_fi46i"), SubResource("Resource_34n4b")]
@@ -465,7 +466,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 light_data = ExtResource("5_8fb20")
 
 [node name="Gardener" parent="." index="7" unique_id=1386894013]
-arborist = SubResource("Resource_5wka2")
+arborist = SubResource("Resource_8fb20")
 
 [node name="Obstacles" type="Node3D" parent="." index="10" unique_id=813030301]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -745,5 +746,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, 2.75)
 
 [node name="TallGrass92" parent="Obstacles" index="91" unique_id=2003062423 instance=ExtResource("6_8fb20")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, 2.75)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(1680544015) index="0" unique_id=1814085372 instance=ExtResource("10_1lfbq")]
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 0.20777607, 0, -0.20777738)
 
 [editable path="Env/grass/grass__v2"]

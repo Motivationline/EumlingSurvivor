@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="4_pjbwk"]
 [ext_resource type="LightmapGIData" uid="uid://wpkubww3wm8v" path="res://game/levels/2-Fxx-FlowerField/lightmaps2/F12.lmbake" id="5_o5a0f"]
 [ext_resource type="PackedScene" uid="uid://eu5t5sjl02y1" path="res://game/enemies/2-FlowerField/environment/tall_grass.tscn" id="6_pjbwk"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="10_h0gmn"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_iad18"]
 vertices = PackedVector3Array(-4, 1, 2.75, -3.75, 1, 2.75, -3.75, 1, 2.5, -1.75, 1, 2.5, -1.75, 1, 2.75, -1.5, 1, 2.75, -1.5, 1, 3.75, -1.75, 1, 3.75, -1.75, 1, 4, 4.75, 1, 4.75, 4, 1, -2.75, 3.75, 1, -2.75, 3.75, 1, -2.5, 1.75, 1, -2.5, 1.75, 1, -2.75, 1.5, 1, -2.75, 1.5, 1, -3.75, 1.75, 1, -3.75, 1.75, 1, -4, -4.5, 1, 2.75, -4.5, 1, -4.5, 1.75, 1, -4.5, 1, 1, -4.5, -2.75, 1, 4, -2.75, 1, 4.75, 4.75, 1, -3.75, 4, 1, -3.75, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 3.75, 1, -4, 3.75, 1, -3.75, 4.75, 1, -4.5, 2, 1.5, -3.5, 2, 1.5, -3, 2.5, 1.5, -3, 2.5, 1.5, -3.5, 9.5, 1.5, 2.5, 9.5, 1.5, 3, 10, 1.5, 3, 10, 1.5, 2.5, -3.75, 1, 4, -3.75, 1, 3.75, -4, 1, 3.75, -4.5, 1, 4.75, -2.75, 1.5, 3.5, -2.75, 1.5, 3.25, -3, 1.5, 3.25, -3.5, 1.5, 3.5, -3.5, 1.5, 3, -3, 1.5, 3)
@@ -617,5 +618,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -1.25)
 
 [node name="TallGrass12" parent="Obstacles" index="39" unique_id=1967255515 instance=ExtResource("6_pjbwk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.75)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(1680544015) index="0" unique_id=1814085372 instance=ExtResource("10_h0gmn")]
+transform = Transform3D(-0.9659258, 0, 0.25881913, 0, 1, 0, -0.25881913, 0, -0.9659258, 3.0627842, 0, 1.5007641)
 
 [editable path="Env/grass/grass__v2"]

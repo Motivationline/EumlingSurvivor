@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c4s4x5b27vdf6" path="res://addons/dreadpon.spatial_gardener/arborist/mmi_octree/mmi_octree_manager.gd" id="3_q0euu"]
 [ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="4_5t5u6"]
 [ext_resource type="LightmapGIData" uid="uid://bwfh2kyqxmnma" path="res://game/levels/2-Fxx-FlowerField/lightmaps2/F10.lmbake" id="5_e85k3"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="9_im4lw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ubti3"]
 vertices = PackedVector3Array(-4, 1, -3.75, -3.75, 1, -3.75, -3.75, 1, -4, -4.5, 1, -4.5, -2.25, 1, -4, -2.25, 1, -3.75, -2, 1, -3.75, -0.75, 1, -4.5, -2, 1, -2.75, -2.25, 1, -2.75, -2.25, 1, -2.5, -0.75, 1, -1, 2.25, 1, -2.5, 2.25, 1, -2.75, 2, 1, -2.75, 0.75, 1, -1, 2, 1, -3.75, 2.25, 1, -3.75, 2.25, 1, -4, 1, 1, -4.5, 3.75, 1, -4, 3.75, 1, -3.75, 4, 1, -3.75, 4.75, 1, -3.75, 4.75, 1, -4.5, -4.5, 1, -2.75, -4, 1, -2.75, 1, 1, -4.75, -0.75, 1, -4.75, 0.75, 1, -0.75, 1, 1, -0.75, 1, 1, 0.75, 0.75, 1, 0.75, 0.75, 1, 1, 2.25, 1, 2.5, 3.75, 1, 2.5, 3.75, 1, 2.75, 4, 1, 2.75, 4, 1, 3.75, 3.75, 1, 3.75, 3.75, 1, 4, 4, 1, -2.75, 3.75, 1, -2.75, 3.75, 1, -2.5, 3.25, 1, 4, 3.25, 1, 4.75, 4.75, 1, 4.75, -2.5, 1.5, -3.5, -2.75, 1.5, -3.5, -2.75, 1.5, -3.25, -2.5, 1.5, -3, -3.5, 1.5, -3, -3.25, 1.5, -3.25, -3.25, 1.5, -3.5, -3.5, 1.5, -3.5, -3.75, 1, 4, -3.75, 1, 3.75, -4, 1, 3.75, -4, 1, 2.75, -3.75, 1, 2.75, -3.75, 1, 2.5, -0.75, 1, 1, -0.75, 1, 0.75, -1, 1, 0.75, -2.25, 1, 2.5, -1, 1, -0.75, -0.75, 1, -0.75, -3.75, 1, -2.5, -3.75, 1, -2.75, -3.25, 1, 4.75, -3.25, 1, 4, -4.5, 1, 4.75, 0.5, 1.5, 0.5, 0.5, 1.5, 0, 0.25, 1.5, 0, 0.25, 1.5, -0.25, -0.25, 1.5, -0.25, -0.25, 1.5, 0, -0.5, 1.5, 0.5, -0.5, 1.5, 0, -2.25, 1, 2.75, -2, 1, 2.75, -2, 1, 3.75, -2.25, 1, 3.75, -2.25, 1, 4, 2.25, 1, 4, 2.25, 1, 3.75, 2, 1, 3.75, 2, 1, 2.75, 2.25, 1, 2.75, 9.5, 1.5, 2.5, 9.5, 1.5, 3, 10, 1.5, 3, 10, 1.5, 2.5, -2.75, 1.5, 3.25, -2.75, 1.5, 3.5, -2.5, 1.5, 3.5, -2.5, 1.5, 3, -3.5, 1.5, 3, -3, 1.5, 3.25, -3.5, 1.5, 3.5, -3, 1.5, 3.5)
@@ -523,5 +524,8 @@ light_data = ExtResource("5_e85k3")
 
 [node name="Gardener" parent="." index="7" unique_id=1386894013]
 arborist = SubResource("Resource_5qtim")
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(1680544015) index="0" unique_id=1814085372 instance=ExtResource("9_im4lw")]
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 2.9097414, 0, -0.85234916)
 
 [editable path="Env/grass/grass__v2"]

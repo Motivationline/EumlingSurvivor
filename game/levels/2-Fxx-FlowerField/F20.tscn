@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="5_ov86f"]
 [ext_resource type="LightmapGIData" uid="uid://ji7thn5wvif1" path="res://game/levels/2-Fxx-FlowerField/lightmaps2/F20.lmbake" id="5_qerud"]
 [ext_resource type="PackedScene" uid="uid://eu5t5sjl02y1" path="res://game/enemies/2-FlowerField/environment/tall_grass.tscn" id="7_ov86f"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="10_t1d2j"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_t1d2j"]
 vertices = PackedVector3Array(-4, 1, 0.75, -3.75, 1, 0.75, -3.75, 1, 0.5, -4.5, 1, -4.5, 0.25, 1, -0.5, 0.25, 1, -0.75, 0, 1, -0.75, -0.5, 1, 0.5, 0, 1, -1.75, 0.25, 1, -1.75, 0.25, 1, -2, -0.75, 1, -4.5, 0.5, 1, -2, 0.5, 1, -2.25, 0.75, 1, -2.25, 0.75, 1, -2.5, 1, 1, -2.5, 1, 1, -2.75, 1.25, 1, -2.75, 1.25, 1, -3, 1, 1, -4.5, 2.75, 1, -3, 2.75, 1, -2.75, 3, 1, -2.75, 3, 1, -2.5, 3.25, 1, -2.5, 3.25, 1, -2.25, 3.5, 1, -2.25, 3.5, 1, -2, 3.75, 1, -2, 3.75, 1, -1.75, 4, 1, -1.75, -4.5, 1, 1.25, -4, 1, 1.25, 4, 1, -1.25, 4.75, 1, -1.25, 0.5, 1, -0.5, 4.75, 1, -4.5, 1, 1, -4.75, -0.75, 1, -4.75, -0.25, 1, 0.5, -0.25, 1, 0.75, 0, 1, 0.75, 0, 1, 1.75, -0.25, 1, 1.75, -0.25, 1, 2, -0.5, 1, 2, -0.5, 1, 2.25, -0.75, 1, 2.25, -0.75, 1, 2.5, -1, 1, 2.5, -1, 1, 2.75, -1.25, 1, 2.75, -1.25, 1, 3, -2.75, 1, 3, -2.75, 1, 2.75, -3, 1, 2.75, -4.5, 1, 4.75, -3, 1, 2.5, -3.25, 1, 2.5, -3.25, 1, 2.25, -3.5, 1, 2.25, -3.5, 1, 2, -3.75, 1, 2, -3.75, 1, 1.75, -4, 1, 1.75, 4, 1, -0.75, 3.75, 1, -0.75, 3.75, 1, -0.5, 4.75, 1, 4.75, 9.5, 1.5, 2.5, 9.5, 1.5, 3, 10, 1.5, 3, 10, 1.5, 2.5)
@@ -420,7 +421,7 @@ script = ExtResource("4_jo8b2")
 root_octree_node = SubResource("Resource_ofg7n")
 metadata/class = "MMIOctreeManager"
 
-[sub_resource type="Resource" id="Resource_ov86f"]
+[sub_resource type="Resource" id="Resource_dm4d2"]
 resource_local_to_scene = true
 script = ExtResource("5_ov86f")
 octree_managers = [SubResource("Resource_2ftju"), SubResource("Resource_a4qvp"), SubResource("Resource_ogoov"), SubResource("Resource_1o6bl"), SubResource("Resource_xk0yu"), SubResource("Resource_0pwa5"), SubResource("Resource_owgt6")]
@@ -447,7 +448,7 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 light_data = ExtResource("5_qerud")
 
 [node name="Gardener" parent="." index="7" unique_id=1386894013]
-arborist = SubResource("Resource_ov86f")
+arborist = SubResource("Resource_dm4d2")
 
 [node name="Obstacles" type="Node3D" parent="." index="10" unique_id=341453850]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 0.75)
@@ -690,5 +691,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -1)
 
 [node name="TallGrass80" parent="Obstacles" index="79" unique_id=257290401 instance=ExtResource("7_ov86f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(1680544015) index="0" unique_id=1814085372 instance=ExtResource("10_t1d2j")]
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 3.5, 0, 0.5)
 
 [editable path="Env/grass/grass__v2"]

@@ -10,6 +10,7 @@
 [ext_resource type="LightmapGIData" uid="uid://dj1w0sg5dtumn" path="res://game/levels/2-Fxx-FlowerField/lightmaps2/F18.lmbake" id="5_jriwk"]
 [ext_resource type="PackedScene" uid="uid://eu5t5sjl02y1" path="res://game/enemies/2-FlowerField/environment/tall_grass.tscn" id="9_jceju"]
 [ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="10_n4l1e"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="11_lbiee"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_g37r8"]
 vertices = PackedVector3Array(1.5, 1, -0.25, 1.75, 1, -0.25, 1.75, 1, -0.5, -1.75, 1, -0.5, -1.75, 1, -0.25, -1.5, 1, -0.25, 1, 1, -4.5, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 4.75, 1, -0.5, 4.75, 1, -4.5, -1.5, 1, 0.25, 1.5, 1, 0.25, -4.5, 1, -4.5, -4.5, 1, -0.5, -4.5, 1.5, 0.5, -4.25, 1.5, 0.5, -4.25, 1.5, 0.25, -4.5, 1.5, 0, -2.25, 1.5, 0.25, -2, 1.5, 0, -2.25, 1.5, 0.5, -2, 1.5, 0.5, 2, 1.5, 0.5, 2.25, 1.5, 0.5, 2.25, 1.5, 0.25, 2, 1.5, 0, 4.25, 1.5, 0.25, 4.5, 1.5, 0, 4.25, 1.5, 0.5, 4.5, 1.5, 0.5, -1.5, 1, 0.75, -1.75, 1, 0.75, -1.75, 1, 1, 1.75, 1, 1, 1.75, 1, 0.75, 1.5, 1, 0.75, -4.5, 1, 1, -4.5, 1, 4.75, 4.75, 1, 4.75, 4.75, 1, 1, 9.5, 1.5, 2.5, 9.5, 1.5, 3, 10, 1.5, 3, 10, 1.5, 2.5)
@@ -496,7 +497,7 @@ script = ExtResource("3_0xpgx")
 root_octree_node = SubResource("Resource_ra1ev")
 metadata/class = "MMIOctreeManager"
 
-[sub_resource type="Resource" id="Resource_g37r8"]
+[sub_resource type="Resource" id="Resource_afvac"]
 resource_local_to_scene = true
 script = ExtResource("4_g37r8")
 octree_managers = [SubResource("Resource_r7rng"), SubResource("Resource_lbiee"), SubResource("Resource_jceju"), SubResource("Resource_phy1d"), SubResource("Resource_7gx8r"), SubResource("Resource_6m630"), SubResource("Resource_0ef6h")]
@@ -524,7 +525,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 light_data = ExtResource("5_jriwk")
 
 [node name="Gardener" parent="." index="7" unique_id=1386894013]
-arborist = SubResource("Resource_g37r8")
+arborist = SubResource("Resource_afvac")
 
 [node name="Obstacles" type="Node3D" parent="." index="10" unique_id=228202031]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 0.75)
@@ -800,5 +801,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0)
 
 [node name="Box10" parent="Breakables" index="9" unique_id=1955234622 instance=ExtResource("10_n4l1e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(1680544015) index="0" unique_id=1814085372 instance=ExtResource("11_lbiee")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.5, 0, 1.5)
 
 [editable path="Env/grass/grass__v2"]
