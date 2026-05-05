@@ -2,8 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://kpp1jxkuw8rf" path="res://assets/characters/eumling/V2/Eumling_v2.glb" id="1_qpw4l"]
 [ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/manager/sound_requester.gd" id="2_2pu6i"]
+[ext_resource type="PackedScene" uid="uid://bdx5nmy7mmesh" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik_visual.tscn" id="3_kkceb"]
 [ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="3_rna07"]
-[ext_resource type="PackedScene" uid="uid://dqru3ipa22rvk" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik.glb" id="4_xpqnk"]
+[ext_resource type="PackedScene" uid="uid://xx1ogf8cudcr" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/mini_eumling_artistisch_kreativ_visual.tscn" id="3_xpqnk"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_lyv7g"]
 filters = ["SoundEffectManager"]
@@ -77,16 +78,17 @@ nodes/hit/node = SubResource("AnimationNodeAnimation_xpqnk")
 nodes/hit/position = Vector2(-320, 780)
 node_connections = [&"output", 0, &"DeathOneShot", &"Shoot", 0, &"Idle-Walk", &"Shoot", 1, &"attack", &"WalkSpeedScale", 0, &"walk", &"Idle-Walk", 0, &"idle", &"Idle-Walk", 1, &"WalkSpeedScale", &"DeathOneShot", 0, &"GetHitOneShot", &"DeathOneShot", 1, &"StateMachine", &"GetHitOneShot", 0, &"Shoot", &"GetHitOneShot", 1, &"hit"]
 
-[node name="Eumling_v2" unique_id=1494019728 instance=ExtResource("1_qpw4l")]
+[node name="Eumling_v2" unique_id=1494019728 node_paths=PackedStringArray("anim_tree") instance=ExtResource("1_qpw4l")]
 script = ExtResource("2_2pu6i")
+anim_tree = NodePath("AnimationTree")
 
-[node name="bag_object" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(134281286) index="0" unique_id=1435519186]
+[node name="bag_object" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="0" unique_id=783932814]
 layers = 2
 
-[node name="eumling_mesh" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(134281286) index="1" unique_id=1524061936]
+[node name="eumling_mesh" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="1" unique_id=2021133272]
 layers = 2
 
-[node name="spring_bone_one" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(134281286) index="2" unique_id=1304950153]
+[node name="spring_bone_one" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="2" unique_id=1304950153]
 transform = Transform3D(-0.9984086, -0.055527166, -0.009837801, -0.052501827, 0.8516094, 0.52154064, -0.020581663, 0.5212274, -0.8531691, 0.011468625, 0.13743576, 0.11815087)
 setting_count = 1
 settings/0/root_bone_name = "DEF_BAG_BAG.R"
@@ -113,7 +115,7 @@ settings/0/joints/0/bone = 32
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="attachment_one" type="BoneAttachment3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(134281286) index="3" unique_id=160024342]
+[node name="attachment_one" type="BoneAttachment3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="3" unique_id=160024342]
 transform = Transform3D(-1, -2.8387172e-08, -5.8913912e-08, -2.8651778e-08, 0.999998, 0.0018688398, 5.8860337e-08, 0.0018688394, -0.9999983, 0.16084158, 0.23232873, 0.21490693)
 bone_name = "DEF_BAG_BAG.R"
 bone_idx = 32
@@ -127,9 +129,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.595524e-14, 0.07719688, 0.0
 [node name="anchor_one" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_one/scaler/offset" index="0" unique_id=67396767]
 transform = Transform3D(-4.371139e-08, -0.39073113, 0.92050487, 0, 0.92050487, 0.39073113, -1, 1.70794e-08, -4.0236547e-08, 0.036210254, 0.14037034, -0.0074095814)
 
-[node name="mini_conventional_logik" parent="Eumling_Armature/Skeleton3D/attachment_one/scaler/offset/anchor_one" index="0" unique_id=1250653920 instance=ExtResource("4_xpqnk")]
+[node name="mini_conventional_logik" parent="Eumling_Armature/Skeleton3D/attachment_one/scaler/offset/anchor_one" index="0" unique_id=1636597265 instance=ExtResource("3_kkceb")]
 
-[node name="spring_bone_two" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(134281286) index="4" unique_id=1560766667]
+[node name="spring_bone_two" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="4" unique_id=1560766667]
 setting_count = 1
 settings/0/root_bone_name = "DEF_BAG_BAG.L"
 settings/0/root_bone = 31
@@ -155,7 +157,7 @@ settings/0/joints/0/bone = 31
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="attachment_two" type="BoneAttachment3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(134281286) index="5" unique_id=2007910805]
+[node name="attachment_two" type="BoneAttachment3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="5" unique_id=2007910805]
 transform = Transform3D(-1, -2.8387172e-08, 2.4307772e-07, -2.8087404e-08, 0.999998, 0.0018688398, -2.4313078e-07, 0.0018688393, -0.9999983, -0.16084161, 0.23232871, 0.2149069)
 bone_name = "DEF_BAG_BAG.L"
 bone_idx = 31
@@ -169,9 +171,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.595524e-14, 0.07719688, 0.0
 [node name="anchor_two" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_two/scaler/offset" index="0" unique_id=1923936542]
 transform = Transform3D(-4.371139e-08, 0.39073113, -0.92050487, 0, 0.92050487, 0.39073113, 1, 1.70794e-08, -4.0236547e-08, -0.036, 0.14, -0.007)
 
-[node name="mini_conventional_logik" parent="Eumling_Armature/Skeleton3D/attachment_two/scaler/offset/anchor_two" index="0" unique_id=1600411388 instance=ExtResource("4_xpqnk")]
+[node name="mini_eumling_var1" parent="Eumling_Armature/Skeleton3D/attachment_two/scaler/offset/anchor_two" index="0" unique_id=427404541 instance=ExtResource("3_xpqnk")]
 
-[node name="SpringBoneLeaf" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(134281286) index="6" unique_id=454523896]
+[node name="SpringBoneLeaf" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="6" unique_id=454523896]
 setting_count = 1
 settings/0/root_bone_name = "DEF_LEAFTOP1"
 settings/0/root_bone = 16
@@ -208,7 +210,7 @@ settings/0/joints/3/gravity_direction = Vector3(0, -1, 0)
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="attachment_three" type="BoneAttachment3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(134281286) index="7" unique_id=937021426]
+[node name="attachment_three" type="BoneAttachment3D" parent="Eumling_Armature/Skeleton3D" parent_id_path=PackedInt32Array(904454416) index="7" unique_id=937021426]
 transform = Transform3D(-1, -7.0008824e-08, 2.1198659e-08, 4.992681e-08, -0.44404826, 0.89600235, -5.3315304e-08, 0.89600265, 0.44404837, -1.5305886e-08, 0.5882118, 0.15764317)
 bone_name = "DEF_BAGLID2"
 bone_idx = 28
@@ -221,7 +223,7 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 [node name="anchor_three" type="Node3D" parent="Eumling_Armature/Skeleton3D/attachment_three/scaler/offset" index="0" unique_id=1864426905]
 transform = Transform3D(-0.8944496, -0.36465406, 0.25881913, 0.39631656, -0.3783829, 0.8365164, -0.20710626, 0.8507963, 0.4829628, -0.2759178, -0.08118112, -0.11662161)
 
-[node name="mini_conventional_logik" parent="Eumling_Armature/Skeleton3D/attachment_three/scaler/offset/anchor_three" index="0" unique_id=683163314 instance=ExtResource("4_xpqnk")]
+[node name="mini_eumling_var1" parent="Eumling_Armature/Skeleton3D/attachment_three/scaler/offset/anchor_three" index="0" unique_id=1777032300 instance=ExtResource("3_xpqnk")]
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1243012564]
 tree_root = SubResource("AnimationNodeBlendTree_lo48b")

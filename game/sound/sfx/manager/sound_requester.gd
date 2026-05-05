@@ -1,6 +1,6 @@
 class_name SoundRequester extends Node
 
-
+@export var anim_tree:AnimationTree
 signal play_sound(sound:String, focus: bool, persistent: bool)
 
 

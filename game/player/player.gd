@@ -131,7 +131,8 @@ func _ready() -> void:
 	hurtbox_start_sizes.x = hurtbox_collision.shape.radius
 	hurtbox_start_sizes.y = hurtbox_collision.shape.height
 
-	anim_player = eumling_visuals.find_child("AnimationTree")
+	#anim_player = eumling_visuals.find_child("AnimationTree")
+	anim_player = eumling_visuals.anim_tree
 	
 
 	attack_cooldown.timeout.connect(reset_preview_color)
