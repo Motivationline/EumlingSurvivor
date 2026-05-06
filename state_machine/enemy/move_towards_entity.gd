@@ -82,6 +82,9 @@ func enter():
 func physics_process(_delta: float) -> State:
 	if (done): return return_next()
 	if done_but_waiting: return null
+	if not target:
+		target_reached()
+		return null
 	
 	#check if the target is closer than stopping distance
 	if target.global_position.distance_to(parent.global_position) <= stop_distance:
