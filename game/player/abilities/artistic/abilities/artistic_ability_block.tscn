@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dg100dij26do3"]
+
+[ext_resource type="PackedScene" uid="uid://b2ndvg1scbgak" path="res://game/player/abilities/artistic/abilities/artistic_ability.tscn" id="1_worht"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rq4nd"]
+transparency = 1
+albedo_color = Color(0, 0, 1, 0.5411765)
+
+[node name="ArtisticAbilityBlock" unique_id=148235146 node_paths=PackedStringArray("collisions") instance=ExtResource("1_worht")]
+color = Color(0, 0, 1, 1)
+collisions = [NodePath("StaticBody3D/CollisionPolygon3D")]
+
+[node name="VisiblePolygon" parent="." index="0" unique_id=1412836692]
+material = SubResource("StandardMaterial3D_rq4nd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1124239728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 1024
+collision_mask = 0
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D" index="0" unique_id=1602936015]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+polygon = PackedVector2Array(1, 0, 0, 1, 0, 0)

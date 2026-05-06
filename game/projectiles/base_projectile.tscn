@@ -1,21 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dg5ap3nmd46eb"]
+[gd_scene format=3 uid="uid://dg5ap3nmd46eb"]
 
 [ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_73ff5"]
 
-[node name="Projectile" type="CharacterBody3D"]
+[node name="Projectile" type="CharacterBody3D" unique_id=1633818281]
 collision_layer = 128
+collision_mask = 1025
 script = ExtResource("1_73ff5")
 
-[node name="MovementStrategies" type="Node" parent="."]
+[node name="MovementStrategies" type="Node" parent="." unique_id=1478931537]
 
-[node name="EventStrategies" type="Node" parent="."]
+[node name="EventStrategies" type="Node" parent="." unique_id=1037534760]
 
-[node name="OnWorldCollision" type="Node" parent="EventStrategies"]
+[node name="OnWorldCollision" type="Node" parent="EventStrategies" unique_id=655878415]
 
-[node name="OnHit" type="Node" parent="EventStrategies"]
+[node name="OnHit" type="Node" parent="EventStrategies" unique_id=98182832]
 
-[node name="OnHurt" type="Node" parent="EventStrategies"]
+[node name="OnHurt" type="Node" parent="EventStrategies" unique_id=1942650529]
 
-[node name="OnEndOfLife" type="Node" parent="EventStrategies"]
+[node name="OnEndOfLife" type="Node" parent="EventStrategies" unique_id=1270043276]
 
-[node name="OnRemove" type="Node" parent="EventStrategies"]
+[node name="OnRemove" type="Node" parent="EventStrategies" unique_id=542146259]

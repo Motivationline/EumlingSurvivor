@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://d08n738tgoam4"]
+
+[ext_resource type="PackedScene" uid="uid://b2ndvg1scbgak" path="res://game/player/abilities/artistic/abilities/artistic_ability.tscn" id="1_l6lea"]
+[ext_resource type="Script" uid="uid://bt7pqq53wsp6o" path="res://game/upgrade_area/upgrade_area.gd" id="2_rl5fb"]
+[ext_resource type="Script" uid="uid://d18mqghpyc88h" path="res://strategies/upgrade/base.gd" id="3_nlb1a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6lea"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.5294118)
+
+[sub_resource type="Resource" id="Resource_na0fo"]
+script = ExtResource("3_nlb1a")
+type = 6
+method = 1
+value = 1.5
+metadata/_custom_type_script = "uid://d18mqghpyc88h"
+
+[node name="ArtisticAbilityStrength" unique_id=148235146 node_paths=PackedStringArray("collisions") instance=ExtResource("1_l6lea")]
+color = Color(1, 0, 0, 1)
+collisions = [NodePath("UpgradeArea/CollisionPolygon3D")]
+
+[node name="VisiblePolygon" parent="." index="0" unique_id=1412836692]
+material = SubResource("StandardMaterial3D_l6lea")
+
+[node name="UpgradeArea" type="Area3D" parent="." index="1" unique_id=1699440403]
+collision_layer = 256
+collision_mask = 2
+script = ExtResource("2_rl5fb")
+temporary_upgrades = Array[ExtResource("3_nlb1a")]([SubResource("Resource_na0fo")])
+metadata/_custom_type_script = "uid://bt7pqq53wsp6o"
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="UpgradeArea" index="0" unique_id=118221227]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+polygon = PackedVector2Array(0, 0, 1, 0, 0, 1)

@@ -3,37 +3,35 @@ extends Ability
 @export var tail_duration_base: float = 1.0
 @export var tail_duration_additional: float = 0.5
 
-@export var damage_base: float = 10.0
-@export var damage_additional: float = 5.0
-
-@export var area_duration_base: float = 2.0
-@export var area_duration_additional: float = 1.0
-
 @export var squared_distance_to_check: float = 0.1
 @export var minimum_area_to_trigger: float = 0.5
 
 @onready var tail_curve: Curve3D = $Tail.curve
-const ARTISTIC_VISIBLE_AREA = preload("uid://cnhf4kyj888lf")
 
 var tail_duration: float = 1.0
-var area_duration: float = 1.0
 var damage: float = 1.0
 
 var points: PackedVector3Array = []
 var points_2d: PackedVector2Array = []
 var times: PackedFloat32Array = []
 
+var artistic_abilities: Array[ArtisticAbility]
+var active_ability_index: int = -1
+var active_ability: ArtisticAbility
+
 func _ready() -> void:
 	_type = Enum.EUMLING_TYPE.ARTISTIC
 	super ()
-	
+	for child in get_children():
+		if child is ArtisticAbility:
+			artistic_abilities.append(child)
+	clear_abilities()
+	next_ability()
+
 func _update():
 	if amt_eumlings == 0 and points.size() > 0:
 		clear_points()
 	tail_duration = tail_duration_base + (amt_eumlings - 1) * tail_duration_additional
-	area_duration = area_duration_base + (amt_eumlings - 1) * area_duration_additional
-	damage = damage_base + (amt_eumlings - 1) * damage_additional
-	$Hitbox.damage = damage
 
 var current_time: float = 0.0
 var prev_point: Vector3 = Vector3.ZERO
@@ -93,30 +91,29 @@ func clear_points():
 	tail_curve.clear_points()
 
 func create_area(polygon_points: PackedVector2Array):
-	var visible_polygon = ARTISTIC_VISIBLE_AREA.instantiate()
-	visible_polygon.polygon = polygon_points
-
+	active_ability.polygon = polygon_points
+	active_ability.show()
 	# reduce hitbox polygons (currently not needed, but maybe again when we up the amount of points in the poly again)
-	var hitbox_polygon = CollisionPolygon3D.new()
+	# var hitbox_polygon = CollisionPolygon3D.new()
 	# var hitbox_poly: PackedVector2Array = []
 	# hitbox_poly.resize(ceili(polygon_points.size() / 4.0))
 	# for k in polygon_points.size():
 	# 	if k % 4 == 0:
 	# 		hitbox_poly[floori(k / 4.0)] = polygon_points[k]
 	# hitbox_polygon.polygon = hitbox_poly
-	hitbox_polygon.polygon = polygon_points
-	# add boxes
-	add_child(visible_polygon)
-	$Hitbox.add_child(hitbox_polygon)
-	# move hitboxes to correct height & rotation
-	hitbox_polygon.rotation_degrees.x = 90
-	hitbox_polygon.global_position.y = owner.global_position.y
-	visible_polygon.global_position.y = owner.global_position.y
-
-	await get_tree().create_timer(area_duration).timeout
-
-	hitbox_polygon.queue_free()
-	visible_polygon.queue_free()
+	next_ability()
 
 func level_start():
 	clear_points()
+	clear_abilities()
+
+func next_ability():
+	active_ability_index = (active_ability_index + 1) % artistic_abilities.size()
+	active_ability = artistic_abilities[active_ability_index]
+
+	$Tail/TailPolygon.material.albedo_color = active_ability.color
+
+func clear_abilities():
+	for ability in artistic_abilities:
+		ability.polygon = [Vector2(1000, 0), Vector2(1001, 0), Vector2(1000, 1)]
+		ability.hide()
