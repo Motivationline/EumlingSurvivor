@@ -33,7 +33,7 @@ func _ready() -> void:
 
 	_level = Data._active_mini_eumlings.count(Enum.EUMLING_TYPE.REALISTIC)
 	if _level <= 0:
-		status_visuals.hide()
+		queue_free()
 		return
 	repair_area.body_entered.connect(entity_entered)
 	repair_area.body_exited.connect(entity_exited)
