@@ -1,37 +1,32 @@
 extends Ability
 
-@export var tail_duration_base: float = 1.0
-@export var tail_duration_additional: float = 0.5
-
+@export var tail_duration: float = 1.0
 @export var squared_distance_to_check: float = 0.1
 @export var minimum_area_to_trigger: float = 0.5
 
 @onready var tail_curve: Curve3D = $Tail.curve
 
-var tail_duration: float = 1.0
 var damage: float = 1.0
 
 var points: PackedVector3Array = []
 var points_2d: PackedVector2Array = []
 var times: PackedFloat32Array = []
 
-var artistic_abilities: Array[ArtisticAbility]
+@export var artistic_abilities: Array[PackedScene]
 var active_ability_index: int = -1
 var active_ability: ArtisticAbility
+
+@export var eumling_scaler: EumlingScaler
 
 func _ready() -> void:
 	_type = Enum.EUMLING_TYPE.ARTISTIC
 	super ()
-	for child in get_children():
-		if child is ArtisticAbility:
-			artistic_abilities.append(child)
-	clear_abilities()
+	if eumling_scaler: eumling_scaler.setup_and_apply(self)
 	next_ability()
 
 func _update():
 	if amt_eumlings == 0 and points.size() > 0:
 		clear_points()
-	tail_duration = tail_duration_base + (amt_eumlings - 1) * tail_duration_additional
 
 var current_time: float = 0.0
 var prev_point: Vector3 = Vector3.ZERO
@@ -91,8 +86,9 @@ func clear_points():
 	tail_curve.clear_points()
 
 func create_area(polygon_points: PackedVector2Array):
+	get_tree().get_first_node_in_group("Level").add_child(active_ability)
 	active_ability.polygon = polygon_points
-	active_ability.show()
+	active_ability.global_position.y = owner.global_position.y
 	# reduce hitbox polygons (currently not needed, but maybe again when we up the amount of points in the poly again)
 	# var hitbox_polygon = CollisionPolygon3D.new()
 	# var hitbox_poly: PackedVector2Array = []
@@ -105,15 +101,9 @@ func create_area(polygon_points: PackedVector2Array):
 
 func level_start():
 	clear_points()
-	clear_abilities()
 
 func next_ability():
 	active_ability_index = (active_ability_index + 1) % artistic_abilities.size()
-	active_ability = artistic_abilities[active_ability_index]
+	active_ability = artistic_abilities[active_ability_index].instantiate()
 
 	$Tail/TailPolygon.material.albedo_color = active_ability.color
-
-func clear_abilities():
-	for ability in artistic_abilities:
-		ability.polygon = [Vector2(1000, 0), Vector2(1001, 0), Vector2(1000, 1)]
-		ability.hide()

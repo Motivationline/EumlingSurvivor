@@ -304,7 +304,7 @@ func add_upgrade(upgrade: Upgrade, temporary: bool = false) -> void:
 	check_upgrades_affecting_player(upgrade)
 
 func remove_temporary_upgrade(upgrade: Upgrade) -> void:
-	var array: Array = _temporary_upgrades.get(upgrade.type)
+	var array = _temporary_upgrades.get(upgrade.type)
 	if not array: return
 	var index: int = array.find(upgrade)
 	if index < 0: return
