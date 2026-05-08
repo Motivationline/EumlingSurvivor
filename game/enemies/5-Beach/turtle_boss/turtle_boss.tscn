@@ -18,7 +18,6 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="12_6p51q"]
 [ext_resource type="Script" uid="uid://cp33buoo5xtgx" path="res://state_machine/enemy/pick_random_state.gd" id="13_17bdl"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="14_7nljg"]
-[ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="14_jimkv"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="17_xpc6d"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="20_oe1bn"]
 [ext_resource type="AudioStream" uid="uid://tmat8rj8l6mt" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_1.wav" id="21_4dvdo"]
@@ -71,12 +70,6 @@ metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 [sub_resource type="Resource" id="Resource_f7jcw"]
 script = ExtResource("6_akffo")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
-
-[sub_resource type="Resource" id="Resource_paqa2"]
-script = ExtResource("14_jimkv")
-max_negative = -180.0
-max_positive = 180.0
-metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
 
 [sub_resource type="Resource" id="Resource_17bdl"]
 script = ExtResource("9_w3w5t")
@@ -254,8 +247,7 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="SpawnShell" type="Node" parent="StateMachine/LaunchShell" index="1" unique_id=727713856 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_ay312")
-start_delay = 1.25
-end_delay = 0.75
+end_delay = 2.0
 next_state = NodePath("../TurtleNaked")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Locomotion/transition_request": "turtle",
@@ -266,7 +258,6 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/LaunchShell/SpawnShell" index="0" unique_id=1189513944]
 script = ExtResource("3_vbct3")
 entity_to_spawn = ExtResource("11_wbfbl")
-rotation_strategy = SubResource("Resource_paqa2")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="TurtleNaked" type="Node" parent="StateMachine/LaunchShell" index="2" unique_id=361992033 node_paths=PackedStringArray("events", "next_state")]

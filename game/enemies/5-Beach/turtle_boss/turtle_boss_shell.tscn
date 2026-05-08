@@ -42,6 +42,43 @@ radius = 0.7224098
 height = 0.60498047
 radius = 0.76708984
 
+[sub_resource type="Animation" id="Animation_55h62"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/boss_turtle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_418st"]
+resource_name = "SpawnEnabler"
+length = 1.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/boss_turtle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kofj2"]
+_data = {
+&"RESET": SubResource("Animation_55h62"),
+&"SpawnEnabler": SubResource("Animation_418st")
+}
+
 [node name="Shell" unique_id=1898691 node_paths=PackedStringArray("node_with_animation_tree") groups=["Enemy"] instance=ExtResource("1_4mvb8")]
 collision_layer = 0
 collision_mask = 769
@@ -59,10 +96,16 @@ initial_state = NodePath("LookAtPlayerState")
 script = ExtResource("2_dwm3f")
 wait_time = 0.0
 rotate_instantly = true
-next_state = NodePath("../MoveForwardAndBounceState")
+next_state = NodePath("../WaitForTimeXState2")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="MoveForwardAndBounceState" type="Node" parent="StateMachine" index="1" unique_id=394585890 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState2" type="Node" parent="StateMachine" index="1" unique_id=453826427 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_1yahh")
+wait_time = 1.25
+next_state = NodePath("../MoveForwardAndBounceState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="MoveForwardAndBounceState" type="Node" parent="StateMachine" index="2" unique_id=394585890 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_1yahh")
 max_time = 5.0
 stop_when_running_into_something = false
@@ -73,7 +116,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://dlsg4m2a304o0"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=459783235 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="3" unique_id=459783235 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_1yahh")
 wait_time = 2.0
 next_state = NodePath("../WaitForAWhile")
@@ -82,13 +125,13 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="WaitForAWhile" type="Node" parent="StateMachine" index="3" unique_id=754164947 node_paths=PackedStringArray("next_state")]
+[node name="WaitForAWhile" type="Node" parent="StateMachine" index="4" unique_id=754164947 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_1yahh")
-wait_time = 10.0
+wait_time = 5.0
 next_state = NodePath("../KillSelfState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="KillSelfState" type="Node" parent="StateMachine" index="4" unique_id=1724595110 node_paths=PackedStringArray("next_state")]
+[node name="KillSelfState" type="Node" parent="StateMachine" index="5" unique_id=1724595110 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_dwm3f")
 next_state = NodePath("../WaitForAWhile")
 metadata/_custom_type_script = "uid://dj632w22te1th"
@@ -100,6 +143,7 @@ sound_to_play = "Rebound"
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("2_4d1ke")]
+visible = false
 
 [node name="SpinStop" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=2064507989 instance=ExtResource("7_jjgd4")]
 stream = ExtResource("8_3rox8")
@@ -127,6 +171,10 @@ shape = SubResource("SphereShape3D_1yahh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="8" unique_id=655806061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3273508, -0.10874775)
 shape = SubResource("CylinderShape3D_1yahh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9" unique_id=1935523181]
+libraries/ = SubResource("AnimationLibrary_kofj2")
+autoplay = &"SpawnEnabler"
 
 [connection signal="bounced" from="StateMachine/MoveForwardAndBounceState" to="Eventlisteners/PlaySoundRebound" method="execute_event" binds= ["nothing to see here"]]
 [connection signal="play_sound" from="Visuals/boss_turtle" to="SoundEffectManager" method="play_sound"]

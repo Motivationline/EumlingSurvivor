@@ -1,14 +1,13 @@
-[gd_scene format=4 uid="uid://bxglfcun4vtdd"]
+[gd_scene format=4 uid="uid://clacwcehjuyw2"]
 
-[ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_ckxew"]
-[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_66ia3"]
-[ext_resource type="NavigationMesh" uid="uid://c60v4w0nd7xde" path="res://game/levels/6-Vxx-Volcano/navmeshs2/vb01_navmesh.res" id="2_mnqux"]
-[ext_resource type="PackedScene" uid="uid://buu1fct1h48qb" path="res://game/enemies/6-volcano/boss_shark/boss_shark.tscn" id="2_ycyey"]
-[ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_csy1j"]
-[ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="4_fiacr"]
-[ext_resource type="Texture2D" uid="uid://bx2vit8nl77pn" path="res://assets/models/5-beach/obstacle_stone/ObstacleStone_Beach_Material_Base_color.png" id="5_y5ui0"]
-[ext_resource type="Texture2D" uid="uid://c0q0qcuyms7fg" path="res://assets/models/2-flower_field/obstacle_stone/obstacle_stone_leaf_texture.png" id="6_5v2ca"]
-[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_6xc33"]
+[ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_elj1x"]
+[ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="2_t881e"]
+[ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/ObstacleStone/ObstacleStone_Volcano_Material_Base_color.png" id="3_w2hr6"]
+[ext_resource type="Texture2D" uid="uid://bx2vit8nl77pn" path="res://assets/models/5-beach/obstacle_stone/ObstacleStone_Beach_Material_Base_color.png" id="4_44jct"]
+[ext_resource type="Texture2D" uid="uid://c0q0qcuyms7fg" path="res://assets/models/2-flower_field/obstacle_stone/obstacle_stone_leaf_texture.png" id="5_k1rdj"]
+[ext_resource type="PackedScene" uid="uid://ch75ted576gk8" path="res://game/enemies/5-Beach/turtle_boss/turtle_boss.tscn" id="6_ayijj"]
+[ext_resource type="PackedScene" uid="uid://cbiqexo8lchvg" path="res://game/enemies/5-Beach/environment/quick_sand.tscn" id="7_siiys"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_ld4c3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13bgu"]
 transparency = 1
@@ -38,7 +37,7 @@ size = Vector3(0.5, 2.4232483, 0.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kqau"]
 resource_name = "Material"
 cull_mode = 2
-albedo_texture = ExtResource("3_csy1j")
+albedo_texture = ExtResource("2_t881e")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_udnil"]
 _surfaces = [{
@@ -90,7 +89,7 @@ image = SubResource("Image_ofhxt")
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n85fk"]
-albedo_texture = ExtResource("4_fiacr")
+albedo_texture = ExtResource("3_w2hr6")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4t0uu"]
 resource_name = "ObstacleStone_Cube"
@@ -124,7 +123,7 @@ data = {
 image = SubResource("Image_1julp")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54a7a"]
-albedo_texture = ExtResource("5_y5ui0")
+albedo_texture = ExtResource("4_44jct")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_kslge"]
 resource_name = "ObstacleStone_Cube"
@@ -161,7 +160,7 @@ image = SubResource("Image_qx4y4")
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("6_5v2ca")
+albedo_texture = ExtResource("5_k1rdj")
 metallic_specular = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7ljeu"]
@@ -213,7 +212,7 @@ image = SubResource("Image_3u3dn")
 [sub_resource type="BoxShape3D" id="BoxShape3D_krvp3"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[sub_resource type="MeshLibrary" id="MeshLibrary_jl4h3"]
+[sub_resource type="MeshLibrary" id="MeshLibrary_7vebe"]
 item/0/name = "MapBorder_0_5x0_5"
 item/0/mesh = SubResource("BoxMesh_ofhxt")
 item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -255,76 +254,90 @@ item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 
 item/4/navigation_layers = 1
 item/4/preview = SubResource("ImageTexture_dira7")
 
-[sub_resource type="BoxMesh" id="BoxMesh_rmwgy"]
-size = Vector3(5, 1, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rmwgy"]
-size = Vector3(5, 1, 5)
-
-[node name="Level" unique_id=1973423689 instance=ExtResource("1_ckxew")]
+[node name="Level" unique_id=1268816340 instance=ExtResource("1_elj1x")]
 is_boss_level = true
-music = 5
 
-[node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
-navigation_mesh = ExtResource("2_mnqux")
-
-[node name="BorderGridMap" parent="NavigationRegion3D" index="0" unique_id=1833051751]
-mesh_library = SubResource("MeshLibrary_jl4h3")
-data = {
-"cells": PackedInt32Array(65530, 5, 3, 65531, 5, 3, 65532, 5, 3, 65533, 5, 3, 65534, 5, 3, 65535, 5, 3, 0, 5, 3, 1, 5, 3, 2, 5, 3, 3, 5, 3, 4, 5, 3, 5, 5, 3, 5, 65530, 3, 5, 65531, 3, 5, 65532, 3, 5, 65533, 3, 5, 65534, 3, 5, 65535, 3, 5, 0, 3, 5, 1, 3, 5, 2, 3, 5, 3, 3, 5, 4, 3, 65530, 65530, 3, 65530, 65531, 3, 65530, 65532, 3, 65530, 65533, 3, 65530, 65534, 3, 65530, 65535, 3, 65530, 0, 3, 65530, 1, 3, 65530, 2, 3, 65530, 3, 3, 65530, 4, 3, 65531, 65530, 3, 65532, 65530, 3, 65533, 65530, 3, 65534, 65530, 3, 0, 65530, 3, 1, 65530, 3, 2, 65530, 3, 3, 65530, 3, 4, 65530, 3, 65535, 65530, 3)
-}
-
-[node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" index="1" unique_id=1332231113]
+[node name="ObstaclesGridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(843824706) index="2" unique_id=697127100]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh_library = ExtResource("2_66ia3")
+mesh_library = SubResource("MeshLibrary_7vebe")
 cell_size = Vector3(0.5, 0.5, 0.5)
+data = {
+"cells": PackedInt32Array(65530, 65534, 3, 65530, 65535, 3, 65530, 0, 3, 65530, 1, 3, 65534, 65530, 3, 65535, 65530, 3, 0, 65530, 3, 1, 65530, 3, 5, 65534, 3, 5, 65535, 3, 5, 0, 3, 5, 1, 3, 65534, 5, 3, 65535, 5, 3, 0, 5, 3, 1, 5, 3)
+}
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" parent_id_path=PackedInt32Array(2126814094) index="0" unique_id=1370452096]
-mesh = SubResource("BoxMesh_rmwgy")
+[node name="GoalArea" parent="." index="4" unique_id=1103800391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
-[node name="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" parent_id_path=PackedInt32Array(2126814094) index="1" unique_id=423930638]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.013000488)
-shape = SubResource("BoxShape3D_rmwgy")
+[node name="TurtleBoss" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("6_ayijj")]
 
-[node name="PlayerSpawnMarker" parent="." index="1" unique_id=1539073355]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
+[node name="Obstales" parent="." index="10" unique_id=618270164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0)
 
-[node name="GoalArea" parent="." index="2" unique_id=1533472146]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+[node name="QuickSand" parent="Obstales" index="0" unique_id=288921100 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, 1.25)
 
-[node name="Bedrock" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="0" unique_id=1601940965]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.015992403, -2.0722504, -1.2509851)
+[node name="QuickSand2" parent="Obstales" index="1" unique_id=2034354596 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, 1.75)
 
-[node name="Lava" parent="Env" parent_id_path=PackedInt32Array(1593707156) index="1" unique_id=1888487937]
-transform = Transform3D(-2.625, 3.96364e-07, 1.732562e-14, 0, -1.1474239e-07, 2.625, 3.96364e-07, 2.625, 1.1474239e-07, 5.7586665, -0.41393697, -4.748145)
+[node name="QuickSand3" parent="Obstales" index="2" unique_id=638226305 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, 2.25)
 
-[node name="volcano_stone_01" parent="Env/Node3D" parent_id_path=PackedInt32Array(1846319933) index="0" unique_id=667927802]
-transform = Transform3D(0.79348576, -0.38404092, -0.47211534, 0.14590551, 0.87317425, -0.46505722, 0.59084004, 0.30013204, 0.748885, -5.242826, -1.0624256, 5.7360616)
+[node name="QuickSand4" parent="Obstales" index="3" unique_id=969270577 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 2.25)
 
-[node name="volcano_stone_02" parent="Env/Node3D" parent_id_path=PackedInt32Array(1846319933) index="1" unique_id=1980216610]
-transform = Transform3D(0.14846528, 0, -0.98891765, 0, 1, 0, 0.98891765, 0, 0.14846528, -6.384719, -1.0193936, 4.402232)
+[node name="QuickSand5" parent="Obstales" index="4" unique_id=1062406931 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, 1.75)
 
-[node name="volcano_stone_06" parent="Env/Node3D" parent_id_path=PackedInt32Array(1846319933) index="2" unique_id=2140811603]
-transform = Transform3D(-0.6255285, 0, 0.78020126, 0, 1, 0, -0.78020126, 0, -0.6255285, 5.407815, -1.6538092, -6.126197)
+[node name="QuickSand6" parent="Obstales" index="5" unique_id=1966193089 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 2.25)
 
-[node name="volcano_stone_07" parent="Env/Node3D" parent_id_path=PackedInt32Array(1846319933) index="3" unique_id=1054844115]
-transform = Transform3D(0.9839599, 0, 0.17838997, 0, 1, 0, -0.17838997, 0, 0.9839599, 3.3878605, -1.0193936, 6.3719153)
+[node name="QuickSand7" parent="Obstales" index="6" unique_id=982388945 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, 2.25)
 
-[node name="volcano_stone_08" parent="Env/Node3D" parent_id_path=PackedInt32Array(1846319933) index="4" unique_id=2126928874]
-transform = Transform3D(0.49869278, 0, 0.03613163, 0, 0.5, 0, -0.03613163, 0, 0.49869278, -1.0327115, -0.40337437, 6.1100006)
+[node name="QuickSand8" parent="Obstales" index="7" unique_id=280152235 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, 1.75)
 
-[node name="volcano_stone_03" parent="Env/Node3D" parent_id_path=PackedInt32Array(1846319933) index="5" unique_id=1973827186]
-transform = Transform3D(-1.4137517, 0.4597959, -1.3378692, 0.11187443, 1.921829, 0.5422702, 1.4102447, 0.308481, -1.384214, -6.384649, -4.0124345, -6.2545023)
+[node name="QuickSand9" parent="Obstales" index="8" unique_id=1933338322 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 1.75)
 
-[node name="volcano_stone_04" parent="Env/Node3D" parent_id_path=PackedInt32Array(1846319933) index="6" unique_id=1569124624]
-transform = Transform3D(1.4796902, 0.6138087, 1.1973948, -0.6313302, 1.888419, -0.18787014, -1.1882498, -0.23898074, 1.5908959, 4.7422495, -3.930735, -0.528985)
+[node name="QuickSand10" parent="Obstales" index="9" unique_id=1960394676 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 1.25)
 
-[node name="volcano_stone_05" parent="Env/Node3D" parent_id_path=PackedInt32Array(1846319933) index="7" unique_id=1460671164]
-transform = Transform3D(-0.78747123, -0.20545384, 0.58110046, -0.31566513, 0.94420964, -0.09393509, -0.52938133, -0.25740433, -0.80839247, 0.5699823, -1.2003436, -6.0287466)
+[node name="QuickSand11" parent="Obstales" index="10" unique_id=754970305 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -1.25)
 
-[node name="BossShark" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_ycyey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7429123, 0.09344214, -1.7844396)
+[node name="QuickSand12" parent="Obstales" index="11" unique_id=193705492 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, -1.75)
 
-[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(614762836) index="0" unique_id=1814085372 instance=ExtResource("8_6xc33")]
-transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 1.7195059, 0, -1.6019318)
+[node name="QuickSand13" parent="Obstales" index="12" unique_id=657373572 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -1.75)
+
+[node name="QuickSand14" parent="Obstales" index="13" unique_id=1060353519 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0, -2.25)
+
+[node name="QuickSand15" parent="Obstales" index="14" unique_id=1260446305 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -2.25)
+
+[node name="QuickSand16" parent="Obstales" index="15" unique_id=1975129711 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -2.25)
+
+[node name="QuickSand17" parent="Obstales" index="16" unique_id=33674981 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, -2.25)
+
+[node name="QuickSand18" parent="Obstales" index="17" unique_id=663875698 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, -1.75)
+
+[node name="QuickSand19" parent="Obstales" index="18" unique_id=87529782 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, -1.75)
+
+[node name="QuickSand20" parent="Obstales" index="19" unique_id=1808735584 instance=ExtResource("7_siiys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, -1.25)
+
+[node name="ExitVisual" parent="." index="11" unique_id=1454711626]
+visible = false
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(111514245) index="0" unique_id=1814085372 instance=ExtResource("8_ld4c3")]
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 2.045514, 0, -0.50569654)
+
+[editable path="ExitVisual"]

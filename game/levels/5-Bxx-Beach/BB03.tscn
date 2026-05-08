@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://7cjffx0xe1ru"]
+
+[ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_1262n"]
+[ext_resource type="PackedScene" uid="uid://c5dvtjlecj3jd" path="res://game/enemies/5-Beach/turtle_boss/turtle_boss_hard.tscn" id="2_xmw3o"]
+
+[node name="Level" unique_id=1268816340 instance=ExtResource("1_1262n")]
+is_boss_level = true
+
+[node name="GoalArea" parent="." index="4" unique_id=1103800391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="TurtleBoss" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("2_xmw3o")]
+
+[node name="ExitVisual" parent="." index="11" unique_id=1454711626]
+visible = false
+
+[editable path="ExitVisual"]
