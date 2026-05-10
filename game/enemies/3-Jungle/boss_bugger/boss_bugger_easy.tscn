@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://w7uh6pdm3kf4"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_bnr80"]
-[ext_resource type="Script" uid="uid://cu4a5yufjkwhv" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_enemy.gd" id="2_8h61i"]
+[ext_resource type="Script" uid="uid://d08yjq57yklyp" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_enemy.gd" id="2_8h61i"]
 [ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="3_x6iwq"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="4_y38gm"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_r5o8m"]
@@ -42,23 +42,6 @@
 [ext_resource type="AudioStream" uid="uid://dtj8jld0l7f2o" path="res://assets/characters/enemies/bossbugger/sounds/nobuzz/shoot_4.wav" id="38_ox3ef"]
 [ext_resource type="AudioStream" uid="uid://cfvfrshossywq" path="res://assets/characters/enemies/bossbugger/sounds/nobuzz/shoot_5.wav" id="39_ve806"]
 [ext_resource type="AudioStream" uid="uid://hcebx7xo1yi5" path="res://assets/characters/enemies/bossbugger/sounds/nobuzz/shoot_6.wav" id="40_dwtrh"]
-[ext_resource type="AudioStream" uid="uid://dwp0ucpq3nv0r" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_1.wav" id="41_s6pf1"]
-[ext_resource type="AudioStream" uid="uid://ditofn4wbkokk" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_2.wav" id="42_d4mf5"]
-[ext_resource type="AudioStream" uid="uid://d2o7xjvnjk035" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_3.wav" id="43_d61w1"]
-[ext_resource type="AudioStream" uid="uid://fler7amc8c2v" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_4.wav" id="44_bg8ms"]
-[ext_resource type="AudioStream" uid="uid://bhodppuceexwp" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_5.wav" id="45_ni7xp"]
-[ext_resource type="AudioStream" uid="uid://y6ojs2c2w46w" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_6.wav" id="46_l4e6j"]
-[ext_resource type="AudioStream" uid="uid://yfbah4eqpc3c" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/refill_1.wav" id="47_05xhe"]
-[ext_resource type="AudioStream" uid="uid://baem7nyjyb463" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/refill_2.wav" id="48_vtqwp"]
-[ext_resource type="AudioStream" uid="uid://dq2kt14kgyak3" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/refill_3.wav" id="49_b3whx"]
-[ext_resource type="AudioStream" uid="uid://dmr8jjwqajdw3" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/refill_4.wav" id="50_aiypg"]
-[ext_resource type="AudioStream" uid="uid://dux3und2jd6jl" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/refill_5.wav" id="51_rg30n"]
-[ext_resource type="AudioStream" uid="uid://b43ty5yydh5s3" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_1.wav" id="52_oajdm"]
-[ext_resource type="AudioStream" uid="uid://85lbbm1tebtw" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_2.wav" id="53_3846j"]
-[ext_resource type="AudioStream" uid="uid://c4r8fr1tuitx8" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_3.wav" id="54_ft54i"]
-[ext_resource type="AudioStream" uid="uid://dsqqvtwgxaig8" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_4.wav" id="55_q1e5i"]
-[ext_resource type="AudioStream" uid="uid://cpxaljlk8w8d" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_5.wav" id="56_641pf"]
-[ext_resource type="AudioStream" uid="uid://q2wkde13g76u" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_6.wav" id="57_aj2hy"]
 
 [sub_resource type="Resource" id="Resource_0v3ys"]
 script = ExtResource("11_ct7ls")
@@ -203,7 +186,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(0.0508281, 0.08611913)
+shader_parameter/wobble = Vector2(0, 0)
 
 [sub_resource type="Gradient" id="Gradient_qqlxf"]
 offsets = PackedFloat32Array(0.5364583, 0.71875, 0.7760417)
@@ -291,36 +274,6 @@ stream_2/stream = ExtResource("37_vatwp")
 stream_3/stream = ExtResource("38_ox3ef")
 stream_4/stream = ExtResource("39_ve806")
 stream_5/stream = ExtResource("40_dwtrh")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1djkc"]
-random_volume_offset_db = 1.0
-streams_count = 6
-stream_0/stream = ExtResource("41_s6pf1")
-stream_1/stream = ExtResource("42_d4mf5")
-stream_2/stream = ExtResource("43_d61w1")
-stream_3/stream = ExtResource("44_bg8ms")
-stream_4/stream = ExtResource("45_ni7xp")
-stream_5/stream = ExtResource("46_l4e6j")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_blm30"]
-random_volume_offset_db = 1.0
-streams_count = 5
-stream_0/stream = ExtResource("47_05xhe")
-stream_1/stream = ExtResource("48_vtqwp")
-stream_2/stream = ExtResource("49_b3whx")
-stream_3/stream = ExtResource("50_aiypg")
-stream_4/stream = ExtResource("51_rg30n")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jsiqs"]
-playback_mode = 1
-random_volume_offset_db = 1.0
-streams_count = 6
-stream_0/stream = ExtResource("52_oajdm")
-stream_1/stream = ExtResource("53_3846j")
-stream_2/stream = ExtResource("54_ft54i")
-stream_3/stream = ExtResource("55_q1e5i")
-stream_4/stream = ExtResource("56_641pf")
-stream_5/stream = ExtResource("57_aj2hy")
 
 [node name="BossBugger" unique_id=651925094 node_paths=PackedStringArray("hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_bnr80")]
 collision_layer = 64
@@ -617,47 +570,107 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("16_ofchx")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 791132435) index="0" unique_id=1025423583]
-bones/0/position = Vector3(0, 1.431852, -4.298125e-22)
-bones/0/rotation = Quaternion(0.99931574, 1.6902106e-09, -4.566432e-08, 0.036988504)
-bones/1/scale = Vector3(0.99503416, 1.0100796, 0.99503416)
-bones/5/rotation = Quaternion(-0.4367126, 4.1076977e-09, 6.088755e-08, 0.89960116)
-bones/6/rotation = Quaternion(-0.23279646, 7.586924e-09, 1.8160697e-09, 0.97252554)
-bones/7/rotation = Quaternion(-0.23683067, -4.0780977e-14, 4.6630536e-14, 0.97155106)
-bones/7/scale = Vector3(1.3401756, 1.0785265, 1.2778294)
-bones/8/rotation = Quaternion(-0.23279725, -9.248299e-16, -2.0381508e-14, 0.9725254)
-bones/9/rotation = Quaternion(-0.3780066, -1.8931629e-14, 5.3012126e-14, 0.925803)
-bones/10/rotation = Quaternion(-0.37757283, 2.9077858e-15, -5.6506517e-14, 0.9259799)
-bones/11/rotation = Quaternion(-0.3775733, -3.666972e-14, 7.3683335e-14, 0.92597973)
-bones/12/rotation = Quaternion(-0.37757397, 7.617295e-14, 9.002068e-08, 0.92597944)
-bones/17/rotation = Quaternion(0.66783607, -0.00026315116, 0.00020310315, 0.74430835)
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 270330704) index="0" unique_id=959549933]
+bones/0/position = Vector3(0, 1.5039583, -4.4412733e-22)
+bones/0/rotation = Quaternion(0.99862254, -2.3976268e-09, -4.5632635e-08, -0.052469604)
+bones/1/position = Vector3(-1.1417049e-15, 1.5039582, -1.2492509e-08)
+bones/1/rotation = Quaternion(0.05246965, -2.9761269e-08, -6.3589813e-09, 0.99862254)
+bones/1/scale = Vector3(0.96335787, 1.0775185, 0.9633579)
+bones/2/position = Vector3(-2.8005598e-11, 1.5010502, -0.00030643665)
+bones/2/rotation = Quaternion(0.05246965, 1.1904507e-07, 1.4595929e-09, 0.99862254)
+bones/2/scale = Vector3(0.96335787, 1.0775183, 0.9633579)
+bones/4/position = Vector3(-2.1587265e-09, 1.2797995, -0.023620736)
+bones/4/rotation = Quaternion(0.9847471, -4.7593947e-09, 5.854197e-10, -0.17399223)
+bones/5/position = Vector3(-3.7429833e-09, 1.1174926, -0.08282406)
+bones/5/rotation = Quaternion(0.9473503, -4.7687706e-08, -3.5527137e-15, 0.32019904)
+bones/5/scale = Vector3(0.99999994, 1, 0.9999998)
+bones/6/position = Vector3(-1.6008537e-08, 1.0095787, -0.00046701918)
+bones/6/rotation = Quaternion(0.86767876, -4.595313e-08, -2.887163e-09, 0.49712554)
+bones/6/scale = Vector3(0.9070114, 1.2155545, 0.9070111)
+bones/7/position = Vector3(-2.8283665e-08, 0.9288246, 0.13728519)
+bones/7/rotation = Quaternion(0.7553396, -4.4530445e-08, -1.1707346e-08, 0.6553337)
+bones/7/scale = Vector3(1.215555, 1.2155533, 1.2155547)
+bones/8/position = Vector3(-3.6372956e-08, 0.9068475, 0.2915099)
+bones/8/rotation = Quaternion(0.6145611, -4.1431278e-08, -2.008672e-08, 0.78886926)
+bones/8/scale = Vector3(1.2155542, 1.215554, 1.2155541)
+bones/9/position = Vector3(-3.9670407e-08, 0.94878966, 0.4577525)
+bones/9/rotation = Quaternion(0.29039156, -3.145827e-08, -3.3621504e-08, 0.956908)
+bones/9/scale = Vector3(1.2155538, 1.2155548, 1.2155538)
+bones/10/position = Vector3(-3.2746023e-08, 1.0737287, 0.5412745)
+bones/10/rotation = Quaternion(0.07249345, 1.7291297e-08, 4.2673513e-08, -0.9973689)
+bones/10/scale = Vector3(1.2155542, 1.2155544, 1.2155542)
+bones/11/position = Vector3(-1.7963467e-08, 1.2406495, 0.51688045)
+bones/11/rotation = Quaternion(0.42571294, 8.1892537e-10, 4.6036558e-08, -0.9048583)
+bones/11/scale = Vector3(1.2155544, 1.2155542, 1.2155546)
+bones/12/position = Vector3(-3.514315e-09, 1.350301, 0.384374)
+bones/12/rotation = Quaternion(0.7221753, -5.2200043e-08, -3.4186677e-08, -0.69171005)
+bones/12/scale = Vector3(1.2155545, 1.2155539, 1.2155546)
+bones/13/position = Vector3(-2.400894e-08, 1.3431057, 0.21748471)
+bones/13/rotation = Quaternion(0.9520012, -2.4059794e-08, -4.5985907e-08, -0.30609426)
+bones/13/scale = Vector3(1.2155542, 1.2155542, 1.2155542)
+bones/14/position = Vector3(-3.5631942e-08, 1.2154049, 0.12589794)
+bones/14/rotation = Quaternion(0.9899802, 1.4031347e-08, -5.3845294e-08, 0.14120631)
+bones/14/scale = Vector3(1.2155538, 1.215555, 1.2155539)
+bones/15/position = Vector3(-2.8949266e-08, 1.0661498, 0.16936024)
+bones/15/rotation = Quaternion(0.8284589, 4.9294904e-08, -5.0853764e-08, 0.5600499)
+bones/15/scale = Vector3(1.2155542, 1.2155547, 1.2155538)
+bones/16/position = Vector3(-6.5729733e-09, 1.005998, 0.31913227)
+bones/16/rotation = Quaternion(0.49998716, 7.462454e-08, -3.7614264e-08, 0.86603284)
+bones/16/scale = Vector3(1.2155545, 1.2155536, 1.2155544)
+bones/17/position = Vector3(-0.2242329, 1.3601223, -0.09121592)
+bones/17/rotation = Quaternion(-0.7790997, 0.00021056201, 0.0002616826, 0.62689996)
+bones/18/position = Vector3(-0.22423288, 1.3601224, -0.09121592)
+bones/18/rotation = Quaternion(-0.6499924, 0.21347679, -0.18755566, 0.70481235)
+bones/19/position = Vector3(-0.24529767, 1.5041236, -0.00156914)
 bones/19/rotation = Quaternion(-0.49805066, 0.5375024, -0.4991323, -0.4624973)
+bones/20/position = Vector3(-0.7441626, 1.5041233, 0.036496695)
+bones/21/position = Vector3(-1.2430273, 1.5041233, 0.07456252)
+bones/22/position = Vector3(-0.13967307, 1.4094801, 0.10983074)
 bones/22/rotation = Quaternion(-0.37833884, 0.6275533, -0.5827548, -0.35133108)
-bones/25/rotation = Quaternion(0.66783607, 0.00026322354, -0.000203159, 0.74430835)
-bones/27/rotation = Quaternion(0.28290892, -0.6876098, 0.25508073, 0.6181336)
-bones/31/rotation = Quaternion(0.49805054, 0.5375024, -0.49913234, 0.46249723)
-bones/34/rotation = Quaternion(0.37833875, 0.6275533, -0.58275485, 0.35133106)
+bones/23/position = Vector3(-0.58211917, 1.4094797, 0.34340405)
+bones/24/position = Vector3(-1.0245652, 1.4094796, 0.5769774)
+bones/25/position = Vector3(0.2242329, 1.3601223, -0.09121592)
+bones/25/rotation = Quaternion(-0.7790997, -0.00021056201, -0.0002616826, 0.62689996)
+bones/26/position = Vector3(0.22423291, 1.3601224, -0.09121591)
+bones/26/rotation = Quaternion(-0.6596788, -0.19230472, 0.1669957, 0.7070751)
+bones/27/position = Vector3(-0.08559791, 1.3261709, 0.06586085)
+bones/27/rotation = Quaternion(-0.62817496, 0.28033978, 0.6777043, 0.25985146)
+bones/27/scale = Vector3(0.9999998, 0.9999998, 0.9999999)
+bones/28/position = Vector3(-0.24635461, 1.1646465, 0.07807279)
+bones/28/scale = Vector3(0.9999997, 0.9999999, 0.9999998)
+bones/29/position = Vector3(-0.3914069, 1.055732, 0.065860845)
+bones/29/scale = Vector3(0.99999964, 0.99999976, 0.9999998)
+bones/30/position = Vector3(-0.35764232, 1.0203968, 0.06586085)
+bones/30/rotation = Quaternion(0.7027758, 0.07814265, 0.7027758, -0.07814263)
+bones/30/scale = Vector3(0.9999997, 0.9999995, 0.99999976)
+bones/31/position = Vector3(0.24529767, 1.5041236, -0.0015691401)
+bones/32/position = Vector3(0.7441626, 1.5041233, 0.036496695)
+bones/33/position = Vector3(1.2430273, 1.5041233, 0.07456252)
+bones/34/position = Vector3(0.13967304, 1.4094801, 0.10983074)
+bones/35/position = Vector3(0.58211917, 1.4094799, 0.34340405)
+bones/36/position = Vector3(1.0245652, 1.4094799, 0.5769773)
+bones/36/rotation = Quaternion(0.36508483, 0.6055685, 0.6055682, -0.36508492)
 
 [node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0" unique_id=160595167]
-transform = Transform3D(0.99503416, -6.8243162e-09, 2.3698577e-07, -1.0815231e-08, 1.0073156, 0.07355928, -2.3683428e-07, -0.07467152, 0.9923114, 1.8520624e-11, 1.4291182, 0.00020265227)
+transform = Transform3D(0.96335787, 1.031976e-08, 2.2919764e-07, 1.48431e-08, 1.0715854, -0.10095485, -2.2890251e-07, 0.112918265, 0.9580535, -2.8005598e-11, 1.5010502, -0.00030643665)
 
 [node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" index="0" unique_id=450284212]
 material_override = SubResource("ShaderMaterial_urikr")
 
-[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=289949771]
+[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=1577171587]
 mesh = SubResource("ArrayMesh_30o50")
 
 [node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2" unique_id=525651175]
-transform = Transform3D(-0.07608376, -0.99710155, -4.4703484e-07, 8.940697e-08, -4.763715e-07, 0.99999994, -0.99710155, 0.07608381, 5.9604645e-08, -0.24529767, 1.4317352, -0.0015734802)
+transform = Transform3D(-0.07608365, -0.99710137, -4.4703484e-07, -0.07371219, 0.0056250687, -0.99726367, 0.994373, -0.07587548, -0.07392645, -0.24529767, 1.5041236, -0.00156914)
 
 [node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="3" unique_id=2129402415]
-transform = Transform3D(-0.4668526, -0.8843352, -4.1723249e-07, 1.1920929e-07, -4.0233135e-07, 1.0000001, -0.8843352, 0.46685252, 4.0978193e-07, -0.13967305, 1.3584358, 0.12489599)
+transform = Transform3D(-0.46685255, -0.8843353, -4.172325e-07, -0.065375835, 0.034513116, -0.9972638, 0.8819155, -0.46557498, -0.07392681, -0.13967307, 1.4094801, 0.10983074)
 
 [node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="4" unique_id=1002716327]
-transform = Transform3D(-0.07608382, 0.9971016, 4.768372e-07, 5.2154064e-08, -5.229376e-07, 1.0000001, 0.9971015, 0.076083824, -5.2154064e-08, 0.24529767, 1.4317352, -0.0015734802)
+transform = Transform3D(-0.07608401, 0.99710137, 5.066394e-07, 5.9604638e-08, -4.7683713e-07, 0.99999994, 0.9971013, 0.07608398, 0, 0.24529767, 1.5041236, -0.0015691401)
 
 [node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="5" unique_id=831899753]
-transform = Transform3D(-0.46685255, 0.8843354, 4.172325e-07, 2.2351742e-08, -3.9115548e-07, 1, 0.88433516, 0.46685258, 2.9057264e-07, 0.13967305, 1.3584358, 0.12489599)
+transform = Transform3D(-0.46685255, 0.8843351, 3.5762787e-07, -5.9604645e-08, -4.7683716e-07, 1, 0.8843351, 0.46685258, 2.9802322e-07, 0.13967304, 1.4094801, 0.10983074)
 
 [node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1216685563 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_7rhsi")
@@ -677,17 +690,6 @@ volume_db = 0.0
 [node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="6" unique_id=2101134799 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_qun2s")
 volume_db = -10.0
-
-[node name="withBuzz" type="Node" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="7" unique_id=348531999]
-
-[node name="Slash" parent="SoundEffectManager/withBuzz" index="0" unique_id=488495859 instance=ExtResource("17_7htsj")]
-stream = SubResource("AudioStreamRandomizer_1djkc")
-
-[node name="Refill" parent="SoundEffectManager/withBuzz" index="1" unique_id=1033688375 instance=ExtResource("17_7htsj")]
-stream = SubResource("AudioStreamRandomizer_blm30")
-
-[node name="Shoot" parent="SoundEffectManager/withBuzz" index="2" unique_id=2058732703 instance=ExtResource("17_7htsj")]
-stream = SubResource("AudioStreamRandomizer_jsiqs")
 
 [connection signal="play_sound" from="Visuals/BossBugger" to="SoundEffectManager" method="play_sound"]
 
