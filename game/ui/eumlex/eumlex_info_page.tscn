@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dikd1dbh8qsxw" path="res://assets/ui/Eumlex/EumlingBackdropI.png" id="5_uffki"]
 [ext_resource type="Texture2D" uid="uid://dpair3rlohkm8" path="res://assets/ui/Eumlex/EumlingBackdropR.png" id="6_b400u"]
 [ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="6_d8n6m"]
+[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="10_5qkcb"]
 [ext_resource type="Texture2D" uid="uid://biubocdcd3g0x" path="res://assets/ui/Buttons/SquareButton.png" id="10_a4y71"]
 [ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="11_2f624"]
 
@@ -47,12 +48,72 @@ offset_right = 722.0
 offset_bottom = 830.0
 texture = ExtResource("2_d8n6m")
 
+[node name="EumlingPreview" type="TextureRect" parent="." unique_id=1356534360]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 170.0
+offset_right = 721.0
+offset_bottom = 720.0
+scale = Vector2(0.75, 0.75)
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_3u4jb")
+
+[node name="SubViewport" type="SubViewport" parent="EumlingPreview" unique_id=1541320579]
+own_world_3d = true
+
+[node name="EumlingInfoScene" parent="EumlingPreview/SubViewport" unique_id=561343103 instance=ExtResource("2_71bnp")]
+unique_name_in_owner = true
+
+[node name="frameScene" type="TextureRect" parent="EumlingPreview" unique_id=740379524]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.04, 1.04)
+pivot_offset = Vector2(275, 275)
+texture = ExtResource("3_3l5pn")
+metadata/_edit_lock_ = true
+
+[node name="Taglines" type="HBoxContainer" parent="EumlingPreview" unique_id=706411811]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.99992
+offset_top = -21.766846
+offset_right = 115.00006
+offset_bottom = 11.480164
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Tagline1" type="TextureRect" parent="EumlingPreview/Taglines" unique_id=1530801634]
+layout_mode = 2
+texture = ExtResource("4_3l5pn")
+expand_mode = 3
+
+[node name="Tagline2" type="TextureRect" parent="EumlingPreview/Taglines" unique_id=706823415]
+layout_mode = 2
+texture = ExtResource("5_3u4jb")
+expand_mode = 3
+
+[node name="Tagline3" type="TextureRect" parent="EumlingPreview/Taglines" unique_id=777719808]
+layout_mode = 2
+texture = ExtResource("6_d8n6m")
+expand_mode = 3
+
 [node name="Banner" type="TextureRect" parent="." unique_id=1121522541]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 28.0
+offset_top = 17.0
 offset_right = 682.0
-offset_bottom = 169.0
+offset_bottom = 158.0
 texture = ExtResource("3_1j0op")
 
 [node name="Name" type="Label" parent="." unique_id=888141994]
@@ -66,78 +127,37 @@ theme_override_fonts/font = ExtResource("5_d8n6m")
 theme_override_font_sizes/font_size = 60
 text = "Game Name"
 horizontal_alignment = 1
+clip_text = true
+script = ExtResource("10_5qkcb")
 
 [node name="Beruf" type="Label" parent="." unique_id=386384428]
 layout_mode = 0
 offset_left = 210.0
-offset_top = 140.0
+offset_top = 119.0
 offset_right = 543.0
-offset_bottom = 207.0
+offset_bottom = 171.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_d8n6m")
 theme_override_font_sizes/font_size = 35
 text = "Job Titel"
 horizontal_alignment = 1
-
-[node name="Taglines" type="HBoxContainer" parent="." unique_id=706411811]
-layout_mode = 0
-offset_left = 69.0
-offset_top = 213.0
-offset_right = 473.0
-offset_bottom = 273.0
-theme_override_constants/separation = 10
-
-[node name="Tagline1" type="TextureRect" parent="Taglines" unique_id=1530801634]
-layout_mode = 2
-texture = ExtResource("4_3l5pn")
-
-[node name="Tagline2" type="TextureRect" parent="Taglines" unique_id=706823415]
-layout_mode = 2
-texture = ExtResource("5_3u4jb")
-
-[node name="Tagline3" type="TextureRect" parent="Taglines" unique_id=777719808]
-layout_mode = 2
-texture = ExtResource("6_d8n6m")
-
-[node name="EumlingPreview" type="TextureRect" parent="." unique_id=1356534360]
-layout_mode = 0
-offset_left = 74.00018
-offset_top = 307.0
-offset_right = 638.132
-offset_bottom = 901.1638
-scale = Vector2(0.53609973, 0.53609973)
-size_flags_vertical = 3
-texture = SubResource("ViewportTexture_3u4jb")
-
-[node name="SubViewport" type="SubViewport" parent="EumlingPreview" unique_id=1541320579]
-own_world_3d = true
-
-[node name="EumlingInfoScene" parent="EumlingPreview/SubViewport" unique_id=561343103 instance=ExtResource("2_71bnp")]
-unique_name_in_owner = true
-
-[node name="frameScene" type="TextureRect" parent="." unique_id=740379524]
-layout_mode = 0
-offset_left = 67.0
-offset_top = 301.0
-offset_right = 511.0
-offset_bottom = 744.0
-scale = Vector2(0.7058372, 0.7401608)
-texture = ExtResource("3_3l5pn")
+script = ExtResource("10_5qkcb")
 
 [node name="BeschreibungText" type="Label" parent="." unique_id=1758753502]
 layout_mode = 0
-offset_left = 402.0
-offset_top = 305.0
-offset_right = 696.0
-offset_bottom = 623.0
+offset_left = 68.0
+offset_top = 594.0
+offset_right = 668.0
+offset_bottom = 694.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_d8n6m")
-theme_override_font_sizes/font_size = 35
-text = "Beschreibung"
+theme_override_font_sizes/font_size = 20
+text = "Technische Produktdesigner/innen der Fachrichtung Maschinen- und Anlagenkonstruktion entwerfen und konstruieren Bauteile, Baugruppen oder Gesamtanlagen nach Kundenwunsch."
 autowrap_mode = 2
 clip_text = true
 
 [node name="Faehigkeiten" type="HBoxContainer" parent="." unique_id=1276648284]
+visible = false
 layout_mode = 0
 offset_left = 70.0
 offset_top = 650.0
@@ -163,8 +183,8 @@ texture = ExtResource("10_a4y71")
 
 [node name="ExternalLink" type="TextureButton" parent="." unique_id=1603087190]
 layout_mode = 0
-offset_left = 403.0
-offset_top = 546.0
-offset_right = 668.0
-offset_bottom = 625.0
+offset_left = 407.0
+offset_top = 694.0
+offset_right = 672.0
+offset_bottom = 773.0
 texture_normal = ExtResource("11_2f624")
