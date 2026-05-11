@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve" id="Curve_36v3l"]
 _limits = [0.0, 6.0, 0.0, 1.0]
-_data = [Vector2(0, 5.918282), 0.0, 0.0, 0, 0, Vector2(0.12463768, 5.918282), 0.0, 0.0, 0, 0, Vector2(0.38405797, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 5.918282), 0.0, 0.0, 0, 0, Vector2(0.108235285, 5.8949733), 0.0, 0.0, 0, 0, Vector2(0.38405797, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_wey8g"]
@@ -29,12 +29,12 @@ hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
 on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=2137060853]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=2137060853]
 script = ExtResource("2_mvg1k")
 speed = SubResource("Curve_36v3l")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=690970621]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="0" unique_id=690970621]
 script = ExtResource("3_ogwrr")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
