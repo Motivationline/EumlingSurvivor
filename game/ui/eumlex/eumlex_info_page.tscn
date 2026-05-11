@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://dr3up4v422lgg"]
 
+[ext_resource type="Script" uid="uid://btw36anybapn4" path="res://game/ui/eumlex/eumlex_info_page.gd" id="1_0ji8b"]
 [ext_resource type="PackedScene" uid="uid://cvnp8vu3k7ul3" path="res://game/ui/eumlex/eumling_info_scene/eumling_info_scene.tscn" id="2_71bnp"]
 [ext_resource type="Texture2D" uid="uid://bioci7ev3qfh8" path="res://assets/ui/Eumlex/EumlingBackdropS.png" id="2_d8n6m"]
+[ext_resource type="Texture2D" uid="uid://chy7s30dciyio" path="res://assets/ui/Eumlex/EumlingBackdropA.png" id="2_re10o"]
 [ext_resource type="Texture2D" uid="uid://q5d0meprymy7" path="res://assets/ui/Eumlex/Banner.png" id="3_1j0op"]
 [ext_resource type="Texture2D" uid="uid://cat8pebbs6orm" path="res://assets/ui/Eumlex/SquareFrame.png" id="3_3l5pn"]
+[ext_resource type="Texture2D" uid="uid://cctywkasvuqm2" path="res://assets/ui/Eumlex/EumlingBackdropC.png" id="3_5qkcb"]
+[ext_resource type="Texture2D" uid="uid://brcxvpa108qsx" path="res://assets/ui/Eumlex/EumlingBackdropE.png" id="4_2mehu"]
 [ext_resource type="Texture2D" uid="uid://cjj03lo1voxow" path="res://assets/ui/Eumlex/TagBaseA.png" id="4_3l5pn"]
 [ext_resource type="Texture2D" uid="uid://bvb4cns6l455k" path="res://assets/ui/Eumlex/TagBaseC.png" id="5_3u4jb"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="5_d8n6m"]
+[ext_resource type="Texture2D" uid="uid://dikd1dbh8qsxw" path="res://assets/ui/Eumlex/EumlingBackdropI.png" id="5_uffki"]
+[ext_resource type="Texture2D" uid="uid://dpair3rlohkm8" path="res://assets/ui/Eumlex/EumlingBackdropR.png" id="6_b400u"]
 [ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="6_d8n6m"]
 [ext_resource type="Texture2D" uid="uid://biubocdcd3g0x" path="res://assets/ui/Buttons/SquareButton.png" id="10_a4y71"]
 [ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="11_2f624"]
@@ -23,6 +29,15 @@ offset_right = -1186.0
 offset_bottom = -238.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0ji8b")
+backdrops = Dictionary[int, Texture]({
+0: ExtResource("2_re10o"),
+1: ExtResource("3_5qkcb"),
+2: ExtResource("4_2mehu"),
+3: ExtResource("5_uffki"),
+4: ExtResource("6_b400u"),
+5: ExtResource("2_d8n6m")
+})
 
 [node name="ColorBackground" type="TextureRect" parent="." unique_id=415432338]
 layout_mode = 0
@@ -98,6 +113,7 @@ texture = SubResource("ViewportTexture_3u4jb")
 own_world_3d = true
 
 [node name="EumlingInfoScene" parent="EumlingPreview/SubViewport" unique_id=561343103 instance=ExtResource("2_71bnp")]
+unique_name_in_owner = true
 
 [node name="frameScene" type="TextureRect" parent="." unique_id=740379524]
 layout_mode = 0
@@ -146,7 +162,6 @@ layout_mode = 2
 texture = ExtResource("10_a4y71")
 
 [node name="ExternalLink" type="TextureButton" parent="." unique_id=1603087190]
-visible = false
 layout_mode = 0
 offset_left = 403.0
 offset_top = 546.0

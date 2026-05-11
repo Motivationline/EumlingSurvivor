@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://ba2ayes40wtdh"]
 
-[ext_resource type="Script" uid="uid://chhbukb4l7u4o" path="res://game/ui/eumlex/base_layout_eumlex.gd" id="1_l0ba2"]
+[ext_resource type="Script" uid="uid://wnlawfl1owd" path="res://game/ui/eumlex/eumlex.gd" id="1_l0ba2"]
 [ext_resource type="Texture2D" uid="uid://c38nllat7nuq7" path="res://assets/ui/Eumlex/TabMarkerR.png" id="2_as5su"]
+[ext_resource type="Texture2D" uid="uid://dbqxunehgsecx" path="res://assets/ui/Eumlex/RedDop.png" id="3_as5su"]
 [ext_resource type="Texture2D" uid="uid://deob3fhl16jrg" path="res://assets/ui/Eumlex/TabMarkerI.png" id="3_orh8k"]
 [ext_resource type="Texture2D" uid="uid://dxlkxqou0ag2g" path="res://assets/ui/Eumlex/TabMarkerA.png" id="4_y7di5"]
 [ext_resource type="Texture2D" uid="uid://wxbw8ln2ppqw" path="res://assets/ui/Eumlex/TabMarkerS.png" id="5_17oye"]
@@ -10,10 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://ch18yvwyg6mv2" path="res://assets/ui/Eumlex/EumlexBlank.png" id="8_3iwa0"]
 [ext_resource type="Texture2D" uid="uid://d1ajjlroi6yyx" path="res://assets/ui/Eumlex/EumlexScrollBackground.png" id="9_gqdvb"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="10_amahl"]
-[ext_resource type="PackedScene" uid="uid://b6vj3geh4ibvg" path="res://game/ui/eumlex/eumlex_listing.tscn" id="11_w24f0"]
+[ext_resource type="PackedScene" uid="uid://b6vj3geh4ibvg" path="res://game/ui/eumlex/eumling_button/eumlex_button.tscn" id="11_w24f0"]
 [ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="12_ikcm3"]
 
-[node name="Eumlex" type="Control" unique_id=718152536]
+[node name="Eumlex" type="Control" unique_id=718152536 node_paths=PackedStringArray("tabs_and_containers", "eumling_type_and_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,8 +22,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l0ba2")
+tabs_and_containers = {
+NodePath("Book/TabPanel/OrangeButton"): NodePath("Book/BookContainer/BookBG/OrangePage"),
+NodePath("Book/TabPanel/GreenButton"): NodePath("Book/BookContainer/BookBG/GreenPage"),
+NodePath("Book/TabPanel/PurpleButton"): NodePath("Book/BookContainer/BookBG/PurplePage"),
+NodePath("Book/TabPanel/YellowButton"): NodePath("Book/BookContainer/BookBG/YellowPage"),
+NodePath("Book/TabPanel/RedButton"): NodePath("Book/BookContainer/BookBG/RedPage"),
+NodePath("Book/TabPanel/BlueButton"): NodePath("Book/BookContainer/BookBG/BluePage")
+}
+eumling_type_and_container = {
+0: NodePath("Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer"),
+1: NodePath("Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer"),
+2: NodePath("Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer"),
+3: NodePath("Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer"),
+4: NodePath("Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer"),
+5: NodePath("Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer")
+}
 
-[node name="TabPanel" type="Panel" parent="." unique_id=834565942]
+[node name="Book" type="Control" parent="." unique_id=1800612097]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TabPanel" type="Panel" parent="Book" unique_id=834565942]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 263.0
@@ -30,64 +52,118 @@ offset_top = 65.0
 offset_right = 921.0
 offset_bottom = 220.0
 
-[node name="OrangeButton" type="TextureButton" parent="TabPanel" unique_id=2017841292]
+[node name="OrangeButton" type="TextureButton" parent="Book/TabPanel" unique_id=2017841292]
 layout_mode = 0
 offset_left = 12.0
 offset_right = 109.0
 offset_bottom = 148.0
 texture_normal = ExtResource("2_as5su")
 
-[node name="GreenButton" type="TextureButton" parent="TabPanel" unique_id=565872638]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/OrangeButton" unique_id=1704269811]
+visible = false
+layout_mode = 0
+offset_left = 63.0
+offset_top = -7.0
+offset_right = 109.0
+offset_bottom = 35.0
+texture = ExtResource("3_as5su")
+
+[node name="GreenButton" type="TextureButton" parent="Book/TabPanel" unique_id=565872638]
 layout_mode = 0
 offset_left = 118.0
 offset_right = 215.0
 offset_bottom = 148.0
 texture_normal = ExtResource("3_orh8k")
 
-[node name="PurpleButton" type="TextureButton" parent="TabPanel" unique_id=1068037442]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/GreenButton" unique_id=1442297553]
+visible = false
+layout_mode = 0
+offset_left = 63.0
+offset_top = -7.0
+offset_right = 109.0
+offset_bottom = 35.0
+texture = ExtResource("3_as5su")
+
+[node name="PurpleButton" type="TextureButton" parent="Book/TabPanel" unique_id=1068037442]
 layout_mode = 0
 offset_left = 224.0
 offset_right = 321.0
 offset_bottom = 148.0
 texture_normal = ExtResource("4_y7di5")
 
-[node name="YellowButton" type="TextureButton" parent="TabPanel" unique_id=128397190]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/PurpleButton" unique_id=415654524]
+visible = false
+layout_mode = 0
+offset_left = 63.0
+offset_top = -7.0
+offset_right = 109.0
+offset_bottom = 35.0
+texture = ExtResource("3_as5su")
+
+[node name="YellowButton" type="TextureButton" parent="Book/TabPanel" unique_id=128397190]
 layout_mode = 0
 offset_left = 331.0
 offset_right = 427.0
 offset_bottom = 148.0
 texture_normal = ExtResource("5_17oye")
 
-[node name="RedButton" type="TextureButton" parent="TabPanel" unique_id=570840646]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/YellowButton" unique_id=1687514714]
+visible = false
+layout_mode = 0
+offset_left = 63.0
+offset_top = -7.0
+offset_right = 109.0
+offset_bottom = 35.0
+texture = ExtResource("3_as5su")
+
+[node name="RedButton" type="TextureButton" parent="Book/TabPanel" unique_id=570840646]
 layout_mode = 0
 offset_left = 435.0
 offset_right = 532.0
 offset_bottom = 148.0
 texture_normal = ExtResource("6_71i0l")
 
-[node name="BlueButton" type="TextureButton" parent="TabPanel" unique_id=1096261708]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/RedButton" unique_id=345684567]
+visible = false
+layout_mode = 0
+offset_left = 63.0
+offset_top = -7.0
+offset_right = 109.0
+offset_bottom = 35.0
+texture = ExtResource("3_as5su")
+
+[node name="BlueButton" type="TextureButton" parent="Book/TabPanel" unique_id=1096261708]
 layout_mode = 0
 offset_left = 540.0
 offset_right = 637.0
 offset_bottom = 147.0
 texture_normal = ExtResource("7_jyuqq")
 
-[node name="BackdropEumlex" type="TextureRect" parent="." unique_id=236310539]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/BlueButton" unique_id=1466301265]
+visible = false
+layout_mode = 0
+offset_left = 63.0
+offset_top = -7.0
+offset_right = 109.0
+offset_bottom = 35.0
+texture = ExtResource("3_as5su")
+
+[node name="BackdropEumlex" type="TextureRect" parent="Book" unique_id=236310539]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -946.5
-offset_top = -956.0
-offset_right = 946.5
-offset_bottom = -18.0
+offset_left = -6.5
+offset_top = 84.0
+offset_right = 1886.5
+offset_bottom = 1022.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("8_3iwa0")
 
-[node name="ScrollBoxBackground" type="TextureRect" parent="." unique_id=1398345498]
+[node name="ScrollBoxBackground" type="TextureRect" parent="Book" unique_id=1398345498]
 layout_mode = 0
 offset_left = 277.0
 offset_top = 396.0
@@ -96,53 +172,17 @@ offset_bottom = 839.0
 scale = Vector2(0.9899819, 1.1886014)
 texture = ExtResource("9_gqdvb")
 
-[node name="TypusHeadline" type="Label" parent="." unique_id=139952825]
-visible = false
-layout_mode = 0
-offset_left = 282.0
-offset_top = 192.0
-offset_right = 570.0
-offset_bottom = 262.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
-theme_override_font_sizes/font_size = 48
-text = "Typus Name"
-
-[node name="TypusInfo" type="Label" parent="." unique_id=1941216619]
-visible = false
-layout_mode = 0
-offset_left = 304.0
-offset_top = 268.0
-offset_right = 448.0
-offset_bottom = 335.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
-theme_override_font_sizes/font_size = 30
-text = "TypusInfo"
-
-[node name="FilterHeadline" type="Label" parent="." unique_id=58967542]
-visible = false
-layout_mode = 0
-offset_left = 282.0
-offset_top = 338.0
-offset_right = 411.0
-offset_bottom = 408.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
-theme_override_font_sizes/font_size = 48
-text = "Filter"
-
-[node name="BookContainer" type="VBoxContainer" parent="." unique_id=1018974604]
+[node name="BookContainer" type="VBoxContainer" parent="Book" unique_id=1018974604]
 layout_mode = 0
 offset_left = 241.0
 offset_top = 147.0
 offset_right = 928.0
 offset_bottom = 942.0
 
-[node name="BookBG" type="Panel" parent="BookContainer" unique_id=287885256]
+[node name="BookBG" type="Panel" parent="Book/BookContainer" unique_id=287885256]
 layout_mode = 2
 
-[node name="OrangePage" type="Panel" parent="BookContainer/BookBG" unique_id=358149256]
+[node name="OrangePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=358149256]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 2.0
@@ -150,21 +190,21 @@ offset_top = 13.0
 offset_right = 684.0
 offset_bottom = 792.0
 
-[node name="RealisticText" type="VBoxContainer" parent="BookContainer/BookBG/OrangePage" unique_id=85724336]
+[node name="RealisticText" type="VBoxContainer" parent="Book/BookContainer/BookBG/OrangePage" unique_id=85724336]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
 
-[node name="RealisticHeadline" type="Label" parent="BookContainer/BookBG/OrangePage/RealisticText" unique_id=1148847126]
+[node name="RealisticHeadline" type="Label" parent="Book/BookContainer/BookBG/OrangePage/RealisticText" unique_id=1148847126]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
 text = "Realistic"
 
-[node name="RealisticInfo" type="Label" parent="BookContainer/BookBG/OrangePage/RealisticText" unique_id=1959594975]
+[node name="RealisticInfo" type="Label" parent="Book/BookContainer/BookBG/OrangePage/RealisticText" unique_id=1959594975]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -174,69 +214,69 @@ theme_override_font_sizes/font_size = 35
 text = "Realistic Jobs are very realistic... surprise"
 autowrap_mode = 2
 
-[node name="RealisticEumlingListings" type="ScrollContainer" parent="BookContainer/BookBG/OrangePage" unique_id=1045422179]
+[node name="RealisticEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/OrangePage" unique_id=1045422179]
 layout_mode = 0
 offset_left = 66.0
 offset_top = 261.0
 offset_right = 583.0
 offset_bottom = 732.0
 
-[node name="GridContainer" type="GridContainer" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings" unique_id=1410722368]
+[node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings" unique_id=1410722368]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
 
-[node name="EumlexListingBackground" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1599346657 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1599346657 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground2" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1515519873 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground2" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1515519873 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground3" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1812593067 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground3" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1812593067 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground4" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1712624860 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground4" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1712624860 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground5" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1355421341 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground5" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1355421341 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground6" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1414062696 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground6" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1414062696 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground7" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=952900453 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground7" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=952900453 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground8" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1850573485 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground8" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1850573485 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground9" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=2060470732 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground9" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=2060470732 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground10" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1275821788 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground10" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1275821788 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground11" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=227939563 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground11" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=227939563 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground12" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1480033869 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground12" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1480033869 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground13" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=272460751 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground13" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=272460751 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground14" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=757996139 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground14" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=757996139 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground15" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1268373040 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground15" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1268373040 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground16" parent="BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1104696215 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1104696215 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="GreenPage" type="Panel" parent="BookContainer/BookBG" unique_id=1105283116]
+[node name="GreenPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1105283116]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -245,21 +285,21 @@ offset_top = 13.0
 offset_right = 684.0
 offset_bottom = 792.0
 
-[node name="InvestigativeText" type="VBoxContainer" parent="BookContainer/BookBG/GreenPage" unique_id=2006546044]
+[node name="InvestigativeText" type="VBoxContainer" parent="Book/BookContainer/BookBG/GreenPage" unique_id=2006546044]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
 
-[node name="InvestigativeHeadline" type="Label" parent="BookContainer/BookBG/GreenPage/InvestigativeText" unique_id=1212183052]
+[node name="InvestigativeHeadline" type="Label" parent="Book/BookContainer/BookBG/GreenPage/InvestigativeText" unique_id=1212183052]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
 text = "Investigative"
 
-[node name="InvestigativeInfo" type="Label" parent="BookContainer/BookBG/GreenPage/InvestigativeText" unique_id=1200829753]
+[node name="InvestigativeInfo" type="Label" parent="Book/BookContainer/BookBG/GreenPage/InvestigativeText" unique_id=1200829753]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -269,69 +309,69 @@ theme_override_font_sizes/font_size = 35
 text = "Investigative Jobs are very investigative... surprise"
 autowrap_mode = 2
 
-[node name="InvestigativelEumlingListings" type="ScrollContainer" parent="BookContainer/BookBG/GreenPage" unique_id=825041844]
+[node name="InvestigativelEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/GreenPage" unique_id=825041844]
 layout_mode = 0
 offset_left = 66.0
 offset_top = 261.0
 offset_right = 583.0
 offset_bottom = 732.0
 
-[node name="GridContainer" type="GridContainer" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings" unique_id=76025135]
+[node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings" unique_id=76025135]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
 
-[node name="EumlexListingBackground" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=484600023 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=484600023 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground2" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=3559595 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground2" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=3559595 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground3" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1064713345 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground3" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1064713345 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground4" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=189779737 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground4" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=189779737 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground5" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=648968413 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground5" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=648968413 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground6" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=2001342781 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground6" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=2001342781 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground7" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1005484943 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground7" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1005484943 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground8" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=857582229 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground8" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=857582229 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground9" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1961077472 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground9" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1961077472 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground10" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=449234729 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground10" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=449234729 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground11" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=2146360948 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground11" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=2146360948 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground12" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=866998902 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground12" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=866998902 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground13" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1212117547 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground13" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1212117547 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground14" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=183120479 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground14" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=183120479 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground15" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=887306474 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground15" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=887306474 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground16" parent="BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1529212255 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1529212255 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="PurplePage" type="Panel" parent="BookContainer/BookBG" unique_id=1768632314]
+[node name="PurplePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1768632314]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -340,21 +380,21 @@ offset_top = 13.0
 offset_right = 684.0
 offset_bottom = 792.0
 
-[node name="ArtisticText" type="VBoxContainer" parent="BookContainer/BookBG/PurplePage" unique_id=480818231]
+[node name="ArtisticText" type="VBoxContainer" parent="Book/BookContainer/BookBG/PurplePage" unique_id=480818231]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
 
-[node name="ArtisticHeadline" type="Label" parent="BookContainer/BookBG/PurplePage/ArtisticText" unique_id=1396379585]
+[node name="ArtisticHeadline" type="Label" parent="Book/BookContainer/BookBG/PurplePage/ArtisticText" unique_id=1396379585]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
 text = "Artistic"
 
-[node name="ArtisticlInfo" type="Label" parent="BookContainer/BookBG/PurplePage/ArtisticText" unique_id=555425934]
+[node name="ArtisticlInfo" type="Label" parent="Book/BookContainer/BookBG/PurplePage/ArtisticText" unique_id=555425934]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -364,69 +404,69 @@ theme_override_font_sizes/font_size = 35
 text = "Artistic Jobs are very artistic.. surprise"
 autowrap_mode = 2
 
-[node name="ArtisticEumlingListings" type="ScrollContainer" parent="BookContainer/BookBG/PurplePage" unique_id=552418793]
+[node name="ArtisticEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/PurplePage" unique_id=552418793]
 layout_mode = 0
 offset_left = 66.0
 offset_top = 261.0
 offset_right = 583.0
 offset_bottom = 732.0
 
-[node name="GridContainer" type="GridContainer" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings" unique_id=1095748783]
+[node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings" unique_id=1095748783]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
 
-[node name="EumlexListingBackground" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=106577224 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=106577224 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground2" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=296125628 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground2" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=296125628 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground3" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=325443075 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground3" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=325443075 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground4" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=342851214 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground4" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=342851214 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground5" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=895745572 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground5" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=895745572 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground6" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=1736303924 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground6" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=1736303924 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground7" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=603985008 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground7" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=603985008 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground8" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=1567936263 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground8" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=1567936263 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground9" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=969178444 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground9" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=969178444 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground10" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=1243088620 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground10" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=1243088620 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground11" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=1739257150 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground11" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=1739257150 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground12" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=2060550584 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground12" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=2060550584 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground13" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=2120797315 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground13" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=2120797315 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground14" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=943744303 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground14" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=943744303 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground15" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=2076052697 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground15" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=2076052697 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground16" parent="BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=284539468 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=284539468 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="YellowPage" type="Panel" parent="BookContainer/BookBG" unique_id=377975855]
+[node name="YellowPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=377975855]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -435,21 +475,21 @@ offset_top = 13.0
 offset_right = 684.0
 offset_bottom = 792.0
 
-[node name="SocialText" type="VBoxContainer" parent="BookContainer/BookBG/YellowPage" unique_id=927229064]
+[node name="SocialText" type="VBoxContainer" parent="Book/BookContainer/BookBG/YellowPage" unique_id=927229064]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
 
-[node name="SocialHeadline" type="Label" parent="BookContainer/BookBG/YellowPage/SocialText" unique_id=966952137]
+[node name="SocialHeadline" type="Label" parent="Book/BookContainer/BookBG/YellowPage/SocialText" unique_id=966952137]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
 text = "Social"
 
-[node name="SocialInfo" type="Label" parent="BookContainer/BookBG/YellowPage/SocialText" unique_id=1390564002]
+[node name="SocialInfo" type="Label" parent="Book/BookContainer/BookBG/YellowPage/SocialText" unique_id=1390564002]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -459,69 +499,69 @@ theme_override_font_sizes/font_size = 35
 text = "Social Jobs are very socialable... surprise"
 autowrap_mode = 2
 
-[node name="SocialEumlingListings" type="ScrollContainer" parent="BookContainer/BookBG/YellowPage" unique_id=24653794]
+[node name="SocialEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/YellowPage" unique_id=24653794]
 layout_mode = 0
 offset_left = 66.0
 offset_top = 261.0
 offset_right = 583.0
 offset_bottom = 732.0
 
-[node name="GridContainer" type="GridContainer" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings" unique_id=840082658]
+[node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings" unique_id=840082658]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
 
-[node name="EumlexListingBackground" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=2029385529 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=2029385529 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground2" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=101330712 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground2" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=101330712 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground3" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=961926129 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground3" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=961926129 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground4" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1619540829 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground4" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1619540829 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground5" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=152379191 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground5" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=152379191 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground6" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1223841293 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground6" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1223841293 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground7" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=901670144 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground7" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=901670144 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground8" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1367147210 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground8" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1367147210 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground9" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1062990011 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground9" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1062990011 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground10" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1313221664 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground10" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1313221664 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground11" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1407682235 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground11" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1407682235 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground12" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1651157704 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground12" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1651157704 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground13" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=853675615 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground13" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=853675615 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground14" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1334560623 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground14" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=1334560623 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground15" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=567552570 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground15" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=567552570 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground16" parent="BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=59187769 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=59187769 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="RedPage" type="Panel" parent="BookContainer/BookBG" unique_id=914606313]
+[node name="RedPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=914606313]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -530,21 +570,21 @@ offset_top = 13.0
 offset_right = 684.0
 offset_bottom = 792.0
 
-[node name="EnterprisingText" type="VBoxContainer" parent="BookContainer/BookBG/RedPage" unique_id=1229978569]
+[node name="EnterprisingText" type="VBoxContainer" parent="Book/BookContainer/BookBG/RedPage" unique_id=1229978569]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
 
-[node name="EnterprisingHeadline" type="Label" parent="BookContainer/BookBG/RedPage/EnterprisingText" unique_id=712381558]
+[node name="EnterprisingHeadline" type="Label" parent="Book/BookContainer/BookBG/RedPage/EnterprisingText" unique_id=712381558]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
 text = "Entreprising"
 
-[node name="EnterprisingInfo" type="Label" parent="BookContainer/BookBG/RedPage/EnterprisingText" unique_id=1588086190]
+[node name="EnterprisingInfo" type="Label" parent="Book/BookContainer/BookBG/RedPage/EnterprisingText" unique_id=1588086190]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -554,69 +594,69 @@ theme_override_font_sizes/font_size = 35
 text = "Entreprising Jobs are very entreprising... surprise"
 autowrap_mode = 2
 
-[node name="EnterprisingEumlingListings" type="ScrollContainer" parent="BookContainer/BookBG/RedPage" unique_id=318761745]
+[node name="EnterprisingEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/RedPage" unique_id=318761745]
 layout_mode = 0
 offset_left = 66.0
 offset_top = 261.0
 offset_right = 583.0
 offset_bottom = 732.0
 
-[node name="GridContainer" type="GridContainer" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings" unique_id=1060497401]
+[node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings" unique_id=1060497401]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
 
-[node name="EumlexListingBackground" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=1980101999 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=1980101999 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground2" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=537790397 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground2" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=537790397 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground3" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=834391952 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground3" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=834391952 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground4" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=474583786 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground4" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=474583786 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground5" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=2081113944 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground5" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=2081113944 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground6" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=212340465 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground6" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=212340465 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground7" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=1257364155 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground7" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=1257364155 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground8" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=116958327 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground8" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=116958327 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground9" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=957100268 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground9" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=957100268 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground10" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=1994860208 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground10" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=1994860208 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground11" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=149997408 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground11" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=149997408 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground12" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=1957091409 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground12" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=1957091409 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground13" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=2047759170 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground13" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=2047759170 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground14" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=2134725295 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground14" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=2134725295 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground15" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=1762218916 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground15" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=1762218916 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground16" parent="BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=324027660 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=324027660 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="BluePage" type="Panel" parent="BookContainer/BookBG" unique_id=1337237438]
+[node name="BluePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1337237438]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -625,21 +665,21 @@ offset_top = 13.0
 offset_right = 684.0
 offset_bottom = 792.0
 
-[node name="ConventionalText" type="VBoxContainer" parent="BookContainer/BookBG/BluePage" unique_id=1394469914]
+[node name="ConventionalText" type="VBoxContainer" parent="Book/BookContainer/BookBG/BluePage" unique_id=1394469914]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
 
-[node name="ConventionalHeadline" type="Label" parent="BookContainer/BookBG/BluePage/ConventionalText" unique_id=848115751]
+[node name="ConventionalHeadline" type="Label" parent="Book/BookContainer/BookBG/BluePage/ConventionalText" unique_id=848115751]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
 text = "Conventional"
 
-[node name="ConventionalInfo" type="Label" parent="BookContainer/BookBG/BluePage/ConventionalText" unique_id=1355773388]
+[node name="ConventionalInfo" type="Label" parent="Book/BookContainer/BookBG/BluePage/ConventionalText" unique_id=1355773388]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -649,183 +689,90 @@ theme_override_font_sizes/font_size = 35
 text = "Conventional Jobs are very Conventional... surprise"
 autowrap_mode = 2
 
-[node name="ConventionalEumlingListings" type="ScrollContainer" parent="BookContainer/BookBG/BluePage" unique_id=1342908041]
+[node name="ConventionalEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/BluePage" unique_id=1342908041]
 layout_mode = 0
 offset_left = 66.0
 offset_top = 261.0
 offset_right = 583.0
 offset_bottom = 732.0
 
-[node name="GridContainer" type="GridContainer" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings" unique_id=25113821]
+[node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings" unique_id=25113821]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
 
-[node name="EumlexListingBackground" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=421874838 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=421874838 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground2" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=2002606037 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground2" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=2002606037 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground3" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=193617096 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground3" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=193617096 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground4" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1855655932 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground4" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1855655932 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground5" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1146902420 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground5" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1146902420 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground6" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1235747546 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground6" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1235747546 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground7" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1627708927 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground7" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1627708927 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground8" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1143425319 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground8" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1143425319 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground9" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=129540648 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground9" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=129540648 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground10" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=2136846500 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground10" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=2136846500 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground11" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1154153800 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground11" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1154153800 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground12" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=277377549 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground12" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=277377549 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground13" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1865623933 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground13" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1865623933 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground14" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=995740910 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground14" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=995740910 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground15" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=551989859 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground15" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=551989859 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexListingBackground16" parent="BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1227986207 instance=ExtResource("11_w24f0")]
+[node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1227986207 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="FormerLayout" type="Panel" parent="BookContainer/BookBG" unique_id=975840247]
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 2.0
-offset_top = 13.0
-offset_right = 684.0
-offset_bottom = 792.0
-
-[node name="EnterprisingText" type="VBoxContainer" parent="BookContainer/BookBG/FormerLayout" unique_id=404759445]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 13.0
-offset_right = 596.0
-offset_bottom = 309.0
-
-[node name="EnterprisingHeadline" type="Label" parent="BookContainer/BookBG/FormerLayout/EnterprisingText" unique_id=1735642730]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
-theme_override_font_sizes/font_size = 60
-text = "Entreprising"
-
-[node name="EnterprisingInfo" type="Label" parent="BookContainer/BookBG/FormerLayout/EnterprisingText" unique_id=1296195355]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
-theme_override_font_sizes/font_size = 35
-text = "Entreprising Jobs are very entreprising... surprise"
-autowrap_mode = 2
-
-[node name="EnterprisingEumlingListings" type="ScrollContainer" parent="BookContainer/BookBG/FormerLayout" unique_id=278936902]
-layout_mode = 0
-offset_left = 66.0
-offset_top = 332.0
-offset_right = 583.0
-offset_bottom = 731.0
-
-[node name="GridContainer" type="GridContainer" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings" unique_id=1561671430]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 20
-columns = 3
-
-[node name="EumlexListingBackground" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=1007873360 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground2" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=1480612539 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground3" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=308806440 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground4" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=1232106590 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground5" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=17812794 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground6" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=1510607659 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground7" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=629566403 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground8" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=1114806568 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground9" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=480332224 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground10" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=1656565513 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground11" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=78588089 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground12" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=1965227405 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground13" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=808717147 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground14" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=726464153 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground15" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=143372891 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexListingBackground16" parent="BookContainer/BookBG/FormerLayout/EnterprisingEumlingListings/GridContainer" unique_id=180298682 instance=ExtResource("11_w24f0")]
-layout_mode = 2
-
-[node name="EumlexInfoPage" parent="." unique_id=1340831237 instance=ExtResource("12_ikcm3")]
+[node name="EumlexInfoPage" parent="Book" unique_id=1340831237 instance=ExtResource("12_ikcm3")]
 layout_mode = 1
 offset_left = 948.0
 offset_top = 137.0
-offset_right = -238.0
-offset_bottom = -101.0
+offset_right = 908.0
+offset_bottom = 97.0
 
-[node name="CloseButton" type="Button" parent="." unique_id=646104005]
+[node name="CloseButton" type="Button" parent="Book" unique_id=646104005]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -197.0
+offset_left = 1683.0
+offset_right = 1880.0
 offset_bottom = 118.0
 grow_horizontal = 0
 text = "Close X"
 
-[connection signal="pressed" from="TabPanel/OrangeButton" to="." method="_on_orange_button_pressed"]
-[connection signal="pressed" from="TabPanel/GreenButton" to="." method="_on_green_button_pressed"]
-[connection signal="pressed" from="TabPanel/PurpleButton" to="." method="_on_purple_button_pressed"]
-[connection signal="pressed" from="TabPanel/YellowButton" to="." method="_on_yellow_button_pressed"]
-[connection signal="pressed" from="TabPanel/RedButton" to="." method="_on_red_button_pressed"]
-[connection signal="pressed" from="TabPanel/BlueButton" to="." method="_on_blue_button_pressed"]
-[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Book/TabPanel/OrangeButton" to="." method="_on_tab_pressed" flags=18]
+[connection signal="pressed" from="Book/TabPanel/GreenButton" to="." method="_on_tab_pressed" flags=18]
+[connection signal="pressed" from="Book/TabPanel/PurpleButton" to="." method="_on_tab_pressed" flags=18]
+[connection signal="pressed" from="Book/TabPanel/YellowButton" to="." method="_on_tab_pressed" flags=18]
+[connection signal="pressed" from="Book/TabPanel/RedButton" to="." method="_on_tab_pressed" flags=18]
+[connection signal="pressed" from="Book/TabPanel/BlueButton" to="." method="_on_tab_pressed" flags=18]
+[connection signal="pressed" from="Book/CloseButton" to="." method="_on_close_button_pressed"]

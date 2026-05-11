@@ -1,8 +1,7 @@
 extends Control
 const REVEAL_SEED = preload("uid://8jbavxhvd2hx")
-@onready var book: Control = $Book
 
-const EUMLING_BUTTON = preload("uid://bppbnuj7gd2bu")
+const EUMLING_BUTTON = preload("uid://b6vj3geh4ibvg")
 const EUMLING_PATH = "res://game/eumlings/"
 const GRAYSCALE_MATERIAL = preload("uid://bh8hp6lg5oyi8")
 
@@ -10,10 +9,35 @@ const GRAYSCALE_MATERIAL = preload("uid://bh8hp6lg5oyi8")
 var unlocked_eumlings: Array[String] = []
 var seen_eumlings: Array[String] = []
 
+@export var tabs_and_containers: Dictionary[TextureButton, Panel]
+@export var eumling_type_and_container: Dictionary[Enum.EUMLING_TYPE, Container]
+
+func _on_tab_pressed(tab: TextureButton):
+	if not tab: return
+	var panel = tabs_and_containers.get(tab)
+	if not panel: return
+	highlight_marker(tab)
+	show_page(panel)
+
+# Display active page
+func show_page(active_page):
+	for page in tabs_and_containers.values():
+		page.hide()
+	active_page.show()
+	
+# Highlight active Marker
+func highlight_marker(active_button):
+	for tab in tabs_and_containers.keys():
+		tab.scale = Vector2(1,1)
+		tab.position.y = 0
+	active_button.position.y = -30
+
 func _ready() -> void:
 	load_eumlings()
 	update_buttons()
-	#unlock_new_eumlings([randi_range(0, 4), randi_range(0, 4)])
+	$Book/TabPanel/OrangeButton.pressed.emit()
+	$Book/EumlexInfoPage.hide()
+	# unlock_new_eumlings([randi_range(0, 4), randi_range(0, 4)])
 
 func _on_close_button_pressed() -> void:
 	Main.controller.load_scene(Main.controller.main_menu, false)
@@ -50,20 +74,20 @@ func load_eumlings(current_path: String = ""):
 	
 
 func update_buttons():
-	for wrapper in %UnlockedEumlings.get_children():
-		for old_btn in wrapper.get_child(0).get_children():
+	for container in eumling_type_and_container.values():
+		for old_btn in container.get_children():
 			old_btn.queue_free()
 	
 	for id in eumlings:
 		setup_button(eumlings[id])
-	
-	prints("update buttons")
 
 
 func setup_button(eumling: Eumling):
+	var container = eumling_type_and_container.get(eumling.type)
+	if not container: return
 	var btn = EUMLING_BUTTON.instantiate()
 	btn.eumling = eumling
-	%UnlockedEumlings.get_child(eumling.type).get_child(0).add_child(btn)
+	container.add_child(btn)
 	btn.pressed.connect(select_eumling.bind(btn, eumling))
 
 func select_eumling(btn: EumlingButton, eumling: Eumling):
@@ -73,16 +97,12 @@ func select_eumling(btn: EumlingButton, eumling: Eumling):
 		seen_eumlings.append(eumling.id)
 	btn.eumling = eumling
 
-	# TODO this should be properly encapsulated, also don't use paths like this
-	$Book/Name.text = eumling.name
-
-	$Book/EumlingInfo/Info.text = eumling.info
-	$Book/EumlingInfo/EumlingPreview/SubViewport/EumlingInfoScene.switch_scene(eumling.type)
-	$Book/EumlingInfo/EumlingPreview.material = GRAYSCALE_MATERIAL if eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.LOCKED else null
+	$Book/EumlexInfoPage.show()
+	$Book/EumlexInfoPage.set_info(eumling)
 
 func unlock_new_eumlings(new_eumlings: Array[Enum.EUMLING_TYPE]):
 	if new_eumlings.size() == 0: return
-	book.hide();
+	$Book.hide();
 	for e in new_eumlings:
 		var eumling = get_eumling_to_unlock(e)
 		if not eumling: break
@@ -92,7 +112,7 @@ func unlock_new_eumlings(new_eumlings: Array[Enum.EUMLING_TYPE]):
 		await reveal.completed
 		reveal.queue_free()
 	update_buttons()
-	book.show();
+	$Book.show();
 	new_eumlings.clear()
 
 func get_eumling_to_unlock(type: Enum.EUMLING_TYPE) -> Eumling:

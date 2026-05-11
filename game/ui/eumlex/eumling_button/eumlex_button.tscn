@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://b6vj3geh4ibvg"]
 
 [ext_resource type="Texture2D" uid="uid://bcw4gmyo2mhym" path="res://assets/ui/Eumlex/ButtonStickerSquare.png" id="1_knfoi"]
-[ext_resource type="Texture2D" uid="uid://bljhe3jpnd3s7" path="res://project_icon.svg" id="2_yw5k2"]
+[ext_resource type="Script" uid="uid://y8yld0jqg82q" path="res://game/ui/eumlex/eumling_button/eumlex_button.gd" id="1_ptr5p"]
+[ext_resource type="Texture2D" uid="uid://68x8xf3b1pio" path="res://assets/thumbnails/artistisch_kreativ/kreativ_base.PNG" id="3_3fhvo"]
 [ext_resource type="Texture2D" uid="uid://dbqxunehgsecx" path="res://assets/ui/Eumlex/RedDop.png" id="3_5th1l"]
 
-[node name="EumlexListingBackground" type="TextureButton" unique_id=1599346657]
+[node name="EumlexButton" type="TextureButton" unique_id=1599346657]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(146, 153)
 offset_right = 146.0
 offset_bottom = 153.0
+script = ExtResource("1_ptr5p")
 
 [node name="BackgroundSticker" type="TextureRect" parent="." unique_id=1181091534]
 layout_mode = 0
@@ -23,12 +25,26 @@ offset_top = 41.000004
 offset_right = 280.0
 offset_bottom = 297.0
 scale = Vector2(0.3684677, 0.3684677)
-texture = ExtResource("2_yw5k2")
+texture = ExtResource("3_3fhvo")
+expand_mode = 4
 
 [node name="NewMarker" type="TextureRect" parent="." unique_id=1390185827]
+visible = false
 layout_mode = 0
 offset_left = 100.0
 offset_top = 7.0
 offset_right = 146.0
 offset_bottom = 49.0
 texture = ExtResource("3_5th1l")
+
+[node name="MissingDisplay" type="Label" parent="." unique_id=1327586727]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 105.0
+offset_right = 122.0
+offset_bottom = 140.0
+theme_override_colors/font_color = Color(1, 0.0627451, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "[missing]"
