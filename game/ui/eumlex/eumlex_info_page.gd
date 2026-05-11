@@ -5,10 +5,11 @@ extends Control
 
 func set_info(eumling: Eumling) -> void:
 	$ColorBackground.texture = backdrops.get(eumling.type)
-	$Beruf.text = eumling.name
+	%Name.text = eumling.name
+	$Beruf.text = eumling.education
 	$BeschreibungText.text = eumling.info
-	%EumlingInfoScene.switch_scene(eumling.type)
+	$EumlingPreview.texture = eumling.image
 
-	$Taglines/Tagline1.texture = tags.get(eumling.type)
-	$Taglines/Tagline2.texture = tags.get(eumling.type_secondary)
-	$Taglines/Tagline3.texture = tags.get(eumling.type_tertiary)
+	%Taglines/Tagline1.texture = tags.get(eumling.type)
+	%Taglines/Tagline2.texture = tags.get(eumling.type_secondary)
+	%Taglines/Tagline3.texture = tags.get(eumling.type_tertiary)

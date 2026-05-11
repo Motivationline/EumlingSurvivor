@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cvnp8vu3k7ul3" path="res://game/ui/eumlex/eumling_info_scene/eumling_info_scene.tscn" id="2_71bnp"]
 [ext_resource type="Texture2D" uid="uid://bioci7ev3qfh8" path="res://assets/ui/Eumlex/EumlingBackdropS.png" id="2_d8n6m"]
 [ext_resource type="Texture2D" uid="uid://chy7s30dciyio" path="res://assets/ui/Eumlex/EumlingBackdropA.png" id="2_re10o"]
-[ext_resource type="Texture2D" uid="uid://q5d0meprymy7" path="res://assets/ui/Eumlex/Banner.png" id="3_1j0op"]
 [ext_resource type="Texture2D" uid="uid://cat8pebbs6orm" path="res://assets/ui/Eumlex/SquareFrame.png" id="3_3l5pn"]
 [ext_resource type="Texture2D" uid="uid://cctywkasvuqm2" path="res://assets/ui/Eumlex/EumlingBackdropC.png" id="3_5qkcb"]
 [ext_resource type="Texture2D" uid="uid://brcxvpa108qsx" path="res://assets/ui/Eumlex/EumlingBackdropE.png" id="4_2mehu"]
@@ -20,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="11_2f624"]
 [ext_resource type="Texture2D" uid="uid://dwgh2hdeer32g" path="res://assets/ui/Eumlex/TagBaseI.png" id="11_b400u"]
 [ext_resource type="Texture2D" uid="uid://be0ca3llwbdrf" path="res://assets/ui/Eumlex/TagBaseR.png" id="12_vptb8"]
+[ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="16_b400u"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3u4jb"]
 viewport_path = NodePath("EumlingPreview/SubViewport")
@@ -88,6 +88,7 @@ texture = ExtResource("3_3l5pn")
 metadata/_edit_lock_ = true
 
 [node name="Taglines" type="HBoxContainer" parent="EumlingPreview" unique_id=706411811]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = 7
@@ -121,25 +122,35 @@ expand_mode = 3
 
 [node name="Banner" type="TextureRect" parent="." unique_id=1121522541]
 layout_mode = 0
-offset_left = 66.0
-offset_top = 17.0
-offset_right = 682.0
-offset_bottom = 158.0
-texture = ExtResource("3_1j0op")
+offset_left = 36.0
+offset_top = 11.0
+offset_right = 716.0
+offset_bottom = 152.0
+texture = ExtResource("16_b400u")
 
-[node name="Name" type="Label" parent="." unique_id=888141994]
-layout_mode = 0
-offset_left = 173.0
-offset_top = 40.0
-offset_right = 576.0
-offset_bottom = 128.0
+[node name="Name" type="Label" parent="Banner" unique_id=888141994]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = -54.425
+offset_right = 293.0
+offset_bottom = 33.574997
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_d8n6m")
 theme_override_font_sizes/font_size = 60
 text = "Game Name"
 horizontal_alignment = 1
+vertical_alignment = 1
 clip_text = true
 script = ExtResource("10_5qkcb")
+max_font_size = 60
 
 [node name="Beruf" type="Label" parent="." unique_id=386384428]
 layout_mode = 0
@@ -152,7 +163,9 @@ theme_override_fonts/font = ExtResource("5_d8n6m")
 theme_override_font_sizes/font_size = 35
 text = "Job Titel"
 horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("10_5qkcb")
+max_font_size = 35
 
 [node name="BeschreibungText" type="Label" parent="." unique_id=1758753502]
 layout_mode = 0
