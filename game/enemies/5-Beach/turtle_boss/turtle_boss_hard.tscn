@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="3_i74f3"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="4_tuuji"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_51uan"]
-[ext_resource type="Script" uid="uid://cp33buoo5xtgx" path="res://state_machine/enemy/pick_random_state.gd" id="6_hsgra"]
+[ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="6_0vbof"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="7_peqtw"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="8_vf6tq"]
-[ext_resource type="PackedScene" uid="uid://bc6uvrrkins5w" path="res://game/projectiles/turtle_boss_projectile/sand_wave.tscn" id="9_708ja"]
+[ext_resource type="PackedScene" uid="uid://ctvasnpc0pnb5" path="res://game/enemies/5-Beach/turtle_boss/turtle_boss_shell_tiny.tscn" id="9_0vbof"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="10_a0nww"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="11_nfth0"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="12_peu8o"]
@@ -143,7 +143,7 @@ radius = 0.27678946
 [node name="TurtleBoss" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_tf66v")]
 collision_layer = 64
 collision_mask = 65
-health = 1000.0
+health = 2500.0
 incoming_damage_multiplier = 1.5
 hitbox = NodePath("Visuals/Hitbox")
 hurtbox = NodePath("Visuals/Hurtbox")
@@ -177,13 +177,14 @@ script = ExtResource("5_51uan")
 random = true
 min_wait_time = 1.5
 max_wait_time = 2.5
-next_state = NodePath("../PickRandomState")
+next_state = NodePath("../ChooseStateBasedOnCost")
+resource_cost = -5.0
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="ShellStart" type="Node" parent="StateMachine" index="2" unique_id=1628526716 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("2_0vbof")
 events = [NodePath("AdjustAttributesEventStrategy")]
-next_state = NodePath("../PickRandomState")
+next_state = NodePath("../ChooseStateBasedOnCost")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Locomotion/transition_request": "shell",
 "parameters/LocomotionShell/transition_request": "idle"
@@ -195,13 +196,15 @@ script = ExtResource("3_i74f3")
 changes = Array[ExtResource("4_tuuji")]([SubResource("Resource_wbfbl")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
-[node name="PickRandomState" type="Node" parent="StateMachine" index="3" unique_id=1791194373 node_paths=PackedStringArray("states")]
-script = ExtResource("6_hsgra")
+[node name="ChooseStateBasedOnCost" type="Node" parent="StateMachine" index="3" unique_id=544631488 node_paths=PackedStringArray("fallback", "states")]
+script = ExtResource("6_0vbof")
+fallback = NodePath("../Normal/SpawnEntitiesState")
+selection = "HIGHEST"
 states = [NodePath("../Normal/SpawnEntitiesState"), NodePath("../LaunchShell/LookAtPlayerState")]
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Locomotion/transition_request": "shell"
 })
-metadata/_custom_type_script = "uid://cp33buoo5xtgx"
+metadata/_custom_type_script = "uid://bfy1ig4u2piu5"
 
 [node name="Normal" type="Node" parent="StateMachine" index="4" unique_id=1522493653]
 
@@ -210,19 +213,18 @@ script = ExtResource("7_peqtw")
 start_delay = 1.0
 end_delay = 0.4
 next_state = NodePath("../WaitForTimeXState")
+resource_cost = 1.0
 animation_trigger = Dictionary[String, Variant]({
 "parameters/LocomotionShell/transition_request": "stomp"
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/Normal/SpawnEntitiesState" index="0" unique_id=1795186278 node_paths=PackedStringArray("spawn_position")]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/Normal/SpawnEntitiesState" index="0" unique_id=1795186278]
 script = ExtResource("8_vf6tq")
-spawn_position = NodePath("../../../../Visuals/Marker3D")
 damage = 50.0
 max_distance = 10.0
 lifetime = 2.0
-entity_to_spawn = ExtResource("9_708ja")
-amount_of_spawns = 60
+entity_to_spawn = ExtResource("9_0vbof")
 target_strategy = SubResource("Resource_geoho")
 rotation_strategy = SubResource("Resource_f7jcw")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -282,8 +284,7 @@ script = ExtResource("14_5dmij")
 wait_time = 0.2
 flee_distance = 100.0
 time_based = true
-target_flee_time = 5.0
-debug_show_path = true
+target_flee_time = 7.0
 next_state = NodePath("../MoveTowardsEntityState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/TurtleLocomotion/transition_request": "walk"
@@ -307,6 +308,7 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 [node name="BackIntoShell" type="Node" parent="StateMachine/Naked" index="2" unique_id=78432022 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_51uan")
 next_state = NodePath("../../ShellStart")
+resource_cost = -5.0
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Locomotion/transition_request": "shell",
 "parameters/LocomotionShell/transition_request": "reveal"

@@ -111,20 +111,20 @@ _data = {
 }
 
 [node name="Projectile" unique_id=1948351313 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision") instance=ExtResource("1_buaqn")]
-collision_mask = 17
+collision_mask = 529
 max_distance = 10.0
 lifetime = 2.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
 on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=1238775441]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=1238775441]
 script = ExtResource("2_iek2t")
 normalize_to_lifetime = false
 speed = SubResource("Curve_upxv0")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=594498538]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="0" unique_id=594498538]
 script = ExtResource("3_5jeq8")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
