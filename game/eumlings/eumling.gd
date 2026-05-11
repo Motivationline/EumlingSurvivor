@@ -15,6 +15,7 @@ class_name Eumling extends Resource
 
 @export_category("Other Info")
 @export_enum("Studium", "Ausbildung") var education: String = "Studium"
+@export var url: String
 
 
 var progress: Enum.EUMLING_UNLOCK_PROGRESS = Enum.EUMLING_UNLOCK_PROGRESS.LOCKED
