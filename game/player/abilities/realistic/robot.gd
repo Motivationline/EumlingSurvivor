@@ -17,6 +17,7 @@ var _repair_per_second: float = 25
 @export var broken_state: State
 @export var level_completed_state: State
 @export var status_visuals: StatusVisualsPlayer
+@export var sound_player: SoundEffectManager
 
 @onready var visuals: Node3D = $Visuals
 @export var hurtbox: HurtBox
@@ -52,9 +53,11 @@ func _ready() -> void:
 func entity_entered(body: CharacterBody3D):
 	if body == Player.player:
 		player_present = true
+		sound_player.play_sound("RepairLoop")
 func entity_exited(body: CharacterBody3D):
 	if body == Player.player:
 		player_present = false
+		sound_player.stop_sound("RepairLoop")
 
 func _process(_delta: float):
 	super(_delta)
@@ -67,6 +70,7 @@ func _process(_delta: float):
 
 func repair():
 	broken = false
+	sound_player.stop_sound("RepairLoop")
 	state_machine.switch_to_state(repaired_state)
 	$Visuals.find_child("DriverSeat").show()
 	status_visuals.show_health_numbers = true

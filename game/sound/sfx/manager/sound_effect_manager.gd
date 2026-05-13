@@ -49,7 +49,19 @@ func play_sound(_sounds, _focus:bool = false, _persistent = false):
 		else:
 			pass
 			#print("Sound '"+sound_name+"' is missing!")
-	
+
+func stop_sound(_sounds):
+	if !_sounds is Array:
+		_sounds = [_sounds]
+	for i in _sounds.size():
+		var sound_name: String = _sounds[i]
+		if debug:
+				print("Sound " + sound_name)
+		if sound_list.has(sound_name):
+			var sound = sound_list[sound_name] 
+			sound.stop()
+
+			#print("Sound '"+sound_name+"' is missing!")
 
 	
 func debug_list_setup():
