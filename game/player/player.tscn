@@ -114,6 +114,12 @@ stream_2/stream = ExtResource("44_n6jr1")
 stream_3/stream = ExtResource("46_gs6ky")
 stream_4/stream = ExtResource("48_wxabu")
 
+[sub_resource type="Resource" id="Resource_fdpga"]
+script = ExtResource("44_ddimf")
+attribute = "tail_duration"
+value = "3.0"
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
 [sub_resource type="Resource" id="Resource_3p3em"]
 script = ExtResource("44_ddimf")
 attribute = "tail_duration"
@@ -124,6 +130,7 @@ metadata/_custom_type_script = "uid://duef27t44qtoy"
 script = ExtResource("45_od043")
 types = Array[int]([0])
 two = Array[ExtResource("44_ddimf")]([SubResource("Resource_3p3em")])
+three = Array[ExtResource("44_ddimf")]([SubResource("Resource_fdpga")])
 metadata/_custom_type_script = "uid://cfdcthqwyqi3l"
 
 [sub_resource type="Curve3D" id="Curve3D_6ynhj"]
@@ -347,7 +354,8 @@ weakspot_size_additional = -25
 
 [node name="Artistic" type="Node" parent="SpecialAbilities" unique_id=249630272]
 script = ExtResource("72_6ynhj")
-minimum_area_to_trigger = 0.3
+tail_duration = 1.5
+minimum_area_to_trigger = 0.2
 artistic_abilities = Array[PackedScene]([ExtResource("44_tlda6"), ExtResource("45_a55ai"), ExtResource("44_a55ai")])
 eumling_scaler = SubResource("Resource_0jq7b")
 
