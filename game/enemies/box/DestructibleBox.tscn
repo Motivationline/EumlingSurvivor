@@ -2,12 +2,30 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_b1cdp"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_ul4rw"]
+[ext_resource type="Script" uid="uid://cmyfq2hkdphym" path="res://state_machine/enemy/decider/decide_value.gd" id="3_5hvmk"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_v2mew"]
+[ext_resource type="Script" uid="uid://h0pcow7hrs72" path="res://state_machine/enemy/decider/decide_value_check.gd" id="4_3s8a7"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="4_f5b06"]
 [ext_resource type="PackedScene" uid="uid://ccmmnlf7jw0kf" path="res://assets/models/breakable_stone/breakable_stone_01.tscn" id="4_gkmh8"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_8uea5"]
+[ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="5_jcv14"]
+[ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="6_3s8a7"]
 [ext_resource type="PackedScene" uid="uid://mvv6hdvfjfw5" path="res://game/enemies/box/wood_explosion_particle.tscn" id="6_7r5jt"]
 [ext_resource type="PackedScene" uid="uid://by87cdyijsrbs" path="res://game/shared/animation trigger component/animation_trigger_component.tscn" id="7_f5b06"]
+[ext_resource type="PackedScene" uid="uid://daj38d304ejrr" path="res://assets/models/breakable_stone/breakable_stone_02.tscn" id="12_1w8nu"]
+[ext_resource type="PackedScene" uid="uid://dj26jbuwua1d8" path="res://assets/models/breakable_stone/breakable_stone_03.tscn" id="13_qo8tj"]
+
+[sub_resource type="Resource" id="Resource_7dwm6"]
+script = ExtResource("4_3s8a7")
+minimum = 60.0
+maximum = 100.0
+metadata/_custom_type_script = "uid://h0pcow7hrs72"
+
+[sub_resource type="Resource" id="Resource_xuuud"]
+script = ExtResource("4_3s8a7")
+minimum = null
+maximum = 60.0
+metadata/_custom_type_script = "uid://h0pcow7hrs72"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nmhrn"]
 
@@ -55,11 +73,12 @@ albedo_color = Color(0.058101013, 0.4334131, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_txksh"]
 
-[node name="Box" unique_id=1837394296 node_paths=PackedStringArray("hurtbox", "on_death") instance=ExtResource("1_b1cdp")]
+[node name="Box" unique_id=1837394296 node_paths=PackedStringArray("hurtbox", "on_death", "on_hurt") instance=ExtResource("1_b1cdp")]
 health = 150.0
 ignore_enemy_in_level = true
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("SpawnEntitiesEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/TriggerHurt")]
 speed = 0.0
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
@@ -73,6 +92,37 @@ script = ExtResource("2_ul4rw")
 wait_time = 10.0
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="DecideValueState" type="Node" parent="StateMachine" index="1" unique_id=2090528778 node_paths=PackedStringArray("node_to_check", "checks", "fallback_state")]
+script = ExtResource("3_5hvmk")
+node_to_check = NodePath("../..")
+property_name = "health"
+checks = {
+SubResource("Resource_7dwm6"): NodePath("../Broken1"),
+SubResource("Resource_xuuud"): NodePath("../Broken2")
+}
+fallback_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://cmyfq2hkdphym"
+
+[node name="Broken1" type="Node" parent="StateMachine" index="2" unique_id=476826611 node_paths=PackedStringArray("enable", "disable", "next_state")]
+script = ExtResource("5_jcv14")
+enable = [NodePath("../../Visuals/breakable_stone02")]
+disable = [NodePath("../../Visuals/breakable_stone01"), NodePath("../../Visuals/breakable_stone03")]
+next_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="Broken2" type="Node" parent="StateMachine" index="3" unique_id=1547977747 node_paths=PackedStringArray("enable", "disable", "next_state")]
+script = ExtResource("5_jcv14")
+enable = [NodePath("../../Visuals/breakable_stone03")]
+disable = [NodePath("../../Visuals/breakable_stone01"), NodePath("../../Visuals/breakable_stone02")]
+next_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="TriggerHurt" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1621742469 node_paths=PackedStringArray("state_machine", "state_to_execute")]
+script = ExtResource("6_3s8a7")
+state_machine = NodePath("../../StateMachine")
+state_to_execute = NodePath("../../StateMachine/DecideValueState")
+metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1738398887]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
@@ -115,3 +165,11 @@ mesh = SubResource("BoxMesh_txksh")
 
 [node name="breakable_stone01" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1300675361 instance=ExtResource("4_gkmh8")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="breakable_stone02" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=1944556811 instance=ExtResource("12_1w8nu")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+
+[node name="breakable_stone03" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1866105851 instance=ExtResource("13_qo8tj")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
