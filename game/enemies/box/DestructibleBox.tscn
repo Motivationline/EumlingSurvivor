@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="4_f5b06"]
 [ext_resource type="PackedScene" uid="uid://ccmmnlf7jw0kf" path="res://assets/models/breakable_stone/breakable_stone_01.tscn" id="4_gkmh8"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_8uea5"]
-[ext_resource type="PackedScene" uid="uid://bcvsvqmftm3te" path="res://game/enemies/box/box_2.tscn" id="6_v2mew"]
+[ext_resource type="PackedScene" uid="uid://mvv6hdvfjfw5" path="res://game/enemies/box/wood_explosion_particle.tscn" id="6_7r5jt"]
 [ext_resource type="PackedScene" uid="uid://by87cdyijsrbs" path="res://game/shared/animation trigger component/animation_trigger_component.tscn" id="7_f5b06"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nmhrn"]
@@ -56,11 +56,14 @@ albedo_color = Color(0.058101013, 0.4334131, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_txksh"]
 
 [node name="Box" unique_id=1837394296 node_paths=PackedStringArray("hurtbox", "on_death") instance=ExtResource("1_b1cdp")]
-health = 1.0
-speed = 0.0
+health = 150.0
 ignore_enemy_in_level = true
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("SpawnEntitiesEventStrategy")]
+on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("SpawnEntitiesEventStrategy")]
+speed = 0.0
+
+[node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
+visible = false
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitForTimeXState")
@@ -91,7 +94,7 @@ metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
 [node name="EntitySpawner" type="Node3D" parent="SpawnEntitiesEventStrategy" index="0" unique_id=173170513]
 script = ExtResource("5_8uea5")
-entity_to_spawn = ExtResource("6_v2mew")
+entity_to_spawn = ExtResource("6_7r5jt")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="AnimationTriggerComponent" parent="." index="7" unique_id=1816209221 node_paths=PackedStringArray("node_to_connect", "animation_player") instance=ExtResource("7_f5b06")]
