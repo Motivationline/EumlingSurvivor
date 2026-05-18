@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://blukgt3vtnixi"]
+
+[ext_resource type="PackedScene" uid="uid://umtjixecg24" path="res://game/ui/upgrades/card_base.tscn" id="1_vh3lf"]
+[ext_resource type="Texture2D" uid="uid://b4xcolvjnetcl" path="res://assets/ui/UpgradeCards/Mushroom/MushroomStemRed.png" id="2_wufc1"]
+[ext_resource type="Texture2D" uid="uid://d2bvqrpxey1hw" path="res://assets/ui/UpgradeCards/Mushroom/MushroomHatRed.png" id="3_7uqep"]
+[ext_resource type="Texture2D" uid="uid://dn50m5b8jpwhk" path="res://assets/ui/UpgradeCards/Mushroom/MushroomYellowSide.png" id="4_uk6w6"]
+[ext_resource type="Texture2D" uid="uid://clccjcf0imrby" path="res://assets/ui/UpgradeCards/Mushroom/MushroomLog.png" id="5_tgcmx"]
+[ext_resource type="Texture2D" uid="uid://b5qto88ehss3y" path="res://assets/ui/UpgradeCards/Mushroom/MushroomStemPurple.png" id="6_yq2ym"]
+[ext_resource type="Texture2D" uid="uid://bqqpnm8mur21d" path="res://assets/ui/UpgradeCards/Mushroom/MushroomHatPurple.png" id="7_i31r2"]
+
+[node name="Upgrade Card" unique_id=1666743961 instance=ExtResource("1_vh3lf")]
+
+[node name="MushroomStem" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="0" unique_id=946754554]
+transform = Transform3D(1, 0, 0, 0, 0.98379135, -0.17931737, 0, 0.17931737, 0.98379135, 1.6341147, -1.188281, 0.28883696)
+sorting_offset = 5.0
+texture = ExtResource("2_wufc1")
+
+[node name="MushroomCap" type="Sprite3D" parent="Card/Visuals/MushroomStem" index="0" unique_id=1139691209]
+transform = Transform3D(1, 0, 0, 0, 0.98379123, 0.17931736, 0, -0.17931736, 0.98379123, -0.067353725, 1.8101468, 0.1241827)
+sorting_offset = 10.0
+texture = ExtResource("3_7uqep")
+
+[node name="MushroomsLeft" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="1" unique_id=1629248778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0355506, 1.2143354, 0.1)
+sorting_offset = 3.0
+texture = ExtResource("4_uk6w6")
+
+[node name="TreeLog" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="2" unique_id=2043664181]
+transform = Transform3D(1, 0, 0, 0, 0.9966958, -0.08122531, 0, 0.08122531, 0.9966958, -0.347, -1.956, 0.2)
+sorting_offset = 3.0
+texture = ExtResource("5_tgcmx")
+
+[node name="PurpleMushroomStem" type="Sprite3D" parent="Card/Visuals/TreeLog" index="0" unique_id=1969825988]
+transform = Transform3D(1, 0, 0, 0, 0.9983267, 0.057825394, 0, -0.057825394, 0.9983267, 0.007060528, 0.818604, 0.04843226)
+sorting_offset = 6.0
+texture = ExtResource("6_yq2ym")
+
+[node name="PurpleMushroomCaps" type="Sprite3D" parent="Card/Visuals/TreeLog/PurpleMushroomStem" index="0" unique_id=316261003]
+transform = Transform3D(1, 0, 0, 0, 0.99423003, 0.10727057, 0, -0.10727057, 0.99423003, 0.03530264, 0.36163157, 0.061547667)
+sorting_offset = 7.0
+texture = ExtResource("7_i31r2")
+
+[node name="Camera3D" type="Camera3D" parent="." index="2" unique_id=603118874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+projection = 1
+fov = 67.95409
+size = 10.0
