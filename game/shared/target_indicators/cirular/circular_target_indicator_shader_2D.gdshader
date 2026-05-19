@@ -8,7 +8,7 @@ instance uniform vec4 color : source_color = vec4(0.0, 1.0, 1.0, 0.8);
 instance uniform vec4 edge_color : source_color = vec4(1.0, 1.0, 0.0, 0.8);
 
 instance uniform float arc : hint_range(0.0, 1.0) = 0.25;
-instance uniform float edge : hint_range(0.0, 1.0) = 0.03;
+instance uniform float edge : hint_range(0.0, 1.0) = 0.05;
 instance uniform float fade : hint_range(0.0, 1.0) = 0.01;
 
 const vec2 FORWARD = vec2(0.0, -1.0);
