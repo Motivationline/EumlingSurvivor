@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://c7g42xbmkcsoc"]
+
+[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/rectangleStickerButtonFocused.png" id="1_sj0gd"]
+[ext_resource type="Script" uid="uid://dvyxtca55nu2m" path="res://game/ui/upgrades/upgrade_option.gd" id="2_jn1jx"]
+[ext_resource type="Texture2D" uid="uid://dc2tndjbcl02s" path="res://assets/ui/UpgradeCards/Mushroom/MushroomCardBackdrop.png" id="3_1x44e"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_1x44e"]
+[ext_resource type="Texture2D" uid="uid://dr8p24v4m5k64" path="res://assets/ui/UpgradeCards/Mushroom/MushroomMarker.png" id="4_c5htl"]
+[ext_resource type="Texture2D" uid="uid://b4xcolvjnetcl" path="res://assets/ui/UpgradeCards/Mushroom/MushroomStemRed.png" id="5_ypw65"]
+[ext_resource type="Texture2D" uid="uid://d2bvqrpxey1hw" path="res://assets/ui/UpgradeCards/Mushroom/MushroomHatRed.png" id="6_bk831"]
+[ext_resource type="Texture2D" uid="uid://cls17fca8iawc" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayout.png" id="7_4dbg2"]
+
+[node name="UpgradeCard" type="TextureButton" unique_id=984426230]
+custom_minimum_size = Vector2(500, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_focused = ExtResource("1_sj0gd")
+stretch_mode = 5
+script = ExtResource("2_jn1jx")
+
+[node name="CardBase" type="TextureRect" parent="." unique_id=152633890]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -198.0
+offset_top = -301.0
+offset_right = 198.0
+offset_bottom = 301.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_1x44e")
+stretch_mode = 5
+
+[node name="Marker" type="TextureRect" parent="CardBase" unique_id=47491498]
+layout_mode = 1
+offset_left = 22.0
+offset_top = 1.0
+offset_right = 101.0
+offset_bottom = 129.0
+texture = ExtResource("4_c5htl")
+stretch_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="CardBase" unique_id=1395115320]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 145.0
+offset_top = -45.0
+offset_right = 192.0
+offset_bottom = 298.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_ypw65")
+
+[node name="TextureRect" type="TextureRect" parent="CardBase/TextureRect" unique_id=1893830165]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.5
+offset_top = -229.5
+offset_right = 46.5
+offset_bottom = -135.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_bk831")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1750842051]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.6203704
+anchor_right = 0.5
+anchor_bottom = 0.6203704
+offset_left = -360.0
+offset_top = -105.0
+offset_right = 360.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_4dbg2")
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="TextureRect" unique_id=792137079]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.20300001
+anchor_top = 0.067
+anchor_right = 0.80200005
+anchor_bottom = 0.77500004
+offset_left = 7.8399963
+offset_top = 16.93
+offset_right = -11.440063
+offset_bottom = -12.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_1x44e")
+theme_override_font_sizes/font_size = 64
+text = "Title"
+horizontal_alignment = 1
+vertical_alignment = 1
