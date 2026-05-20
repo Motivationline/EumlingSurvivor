@@ -2,14 +2,16 @@
 
 [ext_resource type="Script" uid="uid://clewmwfe2bmum" path="res://game/ui/upgrades/upgrade_view.gd" id="1_qclys"]
 [ext_resource type="PackedScene" uid="uid://b8nr8s04nxds6" path="res://game/ui/upgrades/upgrade_option.tscn" id="2_264sj"]
+[ext_resource type="PackedScene" uid="uid://blukgt3vtnixi" path="res://game/ui/upgrades/cards/card_social.tscn" id="3_35ekj"]
+[ext_resource type="Texture2D" uid="uid://h5kxhyqayvrf" path="res://assets/ui/UpgradeCards/Icons/HealthIcon.png" id="4_rh15r"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_264sj"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xbnlr"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_35ekj"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2w7h4"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_rh15r"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mw3vp"]
 viewport_path = NodePath("SubViewport")
 
 [node name="UpgradeView" type="CanvasLayer" unique_id=170594717]
@@ -39,12 +41,30 @@ theme_override_constants/separation = 10
 
 [node name="UpgradeOption" parent="MarginContainer/CenterContainer/UpgradeContainer" unique_id=1866871251 instance=ExtResource("2_264sj")]
 layout_mode = 2
-texture_normal = SubResource("ViewportTexture_264sj")
+texture_normal = SubResource("ViewportTexture_xbnlr")
+cards = Dictionary[int, PackedScene]({
+5: ExtResource("3_35ekj")
+})
+textures = Dictionary[int, Texture]({
+2: ExtResource("4_rh15r")
+})
 
 [node name="UpgradeOption2" parent="MarginContainer/CenterContainer/UpgradeContainer" unique_id=461538500 instance=ExtResource("2_264sj")]
 layout_mode = 2
-texture_normal = SubResource("ViewportTexture_35ekj")
+texture_normal = SubResource("ViewportTexture_2w7h4")
+cards = Dictionary[int, PackedScene]({
+5: ExtResource("3_35ekj")
+})
+textures = Dictionary[int, Texture]({
+2: ExtResource("4_rh15r")
+})
 
 [node name="UpgradeOption3" parent="MarginContainer/CenterContainer/UpgradeContainer" unique_id=1925201768 instance=ExtResource("2_264sj")]
 layout_mode = 2
-texture_normal = SubResource("ViewportTexture_rh15r")
+texture_normal = SubResource("ViewportTexture_mw3vp")
+cards = Dictionary[int, PackedScene]({
+5: ExtResource("3_35ekj")
+})
+textures = Dictionary[int, Texture]({
+2: ExtResource("4_rh15r")
+})

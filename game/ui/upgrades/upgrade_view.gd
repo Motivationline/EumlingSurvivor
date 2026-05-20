@@ -15,7 +15,7 @@ func show_upgrades():
 	upgrades = upgrades.slice(0, 3)
 
 	# TODO: change how paths are chosen
-	var paths: Array = Enum.EUMLING_TYPE.keys().duplicate()
+	var paths: Array = Enum.EUMLING_TYPE.values().duplicate()
 	paths.shuffle()
 	for i in upgrades.size():
 		upgrades[i].path = paths[i]
