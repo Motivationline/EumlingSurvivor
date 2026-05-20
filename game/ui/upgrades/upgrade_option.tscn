@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://c1lhne4jd4sy5" path="res://game/ui/upgrades/cards/upgrade_enterprising.tscn" id="5_3vg61"]
 [ext_resource type="PackedScene" uid="uid://c5xjt0bq0sq3u" path="res://game/ui/upgrades/cards/card_investigative.tscn" id="6_fqtti"]
 [ext_resource type="PackedScene" uid="uid://rdf8xtn48aek" path="res://game/ui/upgrades/cards/card_realistic.tscn" id="7_ppueu"]
+[ext_resource type="Texture2D" uid="uid://q80iej01qct4" path="res://assets/ui/UpgradeCards/Icons/AttackIconPlaceholder.png" id="9_e6r2v"]
+[ext_resource type="Texture2D" uid="uid://cu8af634heui6" path="res://assets/ui/UpgradeCards/Icons/RangeIconPlaceholder.png" id="10_dcvrv"]
+[ext_resource type="Texture2D" uid="uid://bmb6h1a5nb734" path="res://assets/ui/UpgradeCards/Icons/SpeedIconPlaceholder.png" id="11_xsa7x"]
+[ext_resource type="Texture2D" uid="uid://bgruign1t1mul" path="res://assets/ui/UpgradeCards/Icons/AttackCooldownIconPlaceholder.png" id="12_fevki"]
+[ext_resource type="Texture2D" uid="uid://dygsk05xsv6id" path="res://assets/ui/UpgradeCards/Icons/CritChanceIconPlaceholder.png" id="13_8g2jb"]
+[ext_resource type="Texture2D" uid="uid://bkc8e1dvrps01" path="res://assets/ui/UpgradeCards/Icons/HealthRegenerationIconPlaceholder.png" id="14_uh50l"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kej5l"]
 viewport_path = NodePath("SubViewport")
@@ -36,7 +42,13 @@ cards = Dictionary[int, PackedScene]({
 5: ExtResource("4_kej5l")
 })
 textures = Dictionary[int, Texture]({
-2: ExtResource("4_n3f7s")
+0: ExtResource("11_xsa7x"),
+1: ExtResource("12_fevki"),
+2: ExtResource("4_n3f7s"),
+3: ExtResource("14_uh50l"),
+5: ExtResource("10_dcvrv"),
+6: ExtResource("9_e6r2v"),
+11: ExtResource("13_8g2jb")
 })
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1778329793]

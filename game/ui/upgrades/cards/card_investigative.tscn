@@ -1,5 +1,13 @@
 [gd_scene format=3 uid="uid://c5xjt0bq0sq3u"]
 
 [ext_resource type="PackedScene" uid="uid://umtjixecg24" path="res://game/ui/upgrades/cards/card_base.tscn" id="1_y4mne"]
+[ext_resource type="Texture2D" uid="uid://dpehrd4k88gse" path="res://assets/ui/UpgradeCards/Flower/flower_card_backdrop.png" id="2_86s8u"]
+[ext_resource type="Texture2D" uid="uid://ckl73p505ndtl" path="res://assets/ui/UpgradeCards/Flower/flower_card_marker.png" id="3_7wfoe"]
 
 [node name="Upgrade Card" unique_id=1666743961 instance=ExtResource("1_y4mne")]
+
+[node name="CardBack" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="0" unique_id=122314553]
+texture = ExtResource("2_86s8u")
+
+[node name="Tag" parent="Card/CardBack" index="0" unique_id=1896575900]
+texture = ExtResource("3_7wfoe")
