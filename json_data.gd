@@ -20,6 +20,10 @@ func _load_upgrades():
 		var text = raw_upgrades.get("Text").get(key)
 		if not text: text = "%s"
 		player_upgrade_info.get(key).set("text", text)
+	for key in raw_upgrades.get("Display_Faktor"):
+		var value = raw_upgrades.get("Display_Faktor").get(key)
+		if not value: value = 1
+		player_upgrade_info.get(key).set("display_factor", value)
 
 	for key in raw_upgrades.keys():
 		if key.is_valid_int():
@@ -30,7 +34,7 @@ func _load_upgrades():
 				var info = player_upgrade_info.get(type)
 				var value = level_upgrades.get(type)
 				if not value: continue
-				upgrades.append(Upgrade.new(Enum.UPGRADE.keys().find(type), info.method, value, info.text))
+				upgrades.append(Upgrade.new(Enum.UPGRADE.keys().find(type), info.method, value, info.text, info.display_factor))
 			player_upgrade_levels.set(level, upgrades)
 
 
