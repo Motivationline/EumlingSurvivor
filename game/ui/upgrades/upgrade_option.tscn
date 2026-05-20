@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://b8nr8s04nxds6"]
 
 [ext_resource type="Script" uid="uid://dvyxtca55nu2m" path="res://game/ui/upgrades/upgrade_option.gd" id="1_2fcc3"]
+[ext_resource type="PackedScene" uid="uid://dgakt5saf5aob" path="res://game/ui/upgrades/cards/card_artistic.tscn" id="3_2ma4p"]
 [ext_resource type="PackedScene" uid="uid://blukgt3vtnixi" path="res://game/ui/upgrades/cards/card_social.tscn" id="4_kej5l"]
 [ext_resource type="Texture2D" uid="uid://h5kxhyqayvrf" path="res://assets/ui/UpgradeCards/Icons/HealthIcon.png" id="4_n3f7s"]
+[ext_resource type="PackedScene" uid="uid://b2n6rjmprqxoq" path="res://game/ui/upgrades/cards/upgrade_conventional.tscn" id="4_x6rfi"]
+[ext_resource type="PackedScene" uid="uid://c1lhne4jd4sy5" path="res://game/ui/upgrades/cards/upgrade_enterprising.tscn" id="5_3vg61"]
+[ext_resource type="PackedScene" uid="uid://c5xjt0bq0sq3u" path="res://game/ui/upgrades/cards/card_investigative.tscn" id="6_fqtti"]
+[ext_resource type="PackedScene" uid="uid://rdf8xtn48aek" path="res://game/ui/upgrades/cards/card_realistic.tscn" id="7_ppueu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kej5l"]
 viewport_path = NodePath("SubViewport")
@@ -23,6 +28,11 @@ grow_vertical = 2
 texture_normal = SubResource("ViewportTexture_kej5l")
 script = ExtResource("1_2fcc3")
 cards = Dictionary[int, PackedScene]({
+0: ExtResource("3_2ma4p"),
+1: ExtResource("4_x6rfi"),
+2: ExtResource("5_3vg61"),
+3: ExtResource("6_fqtti"),
+4: ExtResource("7_ppueu"),
 5: ExtResource("4_kej5l")
 })
 textures = Dictionary[int, Texture]({
