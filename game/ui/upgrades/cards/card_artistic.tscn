@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dgakt5saf5aob"]
+
+[ext_resource type="PackedScene" uid="uid://umtjixecg24" path="res://game/ui/upgrades/cards/card_base.tscn" id="1_2tixa"]
+[ext_resource type="Texture2D" uid="uid://cwgisl057ycfl" path="res://assets/ui/UpgradeCards/Wood/wood_card_backdrop.png" id="2_ak63u"]
+[ext_resource type="Texture2D" uid="uid://vg5rt6403u73" path="res://assets/ui/UpgradeCards/Wood/wood_card_backdrop_marker.png" id="3_w6207"]
+[ext_resource type="Texture2D" uid="uid://cm2ah32e5w4x4" path="res://assets/ui/UpgradeCards/Wood/wood_card_liane_back.png" id="4_8bjhe"]
+[ext_resource type="Texture2D" uid="uid://cx7gw3l2m3fk8" path="res://assets/ui/UpgradeCards/Wood/wood_card_liane_middle.png" id="5_0fk8m"]
+[ext_resource type="Texture2D" uid="uid://m0fcsicixb3" path="res://assets/ui/UpgradeCards/Wood/wood_card_moss.png" id="6_0fk8m"]
+[ext_resource type="Texture2D" uid="uid://cmrv17jfp2fl2" path="res://assets/ui/UpgradeCards/Wood/wood_card_liane_top.png" id="7_glbnx"]
+
+[node name="Upgrade Card" unique_id=1666743961 instance=ExtResource("1_2tixa")]
+
+[node name="CardBack" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="0" unique_id=122314553]
+texture = ExtResource("2_ak63u")
+
+[node name="Tag" parent="Card/CardBack" index="0" unique_id=1896575900]
+texture = ExtResource("3_w6207")
+
+[node name="LianenBack" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="0" unique_id=582844551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7415717, 0.16768274, -0.24368389)
+sorting_offset = -5.0
+texture = ExtResource("4_8bjhe")
+
+[node name="LianenFrontBR" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="1" unique_id=1987329495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4767903, -2.3435373, 0.25878742)
+sorting_offset = 5.0
+texture = ExtResource("5_0fk8m")
+
+[node name="MossTop" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="2" unique_id=472984270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.465197, 2.8687136, 0.09838444)
+sorting_offset = 2.0
+texture = ExtResource("6_0fk8m")
+
+[node name="LianenFrontBR2" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="3" unique_id=660586663]
+transform = Transform3D(0.9929408, -4.3161567e-06, -0.11861196, 4.316155e-06, 1, -2.5687768e-07, 0.118611954, -2.5688132e-07, 0.9929408, -0.356509, -0.18559124, 0.24206503)
+sorting_offset = 5.0
+texture = ExtResource("7_glbnx")
