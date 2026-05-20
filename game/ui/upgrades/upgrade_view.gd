@@ -4,6 +4,7 @@ signal upgrade_chosen(Upgrade)
 
 const UPGRADE_OPTION = preload("uid://b8nr8s04nxds6")
 @onready var upgrade_container: HBoxContainer = %UpgradeContainer
+@export var delay_between_cards: float = 0.2
 
 func show_upgrades():
 	get_tree().paused = true
@@ -24,12 +25,14 @@ func show_upgrades():
 		upgrade_container.remove_child(child)
 		child.free()
 
-	for upgrade in upgrades:
+	for i in upgrades.size():
+		var upgrade = upgrades[i]
 		var upgrade_option = UPGRADE_OPTION.instantiate() as UpgradeOption
 		upgrade_container.add_child(upgrade_option)
-		upgrade_option.setup(upgrade)
+		upgrade_option.setup(upgrade, i * delay_between_cards)
 		upgrade_option.pressed.connect(upgrade_input.bind(upgrade))
-	upgrade_container.get_child(0).grab_focus()
+		if(i == 0):
+			upgrade_option.grab_focus()
 	show()
 
 func upgrade_input(option: Upgrade):
