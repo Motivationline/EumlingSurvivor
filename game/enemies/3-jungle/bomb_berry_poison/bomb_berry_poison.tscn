@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="2_wnsrb"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_6mw7y"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_c6m5u"]
-[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_satr4"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_satr4"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="4_6mw7y"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_wnsrb"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_ktm0l"]
@@ -33,7 +33,7 @@
 [sub_resource type="Resource" id="Resource_1s25r"]
 script = ExtResource("2_7xjtc")
 attribute = "health"
-value = 50.0
+value = 150.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_57rd0"]
@@ -94,24 +94,6 @@ medium = Array[ExtResource("2_7xjtc")]([SubResource("Resource_tk56u")])
 hard = Array[ExtResource("2_7xjtc")]([SubResource("Resource_u87jn")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wl6h4"]
-streams_count = 6
-stream_0/stream = ExtResource("11_r87kj")
-stream_1/stream = ExtResource("12_iwjtf")
-stream_2/stream = ExtResource("13_qljmb")
-stream_3/stream = ExtResource("14_6xron")
-stream_4/stream = ExtResource("15_38jbc")
-stream_5/stream = ExtResource("16_7x70f")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57rd0"]
-streams_count = 6
-stream_0/stream = ExtResource("17_7x70f")
-stream_1/stream = ExtResource("18_wl6h4")
-stream_2/stream = ExtResource("19_nxgor")
-stream_3/stream = ExtResource("20_7xjtc")
-stream_4/stream = ExtResource("21_satr4")
-stream_5/stream = ExtResource("22_1s25r")
-
 [sub_resource type="Resource" id="Resource_7xjtc"]
 script = ExtResource("2_7xjtc")
 attribute = "damage"
@@ -153,13 +135,31 @@ radius = 0.29065907
 [sub_resource type="SphereShape3D" id="SphereShape3D_3nhq1"]
 radius = 0.25
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wl6h4"]
+streams_count = 6
+stream_0/stream = ExtResource("11_r87kj")
+stream_1/stream = ExtResource("12_iwjtf")
+stream_2/stream = ExtResource("13_qljmb")
+stream_3/stream = ExtResource("14_6xron")
+stream_4/stream = ExtResource("15_38jbc")
+stream_5/stream = ExtResource("16_7x70f")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57rd0"]
+streams_count = 6
+stream_0/stream = ExtResource("17_7x70f")
+stream_1/stream = ExtResource("18_wl6h4")
+stream_2/stream = ExtResource("19_nxgor")
+stream_3/stream = ExtResource("20_7xjtc")
+stream_4/stream = ExtResource("21_satr4")
+stream_5/stream = ExtResource("22_1s25r")
+
 [node name="BombBerryPoison" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_4nvcr")]
 health = 80.0
-speed = 2.0
 difficulty_scaler = SubResource("Resource_avhu4")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
+speed = 2.0
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("DecideDistanceState")
@@ -233,14 +233,6 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("2_awjhr")]
 
-[node name="Charge" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=13899280 instance=ExtResource("10_svgcn")]
-stream = SubResource("AudioStreamRandomizer_wl6h4")
-volume_db = -5.0
-
-[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=947531284 instance=ExtResource("10_svgcn")]
-stream = SubResource("AudioStreamRandomizer_57rd0")
-volume_db = 0.0
-
 [node name="Hitbox" parent="." index="5" unique_id=2112797289 instance=ExtResource("3_c6m5u")]
 collision_layer = 32
 collision_mask = 8
@@ -269,5 +261,13 @@ debug_color = Color(0, 0.6424242, 0.32324392, 0.41960785)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("SphereShape3D_3nhq1")
 disabled = true
+
+[node name="Charge" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=13899280 instance=ExtResource("10_svgcn")]
+stream = SubResource("AudioStreamRandomizer_wl6h4")
+volume_db = -5.0
+
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=947531284 instance=ExtResource("10_svgcn")]
+stream = SubResource("AudioStreamRandomizer_57rd0")
+volume_db = 0.0
 
 [connection signal="play_sound" from="Visuals/bomberry" to="SoundEffectManager" method="play_sound"]

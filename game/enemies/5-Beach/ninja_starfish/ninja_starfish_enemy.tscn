@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_cqfk8"]
 [ext_resource type="PackedScene" uid="uid://dbb2lje457spb" path="res://assets/characters/enemies/ninja_starfish/ninja_starfish_prefab.tscn" id="2_jg36m"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_3topv"]
-[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_4dm40"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_4dm40"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_gykbi"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="3_ybqk6"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_gykbi"]
@@ -44,6 +44,12 @@ attribute = "400"
 value = null
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
+[sub_resource type="Resource" id="Resource_wtabq"]
+script = ExtResource("2_cqfk8")
+attribute = "incoming_damage_multiplier"
+value = 0.7
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
 [sub_resource type="Resource" id="Resource_xdgc5"]
 script = ExtResource("2_cqfk8")
 attribute = "health"
@@ -61,7 +67,7 @@ script = ExtResource("3_4dm40")
 introduction = Array[ExtResource("2_cqfk8")]([SubResource("Resource_xdgc5")])
 easy = Array[ExtResource("2_cqfk8")]([SubResource("Resource_8oo2b")])
 medium = Array[ExtResource("2_cqfk8")]([SubResource("Resource_5h2ke")])
-hard = Array[ExtResource("2_cqfk8")]([SubResource("Resource_ghiij")])
+hard = Array[ExtResource("2_cqfk8")]([SubResource("Resource_ghiij"), SubResource("Resource_wtabq")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ybqk6"]
@@ -135,11 +141,11 @@ stream_5/stream = ExtResource("30_xxa4w")
 
 [node name="NinjaStarfish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_57kab")]
 health = 150.0
-speed = 2.0
 difficulty_scaler = SubResource("Resource_v4i5o")
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
+speed = 2.0
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("IdleWait")
