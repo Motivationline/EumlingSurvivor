@@ -24,7 +24,7 @@ func apply(_value: float) -> float:
 
 
 func _to_string() -> String:
-	return text.format([value])
+	return text % [value]
 
 # TODO: remove this? or sort first?
 static func apply_all(_value: float, all: Array[Upgrade]) -> float:
