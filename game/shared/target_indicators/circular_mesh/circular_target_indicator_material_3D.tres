@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://j1rx43bvmvyu"]
+
+[ext_resource type="Shader" uid="uid://mymhhb3ophhl" path="res://game/shared/target_indicators/circular_mesh/circular_target_indicator_3D.gdshader" id="1_0x8yg"]
+[ext_resource type="Texture2D" uid="uid://dkwgun8trbaay" path="res://game/shared/target_indicators/circular_decal/circular_indicator.svg" id="2_isyip"]
+[ext_resource type="Texture2D" uid="uid://dma1mlp2y7i8c" path="res://game/shared/target_indicators/circular_decal/circular_indicator_mask.svg" id="3_7l6gj"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0x8yg")
+shader_parameter/TEXTURE = ExtResource("2_isyip")
+shader_parameter/mask_texture = ExtResource("3_7l6gj")
