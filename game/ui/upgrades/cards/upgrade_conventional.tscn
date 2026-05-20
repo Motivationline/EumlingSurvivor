@@ -1,5 +1,48 @@
 [gd_scene format=3 uid="uid://b2n6rjmprqxoq"]
 
 [ext_resource type="PackedScene" uid="uid://umtjixecg24" path="res://game/ui/upgrades/cards/card_base.tscn" id="1_dngs2"]
+[ext_resource type="Texture2D" uid="uid://u5e76dthfhwb" path="res://assets/ui/UpgradeCards/Lava/lava_card_backdrop.png" id="2_32gl8"]
+[ext_resource type="Script" uid="uid://cfelrf7ds5ljn" path="res://game/ui/upgrades/cards/shader_sprite_3d.gd" id="3_l5c76"]
+[ext_resource type="Texture2D" uid="uid://dw0jooxk3cqlp" path="res://assets/ui/UpgradeCards/Lava/lava_card_marker.png" id="3_x01tu"]
+[ext_resource type="Texture2D" uid="uid://ucg7x5nhjxv3" path="res://assets/ui/UpgradeCards/Lava/lava_card_big_stone_middle.png" id="4_l5c76"]
+[ext_resource type="Texture2D" uid="uid://cuf55aockm30" path="res://assets/ui/UpgradeCards/Lava/lava_card_left_corner_big.png" id="5_spr6t"]
+[ext_resource type="Texture2D" uid="uid://bqr6vkgbp6t1k" path="res://assets/ui/UpgradeCards/Lava/lava_card_small_stones.png" id="6_5xnbt"]
+[ext_resource type="Texture2D" uid="uid://dkc6oq1ijxjhf" path="res://assets/ui/UpgradeCards/Lava/lava_card__tiny_stones.png" id="7_fbmbs"]
+[ext_resource type="Texture2D" uid="uid://xhloc5mxrluq" path="res://assets/ui/UpgradeCards/Lava/lava_card_upper_corner_big.png" id="8_1bkpd"]
 
 [node name="Upgrade Card" unique_id=1666743961 instance=ExtResource("1_dngs2")]
+
+[node name="CardBack" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="0" unique_id=122314553]
+transform = Transform3D(1, 0, 3.7252903e-09, 0, 1, 0, 3.7252903e-09, 0, 1, -0.038613796, -0.18341476, 5.7954317e-06)
+cast_shadow = 0
+texture = ExtResource("2_32gl8")
+script = ExtResource("3_l5c76")
+
+[node name="Tag" parent="Card/CardBack" index="0" unique_id=1896575900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.112286, 2.5314813, 0.19999418)
+texture = ExtResource("3_x01tu")
+
+[node name="LavaRock" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="0" unique_id=589850286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72374094, 0.99689394, 0.23627077)
+sorting_offset = 5.0
+texture = ExtResource("4_l5c76")
+
+[node name="LavaRock2" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="1" unique_id=1427649581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5176997, -1.1052707, 0.33470553)
+sorting_offset = 5.0
+texture = ExtResource("5_spr6t")
+
+[node name="LavaRock3" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="2" unique_id=619738408]
+transform = Transform3D(0.99981034, -0.0010554037, 0.019447992, -1.9444915e-06, 0.99852544, 0.054287944, -0.019476611, -0.05427769, 0.9983361, -0.10388288, -0.99768656, 0.15048048)
+sorting_offset = 5.0
+texture = ExtResource("6_5xnbt")
+
+[node name="LavaRock4" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="3" unique_id=1792888782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.79081136, -0.07902377, 0.118008755)
+sorting_offset = 5.0
+texture = ExtResource("7_fbmbs")
+
+[node name="LavaRock5" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="4" unique_id=1763163767]
+transform = Transform3D(1, 3.6123315e-06, 2.883171e-07, -3.6123106e-06, 0.9873281, 0.15869229, 2.8858267e-07, -0.15869229, 0.9873281, 0.9930445, 2.2620873, 0.10984326)
+sorting_offset = 5.0
+texture = ExtResource("8_1bkpd")
