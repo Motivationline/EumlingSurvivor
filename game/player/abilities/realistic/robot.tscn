@@ -38,21 +38,21 @@
 height = 1.0
 radius = 1.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_nsfx6"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_duxek"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vu786"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6528b"]
 resource_local_to_scene = true
 transparency = 1
 depth_draw_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_nsfx6")
+albedo_texture = SubResource("ViewportTexture_duxek")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ada2e"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xo882"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u7e5b"]
@@ -186,8 +186,8 @@ shape = SubResource("CylinderShape3D_jmjnl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Sprite3D" parent="StatusVisuals3D" index="0" unique_id=136601365]
-material_override = SubResource("StandardMaterial3D_vu786")
-texture = SubResource("ViewportTexture_ada2e")
+material_override = SubResource("StandardMaterial3D_6528b")
+texture = SubResource("ViewportTexture_xo882")
 
 [node name="ReloadBar" parent="StatusVisuals3D/SubViewport" parent_id_path=PackedInt32Array(444245433, 1922379261) index="1" unique_id=570337419]
 visible = false
@@ -213,6 +213,7 @@ stream = ExtResource("14_nsfx6")
 
 [node name="Attack" parent="SoundEffectManager" unique_id=796765323 instance=ExtResource("13_jiwas")]
 stream = SubResource("AudioStreamRandomizer_jru0j")
+volume_db = 0.0
 
 [node name="Assemble" parent="SoundEffectManager" unique_id=171007650 instance=ExtResource("13_jiwas")]
 stream = ExtResource("15_vu786")
