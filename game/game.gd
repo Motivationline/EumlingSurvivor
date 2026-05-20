@@ -113,3 +113,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var enemies := get_tree().get_nodes_in_group("Enemy")
 		for enemy in enemies:
 			enemy.health = 0
+	if event.is_action_pressed("debug_get_upgrade"):
+		upgrade_view.show_upgrades()
+		var chosen_upgrade = await upgrade_view.upgrade_chosen
+		player.add_upgrade(chosen_upgrade)
