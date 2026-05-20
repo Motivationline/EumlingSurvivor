@@ -81,7 +81,7 @@ func load_level():
 
 func level_finished():
 	if not currently_loaded_level.is_boss_level:
-		upgrade_view.show_upgrades(player.possible_upgrades)
+		upgrade_view.show_upgrades()
 		var chosen_upgrade = await upgrade_view.upgrade_chosen
 		player.add_upgrade(chosen_upgrade)
 
@@ -101,7 +101,7 @@ func return_to_main_menu():
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_menu"):
 		if not debug_view.visible:
-			debug_view.show_upgrades(player)
+			debug_view.show_upgrades()
 		else:
 			debug_view.close()
 	if event.is_action_pressed("debug_main_menu"):

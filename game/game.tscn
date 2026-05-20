@@ -126,6 +126,7 @@ color = Color(0, 0, 0, 1)
 libraries/ = SubResource("AnimationLibrary_y36n6")
 
 [node name="DebugView" parent="." unique_id=992518092 instance=ExtResource("5_dxrkv")]
+process_mode = 2
 visible = false
 
 [node name="AreaChoiceOverlay" type="CanvasLayer" parent="." unique_id=1812616443]
@@ -166,6 +167,7 @@ visible = false
 [node name="BaseBattleOverlay" parent="GameUI" unique_id=322158331 instance=ExtResource("8_y36n6")]
 
 [node name="PauseMenu" parent="GameUI" unique_id=1966773529 instance=ExtResource("9_l8g03")]
+process_mode = 2
 
 [connection signal="pressed" from="GameUI/BaseBattleOverlay/PauseButton" to="GameUI/PauseMenu" method="open"]
 

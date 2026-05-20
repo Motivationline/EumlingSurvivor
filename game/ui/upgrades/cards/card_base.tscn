@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://umtjixecg24"]
 
-[ext_resource type="Texture2D" uid="uid://dc2tndjbcl02s" path="res://assets/ui/UpgradeCards/Mushroom/MushroomCardBackdrop.png" id="1_khd0a"]
-[ext_resource type="Texture2D" uid="uid://dr8p24v4m5k64" path="res://assets/ui/UpgradeCards/Mushroom/MushroomMarker.png" id="2_hlxai"]
-[ext_resource type="Texture2D" uid="uid://h5kxhyqayvrf" path="res://assets/ui/UpgradeCards/Icons/HealthIcon.png" id="3_hlxai"]
-[ext_resource type="Texture2D" uid="uid://cls17fca8iawc" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayout.png" id="3_sqbba"]
-[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_vr04n"]
-[ext_resource type="Texture2D" uid="uid://ct0dwwb0l0w2p" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayoutBack.png" id="6_sqbba"]
+[ext_resource type="Texture2D" uid="uid://dc2tndjbcl02s" path="res://assets/ui/UpgradeCards/Mushroom/MushroomCardBackdrop.png" id="1_37o15"]
+[ext_resource type="Texture2D" uid="uid://dr8p24v4m5k64" path="res://assets/ui/UpgradeCards/Mushroom/MushroomMarker.png" id="2_04cqa"]
+[ext_resource type="Texture2D" uid="uid://h5kxhyqayvrf" path="res://assets/ui/UpgradeCards/Icons/HealthIcon.png" id="3_5l67c"]
+[ext_resource type="Texture2D" uid="uid://cls17fca8iawc" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayout.png" id="4_h1an0"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="5_gbuuv"]
+[ext_resource type="Texture2D" uid="uid://ct0dwwb0l0w2p" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayoutBack.png" id="6_ykpu1"]
 
 [sub_resource type="Animation" id="Animation_hlxai"]
 length = 0.001
@@ -309,41 +309,41 @@ transform = Transform3D(1, 8.2818613e-10, 2.2759326e-05, 0, 1, -3.638887e-05, -2
 
 [node name="CardBack" type="Sprite3D" parent="Card" unique_id=122314553]
 transform = Transform3D(1, 0, 3.7252903e-09, 0, 1, 0, 3.7252903e-09, 0, 1, 0, 0, 0)
-texture = ExtResource("1_khd0a")
+texture = ExtResource("1_37o15")
 
 [node name="Tag" type="Sprite3D" parent="Card/CardBack" unique_id=1896575900]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.157, 2.3436825, 0.2)
 sorting_offset = 5.0
-texture = ExtResource("2_hlxai")
+texture = ExtResource("2_04cqa")
 
 [node name="UpgradeImage" type="Sprite3D" parent="Card" unique_id=607857325]
 transform = Transform3D(1, 3.7252903e-09, 5.9604645e-08, 9.313226e-10, 1, 3.7252903e-09, 0, 0, 1, 3.7252903e-09, 1.0290003, 0.8)
 sorting_offset = 20.0
-texture = ExtResource("3_hlxai")
+texture = ExtResource("3_5l67c")
 
 [node name="Banner" type="Sprite3D" parent="Card" unique_id=289770061]
 transform = Transform3D(1, 0, -3.7252903e-09, 0, 1, 0, 3.7252903e-09, 0, 1, -0.036, -1.435, 0.5)
 sorting_offset = 20.0
-texture = ExtResource("3_sqbba")
+texture = ExtResource("4_h1an0")
 
 [node name="Text" type="Label3D" parent="Card/Banner" unique_id=1578198311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036, 0.21, 0.1)
 sorting_offset = 30.0
 modulate = Color(0.19434929, 0.19434926, 0.19434926, 1)
 text = "+50 Health"
-font = ExtResource("4_vr04n")
+font = ExtResource("5_gbuuv")
 font_size = 120
 
 [node name="BannerR" type="Sprite3D" parent="Card/Banner" unique_id=723991499]
 transform = Transform3D(1, -9.313226e-10, -1.4901161e-08, -9.313226e-10, 1.0000001, -7.450581e-09, 1.4901161e-08, -7.450581e-09, 1, 2.5369747, -0.10535431, -0.1432088)
 sorting_offset = 18.0
-texture = ExtResource("6_sqbba")
+texture = ExtResource("6_ykpu1")
 
 [node name="BannerL" type="Sprite3D" parent="Card/Banner" unique_id=1583368076]
 transform = Transform3D(1, -9.313226e-10, -1.4901161e-08, -9.313226e-10, 1.0000001, -7.450581e-09, 1.4901161e-08, -7.450581e-09, 1, -2.5073497, -0.10535455, -0.14332357)
 sorting_offset = 18.0
 flip_h = true
-texture = ExtResource("6_sqbba")
+texture = ExtResource("6_ykpu1")
 
 [node name="Visuals" type="Node3D" parent="Card" unique_id=1008643825]
 transform = Transform3D(1, 0, 3.7252903e-09, 0, 1, 0, 3.7252903e-09, 0, 1, 0, 0, 0)
@@ -353,3 +353,9 @@ libraries/ = SubResource("AnimationLibrary_vr04n")
 autoplay = &"spawn"
 next/idle = &"idle"
 next/spawn = &"idle"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1905528594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+projection = 1
+fov = 67.95409
+size = 10.0

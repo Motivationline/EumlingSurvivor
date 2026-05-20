@@ -69,45 +69,6 @@ signal upgrade_added
 ## Limits to the upgradeable values. x is minimum, y is maximum. If not specified, values can go from 0 to infinity.
 @export var min_max_values: Dictionary[Enum.UPGRADE, Vector2] = {}
 
-
-var possible_upgrades: Array[Upgrade] = [
-	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.2, Enum.RARITY.COMMON),
-	Upgrade.new(Enum.UPGRADE.ATTACK_COOLDOWN, Enum.UPGRADE_METHOD.MULTIPLIER, 0.9, Enum.RARITY.COMMON),
-	Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.ABSOLUTE, 40, Enum.RARITY.COMMON),
-	Upgrade.new(Enum.UPGRADE.HEALTH_REGENERATION, Enum.UPGRADE_METHOD.ABSOLUTE, 10, Enum.RARITY.COMMON),
-	Upgrade.new(Enum.UPGRADE.RANGE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.2, Enum.RARITY.COMMON),
-	Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 10, Enum.RARITY.COMMON),
-	Upgrade.new(Enum.UPGRADE.CRIT_CHANCE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.1, Enum.RARITY.COMMON),
-
-	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.35, Enum.RARITY.UNCOMMON),
-	Upgrade.new(Enum.UPGRADE.ATTACK_COOLDOWN, Enum.UPGRADE_METHOD.MULTIPLIER, 0.8, Enum.RARITY.UNCOMMON),
-	Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.ABSOLUTE, 80, Enum.RARITY.UNCOMMON),
-	Upgrade.new(Enum.UPGRADE.HEALTH_REGENERATION, Enum.UPGRADE_METHOD.ABSOLUTE, 20, Enum.RARITY.UNCOMMON),
-	Upgrade.new(Enum.UPGRADE.RANGE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.4, Enum.RARITY.UNCOMMON),
-	Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 20, Enum.RARITY.UNCOMMON),
-	Upgrade.new(Enum.UPGRADE.CRIT_CHANCE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.2, Enum.RARITY.UNCOMMON),
-	
-	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.45, Enum.RARITY.RARE),
-	Upgrade.new(Enum.UPGRADE.ATTACK_COOLDOWN, Enum.UPGRADE_METHOD.MULTIPLIER, 0.6, Enum.RARITY.RARE),
-	Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.ABSOLUTE, 120, Enum.RARITY.RARE),
-	Upgrade.new(Enum.UPGRADE.HEALTH_REGENERATION, Enum.UPGRADE_METHOD.ABSOLUTE, 50, Enum.RARITY.RARE),
-	Upgrade.new(Enum.UPGRADE.RANGE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.7, Enum.RARITY.RARE),
-	Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 30, Enum.RARITY.RARE),
-	Upgrade.new(Enum.UPGRADE.CRIT_CHANCE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.3, Enum.RARITY.RARE),
-	
-	Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.6, Enum.RARITY.EPIC),
-	Upgrade.new(Enum.UPGRADE.ATTACK_COOLDOWN, Enum.UPGRADE_METHOD.MULTIPLIER, 0.4, Enum.RARITY.EPIC),
-	Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.ABSOLUTE, 200, Enum.RARITY.EPIC),
-	#Upgrade.new(Enum.UPGRADE.HEALTH_REGENERATION, Enum.UPGRADE_METHOD.MULTIPLIER, 1.1, Enum.RARITY.EPIC),
-	Upgrade.new(Enum.UPGRADE.RANGE, Enum.UPGRADE_METHOD.ABSOLUTE, 1.2, Enum.RARITY.EPIC),
-	#Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.MULTIPLIER, 1.4, Enum.RARITY.EPIC),
-	Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 50, Enum.RARITY.EPIC),
-	Upgrade.new(Enum.UPGRADE.CRIT_CHANCE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.4, Enum.RARITY.EPIC),
-	
-	Upgrade.new(Enum.UPGRADE.PROJECTILE_AMOUNT, Enum.UPGRADE_METHOD.ABSOLUTE, 1, Enum.RARITY.EPIC),
-	Upgrade.new(Enum.UPGRADE.SIZE, Enum.UPGRADE_METHOD.ABSOLUTE, -0.25, Enum.RARITY.EPIC),
-]
-
 var anim_player: AnimationTree
 
 @onready var attack_spawner: EntitySpawner = $DefaultAttack/AttackSpawner
@@ -310,12 +271,6 @@ func remove_temporary_upgrade(upgrade: Upgrade) -> void:
 	if index < 0: return
 	array.remove_at(index)
 	check_upgrades_affecting_player(upgrade)
-
-
-func get_possible_upgrades() -> Array[Upgrade]:
-	var upgrades: Array[Upgrade] = [] # weapon.get_possible_upgrades().duplicate()
-	upgrades.append_array(possible_upgrades)
-	return upgrades
 
 func die():
 	dead = true

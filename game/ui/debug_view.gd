@@ -1,28 +1,19 @@
 extends CanvasLayer
 
-@onready var button_container: VBoxContainer = $Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer
+func show_upgrades():
+	get_tree().paused = true
 
-func show_upgrades(player: Player):
-	Engine.time_scale = 0
-	for child in button_container.get_children():
-		button_container.remove_child(child)
-		child.queue_free()
-	
-	var possible_upgrades = player.get_possible_upgrades()
-	for upgrade in possible_upgrades:
-		var btn: Button = Button.new()
-		btn.text = upgrade.to_string()
-		button_container.add_child(btn)
-		btn.pressed.connect(apply_upgrade.bind(upgrade, player))
-
+	%UpgradeTypeButton.clear()
+	for type in Enum.UPGRADE.values():
+		%UpgradeTypeButton.add_item(Enum.UPGRADE.keys()[type], type)
 	show()
 
-func apply_upgrade(upgrade: Upgrade, player: Player):
-	player.add_upgrade(upgrade)
+func apply_upgrade(upgrade: Upgrade):
+	Player.player.add_upgrade(upgrade)
 
 func enable():
 	show()
-	Engine.time_scale = 0
+	get_tree().paused = true
 
 func clear_eumlings():
 	Data.end_game()
@@ -46,7 +37,14 @@ func player_invulnerability(on: bool):
 
 func close():
 	hide()
-	Engine.time_scale = 1
+	get_tree().paused = false
 
 func set_lvl(lvl, difficulty):
 	$LevelLabel.text = lvl + " (" + str(difficulty) + ")"
+
+
+func _on_add_upgrade_button_pressed() -> void:
+	var type = find_child("UpgradeTypeButton").selected
+	var method = find_child("UpgradeMethodButton").selected
+	var value = find_child("UpgradeValueBox").value
+	apply_upgrade(Upgrade.new(type, method, value))

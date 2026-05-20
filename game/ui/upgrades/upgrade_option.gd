@@ -1,17 +1,19 @@
 extends TextureButton
 class_name UpgradeOption
 
-@onready var title: Label = %Title
-@onready var subtitle: Label = %Subtitle
-@onready var info: RichTextLabel = %Info
+@export var cards: Dictionary[Enum.EUMLING_TYPE, PackedScene] = {}
+const CARD_BASE = preload("uid://umtjixecg24")
+@export var textures: Dictionary[Enum.UPGRADE, Texture] = {}
 
 func setup(upgrade: Upgrade):
-	title.text = Enum.UPGRADE.keys()[upgrade.type]
-	subtitle.text = ""
+	var scene = cards.get(upgrade.path)
+	if not scene:
+		scene = CARD_BASE
+	var card: Node3D = scene.instantiate()
+	$SubViewport.add_child(card)
 
-	if upgrade.method == Enum.UPGRADE_METHOD.ABSOLUTE:
-		info.text = "+ " if upgrade.value > 0 else "- "
-	else:
-		info.text = "x "
-	info.text += str(upgrade.value)
-	%Panel.theme_type_variation = Enum.RARITY.keys()[upgrade.rarity]
+	card.find_child("Text").text = upgrade._to_string()
+
+	var texture = textures.get(upgrade.type)
+	if texture:
+		card.find_child("UpgradeImage").texture = texture

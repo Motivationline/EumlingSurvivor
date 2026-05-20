@@ -28,6 +28,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -874.0
+offset_bottom = -862.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -50,126 +51,73 @@ layout_mode = 2
 
 [node name="UpgradeLabel" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=752225134]
 layout_mode = 2
-text = "Upgrades"
+text = "Add Upgrade"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=122026695]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=736200833]
 layout_mode = 2
-size_flags_vertical = 3
 
-[node name="ButtonContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1993094547]
+[node name="UpgradeTypeButton" type="OptionButton" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=793411692]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 16
+selected = 1
+allow_reselect = true
+item_count = 15
+popup/item_0/text = "Player Stuff"
+popup/item_0/id = 10000
+popup/item_0/separator = true
+popup/item_1/text = "speed"
+popup/item_1/id = 0
+popup/item_2/text = "attack cd"
+popup/item_2/id = 1
+popup/item_3/text = "health"
+popup/item_3/id = 2
+popup/item_4/text = "health regen"
+popup/item_4/id = 3
+popup/item_5/text = "size"
+popup/item_5/id = 4
+popup/item_6/text = "Projectiles"
+popup/item_6/id = 10000
+popup/item_6/separator = true
+popup/item_7/text = "range"
+popup/item_7/id = 5
+popup/item_8/text = "damage"
+popup/item_8/id = 6
+popup/item_9/text = "proj. amount"
+popup/item_9/id = 7
+popup/item_10/text = "proj. speed"
+popup/item_10/id = 8
+popup/item_11/text = "proj. size"
+popup/item_11/id = 9
+popup/item_12/text = "proj. piercing"
+popup/item_12/id = 10
+popup/item_13/text = "crit chance"
+popup/item_13/id = 11
+popup/item_14/text = "crit dmg multi"
+popup/item_14/id = 12
 
-[node name="Button" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1792737596]
+[node name="UpgradeMethodButton" type="OptionButton" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1549116126]
 layout_mode = 2
-text = "Text"
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "+"
+popup/item_0/id = 0
+popup/item_1/text = "*"
+popup/item_1/id = 1
 
-[node name="Button4" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1777107495]
+[node name="UpgradeValueBox" type="SpinBox" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2102019443]
 layout_mode = 2
-text = "Text"
+max_value = 500.0
+step = 0.1
+value = 100.0
+alignment = 1
+select_all_on_focus = true
 
-[node name="Button5" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1102262951]
+[node name="AddUpgradeButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1058070589]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "Text"
-
-[node name="Button6" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=208176341]
-layout_mode = 2
-text = "Text"
-
-[node name="Button7" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=243098805]
-layout_mode = 2
-text = "Text"
-
-[node name="Button8" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1297387489]
-layout_mode = 2
-text = "Text"
-
-[node name="Button9" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=768777414]
-layout_mode = 2
-text = "Text"
-
-[node name="Button10" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=702297914]
-layout_mode = 2
-text = "Text"
-
-[node name="Button11" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=110669897]
-layout_mode = 2
-text = "Text"
-
-[node name="Button12" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1309790569]
-layout_mode = 2
-text = "Text"
-
-[node name="Button13" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=821076568]
-layout_mode = 2
-text = "Text"
-
-[node name="Button14" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=826482972]
-layout_mode = 2
-text = "Text"
-
-[node name="Button15" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=554879828]
-layout_mode = 2
-text = "Text"
-
-[node name="Button16" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=29048278]
-layout_mode = 2
-text = "Text"
-
-[node name="Button17" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=306872029]
-layout_mode = 2
-text = "Text"
-
-[node name="Button18" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=2088954078]
-layout_mode = 2
-text = "Text"
-
-[node name="Button19" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1125017527]
-layout_mode = 2
-text = "Text"
-
-[node name="Button20" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1149957530]
-layout_mode = 2
-text = "Text"
-
-[node name="Button21" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=165414269]
-layout_mode = 2
-text = "Text"
-
-[node name="Button22" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=606258717]
-layout_mode = 2
-text = "Text"
-
-[node name="Button23" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1280722294]
-layout_mode = 2
-text = "Text"
-
-[node name="Button24" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1231031990]
-layout_mode = 2
-text = "Text"
-
-[node name="Button25" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1435264260]
-layout_mode = 2
-text = "Text"
-
-[node name="Button26" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1661473890]
-layout_mode = 2
-text = "Text"
-
-[node name="Button27" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1827113088]
-layout_mode = 2
-text = "Text"
-
-[node name="Button2" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1195990763]
-layout_mode = 2
-text = "Text"
-
-[node name="Button3" type="Button" parent="Control/MarginContainer/VBoxContainer/ScrollContainer/ButtonContainer" unique_id=1131927480]
-layout_mode = 2
-text = "Text"
+text = "Add"
 
 [node name="MiniEumlings" type="Panel" parent="." unique_id=2129014659]
 anchors_preset = 3
@@ -327,6 +275,7 @@ theme_override_font_sizes/font_size = 24
 text = "VB01_D3"
 horizontal_alignment = 2
 
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/AddUpgradeButton" to="." method="_on_add_upgrade_button_pressed"]
 [connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/A" to="." method="add_eumling" binds= [0]]
 [connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/C" to="." method="add_eumling" binds= [1]]
 [connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/E" to="." method="add_eumling" binds= [2]]

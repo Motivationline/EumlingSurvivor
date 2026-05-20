@@ -14,10 +14,10 @@ func _process(_delta):
 func open():
 	visible = true
 	is_open = true
-	Engine.time_scale = 0
+	get_tree().paused = true
 	
 func close():
-	Engine.time_scale = 1
+	get_tree().paused = false
 	visible = false
 	is_open = false
 

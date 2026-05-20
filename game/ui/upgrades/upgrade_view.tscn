@@ -3,7 +3,17 @@
 [ext_resource type="Script" uid="uid://clewmwfe2bmum" path="res://game/ui/upgrades/upgrade_view.gd" id="1_qclys"]
 [ext_resource type="PackedScene" uid="uid://b8nr8s04nxds6" path="res://game/ui/upgrades/upgrade_option.tscn" id="2_264sj"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_264sj"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_35ekj"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rh15r"]
+viewport_path = NodePath("SubViewport")
+
 [node name="UpgradeView" type="CanvasLayer" unique_id=170594717]
+process_mode = 2
 script = ExtResource("1_qclys")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1190492386]
@@ -19,15 +29,22 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="UpgradeContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1058302816]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer" unique_id=425324951]
+layout_mode = 2
+
+[node name="UpgradeContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer" unique_id=1058302816]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="UpgradeOption" parent="MarginContainer/UpgradeContainer" unique_id=1866871251 instance=ExtResource("2_264sj")]
+[node name="UpgradeOption" parent="MarginContainer/CenterContainer/UpgradeContainer" unique_id=1866871251 instance=ExtResource("2_264sj")]
 layout_mode = 2
+texture_normal = SubResource("ViewportTexture_264sj")
 
-[node name="UpgradeOption2" parent="MarginContainer/UpgradeContainer" unique_id=461538500 instance=ExtResource("2_264sj")]
+[node name="UpgradeOption2" parent="MarginContainer/CenterContainer/UpgradeContainer" unique_id=461538500 instance=ExtResource("2_264sj")]
 layout_mode = 2
+texture_normal = SubResource("ViewportTexture_35ekj")
 
-[node name="UpgradeOption3" parent="MarginContainer/UpgradeContainer" unique_id=1925201768 instance=ExtResource("2_264sj")]
+[node name="UpgradeOption3" parent="MarginContainer/CenterContainer/UpgradeContainer" unique_id=1925201768 instance=ExtResource("2_264sj")]
 layout_mode = 2
+texture_normal = SubResource("ViewportTexture_rh15r")

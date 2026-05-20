@@ -1,111 +1,35 @@
 [gd_scene format=3 uid="uid://b8nr8s04nxds6"]
 
 [ext_resource type="Script" uid="uid://dvyxtca55nu2m" path="res://game/ui/upgrades/upgrade_option.gd" id="1_2fcc3"]
-[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/rectangleStickerButtonFocused.png" id="1_n3f7s"]
-[ext_resource type="Texture2D" uid="uid://c6ey6sobnbhsr" path="res://assets/ui/SketchBanner.png" id="2_kej5l"]
-[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="3_kej5l"]
-[ext_resource type="Texture2D" uid="uid://ch2myxg4naytd" path="res://assets/ui/CircleUpgrades.png" id="4_kej5l"]
+[ext_resource type="PackedScene" uid="uid://blukgt3vtnixi" path="res://game/ui/upgrades/cards/card_social.tscn" id="4_kej5l"]
+[ext_resource type="Texture2D" uid="uid://h5kxhyqayvrf" path="res://assets/ui/UpgradeCards/Icons/HealthIcon.png" id="4_n3f7s"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kej5l"]
+viewport_path = NodePath("SubViewport")
 
 [node name="UpgradeOption" type="TextureButton" unique_id=984426230]
-custom_minimum_size = Vector2(500, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+custom_minimum_size = Vector2(512, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -400.0
+offset_right = 256.0
+offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_focused = ExtResource("1_n3f7s")
+texture_normal = SubResource("ViewportTexture_kej5l")
 script = ExtResource("1_2fcc3")
+cards = Dictionary[int, PackedScene]({
+5: ExtResource("4_kej5l")
+})
+textures = Dictionary[int, Texture]({
+2: ExtResource("4_n3f7s")
+})
 
-[node name="Panel" type="PanelContainer" parent="." unique_id=161515549]
-unique_name_in_owner = true
-z_index = -2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=1750842051]
-custom_minimum_size = Vector2(300, 400)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_kej5l")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="Title" type="Label" parent="Panel/TextureRect" unique_id=792137079]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -187.0
-offset_right = 36.0
-offset_bottom = -143.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_kej5l")
-theme_override_font_sizes/font_size = 16
-text = "Title"
-horizontal_alignment = 1
-
-[node name="Circle" type="TextureRect" parent="Panel/TextureRect" unique_id=853578645]
-layout_mode = 0
-offset_left = 210.0
-offset_top = 36.999996
-offset_right = 2294.0
-offset_bottom = 2121.0
-scale = Vector2(0.031469733, 0.031469733)
-texture = ExtResource("4_kej5l")
-
-[node name="Subtitle" type="Label" parent="Panel/TextureRect" unique_id=1959583506]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -85.0
-offset_top = -145.0
-offset_right = -10.0
-offset_bottom = -115.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_kej5l")
-theme_override_font_sizes/font_size = 18
-text = "Subtitle"
-horizontal_alignment = 1
-
-[node name="Info" type="RichTextLabel" parent="Panel/TextureRect" unique_id=391013930]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -341.0
-offset_right = 196.0
-offset_bottom = -252.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_kej5l")
-theme_override_font_sizes/normal_font_size = 15
-text = "+ 50% 
-"
-fit_content = true
-horizontal_alignment = 1
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1778329793]
+own_world_3d = true
+transparent_bg = true
+size = Vector2i(512, 800)
