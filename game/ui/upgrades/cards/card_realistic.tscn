@@ -1,9 +1,32 @@
 [gd_scene format=3 uid="uid://rdf8xtn48aek"]
 
 [ext_resource type="PackedScene" uid="uid://umtjixecg24" path="res://game/ui/upgrades/cards/card_base.tscn" id="1_j4noy"]
-[ext_resource type="Texture2D" uid="uid://dhyu5oti8o6o5" path="res://assets/ui/UpgradeCards/Rock/RockCardBackdrop.png" id="2_f2hw0"]
+[ext_resource type="Texture2D" uid="uid://bqcncd826l2sn" path="res://assets/ui/UpgradeCards/Rock/rock_card_backdrop.png" id="2_yb53i"]
+[ext_resource type="Texture2D" uid="uid://c0fl5u40igskm" path="res://assets/ui/UpgradeCards/Rock/rock_card_marker.png" id="3_u4d0o"]
+[ext_resource type="Texture2D" uid="uid://dr3tbkd21tgk2" path="res://assets/ui/UpgradeCards/Rock/rock_card_first_layer.png" id="4_eh7ok"]
+[ext_resource type="Texture2D" uid="uid://qixpm41q75af" path="res://assets/ui/UpgradeCards/Rock/rock_card_second_layer.png" id="5_k751r"]
+[ext_resource type="Texture2D" uid="uid://0n8i4rssoy03" path="res://assets/ui/UpgradeCards/Rock/rock_card_third_layer.png" id="6_hnhrf"]
 
 [node name="Upgrade Card" unique_id=1666743961 instance=ExtResource("1_j4noy")]
 
 [node name="CardBack" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="0" unique_id=122314553]
-texture = ExtResource("2_f2hw0")
+texture = ExtResource("2_yb53i")
+
+[node name="Tag" parent="Card/CardBack" index="0" unique_id=1896575900]
+sorting_offset = 15.0
+texture = ExtResource("3_u4d0o")
+
+[node name="Sprite3D" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="0" unique_id=1052436196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25656453, 1.0593611, 0.037682373)
+sorting_offset = 5.0
+texture = ExtResource("4_eh7ok")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="1" unique_id=558297856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024885755, -0.021817148, 0.17198466)
+sorting_offset = 5.0
+texture = ExtResource("5_k751r")
+
+[node name="Sprite3D3" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="2" unique_id=142617368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024889115, -0.021811776, 0.31961346)
+sorting_offset = 5.0
+texture = ExtResource("6_hnhrf")
