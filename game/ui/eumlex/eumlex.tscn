@@ -13,7 +13,6 @@
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="10_amahl"]
 [ext_resource type="PackedScene" uid="uid://b6vj3geh4ibvg" path="res://game/ui/eumlex/eumling_button/eumlex_button.tscn" id="11_w24f0"]
 [ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="12_ikcm3"]
-[ext_resource type="PackedScene" uid="uid://blukgt3vtnixi" path="res://game/ui/upgrades/cards/card_social.tscn" id="14_orh8k"]
 
 [node name="Eumlex" type="Control" unique_id=718152536 node_paths=PackedStringArray("tabs_and_containers", "eumling_type_and_container")]
 layout_mode = 3
@@ -769,30 +768,6 @@ offset_right = 1880.0
 offset_bottom = 118.0
 grow_horizontal = 0
 text = "Close X"
-
-[node name="TEMP upgrade viewport" type="SubViewportContainer" parent="Book" unique_id=2141411996]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 23.675
-anchor_top = 8.3625
-anchor_right = 23.675
-anchor_bottom = 21.1625
-offset_left = -256.0
-offset_top = -204.5
-offset_right = 281.375
-offset_bottom = 272.89
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="SubViewport" type="SubViewport" parent="Book/TEMP upgrade viewport" unique_id=2037433593]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(791, 921)
-render_target_update_mode = 4
-
-[node name="Upgrade Card" parent="Book/TEMP upgrade viewport/SubViewport" unique_id=1666743961 instance=ExtResource("14_orh8k")]
-transform = Transform3D(0.98089004, -0.008876737, -0.19436033, -0.019000063, 0.98981375, -0.14109509, 0.19363298, 0.14209162, 0.97072977, 0, 0.1, 0)
 
 [connection signal="pressed" from="Book/TabPanel/OrangeButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/GreenButton" to="." method="_on_tab_pressed" flags=18]
