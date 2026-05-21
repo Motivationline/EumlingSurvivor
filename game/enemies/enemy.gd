@@ -31,6 +31,8 @@ class_name Enemy
 @export var status_visuals: StatusVisualsEnemy
 @export var hitbox: HitBox
 @export var hurtbox: HurtBox
+@export var additional_hurtboxes: Array[HurtBox]
+@export var additional_hitboxes: Array[HitBox]
 
 @export_category("Event Listeners")
 @export var on_death: Array[EventStrategy]
@@ -67,7 +69,11 @@ func _ready() -> void:
 	max_health = health
 	if (status_visuals): status_visuals.init_health(max_health)
 	if (hitbox): hitbox.hit.connect(_hit)
+	for box in additional_hitboxes:
+		box.hit.connect(_hit)
 	if (hurtbox): hurtbox.hurt_by.connect(_hurt_by)
+	for box in additional_hurtboxes:
+		box.hurt_by.connect(_hurt_by)
 
 	animation_tree = Utils.find_first_animation_tree(node_with_animation_tree if (node_with_animation_tree) else self )
 
