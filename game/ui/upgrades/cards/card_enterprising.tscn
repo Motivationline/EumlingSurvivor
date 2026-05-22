@@ -1,9 +1,67 @@
 [gd_scene format=3 uid="uid://c1lhne4jd4sy5"]
 
 [ext_resource type="PackedScene" uid="uid://umtjixecg24" path="res://game/ui/upgrades/cards/card_base.tscn" id="1_1k86v"]
-[ext_resource type="Texture2D" uid="uid://c8x5x0c5ooh3c" path="res://assets/ui/UpgradeCards/Beach/BeachCardBackdrop.png" id="2_1nsfd"]
+[ext_resource type="Texture2D" uid="uid://c81v08jbr1i0" path="res://assets/ui/UpgradeCards/Beach/beach_card_backdrop.png" id="2_1tbov"]
+[ext_resource type="Texture2D" uid="uid://da2650wk0rd6" path="res://assets/ui/UpgradeCards/Beach/beach_card_marker.png" id="3_okeb2"]
+[ext_resource type="Texture2D" uid="uid://cluy2ml21d5xe" path="res://assets/ui/UpgradeCards/Beach/beach_card_sand.png" id="4_5swj1"]
+[ext_resource type="Texture2D" uid="uid://vlsk5fy00eye" path="res://assets/ui/UpgradeCards/Beach/beach_card_clutter.png" id="5_n2w4t"]
+[ext_resource type="Texture2D" uid="uid://baupvhc5hyqo" path="res://assets/ui/UpgradeCards/Beach/beach_card_wave1.png" id="6_nhc33"]
+[ext_resource type="Texture2D" uid="uid://clqai0ue8ohlx" path="res://assets/ui/UpgradeCards/Beach/beach_card_wave2.png" id="7_bhsxg"]
+[ext_resource type="Texture2D" uid="uid://xotmha2cqtlo" path="res://assets/ui/UpgradeCards/Beach/beach_card_stones.png" id="8_eri1x"]
+[ext_resource type="Texture2D" uid="uid://di0n1ojixib7m" path="res://assets/ui/UpgradeCards/Beach/beach_card_trunk.png" id="9_8lbmu"]
+[ext_resource type="Texture2D" uid="uid://b1tw22uibua7d" path="res://assets/ui/UpgradeCards/Beach/beach_card_upper_palm.png" id="10_ml360"]
+[ext_resource type="Texture2D" uid="uid://cb2g3iqe2hpkd" path="res://assets/ui/UpgradeCards/Beach/beach_card_lower_palm.png" id="11_t3xym"]
+[ext_resource type="Texture2D" uid="uid://5lrpdoyq2a8h" path="res://assets/ui/UpgradeCards/Beach/beach_card_tracker.png" id="12_1pp0w"]
 
 [node name="Upgrade Card" unique_id=1666743961 instance=ExtResource("1_1k86v")]
 
 [node name="CardBack" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="0" unique_id=122314553]
-texture = ExtResource("2_1nsfd")
+texture = ExtResource("2_1tbov")
+
+[node name="Tag" parent="Card/CardBack" index="0" unique_id=1896575900]
+sorting_offset = 10.0
+texture = ExtResource("3_okeb2")
+
+[node name="Sand" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="0" unique_id=16277200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09831357, -1.6064485, 5.621966e-05)
+sorting_offset = 3.0
+texture = ExtResource("4_5swj1")
+
+[node name="SandClutter" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="1" unique_id=684965478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054912947, -1.590118, 0.09860037)
+sorting_offset = 5.0
+texture = ExtResource("5_n2w4t")
+
+[node name="Water" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="2" unique_id=2095589203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008645017, 0.79784405, 0.085542455)
+sorting_offset = 5.0
+texture = ExtResource("6_nhc33")
+
+[node name="Water2" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="3" unique_id=1656079112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008643343, 2.1189713, 0.15904175)
+sorting_offset = 7.0
+texture = ExtResource("7_bhsxg")
+
+[node name="Rocks" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="4" unique_id=1931793784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3823475, 1.5926273, 0.14957081)
+sorting_offset = 10.0
+texture = ExtResource("8_eri1x")
+
+[node name="Trunks" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="5" unique_id=1818185518]
+transform = Transform3D(0.9168999, 1.4523423e-05, 0.39911717, -1.452342e-05, 1, -3.023917e-06, -0.39911717, -3.023917e-06, 0.9168999, 1.4457321, -0.54432595, 0.22851492)
+sorting_offset = 10.0
+texture = ExtResource("9_8lbmu")
+
+[node name="Upper Palm" type="Sprite3D" parent="Card/Visuals/Trunks" index="0" unique_id=1216228342]
+transform = Transform3D(0.9924544, -4.4617927e-06, -0.122614324, 4.461801e-06, 1, -2.745801e-07, 0.122614324, -2.7457645e-07, 0.9924544, 0.30606687, 1.1773117, 0.031000435)
+sorting_offset = 12.0
+texture = ExtResource("10_ml360")
+
+[node name="Lower Palm" type="Sprite3D" parent="Card/Visuals/Trunks" index="1" unique_id=150160164]
+transform = Transform3D(0.92467254, -1.3855568e-05, -0.38076395, 1.3855572e-05, 1, -2.741086e-06, 0.38076395, -2.7410824e-06, 0.92467254, -0.49742442, -0.2069732, 0.017443538)
+sorting_offset = 14.0
+texture = ExtResource("11_t3xym")
+
+[node name="Tracker" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="4" unique_id=413882802]
+visible = true
+texture = ExtResource("12_1pp0w")
