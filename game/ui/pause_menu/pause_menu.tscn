@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/start_screen/graphics_settings.tscn" id="7_w53bu"]
 [ext_resource type="Theme" uid="uid://u1iy4y0s7n01" path="res://assets/ui/base_theme.tres" id="8_r6stv"]
 [ext_resource type="Texture2D" uid="uid://dslle4mecxwob" path="res://assets/ui/Buttons/SliderKnobLiane.png" id="9_m315g"]
+[ext_resource type="Script" uid="uid://ch5ysq2vooxck" path="res://game/ui/pause_menu/sound_settings.gd" id="9_utddp"]
 [ext_resource type="Texture2D" uid="uid://bsh5cti8q2hqs" path="res://assets/ui/pauseMenu/PaperRectangleInfo.png" id="10_6rxva"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5f4c"]
@@ -134,6 +135,9 @@ grow_vertical = 1
 
 [node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=288030327]
 layout_mode = 2
+script = ExtResource("9_utddp")
+vol_min = -30.0
+vol_max = 2.0
 metadata/_tab_index = 1
 
 [node name="SliderContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound" unique_id=469909064]
@@ -156,6 +160,7 @@ layout_mode = 2
 theme = ExtResource("8_r6stv")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_x5f4c")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p4w6n")
+value = 100.0
 
 [node name="SFXContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound/SliderContainer" unique_id=1330793806]
 layout_mode = 2
@@ -169,6 +174,7 @@ layout_mode = 2
 theme = ExtResource("8_r6stv")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_x5f4c")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p4w6n")
+value = 100.0
 
 [node name="AmbienceContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound/SliderContainer" unique_id=2139129672]
 layout_mode = 2
@@ -182,6 +188,7 @@ layout_mode = 2
 theme = ExtResource("8_r6stv")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_x5f4c")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p4w6n")
+value = 100.0
 
 [node name="InfoEumling" type="TextureRect" parent="." unique_id=686867953]
 visible = false
@@ -199,3 +206,6 @@ grow_vertical = 2
 texture = ExtResource("10_6rxva")
 
 [connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_resume_button_pressed"]
+[connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/MusicContainer/MusicSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Music"]]
+[connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/SFXContainer/SFXSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" flags=3 binds= ["SFX"]]
+[connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/AmbienceContainer/AmbienceSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Ambience"]]

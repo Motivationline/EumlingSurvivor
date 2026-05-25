@@ -33,6 +33,7 @@ func _ready():
 	add_child(env_noise_player)
 
 
+
 func fade_bus_volume(_bus_id:BUS_ID, _duration:float, _target_db:float = 30, _to_init_volume:bool = false) -> void:
 	for tween in active_tweens:
 		if tween.has(_bus_id):
@@ -62,11 +63,10 @@ func fade_player_volume(_duration:float, _target_volume_db:float = -60, _player:
 	var tween = get_tree().create_tween()
 	
 	active_tweens.append([TWEEN_TYPES.PLAYER_FADE, tween, _player])
-	
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.set_ignore_time_scale(true)
 	tween.tween_property(_player, "volume_db", _target_volume_db, _duration)
-	
-	await tween.finished
+	await  tween.finished
 	active_tweens.erase([TWEEN_TYPES.PLAYER_FADE, tween, _player])
 	
 	if _stop:
