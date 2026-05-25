@@ -9,6 +9,8 @@ class_name FollowPathState
 ## When true, the Entity will begin the path from the start after reaching the end.
 ## The 'Curve > Closed' option on the Path3D node can be used to close the path. 
 @export var loop_path: bool = false
+## Whether the entity should return to the path when it is off the path
+@export var return_to_path: bool = false
 
 @export_group("Overrides")
 ## Movement Speed Override
@@ -45,15 +47,20 @@ func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree) -
 	path_length = path.curve.get_baked_length()
 
 func exit() -> void:
-	done = false
+	done = !return_to_path
 
-func handle_path_end_reached(progress: float, future_progress: float, delta_speed: float) -> float:
+func handle_off_path(progress: float, delta_speed: float) -> bool:
+	var path_position: Vector3 = path.curve.sample_baked(progress)
+	var distance_to_path: float = parent.global_position.distance_to(path_position)
+	var is_off_path: bool = delta_speed < distance_to_path
+	done = is_off_path and not return_to_path
+	return is_off_path
+
+func handle_path_end_reached(future_progress: float, is_off_path: bool) -> float:
 	if loop_path:
 		return fposmod(future_progress, path_length)
 
-	var path_position: Vector3 = path.curve.sample_baked(progress)
-	# Check if the Entity is off the path
-	if delta_speed < parent.global_position.distance_to(path_position):
+	if is_off_path:
 		return 0.0
 	
 	done = true
@@ -62,13 +69,17 @@ func handle_path_end_reached(progress: float, future_progress: float, delta_spee
 func physics_process(delta: float) -> State:
 	if done: return return_next()
 
-	var progress: float = path.curve.get_closest_offset(parent.global_position)
 	var speed: float = speed_override if speed_override_active else parent.speed
-	var future_progress: float = progress + (speed * delta)
+	var delta_speed: float = speed * delta
+
+	var progress: float = path.curve.get_closest_offset(parent.global_position)
+	var future_progress: float = progress + delta_speed
+
+	var is_off_path: bool = handle_off_path(progress, delta_speed)
 
 	# Check whether the Entity will reach the path end in the next movement step.
 	if future_progress > path_length:
-		future_progress = handle_path_end_reached(progress, future_progress, speed * delta)
+		future_progress = handle_path_end_reached(future_progress, is_off_path)
 
 	var next_path_position: Vector3 = path.curve.sample_baked(future_progress)
 	var direction: Vector3 = (next_path_position - parent.global_position).normalized()
