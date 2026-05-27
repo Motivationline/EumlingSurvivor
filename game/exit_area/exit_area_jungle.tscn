@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_3.wav" id="7_dmamu"]
 [ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_4.wav" id="8_vofq4"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="9_2dq3v"]
+[ext_resource type="PackedScene" uid="uid://evy0ia65qqxd" path="res://assets/models/3-Jungle/portal/jungle_portal.tscn" id="11_xs662"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tkqdu"]
 size = Vector3(0.42266846, 2.0351563, 3.0703125)
@@ -335,6 +336,7 @@ script = ExtResource("1_47e78")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Visuals" unique_id=254269420]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4179616, 0.48671263)
+visible = false
 light_color = Color(0.04574851, 0.7896275, 0.9562871, 1)
 light_energy = 16.0
 light_cull_mask = 4294967293
@@ -342,6 +344,7 @@ omni_range = 1.6048713
 
 [node name="exit_trunk" parent="Visuals" unique_id=990160335 instance=ExtResource("1_tkqdu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+visible = false
 
 [node name="Plane_010" parent="Visuals/exit_trunk" index="13"]
 transform = Transform3D(0.050194215, 0.62315506, 0.058808398, 0.6163057, -0.059507128, 0.10452913, 0.1093068, 0.049363825, -0.6163728, 0.95282936, 2.2474284, 0.2198565)
@@ -363,6 +366,7 @@ debug_fill = false
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Visuals" unique_id=577576927]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7885388, 1.3295255)
+visible = false
 light_color = Color(1, 0.88449997, 0.00999999, 1)
 light_energy = 4.0
 light_cull_mask = 4294967293
@@ -370,18 +374,23 @@ omni_range = 4.115
 
 [node name="JunglePlant" parent="Visuals" unique_id=123814271 instance=ExtResource("3_2dq3v")]
 transform = Transform3D(0.99946, 0, 0.032858633, 0, 1, 0, -0.032858633, 0, 0.99946, 0.29344296, 0, 0)
+visible = false
 
 [node name="JunglePlant2" parent="Visuals" unique_id=1419015610 instance=ExtResource("3_2dq3v")]
 transform = Transform3D(0.25375795, 0, -0.9672679, 0, 1, 0, 0.9672679, 0, 0.25375795, -0.49513775, 0, 0.2647171)
+visible = false
 
 [node name="JunglePlant3" parent="Visuals" unique_id=1951565834 instance=ExtResource("3_2dq3v")]
 transform = Transform3D(0.6853991, 0, -0.7281678, 0, 1, 0, 0.7281678, 0, 0.6853991, -0.38667923, 0, -0.41687965)
+visible = false
 
 [node name="JunglePlant4" parent="Visuals" unique_id=454840572 instance=ExtResource("3_2dq3v")]
 transform = Transform3D(0.6853991, 0, -0.7281678, 0, 1, 0, 0.7281678, 0, 0.6853991, 0.15533364, 0, -0.78194547)
+visible = false
 
 [node name="JunglePlant5" parent="Visuals" unique_id=71019003 instance=ExtResource("3_2dq3v")]
 transform = Transform3D(-0.98707485, 0, 0.16026026, 0, 1, 0, -0.16026026, 0, -0.98707485, 0.1505773, 0, 0.6289953)
+visible = false
 
 [node name="RightWall" type="StaticBody3D" parent="." unique_id=1710607827]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
@@ -426,5 +435,8 @@ stream = SubResource("AudioStreamRandomizer_mu12n")
 panning_strength = 2.0
 bus = &"SFXAll"
 attenuation_filter_cutoff_hz = 20500.0
+
+[node name="jungle_portal" parent="." unique_id=497232731 instance=ExtResource("11_xs662")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0.34559464)
 
 [editable path="Visuals/exit_trunk"]

@@ -1,5 +1,86 @@
 [gd_scene format=3 uid="uid://c7md2py1oape0"]
 
 [ext_resource type="PackedScene" uid="uid://bg88l5f3d5lob" path="res://assets/models/5-beach/portal/portal_beach_e.glb" id="1_5o3oe"]
+[ext_resource type="Texture2D" uid="uid://xhwkbpsdwste" path="res://assets/vfx/portal/vornoi.png" id="2_o0hng"]
+[ext_resource type="ArrayMesh" uid="uid://hs3i7abs8hm0" path="res://assets/vfx/portal/portal_mesh.res" id="3_k0l21"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_2ngya"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeUVPolarCoord" id="VisualShaderNodeUVPolarCoord_4mvmk"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_j5vvg"]
+parameter_name = "Texture2DParameter"
+texture_filter = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_efre5"]
+load_path = "res://.godot/imported/vornoi.png-5dc2e4dbed4ed9bb521751dcdd62d3af.s3tc.ctex"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_u3c1v"]
+source = 5
+texture = SubResource("CompressedTexture2D_efre5")
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_so4dy"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_gaq3p"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(-0.25, -0.3)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_h8q3c"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_cg12f"]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+default_value = Color(0, 0.50999993, 0.85, 1)
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_k4egu"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_20mey"]
+parameter_name = "Glow"
+default_value_enabled = true
+default_value = 3.0
+
+[sub_resource type="VisualShader" id="VisualShader_vd4h8"]
+flags/unshaded = true
+nodes/fragment/0/position = Vector2(660, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_u3c1v")
+nodes/fragment/2/position = Vector2(-60, 20)
+nodes/fragment/3/node = SubResource("VisualShaderNodeUVFunc_so4dy")
+nodes/fragment/3/position = Vector2(-500, 20)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVectorOp_gaq3p")
+nodes/fragment/5/position = Vector2(-1260, 300)
+nodes/fragment/6/node = SubResource("VisualShaderNodeInput_h8q3c")
+nodes/fragment/6/position = Vector2(-1540, 340)
+nodes/fragment/7/node = SubResource("VisualShaderNodeColorParameter_cg12f")
+nodes/fragment/7/position = Vector2(-160, -200)
+nodes/fragment/8/node = SubResource("VisualShaderNodeVectorOp_k4egu")
+nodes/fragment/8/position = Vector2(440, -40)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatParameter_20mey")
+nodes/fragment/9/position = Vector2(-180, -420)
+nodes/fragment/10/node = SubResource("VisualShaderNodeVectorOp_2ngya")
+nodes/fragment/10/position = Vector2(200, -140)
+nodes/fragment/14/node = SubResource("VisualShaderNodeUVPolarCoord_4mvmk")
+nodes/fragment/14/position = Vector2(-1060, 20)
+nodes/fragment/15/node = SubResource("VisualShaderNodeTexture2DParameter_j5vvg")
+nodes/fragment/15/position = Vector2(-520, 280)
+nodes/fragment/connections = PackedInt32Array(6, 0, 5, 0, 14, 0, 3, 0, 3, 0, 2, 0, 5, 0, 3, 2, 15, 0, 2, 2, 10, 0, 8, 0, 8, 0, 0, 0, 2, 0, 8, 1, 9, 0, 10, 0, 7, 0, 10, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ilrcl"]
+render_priority = 0
+shader = SubResource("VisualShader_vd4h8")
+shader_parameter/Glow = 2.835
+shader_parameter/ColorParameter = Color(0.00999999, 0.472, 1, 1)
+shader_parameter/Texture2DParameter = ExtResource("2_o0hng")
 
 [node name="portal_beach_e" unique_id=505945989 instance=ExtResource("1_5o3oe")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=2033948973]
+material_override = SubResource("ShaderMaterial_ilrcl")
+mesh = ExtResource("3_k0l21")

@@ -1,8 +1,6 @@
-[gd_scene format=3 uid="uid://c3bvauu8wx1kr"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cx6vry0qh87n0"]
 
-[ext_resource type="PackedScene" uid="uid://bxpogqajum68j" path="res://assets/models/6-volcano/portal/portal_volcano_c.glb" id="1_wi6yw"]
-[ext_resource type="Texture2D" uid="uid://xhwkbpsdwste" path="res://assets/vfx/portal/vornoi.png" id="2_42ssq"]
-[ext_resource type="ArrayMesh" uid="uid://hs3i7abs8hm0" path="res://assets/vfx/portal/portal_mesh.res" id="3_jwrbh"]
+[ext_resource type="Texture2D" uid="uid://xhwkbpsdwste" path="res://assets/vfx/portal/vornoi.png" id="2_4mvmk"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_2ngya"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
@@ -72,15 +70,9 @@ nodes/fragment/15/node = SubResource("VisualShaderNodeTexture2DParameter_j5vvg")
 nodes/fragment/15/position = Vector2(-520, 280)
 nodes/fragment/connections = PackedInt32Array(6, 0, 5, 0, 14, 0, 3, 0, 3, 0, 2, 0, 5, 0, 3, 2, 15, 0, 2, 2, 10, 0, 8, 0, 8, 0, 0, 0, 2, 0, 8, 1, 9, 0, 10, 0, 7, 0, 10, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qqie1"]
+[resource]
 render_priority = 0
 shader = SubResource("VisualShader_vd4h8")
 shader_parameter/Glow = 2.835
-shader_parameter/ColorParameter = Color(0.74, 0.29599997, 0.14799999, 1)
-shader_parameter/Texture2DParameter = ExtResource("2_42ssq")
-
-[node name="portal_volcano_c" unique_id=1276548338 instance=ExtResource("1_wi6yw")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=1553474290]
-material_override = SubResource("ShaderMaterial_qqie1")
-mesh = ExtResource("3_jwrbh")
+shader_parameter/ColorParameter = Color(0.15082031, 0.33949047, 0.7360197, 1)
+shader_parameter/Texture2DParameter = ExtResource("2_4mvmk")
