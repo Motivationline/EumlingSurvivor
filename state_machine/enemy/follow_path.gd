@@ -4,11 +4,23 @@ extends State
 ## Moves the Entity along a specified Path3D node.
 class_name FollowPathState
 
+enum PathEndBehavior {
+	## Go to the next state.
+	EXIT,
+	## Begin the path again.
+	LOOP,
+	## Walk the path backwards.
+	REVERSE,
+}
+
 ## Name of the Path3D node to follow. The Path3D node must be a child of a Paths node, which in turn must be a child of the Level node.
 @export var path_name: String = ""
-## When true, the Entity will begin the path from the start after reaching the end.
-## The 'Curve > Closed' option on the Path3D node can be used to close the path. 
-@export var loop_path: bool = false
+## What the Entity will do after reaching the path end.
+@export var path_end_behavior: PathEndBehavior = PathEndBehavior.EXIT
+## The amount of time to stay on the path. Goes to the next state after running out. Will never run out if negative.
+@export var exit_time: float = -1.0
+## Walk the path backwards.
+@export var reverse: bool = false
 ## Whether the entity should return to the path when it is off the path
 @export var return_to_path: bool = false
 
@@ -23,6 +35,8 @@ class_name FollowPathState
 
 var path: Path3D
 var path_length: float
+var progress: float
+var timer: SceneTreeTimer
 var done: bool = false
 
 func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree) -> void:
@@ -46,42 +60,72 @@ func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree) -
 
 	path_length = path.curve.get_baked_length()
 
-func exit() -> void:
-	done = !return_to_path
+func enter() -> void:
+	super()
+	
+	if exit_time >= 0.0:
+		timer = get_tree().create_timer(exit_time)
+		timer.timeout.connect(handle_timeout)
 
-func handle_off_path(progress: float, delta_speed: float) -> bool:
+	progress = path.curve.get_closest_offset(parent.global_position)
+	if progress == 0.0 and reverse: progress = path_length
+
+
+func exit() -> void:
+	super()
+
+	if timer and timer.timeout.is_connected(handle_timeout):
+		timer.timeout.disconnect(handle_timeout)
+
+	done = not return_to_path
+
+func handle_timeout() -> void:
+	done = true
+
+func is_off_path(delta_speed: float) -> float:
 	var path_position: Vector3 = path.curve.sample_baked(progress)
 	var distance_to_path: float = parent.global_position.distance_to(path_position)
-	var is_off_path: bool = delta_speed < distance_to_path
-	done = is_off_path and not return_to_path
-	return is_off_path
+	return delta_speed < distance_to_path
 
-func handle_path_end_reached(future_progress: float, is_off_path: bool) -> float:
-	if loop_path:
-		return fposmod(future_progress, path_length)
+func handle_off_path() -> float:
+	if not return_to_path:
+		done = true
+		return progress
 
-	if is_off_path:
+	if progress == 0.0 and reverse:
+		return path_length
+	if progress == path_length and not reverse:
 		return 0.0
+	return progress
+
+func get_future_progress(delta_speed: float) -> float:
+	if is_off_path(delta_speed):
+		return handle_off_path()
+
+	var future_progress: float = progress - delta_speed if reverse else progress + delta_speed
+
+	if future_progress <= path_length and future_progress >= 0.0:
+		return future_progress
 	
-	done = true
-	return path_length
+	match path_end_behavior:
+		PathEndBehavior.LOOP:
+			return fposmod(future_progress, path_length)
+		PathEndBehavior.REVERSE:
+			reverse = not reverse
+		PathEndBehavior.EXIT:
+			done = true
 
-func physics_process(delta: float) -> State:
-	if done: return return_next()
+	return 0.0 if future_progress < 0.0 else path_length
 
+func physics_process(delta: float) -> State:	
 	var speed: float = speed_override if speed_override_active else parent.speed
 	var delta_speed: float = speed * delta
 
-	var progress: float = path.curve.get_closest_offset(parent.global_position)
-	var future_progress: float = progress + delta_speed
+	progress = get_future_progress(delta_speed)
 
-	var is_off_path: bool = handle_off_path(progress, delta_speed)
+	if done: return return_next()
 
-	# Check whether the Entity will reach the path end in the next movement step.
-	if future_progress > path_length:
-		future_progress = handle_path_end_reached(future_progress, is_off_path)
-
-	var next_path_position: Vector3 = path.curve.sample_baked(future_progress)
+	var next_path_position: Vector3 = path.curve.sample_baked(progress)
 	var direction: Vector3 = (next_path_position - parent.global_position).normalized()
 
 	parent.velocity = direction * speed
