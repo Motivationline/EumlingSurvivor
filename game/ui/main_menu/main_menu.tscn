@@ -15,6 +15,14 @@
 [ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="12_lnduv"]
 [ext_resource type="Texture2D" uid="uid://balp1dnlnfddm" path="res://assets/ui/Buttons/ButtonSettings.png" id="13_0bhyy"]
 
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_egypv"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 18.51
+dof_blur_far_transition = 10.0
+dof_blur_near_enabled = true
+dof_blur_near_distance = 3.0
+dof_blur_amount = 0.05
+
 [sub_resource type="Animation" id="Animation_x7xh0"]
 length = 0.001
 tracks/0/type = "value"
@@ -83,6 +91,7 @@ script = ExtResource("1_2ww3u")
 
 [node name="Camera3D" type="Camera3D" parent="Anchor" unique_id=1004034311]
 transform = Transform3D(-0.9875789, 0, 0.15712403, 0, 1, 0, -0.15712403, 0, -0.98757887, -0.45651042, 0.7411723, -5.47697)
+attributes = SubResource("CameraAttributesPractical_egypv")
 fov = 35.0
 size = 2.3674734
 

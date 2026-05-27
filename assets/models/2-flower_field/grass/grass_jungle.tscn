@@ -1,6 +1,7 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://5ofe8r71twl1"]
+[gd_scene format=3 uid="uid://bmxln4cinhvl3"]
 
-[ext_resource type="Shader" uid="uid://bojk1vuqb7sj4" path="res://assets/models/2-flower_field/grass/grass_field/grass_field_shader.gdshader" id="1_6aae2"]
+[ext_resource type="PackedScene" uid="uid://c8s2in3x4npqc" path="res://assets/models/2-flower_field/grass/grass__v_2.tscn" id="1_vdf5s"]
+[ext_resource type="Shader" uid="uid://bojk1vuqb7sj4" path="res://assets/models/2-flower_field/grass/grass_field/grass_field_shader.gdshader" id="2_sru0f"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6aae2"]
 fractal_type = 2
@@ -18,14 +19,14 @@ fractal_gain = 0.05
 noise = SubResource("FastNoiseLite_grbe2")
 seamless = true
 
-[resource]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrix6"]
 render_priority = 0
-shader = ExtResource("1_6aae2")
+shader = ExtResource("2_sru0f")
 shader_parameter/backlight = Color(0.5, 0.5, 0.5, 1)
-shader_parameter/color_tip = Color(0, 0.23921569, 0, 1)
+shader_parameter/color_tip = Color(0, 0.23899674, 2.4065375e-08, 1)
 shader_parameter/color_base = Color(0.081022345, 0.124861084, 0.0019904112, 1)
 shader_parameter/blade_bend_angle = 0.0
-shader_parameter/blade_width = 0.555
+shader_parameter/blade_width = 1.0
 shader_parameter/variation_noise = SubResource("NoiseTexture2D_pmikj")
 shader_parameter/variation_noise_scale = 5.0
 shader_parameter/blade_size_min = 1.55
@@ -35,3 +36,8 @@ shader_parameter/wind_noise_scale = 0.1
 shader_parameter/wind_direction = Vector3(3, 3, 0)
 shader_parameter/wind_speed = 0.0770000036575
 shader_parameter/wind_bend_angle = 2.60000003874312
+
+[node name="grass__v2" unique_id=1004214924 instance=ExtResource("1_vdf5s")]
+
+[node name="Plane_004" parent="." index="0" unique_id=436701821]
+surface_material_override/0 = SubResource("ShaderMaterial_nrix6")
