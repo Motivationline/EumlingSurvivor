@@ -44,7 +44,7 @@ func load_level():
 		child.queue_free()
 	
 	if !levels_to_load.size() > 0:
-		if Data._unlocked_mini_eumlings.size() >= 4:
+		if Data._active_mini_eumlings.size() >= 4:
 			$AreaChoiceOverlay/GameCompleteOverlay.show()
 			await get_tree().create_timer(3).timeout
 			$AreaChoiceOverlay/GameCompleteOverlay.hide()
