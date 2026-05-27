@@ -14,11 +14,28 @@
 [ext_resource type="Texture2D" uid="uid://bgruign1t1mul" path="res://assets/ui/UpgradeCards/Icons/AttackCooldownIconPlaceholder.png" id="12_fevki"]
 [ext_resource type="Texture2D" uid="uid://dygsk05xsv6id" path="res://assets/ui/UpgradeCards/Icons/CritChanceIconPlaceholder.png" id="13_8g2jb"]
 [ext_resource type="Texture2D" uid="uid://bkc8e1dvrps01" path="res://assets/ui/UpgradeCards/Icons/HealthRegenerationIconPlaceholder.png" id="14_uh50l"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="15_rk0pc"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="16_71b8e"]
+[ext_resource type="AudioStream" uid="uid://ffuk16p4ws6l" path="res://assets/ui/UpgradeCards/sounds/card_slide_1.wav" id="17_wjhki"]
+[ext_resource type="AudioStream" uid="uid://crl6ud6j7htdv" path="res://assets/ui/UpgradeCards/sounds/card_slide_2.wav" id="18_umhlb"]
+[ext_resource type="AudioStream" uid="uid://bmwsiqjfc4hu2" path="res://assets/ui/UpgradeCards/sounds/card_slide_3.wav" id="19_3d3lq"]
+[ext_resource type="AudioStream" uid="uid://4a4wwmxdu0n" path="res://assets/ui/UpgradeCards/sounds/card_slide_4.wav" id="20_lvwgt"]
+[ext_resource type="AudioStream" uid="uid://b6j8eis8vo8so" path="res://assets/ui/UpgradeCards/sounds/card_slide_5.wav" id="21_2o5am"]
+[ext_resource type="AudioStream" uid="uid://cwgbe1iqlehfn" path="res://assets/ui/UpgradeCards/sounds/card_slide_6.wav" id="22_bqidk"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kej5l"]
 viewport_path = NodePath("SubViewport")
 
-[node name="UpgradeOption" type="TextureButton" unique_id=984426230]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0wa7m"]
+streams_count = 6
+stream_0/stream = ExtResource("17_wjhki")
+stream_1/stream = ExtResource("18_umhlb")
+stream_2/stream = ExtResource("19_3d3lq")
+stream_3/stream = ExtResource("20_lvwgt")
+stream_4/stream = ExtResource("21_2o5am")
+stream_5/stream = ExtResource("22_bqidk")
+
+[node name="UpgradeOption" type="TextureButton" unique_id=984426230 node_paths=PackedStringArray("sound_effect_manager")]
 custom_minimum_size = Vector2(512, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -50,9 +67,20 @@ textures = Dictionary[int, Texture]({
 6: ExtResource("9_e6r2v"),
 11: ExtResource("13_8g2jb")
 })
+sound_effect_manager = NodePath("SubViewport/SoundEffectManager")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1778329793]
 own_world_3d = true
 transparent_bg = true
 audio_listener_enable_3d = true
 size = Vector2i(512, 800)
+
+[node name="SoundEffectManager" type="Node3D" parent="SubViewport" unique_id=1796397043]
+script = ExtResource("15_rk0pc")
+debug = true
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Reveal" parent="SubViewport/SoundEffectManager" unique_id=11559386 instance=ExtResource("16_71b8e")]
+stream = SubResource("AudioStreamRandomizer_0wa7m")
+volume_db = 3.0
+bus = &"SFXUI"

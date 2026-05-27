@@ -29,7 +29,7 @@ func show_upgrades():
 		var upgrade = upgrades[i]
 		var upgrade_option = UPGRADE_OPTION.instantiate() as UpgradeOption
 		upgrade_container.add_child(upgrade_option)
-		upgrade_option.setup(upgrade, i * delay_between_cards)
+		upgrade_option.setup(upgrade, i * delay_between_cards, -2 + i* 2)
 		upgrade_option.pressed.connect(upgrade_input.bind(upgrade))
 		if(i == 0):
 			upgrade_option.grab_focus()
