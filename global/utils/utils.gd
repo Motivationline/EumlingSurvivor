@@ -44,3 +44,19 @@ static func create_damage_number(entity: Node3D, text: String, healing: bool = f
 	damage_label.healing = healing
 	level.add_child(damage_label)
 	damage_label.global_position = entity.global_position
+
+## `comparable`: `func(mid: int) -> bool`
+static func binary_search_int(low: int, high: int, comparable: Callable) -> int:
+	var best: int = low
+
+	while low <= high:
+		@warning_ignore("integer_division")
+		var mid: int = (low + high) / 2
+
+		if comparable.call(mid):
+			best = mid
+			low = mid + 1
+		else:
+			high = mid - 1
+	
+	return best

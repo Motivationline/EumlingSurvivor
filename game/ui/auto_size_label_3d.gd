@@ -1,48 +1,24 @@
 @tool
 class_name AutoSizeLabel3D extends Label3D
 
-#region Private Fields
+@export var min_font_size: int = 1:
+	set(size):
+		min_font_size = size
+		resize_font()
 
-@export 
-var maxFontSize = 56
+@export var max_font_size: int = 120:
+	set(size):
+		max_font_size = size
+		resize_font()
 
-#endregion
-
-#region Public Label3D Methods
-
-func _set( property: StringName, value: Variant ) -> bool:
-	# listen for text or width changes
+func _set(property: StringName, _value: Variant) -> bool:
 	match property:
-		"text":
-			_update_font_size( value )
-		"width":
-			_update_font_size( text )
-
+		"text", "width":
+			resize_font()
 	return false
 
-#endregion
+func resize_font() -> void:
+	_resize_font.call_deferred()
 
-#region Private Methods
-
-func _update_font_size( textVal: String ) -> void:
-	var line = TextLine.new()
-	line.direction = text_direction
-	line.flags = justification_flags
-	line.alignment = horizontal_alignment
-
-	for i in 20:
-		line.clear()
-		var created = line.add_string( textVal, font, font_size )
-		if created:
-			var text_size = line.get_line_width()
-			if text_size > floor( width ):
-				font_size -= 1
-			elif font_size < maxFontSize:
-				font_size += 1
-			else:
-				break
-		else:
-			push_warning( 'Could not create a string' )
-			break
-	
-#endregion
+func _resize_font() -> void:
+	font_size = AutoSizer.calc_font_size(font, text, width, min_font_size, max_font_size)

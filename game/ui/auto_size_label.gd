@@ -1,28 +1,26 @@
 @tool
 class_name AutoSizeLabel extends Label
 
-@export var min_font_size := 8 :
-	set(v):
-		min_font_size = clampi(v, 1, max_font_size)
-		update()
+@export var min_font_size: int = 1:
+	set(size):
+		min_font_size = size
+		resize_font()
 
-@export var max_font_size := 56 :
-	set(v):
-		max_font_size = clampi(v, min_font_size, 191)
-		update()
+@export var max_font_size: int = 120:
+	set(size):
+		max_font_size = size
+		resize_font()
 
-func _ready() -> void:
-	clip_text = true
-	item_rect_changed.connect(update)
-
-func _set(property: StringName, value: Variant) -> bool:
-	# Listen for changes to text
-	if property == "text":
-		text = value
-		update()
-		return true
-	
+func _set(property: StringName, _value: Variant) -> bool:
+	match property:
+		"text", "size":
+			resize_font()
 	return false
 
-func update() -> void:
-	return AutoSizer.update_font_size_label(self)
+func resize_font() -> void:
+	_resize_font.call_deferred()
+
+func _resize_font() -> void:
+	var font: Font = get_theme_font("font")
+	var font_size: int = AutoSizer.calc_font_size(font, text, size.x, min_font_size, max_font_size)
+	add_theme_font_size_override("font_size", font_size)
