@@ -12,6 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://balay1pjw25y8" path="res://assets/vfx/particle_pack/star_06.png" id="10_rqm5e"]
 [ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="11_h5f0h"]
 [ext_resource type="Shader" uid="uid://5n35xj7sj6bq" path="res://game/projectiles/totally_basic_eumling_projectile/leaf_trail_shader.tres" id="11_ifyym"]
+[ext_resource type="Texture2D" uid="uid://c0os0pr2ppn2i" path="res://game/projectiles/totally_basic_eumling_projectile/leaf_3.png" id="13_h5f0h"]
+[ext_resource type="Texture2D" uid="uid://8x2lm5odpjh3" path="res://assets/vfx/particle_pack/slash_02.png" id="14_2uqe5"]
+[ext_resource type="Texture2D" uid="uid://d1cu14uoatrlx" path="res://assets/vfx/particle_pack/muzzle_04.png" id="15_f7sbq"]
+[ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="16_n1kd3"]
+[ext_resource type="Shader" uid="uid://vg0ogqjiohli" path="res://assets/vfx/portal/portal_entrance_shader.tres" id="16_ovhqn"]
+[ext_resource type="Texture2D" uid="uid://xhwkbpsdwste" path="res://assets/vfx/portal/vornoi.png" id="17_n1kd3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_706qm"]
 transparency = 1
@@ -183,31 +189,30 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/path = NodePath("Visual/ball:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.26474383, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_yusjb"]
 resource_name = "fly"
-length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Visual/ball:rotation")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.01, 0.265, 0), Vector3(0.01, 0.242, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 6.2831855)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h4lxs"]
@@ -216,12 +221,130 @@ _data = {
 &"fly": SubResource("Animation_yusjb")
 }
 
-[node name="Projectile" unique_id=374127890 node_paths=PackedStringArray("hit_box", "on_world_collision", "on_hit") instance=ExtResource("1_5adta")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7sbq"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.5333333, 1, 0, 1)
+albedo_texture = ExtResource("13_h5f0h")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v7dwm"]
+size = Vector2(0.26, 0.34)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2uqe5"]
+load_path = "res://.godot/imported/slash_02.png-ad3891cb82955d4277c248ef59b80dae.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovhqn"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1.0392042, 1.7534367, 0, 0.08627451)
+albedo_texture = SubResource("CompressedTexture2D_2uqe5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n1kd3"]
+size = Vector2(0.81, 0.765)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7dwm"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.48333335, 1, 0, 0.6313726)
+albedo_texture = ExtResource("14_2uqe5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ovhqn"]
+size = Vector2(0.78, 1.11)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1kd3"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("15_f7sbq")
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e565q"]
+
+[sub_resource type="Gradient" id="Gradient_chctk"]
+offsets = PackedFloat32Array(0, 0.1284153, 0.54371583, 1)
+colors = PackedColorArray(1, 1, 0, 0, 0.94, 0.94, 0.065799996, 0.078431375, 0.37329, 0.31739998, 0.69, 0.047058824, 0.3166666, 0, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_h247g"]
+colors = PackedColorArray(2.409395, 3.9143686, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chctk"]
+render_priority = 2
+shader = ExtResource("16_n1kd3")
+shader_parameter/color = Color(0, 0.28, 0.023333311, 1)
+shader_parameter/width = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e565q"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_chctk")
+shader = ExtResource("16_ovhqn")
+shader_parameter/Glow = 44.535
+shader_parameter/ColorParameter = Color(0.14166674, 0.85, 0, 1)
+shader_parameter/portal_speed = Vector2(-1, -1)
+shader_parameter/Texture2DParameter = ExtResource("17_n1kd3")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ovhqn"]
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e565q"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("7_rqm5e")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_h247g"]
+
+[sub_resource type="Curve" id="Curve_ovhqn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0992332, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_e565q"]
+colors = PackedColorArray(0.01666665, 1, 0, 1, 0.7833333, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chctk"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("10_rqm5e")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_6y1pm"]
+
+[sub_resource type="Curve" id="Curve_n1kd3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.38010204, 1), 0.0, 0.0, 0, 0, Vector2(0.5688776, 0.99999994), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_n1kd3"]
+offsets = PackedFloat32Array(0, 0.08196721, 0.90710384, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.5333333, 1, 0, 1, 2.0562143, 2.4061394, 0, 1, 1, 1, 1, 0)
+
+[node name="Projectile" unique_id=374127890 node_paths=PackedStringArray("hit_box", "on_world_collision", "on_hit", "on_end_of_life") instance=ExtResource("1_5adta")]
 collision_mask = 257
 critical_hit_chance = 0.1
 hit_box = NodePath("Hitbox")
 on_world_collision = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_hit = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy")]
+on_end_of_life = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy")]
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="0" unique_id=214177895]
 script = ExtResource("3_yusjb")
@@ -238,7 +361,8 @@ entity_to_spawn = ExtResource("5_x7orq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=973658270]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.26474383, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.0070329984, 0.26158795, 0)
+visible = false
 mesh = ExtResource("8_aejtm")
 surface_material_override/0 = SubResource("StandardMaterial3D_706qm")
 
@@ -316,3 +440,107 @@ autoplay = &"fly"
 
 [node name="particle_spawn_pos" type="Marker3D" parent="." index="6" unique_id=179677703]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27889585, 0)
+
+[node name="Visual" type="Node3D" parent="." index="7" unique_id=90332763]
+
+[node name="V2" type="MeshInstance3D" parent="Visual" index="0" unique_id=267024630]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.27585062, -0.009384349)
+visible = false
+material_override = SubResource("StandardMaterial3D_f7sbq")
+mesh = SubResource("PlaneMesh_v7dwm")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visual" index="1" unique_id=356668993]
+transform = Transform3D(-0.9999994, 0, 8.7422706e-08, 0, 1, 0, -8.7422706e-08, 0, -0.9999994, 0, 0.27286077, -0.0029934575)
+material_override = SubResource("StandardMaterial3D_ovhqn")
+mesh = SubResource("PlaneMesh_n1kd3")
+skeleton = NodePath("../V2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visual" index="2" unique_id=1511577920]
+transform = Transform3D(-0.99999964, 0, 8.7422734e-08, 0, 1, 0, -8.7422734e-08, 0, -0.99999964, 0, 0.2651565, 0.1281128)
+material_override = SubResource("StandardMaterial3D_v7dwm")
+mesh = SubResource("PlaneMesh_ovhqn")
+skeleton = NodePath("../V2")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Visual" index="3" unique_id=2028058041]
+transform = Transform3D(-0.99999946, 0, -8.742273e-08, 0, 1, 0, 8.742273e-08, 0, -0.99999946, 0, 0.24920166, 0.11115551)
+material_override = SubResource("StandardMaterial3D_n1kd3")
+lifetime = 0.5
+speed_scale = 2.0
+local_coords = true
+mesh = SubResource("PlaneMesh_e565q")
+emission_shape = 1
+emission_sphere_radius = 0.15
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, -1)
+spread = 0.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+color = Color(0.6355001, 1, 0.19, 1)
+color_ramp = SubResource("Gradient_chctk")
+color_initial_ramp = SubResource("Gradient_h247g")
+
+[node name="ball" type="MeshInstance3D" parent="Visual" index="4" unique_id=920549437]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.22352532, -0.0091039315)
+material_override = SubResource("ShaderMaterial_e565q")
+mesh = SubResource("SphereMesh_ovhqn")
+
+[node name="CPUParticles3D2" type="CPUParticles3D" parent="Visual/ball" index="0" unique_id=1669000977]
+transform = Transform3D(0.47774628, -1.9421016, 0, 1.9421016, 0.47774628, 0, 0, 0, 2, 0.28349146, 0.013060093, 0.018207863)
+material_override = SubResource("StandardMaterial3D_e565q")
+lifetime = 0.15000000000000002
+mesh = SubResource("QuadMesh_h247g")
+gravity = Vector3(0, 0, 0)
+radial_accel_max = 45.32
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_ovhqn")
+color_ramp = SubResource("Gradient_e565q")
+
+[node name="CPUParticles3D3" type="CPUParticles3D" parent="Visual/ball" index="1" unique_id=1022230963]
+transform = Transform3D(0.47774628, -1.9421016, 0, 1.9421016, 0.47774628, 0, 0, 0, 2, -0.10477701, 0.24377769, 0.018207863)
+material_override = SubResource("StandardMaterial3D_e565q")
+lifetime = 0.15000000000000002
+mesh = SubResource("QuadMesh_h247g")
+gravity = Vector3(0, 0, 0)
+radial_accel_max = 45.32
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_ovhqn")
+color_ramp = SubResource("Gradient_e565q")
+
+[node name="CPUParticles3D4" type="CPUParticles3D" parent="Visual/ball" index="2" unique_id=1840834525]
+transform = Transform3D(0.47774628, -1.9421016, 0, 1.9421016, 0.47774628, 0, 0, 0, 2, -0.14714763, -0.24187773, 0.018207863)
+material_override = SubResource("StandardMaterial3D_e565q")
+lifetime = 0.15000000000000002
+mesh = SubResource("QuadMesh_h247g")
+gravity = Vector3(0, 0, 0)
+radial_accel_max = 45.32
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_ovhqn")
+color_ramp = SubResource("Gradient_e565q")
+
+[node name="trail" type="CPUParticles3D" parent="Visual" index="5" unique_id=858564771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23395531, -0.22686613)
+material_override = SubResource("StandardMaterial3D_chctk")
+amount = 5
+lifetime = 0.45
+mesh = SubResource("QuadMesh_6y1pm")
+direction = Vector3(0, 0, -1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.5
+angular_velocity_min = 17.74
+angular_velocity_max = 31.92
+angle_max = 180.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_n1kd3")
+color_ramp = SubResource("Gradient_n1kd3")

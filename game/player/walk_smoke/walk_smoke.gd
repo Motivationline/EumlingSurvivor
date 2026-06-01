@@ -1,4 +1,4 @@
-extends GPUParticles3D
+extends CPUParticles3D
 @export var player:Player
 
 

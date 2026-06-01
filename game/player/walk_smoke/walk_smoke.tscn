@@ -20,48 +20,27 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Curve" id="Curve_ovux6"]
-_data = [Vector2(0.22381929, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.69589, 0.0, 0, 0]
+[sub_resource type="QuadMesh" id="QuadMesh_5ke7a"]
+
+[sub_resource type="Curve" id="Curve_5ke7a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.6838214, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_5ke7a"]
-curve = SubResource("Curve_ovux6")
+[sub_resource type="Gradient" id="Gradient_ipk6s"]
+colors = PackedColorArray(1, 1, 1, 0.5529412, 1, 1, 1, 0)
 
-[sub_resource type="Gradient" id="Gradient_ovux6"]
-offsets = PackedFloat32Array(0.3594132, 0.6405868)
-colors = PackedColorArray(0.61, 0.61, 0.61, 1, 0.88, 0.88, 0.88, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5ke7a"]
-gradient = SubResource("Gradient_ovux6")
-
-[sub_resource type="Curve" id="Curve_qpw4l"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.37), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_xqh50"]
-curve = SubResource("Curve_qpw4l")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nj8ky"]
-particle_flag_rotate_y = true
-emission_shape_scale = Vector3(0.175, 0, 0.155)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-direction = Vector3(0, 0.2, 1)
-spread = 15.0
-initial_velocity_min = 0.5
-initial_velocity_max = 1.0
-gravity = Vector3(0, -0.5, 0)
-damping_max = 1.8600001
-scale_curve = SubResource("CurveTexture_xqh50")
-color_ramp = SubResource("GradientTexture1D_5ke7a")
-alpha_curve = SubResource("CurveTexture_5ke7a")
-
-[sub_resource type="QuadMesh" id="QuadMesh_ipk6s"]
-
-[node name="WalkSmoke" type="GPUParticles3D" unique_id=2013258854]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18456727, 0)
+[node name="WalkSmoke" type="CPUParticles3D" unique_id=1393428824]
 material_override = SubResource("StandardMaterial3D_ovux6")
+amount = 1
 lifetime = 0.6
-process_material = SubResource("ParticleProcessMaterial_nj8ky")
-draw_pass_1 = SubResource("QuadMesh_ipk6s")
+mesh = SubResource("QuadMesh_5ke7a")
+direction = Vector3(0, 1, 0)
+spread = 12.41
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+damping_max = 1.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_5ke7a")
+color_ramp = SubResource("Gradient_ipk6s")
 script = ExtResource("1_ovux6")
