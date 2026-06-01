@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://dbwg5pd51l5wa"]
+
+[ext_resource type="Texture2D" uid="uid://cyyn4tvatnrw1" path="res://assets/vfx/particle_pack/circle_04.png" id="1_te5sx"]
+[ext_resource type="ArrayMesh" uid="uid://beucbcf3m0ehv" path="res://assets/characters/enemies/cactushog/cactus_bomb/cactus_bomb_mesh.res" id="2_rys42"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rys42"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_te5sx")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_k31gp"]
+
+[sub_resource type="Curve" id="Curve_nuvx0"]
+_data = [Vector2(0, 0.0009852648), 0.0, 9.037242, 0, 0, Vector2(0.31122452, 1), 0.10041412, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_4f45v"]
+offsets = PackedFloat32Array(0, 0.112021856, 0.2513661, 0.4726776)
+colors = PackedColorArray(3.470983, 6.795813, 1.254431, 1, 1, 1, 1, 1, 0.18999995, 0.57, 0, 1, 0.38394666, 0.92, 0.07359999, 0)
+
+[sub_resource type="Animation" id="Animation_nrth4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles3D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_te5sx"]
+resource_name = "run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.96666664),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles3D2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033306696),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rys42"]
+_data = {
+&"RESET": SubResource("Animation_nrth4"),
+&"run": SubResource("Animation_te5sx")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_te5sx"]
+transparency = 1
+specular_mode = 1
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_k31gp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.06377551, 1), 0.0, 0.0, 0, 0, Vector2(0.50510204, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.031417, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_nuvx0"]
+offsets = PackedFloat32Array(0.22677596, 0.88251364, 1)
+colors = PackedColorArray(0.2, 0.35686275, 0.14117648, 1, 0.2, 0.35686275, 0.14117648, 1, 0.20159999, 0.36, 0.144, 0)
+
+[sub_resource type="Gradient" id="Gradient_rys42"]
+offsets = PackedFloat32Array(0, 0.9672131)
+colors = PackedColorArray(0.46229059, 0.46229059, 0.46229059, 1, 1, 1, 1, 1)
+
+[node name="BomberExplosionParticle" type="Node3D" unique_id=1865083856]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1947125285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8134847, 0)
+material_override = SubResource("StandardMaterial3D_rys42")
+emitting = false
+amount = 1
+one_shot = true
+mesh = SubResource("QuadMesh_k31gp")
+gravity = Vector3(0, 0, 0)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_nuvx0")
+color_ramp = SubResource("Gradient_4f45v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1368291999]
+libraries/ = SubResource("AnimationLibrary_rys42")
+autoplay = &"run"
+
+[node name="CPUParticles3D2" type="CPUParticles3D" parent="." unique_id=418971171]
+transform = Transform3D(0.044055283, -0.9990291, 0, 0.9990291, 0.044055283, 0, 0, 0, 1, 0, 0.29261824, 0)
+material_override = SubResource("StandardMaterial3D_te5sx")
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+mesh = ExtResource("2_rys42")
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+radial_accel_max = 2.0
+damping_min = 5.0
+damping_max = 8.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.5
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_k31gp")
+color_ramp = SubResource("Gradient_nuvx0")
+color_initial_ramp = SubResource("Gradient_rys42")
