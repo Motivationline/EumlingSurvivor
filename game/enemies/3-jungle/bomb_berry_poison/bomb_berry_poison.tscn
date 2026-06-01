@@ -62,10 +62,48 @@ medium = Array[ExtResource("2_7xjtc")]([SubResource("Resource_fatpq")])
 hard = Array[ExtResource("2_7xjtc")]([SubResource("Resource_57rd0")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
+[sub_resource type="Resource" id="Resource_h6k7j"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_m2bbm"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 60.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_kvpj7"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_l174v"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_22ih7"]
+script = ExtResource("3_satr4")
+introduction = Array[ExtResource("2_7xjtc")]([SubResource("Resource_kvpj7")])
+easy = Array[ExtResource("2_7xjtc")]([SubResource("Resource_h6k7j")])
+medium = Array[ExtResource("2_7xjtc")]([SubResource("Resource_l174v")])
+hard = Array[ExtResource("2_7xjtc")]([SubResource("Resource_m2bbm")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="Resource" id="Resource_ks5p5"]
 script = ExtResource("2_7xjtc")
 attribute = "amount_of_spawns"
-value = 0
+value = 1
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_0wk42"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 50.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_u87jn"]
@@ -74,10 +112,22 @@ attribute = "amount_of_spawns"
 value = 1
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
+[sub_resource type="Resource" id="Resource_kko5p"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 90.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
 [sub_resource type="Resource" id="Resource_irnwb"]
 script = ExtResource("2_7xjtc")
 attribute = "amount_of_spawns"
-value = 0
+value = 1
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_yd4m4"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 30.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_tk56u"]
@@ -86,24 +136,30 @@ attribute = "amount_of_spawns"
 value = 1
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
+[sub_resource type="Resource" id="Resource_x2l3n"]
+script = ExtResource("2_7xjtc")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
 [sub_resource type="Resource" id="Resource_77v3g"]
 script = ExtResource("3_satr4")
-introduction = Array[ExtResource("2_7xjtc")]([SubResource("Resource_irnwb")])
-easy = Array[ExtResource("2_7xjtc")]([SubResource("Resource_ks5p5")])
-medium = Array[ExtResource("2_7xjtc")]([SubResource("Resource_tk56u")])
-hard = Array[ExtResource("2_7xjtc")]([SubResource("Resource_u87jn")])
+introduction = Array[ExtResource("2_7xjtc")]([SubResource("Resource_irnwb"), SubResource("Resource_yd4m4")])
+easy = Array[ExtResource("2_7xjtc")]([SubResource("Resource_ks5p5"), SubResource("Resource_0wk42")])
+medium = Array[ExtResource("2_7xjtc")]([SubResource("Resource_tk56u"), SubResource("Resource_x2l3n")])
+hard = Array[ExtResource("2_7xjtc")]([SubResource("Resource_u87jn"), SubResource("Resource_kko5p")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="Resource" id="Resource_7xjtc"]
 script = ExtResource("2_7xjtc")
 attribute = "damage"
-value = 30.0
+value = 40.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_satr4"]
 script = ExtResource("2_7xjtc")
 attribute = "damage"
-value = 40.0
+value = 60.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_ndhr2"]
@@ -115,7 +171,7 @@ metadata/_custom_type_script = "uid://duef27t44qtoy"
 [sub_resource type="Resource" id="Resource_k6y8f"]
 script = ExtResource("2_7xjtc")
 attribute = "damage"
-value = 40.0
+value = 50.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_wywj6"]
@@ -206,6 +262,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/Explode/SpawnEntitiesState" index="0" unique_id=1686334991]
 script = ExtResource("6_x66hl")
+difficulty_scaler = SubResource("Resource_22ih7")
 entity_to_spawn = ExtResource("7_qsr43")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 

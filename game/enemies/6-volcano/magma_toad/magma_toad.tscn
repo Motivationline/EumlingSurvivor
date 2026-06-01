@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_gqpqm"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_21otp"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_52td2"]
-[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_vqu8f"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_vqu8f"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_m7dcb"]
 [ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="6_52td2"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="7_i8psu"]
@@ -114,6 +114,38 @@ radius = 0.16932635
 [sub_resource type="SphereShape3D" id="SphereShape3D_eafdf"]
 radius = 0.31834328
 
+[sub_resource type="Resource" id="Resource_fwhyu"]
+script = ExtResource("2_gqpqm")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_x63o3"]
+script = ExtResource("2_gqpqm")
+attribute = "damage"
+value = 90.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_1auyh"]
+script = ExtResource("2_gqpqm")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_d1jqr"]
+script = ExtResource("2_gqpqm")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_mp1xe"]
+script = ExtResource("3_vqu8f")
+introduction = Array[ExtResource("2_gqpqm")]([SubResource("Resource_1auyh")])
+easy = Array[ExtResource("2_gqpqm")]([SubResource("Resource_fwhyu")])
+medium = Array[ExtResource("2_gqpqm")]([SubResource("Resource_d1jqr")])
+hard = Array[ExtResource("2_gqpqm")]([SubResource("Resource_x63o3")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_gtm08"]
 radius = 0.26148474
 
@@ -216,6 +248,7 @@ collision_mask = 8
 damage = 25.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_mp1xe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=629998434]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_7b0cm"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_280ev"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_8scmy"]
-[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_52eqb"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_52eqb"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_s5h4t"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_ehia0"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="6_6ky1e"]
@@ -108,6 +108,38 @@ stream_2/stream = ExtResource("35_l6xqn")
 stream_3/stream = ExtResource("36_ieagg")
 stream_4/stream = ExtResource("37_4bjjy")
 stream_5/stream = ExtResource("38_obh41")
+
+[sub_resource type="Resource" id="Resource_modua"]
+script = ExtResource("2_7b0cm")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ebwb0"]
+script = ExtResource("2_7b0cm")
+attribute = "damage"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_76d4w"]
+script = ExtResource("2_7b0cm")
+attribute = "damage"
+value = 25.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ioqux"]
+script = ExtResource("2_7b0cm")
+attribute = "damage"
+value = 75.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_sfb4s"]
+script = ExtResource("3_52eqb")
+introduction = Array[ExtResource("2_7b0cm")]([SubResource("Resource_76d4w")])
+easy = Array[ExtResource("2_7b0cm")]([SubResource("Resource_modua")])
+medium = Array[ExtResource("2_7b0cm")]([SubResource("Resource_ioqux")])
+hard = Array[ExtResource("2_7b0cm")]([SubResource("Resource_ebwb0")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0cktx"]
 radius = 0.5125733
@@ -241,6 +273,7 @@ collision_mask = 8
 damage = 25.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_sfb4s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=403141409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12802029, 0)

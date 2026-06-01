@@ -107,6 +107,38 @@ script = ExtResource("12_c0y2a")
 max_negative = -15.0
 max_positive = 15.0
 
+[sub_resource type="Resource" id="Resource_mdxsv"]
+script = ExtResource("2_vct64")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_vct64"]
+script = ExtResource("2_vct64")
+attribute = "damage"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_t2kky"]
+script = ExtResource("2_vct64")
+attribute = "damage"
+value = 25.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_y634v"]
+script = ExtResource("2_vct64")
+attribute = "damage"
+value = 75.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ugima"]
+script = ExtResource("3_t2kky")
+introduction = Array[ExtResource("2_vct64")]([SubResource("Resource_t2kky")])
+easy = Array[ExtResource("2_vct64")]([SubResource("Resource_mdxsv")])
+medium = Array[ExtResource("2_vct64")]([SubResource("Resource_y634v")])
+hard = Array[ExtResource("2_vct64")]([SubResource("Resource_vct64")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_b440t"]
 radius = 0.5188506
 
@@ -241,6 +273,7 @@ collision_mask = 8
 damage = 25.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_ugima")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hitbox" index="0" unique_id=1348417688]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00091664493, 0.2809551, -0.00023913383)
