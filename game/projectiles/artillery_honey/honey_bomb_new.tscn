@@ -14,8 +14,8 @@
 
 [sub_resource type="Curve" id="Curve_drtku"]
 _limits = [0.0, 2.9768958, 0.0, 1.0]
-_data = [Vector2(0, 0.4585309), 0.0, 10.192355, 0, 0, Vector2(0.45546558, 2.9622478), 0.0, 0.0, 0, 0, Vector2(0.5647774, 2.9622478), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.950316, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0.4585309), 0.0, 10.192355, 0, 0, Vector2(0.5067985, 2.9768958), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.950316, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7wg7x"]
 radius = 0.26604587
@@ -60,27 +60,27 @@ targeting = [NodePath("MovementStrategies/UniversalTargetingProjectileTargetStra
 on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_created = [NodePath("MovementStrategies/SetTargetsEventStrategy")]
 
-[node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=1841632674]
+[node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=1841632674]
 script = ExtResource("2_20yhb")
 target_property = 2
 metadata/_custom_type_script = "uid://l8142vs0gken"
 
-[node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1" unique_id=2053083556]
+[node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="1" unique_id=2053083556]
 script = ExtResource("3_2pt75")
 flight_curve = SubResource("Curve_drtku")
 max_distance = 4.0
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
-[node name="SetTargetsEventStrategy" type="Node" parent="MovementStrategies" index="2" unique_id=1780823928 node_paths=PackedStringArray("targeting_strats")]
+[node name="SetTargetsEventStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="2" unique_id=1780823928 node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("4_govlf")
 targeting_strats = [NodePath("../UniversalTargetingProjectileTargetStrategy")]
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=2139586803]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="0" unique_id=2139586803]
 script = ExtResource("5_drtku")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="1" unique_id=1252120269]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="1" unique_id=1252120269]
 script = ExtResource("6_busd4")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 

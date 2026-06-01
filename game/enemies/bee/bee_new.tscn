@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://u7ocrnnhnci0" path="res://game/projectiles/artillery_honey/honey_bomb_new.tscn" id="6_lodh7"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="7_eg47u"]
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="7_iwpo5"]
-[ext_resource type="PackedScene" uid="uid://c3ksp1n3yrx3o" path="res://game/aoes/peacock_aoe_attack/peacock_aoe.tscn" id="8_erhdk"]
+[ext_resource type="PackedScene" uid="uid://b0ggy3ah2rv5w" path="res://game/aoes/bee_aoe/bee_aoe.tscn" id="9_eg47u"]
 
 [sub_resource type="Resource" id="Resource_qr42g"]
 script = ExtResource("7_eg47u")
@@ -26,7 +26,6 @@ height = 0.4970703
 
 [node name="BeeEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_0mg0e")]
 health = 250.0
-damage = 20.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
@@ -43,7 +42,6 @@ metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine" index="1" unique_id=131714749 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_eg47u")
-wait_time = 1.5
 speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState")
@@ -69,9 +67,9 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 [node name="FleeFromPlayerState" type="Node" parent="StateMachine" index="3" unique_id=1382501523 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_iwpo5")
 wait_time = 0.0
-flee_distance = 3.0
+flee_distance = 2.0
 time_based = true
-target_flee_time = 2.0
+target_flee_time = 1.5
 next_state = NodePath("../DecideDistanceState2")
 metadata/_custom_type_script = "uid://mycfudgv475a"
 
@@ -95,14 +93,14 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState2" index="0" unique_id=405363684]
 script = ExtResource("5_7k21y")
-entity_to_spawn = ExtResource("8_erhdk")
+entity_to_spawn = ExtResource("9_eg47u")
 amount_of_spawns = 2
 time_between_entities = 0.5
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Bee" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1778173417 instance=ExtResource("2_pyrbt")]
 
-[node name="Skeleton3D" parent="Visuals/Bee" index="0" unique_id=1734313156]
+[node name="Skeleton3D" parent="Visuals/Bee" index="0" unique_id=1698095390]
 bones/0/position = Vector3(2.4214387e-07, 0.33090377, -7.8976154e-07)
 bones/0/rotation = Quaternion(0.5, -0.5, 0.5, -0.5)
 bones/1/position = Vector3(0.04194153, 0.111107334, 0.08789312)
@@ -188,34 +186,34 @@ bones/50/position = Vector3(-0.07981142, 0.28135315, -0.051796466)
 bones/50/rotation = Quaternion(-0.5342278, 0.41567966, 0.3402082, 0.65274)
 bones/50/scale = Vector3(1, 0.9999999, 1)
 
-[node name="DEF_ANTENNA1_R" parent="Visuals/Bee/Skeleton3D" index="0" unique_id=5944536]
+[node name="DEF_ANTENNA1_R" parent="Visuals/Bee/Skeleton3D" index="0" unique_id=181737531]
 transform = Transform3D(-0.4560067, 0.64483315, -0.6133902, 2.4781514e-07, 0.6892209, 0.7245511, 0.8899761, 0.33040008, -0.31428957, 0.06442247, 0.49079567, -0.07674001)
 
-[node name="DEF_ANTENNA_R" parent="Visuals/Bee/Skeleton3D" index="1" unique_id=2126001879]
+[node name="DEF_ANTENNA_R" parent="Visuals/Bee/Skeleton3D" index="1" unique_id=1227523455]
 transform = Transform3D(-0.4560059, 0.64483315, -0.6133908, -9.23872e-07, 0.68922085, 0.72455114, 0.88997656, 0.33040023, -0.3142882, 0.022973325, 0.4464934, -0.09797776)
 
-[node name="DEF_ANTENNA1_L" parent="Visuals/Bee/Skeleton3D" index="2" unique_id=1664423308]
+[node name="DEF_ANTENNA1_L" parent="Visuals/Bee/Skeleton3D" index="2" unique_id=18371625]
 transform = Transform3D(-0.45600712, -0.6448332, 0.61339015, -2.508708e-07, 0.6892211, 0.72455096, -0.88997597, 0.33040035, -0.3142897, -0.06442246, 0.4907957, -0.07673999)
 
-[node name="DEF_ANTENNA_L" parent="Visuals/Bee/Skeleton3D" index="3" unique_id=715674146]
+[node name="DEF_ANTENNA_L" parent="Visuals/Bee/Skeleton3D" index="3" unique_id=1646039358]
 transform = Transform3D(-0.45600632, -0.64483327, 0.6133907, 8.940697e-07, 0.68922096, 0.7245511, -0.8899764, 0.33040053, -0.31428835, -0.022973351, 0.4464934, -0.097977735)
 
-[node name="DEF_PEDAL32" parent="Visuals/Bee/Skeleton3D" index="4" unique_id=446862937]
+[node name="DEF_PEDAL32" parent="Visuals/Bee/Skeleton3D" index="4" unique_id=323411794]
 transform = Transform3D(-0.15429014, 0.98035187, -0.122898996, 2.1606684e-07, 0.12438834, 0.9922336, 0.9880255, 0.15309185, -0.019192126, 0.20032802, 0.3825031, -0.022248676)
 
-[node name="DEF_PEDAL31" parent="Visuals/Bee/Skeleton3D" index="5" unique_id=1856709461]
+[node name="DEF_PEDAL31" parent="Visuals/Bee/Skeleton3D" index="5" unique_id=786546328]
 transform = Transform3D(-0.077362545, 0.8601554, -0.50413007, -1.937151e-07, 0.5056454, 0.86274135, 0.99700296, 0.06674395, -0.03911786, 0.112552226, 0.33090377, -0.029059662)
 
-[node name="DEF_PEDAL11" parent="Visuals/Bee/Skeleton3D" index="6" unique_id=1759752590]
+[node name="DEF_PEDAL11" parent="Visuals/Bee/Skeleton3D" index="6" unique_id=1177806012]
 transform = Transform3D(0.99772835, -0.06708743, 0.006122599, 0, 0.090885036, 0.9958614, -0.06736624, -0.99359894, 0.090678595, 0.006063738, 0.24766319, -0.09351974)
 
-[node name="DEF_PEDAL72" parent="Visuals/Bee/Skeleton3D" index="7" unique_id=1683619363]
+[node name="DEF_PEDAL72" parent="Visuals/Bee/Skeleton3D" index="7" unique_id=601516938]
 transform = Transform3D(0.66838396, -0.70616424, -0.2336545, -1.9557774e-08, -0.31412938, 0.94938004, -0.743816, -0.6345506, -0.20995909, -0.15804064, 0.29514095, -0.14339313)
 
-[node name="DEF_PEDAL71" parent="Visuals/Bee/Skeleton3D" index="8" unique_id=906465019]
+[node name="DEF_PEDAL71" parent="Visuals/Bee/Skeleton3D" index="8" unique_id=1436370869]
 transform = Transform3D(0.64280146, -0.7621378, 0.07714903, 5.9604645e-08, 0.10071254, 0.99491554, -0.7660326, -0.6395332, 0.06473823, -0.086283594, 0.2856587, -0.08317959)
 
-[node name="DEF_BODY" parent="Visuals/Bee/Skeleton3D" index="9" unique_id=994115164]
+[node name="DEF_BODY" parent="Visuals/Bee/Skeleton3D" index="9" unique_id=357707811]
 transform = Transform3D(-1.1920928e-07, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -1.1920928e-07, 2.4214387e-07, 0, -7.8976154e-07)
 
 [node name="BoneAttachment3D" parent="Visuals/Bee/Skeleton3D" index="26" unique_id=803446524]
