@@ -45,18 +45,19 @@ static func create_damage_number(entity: Node3D, text: String, healing: bool = f
 	level.add_child(damage_label)
 	damage_label.global_position = entity.global_position
 
-## `comparable`: `func(mid: int) -> bool`
-static func binary_search_int(low: int, high: int, comparable: Callable) -> int:
-	var best: int = low
 
-	while low <= high:
-		@warning_ignore("integer_division")
-		var mid: int = (low + high) / 2
-
-		if comparable.call(mid):
-			best = mid
-			low = mid + 1
-		else:
-			high = mid - 1
+## `comparable`: `func(middle: float) -> bool`.
+## Lower `tolerance` gives greater precision but takes more iterations.
+static func binary_search(low: float, high: float, comparable: Callable, tolerance: float = 1.0) -> float:
+	if comparable.call(high):
+		return high
 	
-	return best
+	while high - low > tolerance:
+		var middle: float = (low + high) / 2
+
+		if comparable.call(middle):
+			low = middle
+		else:
+			high = middle
+
+	return low
