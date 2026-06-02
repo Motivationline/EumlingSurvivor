@@ -42,9 +42,10 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1513672399]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1513672399 node_paths=PackedStringArray("spawn_position")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.592237)
 script = ExtResource("4_7a53i")
+spawn_position = NodePath("../../../projectile_spawn_pos")
 offset_distance = 0.5
 entity_to_spawn = ExtResource("5_dg07b")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -64,3 +65,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26399428, 0)
 shape = SubResource("SphereShape3D_5ot81")
 
 [node name="peacock" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1361239237 instance=ExtResource("5_5ot81")]
+
+[node name="projectile_spawn_pos" type="Marker3D" parent="." index="9" unique_id=1355938781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23441663, -0.56357455)
