@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjdgq0enp4rhi"]
+[gd_scene format=3 uid="uid://bjdgq0enp4rhi"]
 
 [ext_resource type="Script" uid="uid://b80rxujvjbxg0" path="res://game/aoes/aoe.gd" id="1_vbyxs"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_i8aay"]
+[ext_resource type="Script" uid="uid://bt7pqq53wsp6o" path="res://game/upgrade_area/upgrade_area.gd" id="3_qm0s3"]
+[ext_resource type="Script" uid="uid://b1unwehw2gxjk" path="res://game/upgrade/upgrade.gd" id="4_uv8ox"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vbyxs"]
 height = 0.17663574
@@ -143,36 +145,55 @@ _data = {
 &"RESET": SubResource("Animation_i8aay")
 }
 
-[node name="Honey_AOE_Floor" type="Node3D" node_paths=PackedStringArray("collsion_shape", "visuals")]
+[sub_resource type="Resource" id="Resource_rtvmu"]
+script = ExtResource("4_uv8ox")
+method = 1
+value = 0.5
+metadata/_custom_type_script = "uid://b1unwehw2gxjk"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qm0s3"]
+height = 0.5570679
+radius = 0.8964844
+
+[node name="Honey_AOE_Floor" type="Node3D" unique_id=1919489388 node_paths=PackedStringArray("collsion_shape", "visuals")]
 script = ExtResource("1_vbyxs")
 duration = 3.0
 collsion_shape = NodePath("Hitbox/CollisionShape3D")
 visuals = NodePath("Visuals")
 
-[node name="Hitbox" parent="." instance=ExtResource("2_i8aay")]
+[node name="Hitbox" parent="." unique_id=1901787363 instance=ExtResource("2_i8aay")]
 collision_layer = 32
 collision_mask = 8
-damage = 15.0
 damage_cooldown = 0.2
 attached_to = 6
 can_hit = 4
+causes_iframes = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1714123264]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08758545, 0)
 shape = SubResource("CylinderShape3D_vbyxs")
 disabled = true
 
-[node name="Visuals" type="Node3D" parent="."]
+[node name="Visuals" type="Node3D" parent="." unique_id=1280918271]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visuals"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visuals" unique_id=129382378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 material_override = SubResource("StandardMaterial3D_i8aay")
 radius = 1.0
 height = 0.1
 cone = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
-libraries = {
-&"": SubResource("AnimationLibrary_i8aay")
-}
-autoplay = "Honey_Spawn"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=2065127124]
+libraries/ = SubResource("AnimationLibrary_i8aay")
+autoplay = &"Honey_Spawn"
+
+[node name="UpgradeArea" type="Area3D" parent="Visuals" unique_id=565311805]
+collision_layer = 256
+collision_mask = 2
+script = ExtResource("3_qm0s3")
+temporary_upgrades = Array[ExtResource("4_uv8ox")]([SubResource("Resource_rtvmu")])
+metadata/_custom_type_script = "uid://bt7pqq53wsp6o"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/UpgradeArea" unique_id=862345486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19021606, 0)
+shape = SubResource("CylinderShape3D_qm0s3")
