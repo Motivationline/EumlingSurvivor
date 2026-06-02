@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://bu3a5g7w20saj" path="res://game/enemies/beatle/dummy_attack_visual_enemy.tscn" id="8_n4sta"]
 [ext_resource type="PackedScene" uid="uid://cnvxyg3ysg7tf" path="res://game/enemies/beatle/pol_vfx.tscn" id="10_fs8yq"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="11_7j3v0"]
-[ext_resource type="PackedScene" uid="uid://by87cdyijsrbs" path="res://game/shared/animation trigger component/animation_trigger_component.tscn" id="14_t2e75"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="17_5mrum"]
 [ext_resource type="AudioStream" uid="uid://cklk8brngu3gh" path="res://assets/characters/enemies/rhino/sounds/buckle_up_1.wav" id="34_xmapy"]
 [ext_resource type="AudioStream" uid="uid://cs8p5h7ycx64p" path="res://assets/characters/enemies/rhino/sounds/buckle_up_2.wav" id="35_2b6o8"]
@@ -49,43 +48,6 @@ radius = 0.20846683
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t2e75"]
 radius = 0.54914546
-
-[sub_resource type="Animation" id="Animation_7j3v0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Healthbar3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.7900729, 0.06912398)]
-}
-
-[sub_resource type="Animation" id="Animation_jsf3j"]
-resource_name = "health_jump"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Healthbar3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.19999999),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0.7900729, 0.06912398), Vector3(0, 0.8832582, 0.06912398), Vector3(0, 0.7900729, 0.06912398)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ujdjm"]
-_data = {
-&"RESET": SubResource("Animation_7j3v0"),
-&"health_jump": SubResource("Animation_jsf3j")
-}
 
 [sub_resource type="PrismMesh" id="PrismMesh_431lo"]
 
@@ -143,7 +105,7 @@ stream_5/stream = ExtResource("58_4uioj")
 
 [node name="Beatle" unique_id=306559295 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_bghrv")]
 collision_layer = 80
-collision_mask = 65
+collision_mask = 577
 health = 250.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
@@ -262,15 +224,6 @@ can_hit = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=2134337856]
 shape = SubResource("SphereShape3D_t2e75")
-
-[node name="AnimationTriggerComponent" parent="." index="7" unique_id=1597452394 node_paths=PackedStringArray("node_to_connect", "animation_player") instance=ExtResource("14_t2e75")]
-node_to_connect = NodePath("../Hurtbox")
-signal_to_connect = "hurt_by"
-animation_player = NodePath("../AnimationPlayer")
-animation_to_play = "health_jump"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8" unique_id=1575891136]
-libraries/ = SubResource("AnimationLibrary_ujdjm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=133450068]
 transform = Transform3D(0.4514425, 0, 0, 0, -4.2719705e-08, 0.5626625, 0, -0.9773129, -2.4594758e-08, 0, 0.2828154, -0.07334371)
