@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_vf5r0"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_0133d"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_bn1p0"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_e7x4r"]
 [ext_resource type="Script" uid="uid://cp33buoo5xtgx" path="res://state_machine/enemy/pick_random_state.gd" id="3_mfkw4"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_on31h"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_v5xok"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="4_13mcr"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="4_smaht"]
@@ -13,6 +15,94 @@
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="8_fjwid"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="9_ry7xu"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="11_13mcr"]
+
+[sub_resource type="Resource" id="Resource_fjwid"]
+script = ExtResource("2_bn1p0")
+attribute = "health"
+value = 400.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ry7xu"]
+script = ExtResource("2_bn1p0")
+attribute = "health"
+value = 700.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_rgm31"]
+script = ExtResource("2_bn1p0")
+attribute = "incoming_damage_multiplier"
+value = 0.5
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_4xu73"]
+script = ExtResource("2_bn1p0")
+attribute = "health"
+value = 250.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_hweeg"]
+script = ExtResource("2_bn1p0")
+attribute = "health"
+value = 600.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_6k7e6"]
+script = ExtResource("2_bn1p0")
+attribute = "incoming_damage_multiplier"
+value = 0.7
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_k46r0"]
+script = ExtResource("3_on31h")
+introduction = Array[ExtResource("2_bn1p0")]([SubResource("Resource_4xu73")])
+easy = Array[ExtResource("2_bn1p0")]([SubResource("Resource_fjwid")])
+medium = Array[ExtResource("2_bn1p0")]([SubResource("Resource_hweeg"), SubResource("Resource_6k7e6")])
+hard = Array[ExtResource("2_bn1p0")]([SubResource("Resource_ry7xu"), SubResource("Resource_rgm31")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_4kie2"]
+script = ExtResource("2_bn1p0")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_0gafe"]
+script = ExtResource("2_bn1p0")
+attribute = "damage"
+value = 80.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_0nwob"]
+script = ExtResource("2_bn1p0")
+attribute = "amount_of_spawns"
+value = 10
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_sdjgc"]
+script = ExtResource("2_bn1p0")
+attribute = "damage"
+value = 20.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_mxpta"]
+script = ExtResource("2_bn1p0")
+attribute = "damage"
+value = 60.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_r0cbm"]
+script = ExtResource("2_bn1p0")
+attribute = "amount_of_spawns"
+value = 8
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_6ylq4"]
+script = ExtResource("3_on31h")
+introduction = Array[ExtResource("2_bn1p0")]([SubResource("Resource_sdjgc")])
+easy = Array[ExtResource("2_bn1p0")]([SubResource("Resource_4kie2")])
+medium = Array[ExtResource("2_bn1p0")]([SubResource("Resource_mxpta"), SubResource("Resource_r0cbm")])
+hard = Array[ExtResource("2_bn1p0")]([SubResource("Resource_0gafe"), SubResource("Resource_0nwob")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="Resource" id="Resource_jgt0k"]
 script = ExtResource("8_fjwid")
@@ -30,6 +120,38 @@ metadata/_custom_type_script = "uid://pv70hoylokg6"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_o3a4r"]
 
+[sub_resource type="Resource" id="Resource_vicvm"]
+script = ExtResource("2_bn1p0")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ga164"]
+script = ExtResource("2_bn1p0")
+attribute = "damage"
+value = 110.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_a6qss"]
+script = ExtResource("2_bn1p0")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_wjsty"]
+script = ExtResource("2_bn1p0")
+attribute = "damage"
+value = 90.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_t323h"]
+script = ExtResource("3_on31h")
+introduction = Array[ExtResource("2_bn1p0")]([SubResource("Resource_a6qss")])
+easy = Array[ExtResource("2_bn1p0")]([SubResource("Resource_vicvm")])
+medium = Array[ExtResource("2_bn1p0")]([SubResource("Resource_wjsty")])
+hard = Array[ExtResource("2_bn1p0")]([SubResource("Resource_ga164")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_u4ydb"]
 size = Vector3(1.180336, 0.21972656, 0.53015137)
 
@@ -41,6 +163,7 @@ size = Vector3(0.6700592, 0.81407166, 0.5209961)
 
 [node name="BriarKnight" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hurtboxes") instance=ExtResource("1_vf5r0")]
 health = 200.0
+difficulty_scaler = SubResource("Resource_k46r0")
 hitbox = NodePath("Visuals/hitboxBase")
 hurtbox = NodePath("Visuals/Hurtbox2")
 additional_hurtboxes = [NodePath("Visuals/Hurtbox")]
@@ -97,6 +220,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 script = ExtResource("6_bn1p0")
 max_distance = 10.0
 lifetime = 1.8
+difficulty_scaler = SubResource("Resource_6ylq4")
 entity_to_spawn = ExtResource("8_13mcr")
 amount_of_spawns = 5
 target_strategy = SubResource("Resource_jgt0k")
@@ -152,6 +276,7 @@ collision_mask = 8
 damage = 50.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_t323h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/hitboxBase" index="0" unique_id=273800923]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21168292, 0.63896817, 0.00103762)
