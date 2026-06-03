@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ciyhp1yy70dph" path="res://assets/characters/enemies/lizard/lizard_prefab.tscn" id="2_7gjff"]
 [ext_resource type="Script" uid="uid://dsnnhkc4wtj0a" path="res://state_machine/enemy/move_horizontal_vertical.gd" id="2_cfv8o"]
 [ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="3_03efp"]
-[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_f8btt"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_f8btt"]
 [ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="4_7qhmb"]
 [ext_resource type="Script" uid="uid://y7luksnh2gwr" path="res://strategies/event_emitter/raycast_event_emitter.gd" id="4_pdoqc"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="5_03efp"]
@@ -109,7 +109,7 @@ radius = 0.36457208
 [node name="Charger" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_wlu14")]
 health = 250.0
 difficulty_scaler = SubResource("Resource_a5ivj")
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -166,7 +166,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 target_position = Vector3(0, -8, 0)
 collision_mask = 2
 
-[node name="Hitbox" parent="." index="7" unique_id=597015863 instance=ExtResource("9_tkqte")]
+[node name="hitboxBase" parent="." index="7" unique_id=597015863 instance=ExtResource("9_tkqte")]
 collision_layer = 32
 collision_mask = 8
 damage = 50.0
@@ -174,7 +174,7 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_01dnf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=906582094]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=906582094]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004000306, 0.388, -0.251)
 shape = SubResource("SphereShape3D_a5ivj")
 debug_color = Color(0.9993934, 0, 0.12844995, 0.41960785)

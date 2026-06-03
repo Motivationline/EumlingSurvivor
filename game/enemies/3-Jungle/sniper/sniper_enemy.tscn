@@ -191,7 +191,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=378712980]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=378712980]
 script = ExtResource("3_4ah3n")
 difficulty_scaler = SubResource("Resource_6xtdm")
 entity_to_spawn = ExtResource("4_3xlw0")
@@ -242,14 +242,14 @@ stream = SubResource("AudioStreamRandomizer_ygu7c")
 [node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=1941913015 instance=ExtResource("13_q1m8v")]
 stream = SubResource("AudioStreamRandomizer_lgepu")
 
-[node name="Hitbox" parent="." index="8" unique_id=355339004 instance=ExtResource("27_0p1ou")]
+[node name="hitboxBase" parent="." index="8" unique_id=355339004 instance=ExtResource("27_0p1ou")]
 collision_layer = 32
 collision_mask = 8
 attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_70oh3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1236790744]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1236790744]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3322754, 0)
 shape = SubResource("CapsuleShape3D_qcoba")
 debug_color = Color(0.6433014, 0.4436161, 0.73155004, 0.41960785)

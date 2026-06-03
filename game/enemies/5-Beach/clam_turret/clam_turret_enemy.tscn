@@ -152,7 +152,7 @@ radius = 0.26974526
 collision_layer = 145
 health = 200.0
 difficulty_scaler = SubResource("Resource_2p3r5")
-hitbox = NodePath("Visuals/Hitbox")
+hitbox = NodePath("Visuals/hitboxBase")
 hurtbox = NodePath("Visuals/Hurtbox")
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
@@ -245,7 +245,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/Attack/SpawnEntitiesState" index="0" unique_id=1286700168 node_paths=PackedStringArray("spawn_position")]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/Attack/SpawnEntitiesState" index="0" unique_id=1286700168 node_paths=PackedStringArray("spawn_position")]
 script = ExtResource("9_fb0xj")
 spawn_position = NodePath("../../../../Visuals/Marker3D")
 max_distance = 100.0
@@ -267,7 +267,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="Hitbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1487053104 instance=ExtResource("13_v2g38")]
+[node name="hitboxBase" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1487053104 instance=ExtResource("13_v2g38")]
 collision_layer = 32
 collision_mask = 8
 damage = 25.0
@@ -275,7 +275,7 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_ugima")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hitbox" index="0" unique_id=1348417688]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/hitboxBase" index="0" unique_id=1348417688]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00091664493, 0.2809551, -0.00023913383)
 shape = SubResource("SphereShape3D_b440t")
 

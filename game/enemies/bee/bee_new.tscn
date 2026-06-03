@@ -26,7 +26,7 @@ height = 0.4970703
 
 [node name="BeeEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_0mg0e")]
 health = 250.0
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -57,7 +57,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1808127893]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1808127893]
 script = ExtResource("5_7k21y")
 entity_to_spawn = ExtResource("6_lodh7")
 time_between_entities = 1.429
@@ -91,7 +91,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState2" index="0" unique_id=405363684]
+[node name="spawnerSecondary" type="Node3D" parent="StateMachine/SpawnEntitiesState2" index="0" unique_id=405363684]
 script = ExtResource("5_7k21y")
 entity_to_spawn = ExtResource("9_eg47u")
 amount_of_spawns = 2
@@ -232,14 +232,14 @@ can_be_hit_by = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34448242, -0.04711914)
 shape = SubResource("BoxShape3D_hhcqo")
 
-[node name="Hitbox" parent="." index="7" unique_id=32976655 instance=ExtResource("4_82xbp")]
+[node name="hitboxBase" parent="." index="7" unique_id=32976655 instance=ExtResource("4_82xbp")]
 collision_layer = 32
 collision_mask = 8
 damage = 30.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=2111187289]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=2111187289]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32964128, 0)
 shape = SubResource("CapsuleShape3D_pyrbt")
 debug_color = Color(0.88557273, 0.00030495643, 0.80888516, 0.41960785)

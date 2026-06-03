@@ -174,7 +174,7 @@ stream_5/stream = ExtResource("30_xxa4w")
 [node name="NinjaStarfish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_57kab")]
 health = 150.0
 difficulty_scaler = SubResource("Resource_v4i5o")
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 speed = 2.0
@@ -204,8 +204,8 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="EnableAttackHitbox" type="Node" parent="StateMachine" index="2" unique_id=180383945 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("3_ybqk6")
-enable = [NodePath("../../HitboxAttack")]
-disable = [NodePath("../../Hitbox")]
+enable = [NodePath("../../hitboxAttack")]
+disable = [NodePath("../../hitboxBase")]
 next_state = NodePath("../MoveRandomOnNavMeshState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -220,8 +220,8 @@ metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 
 [node name="DisableAttackHitbox" type="Node" parent="StateMachine" index="4" unique_id=916672932 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("3_ybqk6")
-enable = [NodePath("../../Hitbox")]
-disable = [NodePath("../../HitboxAttack")]
+enable = [NodePath("../../hitboxBase")]
+disable = [NodePath("../../hitboxAttack")]
 next_state = NodePath("../WaitForTimeAfterAttack")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -246,7 +246,7 @@ metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="ninja_starfish" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=725910630 instance=ExtResource("2_jg36m")]
 
-[node name="Hitbox" parent="." index="5" unique_id=564562364 instance=ExtResource("3_3topv")]
+[node name="hitboxBase" parent="." index="5" unique_id=564562364 instance=ExtResource("3_3topv")]
 collision_layer = 32
 collision_mask = 8
 damage = 25.0
@@ -254,10 +254,10 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_ulo0u")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=802623045]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=802623045]
 shape = SubResource("SphereShape3D_ybqk6")
 
-[node name="HitboxAttack" parent="." index="6" unique_id=292966612 instance=ExtResource("3_3topv")]
+[node name="hitboxAttack" parent="." index="6" unique_id=292966612 instance=ExtResource("3_3topv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36812556, 0)
 collision_layer = 32
 collision_mask = 8
@@ -266,7 +266,7 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_stvce")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxAttack" index="0" unique_id=1030193574]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxAttack" index="0" unique_id=1030193574]
 shape = SubResource("CylinderShape3D_vc6ro")
 debug_color = Color(0.8531709, 0.34053513, 0.39017096, 0.41960785)
 

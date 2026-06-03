@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_eux68"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_r5gtk"]
 [ext_resource type="PackedScene" uid="uid://cgtlnuch0nmwm" path="res://assets/characters/enemies/tortoise/tortoise_prefab.tscn" id="2_s8eqa"]
-[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/difficulty_scaler.gd" id="3_r6bkk"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_r6bkk"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="4_c3oc6"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_eq0kn"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="5_4kafm"]
@@ -347,13 +347,13 @@ stream_5/stream = ExtResource("36_mr30t")
 collision_layer = 64
 collision_mask = 65
 health = 320.0
-speed = 0.4
 difficulty_scaler = SubResource("Resource_r6bkk")
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/PlaySoundDeathGeneral")]
 on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlaySoundHitGeneral")]
 node_with_animation_tree = NodePath("Visuals/tortoise")
+speed = 0.4
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
@@ -381,7 +381,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=349898979]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=349898979]
 script = ExtResource("5_lwqy1")
 offset_distance = 0.2
 damage = 50.0
@@ -406,7 +406,7 @@ needs_to_be_persistent = true
 script = ExtResource("10_84v5a")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=1658945836]
+[node name="spawnerSecondary" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=1658945836]
 script = ExtResource("5_lwqy1")
 offset_distance = 0.2
 damage = 50.0
@@ -426,7 +426,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
-[node name="Hitbox" parent="." index="3" unique_id=1203355617 instance=ExtResource("4_c3oc6")]
+[node name="hitboxBase" parent="." index="3" unique_id=1203355617 instance=ExtResource("4_c3oc6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35191, 0)
 collision_layer = 32
 collision_mask = 8
@@ -435,7 +435,7 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_abuar")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=512498433]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=512498433]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.066589, 0)
 shape = SubResource("CapsuleShape3D_4kafm")
 
@@ -456,7 +456,7 @@ shape = SubResource("SphereShape3D_fgitk")
 
 [node name="tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1904037027 instance=ExtResource("2_s8eqa")]
 
-[node name="Skeleton3D" parent="Visuals/tortoise/Armature_Tortoise" parent_id_path=PackedInt32Array(1904037027, 986621653) index="0" unique_id=1903414315]
+[node name="Skeleton3D" parent="Visuals/tortoise/Armature_Tortoise" parent_id_path=PackedInt32Array(1904037027, 294910942) index="0" unique_id=1203965309]
 bones/0/position = Vector3(-1.423398e-24, 0.1424511, -6.4104144e-09)
 bones/0/rotation = Quaternion(2.9802322e-08, 9.8607613e-32, -6.617445e-24, 1)
 bones/1/position = Vector3(5.2243773e-25, 0.28947428, 2.3528504e-09)
@@ -647,7 +647,7 @@ bones/92/rotation = Quaternion(0.866433, -0.09795106, -0.4521889, -0.18768226)
 bones/93/position = Vector3(-0.107516035, 0.21416913, -0.4395425)
 bones/93/rotation = Quaternion(0.90565443, -0.043571174, -0.4106814, -0.09608537)
 
-[node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" index="0" unique_id=71782891]
+[node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" index="0" unique_id=1758045236]
 material_overlay = SubResource("ShaderMaterial_62ngo")
 
 [node name="Shake" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=610131262 instance=ExtResource("16_gjal0")]

@@ -133,7 +133,7 @@ collision_layer = 64
 collision_mask = 65
 health = 250.0
 difficulty_scaler = SubResource("Resource_dpwa5")
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -187,8 +187,8 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="EnableAttackHitBox" type="Node" parent="StateMachine/AttackPlayer" index="1" unique_id=1586234887 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("8_c8qu1")
-enable = [NodePath("../../../AttackHitbox")]
-disable = [NodePath("../../../Hitbox")]
+enable = [NodePath("../../../hitboxAttack")]
+disable = [NodePath("../../../hitboxBase")]
 next_state = NodePath("../get_small")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -203,8 +203,8 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="DisableAttackHitbox" type="Node" parent="StateMachine/AttackPlayer" index="3" unique_id=1664287085 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("8_c8qu1")
-enable = [NodePath("../../../Hitbox")]
-disable = [NodePath("../../../AttackHitbox")]
+enable = [NodePath("../../../hitboxBase")]
+disable = [NodePath("../../../hitboxAttack")]
 next_state = NodePath("../../DecideDistanceState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -215,7 +215,7 @@ mesh = SubResource("SphereMesh_ksrke")
 
 [node name="Pufferfish" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1528906013 instance=ExtResource("9_fuc5l")]
 
-[node name="Hitbox" parent="." index="5" unique_id=1736455822 instance=ExtResource("2_57msv")]
+[node name="hitboxBase" parent="." index="5" unique_id=1736455822 instance=ExtResource("2_57msv")]
 collision_layer = 32
 collision_mask = 8
 damage = 50.0
@@ -223,7 +223,7 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_2un2y")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1886995735]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1886995735]
 shape = SubResource("SphereShape3D_otycw")
 
 [node name="Hurtbox" parent="." index="6" unique_id=1244451327 instance=ExtResource("3_ocnyn")]
@@ -242,7 +242,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0035880953, 0.19767752, 0)
 shape = SubResource("SphereShape3D_72cis")
 debug_color = Color(0.059656292, 0.63459665, 0.41232806, 0.41960785)
 
-[node name="AttackHitbox" parent="." index="10" unique_id=390149678 instance=ExtResource("2_57msv")]
+[node name="hitboxAttack" parent="." index="10" unique_id=390149678 instance=ExtResource("2_57msv")]
 collision_layer = 32
 collision_mask = 8
 damage = 50.0
@@ -250,6 +250,6 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_ohyny")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox" index="0" unique_id=433568621]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxAttack" index="0" unique_id=433568621]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52435994, 0)
 shape = SubResource("SphereShape3D_rult3")

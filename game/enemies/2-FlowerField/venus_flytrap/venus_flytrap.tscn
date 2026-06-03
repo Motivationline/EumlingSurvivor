@@ -28,7 +28,7 @@ height = 0.6203613
 [node name="VenusFlytrap" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_63olg")]
 collision_mask = 513
 health = 100.0
-hitbox = NodePath("Visuals/Hitbox")
+hitbox = NodePath("Visuals/hitboxBase")
 hurtbox = NodePath("Visuals/Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -90,14 +90,14 @@ mesh = SubResource("SphereMesh_ah053")
 transform = Transform3D(0.2, 0, 0, 0, 0.3, 0, 0, 0, 0.2, 0, 0.7971696, -0.16950202)
 mesh = SubResource("TorusMesh_3f0dq")
 
-[node name="Hitbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=90185859 instance=ExtResource("6_njorm")]
+[node name="hitboxBase" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=90185859 instance=ExtResource("6_njorm")]
 collision_layer = 32
 collision_mask = 8
 damage = 50.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hitbox" index="0" unique_id=1938039715]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/hitboxBase" index="0" unique_id=1938039715]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7988713, -0.061836302)
 shape = SubResource("SphereShape3D_poh6r")
 debug_color = Color(0.9977191, 0, 0.16986793, 0.41960785)

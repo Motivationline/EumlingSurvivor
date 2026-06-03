@@ -47,7 +47,7 @@ radius = 0.12129377
 
 [node name="Dandelion" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_wl26b")]
 health = 200.0
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
 
@@ -72,7 +72,7 @@ end_delay = 0.5
 next_state = NodePath("../AttackDelay")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=625866388]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=625866388]
 script = ExtResource("4_m4lhv")
 max_distance = 10.0
 lifetime = 1.8
@@ -94,7 +94,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("9_agu07")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=493523713]
+[node name="spawnerSecondary" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=493523713]
 script = ExtResource("4_m4lhv")
 max_distance = 10.0
 lifetime = 1.0
@@ -116,13 +116,13 @@ mesh = SubResource("SphereMesh_5jds6")
 transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, 0.000690043, 0.57905614, -0.069807485)
 mesh = SubResource("PlaneMesh_88q82")
 
-[node name="Hitbox" parent="." index="7" unique_id=1369164338 instance=ExtResource("5_3u7q3")]
+[node name="hitboxBase" parent="." index="7" unique_id=1369164338 instance=ExtResource("5_3u7q3")]
 collision_layer = 32
 collision_mask = 8
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1979761104]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1979761104]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004461825, 0.37922367, 0)
 shape = SubResource("CapsuleShape3D_e4mls")
 

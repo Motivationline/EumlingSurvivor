@@ -172,7 +172,7 @@ collision_layer = 64
 collision_mask = 65
 health = 200.0
 difficulty_scaler = SubResource("Resource_aj0o5")
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 node_with_animation_tree = NodePath("Visuals/Toad")
@@ -205,7 +205,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1650355750]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1650355750]
 script = ExtResource("4_m7dcb")
 difficulty_scaler = SubResource("Resource_uhhlj")
 entity_to_spawn = ExtResource("6_52td2")
@@ -242,7 +242,7 @@ can_be_hit_by = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
 shape = SubResource("SphereShape3D_eafdf")
 
-[node name="Hitbox" parent="." index="7" unique_id=1071015612 instance=ExtResource("9_eafdf")]
+[node name="hitboxBase" parent="." index="7" unique_id=1071015612 instance=ExtResource("9_eafdf")]
 collision_layer = 32
 collision_mask = 8
 damage = 25.0
@@ -250,7 +250,7 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_mp1xe")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=629998434]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=629998434]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
 shape = SubResource("SphereShape3D_gtm08")
 debug_color = Color(0.96461874, 0, 0.48390388, 0.41960785)

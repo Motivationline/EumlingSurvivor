@@ -186,7 +186,7 @@ collision_layer = 64
 collision_mask = 65
 health = 200.0
 difficulty_scaler = SubResource("Resource_5b0h0")
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 node_with_animation_tree = NodePath("Visuals/cactushog")
 
@@ -208,7 +208,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1393891198]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1393891198]
 script = ExtResource("5_rkcej")
 difficulty_scaler = SubResource("Resource_pgmq4")
 entity_to_spawn = ExtResource("5_qg7p4")
@@ -251,7 +251,7 @@ volume_db = 0.0
 stream = SubResource("AudioStreamRandomizer_b5ig4")
 volume_db = -4.0
 
-[node name="Hitbox" parent="." index="8" unique_id=35789522 instance=ExtResource("28_pgmq4")]
+[node name="hitboxBase" parent="." index="8" unique_id=35789522 instance=ExtResource("28_pgmq4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32233664, 0)
 collision_layer = 32
 collision_mask = 8
@@ -260,7 +260,7 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_my6wa")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1761122579]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1761122579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.027737707, 0)
 shape = SubResource("SphereShape3D_xfv6s")
 

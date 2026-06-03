@@ -107,7 +107,7 @@ stream_5/stream = ExtResource("58_4uioj")
 collision_layer = 80
 collision_mask = 577
 health = 250.0
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 node_with_animation_tree = NodePath("Visuals/rhino")
@@ -152,7 +152,7 @@ script = ExtResource("6_n4sta")
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0" unique_id=1173161530]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/MultistateState/SpawnEntitiesState" index="0" unique_id=1173161530]
 script = ExtResource("7_fs8yq")
 ignore_relative_rotation = true
 entity_to_spawn = ExtResource("8_n4sta")
@@ -190,7 +190,7 @@ script = ExtResource("6_n4sta")
 next_state = NodePath("../../MultistateState/LookAtPlayerState")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/MultistateState2/SpawnEntitiesState" index="0" unique_id=814058828]
+[node name="spawnerSecondary" type="Node3D" parent="StateMachine/MultistateState2/SpawnEntitiesState" index="0" unique_id=814058828]
 transform = Transform3D(1, 0, 0, 0, 0.7890626, 0.61431277, 0, -0.61431277, 0.7890626, 0, 0.40301532, -0.3561021)
 script = ExtResource("7_fs8yq")
 entity_to_spawn = ExtResource("10_fs8yq")
@@ -215,14 +215,14 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=1803152819]
 shape = SubResource("SphereShape3D_fs8yq")
 
-[node name="Hitbox" parent="." index="6" unique_id=504595573 instance=ExtResource("6_0xs35")]
+[node name="hitboxBase" parent="." index="6" unique_id=504595573 instance=ExtResource("6_0xs35")]
 collision_layer = 32
 collision_mask = 8
 damage = 75.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=2134337856]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=2134337856]
 shape = SubResource("SphereShape3D_t2e75")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=133450068]

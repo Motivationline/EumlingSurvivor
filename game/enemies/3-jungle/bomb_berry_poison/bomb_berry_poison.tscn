@@ -212,7 +212,7 @@ stream_5/stream = ExtResource("22_1s25r")
 [node name="BombBerryPoison" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_4nvcr")]
 health = 80.0
 difficulty_scaler = SubResource("Resource_avhu4")
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
 speed = 2.0
@@ -260,7 +260,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/Explode/SpawnEntitiesState" index="0" unique_id=1686334991]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/Explode/SpawnEntitiesState" index="0" unique_id=1686334991]
 script = ExtResource("6_x66hl")
 difficulty_scaler = SubResource("Resource_22ih7")
 entity_to_spawn = ExtResource("7_qsr43")
@@ -282,7 +282,7 @@ metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 script = ExtResource("12_1s25r")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=529013824]
+[node name="spawnerSecondary" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=529013824]
 script = ExtResource("6_x66hl")
 difficulty_scaler = SubResource("Resource_77v3g")
 entity_to_spawn = ExtResource("13_57rd0")
@@ -290,7 +290,7 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("2_awjhr")]
 
-[node name="Hitbox" parent="." index="5" unique_id=2112797289 instance=ExtResource("3_c6m5u")]
+[node name="hitboxBase" parent="." index="5" unique_id=2112797289 instance=ExtResource("3_c6m5u")]
 collision_layer = 32
 collision_mask = 8
 damage = 50.0
@@ -298,7 +298,7 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_wywj6")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1545682447]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1545682447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109611675, 0)
 shape = SubResource("SphereShape3D_6mw7y")
 debug_color = Color(0.96862745, 0, 0, 0.41960785)

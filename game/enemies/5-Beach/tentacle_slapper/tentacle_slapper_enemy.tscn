@@ -150,7 +150,7 @@ radius = 0.74622554
 [node name="tentacle_slapper" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "on_hurt") instance=ExtResource("1_qgdlt")]
 health = 150.0
 difficulty_scaler = SubResource("Resource_0x3t0")
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
@@ -181,7 +181,7 @@ start_delay = 0.2
 next_state = NodePath("../WaitForTimeXState")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=931220986]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=931220986]
 script = ExtResource("4_ehia0")
 ignore_relative_rotation = true
 offset_distance = 0.3
@@ -201,7 +201,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="ActivatorState" type="Node" parent="StateMachine/OnHit" index="0" unique_id=2093795961 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("7_6ky1e")
-disable = [NodePath("../../../Hitbox"), NodePath("../../../Hurtbox")]
+disable = [NodePath("../../../hitboxBase"), NodePath("../../../Hurtbox")]
 next_state = NodePath("../HideWait")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -222,7 +222,7 @@ metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
 [node name="ActivatorState2" type="Node" parent="StateMachine/OnHit" index="3" unique_id=871820908 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("7_6ky1e")
-enable = [NodePath("../../../Hitbox"), NodePath("../../../Hurtbox")]
+enable = [NodePath("../../../hitboxBase"), NodePath("../../../Hurtbox")]
 next_state = NodePath("../ShowWait")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -266,7 +266,7 @@ volume_db = -3.0
 stream = SubResource("AudioStreamRandomizer_xstyl")
 volume_db = 0.0
 
-[node name="Hitbox" parent="." index="6" unique_id=519897081 instance=ExtResource("2_2uhhv")]
+[node name="hitboxBase" parent="." index="6" unique_id=519897081 instance=ExtResource("2_2uhhv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3544367, 0)
 collision_layer = 32
 collision_mask = 8
@@ -275,7 +275,7 @@ attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_sfb4s")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=403141409]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=403141409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12802029, 0)
 shape = SubResource("SphereShape3D_0cktx")
 

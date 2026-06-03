@@ -30,7 +30,7 @@ height = 0.9160156
 
 [node name="Buttercup" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_x178y")]
 health = 100.0
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -54,7 +54,7 @@ end_delay = 0.4
 next_state = NodePath("../Delay")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=2065453923 node_paths=PackedStringArray("spawn_position")]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=2065453923 node_paths=PackedStringArray("spawn_position")]
 script = ExtResource("5_f5mb5")
 spawn_position = NodePath("../../../Visuals/Marker3D")
 entity_to_spawn = ExtResource("6_vop2s")
@@ -84,14 +84,14 @@ mesh = SubResource("CapsuleMesh_owduv")
 [node name="Marker3D" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=356282317]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.427)
 
-[node name="Hitbox" parent="." index="7" unique_id=2086272226 instance=ExtResource("8_vop2s")]
+[node name="hitboxBase" parent="." index="7" unique_id=2086272226 instance=ExtResource("8_vop2s")]
 collision_layer = 32
 collision_mask = 8
 damage = 25.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1886599307]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1886599307]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4062243, 0)
 shape = SubResource("CapsuleShape3D_3j84c")
 
