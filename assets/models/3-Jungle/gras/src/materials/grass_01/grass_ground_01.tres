@@ -1,0 +1,33 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bra6ug2wjmj0j"]
+
+[ext_resource type="Shader" uid="uid://jqrwa1d8fqbj" path="res://assets/models/3-Jungle/gras/src/shader/grass.gdshader" id="1_elum5"]
+[ext_resource type="Texture2D" uid="uid://di62ixsr75dl2" path="res://assets/models/3-Jungle/gras/src/palette/palette_01.tres" id="2_qlfk2"]
+[ext_resource type="Texture2D" uid="uid://dv6g2qxppq3ec" path="res://assets/models/3-Jungle/gras/src/texture/basic/grass_basic_atlas.png" id="3_v3u2w"]
+[ext_resource type="Texture2D" uid="uid://co5sp06yppnpi" path="res://assets/models/3-Jungle/gras/src/texture/basic/grass_basic_02.png" id="4_snty0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1bvp3"]
+seed = 11
+frequency = 0.008
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lquwl"]
+noise = SubResource("FastNoiseLite_1bvp3")
+seamless = true
+seamless_blend_skirt = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_elum5"]
+
+[resource]
+render_priority = -1
+shader = ExtResource("1_elum5")
+shader_parameter/billboard = true
+shader_parameter/shape_texture = ExtResource("4_snty0")
+shader_parameter/shape_atlas = ExtResource("3_v3u2w")
+shader_parameter/use_atlas = true
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_lquwl")
+shader_parameter/color_gradient = ExtResource("2_qlfk2")
+shader_parameter/random_variation = 0.0
+shader_parameter/wind_texture = SubResource("NoiseTexture2D_elum5")
+shader_parameter/wind_velocity = Vector2(1.9, 2)
+shader_parameter/alpha_cut_start = 0.2500000037253
+shader_parameter/alpha_cut_end = 0.9
+shader_parameter/alpha_mode = 0
