@@ -1,39 +1,46 @@
-# AutoSizer is just a class to remove the hassle of code duplication. Feel free to remove it, if you only need one type of Label.
 class_name AutoSizer
+## Helper functions for the auto size labels.
 
-static func update_font_size_label(label: AutoSizeLabel) -> void:
-	_update_font_size(label, "font", "font_size", Vector2i(label.min_font_size, label.max_font_size), label.text)
 
-#static func update_font_size_richlabel(label: AutoSizeRichLabel) -> void:
-	#_update_font_size(label, "normal_font", "normal_font_size", Vector2i(label.min_font_size, label.max_font_size), label.text)
-
-static func _update_font_size(label: Control, font_name: StringName, font_style_name: StringName, font_size_range: Vector2i, text: String) -> void:
-	var font := label.get_theme_font(font_name)
-
-	var line := TextLine.new()
-	line.direction = label.text_direction as TextServer.Direction
-	line.flags = TextServer.JUSTIFICATION_NONE
-	line.alignment = HORIZONTAL_ALIGNMENT_LEFT
+## Calculates the largest font size that fits within the label bounds.
+static func calc_font_size(label: Variant, font: Font, size: Vector2) -> int:
+	if label is not AutoSizeLabel and label is not AutoSizeLabel3D:
+		return -1
 	
-	while true:
-		line.clear()
+	var paragraph: TextParagraph = label.create_paragraph()
+
+	var comparable := func(middle: float) -> bool:
+		paragraph.clear()
+		paragraph.line_spacing = label.calc_line_spacing(middle)
+		paragraph.add_string(label.text, font, int(middle), label.language)
+
+		var text_size: Vector2 = paragraph.get_size()
+		return text_size.x <= size.x and text_size.y <= size.y
+
+	return int(Utils.binary_search(label.min_font_size, label.max_font_size, comparable))
+
+
+## Calculates the largest font size that fits within the label bounds, taking rich text and BBCode into account.
+static func calc_rich_font_size(label: AutoSizeRichTextLabel) -> int:
+	var comparable := func(middle: float) -> bool:
+		label.set_line_separation(int(middle))
+		label.bulk_rich_font_size_override(int(middle))
 		
-		var mid_font_size := font_size_range.x + roundi((font_size_range.y - font_size_range.x) * 0.5)
-		if !line.add_string(text, font, mid_font_size):
-			push_warning("Could not create a string!")
-			return
-		
-		var text_width := line.get_line_width()
-		if text_width >= floori(label.size.x):
-			if font_size_range.y == mid_font_size:
-				break
-			
-			font_size_range.y = mid_font_size
-		
-		if text_width < floori(label.size.x):
-			if font_size_range.x == mid_font_size:
-				break
-			
-			font_size_range.x = mid_font_size
-	
-	label.add_theme_font_size_override(font_style_name, font_size_range.x)
+		var text_size := Vector2(label.get_content_width(), label.get_content_height())
+		return text_size.x <= label.size.x and text_size.y <= label.size.y
+
+	return int(Utils.binary_search(label.min_font_size, label.max_font_size, comparable))
+
+
+## Gets the correct BitField[LineBreakFlag] from the labels AutoWrapMode.
+static func get_break_flags(autowrap_mode: TextServer.AutowrapMode) -> int:
+	match autowrap_mode:
+		TextServer.AUTOWRAP_OFF:
+			return TextServer.BREAK_MANDATORY
+		TextServer.AUTOWRAP_ARBITRARY:
+			return TextServer.BREAK_MANDATORY | TextServer.BREAK_GRAPHEME_BOUND
+		TextServer.AUTOWRAP_WORD:
+			return TextServer.BREAK_MANDATORY | TextServer.BREAK_WORD_BOUND
+		TextServer.AUTOWRAP_WORD_SMART:
+			return TextServer.BREAK_MANDATORY | TextServer.BREAK_WORD_BOUND | TextServer.BREAK_ADAPTIVE
+	return TextServer.BREAK_NONE
