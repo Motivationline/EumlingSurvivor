@@ -1,0 +1,900 @@
+{
+  "enemy_values": [
+    {
+      "scene": "tortoise_enemy.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 250,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 20,
+          "max_distance": 6,
+          "lifetime": 1,
+          "amount_of_spawns": 5
+        },
+        "spawnerSecondary": {
+          "damage": 20,
+          "max_distance": 6,
+          "lifetime": 1,
+          "amount_of_spawns": 5
+        },
+        "hitboxBase": {
+          "damage": 30
+        }
+      }
+    },
+    {
+      "scene": "tortoise_enemy.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 400,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 30,
+          "max_distance": 9,
+          "lifetime": 1.5,
+          "amount_of_spawns": 5
+        },
+        "spawnerSecondary": {
+          "damage": 30,
+          "max_distance": 6,
+          "lifetime": 1,
+          "amount_of_spawns": 7
+        },
+        "hitboxBase": {
+          "damage": 30
+        }
+      }
+    },
+    {
+      "scene": "tortoise_enemy.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 500,
+        "incoming_damage_multiplier": 0.7
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 40,
+          "max_distance": 12,
+          "lifetime": 1.8,
+          "amount_of_spawns": 5
+        },
+        "spawnerSecondary": {
+          "damage": 40,
+          "max_distance": 6,
+          "lifetime": 1,
+          "amount_of_spawns": 15
+        },
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "tortoise_enemy.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 550,
+        "incoming_damage_multiplier": 0.5
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 50,
+          "max_distance": 15,
+          "lifetime": 1.8,
+          "amount_of_spawns": 5
+        },
+        "spawnerSecondary": {
+          "damage": 50,
+          "max_distance": 6,
+          "lifetime": 1,
+          "amount_of_spawns": 20
+        },
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "sniper_enemy.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 100,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 40,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 30
+        }
+      }
+    },
+    {
+      "scene": "sniper_enemy.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 50,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 40
+        }
+      }
+    },
+    {
+      "scene": "sniper_enemy.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 200,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 70,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "sniper_enemy.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 300,
+        "incoming_damage_multiplier": 0.7
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 100,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 60
+        }
+      }
+    },
+    {
+      "scene": "bomb_berry_poison.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 100,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 30,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "spawnerSecondary": {
+          "damage": 30,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 30
+        }
+      }
+    },
+    {
+      "scene": "bomb_berry_poison.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 40,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "spawnerSecondary": {
+          "damage": 50,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 40
+        }
+      }
+    },
+    {
+      "scene": "bomb_berry_poison.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 50,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "spawnerSecondary": {
+          "damage": 70,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "bomb_berry_poison.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 60,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "spawnerSecondary": {
+          "damage": 90,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 60
+        }
+      }
+    },
+    {
+      "scene": "bomber_enemy.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 30,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 30
+        }
+      }
+    },
+    {
+      "scene": "bomber_enemy.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 200,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 50,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 30
+        }
+      }
+    },
+    {
+      "scene": "bomber_enemy.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 250,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 60,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "bomber_enemy.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 300,
+        "incoming_damage_multiplier": 0.7
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 70,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "volcano_tortoise_enemy.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 200,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 20,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 5
+        },
+        "spawnerSecondary": {
+          "damage": 20,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "volcano_tortoise_enemy.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 250,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 30,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 10
+        },
+        "spawnerSecondary": {
+          "damage": 30,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 3
+        },
+        "hitboxBase": {
+          "damage": 70
+        }
+      }
+    },
+    {
+      "scene": "volcano_tortoise_enemy.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 300,
+        "incoming_damage_multiplier": 0.7
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 40,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 15
+        },
+        "spawnerSecondary": {
+          "damage": 40,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 5
+        },
+        "hitboxBase": {
+          "damage": 90
+        }
+      }
+    },
+    {
+      "scene": "volcano_tortoise_enemy.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 400,
+        "incoming_damage_multiplier": 0.5
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 50,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 20
+        },
+        "spawnerSecondary": {
+          "damage": 50,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 8
+        },
+        "hitboxBase": {
+          "damage": 110
+        }
+      }
+    },
+    {
+      "scene": "magma_toad.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 30,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 30
+        }
+      }
+    },
+    {
+      "scene": "magma_toad.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 40,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "magma_toad.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 250,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 50,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 2
+        },
+        "hitboxBase": {
+          "damage": 70
+        }
+      }
+    },
+    {
+      "scene": "magma_toad.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 300,
+        "incoming_damage_multiplier": 0.9
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 60,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 3
+        },
+        "hitboxBase": {
+          "damage": 90
+        }
+      }
+    },
+    {
+      "scene": "charger_enemy.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 45
+        }
+      }
+    },
+    {
+      "scene": "charger_enemy.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 200,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 55
+        }
+      }
+    },
+    {
+      "scene": "charger_enemy.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 250,
+        "incoming_damage_multiplier": 0.8
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 75
+        }
+      }
+    },
+    {
+      "scene": "charger_enemy.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 350,
+        "incoming_damage_multiplier": 0.6
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 100
+        }
+      }
+    },
+    {
+      "scene": "puffer_fish_enemy.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 25
+        },
+        "hitboxAttack": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "puffer_fish_enemy.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 200,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 50
+        },
+        "hitboxAttack": {
+          "damage": 75
+        }
+      }
+    },
+    {
+      "scene": "puffer_fish_enemy.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 300,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 75
+        },
+        "hitboxAttack": {
+          "damage": 100
+        }
+      }
+    },
+    {
+      "scene": "puffer_fish_enemy.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 400,
+        "incoming_damage_multiplier": 0.7
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 100
+        },
+        "hitboxAttack": {
+          "damage": 125
+        }
+      }
+    },
+    {
+      "scene": "ninja_starfish_enemy.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 25
+        },
+        "hitboxAttack": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "ninja_starfish_enemy.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 200,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 50
+        },
+        "hitboxAttack": {
+          "damage": 75
+        }
+      }
+    },
+    {
+      "scene": "ninja_starfish_enemy.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 300,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 75
+        },
+        "hitboxAttack": {
+          "damage": 85
+        }
+      }
+    },
+    {
+      "scene": "ninja_starfish_enemy.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 400,
+        "incoming_damage_multiplier": 0.7
+      },
+      "children": {
+        "hitboxBase": {
+          "damage": 100
+        },
+        "hitboxAttack": {
+          "damage": 100
+        }
+      }
+    },
+    {
+      "scene": "tentacle_slapper_enemy.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 20,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 25
+        }
+      }
+    },
+    {
+      "scene": "tentacle_slapper_enemy.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 200,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 20,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "tentacle_slapper_enemy.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 250,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 20,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 75
+        }
+      }
+    },
+    {
+      "scene": "tentacle_slapper_enemy.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 350,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 20,
+          "max_distance": 2,
+          "lifetime": 120,
+          "amount_of_spawns": 1
+        },
+        "hitboxBase": {
+          "damage": 100
+        }
+      }
+    },
+    {
+      "scene": "tentacle_attack.tscn",
+      "difficulty": 0,
+      "children": {
+        "hitboxBase": {
+          "damage": 30
+        }
+      }
+    },
+    {
+      "scene": "tentacle_attack.tscn",
+      "difficulty": 1,
+      "children": {
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "tentacle_attack.tscn",
+      "difficulty": 2,
+      "children": {
+        "hitboxBase": {
+          "damage": 75
+        }
+      }
+    },
+    {
+      "scene": "tentacle_attack.tscn",
+      "difficulty": 3,
+      "children": {
+        "hitboxBase": {
+          "damage": 100
+        }
+      }
+    },
+    {
+      "scene": "clam_turret_enemy.tscn",
+      "difficulty": 0,
+      "values": {
+        "health": 150,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 30,
+          "max_distance": 100,
+          "lifetime": 120,
+          "amount_of_spawns": 3
+        },
+        "hitboxBase": {
+          "damage": 25
+        }
+      }
+    },
+    {
+      "scene": "clam_turret_enemy.tscn",
+      "difficulty": 1,
+      "values": {
+        "health": 250,
+        "incoming_damage_multiplier": 1
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 40,
+          "max_distance": 100,
+          "lifetime": 120,
+          "amount_of_spawns": 3
+        },
+        "hitboxBase": {
+          "damage": 50
+        }
+      }
+    },
+    {
+      "scene": "clam_turret_enemy.tscn",
+      "difficulty": 2,
+      "values": {
+        "health": 350,
+        "incoming_damage_multiplier": 0.8
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 60,
+          "max_distance": 100,
+          "lifetime": 120,
+          "amount_of_spawns": 3
+        },
+        "hitboxBase": {
+          "damage": 75
+        }
+      }
+    },
+    {
+      "scene": "clam_turret_enemy.tscn",
+      "difficulty": 3,
+      "values": {
+        "health": 450,
+        "incoming_damage_multiplier": 0.7
+      },
+      "children": {
+        "spawnerMain": {
+          "damage": 75,
+          "max_distance": 100,
+          "lifetime": 120,
+          "amount_of_spawns": 3
+        },
+        "hitboxBase": {
+          "damage": 100
+        }
+      }
+    }
+  ]
+}
