@@ -1,15 +1,17 @@
-[gd_resource type="AudioStreamInteractive" format=3 uid="uid://ijf5w0t7bk8y"]
+[gd_resource type="AudioStreamInteractive" script_class="Song" format=3 uid="uid://cci8144th03ds"]
 
-[ext_resource type="AudioStream" uid="uid://0b77oas7perk" path="res://assets/sound/music/raw/Combat_Shrooms_intro.ogg" id="1_awnty"]
-[ext_resource type="AudioStream" uid="uid://cid5jeomogn61" path="res://assets/sound/music/raw/Combat_Shrooms_loop.ogg" id="2_f2fgq"]
+[ext_resource type="Script" uid="uid://c5iloxbmlsjhb" path="res://game/sound/global_music_manager/song.gd" id="1_bolx2"]
+[ext_resource type="AudioStream" uid="uid://0b77oas7perk" path="res://assets/sound/music/raw/Combat_Shrooms_intro.ogg" id="1_f2fgq"]
+[ext_resource type="AudioStream" uid="uid://cid5jeomogn61" path="res://assets/sound/music/raw/Combat_Shrooms_loop.ogg" id="2_6in2s"]
 
 [resource]
 clip_count = 2
 clip_0/name = &"Intro"
-clip_0/stream = ExtResource("1_awnty")
+clip_0/stream = ExtResource("1_f2fgq")
 clip_0/auto_advance = 1
 clip_0/next_clip = 1
 clip_1/name = &"Loop"
-clip_1/stream = ExtResource("2_f2fgq")
-clip_1/auto_advance = 1
-clip_1/next_clip = 1
+clip_1/stream = ExtResource("2_6in2s")
+clip_1/auto_advance = 0
+script = ExtResource("1_bolx2")
+metadata/_custom_type_script = "uid://c5iloxbmlsjhb"

@@ -11,7 +11,8 @@ enum TRACK {
 	BOSS_ISLAND = 4, 
 	BOSS_VOLCANO = 5,
 	CHASE = 6,
-	GAMBA = 7
+	GAMBA = 7,
+	TITLE = 11
 }
 enum ENVNOISE {
 	FOREST,
@@ -29,7 +30,8 @@ static var tracks:Dictionary[TRACK, Array] = {
 	TRACK.BOSS_ISLAND:["res://assets/sound/music/boss_island.tres", ENVNOISE.ISLAND], 
 	TRACK.BOSS_VOLCANO:["res://assets/sound/music/boss_volcano.tres", ENVNOISE.VOLCANO],
 	TRACK.CHASE:["res://assets/sound/music/chase.tres", null],
-	TRACK.GAMBA:["res://assets/sound/music/gamba.tres", null]
+	TRACK.GAMBA:["res://assets/sound/music/gamba.tres", null],
+	TRACK.TITLE:["res://assets/sound/music/title_theme.tres",null]
 }
 static var envnoises:Dictionary[ENVNOISE,String] = {
 	ENVNOISE.FOREST:"res://assets/sound/environment_noise/Env_Forest.ogg",
@@ -50,7 +52,7 @@ static func get_noise_resource(noise:ENVNOISE) -> AudioStream:
 	res = load(path)
 	return res
 
-static func get_song_resource(song:TRACK) -> AudioStreamInteractive:
+static func get_song_resource(song:TRACK) -> Song:
 	var path:String = tracks[song][0]
-	var res:AudioStreamInteractive = load(path)
+	var res:Song = load(path)
 	return res

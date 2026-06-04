@@ -14,7 +14,6 @@ func setup(upgrade: Upgrade, delay: float = 0.0, sound_pos_offset: float = 0.0):
 
 	card.find_child("Text").text = upgrade._to_string()
 	sound_effect_manager.position.x = sound_pos_offset
-	print(sound_pos_offset)
 	var texture = textures.get(upgrade.type)
 	if texture:
 		card.find_child("UpgradeImage").texture = texture

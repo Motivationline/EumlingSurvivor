@@ -1,5 +1,6 @@
-[gd_resource type="AudioStreamInteractive" format=3 uid="uid://bmx8bqhoe4jv1"]
+[gd_resource type="AudioStreamInteractive" script_class="Song" format=3 uid="uid://u3u2vy6ehnor"]
 
+[ext_resource type="Script" uid="uid://c5iloxbmlsjhb" path="res://game/sound/global_music_manager/song.gd" id="1_htyyd"]
 [ext_resource type="AudioStream" uid="uid://bk38g6dakvpyv" path="res://assets/sound/music/raw/Combat_Volcano_intro.ogg" id="1_i4cls"]
 [ext_resource type="AudioStream" uid="uid://b1jpwx6rwg4t0" path="res://assets/sound/music/raw/Combat_Volcano_loop.ogg" id="2_lrq7i"]
 
@@ -11,5 +12,6 @@ clip_0/auto_advance = 1
 clip_0/next_clip = 1
 clip_1/name = &"Loop"
 clip_1/stream = ExtResource("2_lrq7i")
-clip_1/auto_advance = 1
-clip_1/next_clip = 1
+clip_1/auto_advance = 0
+script = ExtResource("1_htyyd")
+metadata/_custom_type_script = "uid://c5iloxbmlsjhb"

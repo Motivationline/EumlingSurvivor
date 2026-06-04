@@ -1,15 +1,17 @@
-[gd_resource type="AudioStreamInteractive" format=3 uid="uid://dc4r4wlud7idr"]
+[gd_resource type="AudioStreamInteractive" script_class="Song" format=3 uid="uid://d11gpkkg7t4xa"]
 
-[ext_resource type="AudioStream" uid="uid://clyiyb651mm0r" path="res://assets/sound/music/raw/Boss_Island_intro.ogg" id="1_hgbux"]
-[ext_resource type="AudioStream" uid="uid://clno07fay87ql" path="res://assets/sound/music/raw/Boss_Island_loop.ogg" id="2_2hab5"]
+[ext_resource type="AudioStream" uid="uid://clyiyb651mm0r" path="res://assets/sound/music/raw/Boss_Island_intro.ogg" id="1_2hab5"]
+[ext_resource type="Script" uid="uid://c5iloxbmlsjhb" path="res://game/sound/global_music_manager/song.gd" id="1_c7m15"]
+[ext_resource type="AudioStream" uid="uid://clno07fay87ql" path="res://assets/sound/music/raw/Boss_Island_loop.ogg" id="2_dmlll"]
 
 [resource]
 clip_count = 2
 clip_0/name = &"Intro"
-clip_0/stream = ExtResource("1_hgbux")
+clip_0/stream = ExtResource("1_2hab5")
 clip_0/auto_advance = 1
 clip_0/next_clip = 1
 clip_1/name = &"Loop"
-clip_1/stream = ExtResource("2_2hab5")
-clip_1/auto_advance = 1
-clip_1/next_clip = 1
+clip_1/stream = ExtResource("2_dmlll")
+clip_1/auto_advance = 0
+script = ExtResource("1_c7m15")
+metadata/_custom_type_script = "uid://c5iloxbmlsjhb"

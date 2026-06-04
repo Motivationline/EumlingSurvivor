@@ -1,15 +1,17 @@
-[gd_resource type="AudioStreamInteractive" format=3 uid="uid://dd12l8srebrsk"]
+[gd_resource type="AudioStreamInteractive" script_class="Song" format=3 uid="uid://dy53u7vmf0ym4"]
 
-[ext_resource type="AudioStream" uid="uid://bacgd1m1s3ev7" path="res://assets/sound/music/raw/Boss_Volcano_intro.ogg" id="1_napxk"]
-[ext_resource type="AudioStream" uid="uid://cb7f7kjn0uhpj" path="res://assets/sound/music/raw/Boss_Volcano_loop.ogg" id="2_qhers"]
+[ext_resource type="AudioStream" uid="uid://bacgd1m1s3ev7" path="res://assets/sound/music/raw/Boss_Volcano_intro.ogg" id="1_qhers"]
+[ext_resource type="Script" uid="uid://c5iloxbmlsjhb" path="res://game/sound/global_music_manager/song.gd" id="1_yy16j"]
+[ext_resource type="AudioStream" uid="uid://cb7f7kjn0uhpj" path="res://assets/sound/music/raw/Boss_Volcano_loop.ogg" id="2_4abcb"]
 
 [resource]
 clip_count = 2
 clip_0/name = &"Intro"
-clip_0/stream = ExtResource("1_napxk")
+clip_0/stream = ExtResource("1_qhers")
 clip_0/auto_advance = 1
 clip_0/next_clip = 1
 clip_1/name = &"Loop"
-clip_1/stream = ExtResource("2_qhers")
-clip_1/auto_advance = 1
-clip_1/next_clip = 1
+clip_1/stream = ExtResource("2_4abcb")
+clip_1/auto_advance = 0
+script = ExtResource("1_yy16j")
+metadata/_custom_type_script = "uid://c5iloxbmlsjhb"

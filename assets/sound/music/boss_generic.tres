@@ -1,7 +1,8 @@
-[gd_resource type="AudioStreamInteractive" format=3 uid="uid://b4irt1qy6lwqw"]
+[gd_resource type="AudioStreamInteractive" script_class="Song" format=3 uid="uid://btbm66a60v76g"]
 
 [ext_resource type="AudioStream" uid="uid://dphb84jpg7wm6" path="res://assets/sound/music/raw/Boss_Combat_intro.ogg" id="1_4krq3"]
 [ext_resource type="AudioStream" uid="uid://brpjymgmem8hi" path="res://assets/sound/music/raw/Boss_Combat_loop.ogg" id="2_4krq3"]
+[ext_resource type="Script" uid="uid://c5iloxbmlsjhb" path="res://game/sound/global_music_manager/song.gd" id="3_wg3gm"]
 
 [resource]
 clip_count = 2
@@ -12,3 +13,5 @@ clip_0/next_clip = 1
 clip_1/name = &"Loop"
 clip_1/stream = ExtResource("2_4krq3")
 clip_1/auto_advance = 0
+script = ExtResource("3_wg3gm")
+metadata/_custom_type_script = "uid://c5iloxbmlsjhb"
