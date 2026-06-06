@@ -3,15 +3,19 @@ class_name MusicPlayer extends AudioStreamPlayer
 
 func _init(song: Song):
 	stream = song
-	if song.oneshot:
-		finished.connect(on_finished.bind(song))
+
+
 
 
 
 func start_playback():
-	if stream:
+	if stream is Song:
 		play()
-	
+		if stream.oneshot:
+			on_finished(stream)
+
+
 func on_finished(song:Song):
-	print("sent")
+
+	await get_tree().create_timer(song.length).timeout
 	GlobalMusicManager.request_music(song.next_track,song.transition)

@@ -73,7 +73,7 @@ func make_music_player(song: SongList.TRACK) -> MusicPlayer:
 	return new_stream_player
 
 
-## Request music track given by [param track_name] with transition defined by [param transition] [br]
+## Request music track given by [param track_name] and switch to it with a transition defined by [param transition] [br]
 func request_music(track_name: SongList.TRACK, transition: MusicTransition):
 	if not is_playing:
 		active_player = make_music_player(track_name)
@@ -89,20 +89,17 @@ func request_music(track_name: SongList.TRACK, transition: MusicTransition):
 
 		match transition.type:
 			MusicTransition.TRANSITIONS.CROSSFADE:
-				print("crossfade", transition, transition.transition_parameters)
 				fade_player_volume(transition.transition_parameters.get("duration"), -60, fading_player, true)
 				active_player.volume_db = -60
 				active_player.start_playback()
 				fade_player_volume(transition.transition_parameters.get("duration"), 0, active_player)
 				
 			MusicTransition.TRANSITIONS.FADE_AND_START:
-				print("fade_and_start", transition, transition.transition_parameters)
 				fade_player_volume(transition.transition_parameters.get("duration"), -60, fading_player, true)
 				await get_tree().create_timer(transition.transition_parameters.get("next_track_offset")).timeout
 				active_player.start_playback()
 				
 			MusicTransition.TRANSITIONS.INSTANT:
-				print("instant", transition)
 				active_player.start_playback()
 				fading_player.stop()
 				fading_player.queue_free()
