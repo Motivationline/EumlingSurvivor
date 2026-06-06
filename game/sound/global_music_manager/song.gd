@@ -1,6 +1,6 @@
 @tool
 class_name Song extends AudioStreamInteractive
-##Object that contains music files belonging to one track.
+##Resource that contains music files belonging to one track.
 
 
 ## If [param true], will switch to [param next_track] with a [param transition] that can be configured in the inspector after the song ends.
@@ -11,7 +11,10 @@ class_name Song extends AudioStreamInteractive
 	get():
 		return oneshot
 		
+## The volume the song is played back at
+@export_range(-60,10,0.1,"suffix:dB") var volume:float = 0
 
+## The songs length in seconds, with all clips being added togehter
 var length: float:
 	get():
 		var _length: float = 0
@@ -19,8 +22,9 @@ var length: float:
 			_length+=get_clip_stream(i).get_length()
 		length = _length
 		return length
-
+## The track to play after this one if [param oneshot] is  [code]true[/code].
 var next_track: SongList.TRACK
+## The transition to use to switch to [param next_track] if [param oneshot] is  [code]true[/code].
 var transition: MusicTransition
 func _get_property_list():
 	var properties = []

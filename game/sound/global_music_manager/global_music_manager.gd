@@ -1,4 +1,5 @@
 extends Node
+## Global music and environment sound manager.
 
 enum BUS_ID {MASTER, MUSIC, SFX_ALL, SFX_ENEMIES, SFX_UI, ENVIRONMENT}
 
@@ -47,7 +48,7 @@ func fade_bus_volume(_bus_id: BUS_ID, _duration: float, _target_db: float = 30, 
 	await tween.finished
 	active_tweens.erase([TWEEN_TYPES.BUS_FADE, tween, _bus_id])
 
-func fade_player_volume(_duration: float, _target_volume_db: float = -60, _player: AudioStreamPlayer = active_player, _stop: bool = false) -> void: ## fades the volume of [param _player] by [param _target_volume_db] in a span of time equal to [param _duration] in seconds. Will queue [param _player] to be freed if [param _stop] is true.
+func fade_player_volume(_duration: float, _target_volume_db: float = -60, _player: AudioStreamPlayer = active_player, _stop: bool = false) -> void: ## fades the volume of [param _player] by [param _target_volume_db] in a span of time equal to [param _duration] in seconds. Will queue [param _player] to be freed if [param _stop] is [code]true[/code].
 	for tween in active_tweens:
 		if tween.has(_player):
 			await tween[1].finished
