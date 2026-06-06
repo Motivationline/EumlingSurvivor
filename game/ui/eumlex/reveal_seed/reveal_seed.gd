@@ -26,7 +26,7 @@ func advance():
 	if progress >= 4:
 		if progress == 99:
 			completed.emit()
-			GlobalMusicManager.request_music(SongList.TRACK.MENU,GlobalMusicManager.TRANSITIONS.CROSSFADE,[1])
+			GlobalMusicManager.request_music(SongList.TRACK.MENU,MusicTransition.crossfade(1.0)) #GlobalMusicManager.TRANSITIONS.CROSSFADE,[1]
 		return
 	progress += 1;
 	if progress <= 3:
@@ -36,7 +36,7 @@ func advance():
 
 func reveal_emuling():
 	seed_animation.play("reveal")
-	GlobalMusicManager.request_music(SongList.TRACK.GAMBA,GlobalMusicManager.TRANSITIONS.INSTANT)
+	GlobalMusicManager.request_music(SongList.TRACK.GAMBA,MusicTransition.instant())
 	await seed_animation.animation_finished
 	progress = 99
 

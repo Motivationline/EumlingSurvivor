@@ -51,7 +51,7 @@ func load_level():
 			return_to_main_menu()
 			return
 		area_choice_overlay.setup()
-		GlobalMusicManager.request_music(SongList.TRACK.MENU, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [2, 0])
+		GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2,0))
 		levels_to_load = await area_choice_overlay.area_chosen
 
 	Engine.time_scale = 0
@@ -69,7 +69,7 @@ func load_level():
 		new_level.spawn_player(player)
 		new_level.level_finished.connect(level_finished)
 		new_level.level_ended.connect(level_ended)
-		GlobalMusicManager.request_music(new_level.music, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [4, 0])
+		GlobalMusicManager.request_music(new_level.music, MusicTransition.fade_and_start(4,0))
 
 
 		currently_loaded_level = new_level
@@ -89,7 +89,7 @@ func level_ended():
 	load_level()
 
 func return_to_main_menu():
-	GlobalMusicManager.request_music(SongList.TRACK.MENU, GlobalMusicManager.TRANSITIONS.FADE_AND_START, [2, 0])
+	GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2,0))
 	if not faded_to_black:
 		scene_fade_animation_player.play("fade")
 		await scene_fade_animation_player.animation_finished

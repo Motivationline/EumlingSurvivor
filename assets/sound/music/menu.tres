@@ -3,6 +3,12 @@
 [ext_resource type="AudioStream" uid="uid://c0vp5so61y3hr" path="res://assets/sound/music/raw/Menu_intro.ogg" id="1_syon8"]
 [ext_resource type="Script" uid="uid://c5iloxbmlsjhb" path="res://game/sound/global_music_manager/song.gd" id="1_twqrh"]
 [ext_resource type="AudioStream" uid="uid://bc2jjgdubpx0x" path="res://assets/sound/music/raw/Menu_loop.ogg" id="2_wh7vh"]
+[ext_resource type="Script" uid="uid://cqennrjg12uiq" path="res://game/sound/global_music_manager/music_transition.gd" id="4_wh7vh"]
+
+[sub_resource type="Resource" id="Resource_x2e1v"]
+script = ExtResource("4_wh7vh")
+type = 1
+metadata/_custom_type_script = "uid://cqennrjg12uiq"
 
 [resource]
 clip_count = 2
@@ -14,4 +20,7 @@ clip_1/name = &"Loop"
 clip_1/stream = ExtResource("2_wh7vh")
 clip_1/auto_advance = 0
 script = ExtResource("1_twqrh")
+oneshot = true
+transition = SubResource("Resource_x2e1v")
+track = null
 metadata/_custom_type_script = "uid://c5iloxbmlsjhb"
