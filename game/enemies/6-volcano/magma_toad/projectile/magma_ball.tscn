@@ -73,34 +73,34 @@ targeting = [NodePath("MovementStrategies/UniversalTargetingProjectileTargetStra
 on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/PlaySoundExplosion"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_created = [NodePath("MovementStrategies/SetTargetsEventStrategy"), NodePath("EventStrategies/PlaySoundLaunch")]
 
-[node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=619591397]
+[node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=619591397]
 script = ExtResource("3_ma2mw")
 target_property = 2
 metadata/_custom_type_script = "uid://l8142vs0gken"
 
-[node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1" unique_id=1875998004]
+[node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="1" unique_id=1875998004]
 script = ExtResource("4_54631")
 flight_curve = SubResource("Curve_by40c")
 max_distance = 4.0
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
-[node name="SetTargetsEventStrategy" type="Node" parent="MovementStrategies" index="2" unique_id=155478377 node_paths=PackedStringArray("targeting_strats")]
+[node name="SetTargetsEventStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="2" unique_id=155478377 node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("5_54631")
 targeting_strats = [NodePath("../UniversalTargetingProjectileTargetStrategy")]
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
-[node name="PlaySoundExplosion" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=1234271980 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundExplosion" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="0" unique_id=1234271980 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("9_ht0i3")
 sound_manager = NodePath("../../../SoundEffectManager")
 sound_to_play = "Explosion"
 needs_to_be_persistent = true
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="1" unique_id=743689288]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="1" unique_id=743689288]
 script = ExtResource("6_vrxug")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="2" unique_id=715170125]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="2" unique_id=715170125]
 script = ExtResource("6_by40c")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
@@ -109,7 +109,7 @@ script = ExtResource("7_m8640")
 entity_to_spawn = ExtResource("8_by40c")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlaySoundLaunch" type="Node" parent="EventStrategies" index="5" unique_id=376450025 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundLaunch" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="5" unique_id=376450025 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("9_ht0i3")
 sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = "Launch"
@@ -133,8 +133,8 @@ metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
 [node name="Explosion" parent="SoundEffectManager" index="0" unique_id=710197368 instance=ExtResource("12_pk2yg")]
 stream = SubResource("AudioStreamRandomizer_k6c7p")
-volume_db = -13.0
+volume_db = -11.0
 
 [node name="Launch" parent="SoundEffectManager" index="1" unique_id=1656971584 instance=ExtResource("12_pk2yg")]
 stream = SubResource("AudioStreamRandomizer_u2wxb")
-volume_db = -14.0
+volume_db = -18.0

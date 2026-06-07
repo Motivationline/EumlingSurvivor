@@ -138,12 +138,10 @@ func focus_on_bus(_bus: BUS_ID, _duration: float, _reduction_db: float) -> void:
 	var previous_volumes = {}
 	for bus in other_buses:
 		previous_volumes[bus] = AudioServer.get_bus_volume_db(bus)
-		print(previous_volumes[bus])
 		fade_bus_volume(bus, 0.4, previous_volumes[bus] - _reduction_db)
 
 	
 	await get_tree().create_timer(_duration).timeout
 	
 	for bus in other_buses:
-		print(previous_volumes[bus])
 		fade_bus_volume(bus, 0.4,  previous_volumes[bus])
