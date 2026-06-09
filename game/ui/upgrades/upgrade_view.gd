@@ -31,8 +31,6 @@ func show_upgrades():
 		upgrade_container.add_child(upgrade_option)
 		upgrade_option.setup(upgrade, i * delay_between_cards, -2 + i* 2)
 		upgrade_option.pressed.connect(upgrade_input.bind(upgrade))
-		if(i == 0):
-			upgrade_option.grab_focus()
 	show()
 
 func upgrade_input(option: Upgrade):

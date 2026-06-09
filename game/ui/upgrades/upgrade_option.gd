@@ -18,6 +18,20 @@ func setup(upgrade: Upgrade, delay: float = 0.0, sound_pos_offset: float = 0.0):
 	if texture:
 		card.find_child("UpgradeImage").texture = texture
 	
+	focus_entered.connect(_on_focus_entered)
+	focus_exited.connect(_on_focus_exited)
+	mouse_entered.connect(_on_focus_entered)
+	mouse_exited.connect(_on_focus_exited)
+	
 	await get_tree().create_timer(delay).timeout
 	$SubViewport.add_child(card)
 	sound_effect_manager.play_sound("Reveal")
+	if get_parent().get_child(0) == self:
+		grab_focus()
+
+func _on_focus_entered():
+	scale = Vector2(1.1, 1.1)
+	grab_focus()
+
+func _on_focus_exited():
+	scale = Vector2(1, 1)
