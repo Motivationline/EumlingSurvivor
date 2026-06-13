@@ -2,7 +2,7 @@ extends TabBar
 @export var vol_min:float
 @export var vol_max:float
 
-# Called when the node enters the scene tree for the first time.
+
 
 func _ready():
 

@@ -74,8 +74,9 @@ func make_music_player(song: SongList.TRACK) -> MusicPlayer:
 	return new_stream_player
 
 
-## Request music track given by [param track_name] and switch to it with a transition defined by [param transition] [br]
-func request_music(track_name: SongList.TRACK, transition: MusicTransition):
+## Request music track given by [param track_name] and switch to it with a transition defined by [param transition]. [br]
+## If [param override_environment_noise] is [code]true[/code], plays [param environment_noise] instead of the noise associated with the song.
+func request_music(track_name: SongList.TRACK, transition: MusicTransition,override_environment_noise:bool = false, environment_noise:SongList.ENVNOISE = SongList.ENVNOISE.NOTHING):
 	if not is_playing:
 		active_player = make_music_player(track_name)
 		
@@ -105,12 +106,21 @@ func request_music(track_name: SongList.TRACK, transition: MusicTransition):
 				fading_player.stop()
 				fading_player.queue_free()
 				
-	var noise = SongList.get_noise_of_song(track_name)
+	if override_environment_noise:
+		set_environment_noise(environment_noise)
+	else:
+		set_environment_noise(SongList.get_noise_of_song(track_name))
+	current_track = track_name
+
+
+func set_environment_noise(noise:SongList.ENVNOISE) -> void:
+	
+		
 	if noise != current_noise:
-		if noise == -1:
+		if noise == SongList.ENVNOISE.NOTHING:
 			fade_player_volume(2, -60, env_noise_player)
 		else:
-			if current_noise == -1:
+			if current_noise == SongList.ENVNOISE.NOTHING:
 				fade_player_volume(0.2, -60, env_noise_player)
 				await get_tree().create_timer(0.2).timeout
 			env_noise_player.stream = SongList.get_noise_resource(noise)
@@ -118,9 +128,8 @@ func request_music(track_name: SongList.TRACK, transition: MusicTransition):
 			fade_player_volume(0.4, 0, env_noise_player)
 			
 		current_noise = noise
-	current_track = track_name
-	
-		
+
+
 func fade_out(_duration: float, _stop: bool = false) -> void: ## Fades out the currently playing music track. [param _stop] will stop playback after the fade is complete.
 	fade_player_volume(_duration, -60, active_player, _stop)
 
