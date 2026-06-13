@@ -16,33 +16,36 @@ enum TRACK {
 	TITLE = 11
 }
 enum ENVNOISE {
-	FOREST,
-	ISLAND,
-	VOLCANO,
-	FLOWERS,
-	MUSHROOMS
+	NOTHING  = 0,
+	FOREST = 1,
+	ISLAND = 2,
+	VOLCANO = 3,
+	FLOWERS = 4,
+	MUSHROOMS = 5,
+	MOUNTAIN = 6
 }
 static var tracks:Dictionary[TRACK, Array] = {
-	TRACK.MENU :["res://assets/sound/music/menu.tres", null],
+	TRACK.MENU :["res://assets/sound/music/menu.tres", ENVNOISE.NOTHING],
 	TRACK.COMBAT_FOREST:["res://assets/sound/music/combat_forest.tres",ENVNOISE.FOREST], 
 	TRACK.COMBAT_ISLAND:["res://assets/sound/music/combat_island.tres", ENVNOISE.ISLAND],
 	TRACK.COMBAT_VOLCANO:["res://assets/sound/music/combat_volcano.tres", ENVNOISE.VOLCANO],
 	TRACK.COMBAT_FLOWERS:["res://assets/sound/music/combat_flowers.tres",ENVNOISE.FLOWERS],
-	TRACK.COMBAT_MOUNTAIN:["res://assets/sound/music/combat_mountain.tres",null],
+	TRACK.COMBAT_MOUNTAIN:["res://assets/sound/music/combat_mountain.tres",ENVNOISE.MOUNTAIN],
 	TRACK.COMBAT_SHROOMS:["res://assets/sound/music/combat_shrooms.tres",ENVNOISE.MUSHROOMS],
 	TRACK.BOSS_GENERIC:["res://assets/sound/music/boss_generic.tres", ENVNOISE.FOREST],
 	TRACK.BOSS_ISLAND:["res://assets/sound/music/boss_island.tres", ENVNOISE.ISLAND], 
 	TRACK.BOSS_VOLCANO:["res://assets/sound/music/boss_volcano.tres", ENVNOISE.VOLCANO],
-	TRACK.CHASE:["res://assets/sound/music/chase.tres", null],
-	TRACK.GAMBA:["res://assets/sound/music/gamba.tres", null],
-	TRACK.TITLE:["res://assets/sound/music/title_theme.tres",null]
+	TRACK.CHASE:["res://assets/sound/music/chase.tres", ENVNOISE.NOTHING],
+	TRACK.GAMBA:["res://assets/sound/music/gamba.tres", ENVNOISE.NOTHING],
+	TRACK.TITLE:["res://assets/sound/music/title_theme.tres",ENVNOISE.NOTHING]
 }
 static var envnoises:Dictionary[ENVNOISE,String] = {
 	ENVNOISE.FOREST:"res://assets/sound/environment_noise/Env_Forest.ogg",
 	ENVNOISE.ISLAND:"res://assets/sound/environment_noise/Env_Island.ogg",
 	ENVNOISE.VOLCANO:"res://assets/sound/environment_noise/Env_Volcano.ogg",
 	ENVNOISE.FLOWERS:"res://assets/sound/environment_noise/Env_Flowers.ogg",
-	ENVNOISE.MUSHROOMS:"res://assets/sound/environment_noise/Env_Mushrooms.ogg"
+	ENVNOISE.MUSHROOMS:"res://assets/sound/environment_noise/Env_Mushrooms.ogg",
+	ENVNOISE.MOUNTAIN:"res://assets/sound/environment_noise/Env_Mountain.ogg"
 }
 static func get_noise_of_song(song:TRACK) -> int:
 	var noise = tracks[song][1]
@@ -52,6 +55,8 @@ static func get_noise_of_song(song:TRACK) -> int:
 		return -1 
 	
 static func get_noise_resource(noise:ENVNOISE) -> AudioStream:
+	if noise == ENVNOISE.NOTHING:
+		return
 	var res:AudioStream
 
 	var path:String = envnoises[noise]
