@@ -27,28 +27,29 @@ func _ready():
 	
 	add_child(env_noise_player)
 
-
-func fade_bus_volume(_bus_id: BUS_ID, _duration: float, _target_db: float = 30, _to_init_volume: bool = false) -> void:
+## Fade volume of [param _bus] to [param _target_volume_db] in [param _duration] seconds. If [param _to_init_volume] is [code]true[/code], will ignore [param _target_volume_db] and fade to the bus's initial volume.
+func fade_bus_volume(_bus: BUS_ID, _duration: float, _target_volume_db: float = 30, _to_init_volume: bool = false) -> void:
 	for tween in active_tweens:
-		if tween.has(_bus_id):
+		if tween.has(_bus):
 			await tween[1].finished
 	
 	var tween = get_tree().create_tween()
 	
-	active_tweens.append([TWEEN_TYPES.BUS_FADE, tween, _bus_id])
+	active_tweens.append([TWEEN_TYPES.BUS_FADE, tween, _bus])
 	
 	
 	tween.set_ignore_time_scale(true)
 	
 	if _to_init_volume:
-		_target_db = init_bus_volumes[_bus_id]
+		_target_volume_db = init_bus_volumes[_bus]
 	
-	tween.tween_method(func(v): AudioServer.set_bus_volume_db(_bus_id, v), AudioServer.get_bus_volume_db(_bus_id), _target_db, _duration)
+	tween.tween_method(func(v): AudioServer.set_bus_volume_db(_bus, v), AudioServer.get_bus_volume_db(_bus), _target_volume_db, _duration)
 	
 	await tween.finished
-	active_tweens.erase([TWEEN_TYPES.BUS_FADE, tween, _bus_id])
+	active_tweens.erase([TWEEN_TYPES.BUS_FADE, tween, _bus])
 
-func fade_player_volume(_duration: float, _target_volume_db: float = -60, _player: AudioStreamPlayer = active_player, _stop: bool = false) -> void: ## fades the volume of [param _player] by [param _target_volume_db] in a span of time equal to [param _duration] in seconds. Will queue [param _player] to be freed if [param _stop] is [code]true[/code].
+## Fade volume of [param _player] to [param _target_volume_db] in [param _duration] seconds. Will queue [param _player] to be freed if [param _stop] is [code]true[/code].
+func fade_player_volume(_duration: float, _target_volume_db: float = -60, _player: AudioStreamPlayer = active_player, _stop: bool = false) -> void:
 	for tween in active_tweens:
 		if tween.has(_player):
 			await tween[1].finished
@@ -67,38 +68,39 @@ func fade_player_volume(_duration: float, _target_volume_db: float = -60, _playe
 		_player.queue_free()
 	
 
-func make_music_player(song: SongList.TRACK) -> MusicPlayer:
-	var new_stream_player := MusicPlayer.new(SongList.get_song_resource(song))
+## Creates a new [code]MusicPlayer[/code] that will play [param _song].
+func make_music_player(_song: SongList.TRACK) -> MusicPlayer:
+	var new_stream_player := MusicPlayer.new(SongList.get_song_resource(_song))
 	new_stream_player.bus = "Music"
 	add_child(new_stream_player)
 	return new_stream_player
 
 
-## Request music track given by [param track_name] and switch to it with a transition defined by [param transition]. [br]
-## If [param override_environment_noise] is [code]true[/code], plays [param environment_noise] instead of the noise associated with the song.
-func request_music(track_name: SongList.TRACK, transition: MusicTransition,override_environment_noise:bool = false, environment_noise:SongList.ENVNOISE = SongList.ENVNOISE.NOTHING):
+## Request music track given by [param _track_name] and switch to it with a transition defined by [param _transition]. [br]
+## If [param _override_environment_noise] is [code]true[/code], plays [param _environment_noise] instead of the noise associated with the song.
+func request_music(_track_name: SongList.TRACK, _transition: MusicTransition, _override_environment_noise: bool = false, _environment_noise: SongList.ENVNOISE = SongList.ENVNOISE.NOTHING):
 	if not is_playing:
-		active_player = make_music_player(track_name)
+		active_player = make_music_player(_track_name)
 		
 		is_playing = true
 		active_player.start_playback()
 		
 		
-	elif !current_track == track_name:
+	elif !current_track == _track_name:
 		fading_player = active_player
-		active_player = make_music_player(track_name)
+		active_player = make_music_player(_track_name)
 		
 
-		match transition.type:
+		match _transition.type:
 			MusicTransition.TRANSITIONS.CROSSFADE:
-				fade_player_volume(transition.transition_parameters.get("duration"), -60, fading_player, true)
+				fade_player_volume(_transition.transition_parameters.get("duration"), -60, fading_player, true)
 				active_player.volume_db = -60
 				active_player.start_playback()
-				fade_player_volume(transition.transition_parameters.get("duration"), 0, active_player)
+				fade_player_volume(_transition.transition_parameters.get("duration"), 0, active_player)
 				
 			MusicTransition.TRANSITIONS.FADE_AND_START:
-				fade_player_volume(transition.transition_parameters.get("duration"), -60, fading_player, true)
-				await get_tree().create_timer(transition.transition_parameters.get("next_track_offset")).timeout
+				fade_player_volume(_transition.transition_parameters.get("duration"), -60, fading_player, true)
+				await get_tree().create_timer(_transition.transition_parameters.get("next_track_offset")).timeout
 				active_player.start_playback()
 				
 			MusicTransition.TRANSITIONS.INSTANT:
@@ -106,38 +108,37 @@ func request_music(track_name: SongList.TRACK, transition: MusicTransition,overr
 				fading_player.stop()
 				fading_player.queue_free()
 				
-	if override_environment_noise:
-		set_environment_noise(environment_noise)
+	if _override_environment_noise:
+		set_environment_noise(_environment_noise)
 	else:
-		set_environment_noise(SongList.get_noise_of_song(track_name))
-	current_track = track_name
+		set_environment_noise(SongList.get_noise_of_song(_track_name))
+	current_track = _track_name
 
-
-func set_environment_noise(noise:SongList.ENVNOISE) -> void:
-	
-		
-	if noise != current_noise:
-		if noise == SongList.ENVNOISE.NOTHING:
+## Switches environment noise to [param _noise].
+func set_environment_noise(_noise: SongList.ENVNOISE) -> void:
+	if _noise != current_noise:
+		if _noise == SongList.ENVNOISE.NOTHING:
 			fade_player_volume(2, -60, env_noise_player)
 		else:
 			if current_noise == SongList.ENVNOISE.NOTHING:
 				fade_player_volume(0.2, -60, env_noise_player)
 				await get_tree().create_timer(0.2).timeout
-			env_noise_player.stream = SongList.get_noise_resource(noise)
+			env_noise_player.stream = SongList.get_noise_resource(_noise)
 			env_noise_player.play()
 			fade_player_volume(0.4, 0, env_noise_player)
 			
-		current_noise = noise
+		current_noise = _noise
 
-
-func fade_out(_duration: float, _stop: bool = false) -> void: ## Fades out the currently playing music track. [param _stop] will stop playback after the fade is complete.
+## Fades out the currently playing music track. [param _stop] will stop playback after the fade is complete.
+func fade_out(_duration: float, _stop: bool = false) -> void:
 	fade_player_volume(_duration, -60, active_player, _stop)
 
-func fade_in(_duration: float) -> void: ## Fades in the currently playing music track. Only works if there is a faded out active music track
+## Fades in the currently playing music track. Only works if there is a faded out active music track.
+func fade_in(_duration: float) -> void:
 	if active_player != null:
 		fade_player_volume(_duration, 0, active_player)
 	
-
+## Reduce volume of all audio buses except [param _bus] by [param _reduction_db] in [param _duration] seconds.
 func focus_on_bus(_bus: BUS_ID, _duration: float, _reduction_db: float) -> void:
 	var other_buses := BUS_ID.values().duplicate()
 	other_buses.erase(_bus)
@@ -153,4 +154,4 @@ func focus_on_bus(_bus: BUS_ID, _duration: float, _reduction_db: float) -> void:
 	await get_tree().create_timer(_duration).timeout
 	
 	for bus in other_buses:
-		fade_bus_volume(bus, 0.4,  previous_volumes[bus])
+		fade_bus_volume(bus, 0.4, previous_volumes[bus])
