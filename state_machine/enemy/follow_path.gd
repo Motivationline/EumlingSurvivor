@@ -24,6 +24,14 @@ enum PathEndBehavior {
 ## Whether the entity should return to the path when it is off the path
 @export var return_to_path: bool = false
 
+@export_group("Random Exit Time")
+## Optional random exit time overwrite.
+@export var random: bool = false
+## Minimum exit time.
+@export var min_exit_time: float = 0.0
+## Maximum exit time.
+@export var max_exit_time: float = 1.0
+
 @export_group("Overrides")
 ## Movement Speed Override
 @export_range(0, 100, 0.1) var speed_override: float = 1:
@@ -62,6 +70,9 @@ func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree) -
 
 func enter() -> void:
 	super()
+
+	if random:
+		exit_time = randf_range(min_exit_time, max_exit_time)
 	
 	if exit_time >= 0.0:
 		timer = get_tree().create_timer(exit_time)
