@@ -196,6 +196,7 @@ func _physics_process(_delta: float) -> void:
 			if enemies.size() > 0:
 				Utils.sort_array_by_distance(enemies, self )
 				eumling_visuals.look_at(enemies[0].global_position)
+				eumling_visuals.rotation.x = 0
 		shoot()
 	if look_direction.is_zero_approx():
 		if was_looking_somewhere and Data.is_on_mobile:
