@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://chix8l7g8xad8" path="res://assets/characters/enemies/tortoise/tortoise_cell_shader.tres" id="5_5pb2d"]
 [ext_resource type="Texture2D" uid="uid://cva8asb61h88s" path="res://assets/vfx/particle_pack/trace_05.png" id="6_g8uh7"]
 [ext_resource type="Texture2D" uid="uid://byv4tpivicj4n" path="res://assets/vfx/particle_pack/slash_01.png" id="7_5moj2"]
+[ext_resource type="Texture2D" uid="uid://w4m6e1qjb43g" path="res://assets/vfx/particle_pack/circle_05.png" id="8_g8uh7"]
 
 [sub_resource type="Curve" id="Curve_860yy"]
 _limits = [0.0, 6.0, 0.0, 1.0]
@@ -294,6 +295,8 @@ _data = {
 &"RESET": SubResource("Animation_7gchl")
 }
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_g8uh7"]
+
 [node name="Projectile" unique_id=1490739829 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_end_of_life") instance=ExtResource("1_ohwqb")]
 collision_mask = 769
 damage = 50.0
@@ -409,3 +412,13 @@ shape = SubResource("SphereShape3D_7gchl")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=149865635]
 libraries/ = SubResource("AnimationLibrary_miqcd")
 autoplay = &"Leaf_Fall"
+
+[node name="Decal" type="Decal" parent="." index="6" unique_id=293428843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.011896834, 0)
+size = Vector3(1.0585938, 0.030395508, 1.1621094)
+texture_albedo = ExtResource("8_g8uh7")
+modulate = Color(0, 0, 0, 0.5019608)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="7" unique_id=1973379640]
+visible = false
+mesh = SubResource("PlaneMesh_g8uh7")
