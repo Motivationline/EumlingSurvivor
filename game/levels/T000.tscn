@@ -2,8 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_cvp71"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_35njp"]
-[ext_resource type="PackedScene" uid="uid://dgr2h5l5eveyh" path="res://game/enemies/beatle/beatle_enemy.tscn" id="3_wjg4u"]
-[ext_resource type="PackedScene" uid="uid://cxge6pdtvxrls" path="res://game/enemies/bee/bee_enemy.tscn" id="5_srnvc"]
+[ext_resource type="PackedScene" uid="uid://dogmqp6i2jn0e" path="res://game/enemies/3-Jungle/tortoise_complex/tortoise_complex.tscn" id="4_35njp"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cvp71"]
 vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 0.75, 1, -5, -0.5, 1, -5, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, 4.75, -4.5, 1, -4.5)
@@ -17,11 +16,8 @@ edge_max_error = 0.25
 [node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
 navigation_mesh = SubResource("NavigationMesh_cvp71")
 
-[node name="BeeEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1390985057 instance=ExtResource("5_srnvc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8615935, 0, 0.2413485)
-
-[node name="Beatle" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=306559295 instance=ExtResource("3_wjg4u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.2000694)
+[node name="tortoise_complex" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("4_35njp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7799094, 0, 0)
 
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_35njp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
