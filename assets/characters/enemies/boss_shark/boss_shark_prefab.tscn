@@ -102,7 +102,7 @@ input_5/auto_advance = false
 input_5/break_loop_at_end = false
 input_5/reset = true
 input_6/name = "charge_end"
-input_6/auto_advance = true
+input_6/auto_advance = false
 input_6/break_loop_at_end = false
 input_6/reset = true
 
@@ -117,7 +117,7 @@ animation = &"fin_dive"
 play_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f8085"]
-graph_offset = Vector2(-645.1273, -282.98224)
+graph_offset = Vector2(-742.71155, -356.37427)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_1oe4f")
 nodes/Animation/position = Vector2(-740, -180)
 nodes/Transition/node = SubResource("AnimationNodeTransition_gfhsp")
@@ -196,7 +196,6 @@ offsets = PackedFloat32Array(0, 0.3523316, 1)
 colors = PackedColorArray(1, 0.49803922, 0.023529412, 1, 1, 0.8862745, 0, 1, 0.94509804, 0.35686275, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4xx1"]
-render_priority = 1
 transparency = 1
 shading_mode = 0
 disable_ambient_light = true
@@ -217,7 +216,7 @@ colors = PackedColorArray(1.7121319, 0.76296145, 0, 1, 1.753959, 0.4108141, 0, 1
 
 [node name="BossShark" unique_id=600562415 instance=ExtResource("1_f8085")]
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(690647704) index="0" unique_id=1624408568]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(769016245) index="0" unique_id=1624408568]
 transform = Transform3D(1, -4.5696025e-16, -1.7763568e-15, 1.7763568e-15, 1.6817792e-08, 1, -4.569602e-16, -1, 1.6817792e-08, 7.3285915e-16, -0.00031661987, -2.1370606)
 bone_name = "DEF_TAILFIN"
 bone_idx = 5
@@ -230,7 +229,7 @@ lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_tdynr")
 draw_pass_1 = SubResource("QuadMesh_mwvhb")
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=1590380395]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1687516644]
 autoplay = &"fin_walk"
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=75202033]
@@ -304,6 +303,7 @@ color_initial_ramp = SubResource("Gradient_dw5fl")
 
 [node name="DirtTails" type="CPUParticles3D" parent="Swimtrail" index="3" unique_id=1380963778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.061703563)
+visible = false
 material_override = SubResource("StandardMaterial3D_s4xx1")
 amount = 32
 lifetime = 0.8
