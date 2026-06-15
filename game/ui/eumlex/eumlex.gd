@@ -5,9 +5,8 @@ const EUMLING_BUTTON = preload("uid://b6vj3geh4ibvg")
 const EUMLING_PATH = "res://game/eumlings/"
 const GRAYSCALE_MATERIAL = preload("uid://bh8hp6lg5oyi8")
 
-# TODO: load / save this to disk
-var unlocked_eumlings: Array[String] = []
-var seen_eumlings: Array[String] = []
+var unlocked_eumlings: Array = []
+var seen_eumlings: Array = []
 
 @export var tabs_and_containers: Dictionary[TextureButton, Panel]
 @export var eumling_type_and_container: Dictionary[Enum.EUMLING_TYPE, Container]
@@ -33,6 +32,8 @@ func highlight_marker(active_button):
 	active_button.position.y = -30
 
 func _ready() -> void:
+	unlocked_eumlings = SaveData.get_data("unlocked_eumlings", [])
+	seen_eumlings = SaveData.get_data("seen_eumlings", [])
 	load_eumlings()
 	update_buttons()
 	$Book/TabPanel/OrangeButton.pressed.emit()
@@ -95,6 +96,8 @@ func select_eumling(btn: EumlingButton, eumling: Eumling):
 		eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.SEEN
 		unlocked_eumlings.remove_at(unlocked_eumlings.find(eumling.id))
 		seen_eumlings.append(eumling.id)
+		SaveData.set_data("unlocked_eumlings", unlocked_eumlings)
+		SaveData.set_data("seen_eumlings", seen_eumlings)
 	btn.eumling = eumling
 
 	$Book/EumlexInfoPage.show()
@@ -134,6 +137,7 @@ func get_eumling_to_unlock(type: Enum.EUMLING_TYPE) -> Eumling:
 			var eumling = locked_eumlings[t].pop_at(index)
 			eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED
 			unlocked_eumlings.push_back(eumling.id)
+			SaveData.set_data("unlocked_eumlings", unlocked_eumlings)
 			return eumling
 	return null
 
