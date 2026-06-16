@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://cw1yj7usybkwg"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_8fk6x"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_ewjtt"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_lo05d"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_fvuh5"]
+[ext_resource type="PackedScene" uid="uid://qba3i6xxa5r1" path="res://game/enemies/3-Jungle/bomber_complex/projectiles/bomber_complex_projetile_v1.tscn" id="5_e5qk8"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_q8x75"]
+[ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="6_e5qk8"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_fvuh5"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_q8x75"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e5qk8"]
+radius = 0.32468745
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_84kb6"]
+radius = 0.3609349
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q8x75"]
+radius = 0.0991429
+
+[node name="bomber_complex_D1" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_8fk6x")]
+hitbox = NodePath("hitboxbase")
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("LookAtPlayerState")
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" unique_id=1550312346 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ewjtt")
+wait_time = 2.0
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=291413817 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_lo05d")
+start_delay = 0.5
+next_state = NodePath("../WaitForTimeXState")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1103538844]
+script = ExtResource("4_fvuh5")
+entity_to_spawn = ExtResource("5_e5qk8")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=1845234742 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_q8x75")
+random = true
+max_wait_time = 0.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Visuals" parent="." index="4" unique_id=110309936]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="cactushog" parent="Visuals" index="0" unique_id=83265788 instance=ExtResource("6_e5qk8")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="hitboxbase" parent="." index="7" unique_id=957668635 instance=ExtResource("7_fvuh5")]
+collision_layer = 32
+collision_mask = 8
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxbase" index="0" unique_id=1792304707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3288139, 0)
+shape = SubResource("SphereShape3D_e5qk8")
+
+[node name="Hurtbox" parent="." index="8" unique_id=684706839 instance=ExtResource("8_q8x75")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=522644599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3508752, 0)
+shape = SubResource("SphereShape3D_84kb6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="9" unique_id=1512088874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39123645, 0)
+shape = SubResource("SphereShape3D_q8x75")
