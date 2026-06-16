@@ -16,17 +16,31 @@
 [ext_resource type="PackedScene" uid="uid://dmr83p5o725ie" path="res://game/enemies/6-volcano/boss_shark/vfx/death_from_below_vfx.tscn" id="11_71geg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_71geg"]
-size = Vector3(0.2841797, 1.361084, 1.2124329)
+size = Vector3(0.42944336, 1.361084, 1.2124329)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x8n4w"]
+radius = 0.8051758
+height = 2.8079224
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x8n4w"]
-radius = 0.90443635
+radius = 0.8038065
 
-[node name="BossShark" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_5lodq")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_du46p"]
+radius = 0.8671875
+height = 4.058838
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_71geg"]
+radius = 0.7832031
+height = 3.8457031
+
+[node name="BossShark" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hurtboxes", "additional_hitboxes") instance=ExtResource("1_5lodq")]
 collision_layer = 80
 collision_mask = 577
 health = 500.0
 hitbox = NodePath("Visuals/HitboxCHARGE")
 hurtbox = NodePath("Visuals/HurtboxFin")
+additional_hurtboxes = [NodePath("Visuals/HurtboxCharge"), NodePath("Visuals/HurtboxLaying")]
+additional_hitboxes = [NodePath("Visuals/HitboxDeathBelow"), NodePath("Visuals/HitboxLAYING")]
 speed = 2.0
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
@@ -49,7 +63,7 @@ metadata/_custom_type_script = "uid://cp33buoo5xtgx"
 [node name="HitboxFINs" type="Node" parent="StateMachine/Roam" index="0" unique_id=1277228435 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("7_f6ssy")
 enable = [NodePath("../../../Visuals/HurtboxFin")]
-disable = [NodePath("../../../Visuals/HitboxCHARGE")]
+disable = [NodePath("../../../Visuals/HurtboxCharge"), NodePath("../../../Visuals/HitboxCHARGE"), NodePath("../../../Visuals/HitboxDeathBelow"), NodePath("../../../Visuals/HurtboxLaying"), NodePath("../../../Visuals/HitboxLAYING")]
 next_state = NodePath("../WaitForTimeXState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "dive_up"
@@ -70,7 +84,7 @@ return_to_path = true
 random = true
 min_exit_time = 4.0
 max_exit_time = 8.0
-speed_override = 3.0
+speed_override = 5.0
 speed_override_active = true
 next_state = NodePath("../../PickRandomState")
 animation_trigger = Dictionary[String, Variant]({
@@ -92,8 +106,8 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="HitboxCHARGE" type="Node" parent="StateMachine/ChargeAttack" index="1" unique_id=576251993 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("7_f6ssy")
-enable = [null, NodePath("../../../Visuals/HitboxCHARGE"), null, null]
-disable = [null, NodePath("../../../Visuals/HurtboxFin"), null, null, null, null]
+enable = [NodePath("../../../Visuals/HitboxCHARGE"), NodePath("../../../Visuals/HurtboxCharge")]
+disable = [NodePath("../../../Visuals/HurtboxFin")]
 next_state = NodePath("../MoveForwardState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -122,7 +136,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Deactivate Everything" type="Node" parent="StateMachine/DeathFromBelow" index="0" unique_id=1270717497 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("7_f6ssy")
-disable = [null, null, null, NodePath("../../../Visuals/HurtboxFin"), null, null, null, null, NodePath("../../../Visuals/HitboxCHARGE"), null]
+disable = [NodePath("../../../Visuals/HurtboxFin"), NodePath("../../../Visuals/HurtboxCharge"), NodePath("../../../Visuals/HitboxCHARGE"), NodePath("../../../Visuals/HitboxDeathBelow"), NodePath("../../../Visuals/HurtboxLaying"), NodePath("../../../Visuals/HitboxLAYING")]
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -159,7 +173,7 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="ActivateHitboxBelow" type="Node" parent="StateMachine/DeathFromBelow" index="4" unique_id=541053763 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("7_f6ssy")
-enable = [null]
+enable = [NodePath("../../../Visuals/HitboxDeathBelow")]
 next_state = NodePath("../WaitForTimeXState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -172,37 +186,36 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="DeactivateHitboxBelow" type="Node" parent="StateMachine/DeathFromBelow" index="6" unique_id=1523358893 node_paths=PackedStringArray("enable", "disable", "next_state")]
+[node name="DeactivateHitboxBelow" type="Node" parent="StateMachine/DeathFromBelow" index="6" unique_id=1523358893 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("7_f6ssy")
-enable = [null, null]
-disable = [null]
+disable = [NodePath("../../../Visuals/HitboxDeathBelow")]
 next_state = NodePath("../WaitForTimeXState3")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="WaitForTimeXState3" type="Node" parent="StateMachine/DeathFromBelow" index="7" unique_id=2023836428 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_cuk8p")
 wait_time = 0.2
-next_state = NodePath("../DeactivateHitboxLanding")
+next_state = NodePath("../ActivateHitboxLanding")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "death_from_beneath"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="DeactivateHitboxLanding" type="Node" parent="StateMachine/DeathFromBelow" index="8" unique_id=104364880 node_paths=PackedStringArray("enable", "disable", "next_state")]
+[node name="ActivateHitboxLanding" type="Node" parent="StateMachine/DeathFromBelow" index="8" unique_id=104364880 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("7_f6ssy")
-enable = [null, null]
-disable = [null]
+enable = [NodePath("../../../Visuals/HurtboxLaying"), NodePath("../../../Visuals/HitboxLAYING")]
 next_state = NodePath("../WaitForTimeXState2")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="WaitForTimeXState2" type="Node" parent="StateMachine/DeathFromBelow" index="9" unique_id=1821772157 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_cuk8p")
-wait_time = 4.0
+wait_time = 3.6
 next_state = NodePath("../Reactivate Hitboxes")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="Reactivate Hitboxes" type="Node" parent="StateMachine/DeathFromBelow" index="10" unique_id=2025234761 node_paths=PackedStringArray("next_state")]
+[node name="Reactivate Hitboxes" type="Node" parent="StateMachine/DeathFromBelow" index="10" unique_id=2025234761 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("7_f6ssy")
+disable = [NodePath("../../../Visuals/HurtboxLaying"), NodePath("../../../Visuals/HitboxLAYING")]
 next_state = NodePath("../BackOnPath")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -213,6 +226,7 @@ path_end_behavior = 1
 exit_time = 1.5
 return_to_path = true
 speed_override = 3.0
+speed_override_active = true
 next_state = NodePath("../../Roam/HitboxFINs")
 metadata/_custom_type_script = "uid://c8s4y8wjixlok"
 
@@ -230,7 +244,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41027832, 0.2870636)
 shape = SubResource("BoxShape3D_71geg")
 debug_color = Color(0.2777606, 0.62764186, 0.24146572, 0.41960785)
 
-[node name="HitboxCHARGE" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=1471176632 instance=ExtResource("3_tvpjs")]
+[node name="HurtboxCharge" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=201310858 instance=ExtResource("4_a5e3p")]
+visible = false
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/HurtboxCharge" index="0" unique_id=1856973551]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.22093709, -0.17907715)
+shape = SubResource("CapsuleShape3D_x8n4w")
+debug_color = Color(0.8487208, 0.29853126, 0.5851044, 0.41960785)
+
+[node name="HitboxCHARGE" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1471176632 instance=ExtResource("3_tvpjs")]
 visible = false
 collision_layer = 32
 collision_mask = 8
@@ -243,3 +269,37 @@ can_hit = 4
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5281118, -0.4688052)
 shape = SubResource("SphereShape3D_x8n4w")
 debug_color = Color(0.84843594, 0.25880867, 0.68454623, 0.41960785)
+
+[node name="HitboxDeathBelow" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=2126019899 instance=ExtResource("3_tvpjs")]
+collision_layer = 32
+collision_mask = 8
+damage = 200.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/HitboxDeathBelow" index="0" unique_id=1244086193]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_x8n4w")
+debug_color = Color(0.8487208, 0.29853126, 0.5851044, 0.41960785)
+
+[node name="HurtboxLaying" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="5" unique_id=401589608 instance=ExtResource("4_a5e3p")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/HurtboxLaying" index="0" unique_id=507081824]
+transform = Transform3D(-4.3684572e-08, -0.9993866, -0.035021596, 1, -4.371139e-08, 0, -1.5308421e-09, -0.035021596, 0.9993866, -0.02419877, 0.573444, 0.09604108)
+shape = SubResource("CapsuleShape3D_du46p")
+
+[node name="HitboxLAYING" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="6" unique_id=817361286 instance=ExtResource("3_tvpjs")]
+collision_layer = 32
+collision_mask = 8
+damage = 100.0
+damage_cooldown = 1.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/HitboxLAYING" index="0" unique_id=772501192]
+transform = Transform3D(-4.3679314e-08, -0.99926627, -0.038300607, 1, -4.371139e-08, 0, -1.6741727e-09, -0.038300607, 0.99926627, -0.02285456, 0.5608903, 0.09231527)
+shape = SubResource("CapsuleShape3D_71geg")
