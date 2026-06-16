@@ -13,10 +13,15 @@ class_name Level
 
 @export var music:SongList.TRACK = SongList.TRACK.MENU
 
+enum LEVEL_STATE {
+	PLAYING,
+	CLEARED,
+	FINISHED,
+	ENDING,
+}
+
 var difficulty: int
-var cleared: bool = false
-var finished: bool = false
-var ends: bool = false
+var state: LEVEL_STATE
 var player: Player
 
 const CAGED_MINI_EUMLING = preload("uid://6lim36lw260g")
@@ -38,6 +43,7 @@ func _ready() -> void:
 	add_to_group("Level")
 	if (goal_area):
 		goal_area.set_collision_mask_value(2, true)
+	state = LEVEL_STATE.PLAYING
 
 func spawn_player(_player: Player):
 	player = _player
@@ -65,22 +71,17 @@ func spawn_mini_eumling(type: Enum.EUMLING_TYPE):
 
 func _process(_delta: float) -> void:
 	if (Engine.is_editor_hint()): return
-	if (!cleared):
+	if (state == LEVEL_STATE.PLAYING):
 		var enemies = get_tree().get_nodes_in_group("Enemy")
 		if (enemies.size() <= 0):
-			cleared = true
-			level_cleared.emit()
 			clear_level()
-	if (finished && goal_area.overlaps_body(player) && !ends):
-		ends = true
-		if is_boss_level:
-			await show_mini_popup()
-		level_ended.emit()
-		prints("level ended", name)
+	if (state == LEVEL_STATE.FINISHED && goal_area.overlaps_body(player)):
+		end_level()
 
 
 func clear_level():
-	player.level_completed(self)
+	state = LEVEL_STATE.CLEARED
+	level_cleared.emit()
 	# for me in mini_eumlings:
 	# 	me.celebrate()
 	
@@ -92,7 +93,15 @@ func clear_level():
 	await get_tree().create_timer(1).timeout
 
 	level_finished.emit()
-	finished = true
+	state = LEVEL_STATE.FINISHED
+
+func end_level():
+	state = LEVEL_STATE.ENDING
+	if is_boss_level:
+		await show_mini_popup()
+	level_ended.emit()
+	prints("level ended", name)
+
 
 func show_mini_popup():
 	var popup = EUMLING_CELEBRATION.instantiate()

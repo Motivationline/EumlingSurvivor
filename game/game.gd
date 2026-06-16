@@ -84,6 +84,7 @@ func level_finished():
 		upgrade_view.show_upgrades()
 		var chosen_upgrade = await upgrade_view.upgrade_chosen
 		player.add_upgrade(chosen_upgrade)
+	player.level_completed(currently_loaded_level)
 
 func level_ended():
 	load_level()
