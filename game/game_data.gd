@@ -15,22 +15,26 @@ func _init() -> void:
 	reload()
 
 func reload() -> void:
-	var data = SaveData.get_data("game_data")
-	if data.has("player_health"): player_health = data.player_health
+	player_health = 1000000
 	player_upgrades.clear()
+	active_mini_eumlings.clear()
+	upgrade_path_progress.clear()
+	levels_to_load.clear()
+	total_upgrades = 0
+	
+	var data = SaveData.get_data("game_data")
+	if not data: return
+	if data.has("player_health"): player_health = data.player_health
 	if data.has("player_upgrades"): 
 		for key in data.player_upgrades.keys():
 			player_upgrades.set(int(key), data.player_upgrades[key])
 	if data.has("total_upgrades"): total_upgrades = data.total_upgrades
-	active_mini_eumlings.clear()
 	if data.has("active_mini_eumlings"):
 		for e in data.active_mini_eumlings: 
 			active_mini_eumlings.append(e)
-	upgrade_path_progress.clear()
 	if data.has("upgrade_path_progress"): 
 		for key in data.upgrade_path_progress.keys():
 			upgrade_path_progress.set(int(key), data.upgrade_path_progress[key]) 
-	levels_to_load.clear()
 	if data.has("levels_to_load"): 
 		for level in data.levels_to_load:
 			levels_to_load.append(level)
