@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://7j4iua7gg3cu"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_3apyl"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_xdd6v"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_vrikq"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_x0qh6"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_hqxkc"]
+[ext_resource type="PackedScene" uid="uid://dtxcbfvali8ib" path="res://assets/characters/enemies/peacock/peacock_prefab.tscn" id="6_46ipm"]
+[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-Jungle/sniper/sniper_projectile_enemy.tscn" id="6_x0qh6"]
+[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="7_hqxkc"]
+[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="7_ieebk"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_46ipm"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_ieebk"]
+
+[sub_resource type="Resource" id="Resource_5umyu"]
+script = ExtResource("7_ieebk")
+metadata/_custom_type_script = "uid://yd5ytc70xwp6"
+
+[sub_resource type="Resource" id="Resource_46ipm"]
+script = ExtResource("7_hqxkc")
+max_negative = -10.0
+max_positive = 10.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5umyu"]
+radius = 0.26123047
+height = 0.7426758
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtsri"]
+radius = 0.4165039
+height = 0.8330078
+
+[node name="sniper_complex_v1" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_3apyl")]
+hitbox = NodePath("hitboxBase")
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("WaitForTimeXState")
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" unique_id=864499843 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_xdd6v")
+random = true
+min_wait_time = 0.5
+max_wait_time = 1.2
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="1" unique_id=131808892 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_vrikq")
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=262795890 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_x0qh6")
+start_delay = 0.3
+next_state = NodePath("../WaitForTimeXState2")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/shoot/request": 1
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=59728195]
+script = ExtResource("5_hqxkc")
+entity_to_spawn = ExtResource("6_x0qh6")
+amount_of_spawns = 2
+target_strategy = SubResource("Resource_5umyu")
+rotation_strategy = SubResource("Resource_46ipm")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState2" type="Node" parent="StateMachine" index="3" unique_id=1738208982 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_xdd6v")
+random = true
+max_wait_time = 0.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="peacock" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=918755390 instance=ExtResource("6_46ipm")]
+
+[node name="hitboxBase" parent="." index="7" unique_id=1869755804 instance=ExtResource("9_46ipm")]
+collision_layer = 32
+collision_mask = 8
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1736148271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21123707, 0)
+shape = SubResource("CapsuleShape3D_5umyu")
+debug_color = Color(0.89661413, 0.18040618, 0.64847964, 0.41960785)
+
+[node name="Hurtbox" parent="." index="8" unique_id=1623058138 instance=ExtResource("10_ieebk")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=1918127871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2487039, 0)
+shape = SubResource("CapsuleShape3D_rtsri")
