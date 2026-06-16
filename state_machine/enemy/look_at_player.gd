@@ -31,7 +31,7 @@ var player: CharacterBody3D
 func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	super (_parent, _animation_tree)
 	parent = _parent
-	player = get_tree().get_nodes_in_group("Player")[0]
+	player = Player.player
 
 func enter():
 	done = false

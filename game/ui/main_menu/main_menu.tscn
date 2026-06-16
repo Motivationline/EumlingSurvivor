@@ -497,7 +497,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 37
 theme_override_fonts/font = ExtResource("4_m1bca")
 theme_override_font_sizes/font_size = 97
-text = "Play"
+text = "Cont."
 horizontal_alignment = 1
 
 [node name="playButton3" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=315783185]
@@ -732,7 +732,7 @@ transform = Transform3D(-0.4885124, -0.34995764, 0.7993032, 0.027202994, 0.90949
 [connection signal="tree_entered" from="." to="UIOverlay/StaticUI/VBoxContainer/playButton" method="grab_focus" flags=3 binds= [false]]
 [connection signal="pressed" from="UIOverlay/StaticUI/EumlexButton" to="." method="_on_eumlex_button_pressed"]
 [connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/playButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/playButton2" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/playButton2" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/playButton3" to="." method="_on_play_button_pressed"]
 
 [editable path="Background_Tile/jungel_tree_01"]

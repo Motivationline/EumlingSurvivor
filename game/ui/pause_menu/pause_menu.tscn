@@ -205,6 +205,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_6rxva")
 
+[connection signal="pressed" from="Buttons/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_resume_button_pressed"]
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/MusicContainer/MusicSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Music"]]
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/SFXContainer/SFXSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" flags=3 binds= ["SFX"]]

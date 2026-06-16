@@ -51,7 +51,7 @@ func spawn_player(_player: Player):
 	player.global_rotation = player_spawn.global_rotation
 
 	# spawn minis
-	for type in Data._active_mini_eumlings:
+	for type in Data.game_data.active_mini_eumlings:
 		spawn_mini_eumling(type)
 	
 	player.level_start()

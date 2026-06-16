@@ -7,8 +7,12 @@ var eumlingclopedia = EUMLINGCLOPEDIA.instantiate()
 
 func _on_play_button_pressed() -> void:
 	Main.controller.load_scene(game, false)
-	game.player.reset()
-	game.load_level()
+	game.start_new_run()
+
+func _on_continue_button_pressed() -> void:
+	Main.controller.load_scene(game, false)
+	# TODO someone should really clean up the whole "save run and continue" logic.
+	game.continue_run()
 
 func _on_eumlex_button_pressed() -> void:
 	Main.controller.load_scene(eumlingclopedia, false)

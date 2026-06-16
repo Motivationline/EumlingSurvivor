@@ -15,7 +15,7 @@ class_name HomingProjectileMovementStrategy
 func _setup(_parent: Node, _owner: Node):
 	super (_parent, _owner)
 	#if get_tree().get_nodes_in_group("Enemy").has(_owner):
-		#target = get_tree().get_nodes_in_group("Player")[0]
+		#target = Player.player
 		#is_player = false
 	#else:
 		#is_player = true

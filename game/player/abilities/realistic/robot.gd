@@ -32,7 +32,7 @@ func _ready() -> void:
 	visuals.rotation = rotation
 	rotation = Vector3.ZERO
 
-	_level = Data._active_mini_eumlings.count(Enum.EUMLING_TYPE.REALISTIC)
+	_level = Data.game_data.get_eumling_amount(Enum.EUMLING_TYPE.REALISTIC)
 	if _level <= 0:
 		queue_free()
 		return

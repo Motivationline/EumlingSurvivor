@@ -76,7 +76,7 @@ func find_new_target():
 		TARGET_TYPES.SELF:
 			target_position = parent.global_position
 		TARGET_TYPES.PLAYER:
-			var player = get_tree().get_first_node_in_group("Player") as Player
+			var player = Player.player as Player
 			if player:
 				target_position = player.global_position
 

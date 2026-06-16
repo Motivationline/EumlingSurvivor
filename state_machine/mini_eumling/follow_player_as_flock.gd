@@ -72,7 +72,7 @@ func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	nav_agent.path_desired_distance = 0.1
 	nav_agent.debug_enabled = debug_show_path
 	
-	player = get_tree().get_nodes_in_group("Player")[0]
+	player = Player.player
 	match group:
 		GROUP.ENEMY:
 			flock_group = "Enemy"
@@ -116,7 +116,7 @@ func physics_process(_delta: float) -> State:
 		nav_agent.target_position = player.global_position
 		var destination = nav_agent.get_next_path_position()
 
-		var local_destination = destination - parent.global_position #get_tree().get_first_node_in_group("Player").global_position - parent.global_position 
+		var local_destination = destination - parent.global_position #Player.player.global_position - parent.global_position 
 		var direction = local_destination.normalized()
 		var speed = speed_override if (speed_override_active) else parent.speed
 		parent.velocity = _flock(direction) * speed

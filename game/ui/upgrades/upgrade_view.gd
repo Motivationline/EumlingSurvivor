@@ -9,7 +9,7 @@ const UPGRADE_OPTION = preload("uid://b8nr8s04nxds6")
 func show_upgrades():
 	get_tree().paused = true
 
-	var upgrades: Array[Upgrade] = JsonData.player_upgrade_levels.get(Data.total_upgrades)
+	var upgrades: Array[Upgrade] = JsonData.player_upgrade_levels.get(Data.game_data.total_upgrades)
 
 	upgrades.shuffle()
 	upgrades = upgrades.slice(0, 3)

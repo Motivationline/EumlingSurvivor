@@ -1,6 +1,8 @@
 extends Control
 var is_open = false
 
+signal return_home
+
 func _ready():
 	close ()
 	
@@ -24,3 +26,8 @@ func close():
 
 func _on_resume_button_pressed() -> void:
 	close()
+
+
+func _on_home_button_pressed() -> void:
+	close()
+	return_home.emit()

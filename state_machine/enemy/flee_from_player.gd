@@ -47,7 +47,7 @@ func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree):
 	nav_agent.target_reached.connect(target_reached)
 	nav_agent.target_desired_distance = 0.1
 	nav_agent.debug_enabled = debug_show_path
-	player = get_tree().get_nodes_in_group("Player")[0]
+	player = Player.player
 
 func enter():
 	super()

@@ -9,7 +9,7 @@ extends HitBox
 @export var damage_for_eumling_levels: Array[float] = [0]
 
 func _ready() -> void:
-	var level: int = Data._active_mini_eumlings.count(Enum.EUMLING_TYPE.REALISTIC) - 1
+	var level: int = Data.game_data.get_eumling_amount(Enum.EUMLING_TYPE.REALISTIC) - 1
 	var index: int = clampi(level, 0, damage_for_eumling_levels.size() - 1)
 	damage = damage_for_eumling_levels[index]
 "

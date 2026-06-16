@@ -50,8 +50,8 @@ func find_new_target():
 	
 	match target:
 		TARGET_TYPES.PLAYER:
-			#print(get_tree().get_nodes_in_group("Player")[0])
-			var near_player = get_tree().get_nodes_in_group("Player")[0].global_position + (Vector3(randf_range(-1, 1),0.0,randf_range(-1, 1)).normalized() * offset)
+			#print(Player.player)
+			var near_player = Player.player.global_position + (Vector3(randf_range(-1, 1),0.0,randf_range(-1, 1)).normalized() * offset)
 			tp_position = get_point_on_map(near_player, 0.2)
 			
 		TARGET_TYPES.RANDOM:

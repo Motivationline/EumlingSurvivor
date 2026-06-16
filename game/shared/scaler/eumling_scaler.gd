@@ -35,8 +35,9 @@ func setup_and_apply(attached_node: Node) -> void:
 	if attached_node.is_in_group("ShaderPrecompiler"):
 		return
 	
-	Data.active_eumlings_changed.connect(_update_amount.bind(attached_node))
+	if not Data.active_eumlings_changed.is_connected(_update_amount):
+		Data.active_eumlings_changed.connect(_update_amount.bind(attached_node))
 
-	var mini_eumlings = Data._active_mini_eumlings
+	var mini_eumlings = Data.game_data.active_mini_eumlings
 
 	_update_amount(mini_eumlings, attached_node)

@@ -56,7 +56,12 @@ signal attacked
 		starting_values = new_value
 		update_configuration_warnings()
 
-var _current_values: Dictionary[Enum.UPGRADE, float] = {}
+var _current_values: Dictionary[Enum.UPGRADE, float] = {}:
+	set(value):
+		_current_values = value
+		for key in _current_values.keys():
+			check_upgrades_affecting_player(Upgrade.new(key))
+
 var _temporary_upgrades: Dictionary[Enum.UPGRADE, Array] = {}
 func get_value(upgrade: Enum.UPGRADE) -> float:
 	var value: float = _current_values.get(upgrade, 0)
@@ -98,8 +103,7 @@ func _ready() -> void:
 
 	attack_cooldown.timeout.connect(reset_preview_color)
 
-	reset()
-
+	setup()
 	
 	_abilities.set(Enum.EUMLING_TYPE.SOCIAL, $SpecialAbilities/Social)
 	_abilities.set(Enum.EUMLING_TYPE.INVESTIGATIVE, $SpecialAbilities/Investigative)
@@ -112,10 +116,10 @@ func _ready() -> void:
 		eumling_visuals.find_child("attachment_three"),
 	]
 	Data.active_eumlings_changed.connect(update_eumling_visuals)
-	update_eumling_visuals(Data._active_mini_eumlings)
+	update_eumling_visuals(Data.game_data.active_mini_eumlings)
 
-# reset player to its un-upgraded state
-func reset():
+# setup a player
+func setup():
 	dead = false;
 	_temporary_upgrades.clear()
 	_current_values = starting_values.duplicate()

@@ -14,22 +14,39 @@ var player: Player
 #signal requestMusic
 
 var faded_to_black: bool = true
-var levels_to_load: Array = []
 
 func _ready() -> void:
-	player = player_scene.instantiate()
-	add_child(player)
-	# init player here.
-	player.died.connect(return_to_main_menu)
+	# connect to home signal
+	$GameUI/PauseMenu.return_home.connect(return_to_main_menu)
 
 	# remove mobile overlay if not on mobile
 	if not Data.is_on_mobile:
 		touch_joystick_overlay.queue_free()
+	area_choice_overlay.hide()
 
 var currently_loaded_level: Level
 var currently_loaded_level_info: Dictionary
 
-func load_level():
+func continue_run():
+	Data.game_data.reload()
+	_setup_player()
+	player._current_values = Data.game_data.player_upgrades.duplicate()
+	player.health = Data.game_data.player_health
+	_load_level()
+
+func start_new_run():
+	Data.game_data.reset()
+	_setup_player()
+	_load_level()
+
+func _setup_player():
+	if (player):
+		player.queue_free()
+	player = player_scene.instantiate()
+	add_child(player)
+	player.died.connect(end_run)
+
+func _load_level():
 	if player.dead:
 		return
 	
@@ -43,19 +60,19 @@ func load_level():
 	for child in children:
 		child.queue_free()
 	
-	if !levels_to_load.size() > 0:
-		if Data._active_mini_eumlings.size() >= 4:
+	if !Data.game_data.levels_to_load.size() > 0:
+		if Data.game_data.difficulty >= 4:
 			$AreaChoiceOverlay/GameCompleteOverlay.show()
 			await get_tree().create_timer(3).timeout
 			$AreaChoiceOverlay/GameCompleteOverlay.hide()
-			return_to_main_menu()
+			end_run()
 			return
 		area_choice_overlay.setup()
 		GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2,0))
-		levels_to_load = await area_choice_overlay.area_chosen
+		Data.game_data.levels_to_load = await area_choice_overlay.area_chosen
 
 	Engine.time_scale = 0
-	var level_info = levels_to_load.pop_front()
+	var level_info = Data.game_data.levels_to_load.pop_front()
 	var level_location: String = level_info.id
 	var difficulty: int = level_info.difficulty
 	$DebugView.set_lvl(level_location, difficulty)
@@ -85,9 +102,19 @@ func level_finished():
 		var chosen_upgrade = await upgrade_view.upgrade_chosen
 		player.add_upgrade(chosen_upgrade)
 	player.level_completed(currently_loaded_level)
+	save_game_data()
+
+func save_game_data():
+	Data.game_data.player_upgrades = player._current_values
+	Data.game_data.player_health = player.health
+	Data.game_data.save()
 
 func level_ended():
-	load_level()
+	_load_level()
+
+func end_run():
+	Data.end_game()
+	return_to_main_menu()
 
 func return_to_main_menu():
 	GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2,0))
@@ -95,8 +122,6 @@ func return_to_main_menu():
 		scene_fade_animation_player.play("fade")
 		await scene_fade_animation_player.animation_finished
 		faded_to_black = true
-	levels_to_load.clear()
-	Data.end_game()
 	Main.controller.load_scene(Main.controller.main_menu, false)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -108,8 +133,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_main_menu"):
 		player.health = 0
 	if event.is_action_pressed("debug_reload"):
-		levels_to_load.push_front(currently_loaded_level_info)
-		load_level()
+		Data.game_data.levels_to_load.push_front(currently_loaded_level_info)
+		_load_level()
 	if event.is_action_pressed("debug_kill_all"):
 		var enemies := get_tree().get_nodes_in_group("Enemy")
 		for enemy in enemies:

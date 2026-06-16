@@ -77,7 +77,7 @@ func setup():
 
 func choose_area(area):
 	var level_names: Array = []
-	var difficulty: int = Data._active_mini_eumlings.size()
+	var difficulty: int = Data.game_data.difficulty
 	var amount_levels = difficulty + 3
 	var folder_name: String = "res://game/levels/"
 	if area.folder:

@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		var player = get_tree().get_nodes_in_group("Player")[0]
+		var player = Player.player
 		switch_weapon(player)
 
 func switch_weapon(_player:Player):
