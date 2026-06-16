@@ -1,8 +1,7 @@
 @tool
-extends State
-
-## Moves the Entity along a specified Path3D node.
 class_name FollowPathState
+extends State
+## Moves the Entity along a specified Path3D node.
 
 enum PathEndBehavior {
 	## Go to the next state.
@@ -47,10 +46,30 @@ var progress: float
 var timer: SceneTreeTimer
 var done: bool = false
 
-func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree) -> void:
-	super (_parent, _animation_tree)
-	parent = _parent
 
+func enter() -> void:
+	super()
+
+	setup_path()
+
+	if random:
+		exit_time = randf_range(min_exit_time, max_exit_time)
+	
+	if exit_time >= 0.0:
+		timer = get_tree().create_timer(exit_time)
+		timer.timeout.connect(handle_timeout)
+
+
+func exit() -> void:
+	super()
+
+	if timer and timer.timeout.is_connected(handle_timeout):
+		timer.timeout.disconnect(handle_timeout)
+
+	done = not return_to_path
+
+
+func setup_path() -> void:
 	var level: Node = get_tree().get_first_node_in_group("Level")
 	if not level:
 		push_error("Could not find the level.")
@@ -68,35 +87,20 @@ func setup(_parent: StateMachinePoweredEntity, _animation_tree: AnimationTree) -
 
 	path_length = path.curve.get_baked_length()
 
-func enter() -> void:
-	super()
-
-	if random:
-		exit_time = randf_range(min_exit_time, max_exit_time)
-	
-	if exit_time >= 0.0:
-		timer = get_tree().create_timer(exit_time)
-		timer.timeout.connect(handle_timeout)
-
 	progress = path.curve.get_closest_offset(parent.global_position)
-	if progress == 0.0 and reverse: progress = path_length
+	if progress == 0.0 and reverse:
+		progress = path_length
 
-
-func exit() -> void:
-	super()
-
-	if timer and timer.timeout.is_connected(handle_timeout):
-		timer.timeout.disconnect(handle_timeout)
-
-	done = not return_to_path
 
 func handle_timeout() -> void:
 	done = true
+
 
 func is_off_path(delta_speed: float) -> float:
 	var path_position: Vector3 = path.curve.sample_baked(progress)
 	var distance_to_path: float = parent.global_position.distance_to(path_position)
 	return delta_speed < distance_to_path
+
 
 func handle_off_path() -> float:
 	if not return_to_path:
@@ -108,6 +112,7 @@ func handle_off_path() -> float:
 	if progress == path_length and not reverse:
 		return 0.0
 	return progress
+
 
 func get_future_progress(delta_speed: float) -> float:
 	if is_off_path(delta_speed):
@@ -127,6 +132,7 @@ func get_future_progress(delta_speed: float) -> float:
 			done = true
 
 	return 0.0 if future_progress < 0.0 else path_length
+
 
 func physics_process(delta: float) -> State:	
 	var speed: float = speed_override if speed_override_active else parent.speed
