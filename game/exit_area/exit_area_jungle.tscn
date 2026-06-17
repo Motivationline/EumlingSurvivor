@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bml0rn4uxx07g"]
+[gd_scene format=4 uid="uid://bml0rn4uxx07g"]
 
 [ext_resource type="Script" uid="uid://ct7skgiecn1pc" path="res://game/exit_area/exit_area.gd" id="1_47e78"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="4_gva8b"]
@@ -8,10 +8,14 @@
 [ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_3.wav" id="7_dmamu"]
 [ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_4.wav" id="8_vofq4"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="9_2dq3v"]
+[ext_resource type="Texture2D" uid="uid://dn6twb1b6xnwi" path="res://assets/models/3-Jungle/exit_trunk/exit_trunk_ExitMaterial_Base_color.png" id="10_fbgo6"]
 [ext_resource type="PackedScene" uid="uid://evy0ia65qqxd" path="res://assets/models/3-Jungle/portal/jungle_portal.tscn" id="11_xs662"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tkqdu"]
-size = Vector3(0.42266846, 2.0351563, 3.0703125)
+size = Vector3(0.9725647, 2.0351563, 2.0048828)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x82s8"]
+size = Vector3(2.642334, 2.0351563, 2.1279297)
 
 [sub_resource type="Animation" id="Animation_rdd0d"]
 length = 0.001
@@ -26,6 +30,54 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [4.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("jungle_portal/Plane_010:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.513, 0.513, 0.513)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("jungle_portal/Plane_011:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.605, 0.60499996, 0.6050001)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("jungle_portal/Plane_012:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.528, 0.52799994, 0.528)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BackWall:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, -0.061520696)]
 }
 
 [sub_resource type="Animation" id="Animation_tkqdu"]
@@ -70,6 +122,54 @@ tracks/2/keys = {
 "update": 0,
 "values": [5.845]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("jungle_portal/Plane_010:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.513, 0.513, 0.513), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("jungle_portal/Plane_011:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.605, 0.60499996, 0.6050001), Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("jungle_portal/Plane_012:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.528, 0.52799994, 0.528), Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BackWall:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1, -0.061520696), Vector3(0, 1, -1.3)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_47e78"]
 _data = {
@@ -83,6 +183,46 @@ stream_0/stream = ExtResource("5_2dq3v")
 stream_1/stream = ExtResource("6_ixbc8")
 stream_2/stream = ExtResource("7_dmamu")
 stream_3/stream = ExtResource("8_vofq4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8f4m7"]
+resource_name = "ExitMaterial"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("10_fbgo6")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ledb6"]
+_surfaces = [{
+"aabb": AABB(-2.598528, -0.006577611, -0.93933934, 2.592279, 1.09876, 1.8786788),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("DgACAA8AAgAEAA8AAgAFAAQAAAAPAAQAAAAEAAYADgAPAAAADgABAAIADgAAAAcAEAABAA4AEAAOAAcAEAADAAEAEAAHAAgAEQADABAAEQAQAAgAEQAJAAMAEQAIAAoACwAJABEACwARAAoACwAMAAkACwAKAA0A"),
+"lods": [0.29781973, PackedByteArray("AAABAAIAAwABAAAAAAACAAQAAgAFAAQAAAAEAAYAAwAAAAcAAwAHAAgACQADAAgACQAIAAoACwAJAAoACwAMAAkACwAKAA0A")],
+"name": "ExitMaterial",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("d/jiT/WHAACl5MuFoiAAAHf44k8JeAAAGp9c3AAAAACv/wAA/38AAP//CgC6ewAA//8KAESEAACl5MuFXN8AABqfXNz//wAAKFps3GEUAAAoWmzcnesAAAAA+oP/fwAAmSNPs/tCAACZI0+zA70AAODdoLD/fwAAZvikT/9/AAAlrmP+/38AABhk////fwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rljab"]
+resource_name = "exit_trunk_Plane_004"
+_surfaces = [{
+"aabb": AABB(-2.598528, -0.006577611, -0.93933934, 2.592279, 1.09876, 1.8786788),
+"attribute_data": PackedByteArray("Dd8kkRLCyJ2T2h2Rl7l5vOPcKIS42yKEDd4lhGj3GJ6H/+G8/b4R19L5aNcv3AL9asuF7SPtt+213C2j0NwakZbcPrht3FXT"),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("DgACAA8AAgAEAA8AAgAFAAQAAAAPAAQAAAAEAAYADgAPAAAADgABAAIADgAAAAcAEAABAA4AEAAOAAcAEAADAAEAEAAHAAgAEQADABAAEQAQAAgAEQAJAAMAEQAIAAoACwAJABEACwARAAoACwAMAAkACwAKAA0A"),
+"lods": [0.29781973, PackedByteArray("AAABAAIAAwABAAAAAAACAAQAAgAFAAQAAAAEAAYAAwAAAAcAAwAHAAgACQADAAgACQAIAAoACwAJAAoACwAMAAkACwAKAA0A")],
+"material": SubResource("StandardMaterial3D_8f4m7"),
+"name": "ExitMaterial",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("d/jiT/WH/fGl5MuFoiDP6nf44k8JeKLzGp9c3AAAW9+v/wAA/3+R+f//CgC6e3T5//8KAESEsPml5MuFXN8k4xqfXNz//yXXKFps3GEUftMoWmzcnetlzgAA+oP/f9bLmSNPs/tC8c6ZI0+zA722yODdoLD/f3foZvikT/9/ZPQlrmP+/3+C3Bhk////f5vQa7lXjKe1H5uOudSNybCBpsm8dIZ8u1iGFr6RhhuyPpVYqyChdKqisX2lw64RpC+456HYuT2mmbaqtMyWPrqSi+Cub6LXp5aw")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ledb6")
 
 [node name="ExitVisual" type="Node3D" unique_id=684710447]
 script = ExtResource("1_47e78")
@@ -106,21 +246,29 @@ light_cull_mask = 4294967293
 omni_range = 4.115
 
 [node name="RightWall" type="StaticBody3D" parent="." unique_id=1710607827]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -0.5986861)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.76284945, 0, 0)
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall" unique_id=713484516]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26622462, 0.9660523, -0.29638672)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26600003, 0.966, 0)
 shape = SubResource("BoxShape3D_tkqdu")
 debug_fill = false
 
 [node name="LeftWall" type="StaticBody3D" parent="." unique_id=728389544]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.5986861)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall" unique_id=1642082774]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2595942, 0.9660523, -0.29638672)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015, 0.966, 0)
 shape = SubResource("BoxShape3D_tkqdu")
+debug_fill = false
+
+[node name="BackWall" type="StaticBody3D" parent="." unique_id=1490718919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.061520696)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackWall" unique_id=1151383188]
+shape = SubResource("BoxShape3D_x82s8")
 debug_fill = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1030011118]
@@ -142,3 +290,20 @@ attenuation_filter_cutoff_hz = 20500.0
 
 [node name="jungle_portal" parent="." unique_id=497232731 instance=ExtResource("11_xs662")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0.34559464)
+
+[node name="Plane_010" type="MeshInstance3D" parent="jungle_portal" unique_id=1318331522]
+transform = Transform3D(0.04100697, 0.50909644, 0.048044503, 0.50171185, -0.030737547, -0.102515556, -0.098856784, 0.05518196, -0.5003512, -0.10042961, 1.9251177, -0.2411228)
+mesh = SubResource("ArrayMesh_rljab")
+skeleton = NodePath("")
+
+[node name="Plane_011" type="MeshInstance3D" parent="jungle_portal" unique_id=197663625]
+transform = Transform3D(0.0334881, 0.6035564, 0.02496434, 0.24809368, 0.009054805, -0.5517179, -0.550775, 0.04077599, -0.2470005, -0.072518736, 0.91676056, -0.8254539)
+mesh = SubResource("ArrayMesh_rljab")
+skeleton = NodePath("")
+
+[node name="Plane_012" type="MeshInstance3D" parent="jungle_portal" unique_id=208917579]
+transform = Transform3D(0.019414427, 0.5201207, -0.08877797, 0.046428718, 0.08680946, 0.51874125, 0.52559626, -0.026880506, -0.042543907, -0.07706931, 1.0171976, 0.82109195)
+mesh = SubResource("ArrayMesh_rljab")
+skeleton = NodePath("")
+
+[editable path="jungle_portal"]
