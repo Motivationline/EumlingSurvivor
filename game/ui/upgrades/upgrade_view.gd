@@ -36,6 +36,6 @@ func show_upgrades():
 func upgrade_input(option: Upgrade):
 	# if not event is InputEventScreenTouch: return
 	# if not event.pressed: return 
-	upgrade_chosen.emit(option) 
 	get_tree().paused = false
+	upgrade_chosen.emit(option) 
 	hide()

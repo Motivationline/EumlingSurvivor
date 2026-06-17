@@ -99,10 +99,24 @@ func _load_level():
 func level_finished():
 	if not currently_loaded_level.is_boss_level:
 		upgrade_view.show_upgrades()
-		var chosen_upgrade = await upgrade_view.upgrade_chosen
+		var chosen_upgrade: Upgrade = await upgrade_view.upgrade_chosen
 		player.add_upgrade(chosen_upgrade)
+		display_big_update(chosen_upgrade)
+
 	player.level_completed(currently_loaded_level)
 	save_game_data()
+
+func display_big_update(upgrade: Upgrade) -> void:
+	var progress = Data.game_data.upgrade_path_progress.get(upgrade.path, 0)
+	var progress_steps: Array[int] = [3, 6, 10]
+	if not progress_steps.has(progress): return
+	%BigUpgradeInfoText.text = "You got an upgrade for your %s Eumling, YAY!" % Enum.EUMLING_TYPE.keys()[upgrade.path]
+	%BigUpgradeInfo.show()
+	get_tree().paused = true
+	await get_tree().create_timer(3).timeout
+	get_tree().paused = false
+	%BigUpgradeInfo.hide()
+
 
 func save_game_data():
 	Data.game_data.player_upgrades = player._current_values
@@ -143,3 +157,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		upgrade_view.show_upgrades()
 		var chosen_upgrade = await upgrade_view.upgrade_chosen
 		player.add_upgrade(chosen_upgrade)
+		display_big_update(chosen_upgrade)
