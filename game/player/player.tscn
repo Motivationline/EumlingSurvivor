@@ -43,6 +43,7 @@
 [ext_resource type="AudioStream" uid="uid://bd1pdp5nkt7rs" path="res://assets/characters/eumling/V2/sounds/walk_8.wav" id="47_ipfdr"]
 [ext_resource type="AudioStream" uid="uid://ckt1wmdh0i2s5" path="res://assets/characters/eumling/V2/sounds/walk_9.wav" id="48_wxabu"]
 [ext_resource type="AudioStream" uid="uid://bdu6vr8x2yl1f" path="res://assets/characters/eumling/V2/sounds/walk_10.wav" id="49_snb7b"]
+[ext_resource type="PackedScene" uid="uid://dwn8aulqlewsv" path="res://game/player/abilities/conventional/shield/shield.tscn" id="61_od043"]
 [ext_resource type="Script" uid="uid://nmf3f7xinks3" path="res://game/player/abilities/conventional/conventional.gd" id="62_5en5a"]
 [ext_resource type="Texture2D" uid="uid://dbqxunehgsecx" path="res://assets/ui/Eumlex/RedDop.png" id="63_ydmue"]
 [ext_resource type="Script" uid="uid://chbii87hffl0a" path="res://game/player/abilities/conventional/quests/move_quest.gd" id="64_2qewa"]
@@ -504,5 +505,8 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpecialAbilities/Conventional/DodgeProjectilesQuest/DodgeArea" unique_id=1191940918]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_ty5va")
+
+[node name="Shield" parent="SpecialAbilities/Conventional/DodgeProjectilesQuest" unique_id=353379034 instance=ExtResource("61_od043")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [connection signal="play_sound" from="Eumling_v2" to="SoundEffectManager" method="play_sound"]

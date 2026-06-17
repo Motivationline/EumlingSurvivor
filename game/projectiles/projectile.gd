@@ -43,6 +43,7 @@ var start_position: Vector3
 
 @export_category("Event Listeners")
 @export var on_world_collision: Array[EventStrategy]
+@export var on_shield_collision: Array[EventStrategy]
 @export var on_hit: Array[EventStrategy]
 @export var on_hurt: Array[EventStrategy]
 @export var on_end_of_life: Array[EventStrategy]
@@ -78,6 +79,7 @@ func setup(target_pos: Vector3, _owner: Node3D):
 	Strategy._setup_array(targeting, self, _owner)
 	Strategy._setup_array(movement, self, _owner)
 	Strategy._setup_array(on_world_collision, self, _owner)
+	Strategy._setup_array(on_shield_collision, self, _owner)
 	Strategy._setup_array(on_hit, self, _owner)
 	Strategy._setup_array(on_hurt, self, _owner)
 	Strategy._setup_array(on_end_of_life, self, _owner)
@@ -143,12 +145,26 @@ func _physics_process(delta: float) -> void:
 		if mov.is_active:
 			mov.apply_movement(delta, current_lifetime, lifetime)
 	velocity *= delta
-	var collision: KinematicCollision3D = move_and_collide(velocity)
-	if (collision):
-		for coll in on_world_collision:
-			if coll.is_active:
-				coll.event_triggered(collision)
+	_handle_collision(move_and_collide(velocity))
+
+
+func _handle_collision(collision: KinematicCollision3D) -> void:
+	if not collision:
+		return
 	
+	var collider := collision.get_collider()
+	if collider is Shield:
+		_trigger_collision_strategies(on_shield_collision, collision)
+		collider.hit()
+	else:
+		_trigger_collision_strategies(on_world_collision, collision)
+
+
+func _trigger_collision_strategies(strategies: Array[EventStrategy], collision: KinematicCollision3D) -> void:
+	for strategy in strategies:
+		if strategy.is_active:
+			strategy.event_triggered(collision)
+
 
 func _end_of_lifetime():
 	for strat in on_end_of_life:
