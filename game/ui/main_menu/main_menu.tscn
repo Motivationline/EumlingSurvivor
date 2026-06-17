@@ -13,14 +13,17 @@
 [ext_resource type="Texture2D" uid="uid://c40q8petlro1j" path="res://assets/ui/Buttons/ButtonBook.png" id="11_orue0"]
 [ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="12_lnduv"]
 [ext_resource type="Texture2D" uid="uid://balp1dnlnfddm" path="res://assets/ui/Buttons/ButtonSettings.png" id="13_0bhyy"]
+[ext_resource type="Texture2D" uid="uid://c5vc254qcrdhy" path="res://assets/ui/logos/motivationline3.png" id="13_06kjt"]
 [ext_resource type="PackedScene" uid="uid://cg73m83g0gu84" path="res://assets/models/3-Jungle/jungle_tree/jungel_tree_01.glb" id="13_o0d2s"]
 [ext_resource type="PackedScene" uid="uid://m14qxh5fce8m" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone.glb" id="14_orue0"]
 [ext_resource type="PackedScene" uid="uid://bd6al6p5ch00v" path="res://assets/models/bush/bush_prefab.tscn" id="15_orue0"]
 [ext_resource type="Material" uid="uid://dcxlase0almr2" path="res://assets/models/3-Jungle/jungle_tree/jungel_tree_01_foliage_material_1.tres" id="16_lnduv"]
+[ext_resource type="PackedScene" uid="uid://b7ild54ax5g7a" path="res://assets/models/main_menu/campfire/campfire.tscn" id="18_06kjt"]
 [ext_resource type="Texture2D" uid="uid://bvaa0nxjehm86" path="res://assets/ui/startScreen/godrays01.png" id="18_i63cf"]
 [ext_resource type="Texture2D" uid="uid://bwf6nign48iqb" path="res://assets/vfx/particle_pack/smoke_06.png" id="19_oup2s"]
 [ext_resource type="PackedScene" uid="uid://b1dehhangi7ko" path="res://assets/characters/eumling/main_menu_eumling/main_menu_eumling.tscn" id="20_oup2s"]
 [ext_resource type="PackedScene" uid="uid://b2gactr5k8m8l" path="res://assets/characters/eumling/main_menu_eumling/backpack/backpack_prop.tscn" id="21_jxl6k"]
+[ext_resource type="PackedScene" uid="uid://dnpkx1sg04yw3" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/main_menu/main_menu_sozial.tscn" id="23_hutre"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0bhyy"]
 dof_blur_far_distance = 164.99
@@ -108,18 +111,6 @@ disable_receive_shadows = true
 [sub_resource type="PlaneMesh" id="PlaneMesh_06kjt"]
 size = Vector2(30, 30)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oup2s"]
-disable_ambient_light = true
-disable_fog = true
-vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
-albedo_color = Color(0.16790001, 0.210335, 0.23, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_i63cf"]
-height = 0.3
-radial_segments = 12
-rings = 1
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06kjt"]
 render_priority = 1
 transparency = 1
@@ -178,8 +169,8 @@ colors = PackedColorArray(1, 0.7666667, 0, 1, 1, 0.4616667, 0.050000012, 1, 0.73
 gradient = SubResource("Gradient_oknsj")
 
 [sub_resource type="Curve" id="Curve_bntwx"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3827073), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.093023255, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_u3sb7"]
 curve = SubResource("Curve_bntwx")
@@ -187,9 +178,9 @@ curve = SubResource("Curve_bntwx")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s7kb2"]
 emission_shape = 1
 emission_sphere_radius = 0.05
-angle_min = -19.99999
-angle_max = 20.000011
-direction = Vector3(0, 1, 0)
+angle_min = -34.99999
+angle_max = 15.0000105
+direction = Vector3(0, 1, 1)
 spread = 15.0
 initial_velocity_min = 0.5
 initial_velocity_max = 0.79999995
@@ -317,38 +308,34 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="leafOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1773096225]
-visible = false
 layout_mode = 0
 offset_right = 1922.0
 offset_bottom = 1080.0
 texture = ExtResource("6_k3ypk")
 
 [node name="branchOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=854031140]
-visible = false
 layout_mode = 0
-offset_left = 674.0
-offset_top = 114.0
-offset_right = 1920.0
-offset_bottom = 893.0
+offset_left = 691.0
+offset_top = 101.0
+offset_right = 1937.0
+offset_bottom = 880.0
 texture = ExtResource("7_gscod")
 
 [node name="paperOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1776084821]
-visible = false
 layout_mode = 0
 offset_left = 1183.0
-offset_top = 261.0
+offset_top = 248.0
 offset_right = 1809.0
-offset_bottom = 1032.0
+offset_bottom = 1019.0
 texture = ExtResource("8_1r6yo")
 stretch_mode = 2
 
 [node name="arrowOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=2026483528]
-visible = false
 layout_mode = 0
 offset_left = 1479.0
-offset_top = 41.0
+offset_top = 28.0
 offset_right = 1914.0
-offset_bottom = 387.0
+offset_bottom = 374.0
 texture = ExtResource("9_egypv")
 stretch_mode = 2
 
@@ -356,21 +343,22 @@ stretch_mode = 2
 modulate = Color(1.8989718, 1.6171429, 0.36172387, 0.07450981)
 material = SubResource("CanvasItemMaterial_0bhyy")
 layout_mode = 0
-offset_left = 186.0
-offset_top = -266.0
-offset_right = 2744.0
-offset_bottom = 814.0
+offset_left = 948.0
+offset_top = 210.0
+offset_right = 3506.0
+offset_bottom = 1290.0
+scale = Vector2(0.45163268, 0.45163268)
 texture = ExtResource("7_0bhyy")
 expand_mode = 1
 
 [node name="eumlingLogo2" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=451272343]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 344.0
-offset_top = -1105.0
-offset_right = 4103.4688
-offset_bottom = 1778.6138
-scale = Vector2(1.0472628, 1.0472628)
+offset_left = 952.0
+offset_top = -215.0
+offset_right = 4711.4688
+offset_bottom = 2668.6138
+scale = Vector2(0.5197274, 0.5197274)
 texture = ExtResource("7_o0d2s")
 expand_mode = 5
 stretch_mode = 5
@@ -378,15 +366,17 @@ stretch_mode = 5
 [node name="eumlingLogo" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1054500430]
 modulate = Color(1, 0.6166667, 0, 1)
 layout_mode = 0
-offset_left = 393.0
-offset_top = -1046.0
-offset_right = 4152.4688
-offset_bottom = 1837.6138
+offset_left = 976.0
+offset_top = -185.0
+offset_right = 4735.4688
+offset_bottom = 2698.6138
+scale = Vector2(0.4962722, 0.4962722)
 texture = ExtResource("7_o0d2s")
 expand_mode = 5
 stretch_mode = 5
 
 [node name="motivationlineLogo" type="Label" parent="UIOverlay/StaticUI" unique_id=309874239]
+visible = false
 layout_mode = 0
 offset_left = 30.0
 offset_top = 1014.0
@@ -398,9 +388,9 @@ text = "motivationline©"
 
 [node name="boostlineLoggo" type="Label" parent="UIOverlay/StaticUI" unique_id=183309719]
 layout_mode = 0
-offset_left = 321.0
+offset_left = 401.0
 offset_top = 1014.0
-offset_right = 778.0
+offset_right = 858.0
 offset_bottom = 1061.0
 theme_override_fonts/font = ExtResource("4_m1bca")
 theme_override_font_sizes/font_size = 30
@@ -434,10 +424,10 @@ texture_focused = ExtResource("11_egypv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIOverlay/StaticUI" unique_id=615637375]
 layout_mode = 0
-offset_left = 1189.0
-offset_top = 490.0
-offset_right = 1752.0
-offset_bottom = 1083.0
+offset_left = 1205.0
+offset_top = 566.0
+offset_right = 1768.0
+offset_bottom = 1159.0
 theme_override_constants/separation = 25
 
 [node name="playButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=877629100]
@@ -501,6 +491,7 @@ text = "Cont."
 horizontal_alignment = 1
 
 [node name="playButton3" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=315783185]
+visible = false
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../settingButton")
@@ -528,6 +519,15 @@ theme_override_fonts/font = ExtResource("4_m1bca")
 theme_override_font_sizes/font_size = 97
 text = "Play"
 horizontal_alignment = 1
+
+[node name="logo_ml" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1254517399]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 1018.00006
+offset_right = 4144.0
+offset_bottom = 1519.0
+scale = Vector2(0.0736165, 0.0736165)
+texture = ExtResource("13_06kjt")
 
 [node name="Background_Tile" type="Node3D" parent="." unique_id=272850613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7447424, 0, 0)
@@ -561,6 +561,9 @@ transform = Transform3D(1.2757065, 0.41384038, -2.215297, 0.4015281, 1.7657627, 
 
 [node name="ObstacleStone6" parent="Background_Tile" unique_id=1643658893 instance=ExtResource("14_orue0")]
 transform = Transform3D(-0.63012, -0.8942784, 1.2073181, -0.25737324, 1.354095, 0.86867034, -1.48024, 0.14524321, -0.66497886, 1.9914951, -0.016137123, -2.3895702)
+
+[node name="ObstacleStone8" parent="Background_Tile" unique_id=991275774 instance=ExtResource("14_orue0")]
+transform = Transform3D(-0.30252364, 0.5489825, 1.5038284, 0.3639447, 1.5139552, -0.47946477, -1.5589827, 0.24690214, -0.40375227, 2.6098194, 0.28948057, -1.5225914)
 
 [node name="ObstacleStone2" parent="Background_Tile" unique_id=598353936 instance=ExtResource("14_orue0")]
 transform = Transform3D(0.9206613, 0.096930094, 0.3781368, -0.20415626, 0.9452034, 0.25477576, -0.33272076, -0.31176117, 0.89000106, -3.1633015, 0.118039265, 10.398989)
@@ -647,18 +650,13 @@ transform = Transform3D(-0.02243594, 0.3672451, 0.92985356, -0.9981391, -0.06097
 material_override = SubResource("StandardMaterial3D_jxl6k")
 mesh = SubResource("PlaneMesh_06kjt")
 
-[node name="Campfire" type="Node3D" parent="Background_Tile" unique_id=1226605834]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6627407, 0, 2.2015936)
+[node name="campfire" parent="Background_Tile" unique_id=1368209927 instance=ExtResource("18_06kjt")]
+transform = Transform3D(0.31120723, 0, 0.95034206, 0, 1, 0, -0.95034206, 0, 0.31120723, 1.5020943, 0.04059136, 1.2999637)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Background_Tile/Campfire" unique_id=910907867]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22789764, -0.12601668, -0.9393978)
-material_override = SubResource("StandardMaterial3D_oup2s")
-mesh = SubResource("CylinderMesh_i63cf")
+[node name="Particles" type="Node3D" parent="Background_Tile/campfire" unique_id=1433874605]
+transform = Transform3D(1.0000004, 0, 0, 0, 1, 0, 0, 0, 1.0000004, 0.044280052, 0.29086775, -0.05945301)
 
-[node name="Particles" type="Node3D" parent="Background_Tile/Campfire" unique_id=1433874605]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19974327, 0.38266653, -0.9034883)
-
-[node name="CPUParticles3D" type="CPUParticles3D" parent="Background_Tile/Campfire/Particles" unique_id=60905192]
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Background_Tile/campfire/Particles" unique_id=60905192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22611058, 0)
 material_override = SubResource("StandardMaterial3D_06kjt")
 amount = 16
@@ -680,7 +678,7 @@ scale_amount_min = 0.5
 scale_amount_curve = SubResource("Curve_i1dr8")
 color_ramp = SubResource("Gradient_hyaa6")
 
-[node name="Flame" type="GPUParticles3D" parent="Background_Tile/Campfire/Particles" unique_id=1725944331]
+[node name="Flame" type="GPUParticles3D" parent="Background_Tile/campfire/Particles" unique_id=1725944331]
 transform = Transform3D(-0.8425021, 0.005894868, -0.013573462, -0.0070606824, 0.7497404, 0.7371359, 0.011139415, 0.79093754, -0.71355397, -0.0009212494, -0.19989532, 0.058878064)
 material_override = SubResource("StandardMaterial3D_hutre")
 amount = 5
@@ -690,7 +688,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_s7kb2")
 draw_pass_1 = SubResource("QuadMesh_d7anh")
 
-[node name="Smoke" type="GPUParticles3D" parent="Background_Tile/Campfire/Particles/Flame" unique_id=1498395296]
+[node name="Smoke" type="GPUParticles3D" parent="Background_Tile/campfire/Particles/Flame" unique_id=1498395296]
 transform = Transform3D(0.99999976, 0, 0, 0, 1, 0, 9.313226e-10, 0, 1.0000001, 0.0018606186, 0.13966525, -0.113102555)
 material_override = SubResource("StandardMaterial3D_hyaa6")
 amount = 12
@@ -728,6 +726,9 @@ transform = Transform3D(0.6980404, 0, 0.7160583, 0, 1, 0, -0.7160583, 0, 0.69804
 
 [node name="backpack_prop" parent="." unique_id=140973392 instance=ExtResource("21_jxl6k")]
 transform = Transform3D(-0.4885124, -0.34995764, 0.7993032, 0.027202994, 0.9094932, 0.41482794, -0.8721332, 0.22439191, -0.4347787, 8.456722, -0.29270798, 1.3694828)
+
+[node name="main_menu_sozial" parent="." unique_id=451026336 instance=ExtResource("23_hutre")]
+transform = Transform3D(0.46461144, 0, -0.18475986, 0, 0.5, 0, 0.18475986, 0, 0.46461144, 9.027449, 0.0061601102, 1.9727275)
 
 [connection signal="tree_entered" from="." to="UIOverlay/StaticUI/VBoxContainer/playButton" method="grab_focus" flags=3 binds= [false]]
 [connection signal="pressed" from="UIOverlay/StaticUI/EumlexButton" to="." method="_on_eumlex_button_pressed"]
