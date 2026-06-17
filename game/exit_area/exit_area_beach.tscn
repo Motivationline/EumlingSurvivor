@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_3.wav" id="8_1uaeg"]
 [ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_4.wav" id="9_84bm4"]
 [ext_resource type="PackedScene" uid="uid://di4857pgk1je4" path="res://assets/models/5-beach/islands/base_island.tscn" id="11_qxqvm"]
-[ext_resource type="PackedScene" uid="uid://bli8pja4rp1qc" path="res://assets/models/5-beach/palm1_prefab.tscn" id="11_uveg6"]
 
 [sub_resource type="Animation" id="Animation_rdd0d"]
 length = 0.06666667
@@ -53,14 +52,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("palm_v1:scale")
+tracks/3/path = NodePath("blockIsland:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.7, 0.24899997, 0.6999999)]
+"values": [Vector3(1.1105224, 5.6417127, 0.753016)]
 }
 
 [sub_resource type="Animation" id="Animation_tkqdu"]
@@ -132,14 +131,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("palm_v1:scale")
+tracks/5/path = NodePath("blockIsland:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8000001),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.7, 0.24899997, 0.6999999), Vector3(0, 0.249, 0)]
+"values": [Vector3(1.1105224, 5.6417127, 0.753016), Vector3(1.2629468, 1.4083463, 0.9871871)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_47e78"]
@@ -220,8 +219,8 @@ transform = Transform3D(-8.9406974e-08, 0, -1, 0, 1, 0, 1, 0, -8.9406974e-08, 0,
 [node name="base_island" parent="." unique_id=1953611265 instance=ExtResource("11_qxqvm")]
 transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 1.4370552)
 
-[node name="palm_v1" parent="." unique_id=566563813 instance=ExtResource("11_uveg6")]
-transform = Transform3D(0.45764455, -0.020268956, 0.5266066, 0.52156955, 0.06040077, -0.43489385, -0.09233979, 0.24071123, 0.15346889, 0.161181, 0.90888953, 0.6268022)
+[node name="blockIsland" parent="." unique_id=1538996531 instance=ExtResource("11_qxqvm")]
+transform = Transform3D(1.1105224, 0, 0, 0, 5.6417127, 0, 0, 0, 0.753016, 0.04400736, 0, 1.2616662)
 
 [node name="RightWall" type="StaticBody3D" parent="." unique_id=1697413156]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.76284945, 0, 0.54160666)
