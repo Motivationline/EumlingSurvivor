@@ -18,25 +18,6 @@ _limits = [0.0, 5.0, 0.0, 5.0]
 _data = [Vector2(0, 5), 0.0, 0.0, 0, 0]
 point_count = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uruu7"]
-specular_mode = 1
-albedo_color = Color(0.36862746, 0.2, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_b7528"]
-top_radius = 0.0
-bottom_radius = 0.1
-height = 0.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byxc1"]
-cull_mode = 1
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_s8e6k"]
-top_radius = 0.0
-bottom_radius = 0.1
-height = 0.5
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_1mk1u"]
 radius = 0.04621862
 
@@ -190,23 +171,7 @@ script = ExtResource("5_xxhqj")
 entity_to_spawn = ExtResource("6_qymwb")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=1394156185]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.28753555, -1.2568578e-08)
-visible = false
-material_override = SubResource("StandardMaterial3D_uruu7")
-mesh = SubResource("CylinderMesh_b7528")
-
-[node name="outline" type="MeshInstance3D" parent="MeshInstance3D" index="0" unique_id=1414549066]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.009984612, 0)
-material_override = SubResource("StandardMaterial3D_byxc1")
-mesh = SubResource("CylinderMesh_s8e6k")
-skeleton = NodePath("../..")
-
-[node name="DecalShadow" parent="MeshInstance3D" index="1" unique_id=1002455412 instance=ExtResource("4_uruu7")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.054212e-08, -0.24117559)
-size = Vector3(0.252, 0.05, 0.5)
-
-[node name="Hitbox" parent="." index="3" unique_id=1696673246 instance=ExtResource("4_qda78")]
+[node name="Hitbox" parent="." index="2" unique_id=1696673246 instance=ExtResource("4_qda78")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28896308, 0)
 collision_layer = 43
 collision_mask = 11
@@ -218,11 +183,11 @@ can_hit = 4
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.04981506)
 shape = SubResource("SphereShape3D_1mk1u")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1600524182]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1600524182]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2871864, 0)
 shape = SubResource("SphereShape3D_wripo")
 
-[node name="Visual" type="Node3D" parent="." index="5" unique_id=497810501]
+[node name="Visual" type="Node3D" parent="." index="4" unique_id=497810501]
 
 [node name="feather" type="MeshInstance3D" parent="Visual" index="0" unique_id=380665093]
 transform = Transform3D(0.3799143, 0, 0.039863568, 0, 0.382, 0, -0.039863568, 0, 0.3799143, -0.05042075, 0.03005588, -0.0014059544)
@@ -271,3 +236,7 @@ mesh = SubResource("PlaneMesh_qymwb")
 transform = Transform3D(1.461, 0, 0, 0, -6.386234e-08, 1.461, 0, -1.461, -6.386234e-08, 0, 0.3131714, 0.05339928)
 material_override = SubResource("StandardMaterial3D_vkwat")
 mesh = SubResource("CylinderMesh_vnlnp")
+
+[node name="DecalShadow" parent="Visual" index="7" unique_id=1002455412 instance=ExtResource("4_uruu7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046359956, 0.035308838)
+size = Vector3(0.252, 0.05, 0.5)

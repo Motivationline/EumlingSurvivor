@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="3_tst3c"]
 [ext_resource type="PackedScene" uid="uid://bd4kom8lyyin5" path="res://assets/models/6-volcano/stones/stone_01/volcano_stone_01.tscn" id="6_r7r6h"]
 [ext_resource type="Shader" uid="uid://bcr3jkq4ohhuh" path="res://game/levels/6-Vxx-Volcano/shader2/lava.tres" id="7_8l1px"]
+[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="7_g1dqc"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
 
@@ -238,16 +239,25 @@ size = Vector3(1.9667969, 1.8048096, 1)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_r7r6h"]
 dof_blur_far_enabled = true
-dof_blur_far_distance = 30.0
+dof_blur_far_distance = 35.0
 dof_blur_near_enabled = true
 dof_blur_near_distance = 10.0
 
 [sub_resource type="Environment" id="Environment_8l1px"]
-ambient_light_color = Color(0.90333873, 0.538149, 0.45114517, 1)
+background_mode = 1
+background_color = Color(0.67, 0.4801667, 0, 1)
+ambient_light_color = Color(0.9, 0.18000004, 0, 1)
+tonemap_mode = 4
+fog_mode = 1
+fog_light_color = Color(0.98, 0.09800003, 0, 1)
+fog_density = 0.451
+fog_sky_affect = 0.615
+fog_depth_curve = 0.09807378
+fog_depth_begin = 15.0
 adjustment_enabled = true
-adjustment_brightness = 1.06
-adjustment_contrast = 1.025
-adjustment_saturation = 1.26
+adjustment_brightness = 1.09
+adjustment_contrast = 1.055
+adjustment_saturation = 1.23
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q377s"]
 size = Vector2(30, 30)
@@ -269,6 +279,20 @@ shader_parameter/Speed = Vector2(0.01, 0)
 shader_parameter/Ripples_Color = Color(1, 0.75, 0, 1)
 shader_parameter/ProximityFade = 1.0
 shader_parameter/RippleSpeed = 1.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jpdpo"]
+render_priority = 0
+shader = ExtResource("7_g1dqc")
+shader_parameter/ball_color = Color(1.2237577, 0.69851756, 0, 1)
+shader_parameter/frensel_power = -2.045
+shader_parameter/visibility = 0.085
+
+[sub_resource type="SphereMesh" id="SphereMesh_aga4b"]
+radial_segments = 8
+
+[sub_resource type="Curve" id="Curve_ep3q7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Level" type="Node3D" unique_id=1973423689 node_paths=PackedStringArray("player_spawn", "goal_area") groups=["Level"]]
 script = ExtResource("1_gmd22")
@@ -331,7 +355,7 @@ environment = SubResource("Environment_8l1px")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=1052083922]
 transform = Transform3D(-0.91552204, 0.39784312, -0.05950278, -0.021726489, 0.098798886, 0.99487025, 0.40168113, 0.9121182, -0.0818088, 0, 8.41849, 0)
 shadow_enabled = true
-shadow_opacity = 0.8
+shadow_opacity = 0.15
 directional_shadow_mode = 0
 
 [node name="Env" type="Node3D" parent="." unique_id=1593707156]
@@ -341,12 +365,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015992403, -1.2169609, -1.
 mesh = SubResource("PlaneMesh_q377s")
 surface_material_override/0 = SubResource("StandardMaterial3D_yqsn0")
 
-[node name="Lava" type="MeshInstance3D" parent="Env" unique_id=1888487937]
-transform = Transform3D(-1, -3.821371e-15, -8.742278e-08, -8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, 0.022444725, -0.057701945, 0)
-mesh = SubResource("QuadMesh_8l1px")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_ep3q7")
-
 [node name="Node3D" type="Node3D" parent="Env" unique_id=1846319933]
 
 [node name="volcano_stone_01" parent="Env/Node3D" unique_id=667927802 instance=ExtResource("6_r7r6h")]
@@ -354,6 +372,15 @@ transform = Transform3D(0.79348576, -0.38404092, -0.47211534, 0.14590551, 0.8731
 
 [node name="volcano_stone_02" parent="Env/Node3D" unique_id=1980216610 instance=ExtResource("6_r7r6h")]
 transform = Transform3D(0.14846528, 0, -0.98891765, 0, 1, 0, 0.98891765, 0, 0.14846528, -5.9250565, -1.0193936, 2.9570735)
+
+[node name="volcano_stone_09" parent="Env/Node3D" unique_id=559275954 instance=ExtResource("6_r7r6h")]
+transform = Transform3D(-2.4115145, 0, -0.8102993, 0, 2.54401, 0, 0.8102993, 0, -2.4115145, -7.749278, -1.9555088, 0.98396254)
+
+[node name="volcano_stone_10" parent="Env/Node3D" unique_id=338112333 instance=ExtResource("6_r7r6h")]
+transform = Transform3D(0.34557378, 0, -3.88433, 0, 3.8996718, 0, 3.88433, 0, 0.34557378, 11.796527, -1.9555088, 9.851519)
+
+[node name="volcano_stone_11" parent="Env/Node3D" unique_id=1378327098 instance=ExtResource("6_r7r6h")]
+transform = Transform3D(3.5250993, 0.79400605, 1.4665192, -0.7987087, 3.8142385, -0.14524369, -1.4639641, -0.16907178, 3.6104949, -10.010858, -3.9427547, -12.396981)
 
 [node name="volcano_stone_06" parent="Env/Node3D" unique_id=2140811603 instance=ExtResource("6_r7r6h")]
 transform = Transform3D(-0.6255285, 0, 0.78020126, 0, 1, 0, -0.78020126, 0, -0.6255285, 7.0971622, -1.0193936, -1.5318401)
@@ -368,10 +395,132 @@ transform = Transform3D(0.49869278, 0, 0.03613163, 0, 0.5, 0, -0.03613163, 0, 0.
 transform = Transform3D(-1.4137517, 0.4597959, -1.3378692, 0.11187443, 1.921829, 0.5422702, 1.4102447, 0.308481, -1.384214, -6.547992, -4.0124345, -4.503334)
 
 [node name="volcano_stone_04" parent="Env/Node3D" unique_id=1569124624 instance=ExtResource("6_r7r6h")]
-transform = Transform3D(-1.2714319, -0.2739073, 1.5193537, -0.6313302, 1.8884193, -0.1878702, -1.4088587, -0.59903896, -1.2869613, 5.261964, -3.930735, -5.7119455)
+transform = Transform3D(-1.2714319, -0.2739073, 1.5193537, -0.6313302, 1.8884193, -0.1878702, -1.4088587, -0.59903896, -1.2869613, -1.1735439, -3.0314937, -5.754069)
 
 [node name="volcano_stone_05" parent="Env/Node3D" unique_id=1460671164 instance=ExtResource("6_r7r6h")]
 transform = Transform3D(-0.22352439, -0.17020634, -0.9597222, -0.31566513, 0.94420964, -0.0939351, 0.92216724, 0.28195402, -0.26478207, 4.803613, -1.2003446, -6.746872)
+
+[node name="Lava" type="MeshInstance3D" parent="Env" unique_id=1888487937]
+transform = Transform3D(-1, -3.821371e-15, -8.742278e-08, -8.742278e-08, 4.371139e-08, 1, 0, 1, -4.371139e-08, 0.022444725, -0.057701945, 0)
+mesh = SubResource("QuadMesh_8l1px")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ep3q7")
+
+[node name="Particles" type="Node3D" parent="Env" unique_id=1475995462]
+
+[node name="bubles" type="CPUParticles3D" parent="Env/Particles" unique_id=864220361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5168953, -0.074061304, 1.8883238)
+material_override = SubResource("ShaderMaterial_jpdpo")
+lifetime = 2.0
+mesh = SubResource("SphereMesh_aga4b")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+damping_max = 1.0
+scale_amount_min = 0.2
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_ep3q7")
+
+[node name="bubles2" type="CPUParticles3D" parent="Env/Particles" unique_id=435361472]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.816423, -0.074061304, 5.5351586)
+material_override = SubResource("ShaderMaterial_jpdpo")
+lifetime = 2.0
+mesh = SubResource("SphereMesh_aga4b")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+damping_max = 1.0
+scale_amount_min = 0.2
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_ep3q7")
+
+[node name="bubles3" type="CPUParticles3D" parent="Env/Particles" unique_id=1375503575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6192794, -0.074061304, 5.671707)
+material_override = SubResource("ShaderMaterial_jpdpo")
+lifetime = 2.0
+mesh = SubResource("SphereMesh_aga4b")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+damping_max = 1.0
+scale_amount_min = 0.2
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_ep3q7")
+
+[node name="bubles4" type="CPUParticles3D" parent="Env/Particles" unique_id=275513787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.832911, -0.074061304, 4.368287)
+material_override = SubResource("ShaderMaterial_jpdpo")
+lifetime = 2.0
+mesh = SubResource("SphereMesh_aga4b")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+damping_max = 1.0
+scale_amount_min = 0.2
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_ep3q7")
+
+[node name="bubles5" type="CPUParticles3D" parent="Env/Particles" unique_id=1241026913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7315564, -0.074061304, -1.2206597)
+material_override = SubResource("ShaderMaterial_jpdpo")
+lifetime = 2.0
+mesh = SubResource("SphereMesh_aga4b")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+damping_max = 1.0
+scale_amount_min = 0.2
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_ep3q7")
+
+[node name="bubles6" type="CPUParticles3D" parent="Env/Particles" unique_id=916985154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1277966, -0.074061304, -5.3616934)
+material_override = SubResource("ShaderMaterial_jpdpo")
+lifetime = 2.0
+mesh = SubResource("SphereMesh_aga4b")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+damping_max = 1.0
+scale_amount_min = 0.2
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_ep3q7")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=2012922691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
