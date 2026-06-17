@@ -27,9 +27,9 @@ height = 0.955451
 [sub_resource type="SphereShape3D" id="SphereShape3D_ygvvl"]
 radius = 0.39281
 
-[node name="tortoise_complex_v1" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_tu2ns")]
+[node name="tortoise_complex_D1" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_tu2ns")]
 health = 400.0
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
 speed = 0.4
@@ -84,23 +84,23 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 [node name="Charging" type="Node" parent="StateMachine/Chase_and_Attack" index="1" unique_id=437544642 node_paths=PackedStringArray("next_state")]
 script = ExtResource("9_2gkp5")
 wait_time = 1.5
-next_state = NodePath("../SpawnEntitiesState")
+next_state = NodePath("../SpawnInnerRing")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "idle"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Chase_and_Attack" index="2" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
+[node name="SpawnInnerRing" type="Node" parent="StateMachine/Chase_and_Attack" index="2" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_l7fh3")
 start_delay = 0.2
 end_delay = 2.2
-next_state = NodePath("../../DecideDistanceState")
+next_state = NodePath("../../MoveRandomOnNavMeshState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/shake/request": 1
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/Chase_and_Attack/SpawnEntitiesState" index="0" unique_id=1296606649]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/Chase_and_Attack/SpawnInnerRing" index="0" unique_id=1296606649]
 script = ExtResource("4_1inio")
 entity_to_spawn = ExtResource("6_uujif")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -127,14 +127,14 @@ metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
 [node name="tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=2050981297 instance=ExtResource("2_j0ork")]
 
-[node name="Hitbox" parent="." index="7" unique_id=1235312899 instance=ExtResource("8_f80sp")]
+[node name="hitboxBase" parent="." index="7" unique_id=1235312899 instance=ExtResource("8_f80sp")]
 collision_layer = 32
 collision_mask = 8
 damage = 30.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=480062776]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=480062776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4510494, 0)
 shape = SubResource("CapsuleShape3D_xxr7p")
 

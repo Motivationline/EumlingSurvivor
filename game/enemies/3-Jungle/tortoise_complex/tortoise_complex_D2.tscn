@@ -1,5 +1,27 @@
 [gd_scene format=3 uid="uid://bvmgm4ankvew7"]
 
 [ext_resource type="PackedScene" uid="uid://dogmqp6i2jn0e" path="res://game/enemies/3-Jungle/tortoise_complex/tortoise_complex_D1.tscn" id="1_o66bo"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_uyr82"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_vqhyi"]
+[ext_resource type="PackedScene" uid="uid://88irdt85febg" path="res://game/aoes/tortoise_complex_aoe/tortoise_complex_aoe_D2.tscn" id="5_uyr82"]
 
-[node name="tortoise_complex_v1" unique_id=1898691 instance=ExtResource("1_o66bo")]
+[node name="tortoise_complex_D2" unique_id=1898691 instance=ExtResource("1_o66bo")]
+
+[node name="SpawnInnerRing" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(1333608283) index="2" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
+end_delay = 2.5
+next_state = NodePath("../SpawnOuterRing")
+
+[node name="SpawnOuterRing" type="Node" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(1333608283) index="3" unique_id=2088225781 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_uyr82")
+start_delay = 0.2
+end_delay = 2.2
+next_state = NodePath("../../MoveRandomOnNavMeshState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/shake/request": 1
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="spawnerTertiary" type="Node3D" parent="StateMachine/Chase_and_Attack/SpawnOuterRing" index="0" unique_id=1131710899]
+script = ExtResource("4_vqhyi")
+entity_to_spawn = ExtResource("5_uyr82")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
