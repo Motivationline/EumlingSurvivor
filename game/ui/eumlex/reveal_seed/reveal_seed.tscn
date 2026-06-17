@@ -22,6 +22,10 @@
 [ext_resource type="AudioStream" uid="uid://go8v7ky5evie" path="res://assets/sound/reveal/wiggle_2.wav" id="20_4xp3e"]
 [ext_resource type="AudioStream" uid="uid://bym0tt2g6t36t" path="res://assets/sound/reveal/wiggle_3.wav" id="21_ks44o"]
 [ext_resource type="AudioStream" uid="uid://cp2ipirxmy5xt" path="res://assets/sound/reveal/wiggle_4.wav" id="22_xfaou"]
+[ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="23_cruav"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="24_yl3bw"]
+[ext_resource type="Script" uid="uid://bh7iefvel1djl" path="res://game/ui/auto_size_label_3d.gd" id="25_eryco"]
+[ext_resource type="Texture2D" uid="uid://cj7g4uo8iuhc4" path="res://assets/thumbnails/sozial_sozial/sozial_base.PNG" id="26_yl3bw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rd7av"]
 transparency = 1
@@ -238,6 +242,30 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../Banner:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.15, 0.15)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../../Banner/job_image:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.6714003, 1.2264977, 0.30127883)]
 }
 
 [sub_resource type="Animation" id="Animation_j7odg"]
@@ -548,7 +576,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_hk45w"]
 resource_name = "reveal_kreativ"
-length = 4.0
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -636,6 +664,30 @@ tracks/6/keys = {
 "args": [["Fanfare", "Wiggle"], false, false],
 "method": &"play_sound"
 }]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../Banner:scale")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.6666667, 1.1, 1.1633334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.15, 0.15), Vector3(0.16, 0.15, 0.15), Vector3(0.15, 0.15, 0.15)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../Banner/job_image:position")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.74000007, 1.1266668, 1.2266668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.3959241, 1.2264978, 0.30127907), Vector3(-2.829, 1.226, 0.301), Vector3(-2.6714003, 1.2264977, 0.30127883)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5lndm"]
@@ -760,3 +812,22 @@ audio_streams = Array[AudioStream]([ExtResource("19_22p5r"), ExtResource("20_4xp
 stream = SubResource("AudioStreamPolyphonic_4xp3e")
 volume_db = -4.0
 bus = &"SFXUI"
+
+[node name="Banner" type="Sprite3D" parent="." unique_id=2023991334]
+transform = Transform3D(0, -3.3306692e-17, -5.587935e-10, 0, 0.12407974, 0.084286526, 0, -0.084286526, 0.12407974, -0.03599999, 0.26320174, 0.53799313)
+sorting_offset = -2.0
+texture = ExtResource("23_cruav")
+
+[node name="job_title" type="Label3D" parent="Banner" unique_id=514156217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036, 0.21, 0.1)
+sorting_offset = -1.0
+modulate = Color(0.09239701, 0.09239709, 0.092397, 1)
+text = "Eumling Beruf"
+font = ExtResource("24_yl3bw")
+font_size = 120
+width = 900.0
+script = ExtResource("25_eryco")
+
+[node name="job_image" type="Sprite3D" parent="Banner" unique_id=619686975]
+transform = Transform3D(0.2890891, -0.0801715, 4.9960036e-16, 0.08017151, 0.28908914, 0, 3.7252903e-09, -1.4901161e-08, 0.3, -2.6714003, 1.2264977, 0.30127883)
+texture = ExtResource("26_yl3bw")
