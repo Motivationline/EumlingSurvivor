@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://drav3eccu8fw4"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_7g2cl"]
+[ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="2_aaw30"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_ppwye"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_2801p"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_db2pv"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_8klnl"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_adlmm"]
+[ext_resource type="PackedScene" uid="uid://qba3i6xxa5r1" path="res://game/enemies/3-Jungle/bomber_complex/projectiles/bomber_complex_projetile_v1.tscn" id="5_db2pv"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_odqct"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0clew"]
+radius = 0.32468745
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ppwye"]
+radius = 0.3609349
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_db2pv"]
+radius = 0.0991429
+
+[node name="bomber_complex_D2" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_7g2cl")]
+health = 250.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("LookAtPlayerState")
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" unique_id=443496545 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ppwye")
+wait_time = 2.0
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=329556352 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_db2pv")
+start_delay = 0.5
+next_state = NodePath("../LookAtPlayerState2")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Shoot/request": 1
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=413448754]
+script = ExtResource("4_adlmm")
+entity_to_spawn = ExtResource("5_db2pv")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="LookAtPlayerState2" type="Node" parent="StateMachine" index="2" unique_id=1682186304 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ppwye")
+wait_time = 0.5
+next_state = NodePath("../SpawnEntitiesState2")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState2" type="Node" parent="StateMachine" index="3" unique_id=1170047586 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_db2pv")
+start_delay = 0.5
+next_state = NodePath("../WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Shoot/request": 1
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState2" index="0" unique_id=1659544173]
+script = ExtResource("4_adlmm")
+entity_to_spawn = ExtResource("5_db2pv")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="4" unique_id=776661009 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_odqct")
+random = true
+max_wait_time = 0.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="cactushog" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=83265788 instance=ExtResource("2_aaw30")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Hitbox" parent="." index="7" unique_id=653266535 instance=ExtResource("3_2801p")]
+collision_layer = 32
+collision_mask = 8
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1014085233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30975097, 0)
+shape = SubResource("SphereShape3D_0clew")
+
+[node name="Hurtbox" parent="." index="8" unique_id=50381059 instance=ExtResource("4_8klnl")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=1998353907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32619846, 0)
+shape = SubResource("SphereShape3D_ppwye")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="9" unique_id=2005349627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39123645, 0)
+shape = SubResource("SphereShape3D_db2pv")
