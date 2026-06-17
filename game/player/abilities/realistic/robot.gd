@@ -78,7 +78,7 @@ func repair():
 	hurtbox.monitoring = true
 	
 	var level: Level = get_tree().get_first_node_in_group("Level")
-	if level.cleared:
+	if level.state == Level.LEVEL_STATE.CLEARED:
 		repaired_state.exited.connect(level_cleared)
 	else:
 		level.level_cleared.connect(level_cleared)
