@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="10_l5va7"]
 [ext_resource type="PackedScene" uid="uid://cir8dxt72i6di" path="res://game/aoes/explosion/berry_explosion_aoe.tscn" id="11_3m2jy"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="11_ijoo4"]
+[ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="12_l5va7"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="12_ok38y"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ulh0g"]
@@ -21,11 +22,12 @@ radius = 0.22945888
 [sub_resource type="SphereShape3D" id="SphereShape3D_x4bae"]
 radius = 0.29065907
 
-[node name="bomb_berry_complex_D2" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_6t2ys")]
+[node name="bomb_berry_complex_D2" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "on_hurt") instance=ExtResource("1_6t2ys")]
 health = 100.0
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
 speed = 2.0
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -78,9 +80,8 @@ script = ExtResource("7_lk1su")
 entity_to_spawn = ExtResource("8_dh6eo")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="KillSelfState" type="Node" parent="StateMachine/Explode" index="1" unique_id=195119985 node_paths=PackedStringArray("next_state")]
+[node name="KillSelfState" type="Node" parent="StateMachine/Explode" index="1" unique_id=195119985]
 script = ExtResource("9_4ev20")
-next_state = NodePath("")
 metadata/_custom_type_script = "uid://dj632w22te1th"
 
 [node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=352103861]
@@ -91,6 +92,12 @@ metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 script = ExtResource("7_lk1su")
 entity_to_spawn = ExtResource("11_3m2jy")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="TriggerStateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=1386232323 node_paths=PackedStringArray("state_machine", "state_to_execute")]
+script = ExtResource("12_l5va7")
+state_machine = NodePath("../../StateMachine")
+state_to_execute = NodePath("../../StateMachine/Chase Player/MoveTowardsEntityState")
+metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("10_106dg")]
 
