@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c40q8petlro1j" path="res://assets/ui/Buttons/ButtonBook.png" id="11_orue0"]
 [ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="12_lnduv"]
 [ext_resource type="Texture2D" uid="uid://balp1dnlnfddm" path="res://assets/ui/Buttons/ButtonSettings.png" id="13_0bhyy"]
+[ext_resource type="Texture2D" uid="uid://c5vc254qcrdhy" path="res://assets/ui/logos/motivationline3.png" id="13_06kjt"]
 [ext_resource type="PackedScene" uid="uid://cg73m83g0gu84" path="res://assets/models/3-Jungle/jungle_tree/jungel_tree_01.glb" id="13_o0d2s"]
 [ext_resource type="PackedScene" uid="uid://m14qxh5fce8m" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone.glb" id="14_orue0"]
 [ext_resource type="PackedScene" uid="uid://bd6al6p5ch00v" path="res://assets/models/bush/bush_prefab.tscn" id="15_orue0"]
@@ -317,38 +318,34 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="leafOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1773096225]
-visible = false
 layout_mode = 0
 offset_right = 1922.0
 offset_bottom = 1080.0
 texture = ExtResource("6_k3ypk")
 
 [node name="branchOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=854031140]
-visible = false
 layout_mode = 0
-offset_left = 674.0
-offset_top = 114.0
-offset_right = 1920.0
-offset_bottom = 893.0
+offset_left = 691.0
+offset_top = 101.0
+offset_right = 1937.0
+offset_bottom = 880.0
 texture = ExtResource("7_gscod")
 
 [node name="paperOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1776084821]
-visible = false
 layout_mode = 0
 offset_left = 1183.0
-offset_top = 261.0
+offset_top = 248.0
 offset_right = 1809.0
-offset_bottom = 1032.0
+offset_bottom = 1019.0
 texture = ExtResource("8_1r6yo")
 stretch_mode = 2
 
 [node name="arrowOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=2026483528]
-visible = false
 layout_mode = 0
 offset_left = 1479.0
-offset_top = 41.0
+offset_top = 28.0
 offset_right = 1914.0
-offset_bottom = 387.0
+offset_bottom = 374.0
 texture = ExtResource("9_egypv")
 stretch_mode = 2
 
@@ -356,21 +353,22 @@ stretch_mode = 2
 modulate = Color(1.8989718, 1.6171429, 0.36172387, 0.07450981)
 material = SubResource("CanvasItemMaterial_0bhyy")
 layout_mode = 0
-offset_left = 186.0
-offset_top = -266.0
-offset_right = 2744.0
-offset_bottom = 814.0
+offset_left = 948.0
+offset_top = 210.0
+offset_right = 3506.0
+offset_bottom = 1290.0
+scale = Vector2(0.45163268, 0.45163268)
 texture = ExtResource("7_0bhyy")
 expand_mode = 1
 
 [node name="eumlingLogo2" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=451272343]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 344.0
-offset_top = -1105.0
-offset_right = 4103.4688
-offset_bottom = 1778.6138
-scale = Vector2(1.0472628, 1.0472628)
+offset_left = 952.0
+offset_top = -215.0
+offset_right = 4711.4688
+offset_bottom = 2668.6138
+scale = Vector2(0.5197274, 0.5197274)
 texture = ExtResource("7_o0d2s")
 expand_mode = 5
 stretch_mode = 5
@@ -378,15 +376,17 @@ stretch_mode = 5
 [node name="eumlingLogo" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1054500430]
 modulate = Color(1, 0.6166667, 0, 1)
 layout_mode = 0
-offset_left = 393.0
-offset_top = -1046.0
-offset_right = 4152.4688
-offset_bottom = 1837.6138
+offset_left = 976.0
+offset_top = -185.0
+offset_right = 4735.4688
+offset_bottom = 2698.6138
+scale = Vector2(0.4962722, 0.4962722)
 texture = ExtResource("7_o0d2s")
 expand_mode = 5
 stretch_mode = 5
 
 [node name="motivationlineLogo" type="Label" parent="UIOverlay/StaticUI" unique_id=309874239]
+visible = false
 layout_mode = 0
 offset_left = 30.0
 offset_top = 1014.0
@@ -398,9 +398,9 @@ text = "motivationline©"
 
 [node name="boostlineLoggo" type="Label" parent="UIOverlay/StaticUI" unique_id=183309719]
 layout_mode = 0
-offset_left = 321.0
+offset_left = 401.0
 offset_top = 1014.0
-offset_right = 778.0
+offset_right = 858.0
 offset_bottom = 1061.0
 theme_override_fonts/font = ExtResource("4_m1bca")
 theme_override_font_sizes/font_size = 30
@@ -434,10 +434,10 @@ texture_focused = ExtResource("11_egypv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIOverlay/StaticUI" unique_id=615637375]
 layout_mode = 0
-offset_left = 1189.0
-offset_top = 490.0
-offset_right = 1752.0
-offset_bottom = 1083.0
+offset_left = 1205.0
+offset_top = 566.0
+offset_right = 1768.0
+offset_bottom = 1159.0
 theme_override_constants/separation = 25
 
 [node name="playButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=877629100]
@@ -501,6 +501,7 @@ text = "Cont."
 horizontal_alignment = 1
 
 [node name="playButton3" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=315783185]
+visible = false
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../settingButton")
@@ -528,6 +529,15 @@ theme_override_fonts/font = ExtResource("4_m1bca")
 theme_override_font_sizes/font_size = 97
 text = "Play"
 horizontal_alignment = 1
+
+[node name="logo_ml" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1254517399]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 1018.00006
+offset_right = 4144.0
+offset_bottom = 1519.0
+scale = Vector2(0.0736165, 0.0736165)
+texture = ExtResource("13_06kjt")
 
 [node name="Background_Tile" type="Node3D" parent="." unique_id=272850613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7447424, 0, 0)
