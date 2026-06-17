@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://ciyhp1yy70dph"]
 
 [ext_resource type="PackedScene" uid="uid://ul7ob4nqfeug" path="res://assets/characters/enemies/lizard/lizard.glb" id="1_cwscd"]
+[ext_resource type="ArrayMesh" uid="uid://b3xkjd0m1y6lw" path="res://assets/vfx/hull/hull_mesh.res" id="2_56hc8"]
+[ext_resource type="ArrayMesh" uid="uid://ckrm8ti4sk7tu" path="res://assets/models/projectiles/leaf_aura.res" id="2_bhxjt"]
+[ext_resource type="Shader" uid="uid://5lep1if814ha" path="res://assets/vfx/projectile_realistic/shader_vfx_realistic.tres" id="3_f5fqv"]
+[ext_resource type="Texture2D" uid="uid://bqanhun87lk38" path="res://assets/vfx/particle_pack/flare_01.png" id="4_cvr2b"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bhxjt"]
 animation = &"lizard_run"
@@ -11,45 +15,121 @@ animation = &"lizard_discover"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cwscd"]
 animation = &"lizard_sprint"
 
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_f5fqv"]
-
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_56hc8"]
 sync = true
 xfade_time = 0.1
 input_0/name = "run_slow"
 input_0/auto_advance = false
 input_0/break_loop_at_end = false
-input_0/reset = true
+input_0/reset = false
 input_1/name = "run_fast"
 input_1/auto_advance = false
 input_1/break_loop_at_end = false
-input_1/reset = true
+input_1/reset = false
 input_2/name = "discover"
 input_2/auto_advance = false
 input_2/break_loop_at_end = false
 input_2/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bhxjt"]
-graph_offset = Vector2(-537.3107, 41.03897)
+graph_offset = Vector2(-514.3107, 40.03897)
 nodes/output/position = Vector2(540, 120)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_cwscd")
 nodes/Animation/position = Vector2(-300, 240)
-"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_f5fqv")
-"nodes/TimeScale 2/position" = Vector2(-140, 60)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_f5fqv")
+"nodes/Animation 3/position" = Vector2(-300, 420)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_bhxjt")
 "nodes/Animation 2/position" = Vector2(-280, 60)
 nodes/Transition/node = SubResource("AnimationNodeTransition_56hc8")
 nodes/Transition/position = Vector2(240, 120)
-"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_f5fqv")
-"nodes/Animation 3/position" = Vector2(-300, 420)
-node_connections = [&"output", 0, &"Transition", &"TimeScale 2", 0, &"Animation 2", &"Transition", 0, &"TimeScale 2", &"Transition", 1, &"Animation", &"Transition", 2, &"Animation 3"]
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation 2", &"Transition", 1, &"Animation", &"Transition", 2, &"Animation 3"]
+
+[sub_resource type="Gradient" id="Gradient_f5fqv"]
+offsets = PackedFloat32Array(0.08366534, 0.44820717, 0.6354582, 0.97011954, 1)
+colors = PackedColorArray(1, 0.88, 0.27999997, 0, 1, 0.88, 0.27999997, 0, 0.68, 0.19266665, 0, 0.2901961, 1, 0.847, 0.73, 1, 1, 0.847, 0.73, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cvr2b"]
+gradient = SubResource("Gradient_f5fqv")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56hc8"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_cvr2b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cvr2b"]
+render_priority = 0
+shader = ExtResource("3_f5fqv")
+shader_parameter/Final_Color = Color(2.8165433, 2.3919358, 0.6935066, 0.29411766)
+shader_parameter/fire_speed = Vector2(-0.545, -5.37)
+shader_parameter/visibilty = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kdoh"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("4_cvr2b")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_56hc8"]
+
+[sub_resource type="Curve" id="Curve_3kdoh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.3376603, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_6fkc7"]
+offsets = PackedFloat32Array(0, 0.5641509, 1)
+colors = PackedColorArray(2.055, 1.6883333, 0, 1, 1, 0.68333334, 0, 1, 1, 0.20500004, 0.100000024, 1)
 
 [node name="lizard" unique_id=1314517611 instance=ExtResource("1_cwscd")]
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=864660537]
 tree_root = SubResource("AnimationNodeBlendTree_bhxjt")
 anim_player = NodePath("../AnimationPlayer")
-"parameters/TimeScale 2/scale" = 1.0
 parameters/Transition/current_state = "run_fast"
 parameters/Transition/transition_request = ""
 parameters/Transition/current_index = 1
+
+[node name="speed_indicator" type="Node3D" parent="." index="3" unique_id=1055644954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40153503, -0.34721375)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="speed_indicator" index="0" unique_id=187488883]
+transform = Transform3D(2.3568504, 0, 7.229544e-07, 0, 2.6865547, 0, -4.1208474e-07, 0, 4.134817, 0.019119143, -0.06248474, 0.17215228)
+material_override = SubResource("StandardMaterial3D_56hc8")
+mesh = ExtResource("2_56hc8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="speed_indicator/MeshInstance3D" index="0" unique_id=1221044670]
+transform = Transform3D(0.46007192, 0.2779461, 0, -0.26814902, 0.36701408, -6.661338e-16, 7.1054274e-15, 3.5527137e-15, 0.23221637, 9.313226e-09, 0, -0.16094005)
+visible = false
+material_override = SubResource("ShaderMaterial_cvr2b")
+mesh = ExtResource("2_bhxjt")
+skeleton = NodePath("../../..")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="speed_indicator" index="1" unique_id=590626976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03604126, 0.8587723)
+material_override = SubResource("StandardMaterial3D_3kdoh")
+amount = 16
+lifetime = 0.5
+mesh = SubResource("QuadMesh_56hc8")
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 0, -1)
+spread = 61.26
+gravity = Vector3(0, 0, -5)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_3kdoh")
+color_ramp = SubResource("Gradient_6fkc7")
