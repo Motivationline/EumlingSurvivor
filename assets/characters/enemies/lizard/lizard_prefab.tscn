@@ -5,12 +5,13 @@
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bhxjt"]
 animation = &"lizard_run"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f5fqv"]
+animation = &"lizard_discover"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cwscd"]
-animation = &"lizard_run"
+animation = &"lizard_sprint"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_f5fqv"]
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_cvr2b"]
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_56hc8"]
 sync = true
@@ -23,29 +24,32 @@ input_1/name = "run_fast"
 input_1/auto_advance = false
 input_1/break_loop_at_end = false
 input_1/reset = true
+input_2/name = "discover"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bhxjt"]
-graph_offset = Vector2(-553, 31.860016)
+graph_offset = Vector2(-537.3107, 41.03897)
 nodes/output/position = Vector2(540, 120)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_cwscd")
-nodes/Animation/position = Vector2(-280, 240)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_cvr2b")
-nodes/TimeScale/position = Vector2(-140, 240)
+nodes/Animation/position = Vector2(-300, 240)
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_f5fqv")
+"nodes/TimeScale 2/position" = Vector2(-140, 60)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_bhxjt")
 "nodes/Animation 2/position" = Vector2(-280, 60)
 nodes/Transition/node = SubResource("AnimationNodeTransition_56hc8")
 nodes/Transition/position = Vector2(240, 120)
-"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_f5fqv")
-"nodes/TimeScale 2/position" = Vector2(-140, 60)
-node_connections = [&"output", 0, &"Transition", &"TimeScale", 0, &"Animation", &"Transition", 0, &"TimeScale 2", &"Transition", 1, &"TimeScale", &"TimeScale 2", 0, &"Animation 2"]
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_f5fqv")
+"nodes/Animation 3/position" = Vector2(-300, 420)
+node_connections = [&"output", 0, &"Transition", &"TimeScale 2", 0, &"Animation 2", &"Transition", 0, &"TimeScale 2", &"Transition", 1, &"Animation", &"Transition", 2, &"Animation 3"]
 
 [node name="lizard" unique_id=1314517611 instance=ExtResource("1_cwscd")]
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=864660537]
 tree_root = SubResource("AnimationNodeBlendTree_bhxjt")
 anim_player = NodePath("../AnimationPlayer")
-parameters/TimeScale/scale = 1.2999999999999972
-parameters/Transition/current_state = "run_slow"
+"parameters/TimeScale 2/scale" = 1.0
+parameters/Transition/current_state = "run_fast"
 parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 0
-"parameters/TimeScale 2/scale" = 0.7999999999999972
+parameters/Transition/current_index = 1
