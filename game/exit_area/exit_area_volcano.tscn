@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://dip1bn417csc2"]
+[gd_scene format=4 uid="uid://dip1bn417csc2"]
 
 [ext_resource type="Script" uid="uid://ct7skgiecn1pc" path="res://game/exit_area/exit_area.gd" id="1_kgdiv"]
 [ext_resource type="PackedScene" uid="uid://bpvkvhep32a8p" path="res://assets/models/6-volcano/volcano_exit/exit_volcano.tscn" id="2_kgdiv"]
+[ext_resource type="PackedScene" uid="uid://c3bvauu8wx1kr" path="res://assets/models/6-volcano/portal/portal_volcano_c.tscn" id="3_kgdiv"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="4_3b7qv"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="5_54vu6"]
 [ext_resource type="AudioStream" uid="uid://be4cierblkfl0" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_volcano_1.wav" id="6_evsrw"]
@@ -9,12 +10,11 @@
 [ext_resource type="AudioStream" uid="uid://jxasjdfv1mrc" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_volcano_2.wav" id="7_kgdiv"]
 [ext_resource type="AudioStream" uid="uid://bcdxd0wwe52uv" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_volcano_3.wav" id="8_ki0hj"]
 [ext_resource type="AudioStream" uid="uid://c8ioxvkyn061t" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_volcano_4.wav" id="9_16w6r"]
+[ext_resource type="PackedScene" uid="uid://bd4kom8lyyin5" path="res://assets/models/6-volcano/stones/stone_01/volcano_stone_01.tscn" id="11_16w6r"]
+[ext_resource type="Texture2D" uid="uid://bqh614g57at32" path="res://assets/models/6-volcano/volcano_exit/exit_volcano_VolcanoExitMaterial_Base_color.png" id="12_3b7qv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_evsrw"]
 size = Vector3(1.4691772, 3, 3.3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tkqdu"]
-size = Vector3(0.8687744, 2.0351563, 1.6484375)
 
 [sub_resource type="Animation" id="Animation_rdd0d"]
 length = 0.001
@@ -40,6 +40,54 @@ tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(-2, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("volcano_stone_01:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.31733358, 0, 0.37124336)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("volcano_stone_02:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.12390332, 0.4387945, -0.01711309)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("volcano_stone_01:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6, 0.6, 0.6)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("volcano_stone_02:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6000001, 0.60000014, 0.6)]
 }
 
 [sub_resource type="Animation" id="Animation_tkqdu"]
@@ -95,6 +143,54 @@ tracks/3/keys = {
 "points": PackedFloat32Array(-2, -0.25, 0, 0.5, 0.1237309, 0, -0.6333333, 0.3921302, 0, 0),
 "times": PackedFloat32Array(0, 1)
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("volcano_stone_01:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.31733358, 0, 0.37124336), Vector3(0.37815607, -1.9902761, -0.40066683)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("volcano_stone_02:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.12390332, 0.4387945, -0.01711309), Vector3(-0.06308083, -1.5514816, -0.7890233)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("volcano_stone_01:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.6, 0.6, 0.6), Vector3(0.4, 0.4, 0.4)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("volcano_stone_02:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.84),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.6000001, 0.60000014, 0.6), Vector3(0.4, 0.4, 0.4)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_47e78"]
 _data = {
@@ -108,6 +204,51 @@ stream_0/stream = ExtResource("6_evsrw")
 stream_1/stream = ExtResource("7_kgdiv")
 stream_2/stream = ExtResource("8_ki0hj")
 stream_3/stream = ExtResource("9_16w6r")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kgdiv"]
+size = Vector3(0.9725647, 2.0351563, 2.0048828)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ki0hj"]
+size = Vector3(2.642334, 2.0351563, 2.1279297)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jipby"]
+resource_name = "VolcanoExitMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("12_3b7qv")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kjfuv"]
+_surfaces = [{
+"aabb": AABB(-1.5639888, -0.29530334, -2.0561492, 2.5639887, 2.6632152, 3.81727),
+"format": 34896613377,
+"index_count": 600,
+"index_data": PackedByteArray("TAACACAAAQAgAAIAAAABAAIATAAAAAIAAAADAAEAAABMAE0AAABNAAMAAwBOAAEAAQBOACAAAwBNAE4ATwBMACAATABQAE0ATABPAFAATQBRAE4ATQBQAFEATgBSACAATwAgAFIATgBRAFIATwBTAFAAUABUAFEAUABTAFQAUQBVAFIAUQBUAFUAVgBPAFIATwBWAFMAVgBSAFUAUwAhAFQAVgAiAFMAUwAiACEAIwBWAFUAVgAjACIAVAAkAFUAVAAhACQAIwBVACQAIgAFACEABAAjACQAIwAHACIAIwAEAAcAIgAHAAUABAAkAAYAIQAGACQABwAEAAYAIQAFAAYABwAGAAUAJQBXAFgAJwBYAFcAKwBYACcAJwBXACYAKwBZAFgAKQBZACsAJgBaACkAKQBaAFkAJgBXAFoAKgBYAFkAKgAlAFgAMABZAFoAMAAqAFkAKABaAFcAKAAwAFoAJQAoAFcAWwAqADAAXAAlACoAWwBcACoAXABdACUAXQAoACUAXgAwACgAXQBeACgAXgBbADAAXwBdAFwAYABeAF0AXwBgAF0AYABhAF4AYQBbAF4AYgBcAFsAYQBiAFsAYgBfAFwAYwBhAGAAZABiAGEAYwBkAGEAZABlAGIAZQBfAGIALABkAGMALAAuAGQALgBlAGQALQAsAGMALgAvAGUALwAtAGYALQBjAGYALwBmAGUAZQBmAF8AZgBjAGAAZgBgAF8AZwBoADEANAAxAGgANgAxADQANABoADMANgA3ADEANQA3ADYAMwBpADUANQBpADcAMwBoAGkAagAxADcAagBnADEAawA3AGkAawBqADcAbABpAGgAbABrAGkAZwBsAGgAbQBqAGsAOQBnAGoAbQA5AGoAOQA+AGcAPgBsAGcAMgBrAGwAPgAyAGwAMgBtAGsAbgA+ADkAbwAyAD4AbgBvAD4AbwBwADIAcABtADIAOAA5AG0AcAA4AG0AOABuADkAcQBwAG8AcgA4AHAAcQByAHAAcgBzADgAcwBuADgAPQByAHEAPQA7AHIAOwBzAHIAPAA9AHEAOwA6AHMAOgA8AHQAPABxAHQAOgB0AHMAcwB0AG4AdABxAG8AdABvAG4AFAB1AHYAFAATAHUAEwAKAHUACgB2AHUAEwB3ABQAEwAIAAoAEwAIAHcACAAJAAoACAALAAkACAALAAwACAAMAHcAdwAMAA0ACQA/AAoACgA/AHYACQAQAD8AdwANAHgAFAB3AHgAeAANAA4AFgAUAHYAFAB4ABYAPwB5AHYAFgB2AHkAEABAAD8APwBAAHkAEAARAEAAFwAWAHkAFgB4ABUAFgAVABcAeAAOABUAFwB5AHoAQAB6AHkAFQAXAHoAEQAPAEAAQAAPAHoAFQB6AA8ADgAVAA8AEQASAA8ADgAPABIAQQB7AEMAQwB7AEUAQwBFAEYAQQB8AHsARQB7AHwARAB8AEEARQB8AEcARABCAHwARwB8AEIASABCAEQARwBCAEkASAB9AEIASQBCAH0ASwB9AEgASQB9AEoASwBKAH0AGAAZABoAGAAbABkAGgAZABwAGgAcAB0AHQAcAB4AHQAeAB8A"),
+"lods": [0.5096417, PackedByteArray("AAACACAAAQAgAAIAAAABAAIAAAADAAEAAQAhACAAAwAhAAEAAAAiAAMAAwAiACEAAAAjACIAIwAAACAAIgAFACEAIwAgACQAIQAkACAAIwAHACIAIgAHAAUABAAjACQAIwAEAAcAIQAGACQAIQAFAAYABAAkAAYABwAGAAUABwAEAAYAJQAmACcAJQAoACYAKAApACYAKgAlACcAKwAqACcAKQAqACsALAAoACUAKgAsACUALQAsACoALAAuACgALwAtACoAMAAqACkALwAqADAAKAAwACkALgAvADAALgAwACgAMQAyADMANAAxADMAMgA1ADMANgAxADQANQA3ADYANgA3ADEAOAA3ADUAMgA4ADUAOQAxADcAOAA5ADcAOgA5ADgAMgA6ADgAOwA6ADIAOgA8ADkAPQA7ADIAPgAyADEAPQAyAD4AOQA+ADEAPAA9AD4APAA+ADkACAAJAAoACAALAAkACAALAAwACAAMAA0ACAANAA4ACQA/AAoACQAQAD8AEwAIAAoACgAUABMAEwAIABQACgA/ABQAEABAAD8AEAARAEAAPwAWABQAFAAIABYAPwBAABYAQAAXABYAFgAIABUAFgAVABcACAAOABUAQAAPABcAEQAPAEAAFQAXAA8ADgAVAA8AEQASAA8ADgAPABIAQQBCAEMARABCAEEAQwBFAEYARQBDAEIARQBCAEcASABCAEQARwBCAEkASQBCAEgASQBIAEoASwBKAEgAGAAZABoAGAAbABkAGgAZABwAGgAcAB0AHQAcAB4AHQAeAB8A"), 2.0198398, PackedByteArray("AAABAAIAAAADAAEABAAAAAIAAwAFAAEAAQAFAAIABAACAAYABQAGAAIAAAAEAAcAAAAHAAMABwAEAAYAAwAHAAUABwAGAAUACAAJAAoACAALAAkACAALAAwACAAMAA0ACAANAA4ACQAPAAoACQAQAA8AEAARAA8AEQASAA8ADgAPABIAEwAIAAoACgAUABMAEwAIABQACgAPABQACAAOABUADgAVAA8AFAAIABYAFgAIABUADwAWABQAFgAVABcAFQAXAA8ADwAXABYAGAAZABoAGAAbABkAGgAZABwAGgAcAB0AHQAcAB4AHQAeAB8A")],
+"name": "VolcanoExitMaterial",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 126,
+"vertex_data": PackedByteArray("x3gyrzcpAAB3yi/MhiUAAOB8zNMDJAAAXsaWp7oqAACUcC/M4OoAACLH0/bg6gAAXXBB9uDqAABox0DN4OoAAE4lRByDOQAAt4+5vTMsAACpQ966gzkAALePRBwzLAAAt49EHKlqAAC3j0QcHqkAALePRByU5wAAqUNSykTaAAC3j6HcqWoAALePodweqQAAwYtzxljdAAAAAGIc1EYAAAAAYhyJcwAATiVEHETaAAAAAGIcPqAAAAAAYhz0zAAA//8AAMM4AAD///QZ474AAP//9BnDOAAA//8AAOO+AAAnnM8o474AACeczyjDOAAATzjsHOO+AABPOOwcwzgAAIh8CdwbQAAAJ8r0/q23AAAizXPPrLcAAJZpbsittwAAv2Yl+a23AACaZ/G4Ud8AAFt/+srOqwAA+ndE3w/YAAC5f0mgnaoAAH/EGcv6sAAAGLqIvU7vAAAevWPfPN0AAERpYhzG8QAAF81iHBTzAAA2a2Icua4AAAnPYhwIsAAAN9LgpJq6AACcurW79iwAACTFEHZyTwAAhMQssXRTAABYtbzA2DIAAJWRQ7EqXgAAaoLUwI49AADteqC8gDgAAApyE1hCTQAAB3MjjG0dAABGgQ0cs1cAAG/dKhzmPQAA3lpiHMwZAAAHt2IcAAAAAPrBZoeKGgAAqUNSyhlvAACpQ1LKrqQAAOJCrx7aeAAA4kI4U+2aAADiQq8ex1YAAOJCrx7tmgAAh5VptHxCAADwgK8efEIAAIeV+MsWcgAA4kKvHgC9AACHlfjLsaEAAIeVtLVL0QAA8ICvHkvRAABveHC3T0UAAAbG06/SRgAAIMpt1J5BAADwdCK94WUAADHJ1r/xZgAAOcdc6iBjAAAUcm3m5WEAAOnKus48jwAAnsL//6KOAAArY0nzQI4AAMBslMBOjwAAyXmqv9amAAAZbbfYOt0AABvC6dnn5QAAy87cwISvAAAG1huGycEAAF23VJpo+gAAE2EllWvlAADhgAqBR60AAKe9xGv//wAA812/aVvtAABXehVghawAAOjXpmGLvgAAxWOSQTPvAABkcUc/UqsAAEDUjj/JtAAAtMapQT/4AACCvVWjWioAALbKfqjJVQAABotpqVNhAAA6fNqmPDAAAIaD8ZNAWgAAzsRrkF1UAAB0eVt6w1IAAElhe2XRCQAA9MMsYxoBAAAzz8JWOEUAAJq9kkDeAAAA0dlnOrBCAACmeYE6wVQAAJ5doEBXEwAAAABRYdRGAAAAAFFhiXMAAE4lRBwZbwAATiVEHK6kAAAAAFFhPqAAAAAAUWH0zAAA4kI4U8dWAADiQjhT2ngAAOJCOFMAvQAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2sjbx"]
+resource_name = "exit_volcano_Cube_003"
+_surfaces = [{
+"aabb": AABB(-1.5639888, -0.29530334, -2.0561492, 2.5639887, 2.6632152, 3.81727),
+"attribute_data": PackedByteArray("xDfNU74eSkfEN0pHvh7NU5UB80VnHc1TkwHNU24dyUUpArVjE2O1YykCNH4TYzR+6QESKD1fcUTpAXFEPV8SKAACDIAIYSuNAAIrjQhhDIA7YKhiuQFMVDtgTFS5AahiodaR/u2zvsgjza7J7bOC/i7kXP68/nnLRv4E2ebE4cBW/8Socca6qSjFhlPZo/Cm4sVAoJGjHYlIo09r/6J7TaTRd4TL0dSZbdEUby/Rt1kRZf7nEWXjp9N+46dNlOOn2LCO5Niw46fYsLn+vJi5/rF6uf4RZbn+plsjAtFWGybLViQCq1sYJlFELQJNMg8mXTIjAkxEICbLViQC0VYbJgEOTFS4RqhiTElMVJhIDIBtSCuN6UYSKKNGcUQkTLVjJEk0fi8RNH6PEBLG6wFm4esBEsaPEGbheEESxnhBZuGcER+O/QErqf0BH44TDyupFz4fjhc+K6mMNF7FjDQ9qmhCXsVoQj2qEwJexRMCPaqhECDioRAY/QUCGP0FAiDigEcY/YBHIOKxs58EnZmzF52ZkwKxs5MCsbMKGLGzBTudmQU7pM6xIvHlhjakzoY28eUeF/HlZwKkzmcCIM5sAlC0YgRQtGwCIM5tJVC0jxUgzk06ULRNOuv+eAKH5qEFh+Z4Auv+ZQXr/isbh+bFGOv+a0OH5mtDPn3s5qOWt+Y+fezmo5a35iZlG3GndIKCJmW8XiZlU4OAnqNPJmWjT4Cex24mZQuWgJ5fhYCel6QmZZekQhCoYrMfqGLuHkxUdzOoYio1TFQlNAyAwTUrjQkfDIA5ISuN8g0MgJAQK42ZMxIoLTNxRMIfEihUH3FE8Q8SKEIPcUSfN7Vj+zU0fn0gtWOfN7VjRiE0fi4OtWPZBWbh2QUSxl4ZEsZiHmbhSSgSxmcpZuH9NRLGijRm4e4EK6npBh+OiBwfjioZK6kfKB+O6CQrqZUzH47JMCuplD49qpQ+XsUyKV7FMik9qkobXsVKGz2qWQ5exVkOPar+BRj9/gUg4kQdIOJEHRj9rywg4q8sGP3aOiDi2joY/bGz8AydmaUGnZnGDrGz1CadmVEjsbNeMp2ZKi2kzrgr8eWNM6TOjTPx5bgr8eWxIqTOHhekztIM8eXSDCDOtw4gznoGULQIDCDO6RhQtBQjIM6EL1C01C7r/rcNh+aRDev+WSyH5v8o6/64OYfmdzTYsBq/dJb6viB+074RZae+5uNo51XnUNiwxa2GccUZbbd0PmKgdAhyXHQfklFELQJMRCAm"),
+"format": 34896613399,
+"index_count": 600,
+"index_data": PackedByteArray("jQAVAEAAjQAXABUAjgCNAEAAjgBAAI8AkACOAI8AkACPAJEAQQCQAJEAQQCRAEIAFABBAEIAFABCABYAAAABAAIAAAADAAEAQwARAEQAQwATABEAkgBDAEQAkgBEAJMAlACSAJMAlACTAJUAlgCUAJUAlgCVAJcAEACWAJcAEACXABIABAAFAAYABAAHAAUARQANAEYARQAPAA0AmABFAEYAmABGAJkAmgCYAJkAmgCZAJsAnACaAJsAnACbAJ0ADACcAJ0ADACdAA4ARwALAEgARwAJAAsAngBHAEgAngBIAJ8AoAChAJ8AoACfAKIAowCgAKIAowCiAEkACACjAEkACABJAAoASgCkAKUATAClAKQATACkAEsASgBNAKQApgBNAEoApgCnAE0AqACnAKYAqACpAKcAqgCpAKgAqgCrAKkATgCrAKoATgBPAKsAUACsAK0AUgCtAKwAUgCsAFEAUABTAKwArgBTAFAArgCvAFMAsACvAK4AsACxAK8AsgCxALAAsgCzALEAVACzALIAVABVALMAVgC0ALUAWAC1ALQAWAC0AFkAVgBXALQAtgBXAFYAtgC3AFcAuAC3ALYAuAC5ALcAugC5ALgAugC7ALkAWgC7ALoAWgBbALsAXAC8AL0AXwC9ALwAXwC8AF4AXABdALwAvgBdAFwAvgC/AF0AwAC/AL4AwADBAL8AwgDBAMAAwgDDAMEAYQDDAMIAYQBgAMMAxADFAGIAZQBiAMUAZQDFAGQAxADGAMUAZgDGAMQAZgBjAMYAxwBjAGYAxwDIAGMAyQDIAMcAyQDKAMgAZwDKAMkAZwBoAMoAywDMAM0AawDNAMwAawDMAGoAywDOAMwAaQDOAMsAaQDPAM4A0ADPAGkA0ABsAM8A0QBsANAA0QDSAGwAbgDSANEAbgBtANIA0wBwANQAbwDUAHAAbwBwAHEA0wDVAHAA1gDVANMA1gBzANUAcgBzANYAcgDXAHMA2ADXAHIA2ADZANcAdADZANgAdAB1ANkA2gB3AHkAdgB5AHcAdgB3AHgA2gDbAHcAegDbANoAegB7ANsA3AB7AHoA3ADdAHsA3gDdANwA3gDfAN0AfADfAN4AfAB9AN8ALwDgAOEALwAxAOAAMADhAOAALgAvAOEAMAB/AOEALgDhAOIAfwDiAOEALQAuAOIAfwB+AOIALQDiAOMAfgDjAOIAfgAsAOMAMgCBADAAMgAzAIEAMwCAAIEAMwA0AIAANAAsAIAANAA1ACwAGAAZABoAGAAbABkAHAAYABoAHAAaAOQAHQDlAB8AHQAeAOUAIAAdAB8AIAAfACEA5gAjACQA5gAlACMAKADmACQAKAAkACkAKgDmACgA5wAlAOYAKgDnAOYAKwDnACoA5wAmACUAKwAiAOcAIgAmAOcAIgAnACYAggDoAIQAhADoAIYAhACGAIcAggDpAOgAhgDoAOkAhQDpAIIAhgDpAIgAhQCDAOkAiADpAIMAiQCDAIUAiACDAIoAiQDqAIMAigCDAOoAjADqAIkAigDqAIsAjACLAOoANgA3ADgANgA5ADcA6wA7ADwA6wDsADsAPgA9ADoAPgA/AD0A"),
+"lods": [0.5096417, PackedByteArray("FwAVAEAAQQAXAEAAQQBAAEIAFABBAEIAFABCABYAAAABAAIAAAADAAEAQwARAEQAQwATABEAEABDAEQAEABEABIABAAFAAYABAAHAAUARQANAEYARQAPAA0ADABFAEYADABGAA4ARwALAEgARwAJAAsARwBIAEkACABHAEkACABJAAoASgBLAEwASgBNAEsATgBNAEoATgBPAE0AUABRAFIAUABTAFEAVABTAFAAVABVAFMAVgBXAFgAWABXAFkAWgBXAFYAWgBbAFcAXABdAF4AXwBcAF4AXABgAF0AYQBgAFwAYgBjAGQAZQBiAGQAZgBjAGIAZwBjAGYAZwBoAGMAaQBqAGsAaQBsAGoAaQBtAGwAbgBtAGkAbwBwAHEAcgBwAG8AcgBzAHAAdABzAHIAdAB1AHMAdgB3AHgAdgB5AHcAegB3AHkAegB7AHcAfAB7AHoAfAB9AHsAGAAZABoAGAAbABkAHAAYABoAHQAeAB8AIAAdAB8AIAAfACEAIgAjACQAIgAlACMAIgAmACUAIgAnACYAKAAiACQAKAAkACkAKgAiACgAKwAiACoAfgAtAC4AfgAsAC0AfwB+AC4AfwAuAC8AMAB/AC8AMAAvADEANAA1ACwANAAsAIAAMwA0AIAAMwCAAIEAMgCBADAAMgAzAIEAggCDAIQAhQCDAIIAhACGAIcAhgCEAIMAhgCDAIgAiQCDAIUAiACDAIoAigCDAIkAigCJAIsAjACLAIkANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPgA9ADoAPgA/AD0A"), 2.0198398, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACQALAAoADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAYABoAHQAeAB8AIAAdAB8AIAAfACEAIgAjACQAIgAlACMAIgAmACUAIgAnACYAKAAiACQAKAAkACkAKgAiACgAKwAiACoALAAtAC4ALAAuAC8AMAAvADEAMAAsAC8AMgAsADAAMgAzACwAMwA0ACwANAA1ACwANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPgA9ADoAPgA/AD0A")],
+"material": SubResource("StandardMaterial3D_jipby"),
+"name": "VolcanoExitMaterial",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 237,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_kjfuv")
 
 [node name="ExitVisual" type="Node3D" unique_id=1454711626]
 script = ExtResource("1_kgdiv")
@@ -126,6 +267,9 @@ omni_range = 1.6048713
 [node name="exit_volcano" parent="Visuals" unique_id=985169330 instance=ExtResource("2_kgdiv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
+[node name="Volcano_Exit_Mesh" parent="Visuals/exit_volcano" index="0" unique_id=250935896]
+visible = false
+
 [node name="DoorLock" type="StaticBody3D" parent="Visuals/exit_volcano" unique_id=736075056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
@@ -135,28 +279,11 @@ shape = SubResource("BoxShape3D_evsrw")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Visuals" unique_id=577576927]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7885388, 1.3295255)
+visible = false
 light_color = Color(1, 0.88449997, 0.00999999, 1)
 light_energy = 4.0
 light_cull_mask = 4294967293
 omni_range = 4.115
-
-[node name="RightWall" type="StaticBody3D" parent="." unique_id=1710607827]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall" unique_id=713484516]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48316336, 0.9660523, -0.29638672)
-shape = SubResource("BoxShape3D_tkqdu")
-debug_fill = false
-
-[node name="LeftWall" type="StaticBody3D" parent="." unique_id=728389544]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall" unique_id=1642082774]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17628121, 0.9660523, -0.29638672)
-shape = SubResource("BoxShape3D_tkqdu")
-debug_fill = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1030011118]
 libraries/ = SubResource("AnimationLibrary_47e78")
@@ -174,5 +301,45 @@ stream = SubResource("AudioStreamRandomizer_mu12n")
 panning_strength = 2.0
 bus = &"SFXAll"
 attenuation_filter_cutoff_hz = 20500.0
+
+[node name="portal_volcano_c" parent="." unique_id=1276548338 instance=ExtResource("3_kgdiv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.09470582, 0.34316504)
+
+[node name="RightWall" type="StaticBody3D" parent="." unique_id=57542533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.76284945, 0, -0.45839334)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall" unique_id=459826740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26600003, 0.966, 0)
+shape = SubResource("BoxShape3D_kgdiv")
+debug_fill = false
+
+[node name="LeftWall" type="StaticBody3D" parent="." unique_id=965861391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.45839334)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall" unique_id=1074058276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015, 0.966, 0)
+shape = SubResource("BoxShape3D_kgdiv")
+debug_fill = false
+
+[node name="BackWall" type="StaticBody3D" parent="." unique_id=1099645734]
+transform = Transform3D(0.99929667, 0, -0.037498325, 0, 1, 0, 0.037498325, 0, 0.99929667, 0, 1, -1.4220748)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackWall" unique_id=1931783330]
+shape = SubResource("BoxShape3D_ki0hj")
+debug_fill = false
+
+[node name="volcano_stone_01" parent="." unique_id=667927802 instance=ExtResource("11_16w6r")]
+transform = Transform3D(0.5773337, -0.05724926, 0.15299799, 0, 0.5619483, 0.21027157, -0.16335806, -0.20232809, 0.54071945, 0.31733358, 0, 0.37124336)
+
+[node name="volcano_stone_02" parent="." unique_id=1363299583 instance=ExtResource("11_16w6r")]
+transform = Transform3D(0.2947066, 0.16063821, -0.49733636, -0.22510411, 0.5542966, 0.04564623, 0.47167388, 0.16416702, 0.33252522, -0.12390332, 0.4387945, -0.01711309)
+
+[node name="Volcano_Exit_Mesh" type="MeshInstance3D" parent="." unique_id=1341284469]
+transform = Transform3D(-6.04771e-08, -0.050656073, -0.8443588, -4.19503e-09, 0.73027664, -0.05856945, 1.3868793, 0, -3.699678e-08, 0.10532141, -1.7651849, 0.61386275)
+mesh = SubResource("ArrayMesh_2sjbx")
+skeleton = NodePath("")
 
 [editable path="Visuals/exit_volcano"]
