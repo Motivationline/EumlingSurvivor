@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_adlmm"]
 [ext_resource type="PackedScene" uid="uid://qba3i6xxa5r1" path="res://game/enemies/3-Jungle/bomber_complex/projectiles/bomber_complex_projetile_v1.tscn" id="5_db2pv"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_odqct"]
+[ext_resource type="PackedScene" uid="uid://dtxt86h42fqcx" path="res://game/enemies/3-Jungle/bomber_complex/projectiles/bomber_complex_projectile_v2.tscn" id="6_adlmm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0clew"]
 radius = 0.32468745
@@ -64,7 +65,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState2" index="0" unique_id=1659544173]
 script = ExtResource("4_adlmm")
-entity_to_spawn = ExtResource("5_db2pv")
+entity_to_spawn = ExtResource("6_adlmm")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="WaitForTimeXState" type="Node" parent="StateMachine" index="4" unique_id=776661009 node_paths=PackedStringArray("next_state")]
