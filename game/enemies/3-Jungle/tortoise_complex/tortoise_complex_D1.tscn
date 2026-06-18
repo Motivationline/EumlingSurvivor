@@ -109,8 +109,10 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 script = ExtResource("8_2gkp5")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="spawnerSeondary" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=798414236]
+[node name="spawnerSeondary" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=798414236 node_paths=PackedStringArray("spawn_position")]
 script = ExtResource("4_1inio")
+ignore_relative_rotation = true
+spawn_position = NodePath("../../../Marker3D")
 max_distance = 10.0
 lifetime = 1.8
 entity_to_spawn = ExtResource("5_1inio")
@@ -148,3 +150,5 @@ can_be_hit_by = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37395632, 0)
 shape = SubResource("SphereShape3D_ygvvl")
 debug_color = Color(0.911452, 0.08323508, 0.69264156, 0.41960785)
+
+[node name="Marker3D" type="Marker3D" parent="." index="9" unique_id=571452532]
