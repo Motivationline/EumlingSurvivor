@@ -2,13 +2,13 @@
 
 [ext_resource type="Material" uid="uid://j1rx43bvmvyu" path="res://game/shared/target_indicators/circular_mesh/circular_target_indicator_material_3D.tres" id="1_4oowr"]
 [ext_resource type="Shader" uid="uid://bg0sw60kxktwr" path="res://game/shared/target_indicators/circular_mesh/circular_target_indicator_3D_occluded.gdshader" id="2_h466b"]
-[ext_resource type="Texture2D" uid="uid://dkwgun8trbaay" path="res://game/shared/target_indicators/circular_decal/circular_indicator.svg" id="3_dbpos"]
-[ext_resource type="Texture2D" uid="uid://dma1mlp2y7i8c" path="res://game/shared/target_indicators/circular_decal/circular_indicator_mask.svg" id="4_lr14w"]
+[ext_resource type="Texture2D" uid="uid://dkwgun8trbaay" path="res://game/shared/target_indicators/circular_mesh/circular_indicator.svg" id="3_dbpos"]
+[ext_resource type="Texture2D" uid="uid://dma1mlp2y7i8c" path="res://game/shared/target_indicators/circular_mesh/circular_indicator_mask.svg" id="4_lr14w"]
 
 [resource]
 render_priority = 0
 next_pass = ExtResource("1_4oowr")
 shader = ExtResource("2_h466b")
-shader_parameter/alpha_occluded = 0.050000002375
-shader_parameter/TEXTURE = ExtResource("3_dbpos")
+shader_parameter/alpha_occluded = 0.33
+shader_parameter/albedo_texture = ExtResource("3_dbpos")
 shader_parameter/mask_texture = ExtResource("4_lr14w")

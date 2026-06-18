@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://171rvywgrnby"]
+
+[ext_resource type="Shader" uid="uid://cc8etn7r80n16" path="res://game/shared/target_indicators/directional_mesh/directional_target_indicator_3D_occluded.gdshader" id="2_cs854"]
+[ext_resource type="Texture2D" uid="uid://dlryfkppxymwy" path="res://game/shared/target_indicators/directional_mesh/directional_indicator.svg" id="3_v2wk7"]
+[ext_resource type="Texture2D" uid="uid://c86ey1rj1wbbj" path="res://game/shared/target_indicators/directional_mesh/directional_indicator_mask.svg" id="3_wrcqn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("2_cs854")
+shader_parameter/alpha_occluded = 0.33
+shader_parameter/albedo_texture = ExtResource("3_v2wk7")
+shader_parameter/mask_texture = ExtResource("3_wrcqn")
