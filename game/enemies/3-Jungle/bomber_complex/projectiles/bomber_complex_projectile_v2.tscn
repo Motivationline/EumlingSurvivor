@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dbwg5pd51l5wa" path="res://game/enemies/3-Jungle/bomber/projectile/bomber_explosion_particle.tscn" id="12_1qg4g"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_kdgty"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_7bgia"]
+[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="13_rildt"]
 
 [sub_resource type="Curve" id="Curve_167yk"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -27,9 +28,10 @@ point_count = 3
 script = ExtResource("12_kdgty")
 metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 
-[sub_resource type="Resource" id="Resource_kdgty"]
-script = ExtResource("13_7bgia")
-metadata/_custom_type_script = "uid://pv70hoylokg6"
+[sub_resource type="Resource" id="Resource_7bgia"]
+script = ExtResource("13_rildt")
+max_negative = 45.0
+max_positive = 315.0
 
 [sub_resource type="Resource" id="Resource_oyass"]
 script = ExtResource("12_kdgty")
@@ -215,7 +217,7 @@ spawn_position = NodePath("../../../../../Marker3D")
 entity_to_spawn = ExtResource("11_oyass")
 amount_of_spawns = 4
 target_strategy = SubResource("Resource_rildt")
-rotation_strategy = SubResource("Resource_kdgty")
+rotation_strategy = SubResource("Resource_7bgia")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="SpawnExplosion" type="Node" parent="EventStrategies/OnWorldCollision/TimerEventStrategy" index="2" unique_id=1815244750]
