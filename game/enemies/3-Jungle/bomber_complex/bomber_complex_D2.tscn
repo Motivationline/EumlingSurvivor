@@ -22,7 +22,7 @@ radius = 0.0991429
 
 [node name="bomber_complex_D2" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_7g2cl")]
 health = 250.0
-hitbox = NodePath("Hitbox")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -43,7 +43,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=413448754]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=413448754]
 script = ExtResource("4_adlmm")
 entity_to_spawn = ExtResource("5_db2pv")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -63,7 +63,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState2" index="0" unique_id=1659544173]
+[node name="spawnerSecondary" type="Node3D" parent="StateMachine/SpawnEntitiesState2" index="0" unique_id=1659544173]
 script = ExtResource("4_adlmm")
 entity_to_spawn = ExtResource("6_adlmm")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -78,13 +78,13 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 [node name="cactushog" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=83265788 instance=ExtResource("2_aaw30")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Hitbox" parent="." index="7" unique_id=653266535 instance=ExtResource("3_2801p")]
+[node name="hitboxBase" parent="." index="7" unique_id=653266535 instance=ExtResource("3_2801p")]
 collision_layer = 32
 collision_mask = 8
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1014085233]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1014085233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30975097, 0)
 shape = SubResource("SphereShape3D_0clew")
 
