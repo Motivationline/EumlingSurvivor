@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dbwg5pd51l5wa" path="res://game/enemies/3-Jungle/bomber/projectile/bomber_explosion_particle.tscn" id="12_1qg4g"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_kdgty"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_7bgia"]
+[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="13_rildt"]
 
 [sub_resource type="Curve" id="Curve_167yk"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -27,9 +28,10 @@ point_count = 3
 script = ExtResource("12_kdgty")
 metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 
-[sub_resource type="Resource" id="Resource_o04do"]
-script = ExtResource("13_7bgia")
-metadata/_custom_type_script = "uid://pv70hoylokg6"
+[sub_resource type="Resource" id="Resource_7bgia"]
+script = ExtResource("13_rildt")
+max_negative = 45.0
+max_positive = 315.0
 
 [sub_resource type="Resource" id="Resource_oyass"]
 script = ExtResource("12_kdgty")
@@ -210,11 +212,12 @@ metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
 [node name="spawnerMain" type="Node3D" parent="EventStrategies/OnWorldCollision/TimerEventStrategy/SpawnSpikes" index="0" unique_id=998774887 node_paths=PackedStringArray("spawn_position")]
 script = ExtResource("10_o04do")
+ignore_relative_rotation = true
 spawn_position = NodePath("../../../../../Marker3D")
 entity_to_spawn = ExtResource("11_oyass")
 amount_of_spawns = 4
 target_strategy = SubResource("Resource_rildt")
-rotation_strategy = SubResource("Resource_o04do")
+rotation_strategy = SubResource("Resource_7bgia")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="SpawnExplosion" type="Node" parent="EventStrategies/OnWorldCollision/TimerEventStrategy" index="2" unique_id=1815244750]
@@ -229,7 +232,8 @@ rotation_strategy = SubResource("Resource_1qg4g")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Marker3D" type="Marker3D" parent="." index="2" unique_id=2129185634]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 0.4, 0)
+gizmo_extents = 1.0
 
 [node name="cactus_bomb2" type="Node3D" parent="." index="3" unique_id=338768583]
 transform = Transform3D(0.9975524, 0, 1.1202186, 0.64272314, 1.228548, -0.57234365, -0.91749483, 0.86062205, 0.8170272, 0.024594232, 0.39964238, -0.014506765)

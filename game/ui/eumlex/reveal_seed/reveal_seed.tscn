@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://epvigqgnbl17" path="res://game/ui/eumlex/reveal_seed/reward_background2.png" id="3_rd7av"]
 [ext_resource type="ArrayMesh" uid="uid://bavnh7muxdqa" path="res://game/ui/eumlex/reveal_seed/sed_model_wip.res" id="4_h88u7"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="4_j7odg"]
+[ext_resource type="Texture2D" uid="uid://sodd3ydaeeke" path="res://game/ui/eumlex/reveal_seed/Material_2D_View.png" id="5_4mi4i"]
 [ext_resource type="PackedScene" uid="uid://drxv2fntob1we" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/reveal/mini_eumling_artistisch_reveal.tscn" id="5_j7odg"]
 [ext_resource type="PackedScene" uid="uid://cps3kdcef7kl1" path="res://assets/characters/eumling/mini_eumling/conventional_logik/reveal/mini_conventional_logik_reveal.tscn" id="6_5lndm"]
 [ext_resource type="PackedScene" uid="uid://b4dado5k8g86y" path="res://assets/characters/eumling/mini_eumling/entrepreneurual_ehrgeiz/reveal/mini_entre_ehrgeiz_reveal.tscn" id="7_6d64s"]
@@ -12,9 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://ck5j8i6y6430r" path="res://assets/characters/eumling/mini_eumling/investigativ_forschend/reveal/mini_investigativ_forschend_reveal.tscn" id="9_8cg7f"]
 [ext_resource type="PackedScene" uid="uid://8psix5aubo38" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/reveal/mini_sozial_sozial_reveal.tscn" id="10_gqyl1"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="12_gqyl1"]
+[ext_resource type="Texture2D" uid="uid://buyuijv3e8irw" path="res://game/ui/eumlex/reveal_seed/crack01.png" id="13_a2ni4"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="13_fbwby"]
 [ext_resource type="Script" uid="uid://boxwy3m3i4pdu" path="res://game/sound/sfx/sound_presets/sound_sequence.gd" id="13_pw7cc"]
+[ext_resource type="Texture2D" uid="uid://rmd27awvxtn8" path="res://game/ui/eumlex/reveal_seed/crack02.png" id="14_j1fo5"]
 [ext_resource type="AudioStream" uid="uid://cjaa8iie43p58" path="res://assets/sound/reveal/fanfare_1.wav" id="15_8f6xv"]
+[ext_resource type="Texture2D" uid="uid://bhcjgmbcsmjq4" path="res://game/ui/eumlex/reveal_seed/crack03.png" id="15_q5eef"]
 [ext_resource type="AudioStream" uid="uid://bc30esggu44h6" path="res://assets/sound/reveal/fanfare_2.wav" id="16_nm1b4"]
 [ext_resource type="AudioStream" uid="uid://dptj5xh0h121u" path="res://assets/sound/reveal/fanfare_3.wav" id="17_h4xtk"]
 [ext_resource type="AudioStream" uid="uid://ch0bw4dswwe8y" path="res://assets/sound/reveal/fanfare_4.wav" id="18_8hruw"]
@@ -26,6 +30,11 @@
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="24_yl3bw"]
 [ext_resource type="Script" uid="uid://bh7iefvel1djl" path="res://game/ui/auto_size_label_3d.gd" id="25_eryco"]
 [ext_resource type="Texture2D" uid="uid://cj7g4uo8iuhc4" path="res://assets/thumbnails/sozial_sozial/sozial_base.PNG" id="26_yl3bw"]
+
+[sub_resource type="Environment" id="Environment_j1fo5"]
+glow_enabled = true
+glow_intensity = 2.0
+glow_bloom = 0.02
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rd7av"]
 transparency = 1
@@ -110,16 +119,15 @@ _data = {
 
 [sub_resource type="Gradient" id="Gradient_0rqoo"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0.14661655, 0.61466163)
-colors = PackedColorArray(0.04, 0.022226667, 0.0055999993, 1, 0.26, 0.14819999, 0.036399994, 1)
+offsets = PackedFloat32Array(0.24501993, 0.6394422, 0.874502)
+colors = PackedColorArray(0.35, 0.35, 0.35, 1, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_5lndm"]
 gradient = SubResource("Gradient_0rqoo")
 
 [sub_resource type="Gradient" id="Gradient_ey80x"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.43984962)
-colors = PackedColorArray(0, 0, 0, 1, 0.34, 0.23278666, 0.047599997, 1)
+offsets = PackedFloat32Array(0, 0.25099602)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_hk45w"]
 gradient = SubResource("Gradient_ey80x")
@@ -128,6 +136,7 @@ gradient = SubResource("Gradient_ey80x")
 render_priority = 0
 shader = ExtResource("4_j7odg")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("5_4mi4i")
 shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_5lndm")
 shader_parameter/rim_ramp = SubResource("GradientTexture1D_hk45w")
 shader_parameter/rim_focus = 0.5370000255075
@@ -267,6 +276,18 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector3(-2.6714003, 1.2264977, 0.30127883)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:material_override:shader_parameter/albedo_texture")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_4mi4i")]
+}
 
 [sub_resource type="Animation" id="Animation_j7odg"]
 resource_name = "click_01"
@@ -368,6 +389,18 @@ tracks/7/keys = {
 "args": [["Fanfare", "Wiggle"], false, false],
 "method": &"play_sound"
 }]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:material_override:shader_parameter/albedo_texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_a2ni4")]
 }
 
 [sub_resource type="Animation" id="Animation_5lndm"]
@@ -471,6 +504,18 @@ tracks/7/keys = {
 "method": &"play_sound"
 }]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:material_override:shader_parameter/albedo_texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.06666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_j1fo5")]
+}
 
 [sub_resource type="Animation" id="Animation_ey80x"]
 resource_name = "click_03"
@@ -572,6 +617,18 @@ tracks/7/keys = {
 "args": [["Fanfare", "Wiggle"], false, false],
 "method": &"play_sound"
 }]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:material_override:shader_parameter/albedo_texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.06666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_q5eef")]
 }
 
 [sub_resource type="Animation" id="Animation_hk45w"]
@@ -708,11 +765,13 @@ script = ExtResource("1_p1l2k")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1983303287]
 transform = Transform3D(1, 0, 0, 0, 0.82719827, 0.56191015, 0, -0.56191015, 0.82719827, 0, 1.2917441, 1.5170482)
+environment = SubResource("Environment_j1fo5")
 projection = 1
 size = 0.87480724
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=194865124]
 transform = Transform3D(1, 0, 0, 0, 0.5720027, 0.8202517, 0, -0.8202517, 0.5720027, 0, 3.3311021, 2.0942307)
+light_energy = 2.0
 
 [node name="Lights01" type="MeshInstance3D" parent="." unique_id=1799504484]
 transform = Transform3D(2.275, 0, 0, 0, 1.8233274, 0.6943301, 0, -1.3605522, 0.93049806, -2.7931083e-08, -1.3896177, -2.202589)
@@ -814,7 +873,7 @@ volume_db = -4.0
 bus = &"SFXUI"
 
 [node name="Banner" type="Sprite3D" parent="." unique_id=2023991334]
-transform = Transform3D(0, -3.3306692e-17, -5.587935e-10, 0, 0.12407974, 0.084286526, 0, -0.084286526, 0.12407974, -0.03599999, 0.26320174, 0.53799313)
+transform = Transform3D(0, 3.795846e-10, -5.587935e-10, 0, 0.12407974, 0.084286526, 0, -0.084286526, 0.12407974, -0.03599999, 0.26320174, 0.53799313)
 sorting_offset = -2.0
 texture = ExtResource("23_cruav")
 

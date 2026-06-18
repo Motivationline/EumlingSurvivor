@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dimh4wgth5dwg"]
+
+[ext_resource type="PackedScene" uid="uid://dgwms5uw0wfje" path="res://game/enemies/6-volcano/volcano_tortoise_complex/volcano_tortoise_complex_D1.tscn" id="1_47h1v"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="2_1kv34"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_nk278"]
+[ext_resource type="PackedScene" uid="uid://6l31g58hjjpt" path="res://game/aoes/tortoise_complex_aoe/volcano_tortoise_complex/volcano_tortoise_complex_aoe_D2.tscn" id="4_wtdsf"]
+
+[node name="volcano_tortoise_complex_D2" unique_id=1898691 instance=ExtResource("1_47h1v")]
+
+[node name="SpawnInnerRing" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(137836916) index="2" unique_id=1622876265 node_paths=PackedStringArray("next_state")]
+next_state = NodePath("../SpawnOuterRing")
+
+[node name="SpawnOuterRing" type="Node" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(137836916) index="3" unique_id=278901947 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_1kv34")
+start_delay = 0.5
+end_delay = 2.2
+next_state = NodePath("../../DecideDistanceState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/shake/request": 1
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="spawnerTertiary" type="Node3D" parent="StateMachine/Chase_and_Attack/SpawnOuterRing" index="0" unique_id=1744659420]
+script = ExtResource("3_nk278")
+entity_to_spawn = ExtResource("4_wtdsf")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"

@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://dgwms5uw0wfje"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_e63cb"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="2_bqo06"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_qq1hq"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_3btfv"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_xa3cl"]
+[ext_resource type="PackedScene" uid="uid://qpw2gi1joms5" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/animated_projectile.tscn" id="4_s0pvf"]
+[ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="4_sosfk"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="5_j40q3"]
+[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="5_o6qy1"]
+[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_m8pq2"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="6_v31ca"]
+[ext_resource type="PackedScene" uid="uid://c078nbg0qjgp5" path="res://assets/characters/enemies/volcano_tortoise/volcano_tortoise_prefab.tscn" id="7_wvq5w"]
+[ext_resource type="PackedScene" uid="uid://h0rgp04p765l" path="res://game/aoes/tortoise_complex_aoe/volcano_tortoise_complex/volcano_tortoise_complex_aoe_D1.tscn" id="8_6avld"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_s0pvf"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="9_o6qy1"]
+[ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="13_3btfv"]
+
+[sub_resource type="Resource" id="Resource_gnf5i"]
+script = ExtResource("5_o6qy1")
+metadata/_custom_type_script = "uid://yd5ytc70xwp6"
+
+[sub_resource type="Resource" id="Resource_hec8f"]
+script = ExtResource("6_m8pq2")
+metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m8pq2"]
+radius = 0.439081
+height = 0.955451
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wvq5w"]
+radius = 0.39281
+
+[node name="volcano_tortoise_complex_D1" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_e63cb")]
+health = 300.0
+hitbox = NodePath("hitboxBase")
+hurtbox = NodePath("Hurtbox")
+on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
+speed = 0.4
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveRandomOnNavMeshState")
+
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=1274215185 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_qq1hq")
+wait_time = 0.0
+max_distance = 2.5
+next_state = NodePath("../WaitAfterWalk")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "walk"
+})
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="WaitAfterWalk" type="Node" parent="StateMachine" index="1" unique_id=1918710380 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_3btfv")
+random = true
+min_wait_time = 0.3
+max_wait_time = 0.8
+next_state = NodePath("../DecideDistanceState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "idle"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="DecideDistanceState" type="Node" parent="StateMachine" index="2" unique_id=683829782 node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found", "next_state")]
+script = ExtResource("4_sosfk")
+distance_to_check = 3.0
+state_if_distance_is_smaller = NodePath("../Chase_and_Attack/MoveTowardsEntityState")
+state_if_distance_is_larger = NodePath("../MoveRandomOnNavMeshState")
+state_if_no_node_found = NodePath("../MoveRandomOnNavMeshState")
+next_state = NodePath("")
+metadata/_custom_type_script = "uid://b0kknw1o07ha2"
+
+[node name="Chase_and_Attack" type="Node" parent="StateMachine" index="3" unique_id=137836916]
+
+[node name="MoveTowardsEntityState" type="Node" parent="StateMachine/Chase_and_Attack" index="0" unique_id=1940144199 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_j40q3")
+wait_time = 0.5
+stop_distance = 1.0
+max_follow_time = 3.0
+speed_override_active = true
+next_state = NodePath("../Charging")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "walk"
+})
+metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="Charging" type="Node" parent="StateMachine/Chase_and_Attack" index="1" unique_id=572823494 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_3btfv")
+wait_time = 1.5
+next_state = NodePath("../SpawnInnerRing")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "idle"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="SpawnInnerRing" type="Node" parent="StateMachine/Chase_and_Attack" index="2" unique_id=1622876265 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_v31ca")
+start_delay = 0.2
+end_delay = 2.2
+next_state = NodePath("../../DecideDistanceState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/shake/request": 1
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="spawnerMain" type="Node3D" parent="StateMachine/Chase_and_Attack/SpawnInnerRing" index="0" unique_id=1242991135]
+script = ExtResource("3_xa3cl")
+entity_to_spawn = ExtResource("8_6avld")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1719796949]
+script = ExtResource("2_bqo06")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="spawnerSecondary" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=1773892809]
+script = ExtResource("3_xa3cl")
+ignore_relative_rotation = true
+entity_to_spawn = ExtResource("4_s0pvf")
+amount_of_spawns = 5
+target_strategy = SubResource("Resource_gnf5i")
+rotation_strategy = SubResource("Resource_hec8f")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=1566656076]
+script = ExtResource("13_3btfv")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/hurt/request": 1
+})
+metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
+
+[node name="volcano_tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1249268255 instance=ExtResource("7_wvq5w")]
+
+[node name="hitboxBase" parent="." index="7" unique_id=792209671 instance=ExtResource("8_s0pvf")]
+collision_layer = 32
+collision_mask = 8
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1262993597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3695315, 0)
+shape = SubResource("CapsuleShape3D_m8pq2")
+
+[node name="Hurtbox" parent="." index="8" unique_id=48953969 instance=ExtResource("9_o6qy1")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=789958582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3816427, 0)
+shape = SubResource("SphereShape3D_wvq5w")
+debug_color = Color(0.883413, 0.262783, 0.530975, 0.42)

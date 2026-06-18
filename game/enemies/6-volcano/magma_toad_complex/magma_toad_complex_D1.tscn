@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bum8e6lgyjc6"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_3amh6"]
+[ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="2_eetwf"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_xsop0"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_sihax"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_xcncf"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_eetwf"]
+[ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="6_pdesa"]
+[ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="8_pdesa"]
+[ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="9_ug13t"]
+
+[node name="magma_toad_complex_D1" unique_id=1898691 instance=ExtResource("1_3amh6")]
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("CheckDistance/DecideDistanceState")
+
+[node name="CheckDistance" type="Node" parent="StateMachine" index="0" unique_id=2025674640]
+
+[node name="DecideDistanceState" type="Node" parent="StateMachine/CheckDistance" index="0" unique_id=1269998666 node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found")]
+script = ExtResource("2_eetwf")
+distance_to_check = 2.0
+state_if_distance_is_smaller = NodePath("../../Jump away/JumpStartWait")
+state_if_distance_is_larger = NodePath("../../Attack/WaitForTimeXState")
+state_if_no_node_found = NodePath("../../Attack/WaitForTimeXState")
+metadata/_custom_type_script = "uid://b0kknw1o07ha2"
+
+[node name="Attack" type="Node" parent="StateMachine" index="1" unique_id=1133986723]
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/Attack" index="0" unique_id=1638671921 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_xsop0")
+random = true
+min_wait_time = 0.5
+max_wait_time = 2.0
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/Attack" index="1" unique_id=1274815136 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_sihax")
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Attack" index="2" unique_id=1250394358 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_xcncf")
+start_delay = 0.46
+next_state = NodePath("../WaitForTimeXState2")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Shoot/request": 1
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="spawnerMain" type="Node3D" parent="StateMachine/Attack/SpawnEntitiesState" index="0" unique_id=1332122889]
+script = ExtResource("5_eetwf")
+entity_to_spawn = ExtResource("6_pdesa")
+time_between_entities = 0.15
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState2" type="Node" parent="StateMachine/Attack" index="3" unique_id=1550348382 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_xsop0")
+random = true
+max_wait_time = 0.5
+next_state = NodePath("../../CheckDistance/DecideDistanceState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Jump away" type="Node" parent="StateMachine" index="2" unique_id=1074125903]
+
+[node name="JumpStartWait" type="Node" parent="StateMachine/Jump away" index="0" unique_id=1291909902 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_xsop0")
+next_state = NodePath("../TeleportToOnNavMeshState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine/Jump away" index="1" unique_id=1504967946 node_paths=PackedStringArray("next_state")]
+script = ExtResource("8_pdesa")
+target = 2
+next_state = NodePath("../JumpEndWait")
+metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
+
+[node name="JumpEndWait" type="Node" parent="StateMachine/Jump away" index="2" unique_id=211223491 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_xsop0")
+wait_time = 2.0
+next_state = NodePath("../../CheckDistance/DecideDistanceState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("9_ug13t")]
