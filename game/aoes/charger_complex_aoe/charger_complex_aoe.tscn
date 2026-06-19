@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://8birmfvhix1s"]
+
+[ext_resource type="PackedScene" uid="uid://c4e8dv2l1561n" path="res://game/aoes/base_aoe.tscn" id="1_h5tmn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_epwph"]
+size = Vector3(1.1505737, 1, 0.7236328)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_05fwf"]
+
+[node name="AOE" unique_id=1663272036 instance=ExtResource("1_h5tmn")]
+duration = 3.0
+
+[node name="Hitbox" parent="." index="0"]
+collision_layer = 32
+collision_mask = 8
+damage = 10.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0140686035, 0, 0)
+shape = SubResource("BoxShape3D_epwph")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0" unique_id=758649832]
+transform = Transform3D(0.49618742, 0, 0, 0, 1, 0, 0, 0, 0.33012474, 0, 0.14364624, 0)
+mesh = SubResource("PlaneMesh_05fwf")
