@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b4t8js0g7qyur"]
+
+[ext_resource type="Script" uid="uid://b5mrygkh5wuav" path="res://game/portals/boss_portal.gd" id="1_uqlhb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.3779297, 1.8508301, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g4v7s"]
+height = 1.5
+
+[node name="BossPortal" type="Node3D" unique_id=564679602]
+script = ExtResource("1_uqlhb")
+
+[node name="ExitArea" type="Area3D" parent="." unique_id=1873846579]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitArea" unique_id=1858978230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81555176, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="PillarLeft" type="StaticBody3D" parent="." unique_id=476097130]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PillarLeft" unique_id=1512127576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 1)
+shape = SubResource("CylinderShape3D_g4v7s")
+
+[node name="PillarRight" type="StaticBody3D" parent="." unique_id=39619667]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PillarRight" unique_id=1641254210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -1)
+shape = SubResource("CylinderShape3D_g4v7s")

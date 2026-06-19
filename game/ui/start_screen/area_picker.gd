@@ -1,11 +1,11 @@
-extends Control
+class_name AreaPicker extends Control
 
 
 signal area_chosen(levels: Array[String])
 # @onready var grid_container: GridContainer = $Control/CenterContainer/GridContainer
 @onready var level_choice_overlay: Control = $LevelChoiceOverlay
 
-var areas = [
+static var areas = [
 	{
 		name = "Jungle",
 		folder = "3-Jxx-Jungle",
@@ -71,11 +71,14 @@ func setup():
 	# 	var btn = Button.new()
 	# 	btn.text = area.name
 	# 	grid_container.add_child(btn)
-	# 	btn.pressed.connect(choose_area.bind(area))
+	# 	btn.pressed.connect(choose_area_levels.bind(area))
 	show()
 	$JungleIsland.grab_focus.call_deferred()
 
-func choose_area(area):
+static func choose_area_levels_from_index(index: int) -> Array:
+	return choose_area_levels(AreaPicker.areas[index])
+
+static func choose_area_levels(area) -> Array:
 	var level_names: Array = []
 	var difficulty: int = Data.game_data.difficulty
 	var amount_levels = difficulty + 3
@@ -91,9 +94,7 @@ func choose_area(area):
 		level_names.append({id = folder_name + level + ".tscn", difficulty = difficulty})
 	var boss_level = area.boss_levels[difficulty]
 	level_names.append({id = folder_name + boss_level + ".tscn", difficulty = difficulty})
-	area_chosen.emit(level_names)
-	
-	hide()
+	return level_names
 
 func _on_debug_button_pressed() -> void:
 	level_choice_overlay.setup()
@@ -134,4 +135,6 @@ func find_file(file_name: String, folder_location: String = "res://game/levels")
 
 
 func _on_area_clicked(index: int) -> void:
-	choose_area(areas[index])
+	var level_names = choose_area_levels_from_index(index)
+	area_chosen.emit(level_names)
+	hide()
