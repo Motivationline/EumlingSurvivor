@@ -321,17 +321,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0035880953, 0.19767752, 0)
 shape = SubResource("SphereShape3D_72cis")
 debug_color = Color(0.059656292, 0.63459665, 0.41232806, 0.41960785)
 
-[node name="SoundEffectManager" parent="." index="8" unique_id=212820490]
-debug = true
-
-[node name="Inflate" parent="SoundEffectManager" index="0" unique_id=701696443 instance=ExtResource("14_8612x")]
+[node name="Inflate" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=701696443 instance=ExtResource("14_8612x")]
 stream = SubResource("AudioStreamRandomizer_kpvxy")
 
-[node name="DeathSpecific" parent="SoundEffectManager" index="1" unique_id=1096996392 instance=ExtResource("14_8612x")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=1096996392 instance=ExtResource("14_8612x")]
 stream = SubResource("AudioStreamRandomizer_a5tm3")
 volume_db = 1.0
 
-[node name="Deflate" parent="SoundEffectManager" index="2" unique_id=1992921004 instance=ExtResource("14_8612x")]
+[node name="Deflate" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1992921004 instance=ExtResource("14_8612x")]
 stream = SubResource("AudioStreamRandomizer_8f11o")
 
 [node name="hitboxAttack" parent="." index="10" unique_id=390149678 instance=ExtResource("2_57msv")]

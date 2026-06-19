@@ -10,7 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://jxasjdfv1mrc" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_volcano_2.wav" id="7_kgdiv"]
 [ext_resource type="AudioStream" uid="uid://bcdxd0wwe52uv" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_volcano_3.wav" id="8_ki0hj"]
 [ext_resource type="AudioStream" uid="uid://c8ioxvkyn061t" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_volcano_4.wav" id="9_16w6r"]
+[ext_resource type="AudioStream" uid="uid://c4ums42dv7170" path="res://assets/sound/obstacle_sound_effects/exit_area/portal_start.ogg" id="10_54vu6"]
 [ext_resource type="PackedScene" uid="uid://bd4kom8lyyin5" path="res://assets/models/6-volcano/stones/stone_01/volcano_stone_01.tscn" id="11_16w6r"]
+[ext_resource type="AudioStream" uid="uid://c0yuvlj8g3tkq" path="res://assets/sound/obstacle_sound_effects/exit_area/portal_loop.ogg" id="11_gfdts"]
 [ext_resource type="Texture2D" uid="uid://bqh614g57at32" path="res://assets/models/6-volcano/volcano_exit/exit_volcano_VolcanoExitMaterial_Base_color.png" id="12_3b7qv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_evsrw"]
@@ -99,9 +101,12 @@ tracks/0/path = NodePath("SoundEffectManager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.03333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.03333333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": ["PortalLoop", false, false],
+"method": &"play_sound"
+}, {
 "args": ["Bubbles"],
 "method": &"play_sound"
 }]
@@ -205,6 +210,13 @@ stream_1/stream = ExtResource("7_kgdiv")
 stream_2/stream = ExtResource("8_ki0hj")
 stream_3/stream = ExtResource("9_16w6r")
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_elhmc"]
+loop = false
+fade_time = 0.0
+stream_count = 2
+stream_0 = ExtResource("10_54vu6")
+stream_1 = ExtResource("11_gfdts")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_kgdiv"]
 size = Vector3(0.9725647, 2.0351563, 2.0048828)
 
@@ -267,7 +279,7 @@ omni_range = 1.6048713
 [node name="exit_volcano" parent="Visuals" unique_id=985169330 instance=ExtResource("2_kgdiv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Volcano_Exit_Mesh" parent="Visuals/exit_volcano" index="0" unique_id=250935896]
+[node name="Volcano_Exit_Mesh" parent="Visuals/exit_volcano" index="0" unique_id=1672538500]
 visible = false
 
 [node name="DoorLock" type="StaticBody3D" parent="Visuals/exit_volcano" unique_id=736075056]
@@ -298,6 +310,12 @@ bus = &"SFXUI"
 
 [node name="Bubbles" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=857230476]
 stream = SubResource("AudioStreamRandomizer_mu12n")
+panning_strength = 2.0
+bus = &"SFXAll"
+attenuation_filter_cutoff_hz = 20500.0
+
+[node name="PortalLoop" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=1623640805]
+stream = SubResource("AudioStreamPlaylist_elhmc")
 panning_strength = 2.0
 bus = &"SFXAll"
 attenuation_filter_cutoff_hz = 20500.0
@@ -335,7 +353,7 @@ debug_fill = false
 transform = Transform3D(0.5773337, -0.05724926, 0.15299799, 0, 0.5619483, 0.21027157, -0.16335806, -0.20232809, 0.54071945, 0.31733358, 0, 0.37124336)
 
 [node name="volcano_stone_02" parent="." unique_id=1363299583 instance=ExtResource("11_16w6r")]
-transform = Transform3D(0.2947066, 0.16063821, -0.49733636, -0.22510411, 0.5542966, 0.04564623, 0.47167388, 0.16416702, 0.33252522, -0.12390332, 0.4387945, -0.01711309)
+transform = Transform3D(0.2947066, 0.16063821, -0.49733636, -0.22510411, 0.5542966, 0.04564622, 0.47167388, 0.16416703, 0.33252522, -0.12390332, 0.4387945, -0.01711309)
 
 [node name="Volcano_Exit_Mesh" type="MeshInstance3D" parent="." unique_id=1341284469]
 transform = Transform3D(-6.04771e-08, -0.050656073, -0.8443588, -4.19503e-09, 0.73027664, -0.05856945, 1.3868793, 0, -3.699678e-08, 0.10532141, -1.7651849, 0.61386275)

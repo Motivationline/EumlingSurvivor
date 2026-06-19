@@ -8,7 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_3.wav" id="7_dmamu"]
 [ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_4.wav" id="8_vofq4"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="9_2dq3v"]
+[ext_resource type="AudioStream" uid="uid://c4ums42dv7170" path="res://assets/sound/obstacle_sound_effects/exit_area/portal_start.ogg" id="9_mav8e"]
 [ext_resource type="Texture2D" uid="uid://dn6twb1b6xnwi" path="res://assets/models/3-Jungle/exit_trunk/exit_trunk_ExitMaterial_Base_color.png" id="10_fbgo6"]
+[ext_resource type="AudioStream" uid="uid://c0yuvlj8g3tkq" path="res://assets/sound/obstacle_sound_effects/exit_area/portal_loop.ogg" id="10_ko37m"]
 [ext_resource type="PackedScene" uid="uid://evy0ia65qqxd" path="res://assets/models/3-Jungle/portal/jungle_portal.tscn" id="11_xs662"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tkqdu"]
@@ -89,9 +91,12 @@ tracks/0/path = NodePath("SoundEffectManager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.03333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.03333333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": ["PortalLoop", false, false],
+"method": &"play_sound"
+}, {
 "args": ["Leaves"],
 "method": &"play_sound"
 }]
@@ -183,6 +188,13 @@ stream_0/stream = ExtResource("5_2dq3v")
 stream_1/stream = ExtResource("6_ixbc8")
 stream_2/stream = ExtResource("7_dmamu")
 stream_3/stream = ExtResource("8_vofq4")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_j0bfy"]
+loop = false
+fade_time = 0.0
+stream_count = 2
+stream_0 = ExtResource("9_mav8e")
+stream_1 = ExtResource("10_ko37m")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8f4m7"]
 resource_name = "ExitMaterial"
@@ -288,6 +300,12 @@ panning_strength = 2.0
 bus = &"SFXAll"
 attenuation_filter_cutoff_hz = 20500.0
 
+[node name="PortalLoop" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=1108150125]
+stream = SubResource("AudioStreamPlaylist_j0bfy")
+panning_strength = 2.0
+bus = &"SFXAll"
+attenuation_filter_cutoff_hz = 20500.0
+
 [node name="jungle_portal" parent="." unique_id=497232731 instance=ExtResource("11_xs662")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0.34559464)
 
@@ -302,7 +320,7 @@ mesh = SubResource("ArrayMesh_rljab")
 skeleton = NodePath("")
 
 [node name="Plane_012" type="MeshInstance3D" parent="jungle_portal" unique_id=208917579]
-transform = Transform3D(0.019414427, 0.5201207, -0.08877797, 0.046428718, 0.08680946, 0.51874125, 0.52559626, -0.026880506, -0.042543907, -0.07706931, 1.0171976, 0.82109195)
+transform = Transform3D(0.019414442, 0.5201207, -0.08877797, 0.04642872, 0.08680946, 0.51874125, 0.52559626, -0.026880521, -0.042543907, -0.07706931, 1.0171976, 0.82109195)
 mesh = SubResource("ArrayMesh_rljab")
 skeleton = NodePath("")
 
