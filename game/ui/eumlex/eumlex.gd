@@ -110,7 +110,7 @@ func unlock_new_eumlings(new_eumlings: Array[Enum.EUMLING_TYPE]):
 		var eumling = get_eumling_to_unlock(e)
 		if not eumling: break
 		var reveal = REVEAL_SEED.instantiate()
-		reveal.which_eumling_is_shown = eumling.type;
+		reveal.eumling = eumling;
 		add_child(reveal)
 		await reveal.completed
 		reveal.queue_free()
