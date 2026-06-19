@@ -8,9 +8,21 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_eetwf"]
 [ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="6_pdesa"]
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="8_pdesa"]
+[ext_resource type="PackedScene" uid="uid://sp2ju6tpkgag" path="res://game/aoes/magma_toad_complex_aoe/magma_toad_complex_aoe.tscn" id="9_3i7kj"]
 [ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="9_ug13t"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="10_ug13t"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="11_3i7kj"]
 
-[node name="magma_toad_complex_D1" unique_id=1898691 instance=ExtResource("1_3amh6")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_qreux"]
+radius = 0.26148474
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d3oh5"]
+radius = 0.31834328
+
+[node name="magma_toad_complex_D1" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_3amh6")]
+health = 150.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("CheckDistance/DecideDistanceState")
@@ -30,8 +42,6 @@ metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 [node name="WaitForTimeXState" type="Node" parent="StateMachine/Attack" index="0" unique_id=1638671921 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_xsop0")
 random = true
-min_wait_time = 0.5
-max_wait_time = 2.0
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
@@ -71,14 +81,48 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine/Jump away" index="1" unique_id=1504967946 node_paths=PackedStringArray("next_state")]
 script = ExtResource("8_pdesa")
+wait_time = 0.0
 target = 2
-next_state = NodePath("../JumpEndWait")
+next_state = NodePath("../SpawnEntitiesState")
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
-[node name="JumpEndWait" type="Node" parent="StateMachine/Jump away" index="2" unique_id=211223491 node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Jump away" index="2" unique_id=1062484316 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_xcncf")
+start_delay = 0.2
+next_state = NodePath("../JumpEndWait")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="spawnerSecondary" type="Node3D" parent="StateMachine/Jump away/SpawnEntitiesState" index="0" unique_id=1130467702]
+script = ExtResource("5_eetwf")
+entity_to_spawn = ExtResource("9_3i7kj")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="JumpEndWait" type="Node" parent="StateMachine/Jump away" index="3" unique_id=211223491 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_xsop0")
 wait_time = 2.0
 next_state = NodePath("../../CheckDistance/DecideDistanceState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("9_ug13t")]
+
+[node name="Hitbox" parent="." index="7" unique_id=412047334 instance=ExtResource("10_ug13t")]
+collision_layer = 32
+collision_mask = 8
+damage = 30.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=311899383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
+shape = SubResource("SphereShape3D_qreux")
+debug_color = Color(0.96461874, 0, 0.48390388, 0.41960785)
+
+[node name="Hurtbox" parent="." index="8" unique_id=1496240091 instance=ExtResource("11_3i7kj")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=69098704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
+shape = SubResource("SphereShape3D_d3oh5")
