@@ -10,12 +10,15 @@ class_name Level
 @export var goal_area: Area3D
 
 @export var is_boss_level: bool = false
+@export var portal_positions: Array[Marker3D]
 
-@export var music:SongList.TRACK = SongList.TRACK.MENU
+@export var music: SongList.TRACK = SongList.TRACK.MENU
+
 
 enum LEVEL_STATE {
 	PLAYING,
 	CLEARED,
+	CAGE_SPAWNED,
 	FINISHED,
 	ENDING,
 }
@@ -28,6 +31,9 @@ const CAGED_MINI_EUMLING = preload("uid://6lim36lw260g")
 const EUMLING_CELEBRATION = preload("uid://p83xt72cksyt")
 const MINI_EUMLING_E = preload("uid://cd212gh71k5cn")
 const MINI_EUMLING_R = preload("uid://ecxm5futmmj4")
+
+var PORTALS = [load("uid://css0jedfj0qmt"), load("uid://c5d58pjp1p4bh"), load("uid://bk5prj6enj3k8")]
+
 
 ## level done condition completed
 signal level_cleared
@@ -74,43 +80,68 @@ func _process(_delta: float) -> void:
 	if (state == LEVEL_STATE.PLAYING):
 		var enemies = get_tree().get_nodes_in_group("Enemy")
 		if (enemies.size() <= 0):
-			clear_level()
-	if (state == LEVEL_STATE.FINISHED && goal_area.overlaps_body(player)):
+			if is_boss_level:
+				spawn_cage()
+			else:
+				clear_level()
+	if (state == LEVEL_STATE.CAGE_SPAWNED && goal_area.overlaps_body(player)):
+		clear_level()
+	if (state == LEVEL_STATE.FINISHED && goal_area.overlaps_body(player) && not is_boss_level):
 		end_level()
 
+var caged_eumling
+func spawn_cage():
+	state = LEVEL_STATE.CAGE_SPAWNED
+	caged_eumling = CAGED_MINI_EUMLING.instantiate() as Node3D
+	add_child(caged_eumling)
+	caged_eumling.global_position = player_spawn.global_position
 
 func clear_level():
 	state = LEVEL_STATE.CLEARED
 	level_cleared.emit()
-	# for me in mini_eumlings:
-	# 	me.celebrate()
-	
-	# TODO: Do stuff that needs to be done before the level can be unloaded, like collecting all the xp / items or something
 	if is_boss_level:
-		var caged = CAGED_MINI_EUMLING.instantiate() as Node3D
-		add_child(caged)
-		caged.global_position = player_spawn.global_position
+		await unlock_mini_eumling()
 	await get_tree().create_timer(1).timeout
 
 	level_finished.emit()
 	state = LEVEL_STATE.FINISHED
+	
+	if is_boss_level:
+		spawn_portals()
+
+func spawn_portals():
+	for pIndex in PORTALS.size():
+		if portal_positions.size() < pIndex: break
+		var portal = PORTALS[pIndex].instantiate() as Node3D
+		var pos = portal_positions[pIndex]
+		add_child(portal)
+		portal.global_position = pos.global_position
+		portal.global_rotation = pos.global_rotation
+		portal.entered.connect(entered_portal.bind(pIndex))
+
+func entered_portal(id: int):
+	Data.game_data.levels_to_load = AreaPicker.choose_area_levels_from_index(id)
+	end_level()
+
 
 func end_level():
 	state = LEVEL_STATE.ENDING
-	if is_boss_level:
-		await show_mini_popup()
 	level_ended.emit()
 	prints("level ended", name)
 
-
-func show_mini_popup():
+func unlock_mini_eumling():
+	remove_child(caged_eumling)
+	var eumling_type = Enum.EUMLING_TYPE.values().pick_random()
+	Data.unlocked_eumling(eumling_type)
 	var popup = EUMLING_CELEBRATION.instantiate()
+	popup.find_child("Label").text = "%s eumling has been rescued! Yay!" % Enum.EUMLING_TYPE.keys()[eumling_type]
 	add_child(popup)
-	Data.unlocked_eumling([Enum.EUMLING_TYPE.SOCIAL, Enum.EUMLING_TYPE.INVESTIGATIVE, Enum.EUMLING_TYPE.ARTISTIC, Enum.EUMLING_TYPE.CONVENTIONAL, Enum.EUMLING_TYPE.ENTERPRISING].pick_random())
 	await get_tree().create_timer(2).timeout
+	remove_child(popup)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
 	if (!player_spawn): warnings.append("You need to provide a player spawn point")
 	if (!goal_area): warnings.append("You need to provide a Goal Area")
+	if (is_boss_level && portal_positions.size() < 3): warnings.append("A boss level needs to define at least 3 portal positions")
 	return warnings

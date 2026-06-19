@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://6lim36lw260g"]
 
+[ext_resource type="PackedScene" uid="uid://xx1ogf8cudcr" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/mini_eumling_artistisch_kreativ_visual.tscn" id="1_rt8xe"]
 [ext_resource type="PackedScene" uid="uid://csxh6oltwnjsa" path="res://assets/models/cage/Cage.glb" id="2_rt8xe"]
 
 [node name="caged_mini_eumling" type="Node3D" unique_id=1087139482]
 
-[node name="MiniEumling" type="CharacterBody3D" parent="." unique_id=284569233]
+[node name="MiniEumling" type="Marker3D" parent="." unique_id=1856864363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05326149, 0)
+
+[node name="mini_eumling_var1" parent="MiniEumling" unique_id=427404541 instance=ExtResource("1_rt8xe")]
 
 [node name="cage" type="Node3D" parent="." unique_id=938304996]
 
