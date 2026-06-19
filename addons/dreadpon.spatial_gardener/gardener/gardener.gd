@@ -769,6 +769,7 @@ func _get(property):
 			return plugin_version
 		"storage_version":
 			return storage_version
+	return null
 
 
 func _set(property, val):

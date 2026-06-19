@@ -428,14 +428,6 @@ func _filter_prop_dictionary(prop_dict: Dictionary) -> Dictionary:
 	return prop_dict
 
 
-func _set(property, val):
-	pass
-
-
-func _get(property):
-	pass
-
-
 # Default functionality for _get_property_list():
 # Get all {prop_name: prop_data_dictionary} defined by _get_prop_dictionary()
 # Filter them (optionally rejecting some of them based on arbitrary conditions)

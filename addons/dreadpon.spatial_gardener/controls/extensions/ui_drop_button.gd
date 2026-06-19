@@ -25,6 +25,7 @@ func _init():
 func _can_drop_data(position, data):
 	if typeof(data) == TYPE_DICTIONARY && data.has("files") && data["files"].size() == 1:
 		return true
+	return false
 
 
 func _drop_data(position, data):
