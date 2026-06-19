@@ -62,3 +62,4 @@ func _get(property: StringName):
 			return next_track
 		"transition":
 			return transition
+	return null

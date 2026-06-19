@@ -47,6 +47,7 @@ func enter() -> void:
 func process(_delta):
 	if found:
 		return return_next()
+	return null
 
 func get_possible_next_states() -> Array[State]:
 	var result: Array[State] = [fallback_state]

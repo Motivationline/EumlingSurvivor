@@ -18,3 +18,4 @@ func find_target():
 		parent.add_child(forward_target)
 		
 		return [forward_target]
+	return []

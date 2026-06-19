@@ -68,6 +68,7 @@ func _set(property: StringName, value) -> bool:
 func _get(property: StringName):
 	if (transition_parameters.has(property)):
 		return transition_parameters[property]
+	return null
 
 ## Creates a transition that fades between two tracks for [param duration] in seconds.
 static func crossfade(duration: float = 1.0) -> MusicTransition:
