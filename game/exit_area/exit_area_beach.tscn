@@ -5,10 +5,7 @@
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="3_qxqvm"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="4_uveg6"]
 [ext_resource type="AudioStream" uid="uid://jdj6s0mg7a6p" path="res://assets/sound/obstacle_sound_effects/exit_area/chime.wav" id="5_l5v63"]
-[ext_resource type="AudioStream" uid="uid://cpdf5jmad04vu" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_1.wav" id="6_7hvtw"]
-[ext_resource type="AudioStream" uid="uid://b7egph183uqxs" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_2.wav" id="7_xqs1q"]
-[ext_resource type="AudioStream" uid="uid://bkyn4yajhdx7w" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_3.wav" id="8_1uaeg"]
-[ext_resource type="AudioStream" uid="uid://y1gjd4286i33" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_forest_4.wav" id="9_84bm4"]
+[ext_resource type="AudioStream" uid="uid://bemqp0ve3g603" path="res://assets/sound/obstacle_sound_effects/exit_area/exit_noise_beach.wav" id="5_mea4o"]
 [ext_resource type="PackedScene" uid="uid://di4857pgk1je4" path="res://assets/models/5-beach/islands/base_island.tscn" id="11_qxqvm"]
 
 [sub_resource type="Animation" id="Animation_rdd0d"]
@@ -148,11 +145,8 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mu12n"]
-streams_count = 4
-stream_0/stream = ExtResource("6_7hvtw")
-stream_1/stream = ExtResource("7_xqs1q")
-stream_2/stream = ExtResource("8_1uaeg")
-stream_3/stream = ExtResource("9_84bm4")
+streams_count = 1
+stream_0/stream = ExtResource("5_mea4o")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3lph4"]
 size = Vector3(1.5387268, 3.8623047, 5.1046143)
@@ -198,7 +192,6 @@ bus = &"SFXUI"
 
 [node name="Noise" type="AudioStreamPlayer3D" parent="SoundEffectManager" unique_id=857230476]
 stream = SubResource("AudioStreamRandomizer_mu12n")
-volume_db = -80.0
 panning_strength = 2.0
 bus = &"SFXAll"
 attenuation_filter_cutoff_hz = 20500.0
