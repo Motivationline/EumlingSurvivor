@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_ul4rw"]
 [ext_resource type="Script" uid="uid://cmyfq2hkdphym" path="res://state_machine/enemy/decider/decide_value.gd" id="3_5hvmk"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="3_v2mew"]
-[ext_resource type="Script" uid="uid://h0pcow7hrs72" path="res://state_machine/enemy/decider/decide_value_check.gd" id="4_3s8a7"]
+[ext_resource type="Script" path="res://state_machine/enemy/decider/decide_value_check.gd" id="4_3s8a7"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="4_f5b06"]
 [ext_resource type="PackedScene" uid="uid://ccmmnlf7jw0kf" path="res://assets/models/breakable_stone/breakable_stone_01.tscn" id="4_gkmh8"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_8uea5"]
@@ -14,6 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://by87cdyijsrbs" path="res://game/shared/animation trigger component/animation_trigger_component.tscn" id="7_f5b06"]
 [ext_resource type="PackedScene" uid="uid://daj38d304ejrr" path="res://assets/models/breakable_stone/breakable_stone_02.tscn" id="12_1w8nu"]
 [ext_resource type="PackedScene" uid="uid://dj26jbuwua1d8" path="res://assets/models/breakable_stone/breakable_stone_03.tscn" id="13_qo8tj"]
+[ext_resource type="AudioStream" uid="uid://uq6ukg200v3x" path="res://assets/models/breakable_stone/sounds/destroy_1.wav" id="15_7dwm6"]
+[ext_resource type="AudioStream" uid="uid://38r3xoslprlo" path="res://assets/models/breakable_stone/sounds/destroy_2.wav" id="16_xuuud"]
+[ext_resource type="AudioStream" uid="uid://blnly5itulu4o" path="res://assets/models/breakable_stone/sounds/destroy_3.wav" id="17_egwp3"]
+[ext_resource type="AudioStream" uid="uid://bpd3ta8ur6udi" path="res://assets/models/breakable_stone/sounds/destroy_4.wav" id="18_ad3mv"]
+[ext_resource type="AudioStream" uid="uid://eft4dab1fbj7" path="res://assets/models/breakable_stone/sounds/hit_1.wav" id="19_td6ms"]
+[ext_resource type="AudioStream" uid="uid://d0w5pyeilxrcq" path="res://assets/models/breakable_stone/sounds/hit_2.wav" id="20_r8pue"]
+[ext_resource type="AudioStream" uid="uid://dwlr78vumldt" path="res://assets/models/breakable_stone/sounds/hit_3.wav" id="21_l6tki"]
+[ext_resource type="AudioStream" uid="uid://cbm5nr1i4c2rk" path="res://assets/models/breakable_stone/sounds/hit_4.wav" id="22_bca82"]
 
 [sub_resource type="Resource" id="Resource_7dwm6"]
 script = ExtResource("4_3s8a7")
@@ -72,6 +80,20 @@ _data = {
 albedo_color = Color(0.058101013, 0.4334131, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_txksh"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jcv14"]
+streams_count = 4
+stream_0/stream = ExtResource("15_7dwm6")
+stream_1/stream = ExtResource("16_xuuud")
+stream_2/stream = ExtResource("17_egwp3")
+stream_3/stream = ExtResource("18_ad3mv")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3s8a7"]
+streams_count = 4
+stream_0/stream = ExtResource("19_td6ms")
+stream_1/stream = ExtResource("20_r8pue")
+stream_2/stream = ExtResource("21_l6tki")
+stream_3/stream = ExtResource("22_bca82")
 
 [node name="Box" unique_id=1837394296 node_paths=PackedStringArray("hurtbox", "on_death", "on_hurt") instance=ExtResource("1_b1cdp")]
 health = 150.0
@@ -173,3 +195,11 @@ visible = false
 [node name="breakable_stone03" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1866105851 instance=ExtResource("13_qo8tj")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
+
+[node name="DeathGeneral" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1358784307]
+stream = SubResource("AudioStreamRandomizer_jcv14")
+volume_db = -8.0
+
+[node name="Hit" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=41969835]
+stream = SubResource("AudioStreamRandomizer_3s8a7")
+volume_db = -4.0
