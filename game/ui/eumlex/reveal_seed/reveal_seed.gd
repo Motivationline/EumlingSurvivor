@@ -8,7 +8,7 @@ var eumling: Eumling
 func _ready() -> void:
 	mini_eumlings = $Mini_Eumling_Anchor.get_children()
 	seed_animation.play("RESET")
-	GlobalMusicManager.fade_out(1)
+
 	%job_title.text = eumling.name
 	%job_image.texture = eumling.image
 
@@ -28,7 +28,7 @@ func advance():
 	if progress >= 4:
 		if progress == 99:
 			completed.emit()
-			GlobalMusicManager.request_music(SongList.TRACK.MENU,MusicTransition.crossfade(1.0)) #GlobalMusicManager.TRANSITIONS.CROSSFADE,[1]
+
 		return
 	progress += 1;
 	if progress <= 3:

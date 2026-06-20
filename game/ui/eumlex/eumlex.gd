@@ -106,7 +106,9 @@ func select_eumling(btn: EumlingButton, eumling: Eumling):
 func unlock_new_eumlings(new_eumlings: Array[Enum.EUMLING_TYPE]):
 	if new_eumlings.size() == 0: return
 	$Book.hide();
+	
 	for e in new_eumlings:
+		GlobalMusicManager.fade_out(1,true)
 		var eumling = get_eumling_to_unlock(e)
 		if not eumling: break
 		var reveal = REVEAL_SEED.instantiate()
@@ -114,6 +116,7 @@ func unlock_new_eumlings(new_eumlings: Array[Enum.EUMLING_TYPE]):
 		add_child(reveal)
 		await reveal.completed
 		reveal.queue_free()
+	GlobalMusicManager.request_music(SongList.TRACK.MENU,MusicTransition.crossfade(1.0))
 	update_buttons()
 	$Book.show();
 	new_eumlings.clear()

@@ -7,7 +7,7 @@ enum BUS_ID {MASTER, MUSIC, SFX_ALL, SFX_ENEMIES, SFX_UI, ENVIRONMENT}
 var active_player: MusicPlayer
 var env_noise_player: AudioStreamPlayer
 var fading_player: MusicPlayer
-var current_track: SongList.TRACK
+var current_track: SongList.TRACK = SongList.TRACK.NOTHING
 var current_noise: int
 var is_playing: bool = false
 
@@ -50,6 +50,7 @@ func fade_bus_volume(_bus: BUS_ID, _duration: float, _target_volume_db: float = 
 
 ## Fade volume of [param _player] to [param _target_volume_db] in [param _duration] seconds. Will queue [param _player] to be freed if [param _stop] is [code]true[/code].
 func fade_player_volume(_duration: float, _target_volume_db: float = -60, _player: AudioStreamPlayer = active_player, _stop: bool = false) -> void:
+	print(active_player)
 	for tween in active_tweens:
 		if tween.has(_player):
 			await tween[1].finished
@@ -65,6 +66,9 @@ func fade_player_volume(_duration: float, _target_volume_db: float = -60, _playe
 	
 	if _stop:
 		_player.stop()
+		if _player == active_player :
+			is_playing = false
+			current_track = SongList.TRACK.NOTHING
 		_player.queue_free()
 	
 
@@ -131,7 +135,14 @@ func set_environment_noise(_noise: SongList.ENVNOISE) -> void:
 
 ## Fades out the currently playing music track. [param _stop] will stop playback after the fade is complete.
 func fade_out(_duration: float, _stop: bool = false) -> void:
-	fade_player_volume(_duration, -60, active_player, _stop)
+	if active_player:
+		if _stop:
+			fading_player = active_player
+			fade_player_volume(_duration, -60, fading_player , _stop)
+			current_track = SongList.TRACK.NOTHING
+		else:
+			fade_player_volume(_duration, -60, active_player , _stop)
+		
 
 ## Fades in the currently playing music track. Only works if there is a faded out active music track.
 func fade_in(_duration: float) -> void:

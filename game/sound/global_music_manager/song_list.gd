@@ -13,7 +13,8 @@ enum TRACK {
 	BOSS_VOLCANO = 5,
 	CHASE = 6,
 	GAMBA = 7,
-	TITLE = 11
+	TITLE = 11,
+	NOTHING = 13
 }
 enum ENVNOISE {
 	NOTHING  = 0,
