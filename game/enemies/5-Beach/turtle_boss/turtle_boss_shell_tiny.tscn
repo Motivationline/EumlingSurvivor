@@ -99,10 +99,13 @@ script = ExtResource("5_eqg6h")
 next_state = NodePath("../WaitForAWhile")
 metadata/_custom_type_script = "uid://dj632w22te1th"
 
+[node name="PlaySoundDeath" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=2056535194]
+sound_to_play = Array[String]([])
+
 [node name="PlaySoundRebound" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=2022492772 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("6_vflhw")
 sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Rebound"
+sound_to_play = Array[String](["Rebound"])
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="Visuals" parent="." index="4" unique_id=110309936]
@@ -112,14 +115,17 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
 [node name="SpinStop" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=2064507989 instance=ExtResource("8_jyxur")]
 stream = ExtResource("9_vhodi")
+pitch_scale = 1.5
 
 [node name="Rebound" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=209551134 instance=ExtResource("8_jyxur")]
 stream = SubResource("AudioStreamRandomizer_q20po")
-volume_db = -13.0
+volume_db = -20.0
+pitch_scale = 1.5
 
 [node name="Spin" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=592601252 instance=ExtResource("8_jyxur")]
 stream = SubResource("AudioStreamRandomizer_kvsen")
-volume_db = -10.0
+volume_db = -15.0
+pitch_scale = 1.5
 
 [node name="Hitbox" parent="." index="6" unique_id=1999330290 instance=ExtResource("19_a64q7")]
 collision_layer = 32

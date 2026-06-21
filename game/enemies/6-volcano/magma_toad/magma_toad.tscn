@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_vqu8f"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_m7dcb"]
 [ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="6_52td2"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="7_i8psu"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_52td2"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="8_pqb4c"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_eafdf"]
@@ -167,14 +166,13 @@ stream_3/stream = ExtResource("12_rbetc")
 stream_4/stream = ExtResource("13_vfgrb")
 stream_5/stream = ExtResource("14_aqndw")
 
-[node name="MagmaToad" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_k7wj4")]
+[node name="MagmaToad" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_k7wj4")]
 collision_layer = 64
 collision_mask = 65
 health = 200.0
 difficulty_scaler = SubResource("Resource_aj0o5")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 node_with_animation_tree = NodePath("Visuals/Toad")
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
@@ -218,13 +216,6 @@ random = true
 max_wait_time = 0.5
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1367474497 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("7_i8psu")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "DeathSpecific"
-needs_to_be_persistent = true
-metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("2_5wldd")]
 

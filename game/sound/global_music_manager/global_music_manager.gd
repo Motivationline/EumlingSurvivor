@@ -50,7 +50,6 @@ func fade_bus_volume(_bus: BUS_ID, _duration: float, _target_volume_db: float = 
 
 ## Fade volume of [param _player] to [param _target_volume_db] in [param _duration] seconds. Will queue [param _player] to be freed if [param _stop] is [code]true[/code].
 func fade_player_volume(_duration: float, _target_volume_db: float = -60, _player: AudioStreamPlayer = active_player, _stop: bool = false) -> void:
-	print(active_player)
 	for tween in active_tweens:
 		if tween.has(_player):
 			await tween[1].finished

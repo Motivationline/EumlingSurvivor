@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://ufivfi4021l7" path="res://game/enemies/3-Jungle/bomber/projectile/bomber_projectile.tscn" id="5_qg7p4"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_rkcej"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_ldbtp"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="9_yhsn5"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="10_trurq"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="11_pgmq4"]
 [ext_resource type="AudioStream" uid="uid://cwx0xunov8ayx" path="res://assets/sound/hit_sfx/death_1.wav" id="12_ldbtp"]
@@ -197,14 +196,13 @@ metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 [sub_resource type="SphereShape3D" id="SphereShape3D_xfv6s"]
 radius = 0.32468745
 
-[node name="Bomber" unique_id=1188674474 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_lls7b")]
+[node name="Bomber" unique_id=1188674474 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_lls7b")]
 collision_layer = 64
 collision_mask = 65
 health = 200.0
 difficulty_scaler = SubResource("Resource_5b0h0")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 node_with_animation_tree = NodePath("Visuals/cactushog")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -239,11 +237,8 @@ max_wait_time = 0.5
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=124906281 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("9_yhsn5")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "DeathSpecific"
-needs_to_be_persistent = true
+[node name="PlaySoundDeath" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=2056535194]
+sound_to_play = Array[String](["DeathGeneral", "DeathSpecific"])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=628781066]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329481, 0)

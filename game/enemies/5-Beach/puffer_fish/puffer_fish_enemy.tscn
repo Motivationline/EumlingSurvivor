@@ -176,14 +176,13 @@ metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 [sub_resource type="SphereShape3D" id="SphereShape3D_rult3"]
 radius = 0.5085375
 
-[node name="puffer_fish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_bds3d")]
+[node name="puffer_fish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_bds3d")]
 collision_layer = 64
 collision_mask = 65
 health = 250.0
 difficulty_scaler = SubResource("Resource_dpwa5")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("DecideDistanceState")
@@ -269,22 +268,16 @@ disable = [NodePath("../../../hitboxAttack")]
 next_state = NodePath("../../DecideDistanceState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=1468503555 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundInflate" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1426303043 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("10_hspxw")
 sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "DeathSpecific"
-needs_to_be_persistent = true
-
-[node name="PlaySoundInflate" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=1426303043 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("10_hspxw")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Inflate"
+sound_to_play = Array[String](["Inflate"])
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
-[node name="PlaySoundDeflate" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=1605121598 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundDeflate" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=1605121598 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("10_hspxw")
 sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Deflate"
+sound_to_play = Array[String](["Deflate"])
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1443080195]

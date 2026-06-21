@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_0p1ou"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_4ah3n"]
 [ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-Jungle/sniper/sniper_projectile_enemy.tscn" id="4_3xlw0"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="6_qd5e1"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="6_yptkn"]
 [ext_resource type="Script" uid="uid://2ncl5gd1yn5a" path="res://strategies/event/activate.gd" id="7_yk45h"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="8_58a1e"]
@@ -158,12 +157,11 @@ metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 radius = 0.26123047
 height = 0.7426758
 
-[node name="SniperEnemy" unique_id=1534333626 node_paths=PackedStringArray("hurtbox", "on_death", "on_hurt", "node_with_animation_tree") instance=ExtResource("1_jj26d")]
+[node name="SniperEnemy" unique_id=1534333626 node_paths=PackedStringArray("hurtbox", "on_hurt", "node_with_animation_tree") instance=ExtResource("1_jj26d")]
 health = 150.0
 difficulty_scaler = SubResource("Resource_237j1")
 hurtbox = NodePath("HurtBox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
-on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/PlaySoundHitGeneral")]
+on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/PlaySoundHurt")]
 node_with_animation_tree = NodePath("Visuals/peacock")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -205,17 +203,11 @@ max_wait_time = 0.5
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=890019704 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("6_qd5e1")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Death"
-needs_to_be_persistent = true
-
-[node name="ActivateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=183806540]
+[node name="ActivateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=183806540]
 script = ExtResource("7_yk45h")
 metadata/_custom_type_script = "uid://2ncl5gd1yn5a"
 
-[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1216253066]
+[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=1216253066]
 script = ExtResource("8_58a1e")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Hurt/request": 1
@@ -239,7 +231,7 @@ shape = SubResource("CapsuleShape3D_6lrmx")
 [node name="Slash" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=610684017 instance=ExtResource("13_q1m8v")]
 stream = SubResource("AudioStreamRandomizer_ygu7c")
 
-[node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=1941913015 instance=ExtResource("13_q1m8v")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=1941913015 instance=ExtResource("13_q1m8v")]
 stream = SubResource("AudioStreamRandomizer_lgepu")
 
 [node name="hitboxBase" parent="." index="8" unique_id=355339004 instance=ExtResource("27_0p1ou")]

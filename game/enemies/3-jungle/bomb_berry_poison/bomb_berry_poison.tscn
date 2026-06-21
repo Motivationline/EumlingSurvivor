@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_x66hl"]
 [ext_resource type="PackedScene" uid="uid://7t81qu54b7am" path="res://game/aoes/explosion/berry_explosion_poison_aoe.tscn" id="7_qsr43"]
 [ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="8_x66hl"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="9_wl6h4"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="10_svgcn"]
 [ext_resource type="AudioStream" uid="uid://gux8h75ckcwo" path="res://assets/characters/enemies/bomberry/sounds/charge_1.wav" id="11_r87kj"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="12_1s25r"]
@@ -214,7 +213,7 @@ health = 80.0
 difficulty_scaler = SubResource("Resource_avhu4")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
+on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
 speed = 2.0
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -271,14 +270,10 @@ script = ExtResource("8_x66hl")
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://dj632w22te1th"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=799045015 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("9_wl6h4")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "DeathSpecific"
-needs_to_be_persistent = true
-metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+[node name="PlaySoundDeath" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=2056535194]
+sound_to_play = Array[String](["DeathGeneral", "DeathSpecific"])
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=53671575]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=53671575]
 script = ExtResource("12_1s25r")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 

@@ -99,8 +99,8 @@ stream_3/stream = ExtResource("22_bca82")
 health = 150.0
 ignore_enemy_in_level = true
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("SpawnEntitiesEventStrategy")]
-on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/TriggerHurt")]
+on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("SpawnEntitiesEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerHurt")]
 speed = 0.0
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]

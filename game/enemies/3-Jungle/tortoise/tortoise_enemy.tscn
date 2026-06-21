@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://c03op2rrwafaq" path="res://game/enemies/3-Jungle/tortoise/tortoise_projectile.tscn" id="5_eux68"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_lwqy1"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="7_8vp05"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="9_l76kt"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="10_84v5a"]
 [ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="11_ql6kd"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="12_scaj3"]
@@ -307,7 +306,7 @@ shader = ExtResource("14_mc1rk")
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/width = 0.006
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_62ngo"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6ytl"]
 resource_local_to_scene = true
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_1huhm")
@@ -392,15 +391,14 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.34827587, 1)
 colors = PackedColorArray(0.12941177, 0.3254902, 0.1764706, 1, 0.1764706, 0.43529412, 0.1882353, 1, 0.29803923, 0.5882353, 0.20784314, 1)
 
-[node name="TortoiseEnemy" unique_id=1961314702 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "on_hurt", "node_with_animation_tree") instance=ExtResource("1_5rk5k")]
+[node name="TortoiseEnemy" unique_id=1961314702 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt", "node_with_animation_tree") instance=ExtResource("1_5rk5k")]
 collision_layer = 64
 collision_mask = 65
 health = 320.0
 difficulty_scaler = SubResource("Resource_r6bkk")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/PlaySoundDeathGeneral")]
-on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlaySoundHitGeneral")]
+on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlaySoundHurt")]
 node_with_animation_tree = NodePath("Visuals/tortoise")
 speed = 0.4
 
@@ -445,13 +443,7 @@ time_between_bursts = 0.2
 amount_of_bursts = 2
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=1646321378 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("9_l76kt")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Death"
-needs_to_be_persistent = true
-
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=728218215]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=728218215]
 script = ExtResource("10_84v5a")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
@@ -468,7 +460,7 @@ rotation_strategy = SubResource("Resource_scaj3")
 time_between_bursts = 0.2
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=861193701]
+[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=861193701]
 script = ExtResource("12_scaj3")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/hurt/request": 1
@@ -505,7 +497,7 @@ shape = SubResource("SphereShape3D_fgitk")
 
 [node name="tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1904037027 instance=ExtResource("2_s8eqa")]
 
-[node name="Skeleton3D" parent="Visuals/tortoise/Armature_Tortoise" parent_id_path=PackedInt32Array(1904037027, 1142317907) index="0" unique_id=464183457]
+[node name="Skeleton3D" parent="Visuals/tortoise/Armature_Tortoise" parent_id_path=PackedInt32Array(1904037027, 1821450229) index="0" unique_id=557840926]
 bones/0/position = Vector3(-1.423398e-24, 0.1424511, -6.4104144e-09)
 bones/0/rotation = Quaternion(2.9802322e-08, 9.8607613e-32, -6.617445e-24, 1)
 bones/1/position = Vector3(5.2243773e-25, 0.28947428, 2.3528504e-09)
@@ -696,13 +688,13 @@ bones/92/rotation = Quaternion(0.866433, -0.09795106, -0.4521889, -0.18768226)
 bones/93/position = Vector3(-0.107516035, 0.21416913, -0.4395425)
 bones/93/rotation = Quaternion(0.90565443, -0.043571174, -0.4106814, -0.09608537)
 
-[node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" index="0" unique_id=341822147]
-material_overlay = SubResource("ShaderMaterial_62ngo")
+[node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" index="0" unique_id=1206451371]
+material_overlay = SubResource("ShaderMaterial_i6ytl")
 
 [node name="Shake" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=610131262 instance=ExtResource("16_gjal0")]
 stream = SubResource("AudioStreamRandomizer_dchbn")
 
-[node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=311950094 instance=ExtResource("16_gjal0")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=311950094 instance=ExtResource("16_gjal0")]
 stream = SubResource("AudioStreamRandomizer_mr30t")
 
 [node name="Hurt" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=1977817398 instance=ExtResource("16_gjal0")]

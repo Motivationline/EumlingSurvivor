@@ -201,22 +201,22 @@ on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEv
 on_end_of_life = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_created = [NodePath("EventStrategies/SetTargetsEventStrategy"), NodePath("EventStrategies/PlaySoundLaunch")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=973699872]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=973699872]
 script = ExtResource("2_8m1wd")
 speed = SubResource("Curve_s3316")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="HomingProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1" unique_id=1952474966]
+[node name="HomingProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="1" unique_id=1952474966]
 script = ExtResource("3_ombel")
 velocity_change_rate = 7.0
 is_active = false
 metadata/_custom_type_script = "uid://dyqkij0tfqb8h"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=235622098]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="0" unique_id=235622098]
 script = ExtResource("3_s3316")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="1" unique_id=1259293591]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="1" unique_id=1259293591]
 script = ExtResource("6_t1nwo")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
@@ -225,27 +225,27 @@ script = ExtResource("7_t8dig")
 entity_to_spawn = ExtResource("8_xnlkx")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlaySoundExplosion" type="Node" parent="EventStrategies/OnWorldCollision" index="2" unique_id=2134521212 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundExplosion" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="2" unique_id=2134521212 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("10_nyjh3")
 sound_manager = NodePath("../../../SoundEffectManager")
-sound_to_play = "Explosion"
+sound_to_play = Array[String](["Explosion"])
 needs_to_be_persistent = true
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
-[node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="EventStrategies" index="5" unique_id=1153051525]
+[node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="5" unique_id=1153051525]
 script = ExtResource("8_t1nwo")
 target_property = 2
 metadata/_custom_type_script = "uid://l8142vs0gken"
 
-[node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies" index="6" unique_id=304162077 node_paths=PackedStringArray("targeting_strats")]
+[node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="6" unique_id=304162077 node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("9_t8dig")
 targeting_strats = [NodePath("../UniversalTargetingProjectileTargetStrategy")]
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
-[node name="PlaySoundLaunch" type="Node" parent="EventStrategies" index="7" unique_id=348005013 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundLaunch" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="7" unique_id=348005013 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("10_nyjh3")
 sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Launch"
+sound_to_play = Array[String](["Launch"])
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="Marker3D" type="Marker3D" parent="." index="2" unique_id=306678770]
@@ -267,6 +267,7 @@ shape = SubResource("SphereShape3D_6pk4v")
 
 [node name="SoundEffectManager" type="Node3D" parent="." index="5" unique_id=1480593252]
 script = ExtResource("12_q157s")
+debug = true
 metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
 [node name="Launch" parent="SoundEffectManager" index="0" unique_id=456613416 instance=ExtResource("13_8qaf8")]

@@ -18,7 +18,6 @@
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="12_2wn3u"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="12_6p51q"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="14_7nljg"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="17_xpc6d"]
 [ext_resource type="Material" uid="uid://b0n6j2o6h1iq3" path="res://assets/characters/enemies/boss_turtle/material/cell_shader-boss_turtle.tres" id="18_xpc6d"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="20_oe1bn"]
 [ext_resource type="AudioStream" uid="uid://tmat8rj8l6mt" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_1.wav" id="21_4dvdo"]
@@ -160,14 +159,13 @@ stream_5/stream = ExtResource("56_lau27")
 [sub_resource type="SphereShape3D" id="SphereShape3D_2wn3u"]
 radius = 0.27678946
 
-[node name="TurtleBoss" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_4yckm")]
+[node name="TurtleBoss" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_4yckm")]
 collision_layer = 64
 collision_mask = 65
 health = 1000.0
 incoming_damage_multiplier = 1.5
 hitbox = NodePath("Visuals/Hitbox")
 hurtbox = NodePath("Visuals/Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 node_with_animation_tree = NodePath("Visuals/boss_turtle")
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
@@ -336,13 +334,6 @@ animation_trigger = Dictionary[String, Variant]({
 "parameters/LocomotionShell/transition_request": "reveal"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=774816934 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("17_xpc6d")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "DeathSpecific"
-needs_to_be_persistent = true
-metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("4_7yf88")]
 

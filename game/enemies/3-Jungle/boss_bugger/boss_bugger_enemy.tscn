@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jhi1l"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="2_3utvs"]
-[ext_resource type="Script" uid="uid://cu4a5yufjkwhv" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
+[ext_resource type="Script" uid="uid://d08yjq57yklyp" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_ectag"]
 [ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="3_unkqv"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="3_vgowq"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_fi40l"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_csjgc"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_c2xk5"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="13_g2myh"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="18_jtynk"]
 [ext_resource type="AudioStream" uid="uid://oq4qaex1werm" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/death_1.wav" id="18_per2j"]
 [ext_resource type="AudioStream" uid="uid://bpb0fhuxytiwm" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/death_2.wav" id="19_sxkrg"]
@@ -40,23 +39,6 @@
 [ext_resource type="AudioStream" uid="uid://dtj8jld0l7f2o" path="res://assets/characters/enemies/bossbugger/sounds/nobuzz/shoot_4.wav" id="38_2vayj"]
 [ext_resource type="AudioStream" uid="uid://cfvfrshossywq" path="res://assets/characters/enemies/bossbugger/sounds/nobuzz/shoot_5.wav" id="39_iv24j"]
 [ext_resource type="AudioStream" uid="uid://hcebx7xo1yi5" path="res://assets/characters/enemies/bossbugger/sounds/nobuzz/shoot_6.wav" id="40_nbo7b"]
-[ext_resource type="AudioStream" uid="uid://dwp0ucpq3nv0r" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_1.wav" id="41_g47vx"]
-[ext_resource type="AudioStream" uid="uid://ditofn4wbkokk" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_2.wav" id="42_aps2w"]
-[ext_resource type="AudioStream" uid="uid://d2o7xjvnjk035" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_3.wav" id="43_4wam7"]
-[ext_resource type="AudioStream" uid="uid://fler7amc8c2v" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_4.wav" id="44_n68pm"]
-[ext_resource type="AudioStream" uid="uid://bhodppuceexwp" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_5.wav" id="45_0ppfs"]
-[ext_resource type="AudioStream" uid="uid://y6ojs2c2w46w" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/slash_6.wav" id="46_bdgox"]
-[ext_resource type="AudioStream" uid="uid://yfbah4eqpc3c" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/refill_1.wav" id="47_v5ht8"]
-[ext_resource type="AudioStream" uid="uid://baem7nyjyb463" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/refill_2.wav" id="48_ghqoa"]
-[ext_resource type="AudioStream" uid="uid://dq2kt14kgyak3" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/refill_3.wav" id="49_dnhg8"]
-[ext_resource type="AudioStream" uid="uid://dmr8jjwqajdw3" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/refill_4.wav" id="50_imvi6"]
-[ext_resource type="AudioStream" uid="uid://dux3und2jd6jl" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/refill_5.wav" id="51_kxbml"]
-[ext_resource type="AudioStream" uid="uid://b43ty5yydh5s3" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_1.wav" id="52_agkon"]
-[ext_resource type="AudioStream" uid="uid://85lbbm1tebtw" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_2.wav" id="53_sv2bi"]
-[ext_resource type="AudioStream" uid="uid://c4r8fr1tuitx8" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_3.wav" id="54_md41n"]
-[ext_resource type="AudioStream" uid="uid://dsqqvtwgxaig8" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_4.wav" id="55_mmcwh"]
-[ext_resource type="AudioStream" uid="uid://cpxaljlk8w8d" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_5.wav" id="56_ajqdm"]
-[ext_resource type="AudioStream" uid="uid://q2wkde13g76u" path="res://assets/characters/enemies/bossbugger/sounds/withbuzz/shoot_6.wav" id="57_mp4ge"]
 
 [sub_resource type="Resource" id="Resource_0v3ys"]
 script = ExtResource("12_csjgc")
@@ -128,44 +110,13 @@ stream_3/stream = ExtResource("38_2vayj")
 stream_4/stream = ExtResource("39_iv24j")
 stream_5/stream = ExtResource("40_nbo7b")
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1djkc"]
-random_volume_offset_db = 1.0
-streams_count = 6
-stream_0/stream = ExtResource("41_g47vx")
-stream_1/stream = ExtResource("42_aps2w")
-stream_2/stream = ExtResource("43_4wam7")
-stream_3/stream = ExtResource("44_n68pm")
-stream_4/stream = ExtResource("45_0ppfs")
-stream_5/stream = ExtResource("46_bdgox")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_blm30"]
-random_volume_offset_db = 1.0
-streams_count = 5
-stream_0/stream = ExtResource("47_v5ht8")
-stream_1/stream = ExtResource("48_ghqoa")
-stream_2/stream = ExtResource("49_dnhg8")
-stream_3/stream = ExtResource("50_imvi6")
-stream_4/stream = ExtResource("51_kxbml")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jsiqs"]
-playback_mode = 1
-random_volume_offset_db = 1.0
-streams_count = 6
-stream_0/stream = ExtResource("52_agkon")
-stream_1/stream = ExtResource("53_sv2bi")
-stream_2/stream = ExtResource("54_md41n")
-stream_3/stream = ExtResource("55_mmcwh")
-stream_4/stream = ExtResource("56_ajqdm")
-stream_5/stream = ExtResource("57_mp4ge")
-
-[node name="BossBugger" unique_id=651925094 node_paths=PackedStringArray("hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_jhi1l")]
+[node name="BossBugger" unique_id=651925094 node_paths=PackedStringArray("hurtbox", "node_with_animation_tree") instance=ExtResource("1_jhi1l")]
 collision_layer = 64
 collision_mask = 65
 script = ExtResource("2_unkqv")
 MAX_FILL = 9.0
 health = 800.0
 hurtbox = NodePath("HurtBox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/PlaySoundDeathGeneral")]
 node_with_animation_tree = NodePath("Visuals/BossBugger")
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
@@ -399,12 +350,6 @@ target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=1869887272 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("13_g2myh")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Death"
-needs_to_be_persistent = true
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1675406726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)
 shape = SubResource("CapsuleShape3D_fngux")
@@ -436,7 +381,7 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("3_vgowq")]
 
-[node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1216685563 instance=ExtResource("18_jtynk")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1216685563 instance=ExtResource("18_jtynk")]
 stream = SubResource("AudioStreamRandomizer_7rhsi")
 
 [node name="Buzz" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=596778459 instance=ExtResource("18_jtynk")]
@@ -454,16 +399,5 @@ volume_db = 0.0
 [node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="6" unique_id=2101134799 instance=ExtResource("18_jtynk")]
 stream = SubResource("AudioStreamRandomizer_qun2s")
 volume_db = -10.0
-
-[node name="withBuzz" type="Node" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="7" unique_id=348531999]
-
-[node name="Slash" parent="SoundEffectManager/withBuzz" index="0" unique_id=488495859 instance=ExtResource("18_jtynk")]
-stream = SubResource("AudioStreamRandomizer_1djkc")
-
-[node name="Refill" parent="SoundEffectManager/withBuzz" index="1" unique_id=1033688375 instance=ExtResource("18_jtynk")]
-stream = SubResource("AudioStreamRandomizer_blm30")
-
-[node name="Shoot" parent="SoundEffectManager/withBuzz" index="2" unique_id=2058732703 instance=ExtResource("18_jtynk")]
-stream = SubResource("AudioStreamRandomizer_jsiqs")
 
 [connection signal="play_sound" from="Visuals/BossBugger" to="SoundEffectManager" method="play_sound"]

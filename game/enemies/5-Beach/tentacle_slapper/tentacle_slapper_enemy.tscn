@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cobx6obdkk5ja" path="res://assets/characters/enemies/squid/squid/squid_prefab.tscn" id="7_8scmy"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="7_ehia0"]
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="7_f2r6p"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="12_30yp5"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_52e3t"]
 [ext_resource type="AudioStream" uid="uid://bnxax3xh1ah3i" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_1.wav" id="14_03chf"]
 [ext_resource type="AudioStream" uid="uid://c0xnnjtum0jlc" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_2.wav" id="15_n8f8l"]
@@ -147,13 +146,12 @@ radius = 0.5125733
 [sub_resource type="SphereShape3D" id="SphereShape3D_280ev"]
 radius = 0.74622554
 
-[node name="tentacle_slapper" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "on_hurt") instance=ExtResource("1_qgdlt")]
+[node name="tentacle_slapper" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_qgdlt")]
 health = 150.0
 difficulty_scaler = SubResource("Resource_0x3t0")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
-on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("SpawnWait")
@@ -241,13 +239,6 @@ state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/OnHit/ActivatorState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=1868866727 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("12_30yp5")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Death"
-needs_to_be_persistent = true
-metadata/_custom_type_script = "uid://dc33apjfi7s6v"
-
 [node name="squid" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=697439437 instance=ExtResource("7_8scmy")]
 
 [node name="Appear" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1952633455 instance=ExtResource("13_52e3t")]
@@ -262,7 +253,7 @@ volume_db = -5.0
 stream = SubResource("AudioStreamRandomizer_qpc14")
 volume_db = -3.0
 
-[node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=198879947 instance=ExtResource("13_52e3t")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=198879947 instance=ExtResource("13_52e3t")]
 stream = SubResource("AudioStreamRandomizer_xstyl")
 volume_db = 0.0
 

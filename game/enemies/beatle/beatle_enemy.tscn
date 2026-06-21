@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_fs8yq"]
 [ext_resource type="PackedScene" uid="uid://bu3a5g7w20saj" path="res://game/enemies/beatle/dummy_attack_visual_enemy.tscn" id="8_n4sta"]
 [ext_resource type="PackedScene" uid="uid://cnvxyg3ysg7tf" path="res://game/enemies/beatle/pol_vfx.tscn" id="10_fs8yq"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="11_7j3v0"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="17_5mrum"]
 [ext_resource type="AudioStream" uid="uid://cklk8brngu3gh" path="res://assets/characters/enemies/rhino/sounds/buckle_up_1.wav" id="34_xmapy"]
 [ext_resource type="AudioStream" uid="uid://cs8p5h7ycx64p" path="res://assets/characters/enemies/rhino/sounds/buckle_up_2.wav" id="35_2b6o8"]
@@ -181,14 +180,13 @@ stream_3/stream = ExtResource("56_5gpyg")
 stream_4/stream = ExtResource("57_f1jgr")
 stream_5/stream = ExtResource("58_4uioj")
 
-[node name="Beatle" unique_id=306559295 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_bghrv")]
+[node name="Beatle" unique_id=306559295 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_bghrv")]
 collision_layer = 80
 collision_mask = 577
 health = 250.0
 difficulty_scaler = SubResource("Resource_wm7kt")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 node_with_animation_tree = NodePath("Visuals/rhino")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -275,12 +273,6 @@ script = ExtResource("7_fs8yq")
 entity_to_spawn = ExtResource("10_fs8yq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=416844537 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("11_7j3v0")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Death"
-needs_to_be_persistent = true
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=2139522427]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20420316, 0)
 shape = SubResource("SphereShape3D_n4sta")
@@ -325,7 +317,7 @@ stream = SubResource("AudioStreamRandomizer_jdxf2")
 [node name="ImpactGeneral" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=2086640730 instance=ExtResource("17_5mrum")]
 stream = SubResource("AudioStreamRandomizer_q8p6g")
 
-[node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=1259281917 instance=ExtResource("17_5mrum")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=1259281917 instance=ExtResource("17_5mrum")]
 stream = SubResource("AudioStreamRandomizer_pw7qf")
 
 [connection signal="play_sound" from="Visuals/rhino" to="SoundEffectManager" method="play_sound"]

@@ -8,9 +8,25 @@
 [ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="4_7qhmb"]
 [ext_resource type="Script" uid="uid://y7luksnh2gwr" path="res://strategies/event_emitter/raycast_event_emitter.gd" id="4_pdoqc"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="5_03efp"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="6_2p184"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="6_03efp"]
+[ext_resource type="Script" uid="uid://6312uopesj43" path="res://strategies/event/enemy/stop_sound.gd" id="9_fij12"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_tkqte"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_f8btt"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="12_k0gop"]
+[ext_resource type="AudioStream" uid="uid://qq4wj771dm6p" path="res://assets/characters/enemies/lizard/sounds/death_1.wav" id="13_hihx2"]
+[ext_resource type="AudioStream" uid="uid://b7xco8ekbhrl8" path="res://assets/characters/enemies/lizard/sounds/death_2.wav" id="14_omowg"]
+[ext_resource type="AudioStream" uid="uid://lrligw736315" path="res://assets/characters/enemies/lizard/sounds/death_3.wav" id="15_psj8g"]
+[ext_resource type="AudioStream" uid="uid://cxfc4ebf76ifi" path="res://assets/characters/enemies/lizard/sounds/death_4.wav" id="16_1h6r3"]
+[ext_resource type="AudioStream" uid="uid://cvodmhsn2fc84" path="res://assets/characters/enemies/lizard/sounds/death_5.wav" id="17_03b08"]
+[ext_resource type="AudioStream" uid="uid://cev0dmnfcl7mb" path="res://assets/characters/enemies/lizard/sounds/death_6.wav" id="18_4epgm"]
+[ext_resource type="AudioStream" uid="uid://oiu4xlkhx1pl" path="res://assets/characters/enemies/lizard/sounds/charge_1.wav" id="19_7cldw"]
+[ext_resource type="AudioStream" uid="uid://b063qylwdsdqq" path="res://assets/characters/enemies/lizard/sounds/charge_2.wav" id="20_c0vlg"]
+[ext_resource type="AudioStream" uid="uid://davfdtni3y7yv" path="res://assets/characters/enemies/lizard/sounds/charge_3.wav" id="21_weim4"]
+[ext_resource type="AudioStream" uid="uid://kgiwn5rlfayi" path="res://assets/characters/enemies/lizard/sounds/charge_4.wav" id="22_5uxrm"]
+[ext_resource type="AudioStream" uid="uid://d0s1hxphaig7e" path="res://assets/characters/enemies/lizard/sounds/charge_5.wav" id="23_x3cos"]
+[ext_resource type="AudioStream" uid="uid://gmw6bkurkcl8" path="res://assets/characters/enemies/lizard/sounds/charge_6.wav" id="24_udtsp"]
+[ext_resource type="AudioStream" uid="uid://cbkdqfu4lmuy0" path="res://assets/characters/enemies/lizard/sounds/dash_loop.wav" id="25_b7u1r"]
 
 [sub_resource type="Resource" id="Resource_f8btt"]
 script = ExtResource("5_03efp")
@@ -68,6 +84,24 @@ attribute = "speed"
 value = 1.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xi0i5"]
+streams_count = 6
+stream_0/stream = ExtResource("13_hihx2")
+stream_1/stream = ExtResource("14_omowg")
+stream_2/stream = ExtResource("15_psj8g")
+stream_3/stream = ExtResource("16_1h6r3")
+stream_4/stream = ExtResource("17_03b08")
+stream_5/stream = ExtResource("18_4epgm")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4ctwp"]
+streams_count = 6
+stream_0/stream = ExtResource("19_7cldw")
+stream_1/stream = ExtResource("20_c0vlg")
+stream_2/stream = ExtResource("21_weim4")
+stream_3/stream = ExtResource("22_5uxrm")
+stream_4/stream = ExtResource("23_x3cos")
+stream_5/stream = ExtResource("24_udtsp")
+
 [sub_resource type="Resource" id="Resource_ewb6w"]
 script = ExtResource("5_03efp")
 attribute = "damage"
@@ -122,35 +156,50 @@ next_state = NodePath("../TriggerEventState")
 
 [node name="TriggerEventState" type="Node" parent="StateMachine" index="1" unique_id=1850581144 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("3_03efp")
-events = [NodePath("../../Eventlisteners/SlowEvent")]
+events = [NodePath("../../Eventlisteners/SlowEvent"), NodePath("../../Eventlisteners/StopSoundEventStrategy")]
 next_state = NodePath("../MoveHorizontalVerticalState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "run_slow"
 })
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
-[node name="FastEvent" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=670773985]
+[node name="PlaySoundDeath" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=2056535194]
+sound_to_play = Array[String](["DeathGeneral", "DeathSpecific"])
+
+[node name="StopSoundEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=943106852 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("9_fij12")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_stop = Array[String](["DashLoop"])
+metadata/_custom_type_script = "uid://6312uopesj43"
+
+[node name="FastEvent" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=670773985]
 script = ExtResource("4_7qhmb")
 changes = Array[ExtResource("5_03efp")]([SubResource("Resource_bfwf6")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
-[node name="SlowEvent" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=1223289867]
+[node name="SlowEvent" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=1223289867]
 script = ExtResource("4_7qhmb")
 changes = Array[ExtResource("5_03efp")]([SubResource("Resource_tkqte")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
-[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=1673902286]
+[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="5" unique_id=1673902286]
 script = ExtResource("6_03efp")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "run_fast"
 })
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
+[node name="PlaySoundEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="6" unique_id=1063409176 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("6_2p184")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = Array[String](["DashStart", "DashLoop"])
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
 [node name="RaycastEventEmitter" type="Node" parent="EventEmitters" parent_id_path=PackedInt32Array(1816335374) index="0" unique_id=1794461559 node_paths=PackedStringArray("ray", "listeners")]
 script = ExtResource("4_pdoqc")
 ray = NodePath("../../Visuals/RayCast3D")
 trigger_mode = "repeating"
-listeners = [NodePath("../../Eventlisteners/FastEvent"), NodePath("../../Eventlisteners/PlayAnimationEventStrategy")]
+listeners = [NodePath("../../Eventlisteners/FastEvent"), NodePath("../../Eventlisteners/PlayAnimationEventStrategy"), null]
 metadata/_custom_type_script = "uid://y7luksnh2gwr"
 
 [node name="lizard" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1314517611 instance=ExtResource("2_7gjff")]
@@ -165,6 +214,19 @@ collision_mask = 529
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.24929065, 0)
 target_position = Vector3(0, -8, 0)
 collision_mask = 2
+
+[node name="SoundEffectManager" parent="." index="5" unique_id=212820490]
+debug = true
+
+[node name="DeathSpecific" parent="SoundEffectManager" index="2" unique_id=173297068 instance=ExtResource("12_k0gop")]
+stream = SubResource("AudioStreamRandomizer_xi0i5")
+volume_db = 20.0
+
+[node name="DashStart" parent="SoundEffectManager" index="3" unique_id=414695467 instance=ExtResource("12_k0gop")]
+stream = SubResource("AudioStreamRandomizer_4ctwp")
+
+[node name="DashLoop" parent="SoundEffectManager" index="4" unique_id=345722284 instance=ExtResource("12_k0gop")]
+stream = ExtResource("25_b7u1r")
 
 [node name="hitboxBase" parent="." index="7" unique_id=597015863 instance=ExtResource("9_tkqte")]
 collision_layer = 32

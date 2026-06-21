@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://dyq7e4rvvp1nu" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_projectile_easy.tscn" id="10_x6iwq"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="11_ct7ls"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="12_ps3lq"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="13_h2wra"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="14_iwrf2"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="15_ekbei"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="16_ofchx"]
@@ -186,7 +185,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(0.06543308, 0.07562085)
+shader_parameter/wobble = Vector2(-0.095953606, -0.028158588)
 
 [sub_resource type="Gradient" id="Gradient_qqlxf"]
 offsets = PackedFloat32Array(0.5364583, 0.71875, 0.7760417)
@@ -275,14 +274,13 @@ stream_3/stream = ExtResource("38_ox3ef")
 stream_4/stream = ExtResource("39_ve806")
 stream_5/stream = ExtResource("40_dwtrh")
 
-[node name="BossBugger" unique_id=651925094 node_paths=PackedStringArray("hurtbox", "on_death", "node_with_animation_tree") instance=ExtResource("1_bnr80")]
+[node name="BossBugger" unique_id=651925094 node_paths=PackedStringArray("hurtbox", "node_with_animation_tree") instance=ExtResource("1_bnr80")]
 collision_layer = 64
 collision_mask = 65
 script = ExtResource("2_8h61i")
 MAX_FILL = 9.0
 health = 600.0
 hurtbox = NodePath("HurtBox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathSpecific"), NodePath("Eventlisteners/PlaySoundDeathGeneral")]
 node_with_animation_tree = NodePath("Visuals/BossBugger")
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
@@ -534,12 +532,6 @@ time_between_bursts = 0.2
 amount_of_bursts = 2
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=1869887272 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("13_h2wra")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Death"
-needs_to_be_persistent = true
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1675406726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)
 shape = SubResource("CapsuleShape3D_fngux")
@@ -571,90 +563,90 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("16_ofchx")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 342164126) index="0" unique_id=2061914468]
-bones/0/position = Vector3(1.5046328e-36, 1.2612485, -3.7835768e-22)
-bones/0/rotation = Quaternion(0.99985784, 7.706882e-10, -4.568909e-08, 0.016865736)
-bones/1/position = Vector3(3.6727084e-16, 1.2612484, 4.0186694e-09)
-bones/1/rotation = Quaternion(-0.016865619, -2.9798086e-08, 2.0440118e-09, 0.99985784)
-bones/1/scale = Vector3(1.0197023, 0.961759, 1.0197023)
-bones/2/position = Vector3(7.997013e-12, 1.258641, 8.750315e-05)
-bones/2/rotation = Quaternion(-0.016865665, 1.1919234e-07, -4.691724e-10, 0.99985784)
-bones/2/scale = Vector3(1.0197023, 0.9617589, 1.0197023)
-bones/4/position = Vector3(6.944328e-10, 1.036075, 0.0075984676)
-bones/4/rotation = Quaternion(0.99443775, 1.5298443e-09, -1.8817659e-10, -0.10532622)
-bones/5/position = Vector3(1.2146883e-09, 0.8672146, -0.028577335)
-bones/5/rotation = Quaternion(0.9689163, -2.8862438e-08, 0, 0.24738923)
-bones/6/position = Vector3(-6.3760663e-09, 0.7480987, 0.03649124)
-bones/6/rotation = Quaternion(0.9329148, -2.8159766e-08, 3.5418068e-10, 0.3600972)
-bones/7/position = Vector3(-1.47986485e-08, 0.629903, 0.14371055)
-bones/7/rotation = Quaternion(0.8838533, -2.8004719e-08, -2.9922416e-09, 0.46776432)
-bones/8/position = Vector3(-2.2056867e-08, 0.5424098, 0.2723478)
-bones/8/rotation = Quaternion(0.82241845, -2.7453376e-08, -6.296812e-09, 0.568883)
-bones/9/position = Vector3(-2.853884e-08, 0.48207462, 0.43239188)
-bones/9/rotation = Quaternion(0.6055837, -2.4117227e-08, -1.4531512e-08, 0.7957817)
-bones/10/position = Vector3(-2.943694e-08, 0.52202266, 0.5767902)
-bones/10/rotation = Quaternion(0.32900035, -1.8257742e-08, -2.1338748e-08, 0.9443299)
-bones/11/position = Vector3(-2.461092e-08, 0.654109, 0.6801045)
-bones/11/rotation = Quaternion(0.020011669, -1.0935835e-08, -2.5960126e-08, 0.9997997)
-bones/12/position = Vector3(-1.5866009e-08, 0.82474124, 0.6880664)
-bones/12/rotation = Quaternion(0.2909303, 3.7688466e-09, -4.584308e-08, -0.95674425)
-bones/13/position = Vector3(-3.0197125e-08, 0.96273696, 0.5956041)
-bones/13/rotation = Quaternion(0.68014884, 2.6636211e-08, -2.9075457e-08, -0.73307407)
-bones/14/position = Vector3(-3.1234503e-08, 0.9744353, 0.43977427)
-bones/14/rotation = Quaternion(0.93230414, 5.119329e-08, -8.594505e-09, -0.36167523)
-bones/15/position = Vector3(-1.7360234e-08, 0.8603005, 0.3355184)
-bones/15/rotation = Quaternion(0.99658215, 6.54338e-08, 1.36183065e-08, 0.08260882)
-bones/16/position = Vector3(3.3618446e-09, 0.70199347, 0.3619341)
-bones/16/rotation = Quaternion(0.8600293, 6.648824e-08, 3.3086785e-08, 0.5102447)
-bones/17/position = Vector3(-0.2242329, 1.106249, -0.07042)
-bones/17/rotation = Quaternion(-0.7483516, 0.00022102824, 0.0002493722, 0.6633022)
-bones/18/position = Vector3(-0.2242329, 1.106249, -0.07042)
-bones/18/rotation = Quaternion(-0.6972763, 0.19996506, -0.20189962, 0.65807015)
-bones/19/position = Vector3(-0.24529767, 1.2611952, -0.0015762259)
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 270330704) index="0" unique_id=959549933]
+bones/0/position = Vector3(1.5046328e-36, 1.2399267, -4.3068544e-22)
+bones/0/rotation = Quaternion(0.99518186, -4.4933417e-09, -4.5475407e-08, 0.09804666)
+bones/1/position = Vector3(-3.095323e-18, 1.2399266, 2.3263489e-08)
+bones/1/rotation = Quaternion(-0.09804668, -2.9658729e-08, 2.9089773e-09, 0.99518186)
+bones/1/scale = Vector3(1.0256834, 0.9505484, 1.0256834)
+bones/2/position = Vector3(-6.750633e-14, 1.2373967, 0.0005033994)
+bones/2/rotation = Quaternion(-0.09804669, 1.1863489e-07, -1.1701104e-08, 0.99518186)
+bones/2/scale = Vector3(1.0256834, 0.95054835, 1.0256834)
+bones/4/position = Vector3(-5.8526122e-12, 1.0188606, 0.043986417)
+bones/4/rotation = Quaternion(0.9997077, -1.29435395e-11, 1.5916163e-12, -0.024181638)
+bones/5/position = Vector3(-1.0308444e-11, 0.8462954, 0.035633262)
+bones/5/rotation = Quaternion(0.945892, -4.8814893e-08, 0, 0.32448193)
+bones/6/position = Vector3(-1.2546159e-08, 0.739133, 0.11896198)
+bones/6/rotation = Quaternion(0.8631451, -4.699535e-08, -3.1680791e-09, 0.50495595)
+bones/7/position = Vector3(-2.4988186e-08, 0.6608898, 0.2581436)
+bones/7/rotation = Quaternion(0.74637526, -4.544307e-08, -1.2391952e-08, 0.66552544)
+bones/8/position = Vector3(-3.2983692e-08, 0.6431089, 0.41288513)
+bones/8/rotation = Quaternion(0.6001847, -4.209878e-08, -2.1127269e-08, 0.79986143)
+bones/9/position = Vector3(-3.584999e-08, 0.69102526, 0.5774582)
+bones/9/rotation = Quaternion(0.2727065, -3.1695443e-08, -3.4843758e-08, 0.9620973)
+bones/10/position = Vector3(-2.837225e-08, 0.81891227, 0.65629363)
+bones/10/rotation = Quaternion(0.09119499, 1.7058188e-08, 4.3905864e-08, -0.9958331)
+bones/11/position = Vector3(-1.3101339e-08, 0.98472846, 0.62567055)
+bones/11/rotation = Quaternion(0.44291598, 1.4217251e-10, 4.710312e-08, -0.89656323)
+bones/12/position = Vector3(1.0823924e-09, 1.0888907, 0.48871112)
+bones/12/rotation = Quaternion(0.7354804, -5.4742234e-08, -3.2795782e-08, -0.677546)
+bones/13/position = Vector3(-1.9442037e-08, 1.0755278, 0.32277435)
+bones/13/rotation = Quaternion(0.9577697, -2.6808205e-08, -4.600278e-08, -0.2875366)
+bones/14/position = Vector3(-3.1665234e-08, 0.94445336, 0.23627052)
+bones/14/rotation = Quaternion(0.9870495, 1.15260335e-08, -5.5364556e-08, 0.1604161)
+bones/15/position = Vector3(-2.5356785e-08, 0.79709417, 0.28546172)
+bones/15/rotation = Quaternion(0.8174194, 4.753766e-08, -5.356931e-08, 0.57604307)
+bones/16/position = Vector3(-2.843702e-09, 0.7428373, 0.4373566)
+bones/16/rotation = Quaternion(0.48306382, 7.396939e-08, -4.0978854e-08, 0.87558526)
+bones/17/position = Vector3(-0.2242329, 1.0754967, -0.04440583)
+bones/17/rotation = Quaternion(-0.7441618, 0.000220417, 0.00024554812, 0.6679993)
+bones/18/position = Vector3(-0.22423288, 1.0754967, -0.04440583)
+bones/18/rotation = Quaternion(-0.74843806, 0.18289995, -0.21747898, 0.59924215)
+bones/19/position = Vector3(-0.24529767, 1.2396187, -0.0015474549)
 bones/19/rotation = Quaternion(-0.49805066, 0.5375024, -0.4991323, -0.4624973)
-bones/20/position = Vector3(-0.7441626, 1.261195, 0.03648962)
-bones/21/position = Vector3(-1.2430276, 1.261195, 0.074555464)
-bones/22/position = Vector3(-0.13967307, 1.182899, 0.121786565)
+bones/20/position = Vector3(-0.7441626, 1.2396184, 0.03651839)
+bones/21/position = Vector3(-1.2430276, 1.2396184, 0.07458423)
+bones/22/position = Vector3(-0.13967307, 1.182311, 0.13292603)
 bones/22/rotation = Quaternion(-0.37833884, 0.6275533, -0.5827548, -0.35133108)
-bones/23/position = Vector3(-0.5821192, 1.1828988, 0.35535994)
-bones/24/position = Vector3(-1.0245653, 1.1828988, 0.5889332)
-bones/25/position = Vector3(0.2242329, 1.106249, -0.07042)
-bones/25/rotation = Quaternion(-0.74835163, -0.00022102824, -0.0002493722, 0.6633021)
-bones/26/position = Vector3(0.2242329, 1.106249, -0.07042)
-bones/26/rotation = Quaternion(-0.7070962, -0.1802687, 0.17992175, 0.65965617)
-bones/27/position = Vector3(-0.08559791, 1.0943487, 0.089772604)
-bones/28/position = Vector3(-0.24635461, 0.9328243, 0.101984546)
-bones/29/position = Vector3(-0.3914069, 0.8239097, 0.089772604)
-bones/30/position = Vector3(-0.35764232, 0.78857464, 0.08977261)
-bones/31/position = Vector3(0.24529767, 1.2611952, -0.0015762259)
-bones/32/position = Vector3(0.7441626, 1.261195, 0.03648962)
-bones/33/position = Vector3(1.2430276, 1.261195, 0.074555464)
-bones/34/position = Vector3(0.13967304, 1.182899, 0.12178657)
-bones/35/position = Vector3(0.58211917, 1.1828988, 0.3553599)
-bones/36/position = Vector3(1.0245652, 1.1828988, 0.5889332)
+bones/23/position = Vector3(-0.5821192, 1.1823108, 0.36649936)
+bones/24/position = Vector3(-1.0245652, 1.1823108, 0.6000727)
+bones/25/position = Vector3(0.2242329, 1.0754968, -0.044405825)
+bones/25/rotation = Quaternion(-0.7441618, -0.000220417, -0.00024554812, 0.6679993)
+bones/26/position = Vector3(0.22423291, 1.0754968, -0.04440582)
+bones/26/rotation = Quaternion(-0.7583545, -0.1650544, 0.19397344, 0.60002494)
+bones/27/position = Vector3(-0.08559791, 1.0897046, 0.11566881)
+bones/28/position = Vector3(-0.24635461, 0.9281803, 0.12788074)
+bones/29/position = Vector3(-0.3914069, 0.81926566, 0.1156688)
+bones/30/position = Vector3(-0.35764232, 0.7839306, 0.11566881)
+bones/31/position = Vector3(0.24529767, 1.2396187, -0.0015474549)
+bones/32/position = Vector3(0.7441626, 1.2396184, 0.03651839)
+bones/33/position = Vector3(1.2430276, 1.2396184, 0.07458423)
+bones/34/position = Vector3(0.13967304, 1.182311, 0.13292603)
+bones/35/position = Vector3(0.5821192, 1.1823108, 0.36649942)
+bones/36/position = Vector3(1.0245652, 1.1823108, 0.60007274)
 
 [node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0" unique_id=160595167]
-transform = Transform3D(1.0197023, -2.964434e-09, 2.4306297e-07, -5.0564255e-09, 0.96121174, 0.034391023, -2.4303068e-07, -0.03243679, 1.0191221, 7.997013e-12, 1.258641, 8.750315e-05)
+transform = Transform3D(1.0256834, 2.4653979e-11, 2.4454454e-07, -4.7748607e-08, 0.9322728, 0.20016065, -2.3983765e-07, -0.18549815, 1.0059633, -6.750633e-14, 1.2373967, 0.0005033994)
 
 [node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" index="0" unique_id=450284212]
 material_override = SubResource("ShaderMaterial_urikr")
 
-[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=514735871]
+[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=1577171587]
 mesh = SubResource("ArrayMesh_30o50")
 
 [node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2" unique_id=525651175]
-transform = Transform3D(-0.07608365, -0.99710137, -4.4703484e-07, -0.07371219, 0.0056250687, -0.99726367, 0.994373, -0.07587548, -0.07392645, -0.24529767, 1.2611952, -0.0015762259)
+transform = Transform3D(-0.07608365, -0.99710137, -4.4703484e-07, -0.07371219, 0.0056250687, -0.99726367, 0.994373, -0.07587548, -0.07392645, -0.24529767, 1.2396187, -0.0015474549)
 
 [node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="3" unique_id=2129402415]
-transform = Transform3D(-0.46685255, -0.8843353, -4.172325e-07, -0.065375835, 0.034513116, -0.9972638, 0.8819155, -0.46557498, -0.07392681, -0.13967307, 1.182899, 0.121786565)
+transform = Transform3D(-0.46685255, -0.8843353, -4.172325e-07, -0.065375835, 0.034513116, -0.9972638, 0.8819155, -0.46557498, -0.07392681, -0.13967307, 1.182311, 0.13292603)
 
 [node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="4" unique_id=1002716327]
-transform = Transform3D(-0.07608401, 0.99710137, 5.066394e-07, 5.9604638e-08, -4.7683713e-07, 0.99999994, 0.9971013, 0.07608398, 0, 0.24529767, 1.2611952, -0.0015762259)
+transform = Transform3D(-0.07608401, 0.99710137, 5.066394e-07, 5.9604638e-08, -4.7683713e-07, 0.99999994, 0.9971013, 0.07608398, 0, 0.24529767, 1.2396187, -0.0015474549)
 
 [node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="5" unique_id=831899753]
-transform = Transform3D(-0.46685255, 0.8843351, 3.5762787e-07, -5.9604645e-08, -4.7683716e-07, 1, 0.8843351, 0.46685258, 2.9802322e-07, 0.13967304, 1.182899, 0.12178657)
+transform = Transform3D(-0.46685255, 0.8843351, 3.5762787e-07, -5.9604645e-08, -4.7683716e-07, 1, 0.8843351, 0.46685258, 2.9802322e-07, 0.13967304, 1.182311, 0.13292603)
 
-[node name="Death" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1216685563 instance=ExtResource("17_7htsj")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1216685563 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_7rhsi")
 
 [node name="Buzz" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=596778459 instance=ExtResource("17_7htsj")]

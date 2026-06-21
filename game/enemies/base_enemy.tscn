@@ -53,8 +53,8 @@ script = ExtResource("1_axhys")
 health = 10.0
 death_effect = ExtResource("2_l5jqn")
 status_visuals = NodePath("StatusVisuals3DEnemy")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral")]
-on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral")]
+on_death = [NodePath("Eventlisteners/PlaySoundDeath")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundHurt")]
 state_machine = NodePath("StateMachine")
 
 [node name="StatusVisuals3DEnemy" parent="." unique_id=691291944 instance=ExtResource("3_qbujc")]
@@ -66,16 +66,16 @@ metadata/_custom_type_script = "uid://cio21hucnk80k"
 
 [node name="Eventlisteners" type="Node" parent="." unique_id=1073347732]
 
-[node name="PlaySoundDeathGeneral" type="Node" parent="Eventlisteners" unique_id=2056535194 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundDeath" type="Node" parent="Eventlisteners" unique_id=2056535194 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("5_4ghmt")
 sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "DeathGeneral"
+sound_to_play = Array[String](["DeathGeneral", "DeathSpecific"])
 needs_to_be_persistent = true
 
-[node name="PlaySoundHitGeneral" type="Node" parent="Eventlisteners" unique_id=75111653 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundHurt" type="Node" parent="Eventlisteners" unique_id=75111653 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("5_4ghmt")
 sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "Hit"
+sound_to_play = Array[String](["Hit"])
 
 [node name="EventEmitters" type="Node" parent="." unique_id=1816335374]
 

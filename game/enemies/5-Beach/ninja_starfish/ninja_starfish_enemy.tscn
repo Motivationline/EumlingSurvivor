@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_gykbi"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="3_ybqk6"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_gykbi"]
-[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="5_euktn"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="8_5s5xb"]
 [ext_resource type="AudioStream" uid="uid://b18c4mfuks8ox" path="res://assets/characters/enemies/ninja_starfish/sounds/attack_1.wav" id="9_euktn"]
 [ext_resource type="AudioStream" uid="uid://dmgmp1fcpyika" path="res://assets/characters/enemies/ninja_starfish/sounds/attack_2.wav" id="10_xi1ew"]
@@ -171,12 +170,11 @@ stream_3/stream = ExtResource("28_0lxlc")
 stream_4/stream = ExtResource("29_wud8f")
 stream_5/stream = ExtResource("30_xxa4w")
 
-[node name="NinjaStarfish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death") instance=ExtResource("1_57kab")]
+[node name="NinjaStarfish" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_57kab")]
 health = 150.0
 difficulty_scaler = SubResource("Resource_v4i5o")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeathGeneral"), NodePath("Eventlisteners/PlaySoundDeathSpecific")]
 speed = 2.0
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -236,13 +234,6 @@ animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "end_spin"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="PlaySoundDeathSpecific" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=882642356 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("5_euktn")
-sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = "DeathSpecific"
-needs_to_be_persistent = true
-metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="ninja_starfish" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=725910630 instance=ExtResource("2_jg36m")]
 
