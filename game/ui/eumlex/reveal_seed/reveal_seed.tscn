@@ -30,6 +30,7 @@
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="24_yl3bw"]
 [ext_resource type="Script" uid="uid://bh7iefvel1djl" path="res://game/ui/auto_size_label_3d.gd" id="25_eryco"]
 [ext_resource type="Texture2D" uid="uid://cj7g4uo8iuhc4" path="res://assets/thumbnails/sozial_sozial/sozial_base.PNG" id="26_yl3bw"]
+[ext_resource type="Texture2D" uid="uid://7k65rf4q6oji" path="res://assets/ui/gameOverlay/StageMarker.png" id="31_q5eef"]
 
 [sub_resource type="Environment" id="Environment_j1fo5"]
 glow_enabled = true
@@ -893,3 +894,18 @@ script = ExtResource("25_eryco")
 unique_name_in_owner = true
 transform = Transform3D(0.2890891, -0.0801715, 4.9960036e-16, 0.08017151, 0.28908914, 0, 3.7252903e-09, -1.4901161e-08, 0.3, -2.6714003, 1.2264977, 0.30127883)
 texture = ExtResource("26_yl3bw")
+
+[node name="NumberCircle" type="Sprite3D" parent="." unique_id=1315618771]
+transform = Transform3D(0.115, 0, 0, 0, 0.09511427, 0.06463958, 0, -0.06463958, 0.09511427, 0.593, -0.314, -0.191)
+texture = ExtResource("31_q5eef")
+
+[node name="AutoSizeLabel3D" type="Label3D" parent="NumberCircle" unique_id=353597428]
+transform = Transform3D(3.001, 0, 0, 0, 3.001, 0, 0, 0, 3.001, -0.02, 0.06, 0.186)
+sorting_offset = 1.0
+modulate = Color(0, 0, 0, 1)
+text = "1"
+font = ExtResource("24_yl3bw")
+font_size = 34
+script = ExtResource("25_eryco")
+max_font_size = 34
+metadata/_custom_type_script = "uid://bh7iefvel1djl"
