@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dlxnvjne1irpy"]
 
 [ext_resource type="Script" uid="uid://dctuhox5lephu" path="res://game/ui/start_screen/area_picker.gd" id="1_i6bfq"]
-[ext_resource type="Shader" path="res://assets/ui/pauseMenueBlurr.gdshader" id="2_27jtl"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="2_27jtl"]
 [ext_resource type="Texture2D" uid="uid://vxp35wsb3lwk" path="res://assets/ui/Map/BackdropMap.png" id="3_ga7dw"]
 [ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/rectangleStickerButtonFocused.png" id="5_s4q5g"]
 [ext_resource type="Texture2D" uid="uid://b4wy7vt8llog" path="res://assets/ui/Map/JungleIsland.png" id="6_rrmdi"]
@@ -21,7 +21,7 @@ signal abort()
 func setup():
 	show()
 	line_edit.text = \"\"
-	line_edit.grab_focus()
+	line_edit.grab_focus.call_deferred()
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
 	confirm_text()
