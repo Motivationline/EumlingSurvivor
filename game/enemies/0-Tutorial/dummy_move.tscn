@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dawdgb5ljl7x6"]
+
+[ext_resource type="PackedScene" uid="uid://dx0p51i2xocu1" path="res://game/enemies/0-Tutorial/dummy_base.tscn" id="1_0v7ww"]
+[ext_resource type="Script" uid="uid://dlsg4m2a304o0" path="res://state_machine/enemy/move_forward_and_bounce.gd" id="2_j3d18"]
+
+[node name="Dummy" unique_id=1898691 instance=ExtResource("1_0v7ww")]
+collision_layer = 0
+collision_mask = 769
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("MoveForwardAndBounceState")
+
+[node name="MoveForwardAndBounceState" type="Node" parent="StateMachine" index="0" unique_id=1850444384 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_j3d18")
+speed_override = 4.0
+speed_override_active = true
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://dlsg4m2a304o0"
