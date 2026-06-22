@@ -9,8 +9,14 @@ func _ready() -> void:
 	mini_eumlings = $Mini_Eumling_Anchor.get_children()
 	seed_animation.play("RESET")
 
+func setup(_eumling: Eumling, remaining_amount: int = 0):
+	eumling = _eumling
 	%job_title.text = eumling.name
 	%job_image.texture = eumling.image
+	if remaining_amount > 0:
+		%NumberCircleLabel3D.text = str(remaining_amount)
+	else:
+		%NumberCircleLabel3D.get_parent().hide()
 
 signal completed
 
