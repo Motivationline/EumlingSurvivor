@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bt5558nvt0n4" path="res://assets/ui/startScreen/SSPaper.png" id="8_1r6yo"]
 [ext_resource type="Texture2D" uid="uid://bwncwvrcqyodu" path="res://assets/ui/startScreen/SSArrow.png" id="9_egypv"]
 [ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/rectangleStickerButtonFocused.png" id="11_egypv"]
+[ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="11_hpwr3"]
 [ext_resource type="Texture2D" uid="uid://c40q8petlro1j" path="res://assets/ui/Buttons/ButtonBook.png" id="11_orue0"]
+[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="12_fkgrk"]
 [ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="12_lnduv"]
 [ext_resource type="Texture2D" uid="uid://balp1dnlnfddm" path="res://assets/ui/Buttons/ButtonSettings.png" id="13_0bhyy"]
 [ext_resource type="Texture2D" uid="uid://c5vc254qcrdhy" path="res://assets/ui/logos/motivationline3.png" id="13_06kjt"]
@@ -33,6 +35,42 @@ dof_blur_amount = 0.55
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0bhyy"]
 blend_mode = 1
 light_mode = 1
+
+[sub_resource type="Animation" id="Animation_hpwr3"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_fkgrk"]
+resource_name = "number_wiggle"
+length = 0.667
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.06666667, 0.22972122, 0.23561946, -0.1, -0.005898237, 0.2, -0.0017591268, -0.23561946, -0.19998057, 0.004759474, 0.10000002, -0.0023799685, 0, -0.06666666, -0.240069, 0.06666667, 0.0041391207),
+"times": PackedFloat32Array(0, 0.16666667, 0.5, 0.6666667)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_njswq"]
+_data = {
+&"RESET": SubResource("Animation_hpwr3"),
+&"number_wiggle": SubResource("Animation_fkgrk")
+}
 
 [sub_resource type="QuadMesh" id="QuadMesh_0p1rw"]
 size = Vector2(20, 100)
@@ -408,6 +446,37 @@ focus_next = NodePath("../settingButton")
 focus_previous = NodePath("../VBoxContainer/playButton")
 texture_normal = ExtResource("11_orue0")
 texture_focused = ExtResource("11_egypv")
+
+[node name="NumberCircle" type="Sprite2D" parent="UIOverlay/StaticUI/EumlexButton" unique_id=857890702]
+position = Vector2(220.2289, 0)
+texture = ExtResource("11_hpwr3")
+
+[node name="NumberCircleLabel3D" type="Label" parent="UIOverlay/StaticUI/EumlexButton/NumberCircle" unique_id=1024953764]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -88.115
+offset_right = -16.5
+offset_bottom = -6.114998
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 52
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("12_fkgrk")
+max_font_size = 52
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UIOverlay/StaticUI/EumlexButton/NumberCircle" unique_id=1905962989]
+libraries/ = SubResource("AnimationLibrary_njswq")
+autoplay = &"number_wiggle"
 
 [node name="settingButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1014587333]
 layout_mode = 0
