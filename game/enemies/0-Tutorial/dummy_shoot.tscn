@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c1tx1asc3eg5u"]
 
 [ext_resource type="PackedScene" uid="uid://dx0p51i2xocu1" path="res://game/enemies/0-Tutorial/dummy_base.tscn" id="1_spq6f"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_pbdvb"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="2_vbjhq"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_eogt4"]
 [ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-Jungle/sniper/sniper_projectile_enemy.tscn" id="4_xrvyw"]
@@ -11,13 +12,25 @@
 on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("SpawnEntitiesState")
+initial_state = NodePath("WaitForTimeXState")
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="0" unique_id=1858997726 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="0" unique_id=852368632 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_pbdvb")
+wait_time = 0.0
+next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "idle"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=1858997726 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_vbjhq")
-start_delay = 1.0
-end_delay = 0.75
-next_state = NodePath(".")
+start_delay = 0.6
+end_delay = 0.3
+next_state = NodePath("../WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "shoot"
+})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=72939299 node_paths=PackedStringArray("spawn_position")]
@@ -36,5 +49,8 @@ script = ExtResource("3_eogt4")
 entity_to_spawn = ExtResource("5_xrvyw")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="ProjectileSpawnPos" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1144174269]
+[node name="saeckle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1803899971]
+transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 0, 0, 0)
+
+[node name="ProjectileSpawnPos" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1144174269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.415)

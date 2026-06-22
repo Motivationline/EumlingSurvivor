@@ -1,17 +1,9 @@
 [gd_scene format=3 uid="uid://dx0p51i2xocu1"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_0bfnj"]
+[ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="2_5jdep"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="2_e72q6"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
-radius = 0.12548828
-height = 0.93933105
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_sqp2g"]
-radius = 0.14892578
-height = 0.60839844
-
-[sub_resource type="SphereMesh" id="SphereMesh_yf5fn"]
+[ext_resource type="PackedScene" uid="uid://bxbgptpji15jk" path="res://assets/characters/enemies/saeckle/saeckle.tscn" id="2_xoldu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 radius = 0.1977539
@@ -21,21 +13,19 @@ height = 1.0244141
 radius = 0.1484375
 height = 0.9921875
 
-[node name="Dummy" unique_id=1898691 node_paths=PackedStringArray("hurtbox") instance=ExtResource("1_0bfnj")]
-health = 100.0
+[node name="Dummy" unique_id=1898691 node_paths=PackedStringArray("hurtbox", "on_hurt") instance=ExtResource("1_0bfnj")]
+health = 150.0
 hurtbox = NodePath("Hurtbox")
+on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("EventEmitters/PlayAnimationEventStrategy")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=139901544]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46966553, 0)
-mesh = SubResource("CapsuleMesh_g4v7s")
+[node name="PlayAnimationEventStrategy" type="Node" parent="EventEmitters" parent_id_path=PackedInt32Array(1816335374) index="0" unique_id=874374946]
+script = ExtResource("2_5jdep")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "hit"
+})
+metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1076731259]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.64466614, 0)
-mesh = SubResource("CapsuleMesh_sqp2g")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=1809039551]
-transform = Transform3D(-1.6610327e-08, 0.38, 0, -0.38, -1.6610327e-08, 0, 0, 0, 0.38, 0, 0.795461, 0)
-mesh = SubResource("SphereMesh_yf5fn")
+[node name="saeckle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1803899971 instance=ExtResource("2_xoldu")]
 
 [node name="Hurtbox" parent="." index="7" unique_id=33084274 instance=ExtResource("2_e72q6")]
 collision_layer = 64

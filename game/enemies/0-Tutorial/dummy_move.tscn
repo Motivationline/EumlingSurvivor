@@ -19,7 +19,15 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="MoveForwardAndBounceState" type="Node" parent="StateMachine" index="1" unique_id=1850444384 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_j3d18")
-speed_override = 4.0
+speed_override = 3.0
 speed_override_active = true
 next_state = NodePath(".")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "walk"
+})
 metadata/_custom_type_script = "uid://dlsg4m2a304o0"
+
+[node name="saeckle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1803899971]
+transform = Transform3D(-1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1.0000001, 0, 0, 0)
+
+[connection signal="bounced" from="StateMachine/MoveForwardAndBounceState" to="Visuals/saeckle" method="rotate_y" binds= [3.142]]
