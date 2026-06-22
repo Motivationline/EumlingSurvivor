@@ -1,7 +1,43 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://rt8pt07jdaxd"]
 
+[ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="1_mn4ny"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_tp3be"]
 [ext_resource type="Texture2D" uid="uid://6y2wbqmqfute" path="res://assets/characters/enemies/saeckle/saeckle_DefaultMaterial_2D_View.png" id="2_mn4ny"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8clmx"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.17, 0.07366667, 0, 1)
+grow = true
+grow_amount = 0.01
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2eby"]
+next_pass = SubResource("StandardMaterial3D_8clmx")
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.17, 0.07366667, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5f01d"]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_p2eby")
+shader = ExtResource("1_mn4ny")
+shader_parameter/ball_color = Color(1, 0, 0, 1)
+shader_parameter/frensel_power = -0.3
+shader_parameter/visibility = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8nruw"]
+next_pass = SubResource("ShaderMaterial_5f01d")
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+stencil_flags = 2
+stencil_color = Color(0.16, 0.07781333, 0.052799996, 1)
 
 [sub_resource type="Gradient" id="Gradient_8clmx"]
 interpolation_mode = 1
@@ -13,6 +49,7 @@ gradient = SubResource("Gradient_8clmx")
 
 [resource]
 render_priority = 0
+next_pass = SubResource("StandardMaterial3D_8nruw")
 shader = ExtResource("1_tp3be")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("2_mn4ny")
