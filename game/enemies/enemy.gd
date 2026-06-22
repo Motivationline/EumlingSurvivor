@@ -88,6 +88,9 @@ func _ready() -> void:
 	add_child(reset_timer)
 	reset_timer.timeout.connect(reset_health)
 
+	visuals.rotation = rotation
+	rotation = Vector3(0,0,0)
+
 
 func _hit(_attackee: HurtBox):
 	for ev in on_hit:
