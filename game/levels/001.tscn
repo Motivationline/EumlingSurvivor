@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_uile8"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="2_qbpv8"]
+[ext_resource type="Script" uid="uid://du18mum64y03k" path="res://game/cameras/behaviours/normal_behaviour.gd" id="4_h41g6"]
 [ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="4_vlj6n"]
 [ext_resource type="PackedScene" uid="uid://dd5npkf3gb428" path="res://level/playgounrd/weapon_switch/weapon_switch.tscn" id="5_u3pwt"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_cf6nt"]
@@ -30,6 +31,10 @@ albedo_color = Color(0, 0.29, 0.0145, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnkxu"]
 albedo_color = Color(0.185273, 0.627928, 0.462023, 1)
+
+[sub_resource type="Resource" id="Resource_y1naw"]
+script = ExtResource("4_h41g6")
+metadata/_custom_type_script = "uid://du18mum64y03k"
 
 [sub_resource type="Environment" id="Environment_j48a7"]
 background_mode = 1
@@ -69,7 +74,7 @@ shader_parameter/direction2 = Vector2(0.03, 0.03)
 shader_parameter/highlight_threshold = 0.394000018715
 shader_parameter/main_threshhold = 0.2090000099275
 
-[node name="001" type="Node3D" unique_id=596384730 node_paths=PackedStringArray("player_spawn") groups=["Level"]]
+[node name="001" type="Node3D" unique_id=596384730 node_paths=PackedStringArray("player_spawn", "goal_area") groups=["Level"]]
 script = ExtResource("1_uile8")
 player_spawn = NodePath("PlayerSpawnMarker")
 goal_area = NodePath("LeaveArea")
@@ -121,6 +126,7 @@ size = 15.0
 near = 0.01
 far = 30.0
 script = ExtResource("4_vlj6n")
+behaviour = SubResource("Resource_y1naw")
 metadata/_custom_type_script = "uid://bftcfposg3qyf"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1344726379]
