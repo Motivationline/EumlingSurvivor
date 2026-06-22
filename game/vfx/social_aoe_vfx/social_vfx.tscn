@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://byqjf0sc7pi8"]
+[gd_scene format=3 uid="uid://byqjf0sc7pi8"]
 
 [ext_resource type="Texture2D" uid="uid://bdd38btcwm48u" path="res://assets/vfx/social/garlic.png" id="1_vxs5i"]
 [ext_resource type="Texture2D" uid="uid://dswk8y7pooxop" path="res://assets/vfx/social/garlic_ring.png" id="2_vp428"]
@@ -115,16 +115,16 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_cvwag"]
 material = SubResource("StandardMaterial3D_fye1k")
 
-[node name="SocialVFX" type="Node3D"]
+[node name="SocialVFX" type="Node3D" unique_id=2063391967]
 
-[node name="InnerRing" type="MeshInstance3D" parent="."]
+[node name="InnerRing" type="MeshInstance3D" parent="." unique_id=1216616560]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.01, 0)
 layers = 512
 mesh = SubResource("QuadMesh_xuf8i")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_778i0")
 
-[node name="OuterRing" type="MeshInstance3D" parent="InnerRing"]
+[node name="OuterRing" type="MeshInstance3D" parent="InnerRing" unique_id=714448174]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -4.37114e-10, 0.01)
 layers = 512
 sorting_offset = 0.55
@@ -132,7 +132,7 @@ mesh = SubResource("PlaneMesh_obhcr")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_7toyi")
 
-[node name="BubbleParticles" type="GPUParticles3D" parent="InnerRing"]
+[node name="BubbleParticles" type="GPUParticles3D" parent="InnerRing" unique_id=143576458]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.28218e-09, 0.0293328)
 amount = 1
 explosiveness = 0.5
@@ -140,7 +140,7 @@ randomness = 0.44
 process_material = SubResource("ParticleProcessMaterial_xuf8i")
 draw_pass_1 = SubResource("QuadMesh_7toyi")
 
-[node name="BlaParticles" type="GPUParticles3D" parent="InnerRing"]
+[node name="BlaParticles" type="GPUParticles3D" parent="InnerRing" unique_id=1706585537]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.28218e-09, 0.0293328)
 amount = 2
 explosiveness = 0.5

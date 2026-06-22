@@ -10,17 +10,17 @@ size = Vector3(1.1505737, 1, 0.7236328)
 [node name="AOE" unique_id=1663272036 instance=ExtResource("1_h5tmn")]
 duration = 3.0
 
-[node name="Hitbox" parent="." index="0"]
+[node name="Hitbox" parent="." index="0" unique_id=14469486]
 collision_layer = 32
 collision_mask = 8
 damage = 10.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1346345033]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0140686035, 0, 0)
 shape = SubResource("BoxShape3D_epwph")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0" unique_id=758649832]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(312663566) index="0" unique_id=758649832]
 transform = Transform3D(0.49618742, 0, 0, 0, 1, 0, 0, 0, 0.33012474, 0, 0.14364624, 0)
 mesh = SubResource("PlaneMesh_05fwf")

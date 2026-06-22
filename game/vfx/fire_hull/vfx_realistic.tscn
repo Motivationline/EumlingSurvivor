@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ck0cf6ywrf78g"]
+[gd_scene format=3 uid="uid://ck0cf6ywrf78g"]
 
 [ext_resource type="Shader" uid="uid://5lep1if814ha" path="res://assets/vfx/projectile_realistic/shader_vfx_realistic.tres" id="1_78vvl"]
 [ext_resource type="ArrayMesh" uid="uid://b3xkjd0m1y6lw" path="res://assets/vfx/hull/hull_mesh.res" id="1_px52a"]
@@ -64,20 +64,20 @@ color_ramp = SubResource("GradientTexture1D_papi2")
 [sub_resource type="QuadMesh" id="QuadMesh_7it6j"]
 size = Vector2(0.1, 0.5)
 
-[node name="vfx_projectile" type="Node3D"]
+[node name="vfx_projectile" type="Node3D" unique_id=1098430116]
 
-[node name="Hull" type="MeshInstance3D" parent="."]
+[node name="Hull" type="MeshInstance3D" parent="." unique_id=1376673651]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_78vvl")
 cast_shadow = 0
 mesh = ExtResource("1_px52a")
 
-[node name="Ball" type="MeshInstance3D" parent="."]
+[node name="Ball" type="MeshInstance3D" parent="." unique_id=2143153760]
 transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0.0957722, 0, 0)
 material_override = SubResource("ShaderMaterial_qdkhy")
 mesh = SubResource("SphereMesh_cjhj8")
 
-[node name="smallsparks" type="GPUParticles3D" parent="."]
+[node name="smallsparks" type="GPUParticles3D" parent="." unique_id=1936629959]
 material_override = SubResource("StandardMaterial3D_6x47f")
 amount = 1
 lifetime = 0.2

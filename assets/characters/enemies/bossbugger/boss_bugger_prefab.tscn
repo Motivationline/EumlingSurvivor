@@ -35,7 +35,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(-0.08777707, -0.0479081)
+shader_parameter/wobble = Vector2(0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_vkxpk"]
 radius = 0.6
@@ -85,7 +85,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gch53")
 }],
-"loop": true,
+"loop": 1,
 "name": &"wings",
 "speed": 30.0
 }]
@@ -168,7 +168,7 @@ size = Vector3(0, 0, 0)
 [node name="BossBugger" unique_id=1437495985 instance=ExtResource("1_kivi1")]
 script = SubResource("GDScript_djlvw")
 
-[node name="Skeleton3D" parent="Armature_001" parent_id_path=PackedInt32Array(405187910) index="0" unique_id=1737302267]
+[node name="Skeleton3D" parent="Armature_001" parent_id_path=PackedInt32Array(2004708351) index="0" unique_id=358126580]
 bones/0/position = Vector3(7.523164e-37, 1.5043316, -3.9619624e-22)
 bones/0/rotation = Quaternion(0.99437326, 5.3693663e-09, -4.543846e-08, -0.105933085)
 bones/1/position = Vector3(1.2539284e-16, 1.5043315, -2.51131e-08)
@@ -267,7 +267,7 @@ mesh = SubResource("SphereMesh_vkxpk")
 script = ExtResource("3_vkxpk")
 liquid_height = 0.0
 
-[node name="Bugger" parent="Armature_001/Skeleton3D" index="1" unique_id=332520866]
+[node name="Bugger" parent="Armature_001/Skeleton3D" index="1" unique_id=460242417]
 layers = 2
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" index="2" unique_id=525651175]

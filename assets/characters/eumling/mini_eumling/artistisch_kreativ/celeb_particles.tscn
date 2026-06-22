@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d00yy6liprkr"]
+[gd_scene format=3 uid="uid://d00yy6liprkr"]
 
 [ext_resource type="Texture2D" uid="uid://ds50bevv057ww" path="res://assets/vfx/fireball/cross.png" id="1_v8ajh"]
 [ext_resource type="PackedScene" uid="uid://wqhqib0voc53" path="res://game/vfx/particle_one_shot_component/particle_oneshot_component.tscn" id="2_mkq5q"]
@@ -53,7 +53,7 @@ color_initial_ramp = SubResource("GradientTexture1D_66mvx")
 [sub_resource type="QuadMesh" id="QuadMesh_5u2it"]
 size = Vector2(0.1, 0.1)
 
-[node name="CelebParticles" type="GPUParticles3D"]
+[node name="CelebParticles" type="GPUParticles3D" unique_id=2098236501]
 material_override = SubResource("StandardMaterial3D_mkq5q")
 emitting = false
 lifetime = 0.8
@@ -62,5 +62,5 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_o7c5u")
 draw_pass_1 = SubResource("QuadMesh_5u2it")
 
-[node name="particle_oneshot_component" parent="." node_paths=PackedStringArray("node_to_kill") instance=ExtResource("2_mkq5q")]
+[node name="particle_oneshot_component" parent="." unique_id=1347624836 node_paths=PackedStringArray("node_to_kill") instance=ExtResource("2_mkq5q")]
 node_to_kill = NodePath("..")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v8fq3xw2l3ba"]
+[gd_scene format=3 uid="uid://v8fq3xw2l3ba"]
 
 [ext_resource type="Script" uid="uid://cpnjr1gefe754" path="res://addons/dreadpon.spatial_gardener/controls/extensions/ui_drop_button.gd" id="1"]
 [ext_resource type="Script" uid="uid://dbibcle7lh3t8" path="res://addons/dreadpon.spatial_gardener/controls/input_fields/action_thumbnail/ui_action_thumbnail_create_inst.gd" id="2"]
@@ -51,7 +51,7 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_sj7sv"]
 image = SubResource("Image_da6r5")
 
-[node name="ActionThumbnail" type="Control"]
+[node name="ActionThumbnail" type="Control" unique_id=659331529]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 3
 anchors_preset = 0
@@ -65,7 +65,7 @@ new_texture = SubResource("ImageTexture_utaay")
 options_texture = SubResource("ImageTexture_sj7sv")
 metadata/class = "UI_ActionThumbnailCreateInst"
 
-[node name="RootButton" type="Button" parent="."]
+[node name="RootButton" type="Button" parent="." unique_id=874099069]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -79,7 +79,7 @@ icon_alignment = 1
 script = ExtResource("1")
 metadata/class = "UI_DropButton"
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1923590388]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1

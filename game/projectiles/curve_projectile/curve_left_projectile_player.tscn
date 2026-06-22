@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjqhostf8f0eq"]
+[gd_scene format=3 uid="uid://cjqhostf8f0eq"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_dr7tk"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_uj31g"]
@@ -28,36 +28,36 @@ metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
 [sub_resource type="SphereShape3D" id="SphereShape3D_jogt0"]
 radius = 0.126734
 
-[node name="curve_left_projectile" node_paths=PackedStringArray("movement", "on_end_of_life") instance=ExtResource("1_dr7tk")]
+[node name="curve_left_projectile" unique_id=1268685107 node_paths=PackedStringArray("movement", "on_end_of_life") instance=ExtResource("1_dr7tk")]
 collision_mask = 0
 lifetime = 1.0
 movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy"), NodePath("MovementStrategies/RotationProjectileMovementStrategy")]
 on_end_of_life = [NodePath("EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=571028510]
 script = ExtResource("2_uj31g")
 normalize_to_lifetime = false
 speed = SubResource("Curve_1mi8i")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="RotationProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1"]
+[node name="RotationProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="1" unique_id=701031373]
 script = ExtResource("3_7pjyq")
 mode = "add"
 rotation = SubResource("Curve_67cxf")
 metadata/_custom_type_script = "uid://d3ikpji4y1ipa"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnEndOfLife" index="0"]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnEndOfLife" parent_id_path=PackedInt32Array(1270043276) index="0" unique_id=1494843653]
 script = ExtResource("4_fxuck")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy" index="0" unique_id=1474503372]
 script = ExtResource("5_rvme0")
 entity_to_spawn = ExtResource("6_xr6i1")
 rotation_strategy = SubResource("Resource_3ldc7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=1671662680]
 shape = SubResource("SphereShape3D_jogt0")
 
-[node name="vfx_projectile" parent="." index="3" instance=ExtResource("8_eg8k5")]
+[node name="vfx_projectile" parent="." index="3" unique_id=663263 instance=ExtResource("8_eg8k5")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.07039e-09, 0, 0.047365)

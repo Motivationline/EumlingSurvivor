@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://mvv6hdvfjfw5"]
+[gd_scene format=3 uid="uid://mvv6hdvfjfw5"]
 
 [ext_resource type="PackedScene" uid="uid://wqhqib0voc53" path="res://game/vfx/particle_one_shot_component/particle_oneshot_component.tscn" id="1_4au07"]
 [ext_resource type="Material" uid="uid://dbrmg6khapg5l" path="res://assets/models/breakable_stone/brekaable_rock_mat.tres" id="1_5fndr"]
-[ext_resource type="ArrayMesh" uid="uid://bqcbta755nytf" path="res://assets/models/breakable_stone/stone_mesh.res" id="1_6abko"]
+[ext_resource type="ArrayMesh" uid="uid://cuuwjfovhwf3v" path="res://assets/models/breakable_stone/stone_mesh.res" id="1_6abko"]
 
 [sub_resource type="Curve" id="Curve_augyx"]
 _data = [Vector2(0, 0.38172716), 0.0, 34.710056, 0, 0, Vector2(0.08437499, 1), 0.0, 0.0, 0, 0, Vector2(0.85937494, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -12.987649, 0.0, 0, 0]
@@ -37,7 +37,7 @@ collision_friction = 1.0
 collision_bounce = 0.0
 collision_use_scale = true
 
-[node name="WoodExplosionParticle" type="GPUParticles3D"]
+[node name="WoodExplosionParticle" type="GPUParticles3D" unique_id=1873272099]
 material_override = ExtResource("1_5fndr")
 emitting = false
 amount = 7
@@ -49,10 +49,10 @@ collision_base_size = 0.02
 process_material = SubResource("ParticleProcessMaterial_0qa4y")
 draw_pass_1 = ExtResource("1_6abko")
 
-[node name="particle_oneshot_component" parent="." node_paths=PackedStringArray("node_to_kill") instance=ExtResource("1_4au07")]
+[node name="particle_oneshot_component" parent="." unique_id=1623375385 node_paths=PackedStringArray("node_to_kill") instance=ExtResource("1_4au07")]
 kill_time = 4.0
 node_to_kill = NodePath("..")
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=1530131379]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22954102, 0)
 size = Vector3(4.104492, 0.5385742, 3.5898438)

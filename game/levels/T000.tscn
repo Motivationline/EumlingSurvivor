@@ -18,7 +18,8 @@ edge_max_error = 0.25
 [node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
 navigation_mesh = SubResource("NavigationMesh_cvp71")
 
-[node name="volcano_tortoise_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_cvp71")]
+[node name="volcano_tortoise_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 node_paths=PackedStringArray("on_hurt") instance=ExtResource("2_cvp71")]
+on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
 
 [node name="magma_toad_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1892186669 instance=ExtResource("3_wjg4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9436378, 0, 0)

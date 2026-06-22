@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1as42uiohbk5"]
+[gd_scene format=3 uid="uid://d1as42uiohbk5"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_r7xpd"]
 size = Vector2(1, 5.5)
@@ -24,9 +24,9 @@ albedo_color = Color(0.80090797, 0.4966058, 0.19946003, 1)
 albedo_texture = SubResource("GradientTexture2D_4comr")
 uv1_scale = Vector3(1, 0.972, 1)
 
-[node name="Atttack" type="Node3D"]
+[node name="Atttack" type="Node3D" unique_id=865590958]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=569126268]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026230186, 0)
 mesh = SubResource("PlaneMesh_r7xpd")
 surface_material_override/0 = SubResource("StandardMaterial3D_mw08w")

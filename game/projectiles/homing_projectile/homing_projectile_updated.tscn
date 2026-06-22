@@ -35,12 +35,12 @@ on_hit = [NodePath("EventStrategies/RemoveEventStrategy")]
 on_end_of_life = [NodePath("EventStrategies/RemoveEventStrategy")]
 on_created = [NodePath("EventStrategies/OnCreated/SetTargetsEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=1860556260]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=1860556260]
 script = ExtResource("2_gg5aj")
 speed = SubResource("Curve_jooao")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="HomingProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="1" unique_id=461830729]
+[node name="HomingProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="1" unique_id=461830729]
 script = ExtResource("3_da2yy")
 metadata/_custom_type_script = "uid://dyqkij0tfqb8h"
 
@@ -51,11 +51,11 @@ script = ExtResource("4_jmfxr")
 target_property = 2
 metadata/_custom_type_script = "uid://l8142vs0gken"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="0" unique_id=500055866]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="0" unique_id=500055866]
 script = ExtResource("5_6k71d")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="OnCreated" type="Node" parent="EventStrategies" index="6" unique_id=2050678335]
+[node name="OnCreated" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="6" unique_id=2050678335]
 
 [node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0" unique_id=2058082334 node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("6_ksrth")

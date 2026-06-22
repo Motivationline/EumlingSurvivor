@@ -163,22 +163,22 @@ _data = {
 [node name="AOE" unique_id=1442923085 instance=ExtResource("1_dg0ba")]
 duration = 4.0
 
-[node name="Hitbox" parent="." index="0"]
+[node name="Hitbox" parent="." index="0" unique_id=14469486]
 collision_layer = 32
 collision_mask = 8
 damage = 60.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1346345033]
 transform = Transform3D(2.6936736, 0, 0, 0, 2.6936736, 0, 0, 0, 2.6936736, 0, 0, 0)
 shape = SubResource("SphereShape3D_dg0ba")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0" unique_id=2097474432]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(312663566) index="0" unique_id=2097474432]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 mesh = SubResource("SphereMesh_e6s43")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" index="1" unique_id=674266253]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" parent_id_path=PackedInt32Array(312663566) index="1" unique_id=674266253]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_r0ims")
 autoplay = &"puffer_fish_aoe"

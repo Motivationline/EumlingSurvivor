@@ -1,36 +1,39 @@
 [gd_scene format=3 uid="uid://c1llamk0isnv"]
 
-[node name="UI_Category_Greenhouse" type="VBoxContainer"]
+[node name="UI_Category_Greenhouse" type="VBoxContainer" unique_id=2067167155]
 offset_top = 120.0
 offset_right = 348.0
 offset_bottom = 582.0
 
-[node name="Label_Category_Plants" type="Label" parent="."]
+[node name="Label_Category_Plants" type="Label" parent="." unique_id=161775522]
 layout_mode = 2
 text = "Plants"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=585676088]
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 0
 tabs_visible = false
 
-[node name="VSplitContainer" type="VSplitContainer" parent="TabContainer"]
+[node name="VSplitContainer" type="VSplitContainer" parent="TabContainer" unique_id=323602043]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+split_offsets = PackedInt32Array(150)
 split_offset = 150
+metadata/_tab_index = 0
 
-[node name="ScrollContainer_PlantThumbnails" type="ScrollContainer" parent="TabContainer/VSplitContainer"]
+[node name="ScrollContainer_PlantThumbnails" type="ScrollContainer" parent="TabContainer/VSplitContainer" unique_id=1229995583]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/VSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/VSplitContainer" unique_id=1168337580]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer_Properties" type="ScrollContainer" parent="TabContainer/VSplitContainer/VBoxContainer"]
+[node name="ScrollContainer_Properties" type="ScrollContainer" parent="TabContainer/VSplitContainer/VBoxContainer" unique_id=619811531]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

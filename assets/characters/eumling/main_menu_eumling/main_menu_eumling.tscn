@@ -4,7 +4,7 @@
 
 [node name="main_menu_eumling" unique_id=87928460 instance=ExtResource("1_u86t3")]
 
-[node name="Skeleton3D" parent="Eumling_Armature" parent_id_path=PackedInt32Array(336148122) index="0" unique_id=1520105010]
+[node name="Skeleton3D" parent="Eumling_Armature" parent_id_path=PackedInt32Array(612991909) index="0" unique_id=497531267]
 bones/0/position = Vector3(-0.023451611, 0.08949416, 0.0022934629)
 bones/0/rotation = Quaternion(-0.040821522, -0.7059275, -0.04082156, 0.7059275)
 bones/1/rotation = Quaternion(1.3038519e-08, 2.7954785e-15, 2.9802326e-08, 1)
@@ -42,6 +42,9 @@ bones/41/rotation = Quaternion(-3.4917193e-08, 0.8653244, -0.50121224, -7.693043
 bones/41/scale = Vector3(1.0066838, 0.9867696, 1.0066838)
 bones/42/rotation = Quaternion(-0.057801835, -0.4422205, 0.8950373, 0.0029026105)
 bones/42/scale = Vector3(0.9934236, 1.0010389, 1.0057731)
+
+[node name="eumling_mesh" parent="Eumling_Armature/Skeleton3D" index="0" unique_id=647417454]
+skeleton = NodePath("..")
 
 [node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Eumling_Armature/Skeleton3D" index="1" unique_id=513833501]
 setting_count = 1
@@ -125,5 +128,5 @@ settings/0/joints/1/bone = 15
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=960043479]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1579412425]
 autoplay = &"campfire_dance"

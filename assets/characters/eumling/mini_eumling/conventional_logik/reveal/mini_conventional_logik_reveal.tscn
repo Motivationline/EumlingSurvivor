@@ -1,46 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cps3kdcef7kl1"]
+[gd_scene format=3 uid="uid://cps3kdcef7kl1"]
 
 [ext_resource type="PackedScene" uid="uid://bdx5nmy7mmesh" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik_visual.tscn" id="1_srl28"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dpgxkgtaj4shj" path="res://assets/characters/eumling/mini_eumling/blend_tree_mini_eumling_reveal.tres" id="2_4h88s"]
 
-[node name="mini_conventional_logik" instance=ExtResource("1_srl28")]
+[node name="mini_conventional_logik" unique_id=828876606 instance=ExtResource("1_srl28")]
 
-[node name="Skeleton3D" parent="Aramture_conventiona_logik" index="0"]
-bones/0/position = Vector3(-0.008431343, 0.41444463, -0.14120083)
-bones/0/rotation = Quaternion(0.12265798, 0.84571993, 0.51494485, 0.06741342)
-bones/0/scale = Vector3(0.87656647, 1.1380774, 1.055759)
-bones/1/position = Vector3(-1.8887375e-08, 0.09587776, 0.007352637)
-bones/1/rotation = Quaternion(-0.14626381, 2.277342e-07, -5.341573e-08, 0.98924565)
-bones/1/scale = Vector3(0.9999998, 0.9970079, 0.99898887)
-bones/2/rotation = Quaternion(-0.14628021, -2.3827765e-07, -3.1975183e-08, 0.9892432)
-bones/3/rotation = Quaternion(0.30029193, 1.8112563e-07, 1.3279444e-07, 0.9538474)
-bones/3/scale = Vector3(0.99999416, 0.99829006, 1.0040222)
-bones/4/rotation = Quaternion(0.06051056, -3.4882004e-07, 1.940904e-07, 0.99816763)
-bones/5/rotation = Quaternion(0.051165953, 1.275707e-07, 1.0885459e-07, 0.99869025)
-bones/6/rotation = Quaternion(0.09503129, 1.0668527e-07, 7.679935e-08, 0.99547434)
-bones/7/rotation = Quaternion(0.060556114, 0.48372558, 0.86751264, -0.09881442)
-bones/7/scale = Vector3(0.99275213, 1.0107567, 0.99969757)
-bones/8/rotation = Quaternion(-2.140755e-07, 0.9953842, -0.09597112, 7.004431e-09)
-bones/9/rotation = Quaternion(0.96592593, 1.7386455e-07, 3.0466405e-09, -0.25881895)
-bones/10/rotation = Quaternion(0.070627145, 0.46044, 0.8775969, -0.11327177)
-bones/10/scale = Vector3(0.99039316, 1.0151105, 0.99886423)
-bones/11/rotation = Quaternion(2.9220345e-07, 0.9953842, -0.09597112, 7.0565113e-07)
-bones/12/rotation = Quaternion(0.96592593, 1.1369327e-08, 6.094868e-07, -0.25881895)
-bones/13/rotation = Quaternion(-0.15025641, 0.37434682, 0.8830544, 0.23979655)
-bones/13/scale = Vector3(0.95164204, 1.1714526, 0.9121233)
-bones/14/rotation = Quaternion(0.03799038, 0.8297941, -0.5566899, 0.009739226)
-bones/14/scale = Vector3(1.0376221, 0.9936785, 0.9808631)
-bones/15/rotation = Quaternion(-0.106684335, -0.4791796, 0.8699392, -0.04702433)
-bones/15/scale = Vector3(1.0946784, 0.9205022, 0.9465263)
-bones/17/rotation = Quaternion(0.43129525, 0.1730566, 0.85728246, -0.2215909)
-bones/17/scale = Vector3(0.8966902, 1.1080383, 1.045286)
-bones/18/rotation = Quaternion(-0.064185336, 0.8815455, -0.4675355, -0.012983429)
-bones/18/scale = Vector3(0.9993193, 1.0402937, 0.9726769)
-bones/19/rotation = Quaternion(0.15886065, -0.48981503, 0.857209, 0.0061011836)
-bones/19/scale = Vector3(1.118771, 0.92195565, 0.9295936)
-
-[node name="BoneAttachment3D" parent="Aramture_conventiona_logik/Skeleton3D" index="1"]
-transform = Transform3D(-0.8422235, 0.076717414, 0.28806463, 0.24271812, 0.2171599, 1.0072562, 0.010780438, 1.1042664, -0.17297572, 0.008496858, 0.46904212, -0.047931455)
-
-[node name="AnimationTree" parent="." index="2"]
+[node name="AnimationTree" parent="." index="2" unique_id=1854397974]
 tree_root = ExtResource("2_4h88s")

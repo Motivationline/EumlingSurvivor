@@ -1,19 +1,9 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://cmc24dh7l4wha"]
 
-[ext_resource type="Material" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator_material_occluded.tres" id="1_ftc8x"]
-[ext_resource type="Shader" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.gdshader" id="2_vvo6r"]
+[ext_resource type="Material" uid="uid://d17x1m05xnt5x" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator_material_occluded.tres" id="1_ftc8x"]
+[ext_resource type="Shader" uid="uid://oyxt0onjhucx" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.gdshader" id="2_vvo6r"]
 
 [resource]
 render_priority = 0
 next_pass = ExtResource("1_ftc8x")
 shader = ExtResource("2_vvo6r")
-shader_parameter/color = Color(0, 1, 1, 0.8)
-shader_parameter/edge_color = Color(1, 1, 0, 0.8)
-shader_parameter/radius = 1.0
-shader_parameter/width = 0.75
-shader_parameter/edge = 0.2
-shader_parameter/edge_fade = 0.05
-shader_parameter/inner_fade = 0.05
-shader_parameter/outer_fade = 0.05
-shader_parameter/arc = 0.5
-shader_parameter/arc_fade = 0.05

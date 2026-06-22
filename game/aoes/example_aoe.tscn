@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdn15pg1arjhl"]
+[gd_scene format=3 uid="uid://bdn15pg1arjhl"]
 
 [ext_resource type="PackedScene" uid="uid://c4e8dv2l1561n" path="res://game/aoes/base_aoe.tscn" id="1_h7fhl"]
 
@@ -6,10 +6,10 @@
 height = 1.0
 radius = 2.0
 
-[node name="AOE" instance=ExtResource("1_h7fhl")]
+[node name="AOE" unique_id=1603750873 instance=ExtResource("1_h7fhl")]
 shape = SubResource("CylinderShape3D_h7fhl")
 
-[node name="Hitbox" parent="." index="0"]
+[node name="Hitbox" parent="." index="0" unique_id=14469486]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 4
 collision_mask = 64
@@ -17,9 +17,9 @@ damage = 2.0
 attached_to = 3
 can_hit = 7
 
-[node name="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1346345033]
 shape = SubResource("CylinderShape3D_h7fhl")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visuals" index="0"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Visuals" parent_id_path=PackedInt32Array(312663566) index="0" unique_id=1529899900]
 radius = 2.0
 height = 0.1

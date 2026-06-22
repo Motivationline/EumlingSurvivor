@@ -14,16 +14,16 @@ ring_segments = 6
 [node name="AOE" unique_id=799931580 instance=ExtResource("1_25yf7")]
 duration = 2.0
 
-[node name="Hitbox" parent="." index="0"]
+[node name="Hitbox" parent="." index="0" unique_id=14469486]
 collision_layer = 32
 collision_mask = 8
 damage = 30.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1346345033]
 shape = SubResource("ConcavePolygonShape3D_25yf7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0" unique_id=1358798065]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(312663566) index="0" unique_id=1358798065]
 transform = Transform3D(1, 0, 0, 0, 0.15766358, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("TorusMesh_05fwf")

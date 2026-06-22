@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0ywfua0xjifh"]
+[gd_scene format=3 uid="uid://c0ywfua0xjifh"]
 
 [ext_resource type="Script" uid="uid://cpnjr1gefe754" path="res://addons/dreadpon.spatial_gardener/controls/extensions/ui_drop_button.gd" id="1"]
 [ext_resource type="Script" uid="uid://d3g6budxpm8oh" path="res://addons/dreadpon.spatial_gardener/controls/input_fields/action_thumbnail/ui_action_thumbnail.gd" id="2"]
@@ -128,7 +128,7 @@ corner_radius_bottom_left = 3
 corner_detail = 3
 anti_aliasing = false
 
-[node name="ActionThumbnail" type="Control"]
+[node name="ActionThumbnail" type="Control" unique_id=725957210]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 3
 anchors_preset = 0
@@ -141,7 +141,7 @@ delete_texture = SubResource("ImageTexture_dmple")
 new_texture = SubResource("ImageTexture_utaay")
 options_texture = SubResource("ImageTexture_sj7sv")
 
-[node name="RootButton" type="Button" parent="."]
+[node name="RootButton" type="Button" parent="." unique_id=217845090]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -153,7 +153,7 @@ theme_type_variation = &"InspectorButton"
 script = ExtResource("1")
 metadata/class = "UI_DropButton"
 
-[node name="InteractionMargin" type="MarginContainer" parent="."]
+[node name="InteractionMargin" type="MarginContainer" parent="." unique_id=1622667857]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,12 +166,12 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="InteractionLayout" type="VBoxContainer" parent="InteractionMargin"]
+[node name="InteractionLayout" type="VBoxContainer" parent="InteractionMargin" unique_id=22426669]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="LabelLineContainer" type="MarginContainer" parent="InteractionMargin/InteractionLayout"]
+[node name="LabelLineContainer" type="MarginContainer" parent="InteractionMargin/InteractionLayout" unique_id=547334440]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -180,22 +180,22 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="LabelLineEdit" type="LineEdit" parent="InteractionMargin/InteractionLayout/LabelLineContainer"]
+[node name="LabelLineEdit" type="LineEdit" parent="InteractionMargin/InteractionLayout/LabelLineContainer" unique_id=1100695255]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"PlantTitleLineEdit"
 theme_override_fonts/font = ExtResource("3_idy6e")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 48
 placeholder_text = "Plant Label"
 alignment = 1
 script = ExtResource("3")
 
-[node name="UnderLabelMargin" type="MarginContainer" parent="InteractionMargin/InteractionLayout"]
+[node name="UnderLabelMargin" type="MarginContainer" parent="InteractionMargin/InteractionLayout" unique_id=1718437717]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="ButtonVisualsMargin" type="MarginContainer" parent="InteractionMargin/InteractionLayout/UnderLabelMargin"]
+[node name="ButtonVisualsMargin" type="MarginContainer" parent="InteractionMargin/InteractionLayout/UnderLabelMargin" unique_id=23876720]
 layout_mode = 2
 mouse_filter = 2
 theme_type_variation = &"ExternalMargin"
@@ -204,32 +204,32 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="TextureRect" type="TextureRect" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtonVisualsMargin"]
+[node name="TextureRect" type="TextureRect" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtonVisualsMargin" unique_id=883969923]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AltTextLabel" type="Label" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtonVisualsMargin"]
+[node name="AltTextLabel" type="Label" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtonVisualsMargin" unique_id=790054919]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_idy6e")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 48
 text = "Alt text Label"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
-[node name="ButtionLayout" type="VBoxContainer" parent="InteractionMargin/InteractionLayout/UnderLabelMargin"]
+[node name="ButtionLayout" type="VBoxContainer" parent="InteractionMargin/InteractionLayout/UnderLabelMargin" unique_id=1784753958]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="MenuButton" type="MenuButton" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout"]
+[node name="MenuButton" type="MenuButton" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout" unique_id=1522192672]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -237,9 +237,9 @@ size_flags_vertical = 4
 focus_mode = 2
 theme_type_variation = &"MenuButton"
 theme_override_colors/font_color = Color(0.8025, 0.81, 0.8225, 1)
+theme_override_colors/font_focus_color = Color(0.90125, 0.905, 0.91125, 1)
 theme_override_colors/font_pressed_color = Color(0.44, 0.73, 0.98, 1)
 theme_override_colors/font_hover_color = Color(0.90125, 0.905, 0.91125, 1)
-theme_override_colors/font_focus_color = Color(0.90125, 0.905, 0.91125, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 0.35)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_constants/outline_size = 0
@@ -251,40 +251,40 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_lb883")
 icon = SubResource("ImageTexture_sj7sv")
 icon_alignment = 1
 
-[node name="Spacer" type="Control" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout"]
+[node name="Spacer" type="Control" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout" unique_id=715260333]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="BottomButtonLayout" type="HBoxContainer" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout"]
+[node name="BottomButtonLayout" type="HBoxContainer" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout" unique_id=491193557]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="CheckBox" type="CheckBox" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout/BottomButtonLayout"]
+[node name="CheckBox" type="CheckBox" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout/BottomButtonLayout" unique_id=1467083642]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Spacer" type="Control" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout/BottomButtonLayout"]
+[node name="Spacer" type="Control" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout/BottomButtonLayout" unique_id=1321904607]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="CounterLabel" type="Label" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout/BottomButtonLayout"]
+[node name="CounterLabel" type="Label" parent="InteractionMargin/InteractionLayout/UnderLabelMargin/ButtionLayout/BottomButtonLayout" unique_id=1700273445]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 9
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("3_idy6e")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 48
 text = "123"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="SelectionPanel" type="Panel" parent="."]
+[node name="SelectionPanel" type="Panel" parent="." unique_id=2033544421]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

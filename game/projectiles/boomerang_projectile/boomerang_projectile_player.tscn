@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bovt68803h33n"]
+[gd_scene format=3 uid="uid://bovt68803h33n"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_lqgqe"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_fk7pi"]
@@ -59,41 +59,39 @@ radius = 0.226
 [sub_resource type="SphereShape3D" id="SphereShape3D_ukykb"]
 radius = 0.218607
 
-[node name="Projectile" node_paths=PackedStringArray("hit_box", "movement", "on_hit") instance=ExtResource("1_lqgqe")]
+[node name="Projectile" unique_id=477529573 node_paths=PackedStringArray("hit_box", "movement", "on_hit") instance=ExtResource("1_lqgqe")]
 lifetime = 1.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
 on_hit = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=1778111264]
 script = ExtResource("2_fk7pi")
 speed = SubResource("Curve_mhr7y")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnHit" parent_id_path=PackedInt32Array(98182832) index="0" unique_id=15807890]
 script = ExtResource("3_wti6h")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnHit/SpawnEntitiesEventStrategy" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnHit/SpawnEntitiesEventStrategy" index="0" unique_id=1205042785]
 script = ExtResource("4_ukykb")
 entity_to_spawn = ExtResource("5_8dqsj")
 time_between_entities = 0.5
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="VisualOffset" type="Node3D" parent="." index="2"]
+[node name="VisualOffset" type="Node3D" parent="." index="2" unique_id=1571799126]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualOffset" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualOffset" index="0" unique_id=326851195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.165828, 0)
 mesh = SubResource("BoxMesh_50ahm")
 skeleton = NodePath("../..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
-libraries = {
-&"": SubResource("AnimationLibrary_ukykb")
-}
-autoplay = "rotate"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=1110936840]
+libraries/ = SubResource("AnimationLibrary_ukykb")
+autoplay = &"rotate"
 
-[node name="Hitbox" parent="." index="4" instance=ExtResource("3_mhr7y")]
+[node name="Hitbox" parent="." index="4" unique_id=1034883426 instance=ExtResource("3_mhr7y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206299, 0)
 collision_layer = 4
 collision_mask = 64
@@ -101,10 +99,10 @@ damage = 2.0
 attached_to = 3
 can_hit = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1557234392]
 shape = SubResource("SphereShape3D_wti6h")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5" unique_id=1209662183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.242537, 0)
 shape = SubResource("SphereShape3D_ukykb")
 debug_color = Color(0.316733, 0.60988, 0.402982, 0.42)

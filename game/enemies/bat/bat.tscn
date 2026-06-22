@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://vlcyo0twxfoa"]
+[gd_scene format=3 uid="uid://vlcyo0twxfoa"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_ajyhn"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="2_7dp76"]
@@ -195,83 +195,79 @@ _data = {
 &"bat_move": SubResource("Animation_ajyhn")
 }
 
-[node name="Bat" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_ajyhn")]
+[node name="Bat" unique_id=1327599577 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_ajyhn")]
 health = 75.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
 
-[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitForTimeXState")
 
-[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=2034141114 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_k47aw")
 wait_time = 0.0
 min_distance = 3.0
 max_distance = 4.0
 next_state = NodePath("../WaitForTimeXState")
-animation_trigger = "Move"
 metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="1" unique_id=1737918526 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_k52ci")
 wait_time = 2.0
 next_state = NodePath("../MoveRandomOnNavMeshState")
-animation_trigger = "Idle"
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=519539426]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22998047, 0)
 shape = SubResource("BoxShape3D_jblxu")
 disabled = true
 
-[node name="Hurtbox" parent="." index="4" instance=ExtResource("2_7dp76")]
+[node name="Hurtbox" parent="." index="4" unique_id=188768198 instance=ExtResource("2_7dp76")]
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
 can_be_hit_by = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=675077931]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258667, 0)
 shape = SubResource("BoxShape3D_k47aw")
 
-[node name="Hitbox" parent="." index="5" instance=ExtResource("3_aeabt")]
+[node name="Hitbox" parent="." index="5" unique_id=509891505 instance=ExtResource("3_aeabt")]
 collision_layer = 32
 collision_mask = 8
 damage = 40.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=807361290]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25201416, 0)
 shape = SubResource("BoxShape3D_k52ci")
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="6"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="6" unique_id=1699368479]
 tree_root = SubResource("AnimationNodeStateMachine_5i0bo")
 anim_player = NodePath("../Visuals/WIP-Model/AnimationPlayer")
 parameters/conditions/Idle = false
 parameters/conditions/Move = false
 
-[node name="WIP-Model" type="Node3D" parent="Visuals" index="0"]
+[node name="WIP-Model" type="Node3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1954918493]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 1.5, 0)
 
-[node name="AnchorL" type="Node3D" parent="Visuals/WIP-Model" index="0"]
+[node name="AnchorL" type="Node3D" parent="Visuals/WIP-Model" index="0" unique_id=839031383]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals/WIP-Model/AnchorL" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals/WIP-Model/AnchorL" index="0" unique_id=1426801270]
 transform = Transform3D(0.5247923, 0.034504924, 0, -0.43891892, 0.041255713, 0, 0, 0, 0.8404983, -0.2808959, 0.21510965, 0)
 mesh = SubResource("BoxMesh_ajyhn")
 skeleton = NodePath("../../../..")
 
-[node name="AnchorR" type="Node3D" parent="Visuals/WIP-Model" index="1"]
+[node name="AnchorR" type="Node3D" parent="Visuals/WIP-Model" index="1" unique_id=1990632181]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals/WIP-Model/AnchorR" index="0"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals/WIP-Model/AnchorR" index="0" unique_id=61981755]
 transform = Transform3D(-0.5247922, -0.03450492, 0, -0.43891892, 0.041255713, 0, 2.9802322e-08, 5.5879354e-09, -0.84049827, 0.2718755, 0.21510965, 0)
 mesh = SubResource("BoxMesh_ajyhn")
 skeleton = NodePath("../../../..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/WIP-Model" index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/WIP-Model" index="2" unique_id=1904362596]
 root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_aeabt")
-}
+libraries/ = SubResource("AnimationLibrary_aeabt")

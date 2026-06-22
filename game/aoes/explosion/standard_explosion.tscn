@@ -47,7 +47,7 @@ _data = {
 [node name="standard_Explosion" unique_id=2094895290 instance=ExtResource("1_a55m2")]
 duration = 1.5
 
-[node name="Hitbox" parent="." index="0"]
+[node name="Hitbox" parent="." index="0" unique_id=14469486]
 collision_layer = 32
 collision_mask = 8
 damage = 50.0
@@ -55,15 +55,15 @@ individual_hit_limit = 1
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" parent="Hitbox" index="0" unique_id=1346345033]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18017578, 0)
 shape = SubResource("CylinderShape3D_xwt0x")
 
-[node name="vfx_explosion" parent="Visuals" index="0" unique_id=952714146 instance=ExtResource("2_xwt0x")]
+[node name="vfx_explosion" parent="Visuals" parent_id_path=PackedInt32Array(312663566) index="0" unique_id=952714146 instance=ExtResource("2_xwt0x")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.18615037, 0)
 visible = false
 
-[node name="vfx_explosion2" parent="Visuals" index="1" unique_id=1596309124 instance=ExtResource("3_1s8id")]
+[node name="vfx_explosion2" parent="Visuals" parent_id_path=PackedInt32Array(312663566) index="1" unique_id=1596309124 instance=ExtResource("3_1s8id")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1764557236]

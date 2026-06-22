@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cntl0a50ubjlr"]
+[gd_scene format=3 uid="uid://cntl0a50ubjlr"]
 
 [ext_resource type="Script" uid="uid://cowiwpq0slcur" path="res://addons/dreadpon.spatial_gardener/controls/side_panel/ui_foldable_section.gd" id="2"]
 
@@ -26,33 +26,33 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_cwp62"]
 image = SubResource("Image_cjluq")
 
-[node name="UI_FoldableSection" type="MarginContainer"]
+[node name="UI_FoldableSection" type="MarginContainer" unique_id=1184883034]
 offset_right = 322.0
 offset_bottom = 146.0
 script = ExtResource("2")
 arrow_down = SubResource("ImageTexture_btpaa")
 arrow_right = SubResource("ImageTexture_cwp62")
 
-[node name="VBoxContainer_Main" type="VBoxContainer" parent="."]
+[node name="VBoxContainer_Main" type="VBoxContainer" parent="." unique_id=1802311867]
 layout_mode = 2
 
-[node name="Button_Fold" type="Button" parent="VBoxContainer_Main"]
+[node name="Button_Fold" type="Button" parent="VBoxContainer_Main" unique_id=187841827]
 layout_mode = 2
 theme_type_variation = &"PropertySection"
 text = "Section"
 icon = SubResource("ImageTexture_btpaa")
 alignment = 0
 
-[node name="HBoxContainer_Offset" type="HBoxContainer" parent="VBoxContainer_Main"]
+[node name="HBoxContainer_Offset" type="HBoxContainer" parent="VBoxContainer_Main" unique_id=1652527355]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Offset" type="Control" parent="VBoxContainer_Main/HBoxContainer_Offset"]
+[node name="Offset" type="Control" parent="VBoxContainer_Main/HBoxContainer_Offset" unique_id=1296706888]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer_Properties" type="VBoxContainer" parent="VBoxContainer_Main/HBoxContainer_Offset"]
+[node name="VBoxContainer_Properties" type="VBoxContainer" parent="VBoxContainer_Main/HBoxContainer_Offset" unique_id=1607166667]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

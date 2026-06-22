@@ -16,47 +16,47 @@ size = Vector3(0.84277344, 0.6279297, 0.88061523)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0d62p"]
 size = Vector3(0.76660156, 0.6621094, 0.78515625)
 
-[node name="Miniworm" node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_f4f4c")]
+[node name="Miniworm" unique_id=1168593889 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_f4f4c")]
 health = 60.0
-speed = 1.5
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
+speed = 1.5
 
-[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveTowardsPlayerState")
 
-[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" unique_id=144463843 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_7kq3x")
 wait_time = 0.0
 stop_distance = 0.0
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="Hurtbox" parent="." index="3" instance=ExtResource("3_34ff0")]
+[node name="Hurtbox" parent="." index="3" unique_id=916827419 instance=ExtResource("3_34ff0")]
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
 can_be_hit_by = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=19771155]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19683838, 0)
 shape = SubResource("BoxShape3D_4spmw")
 
-[node name="Hitbox" parent="." index="4" instance=ExtResource("4_kvjby")]
+[node name="Hitbox" parent="." index="4" unique_id=1938258962 instance=ExtResource("4_kvjby")]
 collision_layer = 32
 collision_mask = 8
 damage = 25.0
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1641480454]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18603516, 0)
 shape = SubResource("BoxShape3D_71cmv")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="5" unique_id=579765690]
 transform = Transform3D(0.6498289, 0, 0, 0, 0.6319603, 0, 0, 0, 0.78585756, 0, 0.13590205, 0)
 mesh = SubResource("BoxMesh_7kq3x")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=247839216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16894531, 0)
 shape = SubResource("BoxShape3D_0d62p")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnvxyg3ysg7tf"]
+[gd_scene format=3 uid="uid://cnvxyg3ysg7tf"]
 
 [ext_resource type="PackedScene" uid="uid://wqhqib0voc53" path="res://game/vfx/particle_one_shot_component/particle_oneshot_component.tscn" id="1_uatyq"]
 
@@ -33,7 +33,7 @@ material = SubResource("StandardMaterial3D_okp71")
 radial_segments = 6
 rings = 6
 
-[node name="Pol" type="GPUParticles3D"]
+[node name="Pol" type="GPUParticles3D" unique_id=1076146438]
 transform = Transform3D(1, 0, 0, 0, 0.8261278, 0.56348276, 0, -0.56348276, 0.8261278, 0, 0, 0)
 emitting = false
 amount = 16
@@ -42,5 +42,5 @@ explosiveness = 0.55
 process_material = SubResource("ParticleProcessMaterial_t44cp")
 draw_pass_1 = SubResource("SphereMesh_vdlir")
 
-[node name="particle_oneshot_component" parent="." node_paths=PackedStringArray("node_to_kill") instance=ExtResource("1_uatyq")]
+[node name="particle_oneshot_component" parent="." unique_id=1531438704 node_paths=PackedStringArray("node_to_kill") instance=ExtResource("1_uatyq")]
 node_to_kill = NodePath("..")

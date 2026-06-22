@@ -4,25 +4,22 @@
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="2_6xqvn"]
 [ext_resource type="PackedScene" uid="uid://xx1ogf8cudcr" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/mini_eumling_artistisch_kreativ_visual.tscn" id="2_8gu5s"]
 
-[node name="BaseEnemy" node_paths=PackedStringArray("node_with_animation_tree") instance=ExtResource("1_prcig")]
-speed = 2.0
+[node name="BaseEnemy" unique_id=846459922 node_paths=PackedStringArray("node_with_animation_tree") instance=ExtResource("1_prcig")]
 ignore_enemy_in_level = true
 node_with_animation_tree = NodePath("Visuals/mini_eumling_var1")
+speed = 2.0
 
-[node name="HealthbarEnemy3D" parent="." index="1"]
-visible = false
-
-[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveTowardsPlayerState")
 
-[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("next_state")]
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine" index="0" unique_id=1398068429 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_6xqvn")
 wait_time = 0.5
 stop_distance = 0.5
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="Visuals" parent="." index="4"]
+[node name="Visuals" parent="." index="4" unique_id=110309936]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
-[node name="mini_eumling_var1" parent="Visuals" index="0" instance=ExtResource("2_8gu5s")]
+[node name="mini_eumling_var1" parent="Visuals" index="0" unique_id=442415021 instance=ExtResource("2_8gu5s")]

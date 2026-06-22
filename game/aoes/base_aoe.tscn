@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4e8dv2l1561n"]
+[gd_scene format=3 uid="uid://c4e8dv2l1561n"]
 
 [ext_resource type="Script" uid="uid://b80rxujvjbxg0" path="res://game/aoes/aoe.gd" id="1_iiy76"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_k1thb"]
 
-[node name="AOE" type="Node3D" node_paths=PackedStringArray("collsion_shape", "visuals")]
+[node name="AOE" type="Node3D" unique_id=1436195783 node_paths=PackedStringArray("collsion_shape", "visuals")]
 script = ExtResource("1_iiy76")
 collsion_shape = NodePath("Hitbox/CollisionShape3D")
 visuals = NodePath("Visuals")
 
-[node name="Hitbox" parent="." instance=ExtResource("2_k1thb")]
+[node name="Hitbox" parent="." unique_id=14469486 instance=ExtResource("2_k1thb")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1346345033]
 
-[node name="Visuals" type="Node3D" parent="."]
+[node name="Visuals" type="Node3D" parent="." unique_id=312663566]

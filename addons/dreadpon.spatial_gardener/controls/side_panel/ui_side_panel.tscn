@@ -1,31 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://t2apc6cgn7ud"]
+[gd_scene format=3 uid="uid://t2apc6cgn7ud"]
 
 [ext_resource type="Script" uid="uid://5askkn0p64rs" path="res://addons/dreadpon.spatial_gardener/controls/side_panel/ui_side_panel.gd" id="3"]
 
-[node name="SidePanel" type="TabContainer"]
+[node name="SidePanel" type="TabContainer" unique_id=1624853071]
 custom_minimum_size = Vector2(300, 0)
 offset_right = 450.0
 offset_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.3
+current_tab = 0
 tabs_visible = false
 script = ExtResource("3")
 metadata/class = "UI_SidePanel"
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2048255329]
 layout_mode = 2
 theme_type_variation = &"InspectorPanelContainer"
+metadata/_tab_index = 0
 
-[node name="PanelContainer_Tools_Split" type="VSplitContainer" parent="PanelContainer"]
+[node name="PanelContainer_Tools_Split" type="VSplitContainer" parent="PanelContainer" unique_id=396912028]
 layout_mode = 2
+split_offsets = PackedInt32Array(200)
 split_offset = 200
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1967317675]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="Label_Error" type="Label" parent="MarginContainer"]
+[node name="Label_Error" type="Label" parent="MarginContainer" unique_id=1003485968]
 layout_mode = 2
 text = "To begin, set the Gardener's Work Directory in the Inspector"
 horizontal_alignment = 1

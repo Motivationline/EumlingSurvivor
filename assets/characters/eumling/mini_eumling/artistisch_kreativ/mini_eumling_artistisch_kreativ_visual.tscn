@@ -55,10 +55,11 @@ node_connections = [&"output", 0, &"OneShot", &"Transition", 0, &"Animation", &"
 
 [node name="mini_eumling_var1" unique_id=427404541 instance=ExtResource("1_few7l")]
 
-[node name="mini_eumling_var1_obj_001" parent="Aramture_MiniEumling_001/Skeleton3D" parent_id_path=PackedInt32Array(1592765724) index="0" unique_id=10149876]
+[node name="mini_eumling_var1_obj_001" parent="Aramture_MiniEumling_001/Skeleton3D" parent_id_path=PackedInt32Array(69811) index="0" unique_id=375217666]
 layers = 2
+skeleton = NodePath("..")
 
-[node name="Wiggle" type="SpringBoneSimulator3D" parent="Aramture_MiniEumling_001/Skeleton3D" parent_id_path=PackedInt32Array(1592765724) index="1" unique_id=341318583]
+[node name="Wiggle" type="SpringBoneSimulator3D" parent="Aramture_MiniEumling_001/Skeleton3D" parent_id_path=PackedInt32Array(69811) index="1" unique_id=341318583]
 setting_count = 1
 settings/0/root_bone_name = "DEF_BODY"
 settings/0/root_bone = 1
@@ -92,7 +93,7 @@ settings/0/joints/5/bone = 6
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=709775610]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1441858134]
 autoplay = &"mini_eumling_idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1566579797]

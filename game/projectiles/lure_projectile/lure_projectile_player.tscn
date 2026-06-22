@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpij4pds4lqgx"]
+[gd_scene format=3 uid="uid://dpij4pds4lqgx"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_55etv"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="2_igd2n"]
@@ -18,38 +18,38 @@ height = 0.25
 [sub_resource type="SphereShape3D" id="SphereShape3D_pbind"]
 radius = 0.226072
 
-[node name="Lure_Proectile" node_paths=PackedStringArray("hurt_box", "on_hurt") instance=ExtResource("1_55etv")]
+[node name="Lure_Proectile" unique_id=2130162233 node_paths=PackedStringArray("hurt_box", "on_hurt") instance=ExtResource("1_55etv")]
 damage = 0.0
 lifetime = 8.0
 hurt_box = NodePath("Hurtbox")
 on_hurt = [NodePath("EventStrategies/OnHurt/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnHurt/RemoveEventStrategy")]
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnHurt" index="0"]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnHurt" parent_id_path=PackedInt32Array(1942650529) index="0" unique_id=1150085389]
 script = ExtResource("2_igd2n")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnHurt/SpawnEntitiesEventStrategy" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnHurt/SpawnEntitiesEventStrategy" index="0" unique_id=907176817]
 script = ExtResource("3_x82ux")
 entity_to_spawn = ExtResource("4_d5qcg")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHurt" index="1"]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHurt" parent_id_path=PackedInt32Array(1942650529) index="1" unique_id=1602566196]
 script = ExtResource("5_0wj5t")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="Hurtbox" parent="." index="2" instance=ExtResource("6_uhieh")]
+[node name="Hurtbox" parent="." index="2" unique_id=1085400725 instance=ExtResource("6_uhieh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1479, 0)
 collision_layer = 8
 collision_mask = 32
 attached_to = 4
 can_be_hit_by = 6
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=1569437794]
 shape = SubResource("SphereShape3D_jay8e")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=349351121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.139203, 0)
 mesh = SubResource("CylinderMesh_pbind")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1692498438]
 shape = SubResource("SphereShape3D_pbind")

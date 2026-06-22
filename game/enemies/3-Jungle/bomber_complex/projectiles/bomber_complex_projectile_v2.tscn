@@ -13,11 +13,11 @@
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="8_7bgia"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="9_rildt"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="10_o04do"]
-[ext_resource type="PackedScene" uid="uid://b3i03xporqdm7" path="res://game/enemies/3-Jungle/bomber/projectile/bomber_explosion_projectile.tscn" id="11_oyass"]
-[ext_resource type="PackedScene" uid="uid://dbwg5pd51l5wa" path="res://game/enemies/3-Jungle/bomber/projectile/bomber_explosion_particle.tscn" id="12_1qg4g"]
+[ext_resource type="PackedScene" uid="uid://b3i03xporqdm7" path="res://game/enemies/3-jungle/bomber/projectile/bomber_explosion_projectile.tscn" id="11_oyass"]
+[ext_resource type="PackedScene" uid="uid://dbwg5pd51l5wa" path="res://game/enemies/3-jungle/bomber/projectile/bomber_explosion_particle.tscn" id="12_1qg4g"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_kdgty"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_7bgia"]
-[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="13_rildt"]
+[ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="13_rildt"]
 
 [sub_resource type="Curve" id="Curve_167yk"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -241,7 +241,6 @@ transform = Transform3D(0.9975524, 0, 1.1202186, 0.64272314, 1.228548, -0.572343
 [node name="cactus_bomb" type="MeshInstance3D" parent="cactus_bomb2" index="0" unique_id=538917902]
 material_override = SubResource("ShaderMaterial_8tdg0")
 mesh = SubResource("ArrayMesh_8d0k7")
-skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=275969270]
 libraries/ = SubResource("AnimationLibrary_g25hi")

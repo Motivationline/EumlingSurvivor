@@ -8,15 +8,15 @@ albedo_color = Color(0.41598046, 0.41598043, 0.4159804, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_ecwap"]
 radius = 1.0375811
 
-[node name="stone_v1" instance=ExtResource("1_ao1vk")]
+[node name="stone_v1" unique_id=1171044614 instance=ExtResource("1_ao1vk")]
 
-[node name="stonev1" parent="." index="0"]
+[node name="stonev1" parent="." index="0" unique_id=1982432404]
 surface_material_override/0 = SubResource("StandardMaterial3D_u0ose")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1312190589]
 collision_layer = 256
 collision_mask = 256
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=665222711]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.088276565, 1.019275, 0)
 shape = SubResource("SphereShape3D_ecwap")

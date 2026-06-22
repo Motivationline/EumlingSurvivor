@@ -8,10 +8,10 @@
 
 [node name="DummyEnemy" unique_id=975870666 instance=ExtResource("1_j6gfq")]
 health = 5000.0
-speed = 0.0
 ignore_enemy_in_level = true
+speed = 0.0
 
-[node name="StateMachine" parent="." index="2" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("LookAtPlayerState")
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" unique_id=1192629992 node_paths=PackedStringArray("next_state")]
@@ -32,10 +32,10 @@ script = ExtResource("3_nkvi3")
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://dj632w22te1th"
 
-[node name="PlaySoundDeathGeneral" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=2056535194]
+[node name="PlaySoundDeath" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="0" unique_id=2056535194]
 is_active = false
 
-[node name="PlaySoundHitGeneral" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=75111653]
+[node name="PlaySoundHurt" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="1" unique_id=75111653]
 is_active = false
 
 [node name="Atttack" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=931444050 instance=ExtResource("3_qhmrw")]

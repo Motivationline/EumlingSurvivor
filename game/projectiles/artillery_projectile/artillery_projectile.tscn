@@ -36,23 +36,20 @@ shape = SubResource("BoxShape3D_5h5ko")
 script = ExtResource("2_p4q1l")
 target_property = 2
 target_sorter = 3
-max_radius = 100.0
-max_targets = 1
 metadata/_custom_type_script = "uid://l8142vs0gken"
 
-[node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=206700784]
+[node name="ArtilleryToTargetProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=206700784]
 script = ExtResource("3_p4q1l")
-use_prediction = true
 metadata/_custom_type_script = "uid://ciibuj5lu0oho"
 
-[node name="OnCreated" type="Node" parent="EventStrategies" index="5" unique_id=293800511]
+[node name="OnCreated" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="5" unique_id=293800511]
 
 [node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies/OnCreated" index="0" unique_id=1228062772 node_paths=PackedStringArray("targeting_strats")]
 script = ExtResource("5_6ma20")
 targeting_strats = [NodePath("../../../TargetStrategies/UniversalTargetingProjectileTargetStrategy")]
 metadata/_custom_type_script = "uid://nxmo7fqigkr1"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies" index="6" unique_id=485243698]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="6" unique_id=485243698]
 script = ExtResource("6_i2kb8")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 

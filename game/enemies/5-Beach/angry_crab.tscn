@@ -30,7 +30,7 @@ collision_mask = 65
 health = 300.0
 hitbox = NodePath("Hitbox")
 hurtbox = NodePath("Hurtbox")
-on_hurt = [NodePath("Eventlisteners/PlaySoundHitGeneral"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
+on_hurt = [null, NodePath("Eventlisteners/TriggerStateEventStrategy")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("DecideDistanceState")
@@ -78,9 +78,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/Attack Player/SpawnEntitiesState" index="0" unique_id=1800799434]
 script = ExtResource("6_rfr6w")
+offset_distance = 0.5
 entity_to_spawn = ExtResource("8_yb4gw")
 time_between_entities = 5.0
-offset_distance = 0.5
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="AttackedByPlayer" type="Node" parent="StateMachine" index="4" unique_id=784036827]

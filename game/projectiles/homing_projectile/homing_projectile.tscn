@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0yad0h6ygru5"]
+[gd_scene format=3 uid="uid://c0yad0h6ygru5"]
 
 [ext_resource type="Script" uid="uid://jbbsv86nh8j1" path="res://game/projectiles/projectile.gd" id="1_5kvap"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_ovv8p"]
@@ -22,7 +22,7 @@ albedo_color = Color(0.219608, 0.392157, 1, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ja52y"]
 albedo_color = Color(0.720288, 0.284462, 0.531922, 1)
 
-[node name="Bullet" type="CharacterBody3D" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_hurt", "on_end_of_life")]
+[node name="Bullet" type="CharacterBody3D" unique_id=104586681 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_hurt", "on_end_of_life")]
 collision_layer = 0
 script = ExtResource("1_5kvap")
 lifetime = 3.0
@@ -33,65 +33,65 @@ on_hit = [NodePath("Events/OnHit/RemoveEventStrategy")]
 on_hurt = [NodePath("Events/OnHurt/RemoveEventStrategy")]
 on_end_of_life = [NodePath("Events/OnEndOfLife/RemoveEventStrategy")]
 
-[node name="Movement" type="Node" parent="."]
+[node name="Movement" type="Node" parent="." unique_id=145530053]
 
-[node name="AddParentsVelocityAtTimeOfSpawnProjectileMovementStrategy" type="Node" parent="Movement"]
+[node name="AddParentsVelocityAtTimeOfSpawnProjectileMovementStrategy" type="Node" parent="Movement" unique_id=755672723]
 script = ExtResource("5_if6j5")
 metadata/_custom_type_script = "uid://c1blpxxkte8o3"
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="Movement"]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="Movement" unique_id=1680684920]
 script = ExtResource("3_2x25j")
 speed = SubResource("Curve_pk467")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="HomingProjectileMovementStrategy" type="Node" parent="Movement"]
+[node name="HomingProjectileMovementStrategy" type="Node" parent="Movement" unique_id=1100182835]
 script = ExtResource("4_5235h")
 
-[node name="Events" type="Node" parent="."]
+[node name="Events" type="Node" parent="." unique_id=824128214]
 
-[node name="OnHit" type="Node" parent="Events"]
+[node name="OnHit" type="Node" parent="Events" unique_id=1127880768]
 
-[node name="TimerEventStrategy" type="Node" parent="Events/OnHit" node_paths=PackedStringArray("event")]
+[node name="TimerEventStrategy" type="Node" parent="Events/OnHit" unique_id=1790113892 node_paths=PackedStringArray("event")]
 script = ExtResource("5_07xs0")
 event = NodePath("../RemoveEventStrategy")
 metadata/_custom_type_script = "uid://dafjuq1vey0x6"
 
-[node name="RemoveEventStrategy" type="Node" parent="Events/OnHit"]
+[node name="RemoveEventStrategy" type="Node" parent="Events/OnHit" unique_id=701616352]
 script = ExtResource("10_x0c7d")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="OnHurt" type="Node" parent="Events"]
+[node name="OnHurt" type="Node" parent="Events" unique_id=869827720]
 
-[node name="RemoveEventStrategy" type="Node" parent="Events/OnHurt"]
+[node name="RemoveEventStrategy" type="Node" parent="Events/OnHurt" unique_id=1584447402]
 script = ExtResource("10_x0c7d")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="OnEndOfLife" type="Node" parent="Events"]
+[node name="OnEndOfLife" type="Node" parent="Events" unique_id=1455463707]
 
-[node name="RemoveEventStrategy" type="Node" parent="Events/OnEndOfLife"]
+[node name="RemoveEventStrategy" type="Node" parent="Events/OnEndOfLife" unique_id=336752852]
 script = ExtResource("10_x0c7d")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="OnRemove" type="Node" parent="Events"]
+[node name="OnRemove" type="Node" parent="Events" unique_id=1052621504]
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=327002585]
 transform = Transform3D(0.999981, -0.00262398, 0.00563495, 0.00262978, 0.999996, -0.00102195, -0.00563225, 0.00103675, 0.999984, 0, 0, 0)
 shape = SubResource("BoxShape3D_j1spr")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=916335835]
 material_override = SubResource("StandardMaterial3D_c5m0e")
 size = Vector3(0.25, 0.25, 0.5)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1191348608]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.223057)
 material_override = SubResource("StandardMaterial3D_ja52y")
 size = Vector3(0.1, 0.5, 0.5)
 
-[node name="Hitbox" parent="." instance=ExtResource("2_ovv8p")]
+[node name="Hitbox" parent="." unique_id=683170300 instance=ExtResource("2_ovv8p")]
 collision_layer = 4
 collision_mask = 64
 attached_to = 3
 can_hit = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=528088082]
 shape = SubResource("BoxShape3D_j1spr")

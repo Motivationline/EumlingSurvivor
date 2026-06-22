@@ -1,14 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0e5duwfn6vh4"]
+[gd_scene format=3 uid="uid://d0e5duwfn6vh4"]
 
 [ext_resource type="PackedScene" uid="uid://bmjn2csxoum5t" path="res://game/projectiles/realistic_projectile/realistic_projectile.tscn" id="1_y8gmo"]
 [ext_resource type="PackedScene" uid="uid://bvsmjim3508tu" path="res://game/aoes/realistic_projectile_aoe/realistic_projectile_aoe.tscn" id="2_il3n4"]
 
-[node name="RealisticProjectile" instance=ExtResource("1_y8gmo")]
+[node name="RealisticProjectile" unique_id=570134352 instance=ExtResource("1_y8gmo")]
 
-[node name="RemoveEventStrategy" parent="EventStrategies" index="5"]
-is_active = true
-
-[node name="TimerEventStrategy" parent="EventStrategies" index="6"]
-is_active = true
-
-[node name="AOE" parent="." index="5" instance=ExtResource("2_il3n4")]
+[node name="AOE" parent="." index="5" unique_id=1163264401 instance=ExtResource("2_il3n4")]
