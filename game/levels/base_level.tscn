@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://bmc2la5fkmscu"]
 
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_wbp8f"]
-[ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="2_gxtsi"]
+[ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="3_vfi3j"]
+[ext_resource type="Script" uid="uid://du18mum64y03k" path="res://game/cameras/behaviours/normal_behaviour.gd" id="4_826sl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbp8f"]
 size = Vector3(1.9667969, 1.8048096, 1)
+
+[sub_resource type="Resource" id="Resource_g4v7s"]
+script = ExtResource("4_826sl")
+metadata/_custom_type_script = "uid://du18mum64y03k"
 
 [sub_resource type="Gradient" id="Gradient_gxtsi"]
 offsets = PackedFloat32Array(0.25613078, 0.3133515, 0.373297)
@@ -53,10 +58,12 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_wbp8f")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1814334667]
+[node name="GameCamera" type="Camera3D" parent="." unique_id=2054852960]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.104352, 12.5917, 7.49343)
 fov = 45.0
-script = ExtResource("2_gxtsi")
+script = ExtResource("3_vfi3j")
+behaviour = SubResource("Resource_g4v7s")
+metadata/_custom_type_script = "uid://bftcfposg3qyf"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2030033814]
 transform = Transform3D(1, 0, 0, 0, 0.713593, 0.700561, 0, -0.700561, 0.713593, 0, 4.44658, 0)

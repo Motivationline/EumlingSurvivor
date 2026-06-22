@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://htuftvnpan0c"]
 
-[ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_uile8"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="2_qbpv8"]
+[ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="4_vlj6n"]
 [ext_resource type="PackedScene" uid="uid://dd5npkf3gb428" path="res://level/playgounrd/weapon_switch/weapon_switch.tscn" id="5_u3pwt"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_cf6nt"]
 [ext_resource type="PackedScene" uid="uid://cjpt5ms0ud5r" path="res://game/projectiles/bouncing_ball_projectile/bouncing_ball_projectile_player.tscn" id="6_geo0b"]
@@ -69,7 +69,7 @@ shader_parameter/direction2 = Vector2(0.03, 0.03)
 shader_parameter/highlight_threshold = 0.394000018715
 shader_parameter/main_threshhold = 0.2090000099275
 
-[node name="001" type="Node3D" unique_id=596384730 node_paths=PackedStringArray("player_spawn", "goal_area") groups=["Level"]]
+[node name="001" type="Node3D" unique_id=596384730 node_paths=PackedStringArray("player_spawn") groups=["Level"]]
 script = ExtResource("1_uile8")
 player_spawn = NodePath("PlayerSpawnMarker")
 goal_area = NodePath("LeaveArea")
@@ -113,14 +113,15 @@ use_collision = true
 collision_mask = 0
 size = Vector3(9.3125, 1, 1)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=541827332]
+[node name="GameCamera" type="Camera3D" parent="." unique_id=1451403640]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.104352, 12.5917, 7.49343)
 projection = 1
 fov = 45.0
 size = 15.0
 near = 0.01
 far = 30.0
-script = ExtResource("1_j48a7")
+script = ExtResource("4_vlj6n")
+metadata/_custom_type_script = "uid://bftcfposg3qyf"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1344726379]
 transform = Transform3D(0.9469659, -0.18320374, -0.26399282, 0.0877022, -0.6430056, 0.7608235, -0.30913436, -0.74362653, -0.5928369, 0, 7.560488, 0)
