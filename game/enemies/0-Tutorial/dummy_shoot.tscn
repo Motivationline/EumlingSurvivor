@@ -6,13 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-Jungle/sniper/sniper_projectile_enemy.tscn" id="4_xrvyw"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="5_pbdvb"]
 [ext_resource type="PackedScene" uid="uid://dawdgb5ljl7x6" path="res://game/enemies/0-Tutorial/dummy_move.tscn" id="5_xrvyw"]
-[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="6_pbdvb"]
-
-[sub_resource type="Resource" id="Resource_g4v7s"]
-script = ExtResource("6_pbdvb")
-mode = "global"
-direction = Vector3(0, 0, 90)
-metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 
 [node name="DummyShoot" unique_id=1898691 node_paths=PackedStringArray("on_death") instance=ExtResource("1_spq6f")]
 on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
@@ -38,15 +31,10 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 script = ExtResource("5_pbdvb")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="DummySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=1635184553 node_paths=PackedStringArray("spawn_position")]
+[node name="DummySpawner" type="Node3D" parent="Eventlisteners/SpawnEntitiesEventStrategy" index="0" unique_id=1635184553]
 script = ExtResource("3_eogt4")
-spawn_position = NodePath("../../../DummySpawnPos")
 entity_to_spawn = ExtResource("5_xrvyw")
-target_strategy = SubResource("Resource_g4v7s")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="ProjectileSpawnPos" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1144174269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.415)
-
-[node name="DummySpawnPos" type="Marker3D" parent="." index="9" unique_id=987875472]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)

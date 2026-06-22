@@ -66,6 +66,8 @@ func _ready() -> void:
 	if difficulty_scaler:
 		difficulty_scaler.setup_and_apply(self, owner)
 	super ()
+	
+	fix_visuals_and_root_rotation()
 	max_health = health
 	if (status_visuals): status_visuals.init_health(max_health)
 	if (hitbox): hitbox.hit.connect(_hit)
@@ -88,6 +90,7 @@ func _ready() -> void:
 	add_child(reset_timer)
 	reset_timer.timeout.connect(reset_health)
 
+func fix_visuals_and_root_rotation():
 	visuals.rotation = rotation
 	rotation = Vector3(0,0,0)
 

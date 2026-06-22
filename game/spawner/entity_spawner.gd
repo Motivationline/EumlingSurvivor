@@ -132,3 +132,6 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 			instance.damage = damage
 			instance.max_distance = max_distance
 			instance.lifetime = lifetime
+
+	elif (instance is Enemy):
+		instance.fix_visuals_and_root_rotation()
