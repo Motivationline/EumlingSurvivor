@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://rt8pt07jdaxd"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_tp3be"]
+[ext_resource type="Texture2D" uid="uid://6y2wbqmqfute" path="res://assets/characters/enemies/saeckle/saeckle_DefaultMaterial_2D_View.png" id="2_mn4ny"]
+
+[sub_resource type="Gradient" id="Gradient_8clmx"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.26865673, 0.69402987)
+colors = PackedColorArray(0.19793725, 0.19793722, 0.19793722, 1, 0.3515629, 0.3515629, 0.35156286, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vrbwt"]
+gradient = SubResource("Gradient_8clmx")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tp3be")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_mn4ny")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_vrbwt")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_diffuse_smooth_attenuation = true

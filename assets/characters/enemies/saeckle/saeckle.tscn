@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bxbgptpji15jk"]
+
+[ext_resource type="PackedScene" uid="uid://daxibk5x6ufly" path="res://assets/characters/enemies/saeckle/saeckle.glb" id="1_5f01d"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5f01d"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hqxru"]
+animation = &"shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nnfd4"]
+animation = &"hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p2eby"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_5f01d"]
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "shoot"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "hit"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g4v7s"]
+graph_offset = Vector2(-673.0623, 11.595047)
+nodes/Transition/node = SubResource("AnimationNodeTransition_5f01d")
+nodes/Transition/position = Vector2(80, 80)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_p2eby")
+nodes/Animation/position = Vector2(-440, -60)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_5f01d")
+"nodes/Animation 2/position" = Vector2(-440, 120)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_hqxru")
+"nodes/Animation 3/position" = Vector2(-440, 280)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_nnfd4")
+"nodes/Animation 4/position" = Vector2(-440, 460)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 3", &"Transition", 3, &"Animation 4"]
+
+[node name="saeckle" unique_id=1803899971 instance=ExtResource("1_5f01d")]
+
+[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(2054286338) index="5" unique_id=1160345917]
+setting_count = 1
+settings/0/root_bone_name = "DEF_LEAF01"
+settings/0/root_bone = 5
+settings/0/end_bone_name = "DEF_LEAF03"
+settings/0/end_bone = 7
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.02
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 1.0
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.4
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "DEF_LEAF01"
+settings/0/joints/0/bone = 5
+settings/0/joints/1/bone_name = "DEF_LEAF02"
+settings/0/joints/1/bone = 6
+settings/0/joints/2/bone_name = "DEF_LEAF03"
+settings/0/joints/2/bone = 7
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=597551720]
+tree_root = SubResource("AnimationNodeBlendTree_g4v7s")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "hit"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 3
