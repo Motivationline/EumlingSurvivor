@@ -24,29 +24,29 @@ radius = 0.16649072
 radius = 0.114210404
 
 [node name="Projectile" unique_id=1302486386 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision") instance=ExtResource("1_qmmig")]
-collision_mask = 513
+collision_mask = 1537
 max_distance = 100.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
 on_world_collision = [NodePath("EventStrategies/OnWorldCollision/BounceEventStrategy"), NodePath("EventStrategies/OnWorldCollision/CountdownEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=353315741]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=353315741]
 script = ExtResource("2_tm1ac")
 speed = SubResource("Curve_mwtwv")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="BounceEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=17397406 node_paths=PackedStringArray("ray_cast")]
+[node name="BounceEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="0" unique_id=17397406 node_paths=PackedStringArray("ray_cast")]
 script = ExtResource("3_wwqq4")
 ray_cast = NodePath("../../../RayCast3D")
 metadata/_custom_type_script = "uid://00ua1d2dsp1k"
 
-[node name="CountdownEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="1" unique_id=627764113 node_paths=PackedStringArray("event")]
+[node name="CountdownEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="1" unique_id=627764113 node_paths=PackedStringArray("event")]
 script = ExtResource("4_nmr0k")
 count = 20
 event = NodePath("../RemoveAfter2Bounces")
 metadata/_custom_type_script = "uid://dafjuq1vey0x6"
 
-[node name="RemoveAfter2Bounces" type="Node" parent="EventStrategies/OnWorldCollision" index="2" unique_id=233738006]
+[node name="RemoveAfter2Bounces" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="2" unique_id=233738006]
 script = ExtResource("5_qs8bt")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 

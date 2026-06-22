@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cjpt5ms0ud5r"]
+[gd_scene format=3 uid="uid://cjpt5ms0ud5r"]
 
 [ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_l26gs"]
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_mju7s"]
@@ -86,8 +86,8 @@ radius = 0.0764546
 [sub_resource type="SphereShape3D" id="SphereShape3D_uy0k7"]
 radius = 0.0909121
 
-[node name="bouncing_ball_projectile" node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_end_of_life") instance=ExtResource("1_l26gs")]
-collision_mask = 257
+[node name="bouncing_ball_projectile" unique_id=643214032 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_end_of_life") instance=ExtResource("1_l26gs")]
+collision_mask = 1281
 damage = 0.1
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
@@ -95,44 +95,42 @@ on_world_collision = [NodePath("EventStrategies/OnEndOfLife/SpawnEntitiesEventSt
 on_hit = [NodePath("EventStrategies/OnHit/RemoveEventStrategy"), NodePath("EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy")]
 on_end_of_life = [NodePath("EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0"]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=1182337750]
 script = ExtResource("2_mju7s")
 speed = SubResource("Curve_xss42")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHit" index="0"]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnHit" parent_id_path=PackedInt32Array(98182832) index="0" unique_id=1758145804]
 script = ExtResource("3_2pdrq")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnEndOfLife" index="0"]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnEndOfLife" parent_id_path=PackedInt32Array(1270043276) index="0" unique_id=1213415402]
 script = ExtResource("3_40aqw")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
-[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy" index="0"]
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnEndOfLife/SpawnEntitiesEventStrategy" index="0" unique_id=860779797]
 script = ExtResource("4_uy0k7")
 entity_to_spawn = ExtResource("5_2pdrq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=2110731754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25291, 0)
 mesh = SubResource("SphereMesh_xss42")
 surface_material_override/0 = SubResource("ShaderMaterial_uy0k7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
-libraries = {
-&"": SubResource("AnimationLibrary_2ujxw")
-}
-autoplay = "bounce"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=1537304650]
+libraries/ = SubResource("AnimationLibrary_2ujxw")
+autoplay = &"bounce"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=135563540]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258256, 0)
 shape = SubResource("SphereShape3D_l26gs")
 
-[node name="Hitbox" parent="." index="5" instance=ExtResource("8_uy0k7")]
+[node name="Hitbox" parent="." index="5" unique_id=905141762 instance=ExtResource("8_uy0k7")]
 collision_layer = 4
-collision_mask = 1
+collision_mask = 65
 attached_to = 3
 can_hit = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=228525025]
 shape = SubResource("SphereShape3D_uy0k7")

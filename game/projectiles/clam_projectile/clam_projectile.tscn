@@ -22,18 +22,18 @@ radius = 0.1390964
 radius = 0.055072684
 
 [node name="Projectile" unique_id=1952290792 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision") instance=ExtResource("1_lun5w")]
-collision_mask = 257
+collision_mask = 1281
 max_distance = 100.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
 on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" index="0" unique_id=1244244267]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=1244244267]
 script = ExtResource("2_j7qhy")
 speed = SubResource("Curve_egh3w")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" index="0" unique_id=2092243464]
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="0" unique_id=2092243464]
 script = ExtResource("3_egh3w")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
