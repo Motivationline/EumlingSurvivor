@@ -25,3 +25,8 @@ func _load_data():
 	var file := FileAccess.open(FILE_PATH, FileAccess.READ)
 	var text_content = file.get_as_text()
 	_data = JSON.parse_string(text_content)
+
+## resets all saved data
+func reset():
+	_data.clear()
+	_save_data()

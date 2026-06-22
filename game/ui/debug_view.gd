@@ -50,3 +50,7 @@ func _on_add_upgrade_button_pressed() -> void:
 	var method = find_child("UpgradeMethodButton").selected
 	var value = find_child("UpgradeValueBox").value
 	apply_upgrade(Upgrade.new(type, method, value))
+
+func delete_save() -> void:
+	SaveData.reset()
+	get_tree().quit()
