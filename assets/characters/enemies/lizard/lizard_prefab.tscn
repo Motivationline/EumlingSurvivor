@@ -32,7 +32,7 @@ input_2/break_loop_at_end = false
 input_2/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bhxjt"]
-graph_offset = Vector2(-514.3107, 40.03897)
+graph_offset = Vector2(-60.357143, 137.27228)
 nodes/output/position = Vector2(540, 120)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_cwscd")
 nodes/Animation/position = Vector2(-300, 240)
@@ -92,12 +92,15 @@ colors = PackedColorArray(2.055, 1.6883333, 0, 1, 1, 0.68333334, 0, 1, 1, 0.2050
 
 [node name="lizard" unique_id=1314517611 instance=ExtResource("1_cwscd")]
 
+[node name="Cube_157" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(2087789705) index="0" unique_id=486745038]
+skeleton = NodePath("..")
+
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=864660537]
 tree_root = SubResource("AnimationNodeBlendTree_bhxjt")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Transition/current_state = "discover"
+parameters/Transition/current_state = "run_slow"
 parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 2
+parameters/Transition/current_index = 0
 
 [node name="speed_indicator" type="Node3D" parent="." index="3" unique_id=1055644954]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40153503, -0.34721375)

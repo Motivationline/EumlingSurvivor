@@ -117,10 +117,11 @@ animation = &"fin_dive"
 play_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f8085"]
+graph_offset = Vector2(-662.2338, -182.78734)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_1oe4f")
 nodes/Animation/position = Vector2(-740, -180)
 nodes/Transition/node = SubResource("AnimationNodeTransition_gfhsp")
-nodes/Transition/position = Vector2(-280, -200)
+nodes/Transition/position = Vector2(-274.2857, -194.28572)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_f8085")
 "nodes/Animation 2/position" = Vector2(-800, 180)
 nodes/dive_down/node = SubResource("AnimationNodeAnimation_lgeeb")
@@ -215,7 +216,7 @@ colors = PackedColorArray(1.7121319, 0.76296145, 0, 1, 1.753959, 0.4108141, 0, 1
 
 [node name="BossShark" unique_id=600562415 instance=ExtResource("1_f8085")]
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(2128422103) index="0" unique_id=1624408568]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1156584198) index="0" unique_id=1624408568]
 transform = Transform3D(1, -4.5696025e-16, -1.7763568e-15, 1.7763568e-15, 1.6817792e-08, 1, -4.569602e-16, -1, 1.6817792e-08, 7.3285915e-16, -0.00031661987, -2.1370606)
 bone_name = "DEF_TAILFIN"
 bone_idx = 5
@@ -228,7 +229,10 @@ lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_tdynr")
 draw_pass_1 = SubResource("QuadMesh_mwvhb")
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=160891042]
+[node name="shark_mesh" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1156584198) index="1" unique_id=2103391617]
+skeleton = NodePath("..")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1618450403]
 autoplay = &"fin_walk"
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=75202033]
@@ -243,6 +247,7 @@ parameters/Transition/current_index = 1
 [node name="LavaTrail" type="CPUParticles3D" parent="Swimtrail" index="0" unique_id=474418486]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.28193432)
 material_override = SubResource("StandardMaterial3D_jtk2f")
+emitting = false
 amount = 18
 lifetime = 1.2
 fixed_fps = 30
@@ -260,6 +265,7 @@ color_ramp = SubResource("Gradient_ow06l")
 [node name="Flames" type="CPUParticles3D" parent="Swimtrail" index="1" unique_id=423415027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07392961, -0.6707741)
 material_override = SubResource("StandardMaterial3D_qrcxc")
+emitting = false
 lifetime = 0.5
 explosiveness = 0.29
 mesh = SubResource("QuadMesh_kl2jc")
@@ -280,6 +286,7 @@ color_ramp = SubResource("Gradient_i0o6h")
 [node name="Rocks" type="CPUParticles3D" parent="Swimtrail" index="2" unique_id=822184909]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07683253, 0.48893386)
 material_override = SubResource("StandardMaterial3D_kl2jc")
+emitting = false
 amount = 18
 lifetime = 0.8
 explosiveness = 0.21
@@ -302,7 +309,6 @@ color_initial_ramp = SubResource("Gradient_dw5fl")
 
 [node name="DirtTails" type="CPUParticles3D" parent="Swimtrail" index="3" unique_id=1380963778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.061703563)
-visible = false
 material_override = SubResource("StandardMaterial3D_s4xx1")
 emitting = false
 amount = 32
