@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cy2o1ufqfo2xa" path="res://assets/vfx/particle_pack/light_03.png" id="7_6iiev"]
 [ext_resource type="ArrayMesh" uid="uid://dorop2fuykl0l" path="res://assets/models/2-flower_field/grass/grass_mesh_instance.res" id="7_jyv5p"]
 [ext_resource type="Material" uid="uid://5ofe8r71twl1" path="res://assets/models/2-flower_field/grass/grass_field/grass_field_material.tres" id="9_ruf1u"]
-[ext_resource type="Script" uid="uid://ce3uevtwoe7te" path="res://global/settings/graphics_settings_component_global_illumination.gd" id="12_h2kg2"]
 [ext_resource type="Script" uid="uid://do4ujdcqq0nii" path="res://addons/world_wind/world_wind.gd" id="14_4y2u6"]
 [ext_resource type="ArrayMesh" uid="uid://dbarf1eienn0a" path="res://assets/models/3-Jungle/gras/gras_mask_mesh.res" id="14_5nfpk"]
 [ext_resource type="Material" uid="uid://bra6ug2wjmj0j" path="res://assets/models/3-Jungle/gras/src/materials/grass_01/grass_ground_01.tres" id="14_cxf2i"]
@@ -291,19 +290,6 @@ mesh = SubResource("PlaneMesh_twyh3")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1090473868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="LightmapGI" type="LightmapGI" parent="." unique_id=1450626193]
-visible = false
-quality = 2
-supersampling = true
-supersampling_factor = 4.0
-environment_mode = 3
-environment_custom_color = Color(1, 0.80266666, 0.63, 1)
-environment_custom_energy = 3.0
-
-[node name="GraphicsSettingsComponentGlobalIllumination" type="Node" parent="LightmapGI" unique_id=1244511876]
-script = ExtResource("12_h2kg2")
-metadata/_custom_type_script = "uid://ce3uevtwoe7te"
 
 [node name="Breakables" type="Node3D" parent="." unique_id=1453718420]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
