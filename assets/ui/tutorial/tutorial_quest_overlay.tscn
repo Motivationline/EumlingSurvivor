@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://dfijg5cgisnps"]
+
+[ext_resource type="Texture2D" uid="uid://bljhe3jpnd3s7" path="res://project_icon.svg" id="1_mgm4a"]
+[ext_resource type="Texture2D" uid="uid://q5d0meprymy7" path="res://assets/ui/Eumlex/Banner.png" id="2_5aewq"]
+[ext_resource type="Script" uid="uid://b0m0jlnyu1gcp" path="res://game/ui/auto_size_rich_text_label.gd" id="3_bhcdq"]
+[ext_resource type="Texture2D" uid="uid://dbqxunehgsecx" path="res://assets/ui/Eumlex/RedDop.png" id="4_s850p"]
+
+[node name="TutorialQuestOverlay" type="Control" unique_id=1864137060]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Portrait" type="TextureRect" parent="." unique_id=2034150341]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 117.0
+offset_right = 161.0
+offset_bottom = 212.0
+texture = ExtResource("1_mgm4a")
+expand_mode = 1
+
+[node name="Bubble" type="TextureRect" parent="." unique_id=1427821068]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 118.0
+offset_right = 631.0
+offset_bottom = 218.0
+texture = ExtResource("2_5aewq")
+expand_mode = 1
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=1963480548]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 124.0
+offset_right = 589.0
+offset_bottom = 212.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = 0
+theme_override_font_sizes/normal_font_size = 39
+theme_override_font_sizes/bold_font_size = 39
+theme_override_font_sizes/bold_italics_font_size = 39
+theme_override_font_sizes/italics_font_size = 39
+theme_override_font_sizes/mono_font_size = 39
+text = "Besiege das Monster"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_bhcdq")
+metadata/_custom_type_script = "uid://b0m0jlnyu1gcp"
+
+[node name="CompletedIcon" type="TextureRect" parent="." unique_id=759111176]
+layout_mode = 0
+offset_left = 517.0
+offset_top = 72.0
+offset_right = 617.0
+offset_bottom = 172.0
+texture = ExtResource("4_s850p")
+expand_mode = 1
