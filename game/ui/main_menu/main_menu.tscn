@@ -441,27 +441,35 @@ offset_top = 790.0
 offset_right = 310.0
 offset_bottom = 1017.0
 scale = Vector2(0.7946278, 0.7946278)
-focus_neighbor_right = NodePath("../settingButton")
-focus_next = NodePath("../settingButton")
-focus_previous = NodePath("../VBoxContainer/playButton")
+focus_neighbor_right = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../VBoxContainer/PlayButton")
 texture_normal = ExtResource("11_orue0")
 texture_focused = ExtResource("11_egypv")
 
-[node name="NumberCircle" type="Sprite2D" parent="UIOverlay/StaticUI/EumlexButton" unique_id=857890702]
-position = Vector2(220.2289, 0)
+[node name="NumberCircle" type="TextureRect" parent="UIOverlay/StaticUI/EumlexButton" unique_id=1441941658]
+layout_mode = 0
+offset_left = 174.92467
+offset_top = -47.821133
+offset_right = 269.92468
+offset_bottom = 74.17886
+pivot_offset = Vector2(47, 61)
+offset_transform_enabled = true
 texture = ExtResource("11_hpwr3")
 
 [node name="NumberCircleLabel3D" type="Label" parent="UIOverlay/StaticUI/EumlexButton/NumberCircle" unique_id=1024953764]
+unique_name_in_owner = true
 modulate = Color(0, 0, 0, 1)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -78.5
-offset_top = -88.115
-offset_right = -16.5
-offset_bottom = -6.114998
+offset_left = -28.623238
+offset_top = -24.504951
+offset_right = 33.376762
+offset_bottom = 57.49505
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -478,15 +486,15 @@ metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 libraries/ = SubResource("AnimationLibrary_njswq")
 autoplay = &"number_wiggle"
 
-[node name="settingButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1014587333]
+[node name="SettingsButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1014587333]
 layout_mode = 0
 offset_left = 311.0
 offset_top = 821.0
 offset_right = 443.0
 offset_bottom = 960.0
 focus_neighbor_left = NodePath("../EumlexButton")
-focus_neighbor_right = NodePath("../VBoxContainer/playButton")
-focus_next = NodePath("../VBoxContainer/playButton")
+focus_neighbor_right = NodePath("../VBoxContainer/PlayButton")
+focus_next = NodePath("../VBoxContainer/PlayButton")
 focus_previous = NodePath("../EumlexButton")
 texture_normal = ExtResource("13_0bhyy")
 texture_focused = ExtResource("11_egypv")
@@ -499,17 +507,17 @@ offset_right = 1768.0
 offset_bottom = 1159.0
 theme_override_constants/separation = 25
 
-[node name="playButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=877629100]
+[node name="PlayButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=877629100]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-focus_neighbor_left = NodePath("../../settingButton")
+focus_neighbor_left = NodePath("../../SettingsButton")
 focus_next = NodePath("../../EumlexButton")
-focus_previous = NodePath("../../settingButton")
+focus_previous = NodePath("../../SettingsButton")
 texture_normal = ExtResource("12_lnduv")
 texture_focused = ExtResource("11_egypv")
 stretch_mode = 5
 
-[node name="Play" type="Label" parent="UIOverlay/StaticUI/VBoxContainer/playButton" unique_id=1330015026]
+[node name="Play" type="Label" parent="UIOverlay/StaticUI/VBoxContainer/PlayButton" unique_id=1330015026]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 1
 anchors_preset = 15
@@ -526,20 +534,20 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 37
 theme_override_fonts/font = ExtResource("4_m1bca")
 theme_override_font_sizes/font_size = 97
-text = "Play"
+text = "NEU"
 horizontal_alignment = 1
 
-[node name="playButton2" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=1797591909]
+[node name="ContinueButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=1797591909]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-focus_neighbor_left = NodePath("../../settingButton")
+focus_neighbor_left = NodePath("../../SettingsButton")
 focus_next = NodePath("../../EumlexButton")
-focus_previous = NodePath("../../settingButton")
+focus_previous = NodePath("../../SettingsButton")
 texture_normal = ExtResource("12_lnduv")
 texture_focused = ExtResource("11_egypv")
 stretch_mode = 5
 
-[node name="Play" type="Label" parent="UIOverlay/StaticUI/VBoxContainer/playButton2" unique_id=1001584278]
+[node name="Continue" type="Label" parent="UIOverlay/StaticUI/VBoxContainer/ContinueButton" unique_id=1001584278]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 1
 anchors_preset = 15
@@ -556,37 +564,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 37
 theme_override_fonts/font = ExtResource("4_m1bca")
 theme_override_font_sizes/font_size = 97
-text = "Cont."
-horizontal_alignment = 1
-
-[node name="playButton3" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=315783185]
-visible = false
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-focus_neighbor_left = NodePath("../../settingButton")
-focus_next = NodePath("../../EumlexButton")
-focus_previous = NodePath("../../settingButton")
-texture_normal = ExtResource("12_lnduv")
-texture_focused = ExtResource("11_egypv")
-stretch_mode = 5
-
-[node name="Play" type="Label" parent="UIOverlay/StaticUI/VBoxContainer/playButton3" unique_id=2059099321]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -11.0
-offset_right = 1.0
-offset_bottom = -11.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 37
-theme_override_fonts/font = ExtResource("4_m1bca")
-theme_override_font_sizes/font_size = 97
-text = "Play"
+text = "Weiter"
 horizontal_alignment = 1
 
 [node name="logo_ml" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1254517399]
@@ -799,10 +777,9 @@ transform = Transform3D(-0.4885124, -0.34995764, 0.7993032, 0.027202994, 0.90949
 [node name="main_menu_sozial" parent="." unique_id=451026336 instance=ExtResource("23_hutre")]
 transform = Transform3D(0.46461144, 0, -0.18475986, 0, 0.5, 0, 0.18475986, 0, 0.46461144, 9.027449, 0.0061601102, 1.9727275)
 
-[connection signal="tree_entered" from="." to="UIOverlay/StaticUI/VBoxContainer/playButton" method="grab_focus" flags=3 binds= [false]]
+[connection signal="tree_entered" from="." to="UIOverlay/StaticUI/VBoxContainer/PlayButton" method="grab_focus" flags=3 binds= [false]]
 [connection signal="pressed" from="UIOverlay/StaticUI/EumlexButton" to="." method="_on_eumlex_button_pressed"]
-[connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/playButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/playButton2" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/playButton3" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 
 [editable path="Background_Tile/jungel_tree_01"]

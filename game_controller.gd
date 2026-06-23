@@ -9,7 +9,7 @@ var delete_current_scene: bool
 func _init() -> void:
 	Main.controller = self
 
-func _ready() -> void:
+func load_main() -> void:
 	main_menu = MAIN_MENU.instantiate()
 	load_scene(main_menu, false)
 	GlobalMusicManager.request_music(SongList.TRACK.TITLE, MusicTransition.instant())

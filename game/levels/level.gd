@@ -35,6 +35,8 @@ const MINI_EUMLING_R = preload("uid://ecxm5futmmj4")
 var PORTALS = [load("uid://css0jedfj0qmt"), load("uid://c5d58pjp1p4bh"), load("uid://bk5prj6enj3k8")]
 
 
+## it's a boss level and the cage has been spawned
+signal cage_spawned
 ## level done condition completed
 signal level_cleared
 ## level visual completed, ready to end
@@ -95,6 +97,7 @@ func spawn_cage():
 	caged_eumling = CAGED_MINI_EUMLING.instantiate() as Node3D
 	add_child(caged_eumling)
 	caged_eumling.global_position = player_spawn.global_position
+	cage_spawned.emit()
 
 func clear_level():
 	state = LEVEL_STATE.CLEARED

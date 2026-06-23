@@ -13,14 +13,16 @@
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="10_amahl"]
 [ext_resource type="PackedScene" uid="uid://b6vj3geh4ibvg" path="res://game/ui/eumlex/eumling_button/eumlex_button.tscn" id="11_w24f0"]
 [ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="12_ikcm3"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="14_orh8k"]
 
-[node name="Eumlex" type="Control" unique_id=718152536 node_paths=PackedStringArray("tabs_and_containers", "eumling_type_and_container")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("14_orh8k")
+shader_parameter/blur_amount = 4.00000019
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_71i0l"]
+
+[node name="Eumlex" type="CanvasLayer" unique_id=2085109886 node_paths=PackedStringArray("tabs_and_containers", "eumling_type_and_container")]
+layer = 2
 script = ExtResource("1_l0ba2")
 tabs_and_containers = {
 NodePath("Book/TabPanel/OrangeButton"): NodePath("Book/BookContainer/BookBG/OrangePage"),
@@ -39,7 +41,17 @@ eumling_type_and_container = {
 5: NodePath("Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer")
 }
 
+[node name="BackgroundBlur" type="TextureRect" parent="." unique_id=2070093622]
+material = SubResource("ShaderMaterial_g4v7s")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_71i0l")
+
 [node name="Book" type="Control" parent="." unique_id=1800612097]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

@@ -1,29 +1,12 @@
 [gd_scene format=3 uid="uid://bck4sy6x58mj2"]
 
 [ext_resource type="Script" uid="uid://332o24o22ksb" path="res://game/game.gd" id="1_dakft"]
-[ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="2_dxrkv"]
-[ext_resource type="Texture2D" uid="uid://uuudl7yxl3ke" path="res://assets/ui/SketchJoystickBack.png" id="3_l8g03"]
-[ext_resource type="Texture2D" uid="uid://cghhnri00gbe4" path="res://assets/ui/SketchJoystickSketch.png" id="4_j8tme"]
+[ext_resource type="PackedScene" uid="uid://bbnggg8d8khce" path="res://game/touch_joystick_overlay.tscn" id="2_u5opy"]
 [ext_resource type="PackedScene" uid="uid://bojgdqih3kgwl" path="res://game/ui/debug_view.tscn" id="5_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://dlxnvjne1irpy" path="res://game/ui/start_screen/area_picker.tscn" id="6_3vho3"]
 [ext_resource type="PackedScene" uid="uid://clp10fvyjhivd" path="res://game/ui/battle_overlay/battle_overlay.tscn" id="8_y36n6"]
 [ext_resource type="PackedScene" uid="uid://mxqf8msxqbla" path="res://game/ui/pause_menu/pause_menu.tscn" id="9_l8g03"]
 [ext_resource type="PackedScene" uid="uid://crktwqvaxeyce" path="res://game/ui/upgrades/upgrade_view.tscn" id="10_j8tme"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_p57ef"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_u5sy4"]
-radius = 100.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gee14"]
-size = Vector2(960, 1080)
-
-[sub_resource type="Curve" id="Curve_0tnpc"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dakft"]
-radius = 200.0
 
 [sub_resource type="Animation" id="Animation_dakft"]
 resource_name = "RESET"
@@ -68,47 +51,7 @@ script = ExtResource("1_dakft")
 
 [node name="Level" type="Node3D" parent="." unique_id=2144892213]
 
-[node name="TouchJoystickOverlay" type="CanvasLayer" parent="." unique_id=497649025]
-
-[node name="MovementController" parent="TouchJoystickOverlay" unique_id=1973395901 instance=ExtResource("2_dxrkv")]
-position = Vector2(418, 612)
-scale = Vector2(1.132587, 1.132587)
-base_texture = ExtResource("3_l8g03")
-tip_texture = ExtResource("4_j8tme")
-deadzone_circle = SubResource("CircleShape2D_p57ef")
-tip_limit_circle = SubResource("CircleShape2D_u5sy4")
-touch_detection_region = SubResource("RectangleShape2D_gee14")
-strength_curve = SubResource("Curve_0tnpc")
-follow = true
-follow_circle = SubResource("CircleShape2D_dakft")
-visibility_when_idle = 0.1
-visibility_when_active = 0.8
-enable_custom_resting_position = true
-resting_position = Vector2(-200, 200)
-left_movement = "left"
-right_movement = "right"
-up_movement = "up"
-down_movement = "down"
-
-[node name="AttackController" parent="TouchJoystickOverlay" unique_id=1696944807 instance=ExtResource("2_dxrkv")]
-position = Vector2(1505, 612)
-scale = Vector2(1.1315652, 1.132587)
-base_texture = ExtResource("3_l8g03")
-tip_texture = ExtResource("4_j8tme")
-deadzone_circle = SubResource("CircleShape2D_p57ef")
-tip_limit_circle = SubResource("CircleShape2D_u5sy4")
-touch_detection_region = SubResource("RectangleShape2D_gee14")
-strength_curve = SubResource("Curve_0tnpc")
-follow_circle = SubResource("CircleShape2D_dakft")
-visibility_when_idle = 0.1
-visibility_when_active = 0.8
-enable_custom_resting_position = true
-resting_position = Vector2(200, 200)
-left_movement = "attack_left"
-right_movement = "attack_right"
-up_movement = "attack_up"
-down_movement = "attack_down"
-tap = "fire"
+[node name="TouchJoystickOverlay" parent="." unique_id=1541613713 instance=ExtResource("2_u5opy")]
 
 [node name="SceneFadeOverlay" type="CanvasLayer" parent="." unique_id=190604314]
 layer = 120

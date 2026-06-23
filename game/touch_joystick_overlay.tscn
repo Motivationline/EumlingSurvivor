@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bbnggg8d8khce"]
+
+[ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="1_vopxx"]
+[ext_resource type="Texture2D" uid="uid://uuudl7yxl3ke" path="res://assets/ui/SketchJoystickBack.png" id="2_n2onu"]
+[ext_resource type="Texture2D" uid="uid://cghhnri00gbe4" path="res://assets/ui/SketchJoystickSketch.png" id="3_o7q7q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p57ef"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u5sy4"]
+radius = 100.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gee14"]
+size = Vector2(960, 1080)
+
+[sub_resource type="Curve" id="Curve_0tnpc"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dakft"]
+radius = 200.0
+
+[node name="TouchJoystickOverlay" type="CanvasLayer" unique_id=1541613713]
+
+[node name="MovementController" parent="." unique_id=977796482 instance=ExtResource("1_vopxx")]
+position = Vector2(480, 540)
+base_texture = ExtResource("2_n2onu")
+tip_texture = ExtResource("3_o7q7q")
+deadzone_circle = SubResource("CircleShape2D_p57ef")
+tip_limit_circle = SubResource("CircleShape2D_u5sy4")
+touch_detection_region = SubResource("RectangleShape2D_gee14")
+strength_curve = SubResource("Curve_0tnpc")
+follow = true
+follow_circle = SubResource("CircleShape2D_dakft")
+visibility_when_idle = 0.1
+visibility_when_active = 0.8
+enable_custom_resting_position = true
+resting_position = Vector2(-200, 200)
+left_movement = "left"
+right_movement = "right"
+up_movement = "up"
+down_movement = "down"
+
+[node name="AttackController" parent="." unique_id=231488457 instance=ExtResource("1_vopxx")]
+position = Vector2(1440, 540)
+base_texture = ExtResource("2_n2onu")
+tip_texture = ExtResource("3_o7q7q")
+deadzone_circle = SubResource("CircleShape2D_p57ef")
+tip_limit_circle = SubResource("CircleShape2D_u5sy4")
+touch_detection_region = SubResource("RectangleShape2D_gee14")
+strength_curve = SubResource("Curve_0tnpc")
+follow_circle = SubResource("CircleShape2D_dakft")
+visibility_when_idle = 0.1
+visibility_when_active = 0.8
+enable_custom_resting_position = true
+resting_position = Vector2(200, 200)
+left_movement = "attack_left"
+right_movement = "attack_right"
+up_movement = "attack_up"
+down_movement = "attack_down"
+tap = "fire"

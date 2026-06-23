@@ -5,6 +5,13 @@ var game: Game = GAME.instantiate()
 const EUMLINGCLOPEDIA = preload("uid://ba2ayes40wtdh")
 var eumlingclopedia = EUMLINGCLOPEDIA.instantiate()
 
+func _enter_tree() -> void:
+	if Data._unlocked_mini_eumlings.size() > 0:
+		%NumberCircleLabel3D.text = str(Data._unlocked_mini_eumlings.size())
+		%NumberCircleLabel3D.get_parent().show()
+	else:
+		%NumberCircleLabel3D.get_parent().hide()
+
 func _on_play_button_pressed() -> void:
 	Main.controller.load_scene(game, false)
 	game.start_new_run()
@@ -15,6 +22,6 @@ func _on_continue_button_pressed() -> void:
 	game.continue_run()
 
 func _on_eumlex_button_pressed() -> void:
-	Main.controller.load_scene(eumlingclopedia, false)
-	eumlingclopedia.unlock_new_eumlings(Data._unlocked_mini_eumlings)
-	SaveData.set_data("unlocked_mini_eumlings", Data._unlocked_mini_eumlings)
+	add_child(eumlingclopedia)
+	# eumlingclopedia.unlock_new_eumlings(Data._unlocked_mini_eumlings)
+	# SaveData.set_data("unlocked_mini_eumlings", Data._unlocked_mini_eumlings)

@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 const REVEAL_SEED = preload("uid://8jbavxhvd2hx")
 
 const EUMLING_BUTTON = preload("uid://b6vj3geh4ibvg")
@@ -41,7 +41,7 @@ func _ready() -> void:
 	# unlock_new_eumlings([randi_range(0, 4), randi_range(0, 4)])
 
 func _on_close_button_pressed() -> void:
-	Main.controller.load_scene(Main.controller.main_menu, false)
+	hide()
 
 
 var locked_eumlings: Dictionary = {
@@ -143,6 +143,6 @@ func get_eumling_to_unlock(type: Enum.EUMLING_TYPE) -> Eumling:
 			return eumling
 	return null
 
-
-func _on_gamble_button_pressed() -> void:
-	unlock_new_eumlings([randi_range(0, 4) as Enum.EUMLING_TYPE])
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_gamble"):
+		unlock_new_eumlings([randi_range(0, 5) as Enum.EUMLING_TYPE])
