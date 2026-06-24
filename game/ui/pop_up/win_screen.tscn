@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="5_uihgc"]
 [ext_resource type="Texture2D" uid="uid://crvupvj8th5oa" path="res://assets/ui/pop_up/aufhaenger.png" id="6_j6jvo"]
 [ext_resource type="Texture2D" uid="uid://bcw4gmyo2mhym" path="res://assets/ui/Eumlex/ButtonStickerSquare.png" id="8_l1ydo"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="9_l1ydo"]
 
 [node name="WinScreen" type="Control" unique_id=40802825]
 layout_mode = 3
@@ -78,6 +79,7 @@ offset_bottom = 493.0
 texture = ExtResource("6_j6jvo")
 
 [node name="Label" type="Label" parent="." unique_id=2026237835]
+visible = false
 layout_mode = 0
 offset_left = 723.0
 offset_top = 190.0
@@ -130,3 +132,17 @@ texture_normal = ExtResource("8_l1ydo")
 [node name="EumlingSticker6" type="TextureButton" parent="EumlingeGrid" unique_id=718529550]
 layout_mode = 2
 texture_normal = ExtResource("8_l1ydo")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1826106143]
+layout_mode = 0
+offset_left = 722.0
+offset_top = 187.0
+offset_right = 1197.0
+offset_bottom = 347.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("9_l1ydo")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[wave]GEWONNEN[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1

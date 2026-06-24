@@ -10,14 +10,45 @@
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="6_7phrv"]
 [ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/start_screen/graphics_settings.tscn" id="7_w53bu"]
 [ext_resource type="Theme" uid="uid://u1iy4y0s7n01" path="res://assets/ui/base_theme.tres" id="8_r6stv"]
+[ext_resource type="Texture2D" uid="uid://cgt1ocwb3ddwk" path="res://assets/ui/Buttons/tabellen_backdrop.png" id="9_edo3p"]
 [ext_resource type="Script" uid="uid://ch5ysq2vooxck" path="res://game/ui/pause_menu/sound_settings.gd" id="9_utddp"]
 [ext_resource type="Texture2D" uid="uid://bsh5cti8q2hqs" path="res://assets/ui/pauseMenu/PaperRectangleInfo.png" id="10_6rxva"]
+[ext_resource type="Texture2D" uid="uid://dfd8lhk8oxa8i" path="res://assets/ui/Buttons/tabellen_tab.png" id="10_7phrv"]
+[ext_resource type="PackedScene" uid="uid://cvnp8vu3k7ul3" path="res://game/ui/eumlex/eumling_info_scene/eumling_info_scene.tscn" id="14_qd2kc"]
+[ext_resource type="Texture2D" uid="uid://cat8pebbs6orm" path="res://assets/ui/Eumlex/SquareFrame.png" id="15_bwtpp"]
+[ext_resource type="Texture2D" uid="uid://cjj03lo1voxow" path="res://assets/ui/Eumlex/TagBaseA.png" id="16_41g3d"]
+[ext_resource type="Texture2D" uid="uid://bvb4cns6l455k" path="res://assets/ui/Eumlex/TagBaseC.png" id="17_sfmqp"]
+[ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="18_8i6dt"]
+[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="19_huhjg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_edo3p"]
 shader = ExtResource("2_ob8pm")
 shader_parameter/blur_amount = 4.00000019
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7phrv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f4s3b"]
+texture = ExtResource("9_edo3p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrhg1"]
+texture = ExtResource("10_7phrv")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+expand_margin_bottom = 10.0
+region_rect = Rect2(0, 0, 149, 56.81132)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldpvg"]
+texture = ExtResource("10_7phrv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_igmyq"]
+texture = ExtResource("10_7phrv")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+expand_margin_bottom = 10.0
+region_rect = Rect2(0, 0, 149, 57.17279)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nmosl"]
+viewport_path = NodePath("SettingsTabContainer/Info/EumlingPreview/SubViewport")
 
 [node name="PauseMenu" type="Control" unique_id=1966773529]
 layout_mode = 3
@@ -45,12 +76,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -942.0
-offset_top = -431.5
-offset_right = 236.0
-offset_bottom = 431.5
+offset_left = -951.0
+offset_top = -411.0
+offset_right = 227.0
+offset_bottom = 452.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.0366423, 1.0366423)
 texture = ExtResource("1_1rr57")
 
 [node name="EumlingeGrid" type="GridContainer" parent="." unique_id=1871950785]
@@ -60,13 +92,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -641.0
-offset_top = -160.99997
-offset_right = -172.0
-offset_bottom = 163.0
+offset_left = -657.0
+offset_top = -146.99997
+offset_right = -188.0
+offset_bottom = 177.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.3163819, 1.3163819)
+scale = Vector2(1.4155371, 1.4155371)
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
@@ -120,25 +152,30 @@ layout_mode = 0
 offset_left = 1263.0
 offset_top = 292.0
 offset_right = 1859.0
-offset_bottom = 961.0
+offset_bottom = 1009.0
+theme_override_constants/side_margin = 9
+theme_override_constants/tab_separation = 4
 theme_override_fonts/font = ExtResource("6_7phrv")
 theme_override_font_sizes/font_size = 30
+theme_override_styles/panel = SubResource("StyleBoxTexture_f4s3b")
+theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_yrhg1")
+theme_override_styles/tab_hovered = SubResource("StyleBoxTexture_ldpvg")
+theme_override_styles/tab_selected = SubResource("StyleBoxTexture_igmyq")
 current_tab = 1
 
 [node name="Graphics" type="TabBar" parent="SettingsTabContainer" unique_id=303924558]
 visible = false
 layout_mode = 2
+theme_override_constants/h_separation = 4
 theme_override_fonts/font = ExtResource("6_7phrv")
 metadata/_tab_index = 0
 
 [node name="GraphicsSettings" parent="SettingsTabContainer/Graphics" unique_id=1082587673 instance=ExtResource("7_w53bu")]
 layout_mode = 1
-offset_left = 32.0
+offset_left = 76.0
 offset_top = 26.0
-offset_right = -564.0
+offset_right = -520.0
 offset_bottom = -591.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=288030327]
 layout_mode = 2
@@ -151,7 +188,7 @@ metadata/_tab_index = 1
 layout_mode = 0
 offset_left = 36.0
 offset_top = 17.0
-offset_right = 564.0
+offset_right = 532.0
 offset_bottom = 507.0
 theme_override_constants/separation = 20
 
@@ -189,6 +226,104 @@ text = "Ambience"
 layout_mode = 2
 theme = ExtResource("8_r6stv")
 value = 100.0
+
+[node name="Info" type="TabBar" parent="SettingsTabContainer" unique_id=1650118707]
+visible = false
+layout_mode = 2
+script = ExtResource("9_utddp")
+vol_min = -30.0
+vol_max = 2.0
+metadata/_tab_index = 2
+
+[node name="EumlingPreview" type="TextureRect" parent="SettingsTabContainer/Info" unique_id=1096159347]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 313.0
+offset_right = 704.0
+offset_bottom = 863.0
+scale = Vector2(0.5540355, 0.5540355)
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_nmosl")
+
+[node name="SubViewport" type="SubViewport" parent="SettingsTabContainer/Info/EumlingPreview" unique_id=1095879034]
+own_world_3d = true
+
+[node name="EumlingInfoScene" parent="SettingsTabContainer/Info/EumlingPreview/SubViewport" unique_id=1827825025 instance=ExtResource("14_qd2kc")]
+unique_name_in_owner = true
+
+[node name="frameScene" type="TextureRect" parent="SettingsTabContainer/Info/EumlingPreview" unique_id=336387561]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.04, 1.04)
+pivot_offset = Vector2(275, 275)
+texture = ExtResource("15_bwtpp")
+metadata/_edit_lock_ = true
+
+[node name="Taglines" type="HBoxContainer" parent="SettingsTabContainer/Info/EumlingPreview" unique_id=2000650948]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -243.84947
+offset_top = -579.593
+offset_right = -10.849457
+offset_bottom = -546.346
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5448594, 1.5448594)
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Tagline1" type="TextureRect" parent="SettingsTabContainer/Info/EumlingPreview/Taglines" unique_id=1371728916]
+layout_mode = 2
+texture = ExtResource("16_41g3d")
+expand_mode = 3
+
+[node name="Tagline2" type="TextureRect" parent="SettingsTabContainer/Info/EumlingPreview/Taglines" unique_id=2004619527]
+layout_mode = 2
+texture = ExtResource("17_sfmqp")
+expand_mode = 3
+
+[node name="Tagline3" type="TextureRect" parent="SettingsTabContainer/Info/EumlingPreview/Taglines" unique_id=2071768201]
+layout_mode = 2
+texture = ExtResource("18_8i6dt")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsTabContainer/Info" unique_id=1113082457]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 20.0
+offset_right = 576.0
+offset_bottom = 383.0
+theme_override_constants/separation = 10
+
+[node name="Beruf" type="Label" parent="SettingsTabContainer/Info/VBoxContainer" unique_id=1304151051]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("6_7phrv")
+theme_override_font_sizes/font_size = 35
+text = "Job Titel"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("19_huhjg")
+max_font_size = 35
+
+[node name="Label" type="Label" parent="SettingsTabContainer/Info/VBoxContainer" unique_id=633228353]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Technische Produktdesigner/innen der Fachrichtung Maschinen- und Anlagenkonstruktion entwerfen und konstruieren Bauteile, Baugruppen oder Gesamtanlagen nach Kundenwunsch."
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="InfoEumling" type="TextureRect" parent="." unique_id=686867953]
 visible = false
