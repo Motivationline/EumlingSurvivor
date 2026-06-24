@@ -1,9 +1,10 @@
 [gd_scene format=4 uid="uid://bmj4thtkfy41i"]
 
 [ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_xysdr"]
-[ext_resource type="PackedScene" uid="uid://bclxhfmk8hmfi" path="res://game/enemies/3-jungle/boss_bugger/boss_bugger_enemy.tscn" id="2_7aecd"]
+[ext_resource type="PackedScene" uid="uid://bclxhfmk8hmfi" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_enemy.tscn" id="2_7aecd"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="3_am3nm"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_cu2pj"]
+[ext_resource type="Script" uid="uid://cn1lytcjvtv58" path="res://game/cameras/behaviours/boss_behaviour.gd" id="4_qvwfi"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="5_c68hb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kqau"]
@@ -376,12 +377,17 @@ _surfaces = [{
 "vertex_data": PackedByteArray("HyKwQOInOD58iMA/AACgQN6E8D7b/78/9/+vQMVG0j7b/78/jEmgQPLPbz5r2b4/9/+vQADeMrrb/78/AACgQADeMrrb/78/jEmgQPLPbz5r2b4/AACgQJ518D4AAIA/AACgQN6E8D7b/78/jEmgQLbBbz4vJoE/AACgQADeMrrb/78/AACgQADeMroAAIA/AACgQADeMroAAIA/9/+vQADeMrrb/78/9/+vQADeMroAAIA/AACgQADeMrrb/78/jIGuQE7xAT+p+YU/an6hQPOl/z4yBro/an6hQPOl/z6p+YU/AACgQJ518D4AAIA/AACgQN6E8D7b/78/9/+vQEq/5z4AAIA/AACgQJ518D4AAIA/jIGuQPOl/z4yBro/AACgQN6E8D7b/78/9/+vQMVG0j7b/78/9/+vQMVG0j7b/78/9/+vQEq/5z4AAIA/W7avQLVcZz4vJoE/9/+vQMVG0j7b/78/9/+vQEq/5z4AAIA/HyKwQOInOD58iMA/9/+vQADeMroAAIA/9/+vQADeMrrb/78/jEmgQLbBbz4vJoE/9/+vQEq/5z4AAIA/AACgQJ518D4AAIA/W7avQLVcZz4vJoE/AACgQADeMroAAIA/9/+vQADeMroAAIA/T34tgJ4DosIxfql+8APUwjJ+qH5HAgXCRn77f3wFkMNufn+BDQVQw21+gIETB1TEAQD+fwCAtIG2BEl7k4QZhLQES3uShAqEAAAAgP9/r4G2BLSEZnvEg7UEtYRje66DAYABAPAI/r8BgAEA8Aj+v/5/AQCBCv+//n8AAFIH/7/ktVDh1iQJ01pt/c+IGdWzyFNR7AYZFLTISPnnLyAGrd5p7sMILUKv9MQ51ysnEt3KSPrn7CPissKeZsSmKCPT3mnuw6wXVK7bpx+0AjwI0dunILTnNh3i9sQ41/47ltn8/7GB3X/9/6P+5HxfgSH/o/7jfGGBiP7T/9SBuX7n/3j+E4PQfDn/ef4Sg1h8Of8JAAsAlwBFwMUEHwChAEHAxAQdAOEAZMAOAPL/TQAfwDH7/f9IACLANfvy/wAABcA=")
 }]
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_c68hb"]
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qvwfi"]
 dof_blur_far_enabled = true
 dof_blur_far_distance = 30.0
 dof_blur_near_enabled = true
 dof_blur_near_distance = 5.0
 dof_blur_amount = 0.25
+
+[sub_resource type="Resource" id="Resource_6iiev"]
+script = ExtResource("4_qvwfi")
+boss = NodePath("../Enemies/BossBugger")
+metadata/_custom_type_script = "uid://cn1lytcjvtv58"
 
 [node name="Level" unique_id=265210543 instance=ExtResource("1_xysdr")]
 is_boss_level = true
@@ -389,6 +395,9 @@ music = 3
 
 [node name="BorderGridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(974191959) index="0" unique_id=824927406]
 baked_meshes = [SubResource("ArrayMesh_jd20a"), SubResource("ArrayMesh_lvdb8"), SubResource("ArrayMesh_bldq7"), SubResource("ArrayMesh_b0cs5"), SubResource("ArrayMesh_0asra"), SubResource("ArrayMesh_arwqq"), SubResource("ArrayMesh_ku4ae"), SubResource("ArrayMesh_cdj1o"), SubResource("ArrayMesh_tqq2i"), SubResource("ArrayMesh_1ixa5"), SubResource("ArrayMesh_00bv0"), SubResource("ArrayMesh_xufav"), SubResource("ArrayMesh_mwckb"), SubResource("ArrayMesh_288c8")]
+
+[node name="Cube" parent="NavigationRegion3D/base_floor_10x10" parent_id_path=PackedInt32Array(257884405) index="0" unique_id=1334605973]
+surface_material_override/0 = null
 
 [node name="GridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(974191959) index="2" unique_id=1677213033]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -403,8 +412,9 @@ metadata/_editor_floor_ = Vector3(0, -2, 0)
 [node name="CollisionShape3D" parent="GoalArea" parent_id_path=PackedInt32Array(354469362) index="0" unique_id=484869381]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 10)
 
-[node name="Camera3D" parent="." index="3" unique_id=733772650]
-attributes = SubResource("CameraAttributesPractical_c68hb")
+[node name="GameCamera" parent="." index="3" unique_id=1387391314]
+attributes = SubResource("CameraAttributesPractical_qvwfi")
+behaviour = SubResource("Resource_6iiev")
 
 [node name="BossBugger" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1489635030 instance=ExtResource("2_7aecd")]
 
