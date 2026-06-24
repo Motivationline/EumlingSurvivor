@@ -174,10 +174,16 @@ func run_move():
 		quest_text += " mit dem Joystick auf der linken Bildschirmseite"
 	show_quest(quest_text)
 	
+	var total_distance_moved: float = 0
+	var max_distance_needed: float = 5
+	var previous_position = Player.player.global_position
+
 	while(true):
 		await get_tree().process_frame
-		var direction = Input.get_vector("left", "right", "up", "down")
-		if direction != Vector2.ZERO:
+		total_distance_moved += previous_position.distance_to(Player.player.global_position)
+		previous_position = Player.player.global_position
+		quest_progress(total_distance_moved, max_distance_needed)
+		if total_distance_moved >= max_distance_needed:
 			break
 	await complete_quest()
 	run_shoot()
@@ -209,7 +215,7 @@ func run_shoot():
 
 func run_hit():
 	progress = PROGRESS.RUN_HIT
-	show_quest("Besige den Trainingsdummy")
+	show_quest("Besiege den Trainingsdummy")
 	var dummy = tutorial_level.find_child("DummyShoot")
 	dummy.died.connect(func():
 		await complete_quest()
@@ -299,6 +305,7 @@ func show_quest(text: String):
 	quest_overlay.show()
 	quest_overlay.find_child("Text").text = text
 	quest_overlay.find_child("CompletedIcon").hide()
+	quest_overlay.find_child("ProgressBar").hide()
 	if quest_timer:
 		quest_timer.stop()
 
@@ -309,6 +316,12 @@ func complete_quest():
 	quest_overlay.find_child("CompletedIcon").show()
 	quest_timer.start(2)
 	await quest_timer.timeout
+
+func quest_progress(value: float, maximum: float):
+	var progressbar = quest_overlay.find_child("ProgressBar")
+	progressbar.value = value
+	progressbar.max_value = maximum
+	progressbar.show()
 
 func completed():
 	progress = PROGRESS.COMPLETED
