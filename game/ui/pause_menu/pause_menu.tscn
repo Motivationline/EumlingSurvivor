@@ -10,7 +10,6 @@
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="6_7phrv"]
 [ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/start_screen/graphics_settings.tscn" id="7_w53bu"]
 [ext_resource type="Theme" uid="uid://u1iy4y0s7n01" path="res://assets/ui/base_theme.tres" id="8_r6stv"]
-[ext_resource type="Texture2D" uid="uid://dslle4mecxwob" path="res://assets/ui/Buttons/SliderKnobLiane.png" id="9_m315g"]
 [ext_resource type="Script" uid="uid://ch5ysq2vooxck" path="res://game/ui/pause_menu/sound_settings.gd" id="9_utddp"]
 [ext_resource type="Texture2D" uid="uid://bsh5cti8q2hqs" path="res://assets/ui/pauseMenu/PaperRectangleInfo.png" id="10_6rxva"]
 
@@ -19,12 +18,6 @@ shader = ExtResource("2_ob8pm")
 shader_parameter/blur_amount = 4.00000019
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7phrv"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5f4c"]
-texture = ExtResource("9_m315g")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4w6n"]
-texture = ExtResource("9_m315g")
 
 [node name="PauseMenu" type="Control" unique_id=1966773529]
 layout_mode = 3
@@ -139,14 +132,11 @@ theme_override_fonts/font = ExtResource("6_7phrv")
 metadata/_tab_index = 0
 
 [node name="GraphicsSettings" parent="SettingsTabContainer/Graphics" unique_id=1082587673 instance=ExtResource("7_w53bu")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -1380.0
-offset_top = -13.0
-offset_right = -1380.0
-offset_bottom = -13.0
+layout_mode = 1
+offset_left = 32.0
+offset_top = 26.0
+offset_right = -564.0
+offset_bottom = -591.0
 grow_horizontal = 1
 grow_vertical = 1
 
@@ -174,10 +164,7 @@ text = "Music"
 
 [node name="MusicSlider" type="HSlider" parent="SettingsTabContainer/Sound/SliderContainer/MusicContainer" unique_id=1512688196]
 layout_mode = 2
-theme = ExtResource("8_r6stv")
-theme_override_styles/grabber_area = SubResource("StyleBoxTexture_x5f4c")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p4w6n")
-value = 100.0
+value = 50.0
 
 [node name="SFXContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound/SliderContainer" unique_id=1330793806]
 layout_mode = 2
@@ -189,8 +176,6 @@ text = "SFX"
 [node name="SFXSlider" type="HSlider" parent="SettingsTabContainer/Sound/SliderContainer/SFXContainer" unique_id=1827583631]
 layout_mode = 2
 theme = ExtResource("8_r6stv")
-theme_override_styles/grabber_area = SubResource("StyleBoxTexture_x5f4c")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p4w6n")
 value = 100.0
 
 [node name="AmbienceContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound/SliderContainer" unique_id=2139129672]
@@ -203,8 +188,6 @@ text = "Ambience"
 [node name="AmbienceSlider" type="HSlider" parent="SettingsTabContainer/Sound/SliderContainer/AmbienceContainer" unique_id=1212931515]
 layout_mode = 2
 theme = ExtResource("8_r6stv")
-theme_override_styles/grabber_area = SubResource("StyleBoxTexture_x5f4c")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_p4w6n")
 value = 100.0
 
 [node name="InfoEumling" type="TextureRect" parent="." unique_id=686867953]
