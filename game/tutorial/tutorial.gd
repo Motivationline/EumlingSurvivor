@@ -55,6 +55,7 @@ var eumlex_instance: Node
 var player: Player
 var quest_overlay: Node
 var touch_joystick_overlay: CanvasLayer
+var pulse_animator: PackedScene
 
 var level_wrapper: Node
 
@@ -75,6 +76,7 @@ func initialize() -> void:
 	main_menu_instance.find_child("main_menu_sozial").hide()
 	dialogue = load("uid://byfbiojxgb3wn")
 	eumlex = load("uid://ba2ayes40wtdh")
+	pulse_animator = load("uid://dolfciwn4ppmn")
 
 	blocking_overlay = load("uid://d05r8yipgc3ya")
 	quest_overlay = load("uid://dfijg5cgisnps").instantiate()
@@ -86,6 +88,7 @@ func initialize() -> void:
 	add_child(level_wrapper)
 
 	quest_timer = Timer.new()
+	quest_timer.process_mode = PROCESS_MODE_ALWAYS
 	quest_timer.timeout.connect(hide_quest)
 	add_child(quest_timer)
 
@@ -99,8 +102,7 @@ func start() -> void:
 	add_child(main_menu_instance)
 	remove_child(video_instance)
 	progress = PROGRESS.INTRO_TEXT
-	DialogueManager.show_dialogue_balloon(dialogue, "welcome")
-	await DialogueManager.dialogue_ended
+	await show_dialogue("welcome", false)
 	intro_eumlex()
 
 func intro_eumlex():
@@ -118,28 +120,36 @@ func eumlex_show():
 	progress = PROGRESS.EUMLEX_INTRO
 	eumlex_instance = eumlex.instantiate()
 	add_child(eumlex_instance)
-	DialogueManager.show_dialogue_balloon(dialogue, "eumlex_intro")
-	await DialogueManager.dialogue_ended
+	await show_dialogue("eumlex_intro", false)
 	eumlex_click()
+
+
 
 func eumlex_click():
 	progress = PROGRESS.EUMLEX_CLICK
 	var container: GridContainer = eumlex_instance.eumling_type_and_container.get(Enum.EUMLING_TYPE.REALISTIC)
 	var button = container.get_child(0)
 	var pressed = func():
+		await show_dialogue("eumlex_clicked", false)
 		button.pressed.emit()
-		DialogueManager.show_dialogue_balloon(dialogue, "eumlex_clicked")
-		await DialogueManager.dialogue_ended
-		eumlex_close()
+		eumlex_find()
 	block_input_except_for(button, pressed)
+
+func eumlex_find():
+	var page = eumlex_instance.find_child("EumlexInfoPage");
+	var cleanup = block_input_except_for(page, func(): pass, false)
+	await get_tree().create_timer(3).timeout
+	cleanup.call()
+	await show_dialogue("eumlex_found", false)
+	eumlex_close()
+
 
 func eumlex_close():
 	progress = PROGRESS.EUMLEX_CLOSE
 	var button = eumlex_instance.find_child("CloseButton")
 	var pressed = func():
 		remove_child(eumlex_instance)
-		DialogueManager.show_dialogue_balloon(dialogue, "play_intro")
-		await DialogueManager.dialogue_ended
+		await show_dialogue("play_intro", false)
 		run_start()
 	block_input_except_for(button, pressed)
 
@@ -155,8 +165,7 @@ func run_start():
 		remove_child(main_menu_instance)
 		hide_quest()
 		load_level()
-		DialogueManager.show_dialogue_balloon(dialogue, "training_intro")
-		await DialogueManager.dialogue_ended
+		await show_dialogue("training_intro")
 		run_move()
 	block_input_except_for.call_deferred(button, pressed) # calling deferred for the button to be rendered correctly once first
 	show_quest("Starte eine neue Runde")
@@ -215,8 +224,7 @@ func run_hit():
 	var dummy = tutorial_level.find_child("DummyShoot")
 	dummy.died.connect(func():
 		await complete_quest()
-		DialogueManager.show_dialogue_balloon(dialogue, "training_aim")
-		await DialogueManager.dialogue_ended
+		await show_dialogue("training_aim")
 		run_aim()
 	)
 
@@ -227,9 +235,8 @@ func run_aim():
 	touch_joystick_overlay.find_child("AttackController").show()
 	var dummy = tutorial_level.find_child("Dummy", true, false)
 	dummy.died.connect(func():
-		await complete_quest()
-		DialogueManager.show_dialogue_balloon(dialogue, "eumling_intro")
-		await DialogueManager.dialogue_ended
+		complete_quest()
+		await show_dialogue("eumling_intro")
 		run_cage_drop()
 	)
 
@@ -241,8 +248,7 @@ func run_cage_drop():
 func run_cage_open():
 	await complete_quest()
 	progress = PROGRESS.RUN_CAGE_OPEN
-	DialogueManager.show_dialogue_balloon(dialogue, "eumling_rescued")
-	await DialogueManager.dialogue_ended
+	await show_dialogue("eumling_rescued")
 	return_to_main_menu()
 
 func return_to_main_menu():
@@ -261,24 +267,21 @@ func eumlex_show_again():
 	add_child(eumlex_instance)
 
 	complete_quest()
-	DialogueManager.show_dialogue_balloon(dialogue, "tutorial_completed")
-	await DialogueManager.dialogue_ended
+	await show_dialogue("tutorial_completed")
 	completed()
 
 	
 func player_died():
 	progress = PROGRESS.FAILED
-	DialogueManager.show_dialogue_balloon(dialogue, "training_failed")
-	await DialogueManager.dialogue_ended
+	await show_dialogue("training_failed")
 	progress = PROGRESS.START_RUN
 	hide_quest()
 	load_level()
-	DialogueManager.show_dialogue_balloon(dialogue, "training_intro")
-	await DialogueManager.dialogue_ended
+	await show_dialogue("training_intro")
 	run_move()
 
 
-func block_input_except_for(element: Control, callable: Callable):
+func block_input_except_for(element: Control, callable: Callable, animate: bool = true) -> Callable:
 	var overlay = blocking_overlay.instantiate()
 	add_child(overlay)
 	var duplicated_element = element.duplicate()
@@ -299,6 +302,14 @@ func block_input_except_for(element: Control, callable: Callable):
 	duplicated_element.set_global_position(element.global_position)
 	duplicated_element.set_size(element.size)
 	element.hide()
+
+	if animate:
+		var animator = pulse_animator.instantiate()
+		duplicated_element.add_child(animator)
+		animator.root_node = animator.get_path_to(duplicated_element)
+		duplicated_element.offset_transform_enabled = true
+	
+	return cleanup
 
 func show_quest(text: String):
 	quest_overlay.show()
@@ -344,3 +355,9 @@ func load_level():
 	tutorial_level.spawn_player(player)
 	
 	tutorial_level.level_ended.connect(run_cage_open)
+
+func show_dialogue(id: String, pause: bool = true):
+	if pause: get_tree().paused = true
+	DialogueManager.show_dialogue_balloon(dialogue, id)
+	await DialogueManager.dialogue_ended
+	if pause: get_tree().paused = false
