@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/obstalce_stone/ObstacleStone_Volcano_Material_Base_color.png" id="3_4fbsi"]
 [ext_resource type="Texture2D" uid="uid://bx2vit8nl77pn" path="res://assets/models/5-beach/obstacle_stone/ObstacleStone_Beach_Material_Base_color.png" id="4_t85ii"]
 [ext_resource type="Texture2D" uid="uid://c0q0qcuyms7fg" path="res://assets/models/2-flower_field/obstacle_stone/obstacle_stone_leaf_texture.png" id="5_yfpds"]
-[ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="6_4fbsi"]
 [ext_resource type="PackedScene" uid="uid://cbbcu7gsooiql" path="res://assets/models/3-Jungle/Spikes/spikes.tscn" id="6_8nu50"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_t85ii"]
 [ext_resource type="PackedScene" uid="uid://c1tx1asc3eg5u" path="res://game/enemies/0-Tutorial/dummy_shoot.tscn" id="9_yfpds"]
+[ext_resource type="PackedScene" uid="uid://dyyhy5suplkkk" path="res://game/enemies/box/DestructibleBox2x1.tscn" id="10_8nu50"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13bgu"]
 transparency = 1
@@ -256,8 +256,11 @@ item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 
 item/4/navigation_layers = 1
 item/4/preview = SubResource("ImageTexture_dira7")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8nu50"]
+size = Vector3(1.0214844, 1.8340454, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
-size = Vector3(10.003662, 1, 2.400879)
+size = Vector3(5.326416, 1, 1.4912109)
 
 [sub_resource type="Animation" id="Animation_t85ii"]
 length = 0.001
@@ -304,7 +307,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = SubResource("MeshLibrary_v78c3")
 cell_size = Vector3(0.5, 0.5, 0.5)
 data = {
-"cells": PackedInt32Array(9, 5, 1048580, 8, 5, 1048580, 7, 5, 1441796, 6, 5, 655364, 5, 5, 1048580, 4, 5, 4, 3, 5, 655364, 2, 5, 4, 1, 5, 655364, 0, 5, 4, 65535, 5, 1441796, 65534, 5, 1048580, 65533, 5, 4, 65526, 5, 1441796, 65527, 5, 1048580, 65532, 5, 4, 65531, 5, 1048580, 65530, 5, 655364, 5, 9, 1048580, 5, 8, 4, 0, 7, 4, 0, 6, 1441796, 65530, 6, 655364, 65530, 7, 655364, 65533, 9, 1048580, 65533, 8, 4, 65530, 4, 1441796, 65530, 3, 655364, 65530, 2, 4, 65530, 1, 1441796, 65533, 65534, 655364, 65533, 65533, 1048580, 65533, 65532, 1441796, 65533, 65531, 1441796, 65534, 65530, 655364, 65533, 65530, 1048580, 65532, 65530, 1048580, 65531, 65530, 4, 65530, 65530, 4, 65529, 65530, 1441796, 65528, 65530, 655364, 65527, 65530, 655364, 65526, 65530, 1048580, 1, 65530, 655364, 2, 65530, 655364, 3, 65530, 1048580, 4, 65530, 1441796, 5, 65530, 655364, 6, 65530, 1048580, 7, 65530, 1441796, 8, 65530, 655364, 9, 65530, 1048580, 2, 1, 1048580, 2, 2, 1441796, 2, 3, 1048580, 2, 4, 1441796, 5, 65534, 655364, 5, 65533, 1048580, 5, 65532, 1441796, 5, 65531, 1441796, 65529, 5, 655364, 6, 65529, 655364, 6, 65528, 1441796, 6, 65527, 1441796, 6, 65526, 1048580, 65529, 65529, 1048580, 65529, 65528, 4, 65529, 65527, 655364, 65529, 65526, 655364)
+"cells": PackedInt32Array(9, 5, 1048580, 8, 5, 1048580, 7, 5, 1441796, 6, 5, 655364, 5, 5, 1048580, 4, 5, 4, 3, 5, 655364, 2, 5, 4, 1, 5, 655364, 0, 5, 4, 65535, 5, 1441796, 65534, 5, 1048580, 65533, 5, 4, 65526, 5, 1048580, 65532, 5, 4, 65531, 5, 1048580, 65530, 5, 655364, 5, 9, 655364, 0, 7, 4, 0, 6, 1441796, 65530, 6, 655364, 65530, 7, 655364, 65533, 9, 1441796, 65533, 8, 4, 65530, 4, 1441796, 65530, 3, 655364, 65530, 2, 4, 65530, 1, 1441796, 65529, 5, 655364, 6, 2, 1048580, 6, 3, 4, 6, 4, 1441796, 0, 1, 655364, 6, 1, 655364, 6, 65534, 1441796, 6, 65526, 1048580, 6, 65527, 1441796, 6, 65528, 1441796, 6, 65529, 655364, 6, 65530, 1048580, 6, 65531, 1441796, 7, 65527, 655364, 8, 65527, 655364, 9, 65527, 655364, 7, 2, 655364, 8, 2, 655364, 9, 2, 655364, 9, 3, 1048580, 8, 3, 1048580, 7, 3, 4, 7, 4, 1441796, 8, 4, 1048580, 9, 4, 4, 9, 65526, 1441796, 8, 65526, 655364, 7, 65526, 655364, 6, 65535, 1048580, 6, 0, 4, 0, 65535, 655364, 0, 0, 655364, 65530, 0, 1048580, 65530, 65535, 1048580, 0, 65534, 655364, 65531, 65534, 1048580, 65532, 65534, 1441796, 65533, 65534, 1441796, 65532, 65535, 4, 65531, 65535, 4, 65531, 0, 1441796, 65531, 1, 655364, 65535, 0, 1048580, 65535, 1, 4, 65535, 2, 655364, 65534, 2, 655364, 1, 65535, 1048580, 1, 65534, 1048580, 4, 65534, 4, 5, 65534, 1441796, 5, 65535, 655364, 5, 0, 1048580, 5, 1, 1048580, 5, 2, 4, 4, 2, 1441796, 4, 3, 1441796, 3, 3, 655364, 3, 4, 1048580, 2, 4, 1048580, 4, 4, 1441796, 5, 4, 655364, 5, 3, 655364, 4, 65535, 1048580, 65526, 65535, 655364, 65526, 65534, 655364, 65526, 65533, 655364, 65527, 65532, 1441796, 65527, 65531, 1441796, 65526, 65532, 4, 65526, 65531, 1441796, 65526, 65530, 1441796, 65527, 65530, 1048580, 65527, 65529, 1048580, 65531, 65531, 4, 65532, 65531, 655364, 65532, 65530, 1048580, 65531, 65530, 1048580, 65532, 65529, 4, 65527, 65528, 1441796, 65527, 65527, 1441796, 65527, 65526, 1441796, 65528, 65526, 655364, 65528, 65528, 655364, 65528, 65527, 1441796, 65529, 65526, 1048580, 65530, 65526, 1048580, 65531, 65526, 4, 65532, 65526, 1441796, 65533, 65526, 655364, 65534, 65526, 4, 65534, 65527, 4, 65535, 65527, 655364, 0, 65527, 655364, 0, 65528, 1048580, 0, 65529, 4, 1, 65529, 1048580, 0, 65530, 655364, 0, 65531, 655364, 1, 65531, 1048580, 1, 65530, 1048580, 2, 65531, 4, 2, 65530, 1441796, 2, 65529, 655364, 2, 65528, 655364, 3, 65529, 1048580, 3, 65528, 1048580, 3, 65527, 4, 4, 65527, 4, 4, 65526, 1441796, 5, 65526, 1441796, 3, 65526, 655364, 2, 65526, 1048580, 1, 65526, 1048580, 0, 65526, 655364, 65535, 65526, 655364, 2, 65527, 1048580, 1, 65527, 1048580, 1, 65528, 4, 65526, 65529, 655364, 65526, 65528, 1048580, 65526, 65527, 4, 65526, 65526, 4, 65528, 65529, 1441796, 65529, 65527, 1048580, 65527, 65533, 1048580, 65531, 4, 1048580, 4, 65528, 4, 5, 65528, 1441796, 5, 65529, 1441796, 5, 65527, 655364, 9, 6, 1048580, 9, 7, 4, 9, 8, 1441796, 9, 9, 655364, 8, 9, 4, 7, 9, 1441796, 6, 9, 1441796, 4, 9, 655364, 3, 9, 655364, 2, 9, 1048580, 1, 9, 4, 0, 9, 4, 65535, 9, 4, 65534, 9, 1441796, 65532, 9, 655364, 65531, 9, 1048580, 65530, 9, 4, 65529, 9, 4, 65528, 9, 1441796, 65527, 9, 1441796, 65526, 9, 4, 65526, 8, 655364, 65526, 7, 655364, 65526, 2, 1441796, 65526, 1, 1441796, 65526, 0, 1441796, 65526, 3, 655364, 65526, 4, 655364, 65526, 6, 4, 9, 0, 1441796, 9, 1, 4, 9, 65535, 1441796, 9, 65534, 655364, 9, 65533, 1048580, 9, 65532, 1441796, 9, 65531, 1441796, 9, 65530, 655364, 9, 65529, 1048580, 9, 65528, 1048580, 65533, 7, 1441796, 4, 8, 1441796, 65529, 6, 655364, 65529, 4, 1048580, 65529, 3, 4, 65529, 2, 1441796, 65529, 1, 1441796)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
@@ -312,10 +315,14 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 4)
 
 [node name="GoalArea" parent="." index="2" unique_id=200222586]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -1.5)
 
-[node name="Box" parent="Breakables" parent_id_path=PackedInt32Array(153554768) index="0" unique_id=1837394296 instance=ExtResource("6_4fbsi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, 2.75)
+[node name="CollisionShape3D" parent="GoalArea" index="0" unique_id=1597769655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5146179, 0)
+shape = SubResource("BoxShape3D_8nu50")
+
+[node name="2x1Stone" parent="Breakables" parent_id_path=PackedInt32Array(153554768) index="0" unique_id=1837394296 instance=ExtResource("10_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2.75)
 health = 100.0
 ignore_enemy_in_level = false
 
@@ -323,6 +330,7 @@ ignore_enemy_in_level = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Spikes" type="Node3D" parent="Enemies" index="0" unique_id=1090926193]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="Hitbox" parent="Enemies/Spikes" index="0" unique_id=230493009 instance=ExtResource("7_t85ii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
@@ -333,170 +341,86 @@ attached_to = 6
 can_hit = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Spikes/Hitbox" index="0" unique_id=169164625]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.23413086)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.16638184)
 shape = SubResource("BoxShape3D_g4v7s")
 
-[node name="Spikes" parent="Enemies/Spikes" index="1" unique_id=1582667243 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.029430151, -2.75)
-
-[node name="Spikes2" parent="Enemies/Spikes" index="2" unique_id=784477620 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.029430151, -2.75)
-
-[node name="Spikes3" parent="Enemies/Spikes" index="3" unique_id=1512024252 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.029430151, -3.25)
-
-[node name="Spikes4" parent="Enemies/Spikes" index="4" unique_id=1656532516 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.029430151, -3.25)
-
-[node name="Spikes5" parent="Enemies/Spikes" index="5" unique_id=184603467 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.029430151, -3.75)
-
-[node name="Spikes6" parent="Enemies/Spikes" index="6" unique_id=822312742 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.029430151, -3.75)
-
-[node name="Spikes7" parent="Enemies/Spikes" index="7" unique_id=68592783 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.029430151, -4.25)
-
-[node name="Spikes8" parent="Enemies/Spikes" index="8" unique_id=996778044 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.029430151, -4.25)
-
-[node name="Spikes9" parent="Enemies/Spikes" index="9" unique_id=2102047692 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.029430151, -4.75)
-
-[node name="Spikes10" parent="Enemies/Spikes" index="10" unique_id=117232273 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.029430151, -4.75)
-
-[node name="Spikes11" parent="Enemies/Spikes" index="11" unique_id=894936267 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -0.029430151, -3.25)
-
-[node name="Spikes12" parent="Enemies/Spikes" index="12" unique_id=728973846 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, -0.029430151, -3.25)
-
-[node name="Spikes13" parent="Enemies/Spikes" index="13" unique_id=130742461 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -0.029430151, -3.75)
-
-[node name="Spikes14" parent="Enemies/Spikes" index="14" unique_id=1488766961 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, -0.029430151, -3.75)
-
-[node name="Spikes15" parent="Enemies/Spikes" index="15" unique_id=1816190650 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -0.029430151, -4.25)
-
-[node name="Spikes16" parent="Enemies/Spikes" index="16" unique_id=717189636 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, -0.029430151, -4.25)
-
-[node name="Spikes17" parent="Enemies/Spikes" index="17" unique_id=584838438 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -0.029430151, -4.75)
-
-[node name="Spikes18" parent="Enemies/Spikes" index="18" unique_id=1542564455 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, -0.029430151, -4.75)
-
-[node name="Spikes19" parent="Enemies/Spikes" index="19" unique_id=584255530 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, -0.029430151, -3.25)
-
-[node name="Spikes20" parent="Enemies/Spikes" index="20" unique_id=448719272 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, -0.029430151, -3.25)
-
-[node name="Spikes21" parent="Enemies/Spikes" index="21" unique_id=1468256676 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, -0.029430151, -3.75)
-
-[node name="Spikes22" parent="Enemies/Spikes" index="22" unique_id=851171702 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, -0.029430151, -3.75)
-
-[node name="Spikes23" parent="Enemies/Spikes" index="23" unique_id=1290542675 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, -0.029430151, -4.25)
-
-[node name="Spikes24" parent="Enemies/Spikes" index="24" unique_id=1127877890 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, -0.029430151, -4.25)
-
-[node name="Spikes25" parent="Enemies/Spikes" index="25" unique_id=1925838035 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, -0.029430151, -4.75)
-
-[node name="Spikes26" parent="Enemies/Spikes" index="26" unique_id=2122823976 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, -0.029430151, -4.75)
-
-[node name="Spikes43" parent="Enemies/Spikes" index="27" unique_id=274319706 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.029430151, -3.25)
-
-[node name="Spikes44" parent="Enemies/Spikes" index="28" unique_id=421428197 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.029430151, -3.25)
-
-[node name="Spikes45" parent="Enemies/Spikes" index="29" unique_id=946249793 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.029430151, -3.75)
-
-[node name="Spikes46" parent="Enemies/Spikes" index="30" unique_id=1399566063 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.029430151, -3.75)
-
-[node name="Spikes47" parent="Enemies/Spikes" index="31" unique_id=697554502 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.029430151, -4.25)
-
-[node name="Spikes48" parent="Enemies/Spikes" index="32" unique_id=1094381564 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.029430151, -4.25)
-
-[node name="Spikes49" parent="Enemies/Spikes" index="33" unique_id=1874850181 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.029430151, -4.75)
-
-[node name="Spikes50" parent="Enemies/Spikes" index="34" unique_id=1150199376 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.029430151, -4.75)
-
-[node name="Spikes51" parent="Enemies/Spikes" index="35" unique_id=1061050198 instance=ExtResource("6_8nu50")]
+[node name="Spikes4" parent="Enemies/Spikes" index="1" unique_id=1656532516 instance=ExtResource("6_8nu50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, -0.029430151, -3.25)
 
-[node name="Spikes52" parent="Enemies/Spikes" index="36" unique_id=994782692 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -0.029430151, -3.25)
+[node name="Spikes5" parent="Enemies/Spikes" index="2" unique_id=184603467 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.029430151, -3.75)
 
-[node name="Spikes53" parent="Enemies/Spikes" index="37" unique_id=1304894021 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, -0.029430151, -3.75)
+[node name="Spikes6" parent="Enemies/Spikes" index="3" unique_id=822312742 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2499999, -0.029430151, -3.75)
 
-[node name="Spikes54" parent="Enemies/Spikes" index="38" unique_id=86427867 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -0.029430151, -3.75)
+[node name="Spikes7" parent="Enemies/Spikes" index="4" unique_id=68592783 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.029430151, -4.25)
 
-[node name="Spikes55" parent="Enemies/Spikes" index="39" unique_id=223834260 instance=ExtResource("6_8nu50")]
+[node name="Spikes8" parent="Enemies/Spikes" index="5" unique_id=996778044 instance=ExtResource("6_8nu50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, -0.029430151, -4.25)
 
-[node name="Spikes56" parent="Enemies/Spikes" index="40" unique_id=1856805165 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -0.029430151, -4.25)
+[node name="Spikes13" parent="Enemies/Spikes" index="6" unique_id=130742461 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24999996, -0.029430151, -3.75)
 
-[node name="Spikes57" parent="Enemies/Spikes" index="41" unique_id=458467964 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, -0.029430151, -4.75)
+[node name="Spikes14" parent="Enemies/Spikes" index="7" unique_id=1488766961 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25000006, -0.029430151, -3.75)
 
-[node name="Spikes58" parent="Enemies/Spikes" index="42" unique_id=106599151 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -0.029430151, -4.75)
+[node name="Spikes15" parent="Enemies/Spikes" index="8" unique_id=1816190650 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25000006, -0.029430151, -4.25)
 
-[node name="Spikes59" parent="Enemies/Spikes" index="43" unique_id=12455533 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, -0.029430151, -3.25)
+[node name="Spikes16" parent="Enemies/Spikes" index="9" unique_id=717189636 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24999994, -0.029430151, -4.25)
 
-[node name="Spikes60" parent="Enemies/Spikes" index="44" unique_id=1536043943 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, -0.029430151, -3.25)
+[node name="Spikes22" parent="Enemies/Spikes" index="10" unique_id=851171702 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75000006, -0.029430151, -3.75)
 
-[node name="Spikes61" parent="Enemies/Spikes" index="45" unique_id=41315207 instance=ExtResource("6_8nu50")]
+[node name="Spikes24" parent="Enemies/Spikes" index="11" unique_id=1127877890 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75000006, -0.029430151, -4.25)
+
+[node name="Spikes43" parent="Enemies/Spikes" index="12" unique_id=274319706 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -0.029430151, -3.25)
+
+[node name="Spikes45" parent="Enemies/Spikes" index="13" unique_id=946249793 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -0.029430151, -3.75)
+
+[node name="Spikes46" parent="Enemies/Spikes" index="14" unique_id=1399566063 instance=ExtResource("6_8nu50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, -0.029430151, -3.75)
 
-[node name="Spikes62" parent="Enemies/Spikes" index="46" unique_id=1272993964 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, -0.029430151, -3.75)
+[node name="Spikes47" parent="Enemies/Spikes" index="15" unique_id=697554502 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -0.029430151, -4.25)
 
-[node name="Spikes63" parent="Enemies/Spikes" index="47" unique_id=832580436 instance=ExtResource("6_8nu50")]
+[node name="Spikes48" parent="Enemies/Spikes" index="16" unique_id=1094381564 instance=ExtResource("6_8nu50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, -0.029430151, -4.25)
 
-[node name="Spikes64" parent="Enemies/Spikes" index="48" unique_id=615523769 instance=ExtResource("6_8nu50")]
+[node name="Spikes53" parent="Enemies/Spikes" index="17" unique_id=1304894021 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7500002, -0.029430151, -3.7499998)
+
+[node name="Spikes54" parent="Enemies/Spikes" index="18" unique_id=86427867 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2500002, -0.029430151, -3.7499998)
+
+[node name="Spikes55" parent="Enemies/Spikes" index="19" unique_id=223834260 instance=ExtResource("6_8nu50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, -0.029430151, -4.25)
 
-[node name="Spikes65" parent="Enemies/Spikes" index="49" unique_id=387712569 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, -0.029430151, -4.75)
+[node name="Spikes56" parent="Enemies/Spikes" index="20" unique_id=1856805165 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, -0.029430151, -4.25)
 
-[node name="Spikes66" parent="Enemies/Spikes" index="50" unique_id=607139559 instance=ExtResource("6_8nu50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, -0.029430151, -4.75)
+[node name="Spikes61" parent="Enemies/Spikes" index="21" unique_id=41315207 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, -0.029430151, -3.7499998)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/Spikes" index="51" unique_id=239719500]
+[node name="Spikes63" parent="Enemies/Spikes" index="22" unique_id=832580436 instance=ExtResource("6_8nu50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, -0.029430151, -4.25)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/Spikes" index="23" unique_id=239719500]
 libraries/ = SubResource("AnimationLibrary_8nu50")
 
 [node name="DummyShoot" parent="Enemies" index="1" unique_id=1898691 instance=ExtResource("9_yfpds")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.5, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 0, -1.5)
 
 [node name="DummySpawner" parent="Enemies/DummyShoot/Eventlisteners/SpawnEntitiesEventStrategy" parent_id_path=PackedInt32Array(1898691, 1347615912) index="0" unique_id=1635184553 node_paths=PackedStringArray("spawn_position")]
 spawn_position = NodePath("../../../../DummySpawnMarker")
 
 [node name="DummySpawnMarker" type="Marker3D" parent="Enemies" index="2" unique_id=753877786]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.4999998, 0, -3.5)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.9999998, 0, -3.5)
 
 [connection signal="cage_spawned" from="." to="Enemies/Spikes/AnimationPlayer" method="play" binds= ["remove"]]
 

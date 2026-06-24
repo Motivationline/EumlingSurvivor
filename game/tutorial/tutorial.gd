@@ -175,7 +175,7 @@ func run_move():
 	show_quest(quest_text)
 	
 	var total_distance_moved: float = 0
-	var max_distance_needed: float = 5
+	var max_distance_needed: float = 7
 	var previous_position = Player.player.global_position
 
 	while(true):
