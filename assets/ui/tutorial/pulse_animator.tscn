@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dolfciwn4ppmn"]
+
+[sub_resource type="Animation" id="Animation_njswq"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset_transform_scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset_transform_scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_705nu"]
+resource_name = "pulse"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset_transform_scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.06666667, 0.09062958, 1.1, -0.10007866, 0.00049976044, 0.2, -0.0009987354, 0.9, -0.16666669, 0.000998199, 0.07866982, -0.00047116875, 1, -0.08805692, -0.09677446, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset_transform_scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.06666667, 0.08909345, 1.1, -0.100048386, 0.0004996093, 0.2, -0.0009987354, 0.9, -0.16666669, 0.000998199, 0.07868979, -0.00047128834, 1, -0.08805692, -0.09523833, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w4r1y"]
+_data = {
+&"RESET": SubResource("Animation_njswq"),
+&"pulse": SubResource("Animation_705nu")
+}
+
+[node name="PulseAnimator" type="AnimationPlayer" unique_id=266302889]
+libraries/ = SubResource("AnimationLibrary_w4r1y")
+autoplay = &"pulse"
