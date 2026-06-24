@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://3snkp15vytln" path="res://assets/ui/pauseMenu/BackdropBackpack.png" id="1_1rr57"]
 [ext_resource type="Script" uid="uid://br2coflgl4nwu" path="res://game/ui/pause_menu/pause_menu.gd" id="1_062ls"]
 [ext_resource type="Texture2D" uid="uid://bcw4gmyo2mhym" path="res://assets/ui/Eumlex/ButtonStickerSquare.png" id="2_062ls"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="2_ob8pm"]
 [ext_resource type="Texture2D" uid="uid://8bqwxkcdktcv" path="res://assets/ui/Buttons/HomeButton.png" id="3_utddp"]
 [ext_resource type="Texture2D" uid="uid://dkppdxscctjp0" path="res://assets/ui/Buttons/LanguageButton.png" id="4_ob8pm"]
 [ext_resource type="Texture2D" uid="uid://b4puyhx8d2gim" path="res://assets/ui/Buttons/PlayButton.png" id="5_edo3p"]
@@ -12,6 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://dslle4mecxwob" path="res://assets/ui/Buttons/SliderKnobLiane.png" id="9_m315g"]
 [ext_resource type="Script" uid="uid://ch5ysq2vooxck" path="res://game/ui/pause_menu/sound_settings.gd" id="9_utddp"]
 [ext_resource type="Texture2D" uid="uid://bsh5cti8q2hqs" path="res://assets/ui/pauseMenu/PaperRectangleInfo.png" id="10_6rxva"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_edo3p"]
+shader = ExtResource("2_ob8pm")
+shader_parameter/blur_amount = 4.00000019
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7phrv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5f4c"]
 texture = ExtResource("9_m315g")
@@ -27,6 +34,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_062ls")
+
+[node name="BackgroundBlur" type="TextureRect" parent="." unique_id=1806676172]
+material = SubResource("ShaderMaterial_edo3p")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_7phrv")
 
 [node name="BackdropBackpack" type="TextureRect" parent="." unique_id=860696233]
 layout_mode = 1
