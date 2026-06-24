@@ -99,7 +99,10 @@ node_connections = [&"output", 0, &"hurt", &"shake", 0, &"Transition", &"shake",
 [node name="volcano_tortoise" unique_id=1249268255 instance=ExtResource("1_5ptpm")]
 script = ExtResource("2_sub06")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(783777269) index="1" unique_id=598909619]
+[node name="Tortoise" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(1506783670) index="0" unique_id=1554128864]
+skeleton = NodePath("..")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(1506783670) index="1" unique_id=598909619]
 transform = Transform3D(1, 1.323489e-23, -1.9721523e-31, -1.323489e-23, 1, -5.9604645e-08, -5.916457e-31, 5.9604645e-08, 1, -5.22517e-25, 0.71051973, -2.3532074e-09)
 bone_name = "DEF_TRUNK"
 bone_idx = 20

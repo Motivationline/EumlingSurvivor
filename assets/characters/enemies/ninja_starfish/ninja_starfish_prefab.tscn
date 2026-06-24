@@ -51,6 +51,12 @@ node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation",
 [node name="ninja_starfish" unique_id=725910630 instance=ExtResource("1_fmm4y")]
 script = ExtResource("2_64rui")
 
+[node name="Plane_002" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(473493514) index="0" unique_id=1505995415]
+skeleton = NodePath("..")
+
+[node name="starfish_model" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(473493514) index="1" unique_id=411638721]
+skeleton = NodePath("..")
+
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=3456080]
 tree_root = SubResource("AnimationNodeBlendTree_64rui")
 anim_player = NodePath("../AnimationPlayer")
