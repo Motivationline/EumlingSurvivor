@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bpoaxb8bidbmp"]
+
+[ext_resource type="PackedScene" uid="uid://cfyj2ox125tbl" path="res://game/ui/pop_up/rotten_leaves_particle.tscn" id="1_yn61s"]
+[ext_resource type="Texture2D" uid="uid://8uog1s6vlhee" path="res://assets/ui/pop_up/structurelose.png" id="2_2dxvv"]
+[ext_resource type="Texture2D" uid="uid://v4o4i2xespl5" path="res://assets/ui/pop_up/schild_banner.png" id="3_aljcr"]
+[ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="4_1o87w"]
+[ext_resource type="Texture2D" uid="uid://bkfvp3463op0r" path="res://assets/ui/pop_up/aufhaenger_gerissen.png" id="5_00jcp"]
+
+[node name="LostScreen" type="Control" unique_id=40802825]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="rotten_leaves" parent="." unique_id=1150521916 instance=ExtResource("1_yn61s")]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1564643393]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_2dxvv")
+
+[node name="upper_schield" type="TextureRect" parent="." unique_id=995901384]
+layout_mode = 0
+offset_left = 702.20953
+offset_top = 298.0
+offset_right = 1295.2095
+offset_bottom = 600.0
+rotation = 0.35230777
+texture = ExtResource("3_aljcr")
+
+[node name="menue_button" type="TextureButton" parent="." unique_id=931681680]
+layout_mode = 0
+offset_left = 846.0
+offset_top = 932.0
+offset_right = 1071.0
+offset_bottom = 1033.0
+texture_normal = ExtResource("4_1o87w")
+
+[node name="Label" type="Label" parent="menue_button" unique_id=920079219]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 224.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 38
+text = "Hauptmenü"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="seile" type="TextureRect" parent="." unique_id=1385033589]
+layout_mode = 0
+offset_left = 836.0
+offset_top = 1.0
+offset_right = 1086.0
+offset_bottom = 493.0
+texture = ExtResource("5_00jcp")
+
+[node name="Label" type="Label" parent="." unique_id=2026237835]
+layout_mode = 0
+offset_left = 731.00006
+offset_top = 396.0
+offset_right = 1203.0
+offset_bottom = 551.0
+rotation = 0.35230777
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "VERLOREN"
+horizontal_alignment = 1
+vertical_alignment = 1

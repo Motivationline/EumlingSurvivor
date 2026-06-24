@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://bm7axeish4b4f"]
 
 [ext_resource type="Texture2D" uid="uid://dse1rcu00cytg" path="res://assets/ui/pop_up/structurewinscreen.png" id="1_0qudm"]
+[ext_resource type="PackedScene" uid="uid://dgl7o6o73xp7w" path="res://game/ui/pop_up/leaves_particle.tscn" id="1_smk52"]
 [ext_resource type="Texture2D" uid="uid://dj5fnsnkj3y2a" path="res://assets/ui/pop_up/win_strahlen.png" id="2_ti4oc"]
 [ext_resource type="Texture2D" uid="uid://v4o4i2xespl5" path="res://assets/ui/pop_up/schild_banner.png" id="3_smk52"]
 [ext_resource type="Texture2D" uid="uid://bkdogp4kum6gg" path="res://assets/ui/pop_up/schild_text.png" id="4_l1ydo"]
 [ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="5_uihgc"]
 [ext_resource type="Texture2D" uid="uid://crvupvj8th5oa" path="res://assets/ui/pop_up/aufhaenger.png" id="6_j6jvo"]
+[ext_resource type="Texture2D" uid="uid://bcw4gmyo2mhym" path="res://assets/ui/Eumlex/ButtonStickerSquare.png" id="8_l1ydo"]
 
 [node name="WinScreen" type="Control" unique_id=40802825]
 layout_mode = 3
@@ -15,7 +17,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="LeavesParticle" parent="." unique_id=1150521916 instance=ExtResource("1_smk52")]
+position = Vector2(-1, -2)
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1564643393]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -82,3 +88,45 @@ theme_override_font_sizes/font_size = 60
 text = "GEWONNEN"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="EumlingeGrid" type="GridContainer" parent="." unique_id=153639279]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -42.99997
+offset_right = 219.0
+offset_bottom = 281.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0741606, 1.0741606)
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="EumlingSticker1" type="TextureButton" parent="EumlingeGrid" unique_id=475580506]
+layout_mode = 2
+texture_normal = ExtResource("8_l1ydo")
+
+[node name="EumlingSticker2" type="TextureButton" parent="EumlingeGrid" unique_id=1222715503]
+layout_mode = 2
+texture_normal = ExtResource("8_l1ydo")
+
+[node name="EumlingSticker3" type="TextureButton" parent="EumlingeGrid" unique_id=606049455]
+layout_mode = 2
+texture_normal = ExtResource("8_l1ydo")
+
+[node name="EumlingSticker4" type="TextureButton" parent="EumlingeGrid" unique_id=811710844]
+layout_mode = 2
+texture_normal = ExtResource("8_l1ydo")
+
+[node name="EumlingSticker5" type="TextureButton" parent="EumlingeGrid" unique_id=1614280841]
+layout_mode = 2
+texture_normal = ExtResource("8_l1ydo")
+
+[node name="EumlingSticker6" type="TextureButton" parent="EumlingeGrid" unique_id=718529550]
+layout_mode = 2
+texture_normal = ExtResource("8_l1ydo")
