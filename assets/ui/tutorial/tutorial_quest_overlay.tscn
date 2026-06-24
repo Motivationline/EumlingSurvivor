@@ -1,55 +1,66 @@
 [gd_scene format=3 uid="uid://dfijg5cgisnps"]
 
-[ext_resource type="Texture2D" uid="uid://rmsvtoa26ujw" path="res://assets/ui/textfenster/conventioneller_eumling_marker.png" id="1_bhcdq"]
-[ext_resource type="Texture2D" uid="uid://byltvibidc8y" path="res://assets/ui/textfenster/conventioneller_eumling_marker_text.png" id="2_s850p"]
+[ext_resource type="Texture2D" uid="uid://cm2y3w088uf03" path="res://assets/ui/textfenster/tutorox_marker.png" id="1_b4cia"]
 [ext_resource type="Script" uid="uid://b0m0jlnyu1gcp" path="res://game/ui/auto_size_rich_text_label.gd" id="3_bhcdq"]
-[ext_resource type="Theme" uid="uid://u1iy4y0s7n01" path="res://assets/ui/base_theme.tres" id="3_x11mo"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_b4cia"]
 [ext_resource type="Texture2D" uid="uid://c25hfu5gdb5mo" path="res://assets/ui/textfenster/quest_haken.png" id="6_210ck"]
+[ext_resource type="Texture2D" uid="uid://dljuyqo7nmcmd" path="res://assets/ui/textfenster/tutorox_marker_text.png" id="6_cyu13"]
+[ext_resource type="Texture2D" uid="uid://cbg63rgvhxjya" path="res://assets/ui/gameOverlay/LowerBarBackdrop.png" id="7_b4cia"]
+[ext_resource type="Texture2D" uid="uid://cgou6yjv471k6" path="res://assets/ui/gameOverlay/LowerBarOutline.png" id="8_210ck"]
+[ext_resource type="Texture2D" uid="uid://db1acrfx3gskr" path="res://assets/ui/gameOverlay/LowerBarFillReload.png" id="9_cyu13"]
 
 [node name="TutorialQuestOverlay" type="CanvasLayer" unique_id=682175653]
 layer = 101
 
-[node name="Portrait" type="TextureRect" parent="." unique_id=2034150341]
-offset_left = 66.0
-offset_top = 117.0
-offset_right = 161.0
-offset_bottom = 212.0
-texture = ExtResource("1_bhcdq")
-expand_mode = 1
+[node name="tutox_quest_marker" type="HBoxContainer" parent="." unique_id=1620582518]
+offset_left = 35.0
+offset_top = 186.0
+offset_right = 683.0
+offset_bottom = 326.0
 
-[node name="Bubble" type="TextureRect" parent="." unique_id=1427821068]
-offset_left = 161.0
-offset_top = 118.0
-offset_right = 631.0
-offset_bottom = 218.0
-texture = ExtResource("2_s850p")
-expand_mode = 1
+[node name="Portrait" type="TextureRect" parent="tutox_quest_marker" unique_id=266298251]
+layout_mode = 2
+texture = ExtResource("1_b4cia")
 
-[node name="Text" type="RichTextLabel" parent="." unique_id=1963480548]
-offset_left = 187.0
-offset_top = 124.0
-offset_right = 589.0
-offset_bottom = 212.0
-theme = ExtResource("3_x11mo")
+[node name="Bubble" type="TextureRect" parent="tutox_quest_marker" unique_id=1988346256]
+layout_mode = 2
+texture = ExtResource("6_cyu13")
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=1602466990]
+offset_left = 267.0
+offset_top = 207.0
+offset_right = 662.0
+offset_bottom = 303.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 0
 theme_override_fonts/normal_font = ExtResource("4_b4cia")
-theme_override_font_sizes/normal_font_size = 40
-theme_override_font_sizes/bold_font_size = 40
-theme_override_font_sizes/bold_italics_font_size = 40
-theme_override_font_sizes/italics_font_size = 40
-theme_override_font_sizes/mono_font_size = 40
-text = "Besiege das Monster"
+theme_override_font_sizes/normal_font_size = 65
+theme_override_font_sizes/bold_font_size = 65
+theme_override_font_sizes/bold_italics_font_size = 65
+theme_override_font_sizes/italics_font_size = 65
+theme_override_font_sizes/mono_font_size = 65
+text = "Aufgabe"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_bhcdq")
 metadata/_custom_type_script = "uid://b0m0jlnyu1gcp"
 
-[node name="CompletedIcon" type="TextureRect" parent="." unique_id=759111176]
-offset_left = 572.0
-offset_top = 93.0
-offset_right = 672.0
-offset_bottom = 193.0
+[node name="CompletedIcon" type="TextureRect" parent="." unique_id=2126770377]
+offset_left = 583.0
+offset_top = 159.0
+offset_right = 711.0
+offset_bottom = 290.0
 texture = ExtResource("6_210ck")
-expand_mode = 1
+
+[node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=1749226331]
+offset_left = 249.0
+offset_top = 326.0
+offset_right = 682.0
+offset_bottom = 351.0
+step = 0.1
+nine_patch_stretch = true
+stretch_margin_left = 15
+stretch_margin_right = 15
+texture_under = ExtResource("7_b4cia")
+texture_over = ExtResource("8_210ck")
+texture_progress = ExtResource("9_cyu13")
