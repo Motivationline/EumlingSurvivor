@@ -595,7 +595,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
-text = "Entreprising"
+text = "Enterprising"
 
 [node name="EnterprisingInfo" type="Label" parent="Book/BookContainer/BookBG/RedPage/EnterprisingText" unique_id=1588086190]
 custom_minimum_size = Vector2(20, 20)
@@ -604,7 +604,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -6
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 35
-text = "Entreprising Jobs are very entreprising... surprise"
+text = "Enterprising Jobs are very enterprising... surprise"
 autowrap_mode = 2
 
 [node name="EnterprisingEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/RedPage" unique_id=318761745]
@@ -770,8 +770,9 @@ offset_left = 948.0
 offset_top = 137.0
 offset_right = 908.0
 offset_bottom = 97.0
+offset_transform_enabled = true
 
-[node name="close_button" type="TextureButton" parent="Book" unique_id=86270587]
+[node name="CloseButton" type="TextureButton" parent="Book" unique_id=86270587]
 layout_mode = 0
 offset_left = 1664.0
 offset_top = 63.0
@@ -779,23 +780,10 @@ offset_right = 1796.0
 offset_bottom = 202.0
 texture_normal = ExtResource("15_y7di5")
 
-[node name="CloseButton" type="Button" parent="Book" unique_id=646104005]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 1683.0
-offset_right = 1880.0
-offset_bottom = 118.0
-grow_horizontal = 0
-text = "Close X"
-
 [connection signal="pressed" from="Book/TabPanel/OrangeButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/GreenButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/PurpleButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/YellowButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/RedButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/BlueButton" to="." method="_on_tab_pressed" flags=18]
-[connection signal="pressed" from="Book/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Book/CloseButton" to="." method="_on_close_button_pressed"]

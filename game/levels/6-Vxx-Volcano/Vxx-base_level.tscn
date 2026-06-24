@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_gmd22"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_yqsn0"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_jpdpo"]
-[ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="3_tst3c"]
+[ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="5_g1dqc"]
+[ext_resource type="Script" uid="uid://du18mum64y03k" path="res://game/cameras/behaviours/normal_behaviour.gd" id="6_jpdpo"]
 [ext_resource type="PackedScene" uid="uid://bd4kom8lyyin5" path="res://assets/models/6-volcano/stones/stone_01/volcano_stone_01.tscn" id="6_r7r6h"]
 [ext_resource type="Shader" uid="uid://bcr3jkq4ohhuh" path="res://game/levels/6-Vxx-Volcano/shader2/lava.tres" id="7_8l1px"]
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="7_g1dqc"]
@@ -243,6 +244,10 @@ dof_blur_far_distance = 35.0
 dof_blur_near_enabled = true
 dof_blur_near_distance = 10.0
 
+[sub_resource type="Resource" id="Resource_g1dqc"]
+script = ExtResource("6_jpdpo")
+metadata/_custom_type_script = "uid://du18mum64y03k"
+
 [sub_resource type="Environment" id="Environment_8l1px"]
 background_mode = 1
 background_color = Color(0.67, 0.4801667, 0, 1)
@@ -337,7 +342,7 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_wbp8f")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1258499166]
+[node name="GameCamera" type="Camera3D" parent="." unique_id=1951507580]
 transform = Transform3D(0.70710677, -0.6123722, 0.3535532, 0, 0.49999976, 0.8660251, -0.70710677, -0.6123722, 0.3535532, 4.524, 11.086, 4.211)
 attributes = SubResource("CameraAttributesPractical_r7r6h")
 projection = 1
@@ -345,7 +350,9 @@ fov = 45.0
 size = 5.5
 near = 0.1
 far = 30.0
-script = ExtResource("3_tst3c")
+script = ExtResource("5_g1dqc")
+behaviour = SubResource("Resource_g1dqc")
+metadata/_custom_type_script = "uid://bftcfposg3qyf"
 
 [node name="Lights" type="Node3D" parent="." unique_id=898246771]
 

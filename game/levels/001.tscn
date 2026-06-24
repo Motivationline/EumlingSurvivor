@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://htuftvnpan0c"]
 
-[ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="1_j48a7"]
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_uile8"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="2_qbpv8"]
+[ext_resource type="Script" uid="uid://du18mum64y03k" path="res://game/cameras/behaviours/normal_behaviour.gd" id="4_h41g6"]
+[ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="4_vlj6n"]
 [ext_resource type="PackedScene" uid="uid://dd5npkf3gb428" path="res://level/playgounrd/weapon_switch/weapon_switch.tscn" id="5_u3pwt"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_cf6nt"]
 [ext_resource type="PackedScene" uid="uid://cjpt5ms0ud5r" path="res://game/projectiles/bouncing_ball_projectile/bouncing_ball_projectile_player.tscn" id="6_geo0b"]
@@ -30,6 +31,10 @@ albedo_color = Color(0, 0.29, 0.0145, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnkxu"]
 albedo_color = Color(0.185273, 0.627928, 0.462023, 1)
+
+[sub_resource type="Resource" id="Resource_y1naw"]
+script = ExtResource("4_h41g6")
+metadata/_custom_type_script = "uid://du18mum64y03k"
 
 [sub_resource type="Environment" id="Environment_j48a7"]
 background_mode = 1
@@ -112,14 +117,16 @@ use_collision = true
 collision_mask = 0
 size = Vector3(9.3125, 1, 1)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=541827332]
+[node name="GameCamera" type="Camera3D" parent="." unique_id=1451403640]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, -0.104352, 12.5917, 7.49343)
 projection = 1
 fov = 45.0
 size = 15.0
 near = 0.01
 far = 30.0
-script = ExtResource("1_j48a7")
+script = ExtResource("4_vlj6n")
+behaviour = SubResource("Resource_y1naw")
+metadata/_custom_type_script = "uid://bftcfposg3qyf"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1344726379]
 transform = Transform3D(0.9469659, -0.18320374, -0.26399282, 0.0877022, -0.6430056, 0.7608235, -0.30913436, -0.74362653, -0.5928369, 0, 7.560488, 0)

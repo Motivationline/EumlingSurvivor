@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_w80ar"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_yhqm7"]
-[ext_resource type="Script" uid="uid://cfqhfr170figj" path="res://level/playgounrd/camera_3d.gd" id="3_04e82"]
+[ext_resource type="Script" uid="uid://du18mum64y03k" path="res://game/cameras/behaviours/normal_behaviour.gd" id="4_c6cgr"]
+[ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="4_xaljl"]
 [ext_resource type="Script" uid="uid://bc7pailucq83t" path="res://addons/dreadpon.spatial_gardener/gardener/gardener.gd" id="6_a5usy"]
 [ext_resource type="Shader" uid="uid://7btxxjqlbm4x" path="res://game/levels/2-Fxx-FlowerField/shader2/grass_shader.tres" id="6_h2jnw"]
 [ext_resource type="Script" uid="uid://d1pavk3gl4atd" path="res://addons/dreadpon.spatial_gardener/arborist/arborist.gd" id="7_3fw05"]
@@ -60,6 +61,10 @@ shadow_mesh = SubResource("ArrayMesh_lttw8")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2l1w"]
 size = Vector3(10, 1, 10)
+
+[sub_resource type="Resource" id="Resource_mjkfl"]
+script = ExtResource("4_c6cgr")
+metadata/_custom_type_script = "uid://du18mum64y03k"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbp8f"]
 size = Vector3(1.9667969, 1.8048096, 1)
@@ -377,7 +382,7 @@ shape = SubResource("BoxShape3D_p2l1w")
 [node name="PlayerSpawnMarker" type="Marker3D" parent="." unique_id=649166569]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
 
-[node name="Camera3D2" type="Camera3D" parent="." unique_id=125181555]
+[node name="GameCamera" type="Camera3D" parent="." unique_id=364397556]
 transform = Transform3D(0.7071066, -0.6123725, 0.3535537, 0, 0.5000003, 0.86602527, -0.70710695, -0.61237216, 0.35355353, 4.5242615, 11.085632, 4.2108154)
 projection = 1
 current = true
@@ -385,7 +390,9 @@ fov = 45.0
 size = 5.5
 near = 0.1
 far = 30.0
-script = ExtResource("3_04e82")
+script = ExtResource("4_xaljl")
+behaviour = SubResource("Resource_mjkfl")
+metadata/_custom_type_script = "uid://bftcfposg3qyf"
 
 [node name="GoalArea" type="Area3D" parent="." unique_id=2095307510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)

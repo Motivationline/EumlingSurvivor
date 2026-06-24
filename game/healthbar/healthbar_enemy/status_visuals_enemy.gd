@@ -29,3 +29,10 @@ func _set_social_progress(value: float):
 			socialbar.show()
 		else:
 			socialbar.hide()
+
+
+func _get_overlay_bar_size() -> Vector2:
+	var bar: TextureProgressBar = $UIOverlay/Healthbar/HealthBar
+	if bar:
+		return bar.size
+	return Vector2.ZERO

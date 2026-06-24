@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4pova0m1o052"]
 
 [ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_1262n"]
+[ext_resource type="Script" uid="uid://cn1lytcjvtv58" path="res://game/cameras/behaviours/boss_behaviour.gd" id="2_0ohe4"]
 [ext_resource type="PackedScene" uid="uid://c0qhhmk7hkq00" path="res://game/enemies/5-Beach/turtle_boss/turtle_boss_hard.tscn" id="2_xmw3o"]
 [ext_resource type="PackedScene" uid="uid://cbiqexo8lchvg" path="res://game/enemies/5-Beach/environment/quick_sand.tscn" id="3_mv4jp"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="4_0ohe4"]
@@ -11,6 +12,11 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 agent_radius = 0.25
 agent_max_climb = 0.0
 edge_max_error = 0.25
+
+[sub_resource type="Resource" id="Resource_ofpxa"]
+script = ExtResource("2_0ohe4")
+boss = NodePath("../Enemies/TurtleBoss")
+metadata/_custom_type_script = "uid://cn1lytcjvtv58"
 
 [node name="Level" unique_id=1268816340 instance=ExtResource("1_1262n")]
 is_boss_level = true
@@ -23,6 +29,9 @@ navigation_mesh = SubResource("NavigationMesh_xmw3o")
 data = {
 "cells": PackedInt32Array(10, 8, 1, 10, 7, 1, 10, 6, 1, 10, 5, 1, 10, 4, 1, 10, 3, 1, 10, 2, 1, 10, 1, 1, 10, 0, 1, 10, 65535, 1, 10, 65534, 1, 10, 65533, 1, 10, 65532, 1, 10, 65531, 1, 10, 65530, 1, 10, 65529, 1, 10, 65528, 1, 10, 65527, 1, 10, 65526, 1, 10, 9, 1, 10, 10, 1, 65526, 10, 1, 65527, 10, 1, 65528, 10, 1, 65529, 10, 1, 65530, 10, 1, 65531, 10, 1, 65532, 10, 1, 65533, 10, 1, 65534, 10, 1, 65535, 10, 1, 7, 10, 1, 8, 10, 1, 9, 10, 1, 6, 10, 1, 5, 10, 1, 4, 10, 1, 3, 10, 1, 2, 10, 1, 1, 10, 1, 0, 10, 1, 65525, 10, 1, 65525, 9, 1, 65525, 8, 1, 65525, 6, 1, 65525, 5, 1, 65525, 4, 1, 65525, 3, 1, 65525, 2, 1, 65525, 1, 1, 65525, 0, 1, 65525, 65535, 1, 65525, 65534, 1, 65525, 65533, 1, 65525, 65532, 1, 65525, 65530, 1, 65525, 65529, 1, 65525, 65528, 1, 65525, 65527, 1, 65525, 65526, 1, 65525, 65525, 1, 65526, 65525, 1, 65525, 7, 1, 65527, 65525, 1, 65528, 65525, 1, 65529, 65525, 1, 65530, 65525, 1, 65531, 65525, 1, 65532, 65525, 1, 65533, 65525, 1, 2, 65525, 1, 3, 65525, 1, 4, 65525, 1, 5, 65525, 1, 6, 65525, 1, 7, 65525, 1, 8, 65525, 1, 9, 65525, 1, 10, 65525, 1, 65525, 65531, 1, 65534, 65525, 1, 65535, 65525, 1, 0, 65525, 1, 1, 65525, 1)
 }
+
+[node name="GameCamera" parent="." index="2" unique_id=383163677]
+behaviour = SubResource("Resource_ofpxa")
 
 [node name="GoalArea" parent="." index="4" unique_id=1103800391]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)

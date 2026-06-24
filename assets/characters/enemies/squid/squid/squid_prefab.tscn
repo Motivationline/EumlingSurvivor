@@ -63,6 +63,9 @@ node_connections = [&"output", 0, &"attack", &"Transition", 0, &"Animation", &"T
 [node name="squid" unique_id=697439437 instance=ExtResource("1_4hem0")]
 script = ExtResource("2_bo2a4")
 
+[node name="SquidObject" parent="Squid_Armature/Skeleton3D" parent_id_path=PackedInt32Array(1206733926) index="0" unique_id=538000028]
+skeleton = NodePath("..")
+
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1743052987]
 tree_root = SubResource("AnimationNodeBlendTree_lie6o")
 anim_player = NodePath("../AnimationPlayer")
