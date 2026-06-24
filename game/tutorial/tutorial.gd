@@ -22,7 +22,6 @@ enum PROGRESS {
 	RUN_CAGE_DROP,
 	RUN_CAGE_OPEN,
 	RUN_PAUSE,
-	PAUSE,
 	RETURN_EUMLEX,
 	COMPLETED,
 }
@@ -42,6 +41,7 @@ func _ready() -> void:
 		Main.controller.load_main()
 		queue_free()
 
+var quest_timer: Timer
 var blocking_overlay: PackedScene
 
 var video: PackedScene
@@ -89,6 +89,9 @@ func initialize() -> void:
 	level_wrapper = Node.new()
 	add_child(level_wrapper)
 
+	quest_timer = Timer.new()
+	quest_timer.timeout.connect(hide_quest)
+	add_child(quest_timer)
 
 func start() -> void:
 	progress = PROGRESS.NONE
@@ -138,7 +141,7 @@ func eumlex_close():
 	progress = PROGRESS.EUMLEX_CLOSE
 	var button = eumlex_instance.find_child("CloseButton")
 	var pressed = func():
-		eumlex_instance.queue_free()
+		remove_child(eumlex_instance)
 		DialogueManager.show_dialogue_balloon(dialogue, "play_intro")
 		await DialogueManager.dialogue_ended
 		run_start()
@@ -153,24 +156,14 @@ func run_start():
 	var button = main_menu_instance.find_child("PlayButton")
 	button.show()
 	var pressed = func():
-		main_menu_instance.queue_free()
-		complete_quest()
+		remove_child(main_menu_instance)
+		hide_quest()
 		load_level()
 		DialogueManager.show_dialogue_balloon(dialogue, "training_intro")
 		await DialogueManager.dialogue_ended
 		run_move()
 	block_input_except_for.call_deferred(button, pressed) # calling deferred for the button to be rendered correctly once first
 	show_quest("Starte eine neue Runde")
-
-func load_level():
-	for child in level_wrapper.get_children():
-		child.queue_free()
-
-	tutorial_level = load("uid://bwlbdn0hs3kcf").instantiate()
-	tutorial_level.difficulty = 0
-	level_wrapper.add_child(tutorial_level)
-	tutorial_level.spawn_player(player)
-	player.revive()
 
 func run_move():
 	if Data.is_on_mobile:
@@ -240,17 +233,35 @@ func run_aim():
 
 
 func run_cage_drop():
+	show_quest("Rette den Eumling")
 	progress = PROGRESS.RUN_CAGE_DROP
-	tutorial_level.level_ended.connect(run_cage_open)
 
 func run_cage_open():
+	await complete_quest()
 	progress = PROGRESS.RUN_CAGE_OPEN
 	DialogueManager.show_dialogue_balloon(dialogue, "eumling_rescued")
 	await DialogueManager.dialogue_ended
-	# block_input_except_for()
+	return_to_main_menu()
 
+func return_to_main_menu():
+	progress = PROGRESS.RETURN_EUMLEX
+	level_wrapper.queue_free()
+	add_child(main_menu_instance)
+	var btn: TextureButton = main_menu_instance.find_child("EumlexButton")
+	block_input_except_for(btn, func():
+		eumlex_show_again()
+	)
+	complete_quest()
+	show_quest("Trage den Eumling ein")
+
+func eumlex_show_again():
+	progress = PROGRESS.RETURN_EUMLEX
+	add_child(eumlex_instance)
+
+	complete_quest()
+	DialogueManager.show_dialogue_balloon(dialogue, "tutorial_completed")
+	await DialogueManager.dialogue_ended
 	completed()
-	
 
 	
 func player_died():
@@ -288,17 +299,31 @@ func show_quest(text: String):
 	quest_overlay.show()
 	quest_overlay.find_child("Text").text = text
 	quest_overlay.find_child("CompletedIcon").hide()
+	if quest_timer:
+		quest_timer.stop()
 
 func hide_quest():
 	quest_overlay.hide()
 
 func complete_quest():
 	quest_overlay.find_child("CompletedIcon").show()
-	await get_tree().create_timer(2).timeout
-	hide_quest()
+	quest_timer.start(2)
+	await quest_timer.timeout
 
 func completed():
 	progress = PROGRESS.COMPLETED
 	save_progress()
 	Main.controller.load_main()
 	queue_free()
+
+func load_level():
+	for child in level_wrapper.get_children():
+		child.queue_free()
+
+	tutorial_level = load("uid://bwlbdn0hs3kcf").instantiate()
+	tutorial_level.difficulty = 0
+	level_wrapper.add_child(tutorial_level)
+	tutorial_level.spawn_player(player)
+	player.revive()
+	
+	tutorial_level.level_ended.connect(run_cage_open)
