@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bm7axeish4b4f"]
 
 [ext_resource type="Texture2D" uid="uid://dse1rcu00cytg" path="res://assets/ui/pop_up/structurewinscreen.png" id="1_0qudm"]
+[ext_resource type="PackedScene" uid="uid://mdgxtmddpnfr" path="res://assets/ui/pop_up/firework_particles.tscn" id="1_l1ydo"]
 [ext_resource type="PackedScene" uid="uid://dgl7o6o73xp7w" path="res://game/ui/pop_up/leaves_particle.tscn" id="1_smk52"]
 [ext_resource type="Texture2D" uid="uid://dj5fnsnkj3y2a" path="res://assets/ui/pop_up/win_strahlen.png" id="2_ti4oc"]
 [ext_resource type="Texture2D" uid="uid://v4o4i2xespl5" path="res://assets/ui/pop_up/schild_banner.png" id="3_smk52"]
@@ -16,6 +17,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="fireworks" type="Node2D" parent="." unique_id=1160732009]
+
+[node name="firework_particles" parent="fireworks" unique_id=2134858972 instance=ExtResource("1_l1ydo")]
+position = Vector2(588, 174)
+
+[node name="firework_particles2" parent="fireworks" unique_id=1416579395 instance=ExtResource("1_l1ydo")]
+position = Vector2(1505, 284)
+
+[node name="firework_particles3" parent="fireworks" unique_id=169960463 instance=ExtResource("1_l1ydo")]
+position = Vector2(393, 797)
 
 [node name="LeavesParticle" parent="." unique_id=1150521916 instance=ExtResource("1_smk52")]
 position = Vector2(-1, -2)

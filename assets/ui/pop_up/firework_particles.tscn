@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://mdgxtmddpnfr"]
+
+[ext_resource type="Texture2D" uid="uid://d0cgb15dxsdbc" path="res://assets/ui/pop_up/star_icon.png" id="1_fakta"]
+
+[sub_resource type="Curve" id="Curve_yf5fn"]
+_data = [Vector2(0, 0.14555264), 0.0, 6.2016807, 0, 0, Vector2(0.4549266, 1), 0.0, 0.0, 0, 0, Vector2(0.8637316, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_g4v7s"]
+offsets = PackedFloat32Array(0, 0.8476744, 1)
+colors = PackedColorArray(2.087546, 1.8167663, 0, 1, 1, 0.8366667, 0.01999998, 1, 1, 1, 1, 0)
+
+[node name="firework_particles" type="Node2D" unique_id=2134858972]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1634098037]
+amount = 12
+texture = ExtResource("1_fakta")
+lifetime = 0.8
+explosiveness = 0.74
+direction = Vector2(0, 1)
+spread = 180.0
+gravity = Vector2(0, 250)
+initial_velocity_min = 250.0
+initial_velocity_max = 250.0
+angular_velocity_min = -66.24
+angular_velocity_max = 60.48
+damping_min = 29.8
+damping_max = 95.0
+angle_min = -187.2
+angle_max = 262.1
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_yf5fn")
+color_ramp = SubResource("Gradient_g4v7s")
