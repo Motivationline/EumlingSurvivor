@@ -2,13 +2,15 @@ extends TabBar
 @export var vol_min:float
 @export var vol_max:float
 
+@export var music_slider: HSlider
+@export var sfx_slider: HSlider
+@export var ambience_slider: HSlider
 
 
 func _ready():
-
-	$SliderContainer/MusicContainer/MusicSlider.value  = convert_to_value(GlobalMusicManager.init_bus_volumes[GlobalMusicManager.BUS_ID.MUSIC])
-	$SliderContainer/SFXContainer/SFXSlider.value = convert_to_value(GlobalMusicManager.init_bus_volumes[GlobalMusicManager.BUS_ID.SFX_ALL])
-	$SliderContainer/AmbienceContainer/AmbienceSlider.value = convert_to_value(GlobalMusicManager.init_bus_volumes[GlobalMusicManager.BUS_ID.ENVIRONMENT])
+	music_slider.value  = convert_to_value(GlobalMusicManager.init_bus_volumes[GlobalMusicManager.BUS_ID.MUSIC])
+	sfx_slider.value = convert_to_value(GlobalMusicManager.init_bus_volumes[GlobalMusicManager.BUS_ID.SFX_ALL])
+	ambience_slider.value = convert_to_value(GlobalMusicManager.init_bus_volumes[GlobalMusicManager.BUS_ID.ENVIRONMENT])
 
 
 

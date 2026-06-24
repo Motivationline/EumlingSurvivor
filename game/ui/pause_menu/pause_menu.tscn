@@ -177,11 +177,14 @@ offset_top = 26.0
 offset_right = -520.0
 offset_bottom = -591.0
 
-[node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=288030327]
+[node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=288030327 node_paths=PackedStringArray("music_slider", "sfx_slider", "ambience_slider")]
 layout_mode = 2
 script = ExtResource("9_utddp")
 vol_min = -30.0
 vol_max = 2.0
+music_slider = NodePath("SliderContainer/MusicContainer/MusicSlider")
+sfx_slider = NodePath("SliderContainer/SFXContainer/SFXSlider")
+ambience_slider = NodePath("SliderContainer/AmbienceContainer/AmbienceSlider")
 metadata/_tab_index = 1
 
 [node name="SliderContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound" unique_id=469909064]
@@ -230,9 +233,6 @@ value = 100.0
 [node name="Info" type="TabBar" parent="SettingsTabContainer" unique_id=1650118707]
 visible = false
 layout_mode = 2
-script = ExtResource("9_utddp")
-vol_min = -30.0
-vol_max = 2.0
 metadata/_tab_index = 2
 
 [node name="EumlingPreview" type="TextureRect" parent="SettingsTabContainer/Info" unique_id=1096159347]
@@ -311,7 +311,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("6_7phrv")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 1
 text = "Job Titel"
 horizontal_alignment = 1
 vertical_alignment = 1
