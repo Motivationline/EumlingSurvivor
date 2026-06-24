@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://c2tgt6pktefsr"]
+
+[ext_resource type="Texture2D" uid="uid://c3dfrghmvtg22" path="res://assets/ui/textfenster/Unbenanntes_Projekt(30).png" id="1_4fiq6"]
+[ext_resource type="Texture2D" uid="uid://cm2y3w088uf03" path="res://assets/ui/textfenster/tutorox_marker.png" id="4_6ob0t"]
+[ext_resource type="Texture2D" uid="uid://dljuyqo7nmcmd" path="res://assets/ui/textfenster/tutorox_marker_text.png" id="5_hfvfg"]
+[ext_resource type="Texture2D" uid="uid://c25hfu5gdb5mo" path="res://assets/ui/textfenster/quest_haken.png" id="6_l7376"]
+
+[node name="TutoxDialog" type="Control" unique_id=1762140483]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1231031444]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_4fiq6")
+
+[node name="tutox_quest_marker" type="HBoxContainer" parent="." unique_id=75159520]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 186.0
+offset_right = 683.0
+offset_bottom = 326.0
+
+[node name="tutox_quest_marker_conventional" type="TextureRect" parent="tutox_quest_marker" unique_id=1913322521]
+layout_mode = 2
+texture = ExtResource("4_6ob0t")
+
+[node name="TextureRect" type="TextureRect" parent="tutox_quest_marker" unique_id=1322231583]
+layout_mode = 2
+texture = ExtResource("5_hfvfg")
+
+[node name="tutox_quest" type="Label" parent="." unique_id=2126624560]
+layout_mode = 0
+offset_left = 267.0
+offset_top = 207.0
+offset_right = 662.0
+offset_bottom = 305.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Aufgabe"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="quest_haken" type="TextureRect" parent="." unique_id=911290459]
+layout_mode = 0
+offset_left = 583.0
+offset_top = 159.0
+offset_right = 711.0
+offset_bottom = 290.0
+texture = ExtResource("6_l7376")
+
+[node name="tutox_quest_marker_conventional" type="HBoxContainer" parent="." unique_id=110211881]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 345.0
+offset_right = 683.0
+offset_bottom = 485.0
+
+[node name="tutox_quest_marker_conventional" type="TextureRect" parent="tutox_quest_marker_conventional" unique_id=475891336]
+layout_mode = 2
+texture = ExtResource("4_6ob0t")
+
+[node name="TextureRect" type="TextureRect" parent="tutox_quest_marker_conventional" unique_id=2002013196]
+layout_mode = 2
+texture = ExtResource("5_hfvfg")
+
+[node name="quest2_haken" type="TextureRect" parent="." unique_id=1204981273]
+layout_mode = 0
+offset_left = 583.0
+offset_top = 327.0
+offset_right = 711.0
+offset_bottom = 458.0
+texture = ExtResource("6_l7376")
+
+[node name="tutox2_quest" type="Label" parent="." unique_id=1266573270]
+layout_mode = 0
+offset_left = 267.0
+offset_top = 367.0
+offset_right = 662.0
+offset_bottom = 465.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Aufgabe"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true

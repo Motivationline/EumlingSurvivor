@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b6vj3geh4ibvg" path="res://game/ui/eumlex/eumling_button/eumlex_button.tscn" id="11_w24f0"]
 [ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="12_ikcm3"]
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="14_orh8k"]
+[ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="15_y7di5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("14_orh8k")
@@ -770,7 +771,16 @@ offset_top = 137.0
 offset_right = 908.0
 offset_bottom = 97.0
 
+[node name="close_button" type="TextureButton" parent="Book" unique_id=86270587]
+layout_mode = 0
+offset_left = 1664.0
+offset_top = 63.0
+offset_right = 1796.0
+offset_bottom = 202.0
+texture_normal = ExtResource("15_y7di5")
+
 [node name="CloseButton" type="Button" parent="Book" unique_id=646104005]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -787,4 +797,5 @@ text = "Close X"
 [connection signal="pressed" from="Book/TabPanel/YellowButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/RedButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/BlueButton" to="." method="_on_tab_pressed" flags=18]
+[connection signal="pressed" from="Book/close_button" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="Book/CloseButton" to="." method="_on_close_button_pressed"]

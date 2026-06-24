@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://b6vj3geh4ibvg"]
 
 [ext_resource type="Texture2D" uid="uid://bcw4gmyo2mhym" path="res://assets/ui/Eumlex/ButtonStickerSquare.png" id="1_knfoi"]
-[ext_resource type="Script" path="res://game/ui/eumlex/eumling_button/eumlex_button.gd" id="1_ptr5p"]
+[ext_resource type="Script" uid="uid://y8yld0jqg82q" path="res://game/ui/eumlex/eumling_button/eumlex_button.gd" id="1_ptr5p"]
 [ext_resource type="Texture2D" uid="uid://68x8xf3b1pio" path="res://assets/thumbnails/artistisch_kreativ/kreativ_base.PNG" id="3_3fhvo"]
 [ext_resource type="Texture2D" uid="uid://dbqxunehgsecx" path="res://assets/ui/Eumlex/RedDop.png" id="3_5th1l"]
 [ext_resource type="Texture2D" uid="uid://c07ob06tikvex" path="res://assets/ui/Eumlex/ButtonStickerSquareMask.png" id="3_6lpgm"]
+[ext_resource type="Texture2D" uid="uid://bxnhlpgjpy1h3" path="res://assets/ui/Eumlex/eumlex_auswahl.png" id="5_5yi3k"]
+[ext_resource type="Texture2D" uid="uid://ec8y4dsfst65" path="res://assets/ui/Eumlex/button_sticker_missing_a.png" id="6_2632e"]
+[ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="7_imwm8"]
 
 [node name="EumlexButton" type="TextureButton" unique_id=1599346657]
 self_modulate = Color(1, 1, 1, 0)
@@ -44,6 +47,22 @@ texture = ExtResource("3_3fhvo")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="auswahl" type="TextureRect" parent="." unique_id=413102745]
+visible = false
+layout_mode = 0
+offset_left = -1.9999995
+offset_top = 1.0
+offset_right = 149.0
+offset_bottom = 157.0
+scale = Vector2(0.9754645, 0.9754645)
+texture = ExtResource("5_5yi3k")
+
+[node name="missing_backdrop" type="TextureRect" parent="." unique_id=624715304]
+layout_mode = 0
+offset_right = 143.0
+offset_bottom = 152.0
+texture = ExtResource("6_2632e")
+
 [node name="NewMarker" type="TextureRect" parent="." unique_id=1390185827]
 visible = false
 layout_mode = 0
@@ -54,6 +73,7 @@ offset_bottom = 49.0
 texture = ExtResource("3_5th1l")
 
 [node name="MissingDisplay" type="Label" parent="." unique_id=1327586727]
+visible = false
 layout_mode = 0
 offset_left = 22.0
 offset_top = 105.0
@@ -64,3 +84,13 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
 text = "[missing]"
+
+[node name="new_marker" type="TextureRect" parent="." unique_id=1875442348]
+visible = false
+layout_mode = 0
+offset_left = 34.0
+offset_top = 38.0
+offset_right = 129.0
+offset_bottom = 160.0
+scale = Vector2(0.80485076, 0.80485076)
+texture = ExtResource("7_imwm8")

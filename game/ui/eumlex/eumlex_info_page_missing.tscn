@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://djyl5v0duholv"]
+
+[ext_resource type="Script" uid="uid://btw36anybapn4" path="res://game/ui/eumlex/eumlex_info_page.gd" id="1_ccn3p"]
+[ext_resource type="Texture2D" uid="uid://chy7s30dciyio" path="res://assets/ui/Eumlex/EumlingBackdropA.png" id="2_kmscr"]
+[ext_resource type="Texture2D" uid="uid://cctywkasvuqm2" path="res://assets/ui/Eumlex/EumlingBackdropC.png" id="3_pygwg"]
+[ext_resource type="Texture2D" uid="uid://brcxvpa108qsx" path="res://assets/ui/Eumlex/EumlingBackdropE.png" id="4_q14kn"]
+[ext_resource type="Texture2D" uid="uid://dikd1dbh8qsxw" path="res://assets/ui/Eumlex/EumlingBackdropI.png" id="5_nnqlt"]
+[ext_resource type="Texture2D" uid="uid://dpair3rlohkm8" path="res://assets/ui/Eumlex/EumlingBackdropR.png" id="6_78im8"]
+[ext_resource type="Texture2D" uid="uid://bioci7ev3qfh8" path="res://assets/ui/Eumlex/EumlingBackdropS.png" id="7_ym3do"]
+[ext_resource type="Texture2D" uid="uid://cjj03lo1voxow" path="res://assets/ui/Eumlex/TagBaseA.png" id="8_x6v3m"]
+[ext_resource type="Texture2D" uid="uid://bvb4cns6l455k" path="res://assets/ui/Eumlex/TagBaseC.png" id="9_lpqvt"]
+[ext_resource type="Texture2D" uid="uid://ch6804no7yieo" path="res://assets/ui/Eumlex/TagBaseE.png" id="10_8ikwx"]
+[ext_resource type="Texture2D" uid="uid://dwgh2hdeer32g" path="res://assets/ui/Eumlex/TagBaseI.png" id="11_ngesi"]
+[ext_resource type="Texture2D" uid="uid://be0ca3llwbdrf" path="res://assets/ui/Eumlex/TagBaseR.png" id="12_hk685"]
+[ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="13_66c3h"]
+[ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="16_i5ahr"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="17_b7vvx"]
+[ext_resource type="Texture2D" uid="uid://b4wy7vt8llog" path="res://assets/ui/Map/JungleIsland.png" id="17_bby07"]
+[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="18_657gf"]
+[ext_resource type="Texture2D" uid="uid://6itd87mqu01y" path="res://assets/ui/Eumlex/eumlex_zuletzt_gesehen.png" id="18_ccn3p"]
+[ext_resource type="Texture2D" uid="uid://coka5lrauhsno" path="res://assets/ui/Eumlex/eumlex_fragezeichen.png" id="19_kmscr"]
+
+[node name="eumlex_info_page_missing" type="Control" unique_id=1340831237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1186.0
+offset_bottom = -238.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ccn3p")
+backdrops = Dictionary[int, Texture]({
+0: ExtResource("2_kmscr"),
+1: ExtResource("3_pygwg"),
+2: ExtResource("4_q14kn"),
+3: ExtResource("5_nnqlt"),
+4: ExtResource("6_78im8"),
+5: ExtResource("7_ym3do")
+})
+tags = Dictionary[int, Texture]({
+0: ExtResource("8_x6v3m"),
+1: ExtResource("9_lpqvt"),
+2: ExtResource("10_8ikwx"),
+3: ExtResource("11_ngesi"),
+4: ExtResource("12_hk685"),
+5: ExtResource("13_66c3h")
+})
+
+[node name="ColorBackground" type="TextureRect" parent="." unique_id=415432338]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 722.0
+offset_bottom = 830.0
+texture = ExtResource("7_ym3do")
+
+[node name="Banner" type="TextureRect" parent="." unique_id=1121522541]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 11.0
+offset_right = 716.0
+offset_bottom = 152.0
+texture = ExtResource("16_i5ahr")
+
+[node name="Name" type="Label" parent="Banner" unique_id=888141994]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = -54.425
+offset_right = 293.0
+offset_bottom = 33.574997
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("17_b7vvx")
+theme_override_font_sizes/font_size = 40
+text = "Name: ???"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("18_657gf")
+max_font_size = 60
+
+[node name="Beruf" type="Label" parent="." unique_id=386384428]
+visible = false
+layout_mode = 0
+offset_left = 211.0
+offset_top = 137.0
+offset_right = 544.0
+offset_bottom = 189.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("17_b7vvx")
+theme_override_font_sizes/font_size = 25
+text = "Job Titel"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("18_657gf")
+max_font_size = 35
+
+[node name="location" type="TextureRect" parent="." unique_id=2086759245]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 384.0
+offset_right = 1718.0
+offset_bottom = 1242.0
+scale = Vector2(0.38197932, 0.38197932)
+texture = ExtResource("17_bby07")
+
+[node name="zuletzt_gesehen" type="TextureRect" parent="." unique_id=869850450]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 203.0
+offset_right = 375.0
+offset_bottom = 421.0
+texture = ExtResource("18_ccn3p")
+
+[node name="fragezeichen" type="TextureRect" parent="." unique_id=1822530843]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 194.0
+offset_right = 688.0
+offset_bottom = 683.0
+texture = ExtResource("19_kmscr")

@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://dfijg5cgisnps"]
 
-[ext_resource type="Texture2D" uid="uid://bljhe3jpnd3s7" path="res://project_icon.svg" id="1_mgm4a"]
-[ext_resource type="Texture2D" uid="uid://q5d0meprymy7" path="res://assets/ui/Eumlex/Banner.png" id="2_5aewq"]
+[ext_resource type="Texture2D" uid="uid://rmsvtoa26ujw" path="res://assets/ui/textfenster/conventioneller_eumling_marker.png" id="1_bhcdq"]
+[ext_resource type="Texture2D" uid="uid://byltvibidc8y" path="res://assets/ui/textfenster/conventioneller_eumling_marker_text.png" id="2_s850p"]
 [ext_resource type="Script" uid="uid://b0m0jlnyu1gcp" path="res://game/ui/auto_size_rich_text_label.gd" id="3_bhcdq"]
-[ext_resource type="Texture2D" uid="uid://dbqxunehgsecx" path="res://assets/ui/Eumlex/RedDop.png" id="4_s850p"]
+[ext_resource type="Theme" uid="uid://u1iy4y0s7n01" path="res://assets/ui/base_theme.tres" id="3_x11mo"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_b4cia"]
+[ext_resource type="Texture2D" uid="uid://c25hfu5gdb5mo" path="res://assets/ui/textfenster/quest_haken.png" id="6_210ck"]
 
 [node name="TutorialQuestOverlay" type="CanvasLayer" unique_id=682175653]
 layer = 101
@@ -13,7 +15,7 @@ offset_left = 66.0
 offset_top = 117.0
 offset_right = 161.0
 offset_bottom = 212.0
-texture = ExtResource("1_mgm4a")
+texture = ExtResource("1_bhcdq")
 expand_mode = 1
 
 [node name="Bubble" type="TextureRect" parent="." unique_id=1427821068]
@@ -21,7 +23,7 @@ offset_left = 161.0
 offset_top = 118.0
 offset_right = 631.0
 offset_bottom = 218.0
-texture = ExtResource("2_5aewq")
+texture = ExtResource("2_s850p")
 expand_mode = 1
 
 [node name="Text" type="RichTextLabel" parent="." unique_id=1963480548]
@@ -29,13 +31,15 @@ offset_left = 187.0
 offset_top = 124.0
 offset_right = 589.0
 offset_bottom = 212.0
+theme = ExtResource("3_x11mo")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 0
-theme_override_font_sizes/normal_font_size = 39
-theme_override_font_sizes/bold_font_size = 39
-theme_override_font_sizes/bold_italics_font_size = 39
-theme_override_font_sizes/italics_font_size = 39
-theme_override_font_sizes/mono_font_size = 39
+theme_override_fonts/normal_font = ExtResource("4_b4cia")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
 text = "Besiege das Monster"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -43,9 +47,9 @@ script = ExtResource("3_bhcdq")
 metadata/_custom_type_script = "uid://b0m0jlnyu1gcp"
 
 [node name="CompletedIcon" type="TextureRect" parent="." unique_id=759111176]
-offset_left = 517.0
-offset_top = 72.0
-offset_right = 617.0
-offset_bottom = 172.0
-texture = ExtResource("4_s850p")
+offset_left = 572.0
+offset_top = 93.0
+offset_right = 672.0
+offset_bottom = 193.0
+texture = ExtResource("6_210ck")
 expand_mode = 1
