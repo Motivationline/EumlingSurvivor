@@ -76,10 +76,6 @@ func initialize() -> void:
 	dialogue = load("uid://byfbiojxgb3wn")
 	eumlex = load("uid://ba2ayes40wtdh")
 
-	player = load("uid://i26vdjehm6ll").instantiate()
-	player.died.connect(player_died)
-	add_child(player)
-
 	blocking_overlay = load("uid://d05r8yipgc3ya")
 	quest_overlay = load("uid://dfijg5cgisnps").instantiate()
 	add_child(quest_overlay)
@@ -275,8 +271,11 @@ func player_died():
 	DialogueManager.show_dialogue_balloon(dialogue, "training_failed")
 	await DialogueManager.dialogue_ended
 	progress = PROGRESS.START_RUN
+	hide_quest()
 	load_level()
 	DialogueManager.show_dialogue_balloon(dialogue, "training_intro")
+	await DialogueManager.dialogue_ended
+	run_move()
 
 
 func block_input_except_for(element: Control, callable: Callable):
@@ -333,10 +332,15 @@ func load_level():
 	for child in level_wrapper.get_children():
 		child.queue_free()
 
+	if player:
+		player.queue_free()
+	player = load("uid://i26vdjehm6ll").instantiate()
+	player.died.connect(player_died)
+	add_child(player)
+
 	tutorial_level = load("uid://bwlbdn0hs3kcf").instantiate()
 	tutorial_level.difficulty = 0
 	level_wrapper.add_child(tutorial_level)
 	tutorial_level.spawn_player(player)
-	player.revive()
 	
 	tutorial_level.level_ended.connect(run_cage_open)
