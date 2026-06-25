@@ -129,13 +129,12 @@ height = 0.3
 radial_segments = 4
 rings = 0
 
-[node name="Projectile" unique_id=1098182531 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_shield_collision", "on_hit", "on_hurt", "on_end_of_life") instance=ExtResource("1_6j6bh")]
+[node name="Projectile" unique_id=1098182531 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_hurt", "on_end_of_life") instance=ExtResource("1_6j6bh")]
 damage = 75.0
 max_distance = 100.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
 on_world_collision = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
-on_shield_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_hit = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_hurt = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
 on_end_of_life = [NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
