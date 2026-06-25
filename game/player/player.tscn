@@ -65,6 +65,16 @@
 radius = 0.23
 height = 0.9135742
 
+[sub_resource type="Gradient" id="Gradient_ddimf"]
+offsets = PackedFloat32Array(0.0034324944, 0.22566372, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ej5me"]
+gradient = SubResource("Gradient_ddimf")
+fill = 1
+fill_from = Vector2(0.50609756, 0.51585364)
+fill_to = Vector2(0.86219513, 0.19878049)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ep63"]
 radius = 0.18164063
 height = 0.70788574
@@ -272,6 +282,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4567871, 0)
 shape = SubResource("CapsuleShape3D_ct7j0")
 
 [node name="Eumling_v2" parent="." unique_id=1494019728 instance=ExtResource("4_2mv0n")]
+
+[node name="Sprite3D" type="Sprite3D" parent="Eumling_v2" unique_id=648372190]
+transform = Transform3D(-0.5, -4.371139e-08, 8.30766e-15, 0, -2.1855694e-08, -2.174, 4.371139e-08, -0.5, 9.502856e-08, 0, 0.02, -0.05265808)
+modulate = Color(1, 1, 1, 0.5294118)
+alpha_scissor_threshold = 0.0
+alpha_hash_scale = 2.0
+alpha_antialiasing_edge = 0.47
+texture = SubResource("GradientTexture2D_ej5me")
 
 [node name="AttackVisual" parent="." unique_id=375290485 instance=ExtResource("4_fdpga")]
 unique_name_in_owner = true

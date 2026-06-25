@@ -7,14 +7,16 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1bvp3"]
 seed = 11
-frequency = 0.008
+frequency = 0.0021
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lquwl"]
 noise = SubResource("FastNoiseLite_1bvp3")
 seamless = true
-seamless_blend_skirt = 0.2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5nfpk"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_elum5"]
+noise = SubResource("FastNoiseLite_5nfpk")
 
 [resource]
 render_priority = -1
@@ -27,7 +29,7 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_lquwl")
 shader_parameter/color_gradient = ExtResource("2_qlfk2")
 shader_parameter/random_variation = 0.0
 shader_parameter/wind_texture = SubResource("NoiseTexture2D_elum5")
-shader_parameter/wind_velocity = Vector2(1.9, 2)
+shader_parameter/wind_velocity = Vector2(1.2, -2.785)
 shader_parameter/alpha_cut_start = 0.2500000037253
 shader_parameter/alpha_cut_end = 0.9
 shader_parameter/alpha_mode = 0
