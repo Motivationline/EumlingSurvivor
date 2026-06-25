@@ -29,69 +29,70 @@ _limits = [0.0, 45.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 45), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Bullet" type="CharacterBody3D" unique_id=670651457 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision")]
+[node name="Bullet" type="CharacterBody3D" unique_id=711692452 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision")]
 collision_layer = 0
+collision_mask = 1025
 script = ExtResource("1_sv6nk")
 lifetime = 3.0
 hit_box = NodePath("Hitbox")
 movement = [NodePath("Movement/SpeedProjectileMovementStrategy")]
 on_world_collision = [NodePath("Events/RemoveEventStrategy")]
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=365182599]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1607088907]
 transform = Transform3D(0.999981, -0.00262398, 0.00563495, 0.00262978, 0.999996, -0.00102195, -0.00563225, 0.00103675, 0.999984, 0, 0, 0)
 shape = SubResource("BoxShape3D_j1spr")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1489390402]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1730482821]
 material_override = SubResource("StandardMaterial3D_c5m0e")
 size = Vector3(0.25, 0.25, 0.5)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1600099705]
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1113591836]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.223057)
 material_override = SubResource("StandardMaterial3D_ja52y")
 size = Vector3(0.1, 0.5, 0.5)
 
-[node name="Hitbox" parent="." unique_id=669040508 instance=ExtResource("5_ok6tv")]
+[node name="Hitbox" parent="." unique_id=961358118 instance=ExtResource("5_ok6tv")]
 collision_layer = 32
 collision_mask = 8
 attached_to = 6
 can_hit = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1366627472]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1540473101]
 shape = SubResource("BoxShape3D_j1spr")
 
-[node name="Movement" type="Node" parent="." unique_id=1259672694]
+[node name="Movement" type="Node" parent="." unique_id=250767701]
 
-[node name="SpeedProjectileMovementStrategy" type="Node" parent="Movement" unique_id=1072654756]
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="Movement" unique_id=1529282366]
 script = ExtResource("3_ok6tv")
 speed = SubResource("Curve_bysd3")
 metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 
-[node name="RotationProjectileMovementStrategy" type="Node" parent="Movement" unique_id=1550377387]
+[node name="RotationProjectileMovementStrategy" type="Node" parent="Movement" unique_id=578829223]
 script = ExtResource("4_2qh0o")
 mode = "add"
 rotation = SubResource("Curve_fmsp7")
 metadata/_custom_type_script = "uid://d3ikpji4y1ipa"
 
-[node name="AddParentsVelocityAtTimeOfSpawnProjectileMovementStrategy" type="Node" parent="Movement" unique_id=2055934225]
+[node name="AddParentsVelocityAtTimeOfSpawnProjectileMovementStrategy" type="Node" parent="Movement" unique_id=988351114]
 script = ExtResource("5_bysd3")
 metadata/_custom_type_script = "uid://c1blpxxkte8o3"
 
-[node name="Events" type="Node" parent="." unique_id=451243081]
+[node name="Events" type="Node" parent="." unique_id=624196104]
 
-[node name="WallHit" type="Node" parent="Events" unique_id=1724212606]
+[node name="WallHit" type="Node" parent="Events" unique_id=910623924]
 
-[node name="TurnAroundEventStrategy" type="Node" parent="Events/WallHit" unique_id=1385126366]
+[node name="TurnAroundEventStrategy" type="Node" parent="Events/WallHit" unique_id=974936019]
 script = ExtResource("5_pr6ia")
 metadata/_custom_type_script = "uid://c6fcpkn103ijr"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="Events" unique_id=1637518957]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="Events" unique_id=613210836]
 script = ExtResource("6_bysd3")
 
-[node name="EntitySpawner" type="Node3D" parent="Events/SpawnEntitiesEventStrategy" unique_id=1125336860]
+[node name="EntitySpawner" type="Node3D" parent="Events/SpawnEntitiesEventStrategy" unique_id=1190833902]
 script = ExtResource("7_fmsp7")
 entity_to_spawn = ExtResource("8_q4516")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="RemoveEventStrategy" type="Node" parent="Events" unique_id=675573237]
+[node name="RemoveEventStrategy" type="Node" parent="Events" unique_id=1537284986]
 script = ExtResource("9_iiwdq")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"

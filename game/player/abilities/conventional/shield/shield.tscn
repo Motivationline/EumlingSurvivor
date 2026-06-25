@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dwn8aulqlewsv"]
+
+[ext_resource type="Script" uid="uid://s036ecq73en" path="res://game/player/abilities/conventional/shield/shield.gd" id="1_yduqe"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yduqe"]
+radius = 0.75
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yduqe"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.1882353)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0bpfm"]
+material = SubResource("StandardMaterial3D_yduqe")
+radius = 0.75
+height = 1.5
+
+[node name="Shield" type="StaticBody3D" unique_id=353379034]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource("1_yduqe")
+metadata/_custom_type_script = "uid://s036ecq73en"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=28591687]
+shape = SubResource("SphereShape3D_yduqe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1392760314]
+mesh = SubResource("SphereMesh_0bpfm")
+skeleton = NodePath("")

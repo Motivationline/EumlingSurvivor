@@ -226,6 +226,12 @@ func _input(_event: InputEvent) -> void:
 func spawn_bullet():
 	spawner.spawn(self , eumling_visuals)
 
+
+func activate_shield() -> void:
+	var shield: Shield = $SpecialAbilities/Conventional/DodgeProjectilesQuest/Shield
+	shield.activate()
+
+
 func check_upgrades_affecting_player(upgrade: Upgrade):
 	match upgrade.type:
 		Enum.UPGRADE.HEALTH:

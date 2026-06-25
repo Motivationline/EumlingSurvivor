@@ -18,6 +18,12 @@ func start():
 	dodge_area.monitoring = true
 	progress.emit(dodged_projectiles, dodge_amount_required)
 
+
+func complete() -> void:
+	super()
+	Player.player.activate_shield()
+
+
 func end():
 	dodge_area.monitoring = false
 	projectile_queue.clear()
