@@ -71,6 +71,9 @@ func _load_level():
 		GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2,0))
 		Data.game_data.levels_to_load = await area_choice_overlay.area_chosen
 
+	var stage_progress = Data.game_data.difficulty + 4
+	%BaseBattleOverlay.update_visuals(stage_progress, Data.game_data.levels_to_load.size())
+
 	Engine.time_scale = 0
 	var level_info = Data.game_data.levels_to_load.pop_front()
 	var level_location: String = level_info.id
