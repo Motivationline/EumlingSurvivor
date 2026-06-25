@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="12_ikcm3"]
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="14_orh8k"]
 [ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="15_y7di5"]
+[ext_resource type="PackedScene" uid="uid://djyl5v0duholv" path="res://game/ui/eumlex/eumlex_info_page_missing.tscn" id="16_17oye"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("14_orh8k")
@@ -764,14 +765,6 @@ layout_mode = 2
 [node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1227986207 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
-[node name="EumlexInfoPage" parent="Book" unique_id=1340831237 instance=ExtResource("12_ikcm3")]
-layout_mode = 1
-offset_left = 948.0
-offset_top = 137.0
-offset_right = 908.0
-offset_bottom = 97.0
-offset_transform_enabled = true
-
 [node name="CloseButton" type="TextureButton" parent="Book" unique_id=86270587]
 layout_mode = 0
 offset_left = 1664.0
@@ -779,6 +772,47 @@ offset_top = 63.0
 offset_right = 1796.0
 offset_bottom = 202.0
 texture_normal = ExtResource("15_y7di5")
+
+[node name="EumlexInfo" type="Control" parent="Book" unique_id=650374454]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EumlexInfoPage" parent="Book/EumlexInfo" unique_id=1340831237 instance=ExtResource("12_ikcm3")]
+layout_mode = 1
+offset_left = 948.0
+offset_top = 137.0
+offset_right = 908.0
+offset_bottom = 97.0
+offset_transform_enabled = true
+
+[node name="EumlexInfoPageMissing" parent="Book/EumlexInfo" unique_id=1308399789 instance=ExtResource("16_17oye")]
+visible = false
+layout_mode = 1
+offset_left = 948.0
+offset_top = 137.0
+offset_right = 908.0
+offset_bottom = 97.0
+
+[node name="SeedRevealContainer" type="SubViewportContainer" parent="." unique_id=1439610339]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+mouse_target = true
+
+[node name="SeedRevealViewport" type="SubViewport" parent="SeedRevealContainer" unique_id=1682325966]
+unique_name_in_owner = true
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
 
 [connection signal="pressed" from="Book/TabPanel/OrangeButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/GreenButton" to="." method="_on_tab_pressed" flags=18]

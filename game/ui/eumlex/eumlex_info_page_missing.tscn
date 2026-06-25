@@ -1,18 +1,12 @@
 [gd_scene format=3 uid="uid://djyl5v0duholv"]
 
-[ext_resource type="Script" uid="uid://btw36anybapn4" path="res://game/ui/eumlex/eumlex_info_page.gd" id="1_ccn3p"]
+[ext_resource type="Script" uid="uid://ynoo8qmwlwyf" path="res://game/ui/eumlex/eumlex_info_page_missing.gd" id="1_xq76n"]
 [ext_resource type="Texture2D" uid="uid://chy7s30dciyio" path="res://assets/ui/Eumlex/EumlingBackdropA.png" id="2_kmscr"]
 [ext_resource type="Texture2D" uid="uid://cctywkasvuqm2" path="res://assets/ui/Eumlex/EumlingBackdropC.png" id="3_pygwg"]
 [ext_resource type="Texture2D" uid="uid://brcxvpa108qsx" path="res://assets/ui/Eumlex/EumlingBackdropE.png" id="4_q14kn"]
 [ext_resource type="Texture2D" uid="uid://dikd1dbh8qsxw" path="res://assets/ui/Eumlex/EumlingBackdropI.png" id="5_nnqlt"]
 [ext_resource type="Texture2D" uid="uid://dpair3rlohkm8" path="res://assets/ui/Eumlex/EumlingBackdropR.png" id="6_78im8"]
 [ext_resource type="Texture2D" uid="uid://bioci7ev3qfh8" path="res://assets/ui/Eumlex/EumlingBackdropS.png" id="7_ym3do"]
-[ext_resource type="Texture2D" uid="uid://cjj03lo1voxow" path="res://assets/ui/Eumlex/TagBaseA.png" id="8_x6v3m"]
-[ext_resource type="Texture2D" uid="uid://bvb4cns6l455k" path="res://assets/ui/Eumlex/TagBaseC.png" id="9_lpqvt"]
-[ext_resource type="Texture2D" uid="uid://ch6804no7yieo" path="res://assets/ui/Eumlex/TagBaseE.png" id="10_8ikwx"]
-[ext_resource type="Texture2D" uid="uid://dwgh2hdeer32g" path="res://assets/ui/Eumlex/TagBaseI.png" id="11_ngesi"]
-[ext_resource type="Texture2D" uid="uid://be0ca3llwbdrf" path="res://assets/ui/Eumlex/TagBaseR.png" id="12_hk685"]
-[ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="13_66c3h"]
 [ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="16_i5ahr"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="17_b7vvx"]
 [ext_resource type="Texture2D" uid="uid://b4wy7vt8llog" path="res://assets/ui/Map/JungleIsland.png" id="17_bby07"]
@@ -20,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://6itd87mqu01y" path="res://assets/ui/Eumlex/eumlex_zuletzt_gesehen.png" id="18_ccn3p"]
 [ext_resource type="Texture2D" uid="uid://coka5lrauhsno" path="res://assets/ui/Eumlex/eumlex_fragezeichen.png" id="19_kmscr"]
 
-[node name="eumlex_info_page_missing" type="Control" unique_id=1340831237]
+[node name="EumlexInfoPageMissing" type="Control" unique_id=1340831237]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +23,7 @@ offset_right = -1186.0
 offset_bottom = -238.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ccn3p")
+script = ExtResource("1_xq76n")
 backdrops = Dictionary[int, Texture]({
 0: ExtResource("2_kmscr"),
 1: ExtResource("3_pygwg"),
@@ -38,13 +32,13 @@ backdrops = Dictionary[int, Texture]({
 4: ExtResource("6_78im8"),
 5: ExtResource("7_ym3do")
 })
-tags = Dictionary[int, Texture]({
-0: ExtResource("8_x6v3m"),
-1: ExtResource("9_lpqvt"),
-2: ExtResource("10_8ikwx"),
-3: ExtResource("11_ngesi"),
-4: ExtResource("12_hk685"),
-5: ExtResource("13_66c3h")
+locations = Dictionary[int, Texture]({
+0: ExtResource("17_bby07"),
+1: ExtResource("17_bby07"),
+2: ExtResource("17_bby07"),
+3: ExtResource("17_bby07"),
+4: ExtResource("17_bby07"),
+5: ExtResource("17_bby07")
 })
 
 [node name="ColorBackground" type="TextureRect" parent="." unique_id=415432338]
@@ -80,7 +74,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("17_b7vvx")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "Name: ???"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -88,7 +82,7 @@ clip_text = true
 script = ExtResource("18_657gf")
 max_font_size = 60
 
-[node name="Beruf" type="Label" parent="." unique_id=386384428]
+[node name="Job" type="Label" parent="." unique_id=386384428]
 visible = false
 layout_mode = 0
 offset_left = 211.0
@@ -98,14 +92,14 @@ offset_bottom = 189.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("17_b7vvx")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 35
 text = "Job Titel"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("18_657gf")
 max_font_size = 35
 
-[node name="location" type="TextureRect" parent="." unique_id=2086759245]
+[node name="Location" type="TextureRect" parent="." unique_id=2086759245]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 384.0
@@ -114,7 +108,7 @@ offset_bottom = 1242.0
 scale = Vector2(0.38197932, 0.38197932)
 texture = ExtResource("17_bby07")
 
-[node name="zuletzt_gesehen" type="TextureRect" parent="." unique_id=869850450]
+[node name="LastSeen" type="TextureRect" parent="." unique_id=869850450]
 layout_mode = 0
 offset_left = 69.0
 offset_top = 203.0
@@ -122,7 +116,7 @@ offset_right = 375.0
 offset_bottom = 421.0
 texture = ExtResource("18_ccn3p")
 
-[node name="fragezeichen" type="TextureRect" parent="." unique_id=1822530843]
+[node name="Questionmark" type="TextureRect" parent="." unique_id=1822530843]
 layout_mode = 0
 offset_left = 403.0
 offset_top = 194.0

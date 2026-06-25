@@ -32,7 +32,7 @@ func highlight_marker(active_button):
 func _ready() -> void:
 	update_buttons()
 	$Book/TabPanel/OrangeButton.pressed.emit()
-	$Book/EumlexInfoPage.hide()
+	%EumlexInfo.hide()
 	# unlock_new_eumlings([randi_range(0, 4), randi_range(0, 4)])
 	selection_overlay = SELECTION_OVERLAY.instantiate()
 
@@ -63,20 +63,29 @@ func select_eumling(btn: EumlingButton, eumling: Eumling):
 		selection_overlay.get_parent().remove_child(selection_overlay)
 	btn.add_child(selection_overlay)
 
+	%EumlexInfo.show()
+	if eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.LOCKED:
+		%EumlexInfo/EumlexInfoPageMissing.show()
+		%EumlexInfo/EumlexInfoPageMissing.set_info(eumling)
+		%EumlexInfo/EumlexInfoPage.hide()
+	else:
+		%EumlexInfo/EumlexInfoPage.show()
+		%EumlexInfo/EumlexInfoPage.set_info(eumling)
+		%EumlexInfo/EumlexInfoPageMissing.hide()
+
 	if eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED:
 		reveal_new_eumling(eumling, btn)
 		Data.reveal_eumling(eumling)
 
-	$Book/EumlexInfoPage.show()
-	$Book/EumlexInfoPage.set_info(eumling)
 
 func reveal_new_eumling(eumling: Eumling, btn: EumlingButton):
 	if not eumling: return
 	if not eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED: return
-	$Book.hide();
+	# $Book.hide();
+	%SeedRevealContainer.show()
 	
 	var reveal = REVEAL_SEED.instantiate()
-	add_child(reveal)
+	%SeedRevealViewport.add_child(reveal)
 	reveal.setup(eumling)
 	await reveal.completed
 	reveal.queue_free()
@@ -84,7 +93,8 @@ func reveal_new_eumling(eumling: Eumling, btn: EumlingButton):
 	# update_buttons()
 	eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.SEEN
 	btn.update_visuals()
-	$Book.show();
+	# $Book.show();
+	%SeedRevealContainer.hide()
 
 
 # func _unhandled_key_input(event: InputEvent) -> void:
