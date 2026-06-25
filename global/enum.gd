@@ -52,7 +52,8 @@ enum RARITY {
 }
 
 enum EUMLING_UNLOCK_PROGRESS {
+	# put them in this order because that's the order they need to be sorted in the eumlex (reversed)
 	LOCKED,
-	UNLOCKED,
 	SEEN,
+	UNLOCKED,
 }

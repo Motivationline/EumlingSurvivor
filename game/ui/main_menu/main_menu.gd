@@ -12,8 +12,8 @@ func _enter_tree() -> void:
 	update_eumlex_number()
 
 func update_eumlex_number():
-	if Data._unlocked_mini_eumlings.size() > 0:
-		%NumberCircleLabel3D.text = str(Data._unlocked_mini_eumlings.size())
+	if Data._unlocked_eumlings.size() > 0:
+		%NumberCircleLabel3D.text = str(Data._unlocked_eumlings.size())
 		%NumberCircleLabel3D.get_parent().show()
 	else:
 		%NumberCircleLabel3D.get_parent().hide()
@@ -31,5 +31,8 @@ func _on_eumlex_button_pressed() -> void:
 	if eumlingclopedia.get_parent() != self:
 		add_child(eumlingclopedia)
 	eumlingclopedia.show()
+	eumlingclopedia.update_buttons()
+	await eumlingclopedia.visibility_changed
+	update_eumlex_number()
 	# eumlingclopedia.unlock_new_eumlings(Data._unlocked_mini_eumlings)
 	# SaveData.set_data("unlocked_mini_eumlings", Data._unlocked_mini_eumlings)

@@ -3,11 +3,45 @@
 [ext_resource type="Texture2D" uid="uid://bcw4gmyo2mhym" path="res://assets/ui/Eumlex/ButtonStickerSquare.png" id="1_knfoi"]
 [ext_resource type="Script" uid="uid://y8yld0jqg82q" path="res://game/ui/eumlex/eumling_button/eumlex_button.gd" id="1_ptr5p"]
 [ext_resource type="Texture2D" uid="uid://68x8xf3b1pio" path="res://assets/thumbnails/artistisch_kreativ/kreativ_base.PNG" id="3_3fhvo"]
-[ext_resource type="Texture2D" uid="uid://dbqxunehgsecx" path="res://assets/ui/Eumlex/RedDop.png" id="3_5th1l"]
 [ext_resource type="Texture2D" uid="uid://c07ob06tikvex" path="res://assets/ui/Eumlex/ButtonStickerSquareMask.png" id="3_6lpgm"]
-[ext_resource type="Texture2D" uid="uid://bxnhlpgjpy1h3" path="res://assets/ui/Eumlex/eumlex_auswahl.png" id="5_5yi3k"]
 [ext_resource type="Texture2D" uid="uid://ec8y4dsfst65" path="res://assets/ui/Eumlex/button_sticker_missing_a.png" id="6_2632e"]
 [ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="7_imwm8"]
+
+[sub_resource type="Animation" id="Animation_hpwr3"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_fkgrk"]
+resource_name = "number_wiggle"
+length = 0.667
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.06666667, 0.22972122, 0.23561946, -0.1, -0.005898237, 0.2, -0.0017591268, -0.23561946, -0.19998057, 0.004759474, 0.10000002, -0.0023799685, 0, -0.06666666, -0.240069, 0.06666667, 0.0041391207),
+"times": PackedFloat32Array(0, 0.16666667, 0.5, 0.6666667)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_imwm8"]
+_data = {
+&"RESET": SubResource("Animation_hpwr3"),
+&"number_wiggle": SubResource("Animation_fkgrk")
+}
 
 [node name="EumlexButton" type="TextureButton" unique_id=1599346657]
 self_modulate = Color(1, 1, 1, 0)
@@ -47,37 +81,24 @@ texture = ExtResource("3_3fhvo")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="auswahl" type="TextureRect" parent="." unique_id=413102745]
+[node name="MissingOverlay" type="TextureRect" parent="." unique_id=624715304]
 visible = false
-layout_mode = 0
-offset_left = -1.9999995
-offset_top = 1.0
-offset_right = 149.0
-offset_bottom = 157.0
-scale = Vector2(0.9754645, 0.9754645)
-texture = ExtResource("5_5yi3k")
-
-[node name="missing_backdrop" type="TextureRect" parent="." unique_id=624715304]
 layout_mode = 0
 offset_right = 143.0
 offset_bottom = 152.0
 texture = ExtResource("6_2632e")
 
-[node name="NewMarker" type="TextureRect" parent="." unique_id=1390185827]
+[node name="NewMarker" type="TextureRect" parent="." unique_id=1875442348]
 visible = false
 layout_mode = 0
-offset_left = 100.0
-offset_top = 7.0
-offset_right = 146.0
-offset_bottom = 49.0
-texture = ExtResource("3_5th1l")
-
-[node name="new_marker" type="TextureRect" parent="." unique_id=1875442348]
-visible = false
-layout_mode = 0
-offset_left = 34.0
-offset_top = 38.0
-offset_right = 129.0
-offset_bottom = 160.0
+offset_left = 24.000002
+offset_top = 26.0
+offset_right = 119.0
+offset_bottom = 148.0
 scale = Vector2(0.80485076, 0.80485076)
+pivot_offset = Vector2(47, 61)
 texture = ExtResource("7_imwm8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NewMarker" unique_id=1659994347]
+libraries/ = SubResource("AnimationLibrary_imwm8")
+autoplay = &"number_wiggle"

@@ -4,7 +4,6 @@ var eumling: Eumling :
 	set(e):
 		eumling = e
 		update_visuals()
-const GRAYSCALE_MATERIAL = preload("uid://bh8hp6lg5oyi8")
 
 
 func update_visuals():
@@ -12,10 +11,10 @@ func update_visuals():
 	match eumling.progress:
 		Enum.EUMLING_UNLOCK_PROGRESS.LOCKED:
 			$NewMarker.hide()
-			%EumlingIcon.material = GRAYSCALE_MATERIAL
+			$MissingOverlay.show()
 		Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED:
+			$MissingOverlay.show()
 			$NewMarker.show()
-			%EumlingIcon.material = null
 		_:
+			$MissingOverlay.hide()
 			$NewMarker.hide()
-			%EumlingIcon.material = null
