@@ -28,6 +28,7 @@ func add_eumling(type: Enum.EUMLING_TYPE):
 	var level = get_tree().get_first_node_in_group("Level")
 	if level:
 		level.spawn_mini_eumling(type)
+	Player.player.level_start()
 
 func heal_player():
 	var player = Player.player

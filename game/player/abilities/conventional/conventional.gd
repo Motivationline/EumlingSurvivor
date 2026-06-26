@@ -23,9 +23,6 @@ func _update():
 		_end_quest()
 		_reset_possible_quests()
 		return
-	# TODO remove this, as usually an eumling would be unlocked AFTER the level ends.
-	# And then you don't need to start a quest, but it's here for debug for now.
-	_start_quest()
 	
 
 func level_start() -> void:
@@ -42,6 +39,7 @@ func _start_quest() -> void:
 	if active_quest:
 		_end_quest()
 	active_quest = _select_next_quest()
+	if not active_quest: return
 	active_quest.level = amt_eumlings
 
 	active_quest.progress.connect(_quest_progress)
@@ -78,7 +76,6 @@ func _end_quest() -> void:
 	%QuestDisplay.hide()
 
 func _select_next_quest() -> Quest:
-	# TODO add check to prevent repeats for 2 quests
 	var possible_quests: Array[Quest]
 	for quest in get_children():
 		if not quest is Quest: continue
@@ -87,6 +84,12 @@ func _select_next_quest() -> Quest:
 		if not quest.precondition_is_met(): continue
 		possible_quests.append(quest)
 	
+	# prevent stalling of no quests if there are only two quest left to do.
+	if possible_quests.is_empty():
+		if recent_quests.is_empty():
+			return null
+		recent_quests.clear()
+		return _select_next_quest()
 	return possible_quests.pick_random()
 
 func _quest_progress(value: float, maximum: float):

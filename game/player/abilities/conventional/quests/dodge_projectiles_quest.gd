@@ -12,7 +12,8 @@ func _ready() -> void:
 	dodge_area.area_entered.connect(projectile_entered)
 
 func start():
-	Player.player.hurt.connect(player_hurt)
+	if not Player.player.hurt.is_connected(player_hurt):
+		Player.player.hurt.connect(player_hurt)
 	dodged_projectiles = 0
 	current_time = 0
 	dodge_area.monitoring = true
@@ -52,4 +53,5 @@ func projectile_entered(area: Area3D):
 	projectile_queue.append([current_time + 0.3, area])
 
 func precondition_is_met() -> bool:
-	return true
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	return enemies.size() > 0

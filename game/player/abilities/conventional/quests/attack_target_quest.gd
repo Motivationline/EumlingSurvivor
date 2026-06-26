@@ -32,7 +32,8 @@ func killed():
 		choose_target()
 
 func precondition_is_met() -> bool:
-	return true
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	return enemies.size() > 0
 
 func end():
 	if target:
