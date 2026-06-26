@@ -10,6 +10,7 @@ var eumlingclopedia = EUMLINGCLOPEDIA.instantiate()
 
 func _enter_tree() -> void:
 	update_eumlex_number()
+	update_continue_button()
 
 func update_eumlex_number():
 	if Data._unlocked_eumlings.size() > 0:
@@ -36,3 +37,9 @@ func _on_eumlex_button_pressed() -> void:
 	update_eumlex_number()
 	# eumlingclopedia.unlock_new_eumlings(Data._unlocked_mini_eumlings)
 	# SaveData.set_data("unlocked_mini_eumlings", Data._unlocked_mini_eumlings)
+
+func update_continue_button():
+	if Data.game_data and Data.game_data.levels_to_load.size() > 0:
+		find_child("ContinueButton").show()
+	else:
+		find_child("ContinueButton").hide()
