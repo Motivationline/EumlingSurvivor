@@ -3,10 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_n28lj"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_ftx2o"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_02mkn"]
-[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-jungle/tortoise/tortoise_enemy.tscn" id="3_mldid"]
+[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="3_mldid"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="4_02mkn"]
-[ext_resource type="PackedScene" uid="uid://ddty5phcxxvsi" path="res://game/enemies/3-jungle/bomb_berry_poison/bomb_berry_poison.tscn" id="5_02mkn"]
-[ext_resource type="LightmapGIData" uid="uid://bdb8caijp3ben" path="res://game/levels/3-Jxx-Jungle/lightmaps2/J06.lmbake" id="6_r2xbu"]
+[ext_resource type="PackedScene" uid="uid://ddty5phcxxvsi" path="res://game/enemies/3-Jungle/bomb_berry_poison/bomb_berry_poison.tscn" id="5_02mkn"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_r2xbu"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_r2xbu"]
@@ -274,7 +273,7 @@ navigation_mesh = SubResource("NavigationMesh_r2xbu")
 [node name="BorderGridMap" parent="NavigationRegion3D" index="0" unique_id=824927406]
 baked_meshes = [SubResource("ArrayMesh_1dq0u"), SubResource("ArrayMesh_n83te"), SubResource("ArrayMesh_84mo4"), SubResource("ArrayMesh_jphgf"), SubResource("ArrayMesh_ybifb"), SubResource("ArrayMesh_84m3q"), SubResource("ArrayMesh_qvhan"), SubResource("ArrayMesh_cupbb"), SubResource("ArrayMesh_sf44s"), SubResource("ArrayMesh_8u5ll"), SubResource("ArrayMesh_w264o"), SubResource("ArrayMesh_rnmss"), SubResource("ArrayMesh_84pi6"), SubResource("ArrayMesh_tk06t")]
 
-[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="2" unique_id=1211069219]
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="1" unique_id=1211069219]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = ExtResource("2_ftx2o")
 cell_size = Vector3(0.5, 0.5, 0.5)
@@ -292,9 +291,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -1)
 [node name="BaseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1898691 instance=ExtResource("5_02mkn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07326746, 0, -3.2057729)
 up_direction = Vector3(-0.97174525, 0.23603237, 0)
-
-[node name="LightmapGI" parent="." index="7" unique_id=1450626193]
-light_data = ExtResource("6_r2xbu")
 
 [node name="ExitArea" parent="." index="8" unique_id=530961080 node_paths=PackedStringArray("parent") instance=ExtResource("4_02mkn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

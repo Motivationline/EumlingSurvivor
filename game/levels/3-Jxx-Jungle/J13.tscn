@@ -2,10 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_5krd0"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_j0os4"]
-[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-jungle/bomber/bomber_enemy.tscn" id="3_pwwdr"]
+[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-Jungle/bomber/bomber_enemy.tscn" id="3_pwwdr"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_xiph1"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="4_xiph1"]
-[ext_resource type="LightmapGIData" uid="uid://ctcketaw62n12" path="res://game/levels/3-Jxx-Jungle/lightmaps2/J13.lmbake" id="5_p7he0"]
 [ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="7_p7he0"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_pi5a0"]
 
@@ -126,24 +125,18 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="Cube" parent="NavigationRegion3D/base_floor_10x10" parent_id_path=PackedInt32Array(257884405) index="0" unique_id=1334605973]
-surface_material_override/0 = null
-
 [node name="Bomber" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1188674474 instance=ExtResource("3_pwwdr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6236238)
-
-[node name="LightmapGI" parent="." index="7" unique_id=1450626193]
-light_data = ExtResource("5_p7he0")
-
-[node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("4_xiph1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
-parent = NodePath("..")
 
 [node name="Box" parent="Breakables" parent_id_path=PackedInt32Array(1453718420) index="0" unique_id=1921390727 instance=ExtResource("7_p7he0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2471707, 0, 2.7534595)
 
 [node name="Box2" parent="Breakables" parent_id_path=PackedInt32Array(1453718420) index="1" unique_id=469128792 instance=ExtResource("7_p7he0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7547307, 0, 2.7534595)
+
+[node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("4_xiph1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
+parent = NodePath("..")
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(9488913) index="0" unique_id=1814085372 instance=ExtResource("8_pi5a0")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.82807195)

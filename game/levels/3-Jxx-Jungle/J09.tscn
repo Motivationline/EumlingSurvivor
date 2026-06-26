@@ -4,9 +4,8 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_m4jnl"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="3_dihus"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_jjf5r"]
-[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-jungle/environment/spikes.tscn" id="3_m4jnl"]
-[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-jungle/tortoise/tortoise_enemy.tscn" id="5_o0jls"]
-[ext_resource type="LightmapGIData" uid="uid://dkwsal4vmff02" path="res://game/levels/3-Jxx-Jungle/lightmaps2/J09.lmbake" id="7_o0jls"]
+[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_m4jnl"]
+[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="5_o0jls"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_o0jls"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_uekqq"]
@@ -424,7 +423,7 @@ navigation_mesh = SubResource("NavigationMesh_uekqq")
 [node name="BorderGridMap" parent="NavigationRegion3D" index="0" unique_id=824927406]
 baked_meshes = [SubResource("ArrayMesh_h48f1"), SubResource("ArrayMesh_4ll8i"), SubResource("ArrayMesh_hqw2g"), SubResource("ArrayMesh_cq0ww"), SubResource("ArrayMesh_h2yb1"), SubResource("ArrayMesh_xrljk"), SubResource("ArrayMesh_i7xvw"), SubResource("ArrayMesh_55jgo"), SubResource("ArrayMesh_26r62"), SubResource("ArrayMesh_ga5mq"), SubResource("ArrayMesh_fhymb"), SubResource("ArrayMesh_l8baf"), SubResource("ArrayMesh_5vs8r"), SubResource("ArrayMesh_7ssj0")]
 
-[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="2" unique_id=110210813]
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="1" unique_id=110210813]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = ExtResource("2_m4jnl")
 cell_size = Vector3(0.5, 0.5, 0.5)
@@ -1138,9 +1137,6 @@ bus = &"Master"
 
 [node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1961314702 instance=ExtResource("5_o0jls")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015109062, 0, -1.1404842)
-
-[node name="LightmapGI" parent="." index="7" unique_id=1450626193]
-light_data = ExtResource("7_o0jls")
 
 [node name="ExitArea" parent="." index="8" unique_id=784184729 node_paths=PackedStringArray("parent") instance=ExtResource("3_dihus")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

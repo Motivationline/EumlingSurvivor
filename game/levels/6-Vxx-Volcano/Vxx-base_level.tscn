@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_gmd22"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_yqsn0"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_jpdpo"]
+[ext_resource type="Texture2D" uid="uid://b0ckwddoapbo5" path="res://assets/vfx/particle_pack/dirt_03.png" id="4_aga4b"]
+[ext_resource type="Texture2D" uid="uid://dtp8b2rwwfwym" path="res://assets/vfx/projectile_realistic/Swirl 2 - 256x256.png" id="5_ep3q7"]
 [ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="5_g1dqc"]
 [ext_resource type="Script" uid="uid://du18mum64y03k" path="res://game/cameras/behaviours/normal_behaviour.gd" id="6_jpdpo"]
 [ext_resource type="PackedScene" uid="uid://bd4kom8lyyin5" path="res://assets/models/6-volcano/stones/stone_01/volcano_stone_01.tscn" id="6_r7r6h"]
@@ -232,6 +234,22 @@ albedo_color = Color(0.24, 0.16048001, 0.0696, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_8l1px"]
 size = Vector3(10, 1, 10)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+transparency = 1
+albedo_color = Color(0.31, 0.18507001, 0.1178, 0.5529412)
+albedo_texture = ExtResource("4_aga4b")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+size = Vector2(5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wj84g"]
+transparency = 1
+albedo_color = Color(0.39, 0.18667999, 0.031199992, 0.20392157)
+albedo_texture = ExtResource("5_ep3q7")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_57qmd"]
+size = Vector2(10, 10)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_g1dqc"]
 size = Vector3(10.591797, 1, 10.109741)
 
@@ -327,7 +345,32 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 material_override = SubResource("StandardMaterial3D_jpdpo")
 mesh = SubResource("BoxMesh_8l1px")
 
+[node name="Decals" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/MeshInstance3D" unique_id=807673958]
+transform = Transform3D(0.9079961, 0, 0.41897863, 0, 1, 0, -0.41897863, 0, 0.9079961, -2.4521942, 0.51, -2.5677226)
+material_override = SubResource("StandardMaterial3D_yf5fn")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="Decals2" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/MeshInstance3D" unique_id=1179081394]
+transform = Transform3D(0.22418813, 0, -0.7679451, 0, 0.8, 0, 0.7679451, 0, 0.22418813, 2.4657059, 0.5099995, -1.4081581)
+material_override = SubResource("StandardMaterial3D_yf5fn")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="Decals3" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/MeshInstance3D" unique_id=217794900]
+transform = Transform3D(0.28023523, 0, -0.9599314, 0, 1, 0, 0.9599314, 0, 0.28023523, -2.1342182, 0.5099995, 1.8125052)
+material_override = SubResource("StandardMaterial3D_yf5fn")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="Decals4" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/MeshInstance3D" unique_id=694027630]
+transform = Transform3D(-0.9999867, 0, 0.0051497817, 0, 1, 0, -0.0051497817, 0, -0.9999867, -0.028246522, 0.5099995, -0.009070754)
+material_override = SubResource("StandardMaterial3D_wj84g")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_57qmd")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=423930638]
+visible = false
 shape = SubResource("BoxShape3D_g1dqc")
 
 [node name="PlayerSpawnMarker" type="Marker3D" parent="." unique_id=1539073355]
@@ -360,10 +403,14 @@ metadata/_custom_type_script = "uid://bftcfposg3qyf"
 environment = SubResource("Environment_8l1px")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights" unique_id=1052083922]
-transform = Transform3D(-0.91552204, 0.39784312, -0.05950278, -0.021726489, 0.098798886, 0.99487025, 0.40168113, 0.9121182, -0.0818088, 0, 8.41849, 0)
+transform = Transform3D(0.7768093, 0.62189937, -0.09903852, -0.04341604, 0.20978513, 0.9767832, 0.62823766, -0.7544744, 0.18996339, 0, 8.41849, 0)
+light_color = Color(1, 0.9825, 0.85, 1)
 shadow_enabled = true
-shadow_opacity = 0.15
+shadow_opacity = 0.5
+shadow_blur = 0.318
 directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 20.0
 
 [node name="Env" type="Node3D" parent="." unique_id=1593707156]
 

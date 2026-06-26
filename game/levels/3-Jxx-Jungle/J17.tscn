@@ -4,10 +4,9 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_a62oy"]
 [ext_resource type="PackedScene" uid="uid://31e8rrg543xf" path="res://assets/models/3-Jungle/JunglePlant/jungle_plant_small.tscn" id="3_a62oy"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_h3tdc"]
-[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-jungle/environment/spikes.tscn" id="3_xdtyy"]
-[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-jungle/bomber/bomber_enemy.tscn" id="4_h3tdc"]
+[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_xdtyy"]
+[ext_resource type="PackedScene" uid="uid://fsbvao74dovg" path="res://game/enemies/3-Jungle/bomber/bomber_enemy.tscn" id="4_h3tdc"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="5_44sxq"]
-[ext_resource type="LightmapGIData" uid="uid://b3bj4ufciwvjk" path="res://game/levels/3-Jxx-Jungle/lightmaps2/J17.lmbake" id="7_44sxq"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="9_44sxq"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_a62oy"]
@@ -114,9 +113,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -2.5)
 
 [node name="Bomber2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1623141692 instance=ExtResource("4_h3tdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2566023, 0, 0.95453167)
-
-[node name="LightmapGI" parent="." index="7" unique_id=1450626193]
-light_data = ExtResource("7_44sxq")
 
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("5_44sxq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

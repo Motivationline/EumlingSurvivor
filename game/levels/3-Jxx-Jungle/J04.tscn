@@ -4,8 +4,7 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_lcahf"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="2_x6msp"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_ot24m"]
-[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-jungle/sniper/sniper_enemy.tscn" id="5_x6o33"]
-[ext_resource type="LightmapGIData" uid="uid://bdn68amlp1v" path="res://game/levels/3-Jxx-Jungle/lightmaps2/J04.lmbake" id="6_x6o33"]
+[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-Jungle/sniper/sniper_enemy.tscn" id="5_x6o33"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="7_x6o33"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ot24m"]
@@ -303,7 +302,7 @@ navigation_mesh = SubResource("NavigationMesh_ot24m")
 [node name="BorderGridMap" parent="NavigationRegion3D" index="0" unique_id=824927406]
 baked_meshes = [SubResource("ArrayMesh_dqkt1"), SubResource("ArrayMesh_ooxnu"), SubResource("ArrayMesh_c73fh"), SubResource("ArrayMesh_5eqx7"), SubResource("ArrayMesh_1yclu"), SubResource("ArrayMesh_ivh5m"), SubResource("ArrayMesh_2od7d"), SubResource("ArrayMesh_ijrc4"), SubResource("ArrayMesh_65bjq"), SubResource("ArrayMesh_bqd3m"), SubResource("ArrayMesh_ih84c"), SubResource("ArrayMesh_smnd5"), SubResource("ArrayMesh_i754a"), SubResource("ArrayMesh_sxvdv")]
 
-[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="2" unique_id=45923765]
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="1" unique_id=45923765]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = ExtResource("2_lcahf")
 cell_size = Vector3(0.5, 0.5, 0.5)
@@ -317,9 +316,6 @@ data = {
 [node name="ExitArea" parent="." index="7" unique_id=1620901077 node_paths=PackedStringArray("parent") instance=ExtResource("2_x6msp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
-
-[node name="LightmapGI" parent="." index="8" unique_id=1450626193]
-light_data = ExtResource("6_x6o33")
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(9488913) index="0" unique_id=1814085372 instance=ExtResource("7_x6o33")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.943388, 0, -0.90964717)
