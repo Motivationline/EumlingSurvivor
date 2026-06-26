@@ -21,10 +21,11 @@ func enter():
 	update_target_location()
 "
 
-[node name="MiniEumlingE" type="CharacterBody3D" unique_id=2050020862 node_paths=PackedStringArray("attack_enemy_state", "follow_player", "celebration_state", "node_with_animation_tree", "state_machine") groups=["MiniEumling"]]
+[node name="MiniEumlingE" type="CharacterBody3D" unique_id=2050020862 node_paths=PackedStringArray("attack_enemy_state", "follow_player", "reached_player", "celebration_state", "node_with_animation_tree", "state_machine") groups=["MiniEumling"]]
 script = ExtResource("1_1e7wv")
 attack_enemy_state = NodePath("StateMachine/AttackEnemy/MoveTowardsEnemy")
 follow_player = NodePath("StateMachine/MoveTowardsPlayer")
+reached_player = NodePath("StateMachine/WaitForEntityToBeAtDistanceState")
 celebration_state = NodePath("StateMachine/WaitForEntityToBeAtDistanceCelebrateState")
 node_with_animation_tree = NodePath("Visuals")
 state_machine = NodePath("StateMachine")
@@ -78,7 +79,7 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine/AttackEnemy" unique_id=1743753910 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_jcadt")
 end_delay = 1.0
-next_state = NodePath("../MoveTowardsEnemy")
+next_state = NodePath("../../MoveTowardsPlayer")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "idle"
 })
