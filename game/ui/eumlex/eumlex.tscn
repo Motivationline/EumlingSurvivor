@@ -13,9 +13,16 @@
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="10_amahl"]
 [ext_resource type="PackedScene" uid="uid://b6vj3geh4ibvg" path="res://game/ui/eumlex/eumling_button/eumlex_button.tscn" id="11_w24f0"]
 [ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="12_ikcm3"]
+[ext_resource type="Texture2D" uid="uid://be0ca3llwbdrf" path="res://assets/ui/Eumlex/TagBaseR.png" id="14_ikcm3"]
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="14_orh8k"]
+[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="15_xeq76"]
 [ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="15_y7di5"]
+[ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="16_7mh0x"]
 [ext_resource type="PackedScene" uid="uid://djyl5v0duholv" path="res://game/ui/eumlex/eumlex_info_page_missing.tscn" id="16_17oye"]
+[ext_resource type="Texture2D" uid="uid://bvb4cns6l455k" path="res://assets/ui/Eumlex/TagBaseC.png" id="17_n58ek"]
+[ext_resource type="Texture2D" uid="uid://cjj03lo1voxow" path="res://assets/ui/Eumlex/TagBaseA.png" id="18_j2jup"]
+[ext_resource type="Texture2D" uid="uid://dwgh2hdeer32g" path="res://assets/ui/Eumlex/TagBaseI.png" id="19_wnors"]
+[ext_resource type="Texture2D" uid="uid://ch6804no7yieo" path="res://assets/ui/Eumlex/TagBaseE.png" id="20_kq6so"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("14_orh8k")
@@ -290,6 +297,37 @@ layout_mode = 2
 [node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer" unique_id=1104696215 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
+[node name="ImageCounter" type="TextureRect" parent="Book/BookContainer/BookBG/OrangePage" unique_id=1229823502]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_top = 26.0
+offset_right = -36.080017
+offset_bottom = 93.377
+grow_horizontal = 0
+texture = ExtResource("14_ikcm3")
+stretch_mode = 5
+
+[node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/OrangePage/ImageCounter" unique_id=121599223]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.14
+offset_right = 1.5258789e-05
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 32
+text = "0/20"
+horizontal_alignment = 1
+script = ExtResource("15_xeq76")
+max_font_size = 32
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
 [node name="GreenPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1105283116]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
@@ -384,6 +422,37 @@ layout_mode = 2
 
 [node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings/GridContainer" unique_id=1529212255 instance=ExtResource("11_w24f0")]
 layout_mode = 2
+
+[node name="ImageCounter" type="TextureRect" parent="Book/BookContainer/BookBG/GreenPage" unique_id=1534007973]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_top = 26.0
+offset_right = -36.080017
+offset_bottom = 93.377
+grow_horizontal = 0
+texture = ExtResource("16_7mh0x")
+stretch_mode = 5
+
+[node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/GreenPage/ImageCounter" unique_id=1586621741]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.14
+offset_right = 1.5258789e-05
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 32
+text = "0/20"
+horizontal_alignment = 1
+script = ExtResource("15_xeq76")
+max_font_size = 32
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="PurplePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1768632314]
 visible = false
@@ -480,6 +549,37 @@ layout_mode = 2
 [node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings/GridContainer" unique_id=284539468 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
+[node name="ImageCounter" type="TextureRect" parent="Book/BookContainer/BookBG/PurplePage" unique_id=749597925]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_top = 26.0
+offset_right = -36.080017
+offset_bottom = 93.377
+grow_horizontal = 0
+texture = ExtResource("17_n58ek")
+stretch_mode = 5
+
+[node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/PurplePage/ImageCounter" unique_id=523338064]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.14
+offset_right = 1.5258789e-05
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 32
+text = "0/20"
+horizontal_alignment = 1
+script = ExtResource("15_xeq76")
+max_font_size = 32
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
 [node name="YellowPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=377975855]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
@@ -574,6 +674,37 @@ layout_mode = 2
 
 [node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer" unique_id=59187769 instance=ExtResource("11_w24f0")]
 layout_mode = 2
+
+[node name="ImageCounter" type="TextureRect" parent="Book/BookContainer/BookBG/YellowPage" unique_id=1561261358]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_top = 26.0
+offset_right = -36.080017
+offset_bottom = 93.377
+grow_horizontal = 0
+texture = ExtResource("18_j2jup")
+stretch_mode = 5
+
+[node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/YellowPage/ImageCounter" unique_id=1533016367]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.14
+offset_right = 1.5258789e-05
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 32
+text = "0/20"
+horizontal_alignment = 1
+script = ExtResource("15_xeq76")
+max_font_size = 32
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="RedPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=914606313]
 visible = false
@@ -670,6 +801,37 @@ layout_mode = 2
 [node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings/GridContainer" unique_id=324027660 instance=ExtResource("11_w24f0")]
 layout_mode = 2
 
+[node name="ImageCounter" type="TextureRect" parent="Book/BookContainer/BookBG/RedPage" unique_id=1550646901]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_top = 26.0
+offset_right = -36.080017
+offset_bottom = 93.377
+grow_horizontal = 0
+texture = ExtResource("19_wnors")
+stretch_mode = 5
+
+[node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/RedPage/ImageCounter" unique_id=461230787]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.14
+offset_right = 1.5258789e-05
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 32
+text = "0/20"
+horizontal_alignment = 1
+script = ExtResource("15_xeq76")
+max_font_size = 32
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
 [node name="BluePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1337237438]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
@@ -764,6 +926,37 @@ layout_mode = 2
 
 [node name="EumlexListingBackground16" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings/GridContainer" unique_id=1227986207 instance=ExtResource("11_w24f0")]
 layout_mode = 2
+
+[node name="ImageCounter" type="TextureRect" parent="Book/BookContainer/BookBG/BluePage" unique_id=128728760]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_top = 26.0
+offset_right = -36.080017
+offset_bottom = 93.377
+grow_horizontal = 0
+texture = ExtResource("20_kq6so")
+stretch_mode = 5
+
+[node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/BluePage/ImageCounter" unique_id=1628471596]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.14
+offset_right = 1.5258789e-05
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 32
+text = "0/20"
+horizontal_alignment = 1
+script = ExtResource("15_xeq76")
+max_font_size = 32
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="CloseButton" type="TextureButton" parent="Book" unique_id=86270587]
 layout_mode = 0
