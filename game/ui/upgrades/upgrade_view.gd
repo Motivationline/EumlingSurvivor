@@ -21,9 +21,7 @@ func show_upgrades():
 		upgrades[i].path = paths[i]
 	
 
-	for child in upgrade_container.get_children():
-		upgrade_container.remove_child(child)
-		child.free()
+	Utils.remove_all_children(upgrade_container)
 
 	for i in upgrades.size():
 		var upgrade = upgrades[i]

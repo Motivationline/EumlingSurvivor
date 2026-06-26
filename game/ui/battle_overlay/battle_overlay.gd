@@ -12,8 +12,7 @@ func update_visuals(total: int, remaining: int):
 	
 	%ProgressDisplay.show()
 	var stage_marker = %StageMarker
-	for child in stage_marker.get_children():
-		child.free()
+	Utils.remove_all_children(stage_marker)
 	
 	for i in total:
 		var rect = TextureRect.new()

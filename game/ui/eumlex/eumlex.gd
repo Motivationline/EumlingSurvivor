@@ -51,9 +51,7 @@ func _update_buttons():
 	if selection_overlay and selection_overlay.get_parent():
 		selection_overlay.get_parent().remove_child(selection_overlay)
 	for container in eumling_type_and_container.values():
-		for old_btn in container.get_children():
-			container.remove_child(old_btn)
-			old_btn.queue_free()
+		Utils.remove_all_children(container)
 	Data.sort_eumlings()
 	for category: Array in Data.eumlings.values():
 		for eumling in category:
