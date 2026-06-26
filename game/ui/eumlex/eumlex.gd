@@ -9,6 +9,8 @@ var selection_overlay: TextureRect;
 @export var tabs_and_containers: Dictionary[TextureButton, Panel]
 @export var eumling_type_and_container: Dictionary[Enum.EUMLING_TYPE, Container]
 
+signal eumling_revealed
+
 func _on_tab_pressed(tab: TextureButton):
 	if not tab: return
 	var panel = tabs_and_containers.get(tab)
@@ -30,21 +32,27 @@ func highlight_marker(active_button):
 	active_button.position.y = -30
 
 func _ready() -> void:
-	update_buttons()
+	_update_buttons()
 	$Book/TabPanel/OrangeButton.pressed.emit()
 	%EumlexInfo.hide()
 	# unlock_new_eumlings([randi_range(0, 4), randi_range(0, 4)])
 	selection_overlay = SELECTION_OVERLAY.instantiate()
-	update_type_counters_and_new_markings()
+	_update_type_counters_and_new_markings()
 
 
 func _on_close_button_pressed() -> void:
 	hide()
-	
 
-func update_buttons():
+func update_visuals():
+	_update_buttons()
+	_update_type_counters_and_new_markings()
+
+func _update_buttons():
+	if selection_overlay and selection_overlay.get_parent():
+		selection_overlay.get_parent().remove_child(selection_overlay)
 	for container in eumling_type_and_container.values():
 		for old_btn in container.get_children():
+			container.remove_child(old_btn)
 			old_btn.queue_free()
 	Data.sort_eumlings()
 	for category: Array in Data.eumlings.values():
@@ -92,19 +100,20 @@ func reveal_new_eumling(eumling: Eumling, btn: EumlingButton):
 	await reveal.completed
 	reveal.queue_free()
 	# GlobalMusicManager.request_music(SongList.TRACK.MENU,MusicTransition.crossfade(1.0))
-	# update_buttons()
+	# _update_buttons()
 	eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.SEEN
 	btn.update_visuals()
 	# $Book.show();
 	%SeedRevealContainer.hide()
-	update_type_counters_and_new_markings()
+	_update_type_counters_and_new_markings()
+	eumling_revealed.emit()
 
 
 # func _unhandled_key_input(event: InputEvent) -> void:
 # 	if event.is_action_pressed("debug_gamble"):
 # 		unlock_new_eumlings([randi_range(0, 5) as Enum.EUMLING_TYPE])
 
-func update_type_counters_and_new_markings():
+func _update_type_counters_and_new_markings():
 	for type in eumling_type_and_container.keys():
 		var container = eumling_type_and_container.get(type)
 		var page = container.get_parent().get_parent()

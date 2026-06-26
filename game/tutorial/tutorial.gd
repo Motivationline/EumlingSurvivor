@@ -130,8 +130,8 @@ func eumlex_click():
 	var container: GridContainer = eumlex_instance.eumling_type_and_container.get(Enum.EUMLING_TYPE.REALISTIC)
 	var button = container.get_child(0)
 	var pressed = func():
-		await show_dialogue("eumlex_clicked", false)
 		button.pressed.emit()
+		await show_dialogue("eumlex_clicked", false)
 		eumlex_find()
 	block_input_except_for(button, pressed)
 
@@ -246,9 +246,10 @@ func run_cage_drop():
 	progress = PROGRESS.RUN_CAGE_DROP
 
 func run_cage_open():
-	await complete_quest()
 	progress = PROGRESS.RUN_CAGE_OPEN
+	complete_quest()
 	await show_dialogue("eumling_rescued")
+	Data.unlocked_eumling(Enum.EUMLING_TYPE.REALISTIC)
 	return_to_main_menu()
 
 func return_to_main_menu():
@@ -265,11 +266,21 @@ func return_to_main_menu():
 func eumlex_show_again():
 	progress = PROGRESS.RETURN_EUMLEX
 	add_child(eumlex_instance)
+	eumlex_instance.update_visuals()
+	await get_tree().process_frame
+	var container: GridContainer = eumlex_instance.eumling_type_and_container.get(Enum.EUMLING_TYPE.REALISTIC)
+	var button = container.get_child(0)
+	block_input_except_for(button, func():
+		button.pressed.emit()
+		await eumlex_instance.eumling_revealed
+		eumlex_completed()
+	)
 
+
+func eumlex_completed():
 	complete_quest()
 	await show_dialogue("tutorial_completed")
 	completed()
-
 	
 func player_died():
 	progress = PROGRESS.FAILED
@@ -285,10 +296,11 @@ func block_input_except_for(element: Control, callable: Callable, animate: bool 
 	var overlay = blocking_overlay.instantiate()
 	add_child(overlay)
 	var duplicated_element = element.duplicate()
-	var previous_visibility = element.visible
+	var previous_modulate = element.modulate
+	element.modulate = Color(0, 0, 0, 0)
 
 	var cleanup = func():
-		element.visible = previous_visibility
+		element.modulate = previous_modulate
 		overlay.queue_free()
 		callable.call()
 
@@ -301,7 +313,6 @@ func block_input_except_for(element: Control, callable: Callable, animate: bool 
 	overlay.add_child(duplicated_element)
 	duplicated_element.set_global_position(element.global_position)
 	duplicated_element.set_size(element.size)
-	element.hide()
 
 	if animate:
 		var animator = pulse_animator.instantiate()

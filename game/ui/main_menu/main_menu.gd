@@ -31,7 +31,7 @@ func _on_eumlex_button_pressed() -> void:
 	if eumlingclopedia.get_parent() != self:
 		add_child(eumlingclopedia)
 	eumlingclopedia.show()
-	eumlingclopedia.update_buttons()
+	eumlingclopedia.update_visuals()
 	await eumlingclopedia.visibility_changed
 	update_eumlex_number()
 	# eumlingclopedia.unlock_new_eumlings(Data._unlocked_mini_eumlings)

@@ -24,7 +24,14 @@ func _load_data():
 		return
 	var file := FileAccess.open(FILE_PATH, FileAccess.READ)
 	var text_content = file.get_as_text()
-	_data = JSON.parse_string(text_content)
+	var json = JSON.new()
+	var error = json.parse(text_content)
+	if error == OK:
+		var data = json.data
+		if typeof(data) == TYPE_DICTIONARY:
+			_data = data
+			return
+	push_error("Something went wrong with loading the json file.")
 
 ## resets all saved data
 func reset():

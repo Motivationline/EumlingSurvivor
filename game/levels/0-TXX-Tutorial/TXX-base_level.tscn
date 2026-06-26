@@ -294,9 +294,11 @@ size = Vector3(10, 1, 10)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_hqmjn"]
 dof_blur_far_enabled = true
-dof_blur_far_distance = 35.0
+dof_blur_far_distance = 30.0
 dof_blur_near_enabled = true
 dof_blur_near_distance = 10.0
+dof_blur_near_transition = 2.0
+dof_blur_amount = 0.25
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g6gnv"]
 size = Vector2(30, 30)
@@ -373,8 +375,8 @@ mesh = SubResource("ArrayMesh_y3rco")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/base_floor_10x10/StaticBody3D" index="0" unique_id=1334443972]
 shape = SubResource("BoxShape3D_a5gn4")
 
-[node name="Camera3D" parent="." index="3" unique_id=1814334667]
-transform = Transform3D(0.70710677, -0.6123722, 0.3535532, 0, 0.49999976, 0.8660251, -0.70710677, -0.6123722, 0.3535532, 4.524, 11.086, 4.211)
+[node name="GameCamera" parent="." index="3" unique_id=2054852960]
+transform = Transform3D(0.70710677, -0.6123722, 0.3535532, 0, 0.49999976, 0.8660251, -0.70710677, -0.6123722, 0.3535532, -0.104352, 12.5917, 7.49343)
 attributes = SubResource("CameraAttributesPractical_hqmjn")
 projection = 1
 size = 5.5
