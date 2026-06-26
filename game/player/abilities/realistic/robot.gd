@@ -104,5 +104,7 @@ func level_cleared():
 	state_machine.switch_to_state(level_completed_state)
 
 func _hurt_by(area: HitBox):
+	if area.owner.is_in_group("EnvironmentTrap"):
+		return
 	health -= area.damage
 	Utils.create_damage_number(self , "%d" % area.damage)
