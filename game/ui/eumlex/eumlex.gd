@@ -35,6 +35,8 @@ func _ready() -> void:
 	%EumlexInfo.hide()
 	# unlock_new_eumlings([randi_range(0, 4), randi_range(0, 4)])
 	selection_overlay = SELECTION_OVERLAY.instantiate()
+	update_type_counters_and_new_markings()
+
 
 func _on_close_button_pressed() -> void:
 	hide()
@@ -95,8 +97,31 @@ func reveal_new_eumling(eumling: Eumling, btn: EumlingButton):
 	btn.update_visuals()
 	# $Book.show();
 	%SeedRevealContainer.hide()
+	update_type_counters_and_new_markings()
 
 
 # func _unhandled_key_input(event: InputEvent) -> void:
 # 	if event.is_action_pressed("debug_gamble"):
 # 		unlock_new_eumlings([randi_range(0, 5) as Enum.EUMLING_TYPE])
+
+func update_type_counters_and_new_markings():
+	for type in eumling_type_and_container.keys():
+		var container = eumling_type_and_container.get(type)
+		var page = container.get_parent().get_parent()
+		var number: Label = page.find_child("NumberCounter")
+		var typed_eumlings: Array = Data.eumlings.get(type)
+		var total: int = typed_eumlings.size()
+		var count: int = typed_eumlings.reduce(func(accum, eumling):
+			if eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.SEEN:
+				accum += 1
+			return accum
+		, 0)
+		number.text = "%s/%s" % [count, total]
+
+		var new_eumlings_in_tab: int = typed_eumlings.reduce(func(accum, eumling):
+			if eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED:
+				accum += 1
+			return accum
+		, 0)
+		var new_eumlings_marker = tabs_and_containers.keys()[tabs_and_containers.values().find(page)]
+		new_eumlings_marker.get_child(0).visible = new_eumlings_in_tab > 0
