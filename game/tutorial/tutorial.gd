@@ -351,8 +351,7 @@ func completed():
 	queue_free()
 
 func load_level():
-	for child in level_wrapper.get_children():
-		child.queue_free()
+	Utils.remove_all_children(level_wrapper)
 
 	if player:
 		player.queue_free()

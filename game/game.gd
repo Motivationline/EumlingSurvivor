@@ -56,9 +56,7 @@ func _load_level():
 		faded_to_black = true
 
 	# remove old stuff
-	var children = level_wrapper.get_children()
-	for child in children:
-		child.queue_free()
+	Utils.remove_all_children(level_wrapper)
 	
 	if !Data.game_data.levels_to_load.size() > 0:
 		if Data.game_data.difficulty >= 4:

@@ -61,3 +61,9 @@ static func binary_search(low: float, high: float, comparable: Callable, toleran
 			high = middle
 
 	return low
+
+static func remove_all_children(node: Node):
+	var children = node.get_children()
+	for child in children:
+		node.remove_child(child)
+		child.queue_free()
