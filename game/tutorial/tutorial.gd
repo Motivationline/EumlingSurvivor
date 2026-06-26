@@ -136,7 +136,7 @@ func eumlex_click():
 	block_input_except_for(button, pressed)
 
 func eumlex_find():
-	var page = eumlex_instance.find_child("EumlexInfoPage");
+	var page = eumlex_instance.find_child("EumlexInfoPageMissing");
 	var cleanup = block_input_except_for(page, func(): pass, false)
 	await get_tree().create_timer(3).timeout
 	cleanup.call()
