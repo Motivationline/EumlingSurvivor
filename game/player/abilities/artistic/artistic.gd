@@ -12,9 +12,8 @@ var points: PackedVector3Array = []
 var points_2d: PackedVector2Array = []
 var times: PackedFloat32Array = []
 
-@export var artistic_abilities: Array[PackedScene]
-var active_ability_index: int = -1
-var active_ability: ArtisticAbility
+@export var strength_ability: PackedScene
+var strength_ability_instance: ArtisticAbility
 
 @export var eumling_scaler: EumlingScaler
 
@@ -22,7 +21,15 @@ func _ready() -> void:
 	_type = Enum.EUMLING_TYPE.ARTISTIC
 	super ()
 	if eumling_scaler: eumling_scaler.setup_and_apply(self)
-	next_ability()
+
+func level_start() -> void:
+	clear_points()
+	strength_ability_instance = strength_ability.instantiate()
+	var level = get_tree().get_first_node_in_group("Level")
+	if level:
+		level.add_child(strength_ability_instance)
+		strength_ability_instance.global_position.y = owner.global_position.y
+
 
 func _update():
 	if amt_eumlings == 0 and points.size() > 0:
@@ -74,7 +81,7 @@ func _process(delta: float) -> void:
 					# we're checking from the furthest possible point, if this one doesn't work, we don't need to check futher.
 					break
 				var polygon = points_2d.slice(i)
-				create_area(polygon)
+				update_area(strength_ability_instance, polygon)
 				clear_points()
 				break
 
@@ -85,10 +92,9 @@ func clear_points():
 	times.clear()
 	tail_curve.clear_points()
 
-func create_area(polygon_points: PackedVector2Array):
-	get_tree().get_first_node_in_group("Level").add_child(active_ability)
-	active_ability.polygon = polygon_points
-	active_ability.global_position.y = owner.global_position.y
+func update_area(area: ArtisticAbility, polygon_points: PackedVector2Array):
+	area.polygon = polygon_points
+
 	# reduce hitbox polygons (currently not needed, but maybe again when we up the amount of points in the poly again)
 	# var hitbox_polygon = CollisionPolygon3D.new()
 	# var hitbox_poly: PackedVector2Array = []
@@ -97,13 +103,3 @@ func create_area(polygon_points: PackedVector2Array):
 	# 	if k % 4 == 0:
 	# 		hitbox_poly[floori(k / 4.0)] = polygon_points[k]
 	# hitbox_polygon.polygon = hitbox_poly
-	next_ability()
-
-func level_start():
-	clear_points()
-
-func next_ability():
-	active_ability_index = (active_ability_index + 1) % artistic_abilities.size()
-	active_ability = artistic_abilities[active_ability_index].instantiate()
-
-	$Tail/TailPolygon.material.albedo_color = active_ability.color

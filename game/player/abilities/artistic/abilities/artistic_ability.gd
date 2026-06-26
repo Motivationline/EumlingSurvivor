@@ -18,5 +18,5 @@ var polygon: PackedVector2Array:
 
 func _ready() -> void:
 	if eumling_scaler: eumling_scaler.setup_and_apply(self)
-	await get_tree().create_timer(duration).timeout
-	queue_free()
+	# await get_tree().create_timer(duration).timeout
+	# queue_free()
