@@ -24,8 +24,8 @@ radius = 0.29065907
 health = 100.0
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_death = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
-on_hurt = [null, NodePath("Eventlisteners/TriggerStateEventStrategy")]
+on_death = [NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
 speed = 2.0
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -37,6 +37,9 @@ initial_state = NodePath("DecideDistanceState")
 script = ExtResource("3_yw84f")
 wait_time = 0.5
 next_state = NodePath("../../DecideDistanceState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "idle"
+})
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="DecideDistanceState" type="Node" parent="StateMachine" index="1" unique_id=1301277002 node_paths=PackedStringArray("state_if_distance_is_smaller", "state_if_distance_is_larger", "state_if_no_node_found")]
@@ -54,6 +57,9 @@ script = ExtResource("5_l5va7")
 wait_time = 0.0
 stop_distance = 1.0
 next_state = NodePath("../../Explode/SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "run"
+})
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="Explode" type="Node" parent="StateMachine" index="3" unique_id=2022961841]
