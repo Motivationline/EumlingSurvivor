@@ -148,3 +148,5 @@ func _trigger_events(arr: Array[EventStrategy], value: Variant = null):
 	for ev in arr:
 		if ev:
 			ev.event_triggered(value)
+		else:
+			push_warning("%s tried to trigger a null event. Fix your references!" % [self.name])
