@@ -1,4 +1,4 @@
-extends Node
+class_name Tutorial extends Node
 
 # EVERYTHING IN HERE WAS DONE VERY QUICKLY WITHOUT MUCH TIME TO PUT THOUGHT INTO IT
 # So don't expect any good code. If you think "why did they do it this way?" the answer

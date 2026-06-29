@@ -18,6 +18,13 @@ func end_game():
 	game_data.save()
 	active_eumlings_changed.emit(game_data.active_mini_eumlings)
 
+func reset():
+	game_data.reset()
+	_locked_eumlings = {}
+	_unlocked_eumlings = []
+	_seen_eumlings = []
+
+	_setup_eumlings()
 
 #region Eumlings
 
