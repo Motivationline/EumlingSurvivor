@@ -96,8 +96,7 @@ func fix_visuals_and_root_rotation():
 
 
 func _hit(_attackee: HurtBox):
-	for ev in on_hit:
-		ev.event_triggered(_attackee)
+	_trigger_events(on_hit, _attackee)
 
 func _hurt_by(_attacker: HitBox):
 	if _attacker is SocialAOEHitBox:
@@ -119,8 +118,7 @@ func _hurt_by(_attacker: HitBox):
 	if damage > 0:
 		hurt.emit()
 	health -= damage
-	for ev in on_hurt:
-		ev.event_triggered(_attacker)
+	_trigger_events(on_hurt, _attacker)
 	if (heal_back_to_full): reset_timer.start(3)
 	if damage > 0:
 		convince_progress = 0
@@ -134,8 +132,7 @@ func _hurt_by(_attacker: HitBox):
 
 func _die():
 	died.emit()
-	for ev in on_death:
-		ev.event_triggered(null)
+	_trigger_events(on_death)
 	if not ignore_enemy_in_level:
 		var effect = death_effect.instantiate()
 		get_parent().add_child(effect)
@@ -146,3 +143,8 @@ func _die():
 func reset_health():
 	if (heal_back_to_full):
 		health = max_health
+
+func _trigger_events(arr: Array[EventStrategy], value: Variant = null):
+	for ev in arr:
+		if ev:
+			ev.event_triggered(value)
