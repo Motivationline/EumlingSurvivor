@@ -7,11 +7,11 @@
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="5_qxhsb"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="6_jj7n7"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_3goui"]
-[ext_resource type="PackedScene" uid="uid://b3i03xporqdm7" path="res://game/enemies/3-jungle/bomber/projectile/bomber_explosion_projectile.tscn" id="8_2wwsf"]
+[ext_resource type="PackedScene" uid="uid://b3i03xporqdm7" path="res://game/enemies/3-Jungle/bomber/projectile/bomber_explosion_projectile.tscn" id="8_2wwsf"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="9_qjxw4"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="10_2wwsf"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="11_04ad4"]
-[ext_resource type="PackedScene" uid="uid://dbwg5pd51l5wa" path="res://game/enemies/3-jungle/bomber/projectile/bomber_explosion_particle.tscn" id="11_suniy"]
+[ext_resource type="PackedScene" uid="uid://dbwg5pd51l5wa" path="res://game/enemies/3-Jungle/bomber/projectile/bomber_explosion_particle.tscn" id="11_suniy"]
 [ext_resource type="Texture2D" uid="uid://ckqv7oqgayuo6" path="res://assets/characters/enemies/cactushog/cactus_bomb/cactus_bomb_Hog_Base_color.png" id="11_xsvee"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="12_2w0aq"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="15_1k4dt"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://bifdy2fiiwafh" path="res://assets/characters/enemies/cactushog/sounds/explode_4.wav" id="20_iqfdb"]
 [ext_resource type="AudioStream" uid="uid://bqbua17664rax" path="res://assets/characters/enemies/cactushog/sounds/explode_5.wav" id="21_hcgfp"]
 [ext_resource type="AudioStream" uid="uid://dou7ybv26pih5" path="res://assets/characters/enemies/cactushog/sounds/explode_6.wav" id="22_qw2fa"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="23_loyho"]
 
 [sub_resource type="Curve" id="Curve_by40c"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -43,9 +44,6 @@ metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 [sub_resource type="Resource" id="Resource_vkbac"]
 script = ExtResource("10_2wwsf")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_4kao4"]
-radius = 0.0991429
 
 [sub_resource type="SphereMesh" id="SphereMesh_54631"]
 radius = 0.15
@@ -176,13 +174,20 @@ stream_3/stream = ExtResource("20_iqfdb")
 stream_4/stream = ExtResource("21_hcgfp")
 stream_5/stream = ExtResource("22_qw2fa")
 
-[node name="Projectile" unique_id=1865303972 node_paths=PackedStringArray("movement", "targeting", "on_world_collision", "on_created") instance=ExtResource("1_epvrp")]
-damage = 0.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_rwo01"]
+radius = 0.20644769
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_loyho"]
+radius = 0.124337696
+
+[node name="Projectile" unique_id=1865303972 node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_world_collision", "on_created") instance=ExtResource("1_epvrp")]
+damage = 20.0
 max_distance = 100.0
 lifetime = 10.0
+hit_box = NodePath("hitboxBase")
 movement = [NodePath("MovementStrategies/ArtilleryToTargetProjectileMovementStrategy")]
 targeting = [NodePath("MovementStrategies/UniversalTargetingProjectileTargetStrategy")]
-on_world_collision = [NodePath("EventStrategies/OnWorldCollision/PlaySoundExplosion"), NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy2"), NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/PlaySoundExplosion"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy"), NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy2"), NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy")]
 on_created = [NodePath("MovementStrategies/SetTargetsEventStrategy")]
 
 [node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=619591397]
@@ -237,33 +242,43 @@ target_strategy = SubResource("Resource_suniy")
 rotation_strategy = SubResource("Resource_vkbac")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=222403771]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39123645, 0)
-shape = SubResource("SphereShape3D_4kao4")
-
-[node name="ShadowCast" type="MeshInstance3D" parent="." index="3" unique_id=571648281]
+[node name="ShadowCast" type="MeshInstance3D" parent="." index="2" unique_id=571648281]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40234306, 0)
 cast_shadow = 3
 mesh = SubResource("SphereMesh_54631")
 
-[node name="Marker3D" type="Marker3D" parent="." index="4" unique_id=1952031531]
+[node name="Marker3D" type="Marker3D" parent="." index="3" unique_id=1952031531]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
-[node name="cactus_bomb2" type="Node3D" parent="." index="5" unique_id=1362928737]
+[node name="cactus_bomb2" type="Node3D" parent="." index="4" unique_id=1362928737]
 transform = Transform3D(0.9975524, 0, 1.1202186, 0.64272314, 1.228548, -0.57234365, -0.91749483, 0.86062205, 0.8170272, 0.024594232, 0.39964238, -0.014506765)
 
 [node name="cactus_bomb" type="MeshInstance3D" parent="cactus_bomb2" index="0" unique_id=68648838]
 material_override = SubResource("ShaderMaterial_pkyx2")
 mesh = SubResource("ArrayMesh_dnyrl")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=917783693]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=917783693]
 libraries/ = SubResource("AnimationLibrary_vkbac")
 autoplay = &"rotation"
 
-[node name="SoundEffectManager" type="Node3D" parent="." index="7" unique_id=1499783036]
+[node name="SoundEffectManager" type="Node3D" parent="." index="6" unique_id=1499783036]
 script = ExtResource("15_1k4dt")
 metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
 [node name="Explode" parent="SoundEffectManager" index="0" unique_id=1602441933 instance=ExtResource("16_dfsd6")]
 stream = SubResource("AudioStreamRandomizer_f2hx3")
 volume_db = -2.0
+
+[node name="hitboxBase" parent="." index="7" unique_id=1403634002 instance=ExtResource("23_loyho")]
+collision_layer = 32
+collision_mask = 8
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=922935730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.400287, 0)
+shape = SubResource("SphereShape3D_rwo01")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="8" unique_id=2084872221]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39123645, 0)
+shape = SubResource("SphereShape3D_loyho")

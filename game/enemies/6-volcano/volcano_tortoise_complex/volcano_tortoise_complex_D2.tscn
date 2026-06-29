@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://6l31g58hjjpt" path="res://game/aoes/tortoise_complex_aoe/volcano_tortoise_complex/volcano_tortoise_complex_aoe_D2.tscn" id="4_wtdsf"]
 
 [node name="volcano_tortoise_complex_D2" unique_id=1898691 node_paths=PackedStringArray("on_hurt") instance=ExtResource("1_47h1v")]
-on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
 
 [node name="SpawnInnerRing" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(137836916) index="2" unique_id=1622876265 node_paths=PackedStringArray("next_state")]
 next_state = NodePath("../SpawnOuterRing")

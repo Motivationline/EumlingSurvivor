@@ -7,11 +7,23 @@
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_xcncf"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_eetwf"]
 [ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="6_pdesa"]
+[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="8_d3oh5"]
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="8_pdesa"]
 [ext_resource type="PackedScene" uid="uid://sp2ju6tpkgag" path="res://game/aoes/magma_toad_complex_aoe/magma_toad_complex_aoe.tscn" id="9_3i7kj"]
+[ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_tgg04"]
 [ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="9_ug13t"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="10_ug13t"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="11_3i7kj"]
+
+[sub_resource type="Resource" id="Resource_4okp4"]
+script = ExtResource("8_d3oh5")
+metadata/_custom_type_script = "uid://yd5ytc70xwp6"
+
+[sub_resource type="Resource" id="Resource_vikig"]
+script = ExtResource("9_tgg04")
+max_negative = -10.0
+max_positive = 10.0
+metadata/_custom_type_script = "uid://b3cqskctjdm21"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qreux"]
 radius = 0.26148474
@@ -62,7 +74,10 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="spawnerMain" type="Node3D" parent="StateMachine/Attack/SpawnEntitiesState" index="0" unique_id=1332122889]
 script = ExtResource("5_eetwf")
 entity_to_spawn = ExtResource("6_pdesa")
+amount_of_spawns = 3
 time_between_entities = 0.15
+target_strategy = SubResource("Resource_4okp4")
+rotation_strategy = SubResource("Resource_vikig")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="WaitForTimeXState2" type="Node" parent="StateMachine/Attack" index="3" unique_id=1550348382 node_paths=PackedStringArray("next_state")]
