@@ -5,6 +5,9 @@
 [ext_resource type="Material" uid="uid://cnoq1hlmtsi46" path="res://game/shared/flash/flash_material.tres" id="10_jh4a6"]
 [ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="11_wdta4"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ahpr"]
+animation = &"idle"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jh4a6"]
 animation = &"run"
 
@@ -23,15 +26,31 @@ states/explode/position = Vector2(528, 122)
 transitions = ["Start", "explode", SubResource("AnimationNodeStateMachineTransition_meilw")]
 graph_offset = Vector2(-57, -35)
 
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_uhlw0"]
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "run"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_13fr6"]
+graph_offset = Vector2(-643.52734, -39.795937)
 nodes/output/position = Vector2(480, 140)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_jh4a6")
-nodes/Animation/position = Vector2(-60, 100)
+nodes/Animation/position = Vector2(-320, 180)
 nodes/Explode/node = SubResource("AnimationNodeOneShot_wdta4")
-nodes/Explode/position = Vector2(200, 140)
+nodes/Explode/position = Vector2(240, 60)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_gtnhn")
-nodes/StateMachine/position = Vector2(-120, 360)
-node_connections = [&"output", 0, &"Explode", &"Explode", 0, &"Animation", &"Explode", 1, &"StateMachine"]
+nodes/StateMachine/position = Vector2(-20, 420)
+nodes/Transition/node = SubResource("AnimationNodeTransition_uhlw0")
+nodes/Transition/position = Vector2(0, 80)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_4ahpr")
+"nodes/Animation 2/position" = Vector2(-320, 0)
+node_connections = [&"output", 0, &"Explode", &"Explode", 0, &"Transition", &"Explode", 1, &"StateMachine", &"Transition", 0, &"Animation 2", &"Transition", 1, &"Animation"]
 
 [sub_resource type="Animation" id="Animation_wdta4"]
 resource_name = "Flash"
@@ -97,43 +116,8 @@ _data = {
 [node name="bomberry" unique_id=642251939 instance=ExtResource("1_1vqqe")]
 script = ExtResource("2_4ahpr")
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1281166698) index="0" unique_id=1551013669]
-bones/1/position = Vector3(-0.0038958355, 0.03602612, 0.08047247)
-bones/1/rotation = Quaternion(-0.007804688, 0.71856356, 0.6947913, -0.029505985)
-bones/1/scale = Vector3(1.0315931, 0.9397637, 1.031593)
-bones/2/rotation = Quaternion(-0.7192559, -0.015038388, -0.014704514, 0.6944268)
-bones/2/scale = Vector3(1.0000106, 1.001446, 0.99873877)
-bones/4/position = Vector3(0.0049574417, 0.045447916, -0.16166075)
-bones/4/rotation = Quaternion(0.60655344, 0.36344582, 0.60655355, -0.3634459)
-bones/6/rotation = Quaternion(-0.7113722, -0.02521763, -0.02499461, 0.70191807)
-bones/6/scale = Vector3(1.0000064, 1.0008117, 0.9992984)
-bones/8/position = Vector3(-0.0036878444, 0.04544791, -0.16166075)
-bones/8/rotation = Quaternion(0.6065535, -0.36344594, -0.60655344, -0.36344585)
-bones/10/position = Vector3(-0.07754073, 0.14048524, 0.061840132)
-bones/10/rotation = Quaternion(0, -0.15904154, 0.9872719, 0)
-bones/12/position = Vector3(0.07754073, 0.051028952, 0.03869433)
-bones/12/rotation = Quaternion(0, 0.09471913, 0.995504, -8.881783e-16)
-bones/14/position = Vector3(-0.07754073, 0.23394932, 0.1503691)
-bones/14/rotation = Quaternion(-1.4018081e-15, -0.5200252, 0.85415095, 9.237502e-16)
-bones/16/position = Vector3(0.07754073, -0.072349, 0.07111788)
-bones/16/rotation = Quaternion(-1.7543358e-15, 0.31912422, 0.9477129, -5.668785e-16)
-bones/21/position = Vector3(-4.6976585e-19, 0.041157745, 0.22224653)
-bones/21/rotation = Quaternion(0.01534513, 0.016809534, 0.99939287, -0.026382567)
-bones/22/position = Vector3(-8.1599527e-10, -1.4959913e-09, 0.13987066)
-bones/23/position = Vector3(1.8626451e-09, -2.3283064e-09, -0.1422766)
-bones/24/rotation = Quaternion(0.7071068, 5.0728552e-08, 5.072855e-08, 0.7071068)
-bones/24/scale = Vector3(1.0315931, 0.9397637, 1.031593)
-bones/25/rotation = Quaternion(-0.7192559, -0.015038388, -0.014704514, 0.6944268)
-bones/25/scale = Vector3(1.0000106, 1.001446, 0.99873877)
-bones/27/position = Vector3(0.0049574357, 0.045447916, -0.16166076)
-bones/29/rotation = Quaternion(-0.7113722, -0.02521763, -0.02499461, 0.70191807)
-bones/29/scale = Vector3(1.0000064, 1.0008117, 0.9992984)
-bones/31/position = Vector3(-0.0036878462, 0.045447912, -0.16166076)
-bones/31/rotation = Quaternion(0.60655355, -0.36344594, -0.60655344, -0.3634459)
-
-[node name="bomberry_object" parent="Armature/Skeleton3D" index="0" unique_id=1250394217]
+[node name="bomberry_object" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(175456175) index="0" unique_id=155024331]
 layers = 2
-skeleton = NodePath("..")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1848731534]
 tree_root = SubResource("AnimationNodeBlendTree_13fr6")
@@ -141,6 +125,9 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/Explode/active = false
 parameters/Explode/internal_active = false
 parameters/Explode/request = 0
+parameters/Transition/current_state = "idle"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0
 
 [node name="AnimationPlayerFlash" type="AnimationPlayer" parent="." index="3" unique_id=294874640]
 unique_name_in_owner = true
