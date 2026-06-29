@@ -1,0 +1,288 @@
+[gd_scene format=3 uid="uid://b2rrc21uefymi"]
+
+[ext_resource type="PackedScene" uid="uid://dg5ap3nmd46eb" path="res://game/projectiles/base_projectile.tscn" id="1_men5w"]
+[ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_8v1p6"]
+[ext_resource type="Script" uid="uid://dyqkij0tfqb8h" path="res://strategies/projectile_movement/homing.gd" id="3_l6k4t"]
+[ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="4_151i0"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="5_1j7j2"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_nlrcw"]
+[ext_resource type="PackedScene" uid="uid://db8m7lns2hnlo" path="res://game/aoes/explosion/standard_explosion.tscn" id="7_cflwi"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="8_ogxcs"]
+[ext_resource type="Script" uid="uid://l8142vs0gken" path="res://strategies/projectile_target/universal.gd" id="9_34ajc"]
+[ext_resource type="PackedScene" uid="uid://bjdgq0enp4rhi" path="res://game/aoes/honey_aoe_floor/honey_aoe_floor.tscn" id="9_l6k4t"]
+[ext_resource type="Script" uid="uid://nxmo7fqigkr1" path="res://strategies/event/set_targets.gd" id="10_s0ri2"]
+[ext_resource type="PackedScene" uid="uid://cxdkd7r0krykq" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball_projectile_visual.tscn" id="11_a184g"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="12_u4l5u"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_sjrck"]
+[ext_resource type="AudioStream" uid="uid://b678eyacfbi5w" path="res://assets/characters/enemies/tortoise/sounds/sounds/launch_1.wav" id="14_saq77"]
+[ext_resource type="AudioStream" uid="uid://bp3qejcqmr4uy" path="res://assets/characters/enemies/tortoise/sounds/sounds/launch_2.wav" id="15_q6ht1"]
+[ext_resource type="AudioStream" uid="uid://bhc3yijge8el5" path="res://assets/characters/enemies/tortoise/sounds/sounds/launch_3.wav" id="16_8dwhj"]
+[ext_resource type="AudioStream" uid="uid://cyw5ornx5duws" path="res://assets/characters/enemies/tortoise/sounds/sounds/launch_4.wav" id="17_r1ysb"]
+[ext_resource type="AudioStream" uid="uid://d2yj7l1oojwjb" path="res://assets/characters/enemies/tortoise/sounds/sounds/launch_5.wav" id="18_ue2jv"]
+[ext_resource type="AudioStream" uid="uid://cwovv0k32001l" path="res://assets/characters/enemies/tortoise/sounds/sounds/launch_6.wav" id="19_gp6cl"]
+[ext_resource type="AudioStream" uid="uid://bqiv1gr76yiq" path="res://assets/characters/enemies/tortoise/sounds/sounds/launch_7.wav" id="20_71ylb"]
+[ext_resource type="AudioStream" uid="uid://bcbjelrtd217" path="res://assets/characters/enemies/tortoise/sounds/sounds/launch_8.wav" id="21_auh7g"]
+[ext_resource type="AudioStream" uid="uid://dy3nxbl8bte8f" path="res://assets/characters/enemies/tortoise/sounds/sounds/launch_9.wav" id="22_77ht7"]
+[ext_resource type="AudioStream" uid="uid://b7yb7mvor1wk6" path="res://assets/characters/enemies/tortoise/sounds/sounds/launch_10.wav" id="23_80bii"]
+[ext_resource type="AudioStream" uid="uid://djb6ln67a4y0f" path="res://assets/characters/enemies/toad/sounds/explosion_1.wav" id="24_vgmkt"]
+[ext_resource type="AudioStream" uid="uid://dvi4imcc4cwin" path="res://assets/characters/enemies/toad/sounds/explosion_2.wav" id="25_qo35i"]
+[ext_resource type="AudioStream" uid="uid://bcvaycao40nu2" path="res://assets/characters/enemies/toad/sounds/explosion_3.wav" id="26_cigyf"]
+[ext_resource type="AudioStream" uid="uid://cw4p6pg12v65w" path="res://assets/characters/enemies/toad/sounds/explosion_4.wav" id="27_xrigc"]
+[ext_resource type="AudioStream" uid="uid://b4csjhtruu2xy" path="res://assets/characters/enemies/toad/sounds/explosion_5.wav" id="28_wso83"]
+
+[sub_resource type="Curve" id="Curve_t83gg"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0.9139786), 0.0, 0.0, 0, 0, Vector2(0.9969605, 1.0035844), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_s8c5n"]
+radius = 0.15
+height = 0.3
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Animation" id="Animation_8m1wd"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.8810594, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s3316"]
+resource_name = "arc"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.22, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.06666667, 0.7772641, 3.261, -0.3333333, 0.063367605, 0.16661909, -0.03167476, 0, 0, 1.2283587, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.22, 3)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7465701, 0.8789668, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2, 0), Vector3(0, 3.2, 0), Vector3(0, 2.45, 0), Vector3(0, 1.615, 0), Vector3(0, 0.1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4rnvo"]
+_data = {
+&"RESET": SubResource("Animation_8m1wd"),
+&"arc": SubResource("Animation_s3316")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ulq41"]
+radius = 0.20835993
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lc58h"]
+streams_count = 10
+stream_0/stream = ExtResource("14_saq77")
+stream_1/stream = ExtResource("15_q6ht1")
+stream_2/stream = ExtResource("16_8dwhj")
+stream_3/stream = ExtResource("17_r1ysb")
+stream_4/stream = ExtResource("18_ue2jv")
+stream_5/stream = ExtResource("19_gp6cl")
+stream_6/stream = ExtResource("20_71ylb")
+stream_7/stream = ExtResource("21_auh7g")
+stream_8/stream = ExtResource("22_77ht7")
+stream_9/stream = ExtResource("23_80bii")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a7x8e"]
+random_pitch = 1.122462
+streams_count = 5
+stream_0/stream = ExtResource("24_vgmkt")
+stream_1/stream = ExtResource("25_qo35i")
+stream_2/stream = ExtResource("26_cigyf")
+stream_3/stream = ExtResource("27_xrigc")
+stream_4/stream = ExtResource("28_wso83")
+
+[node name="Projectile" unique_id=1633818281 node_paths=PackedStringArray("movement", "on_world_collision", "on_end_of_life", "on_created") instance=ExtResource("1_men5w")]
+damage = 50.0
+max_distance = 500.0
+lifetime = 10.0
+movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy"), NodePath("EventStrategies/OnWorldCollision/PlaySoundExplosion"), NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy2")]
+on_end_of_life = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
+on_created = [NodePath("EventStrategies/PlaySoundLaunch")]
+
+[node name="SpeedProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="0" unique_id=458337552]
+script = ExtResource("2_8v1p6")
+speed = SubResource("Curve_t83gg")
+metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
+
+[node name="HomingProjectileMovementStrategy" type="Node" parent="MovementStrategies" parent_id_path=PackedInt32Array(1478931537) index="1" unique_id=1739586745]
+script = ExtResource("3_l6k4t")
+velocity_change_rate = 7.0
+is_active = false
+metadata/_custom_type_script = "uid://dyqkij0tfqb8h"
+
+[node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="0" unique_id=1834750961]
+script = ExtResource("4_151i0")
+metadata/_custom_type_script = "uid://coqjh4l5f0121"
+
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="1" unique_id=1117107465]
+script = ExtResource("5_1j7j2")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy" index="0" unique_id=1439951592]
+script = ExtResource("6_nlrcw")
+entity_to_spawn = ExtResource("7_cflwi")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="PlaySoundExplosion" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="2" unique_id=1763081525 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("8_ogxcs")
+sound_manager = NodePath("../../../SoundEffectManager")
+sound_to_play = Array[String](["Explosion"])
+needs_to_be_persistent = true
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
+[node name="SpawnEntitiesEventStrategy2" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="3" unique_id=1429740762]
+script = ExtResource("5_1j7j2")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="EventStrategies/OnWorldCollision/SpawnEntitiesEventStrategy2" index="0" unique_id=74268029]
+script = ExtResource("6_nlrcw")
+entity_to_spawn = ExtResource("9_l6k4t")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="UniversalTargetingProjectileTargetStrategy" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="5" unique_id=1544527647]
+script = ExtResource("9_34ajc")
+target_property = 2
+metadata/_custom_type_script = "uid://l8142vs0gken"
+
+[node name="SetTargetsEventStrategy" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="6" unique_id=533739000 node_paths=PackedStringArray("targeting_strats")]
+script = ExtResource("10_s0ri2")
+targeting_strats = [NodePath("../UniversalTargetingProjectileTargetStrategy")]
+metadata/_custom_type_script = "uid://nxmo7fqigkr1"
+
+[node name="PlaySoundLaunch" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="7" unique_id=380746746 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("8_ogxcs")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = Array[String](["Launch"])
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
+[node name="Marker3D" type="Marker3D" parent="." index="2" unique_id=79965836]
+
+[node name="ShadowCast" type="MeshInstance3D" parent="Marker3D" index="0" unique_id=323644975]
+cast_shadow = 3
+mesh = SubResource("SphereMesh_s8c5n")
+skeleton = NodePath("../..")
+
+[node name="Magma_Ball" parent="Marker3D" index="1" unique_id=153719346 instance=ExtResource("11_a184g")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=1939498421]
+libraries/ = SubResource("AnimationLibrary_4rnvo")
+autoplay = &"arc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=550182054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8810594, 0)
+shape = SubResource("SphereShape3D_ulq41")
+
+[node name="SoundEffectManager" type="Node3D" parent="." index="5" unique_id=411973087]
+script = ExtResource("12_u4l5u")
+debug = true
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Launch" parent="SoundEffectManager" index="0" unique_id=1553656196 instance=ExtResource("13_sjrck")]
+stream = SubResource("AudioStreamRandomizer_lc58h")
+volume_db = -16.0
+
+[node name="Explosion" parent="SoundEffectManager" index="1" unique_id=1375112914 instance=ExtResource("13_sjrck")]
+stream = SubResource("AudioStreamRandomizer_a7x8e")
+volume_db = -13.0
