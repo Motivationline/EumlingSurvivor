@@ -176,6 +176,7 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
 	if health == 0: return
+	if not is_inside_tree(): return
 	var direction = Input.get_vector("left", "right", "up", "down")
 	var direction_3d = Vector3(direction.x, 0, direction.y)
 	if camera:
