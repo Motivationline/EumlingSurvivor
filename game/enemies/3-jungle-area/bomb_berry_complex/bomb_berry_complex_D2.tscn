@@ -49,8 +49,7 @@ state_if_distance_is_smaller = NodePath("../Chase Player/MoveTowardsEntityState"
 state_if_distance_is_larger = NodePath("../Idle/IdleWait")
 state_if_no_node_found = NodePath("../Idle/IdleWait")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Explode/request": 3,
-"parameters/Transition/transition_request": "idle"
+"para,eters/Transition/transition_request": "idle"
 })
 metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
@@ -62,6 +61,7 @@ wait_time = 0.0
 stop_distance = 1.0
 next_state = NodePath("../../Explode/SpawnEntitiesState")
 animation_trigger = Dictionary[String, Variant]({
+"parameters/Explode/request": 3,
 "parameters/Transition/transition_request": "run"
 })
 metadata/_custom_type_script = "uid://dmskxets4soyo"
@@ -72,7 +72,7 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 script = ExtResource("6_3m2jy")
 start_delay = 1.55
 end_delay = 4.2
-next_state = NodePath("../../DecideDistanceState")
+next_state = NodePath("../../Chase Player/MoveTowardsEntityState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Explode/request": 1,
 "parameters/Transition/transition_request": "idle"

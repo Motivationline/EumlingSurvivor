@@ -4,8 +4,8 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_m4jnl"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="3_dihus"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_jjf5r"]
-[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-Jungle/environment/spikes.tscn" id="3_m4jnl"]
-[ext_resource type="PackedScene" uid="uid://drtoi8fygioae" path="res://game/enemies/3-Jungle/tortoise/tortoise_enemy.tscn" id="5_o0jls"]
+[ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-jungle-area/environment/spikes.tscn" id="3_m4jnl"]
+[ext_resource type="PackedScene" uid="uid://bvmgm4ankvew7" path="res://game/enemies/3-jungle-area/tortoise_complex/tortoise_complex_D2.tscn" id="5_jjf5r"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_o0jls"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_uekqq"]
@@ -1135,8 +1135,9 @@ wait_time = 2.25
 [node name="Extend" parent="Enemies/Traps2/SpikeTrap40/SoundEffectManager" parent_id_path=PackedInt32Array(863252081, 212820490) index="0" unique_id=1092056025]
 bus = &"Master"
 
-[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1961314702 instance=ExtResource("5_o0jls")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015109062, 0, -1.1404842)
+[node name="tortoise_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1898691 node_paths=PackedStringArray("on_hurt") instance=ExtResource("5_jjf5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.090909)
+on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
 
 [node name="ExitArea" parent="." index="8" unique_id=784184729 node_paths=PackedStringArray("parent") instance=ExtResource("3_dihus")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
