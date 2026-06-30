@@ -1,78 +1,78 @@
-[gd_scene format=4 uid="uid://ch75ted576gk8"]
+[gd_scene format=4 uid="uid://c0i7eu66w1s30"]
 
-[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_4yckm"]
-[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="2_ay312"]
-[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_vbct3"]
-[ext_resource type="PackedScene" uid="uid://ko8u3dvlq1cu" path="res://assets/characters/enemies/boss_turtle/boss_turtle_prefab.tscn" id="4_7yf88"]
-[ext_resource type="PackedScene" uid="uid://bc6uvrrkins5w" path="res://game/projectiles/turtle_boss_projectile/sand_wave.tscn" id="4_vwaej"]
-[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="5_bjcu4"]
-[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_akffo"]
-[ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="6_xpc6d"]
-[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="7_bjcu4"]
-[ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="8_s16t0"]
-[ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="8_w3w5t"]
-[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_geoho"]
-[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="9_w3w5t"]
-[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_f7jcw"]
-[ext_resource type="PackedScene" uid="uid://el73drd8s58x" path="res://game/enemies/5-Beach/turtle_boss/turtle_boss_shell.tscn" id="11_wbfbl"]
-[ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="12_2wn3u"]
-[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="12_6p51q"]
-[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="14_7nljg"]
-[ext_resource type="Material" uid="uid://b0n6j2o6h1iq3" path="res://assets/characters/enemies/boss_turtle/material/cell_shader-boss_turtle.tres" id="18_xpc6d"]
-[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="20_oe1bn"]
-[ext_resource type="AudioStream" uid="uid://tmat8rj8l6mt" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_1.wav" id="21_4dvdo"]
-[ext_resource type="AudioStream" uid="uid://bb2e4uvr806k3" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_1.wav" id="21_asnmi"]
-[ext_resource type="AudioStream" uid="uid://cu67rmnokr8uu" path="res://assets/characters/enemies/boss_turtle/sounds/slam_1.wav" id="21_ybxiq"]
-[ext_resource type="AudioStream" uid="uid://b7wsda5npc5qa" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_2.wav" id="22_08co4"]
-[ext_resource type="AudioStream" uid="uid://b2ledrarkxt7u" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_2.wav" id="22_8exau"]
-[ext_resource type="AudioStream" uid="uid://bgdqg8x3y5lay" path="res://assets/characters/enemies/boss_turtle/sounds/slam_2.wav" id="22_gaoxt"]
-[ext_resource type="AudioStream" uid="uid://bpkn7voq3hycj" path="res://assets/characters/enemies/boss_turtle/sounds/slam_3.wav" id="23_6tb3e"]
-[ext_resource type="AudioStream" uid="uid://cmrwh0lq226ak" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_3.wav" id="23_d46gt"]
-[ext_resource type="AudioStream" uid="uid://dxm5vd7u72x05" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_3.wav" id="23_rftic"]
-[ext_resource type="AudioStream" uid="uid://bs7cuqgv8ibb5" path="res://assets/characters/enemies/boss_turtle/sounds/slam_4.wav" id="24_2o50i"]
-[ext_resource type="AudioStream" uid="uid://b6cdmcfhqmtpq" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_4.wav" id="24_3y0u6"]
-[ext_resource type="AudioStream" uid="uid://cu46rmgas2f8u" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_4.wav" id="24_b0mh3"]
-[ext_resource type="AudioStream" uid="uid://cbnglu38bcf1j" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_5.wav" id="25_fp5du"]
-[ext_resource type="AudioStream" uid="uid://b8o6fq2xmatco" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_5.wav" id="25_tkyv4"]
-[ext_resource type="AudioStream" uid="uid://cy6c11i4a8xkp" path="res://assets/characters/enemies/boss_turtle/sounds/slam_5.wav" id="25_yabel"]
-[ext_resource type="AudioStream" uid="uid://cn1jegr1dl5gl" path="res://assets/characters/enemies/boss_turtle/sounds/slam_6.wav" id="26_mxtkc"]
-[ext_resource type="AudioStream" uid="uid://btwtifm74ikna" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_6.wav" id="26_xpw16"]
-[ext_resource type="AudioStream" uid="uid://dba6ecxt5462i" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_6.wav" id="26_ybxiq"]
-[ext_resource type="AudioStream" uid="uid://bpltuqnt1ne1u" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_1.wav" id="39_fm7gj"]
-[ext_resource type="AudioStream" uid="uid://c6qlcrrofpmly" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_2.wav" id="40_2n4mo"]
-[ext_resource type="AudioStream" uid="uid://ywpq7xbcov11" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_3.wav" id="41_sy06o"]
-[ext_resource type="AudioStream" uid="uid://81ssin1jcfek" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_11.wav" id="41_ylwfx"]
-[ext_resource type="AudioStream" uid="uid://clfsd040m11kd" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_4.wav" id="42_ppofl"]
-[ext_resource type="AudioStream" uid="uid://bdta2kfcy1ktf" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_12.wav" id="42_ule0m"]
-[ext_resource type="AudioStream" uid="uid://cn4mum5ss53vp" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_5.wav" id="43_eh8p5"]
-[ext_resource type="AudioStream" uid="uid://435gjyx11axm" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_6.wav" id="44_cp8kv"]
-[ext_resource type="AudioStream" uid="uid://cre4gm7bgxx8" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_7.wav" id="47_8r6si"]
-[ext_resource type="AudioStream" uid="uid://bpow70de50iw" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_8.wav" id="48_hdg3k"]
-[ext_resource type="AudioStream" uid="uid://bk2yogo8dcckb" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_9.wav" id="49_6gexj"]
-[ext_resource type="AudioStream" uid="uid://bttibqri55rcl" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_10.wav" id="50_imc7q"]
-[ext_resource type="AudioStream" uid="uid://gbeh4kkghcft" path="res://assets/characters/enemies/boss_turtle/sounds/death_1.wav" id="51_bfut7"]
-[ext_resource type="AudioStream" uid="uid://d0yosk51ipau0" path="res://assets/characters/enemies/boss_turtle/sounds/death_2.wav" id="52_xpc6d"]
-[ext_resource type="AudioStream" uid="uid://tif8g3euova0" path="res://assets/characters/enemies/boss_turtle/sounds/death_3.wav" id="53_6famx"]
-[ext_resource type="AudioStream" uid="uid://c3goh7cgq2acm" path="res://assets/characters/enemies/boss_turtle/sounds/death_4.wav" id="54_dw58v"]
-[ext_resource type="AudioStream" uid="uid://c1mumrvmlgicm" path="res://assets/characters/enemies/boss_turtle/sounds/death_5.wav" id="55_5p8cl"]
-[ext_resource type="AudioStream" uid="uid://xig2donq56by" path="res://assets/characters/enemies/boss_turtle/sounds/death_6.wav" id="56_lau27"]
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_5oich"]
+[ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="2_2mmhs"]
+[ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="3_0dss8"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="4_wicas"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_ngllv"]
+[ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="6_5oich"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="7_vtaa4"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="8_v5lqj"]
+[ext_resource type="PackedScene" uid="uid://bc6uvrrkins5w" path="res://game/projectiles/turtle_boss_projectile/sand_wave.tscn" id="9_gvfvq"]
+[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="10_gcb6c"]
+[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="11_cup7s"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="12_sv3jh"]
+[ext_resource type="PackedScene" uid="uid://bokgqyu6w4pn6" path="res://game/enemies/5-beach-area/turtle_boss/turtle_boss_shell_easy.tscn" id="13_5oich"]
+[ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="14_w1u1b"]
+[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="15_n1xo5"]
+[ext_resource type="PackedScene" uid="uid://ko8u3dvlq1cu" path="res://assets/characters/enemies/boss_turtle/boss_turtle_prefab.tscn" id="17_c0d6o"]
+[ext_resource type="Material" uid="uid://b0n6j2o6h1iq3" path="res://assets/characters/enemies/boss_turtle/material/cell_shader-boss_turtle.tres" id="18_ydyq2"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="19_7efrx"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="20_p4l7v"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="21_ktw5p"]
+[ext_resource type="AudioStream" uid="uid://bb2e4uvr806k3" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_1.wav" id="22_rnetr"]
+[ext_resource type="AudioStream" uid="uid://b7wsda5npc5qa" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_2.wav" id="23_tm4hx"]
+[ext_resource type="AudioStream" uid="uid://cmrwh0lq226ak" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_3.wav" id="24_7oyxn"]
+[ext_resource type="AudioStream" uid="uid://b6cdmcfhqmtpq" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_4.wav" id="25_uani7"]
+[ext_resource type="AudioStream" uid="uid://b8o6fq2xmatco" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_5.wav" id="26_tmf71"]
+[ext_resource type="AudioStream" uid="uid://btwtifm74ikna" path="res://assets/characters/enemies/boss_turtle/sounds/reveal_6.wav" id="27_3x50t"]
+[ext_resource type="AudioStream" uid="uid://cu67rmnokr8uu" path="res://assets/characters/enemies/boss_turtle/sounds/slam_1.wav" id="28_jhw41"]
+[ext_resource type="AudioStream" uid="uid://bgdqg8x3y5lay" path="res://assets/characters/enemies/boss_turtle/sounds/slam_2.wav" id="29_232jd"]
+[ext_resource type="AudioStream" uid="uid://bpkn7voq3hycj" path="res://assets/characters/enemies/boss_turtle/sounds/slam_3.wav" id="30_4i2yn"]
+[ext_resource type="AudioStream" uid="uid://bs7cuqgv8ibb5" path="res://assets/characters/enemies/boss_turtle/sounds/slam_4.wav" id="31_sk7qm"]
+[ext_resource type="AudioStream" uid="uid://cy6c11i4a8xkp" path="res://assets/characters/enemies/boss_turtle/sounds/slam_5.wav" id="32_c6ue6"]
+[ext_resource type="AudioStream" uid="uid://cn1jegr1dl5gl" path="res://assets/characters/enemies/boss_turtle/sounds/slam_6.wav" id="33_m0m5r"]
+[ext_resource type="AudioStream" uid="uid://tmat8rj8l6mt" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_1.wav" id="34_fcxw8"]
+[ext_resource type="AudioStream" uid="uid://b2ledrarkxt7u" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_2.wav" id="35_qw616"]
+[ext_resource type="AudioStream" uid="uid://dxm5vd7u72x05" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_3.wav" id="36_r2fwn"]
+[ext_resource type="AudioStream" uid="uid://cu46rmgas2f8u" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_4.wav" id="37_nupyx"]
+[ext_resource type="AudioStream" uid="uid://cbnglu38bcf1j" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_5.wav" id="38_4fyt0"]
+[ext_resource type="AudioStream" uid="uid://dba6ecxt5462i" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_6.wav" id="39_k2rnr"]
+[ext_resource type="AudioStream" uid="uid://bpltuqnt1ne1u" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_1.wav" id="40_iyltr"]
+[ext_resource type="AudioStream" uid="uid://c6qlcrrofpmly" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_2.wav" id="41_yeddf"]
+[ext_resource type="AudioStream" uid="uid://81ssin1jcfek" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_11.wav" id="42_6kltr"]
+[ext_resource type="AudioStream" uid="uid://bdta2kfcy1ktf" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_12.wav" id="43_7gi6y"]
+[ext_resource type="AudioStream" uid="uid://ywpq7xbcov11" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_3.wav" id="44_x0ok6"]
+[ext_resource type="AudioStream" uid="uid://clfsd040m11kd" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_4.wav" id="45_dxn3q"]
+[ext_resource type="AudioStream" uid="uid://cn4mum5ss53vp" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_5.wav" id="46_u3ay3"]
+[ext_resource type="AudioStream" uid="uid://435gjyx11axm" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_6.wav" id="47_btwg6"]
+[ext_resource type="AudioStream" uid="uid://cre4gm7bgxx8" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_7.wav" id="48_qss7s"]
+[ext_resource type="AudioStream" uid="uid://bpow70de50iw" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_8.wav" id="49_g81hs"]
+[ext_resource type="AudioStream" uid="uid://bk2yogo8dcckb" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_9.wav" id="50_g8w31"]
+[ext_resource type="AudioStream" uid="uid://bttibqri55rcl" path="res://assets/characters/enemies/boss_turtle/sounds/crawl_10.wav" id="51_vdhcx"]
+[ext_resource type="AudioStream" uid="uid://gbeh4kkghcft" path="res://assets/characters/enemies/boss_turtle/sounds/death_1.wav" id="52_dew4c"]
+[ext_resource type="AudioStream" uid="uid://d0yosk51ipau0" path="res://assets/characters/enemies/boss_turtle/sounds/death_2.wav" id="53_yr8lq"]
+[ext_resource type="AudioStream" uid="uid://tif8g3euova0" path="res://assets/characters/enemies/boss_turtle/sounds/death_3.wav" id="54_05js7"]
+[ext_resource type="AudioStream" uid="uid://c3goh7cgq2acm" path="res://assets/characters/enemies/boss_turtle/sounds/death_4.wav" id="55_xawml"]
+[ext_resource type="AudioStream" uid="uid://c1mumrvmlgicm" path="res://assets/characters/enemies/boss_turtle/sounds/death_5.wav" id="56_b0lxu"]
+[ext_resource type="AudioStream" uid="uid://xig2donq56by" path="res://assets/characters/enemies/boss_turtle/sounds/death_6.wav" id="57_dgpxt"]
 
 [sub_resource type="Resource" id="Resource_wbfbl"]
-script = ExtResource("9_w3w5t")
+script = ExtResource("4_wicas")
 attribute = "incoming_damage_multiplier"
 value = 0.2
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_geoho"]
-script = ExtResource("5_bjcu4")
+script = ExtResource("10_gcb6c")
 metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 
 [sub_resource type="Resource" id="Resource_f7jcw"]
-script = ExtResource("6_akffo")
+script = ExtResource("11_cup7s")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
 
 [sub_resource type="Resource" id="Resource_17bdl"]
-script = ExtResource("9_w3w5t")
+script = ExtResource("4_wicas")
 attribute = "incoming_damage_multiplier"
 value = 1.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
@@ -87,7 +87,7 @@ _surfaces = [{
 "index_count": 600,
 "index_data": PackedByteArray("VQACADUAOwA1AAIAVQA1AEAAOwBBADUACABAADUACAA1AEEAQwBBADsAQgAIAEEAQwBWAEEAQgBBAFYAVwBWAEMAWABCAFYAVwBEAFYAWABWAEQABwBEAFcAPABYAEQABwBZAEQAPABEAFkAWgBZAAcAWwBaAAcAWwAHAFwAWgBdAFkAWwADAFoAXQBaAAMAWwA6AAMAXQADAF4AWwA4ADoAXQBeAF8AYABbAFwAWwBgADgAYABcADkAYQA4AGAAYQBgADkAYQABADgAYQA5ADcAYQA2AAEAYgBhADcAYQBiADYAYgA3AAIAVQBiAAIAVQA2AGIAVQAAADYAVQA/AAAAVQBjAD8AVQBAAGMAYwBAAAQAZAA/AGMAYwAEAGQAZAAFAD8AZAAEAD0AZAA+AAUAZAA9AGUAZABlAD4AZQA9AGYAZwA+AGUAZQBmAGcAZwAGAD4AZwBmADwAZwBfAAYAZwA8AGgAZwBoAF8AaAA8AFkAXQBfAGgAaABZAF0ARQAKAAsARQALAAwARQBGAAoARgANAAoARQAMAEcARwAMAA4AaQBGAEUAaQBFAEcARgBJAA0ASQAQAA0AaQBqAEYAagBJAEYARwAOAE8ATwAOABUAaQBHAGsAawBHAE8AbABqAGkAbABpAGsATwAVAG0AbQAVABQAawBPAG4AbgBPAG0AbABrAE0ATQBrAG4AbABIAGoATQBvAGwASABsAG8ATQBuAHAATQBwAG8AbgBtAHEAcABuAHEAcQBtAE4AbQAUAE4AcABxAHIAcABzAG8AcAByAHMAcgBxAHQAcQBOAHQAFAB1AE4AFAATAHUATgB2AHQATgB1AHYAcgB0AAkACQB0AHYAcgAJAHcAcgB3AHMACQB2AHgAeQB2AHUAeAB2AHkACQB4AHoACQB6AHcAeAB5AHoAEwB7AHUAeQB1AHsAEwASAHsAEQB7ABIAEQB8AHsAeQB7AHwADwB8ABEAfQB6AHkAeQB8AEsAfQB5AEsATAB6AH0ATAB9AEsATAB3AHoADwBKAHwASgBLAHwATABLAH4ASgB+AEsAfwB3AEwAfwBMAH4AfwBzAHcAgAB+AEoAfwB+AIAAgQBKAA8AgABKAIEAgQAPABAASQCBABAAggBzAH8AggB/AIAAggBvAHMASABvAIIAgwCBAEkAgwCAAIEAggCAAIMASACCAIMAagCDAEkASACDAGoAFgAYAIQAGgCEABgAFgAXABgAGgAYABwAhQAXABYAhgAaABwAhQAZABcAhgAcAB4AGwAZAIUAIACGAB4AGwAdABkAIAAeACIAHwAdABsAJAAgACIAHwAhAB0AJAAiACYAhwAhAB8AiAAkACYAhwAjACEAiAAmACgAJQAjAIcAJQCIACgAJQAnACMAJQAoACcAiQAqACsAigArACoAiQBQACoAigAqAFEAKQBQAIkALACKAFEAKQAtAFAALABRAC4ALwAtACkAMAAsAC4ALwBSAC0AMAAuAFMAiwBSAC8AjAAwAFMAiwBUAFIAjABTADIAMQBUAIsANACMADIAMQAzAFQANAAyAI0AjgAzADEAjgA0AI0AjgCPADMAjgCNAI8A"),
 "lods": [0.20591508, PackedByteArray("AAACADUAAAA2AAIANgA3AAIANwA2AAEANwABADgANwA4ADkAOgA5ADgAOgAHADkAOgADAAcABwADAAYAOwA1AAIABwAGADwABgA9ADwABgA+AD0ABAA9AD4ABAA+AAUABAAFAD8APwBAAAQAAABAAD8AAAA1AEAACABAADUACAA1AEEAOwBBADUAQgAIAEEAQwBBADsAQgBBAEQAQwBEAEEAPABCAEQABwBEAEMAPABEAAcARQAKAAsARQALAAwARQBGAAoARgANAAoARQAMAEcARwAMAA4ASABGAEUASABFAEcARgBJAA0ASABJAEYASQAQAA0ASQBKABAASABKAEkASgAPABAADwBKABEASgBLABEASwASABEASwATABIATABLAEoASABMAEoASwAJABMACQBLAEwATQBMAEgATQAJAEwASABHAE0ATgATAAkAFAATAE4ATgAVABQATwBOAAkATwAVAE4ATQBPAAkATQBHAE8ATwAOABUARwAOAE8AFgAXABgAFgAZABcAGgAWABgAGwAZABYAGgAYABwAGwAdABkAGgAcAB4AHwAdABsAIAAaAB4AHwAhAB0AIAAeACIAHwAjACEAJAAgACIAJQAjAB8AJAAiACYAJQAnACMAJAAmACgAJQAoACcAJQAkACgAKQAqACsALAArACoAKQBQACoALAAqAFEAKQAtAFAALABRAC4ALwAtACkAMAAsAC4ALwBSAC0AMAAuAFMANAAwAFMANABTADIAMQBSAC8AMQA0ADIAMQBUAFIAMQAyADMAMQAzAFQA"), 1.1035392, PackedByteArray("AAABAAIAAwACAAEAAAACAAQAAAAEAAUABAAGAAUAAwAHAAIABwADAAYABwAIAAIABwAGAAgACQAKAAsACQALAAwACQANAAoACQAMAA4ADQAPABAACQAPAA0ADwAJABEACQASABEACQATABIAFAATAAkADgAUAAkADgAVABQAFgAXABgAFgAZABcAGgAWABgAGwAZABYAGgAYABwAGwAdABkAGgAcAB4AHwAdABsAIAAaAB4AHwAhAB0AIAAeACIAHwAjACEAJAAgACIAJQAjAB8AJAAiACYAJQAnACMAJAAmACgAJQAoACcAJQAkACgAKQAqACsALAArACoAKQAtACoALAAqAC4ALwAtACkAMAAsAC4AMQAtAC8AMAAuADIAMQAzAC0AMQAyADMANAAwADIAMQA0ADIA")],
-"material": ExtResource("18_xpc6d"),
+"material": ExtResource("18_ydyq2"),
 "name": "TutrtleMat",
 "primitive": 3,
 "skin_data": PackedByteArray("DwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAADwAAAAAAAAD//wAAAAAAAA8AAAAAAAAA//8AAAAAAAAPAAAAAAAAAP//AAAAAAAA"),
@@ -107,62 +107,62 @@ height = 2.1870117
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fm7gj"]
 streams_count = 6
-stream_0/stream = ExtResource("21_asnmi")
-stream_1/stream = ExtResource("22_08co4")
-stream_2/stream = ExtResource("23_d46gt")
-stream_3/stream = ExtResource("24_3y0u6")
-stream_4/stream = ExtResource("25_tkyv4")
-stream_5/stream = ExtResource("26_xpw16")
+stream_0/stream = ExtResource("22_rnetr")
+stream_1/stream = ExtResource("23_tm4hx")
+stream_2/stream = ExtResource("24_7oyxn")
+stream_3/stream = ExtResource("25_uani7")
+stream_4/stream = ExtResource("26_tmf71")
+stream_5/stream = ExtResource("27_3x50t")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_asnmi"]
 streams_count = 6
-stream_0/stream = ExtResource("21_ybxiq")
-stream_1/stream = ExtResource("22_gaoxt")
-stream_2/stream = ExtResource("23_6tb3e")
-stream_3/stream = ExtResource("24_2o50i")
-stream_4/stream = ExtResource("25_yabel")
-stream_5/stream = ExtResource("26_mxtkc")
+stream_0/stream = ExtResource("28_jhw41")
+stream_1/stream = ExtResource("29_232jd")
+stream_2/stream = ExtResource("30_4i2yn")
+stream_3/stream = ExtResource("31_sk7qm")
+stream_4/stream = ExtResource("32_c6ue6")
+stream_5/stream = ExtResource("33_m0m5r")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gaoxt"]
 streams_count = 6
-stream_0/stream = ExtResource("21_4dvdo")
-stream_1/stream = ExtResource("22_8exau")
-stream_2/stream = ExtResource("23_rftic")
-stream_3/stream = ExtResource("24_b0mh3")
-stream_4/stream = ExtResource("25_fp5du")
-stream_5/stream = ExtResource("26_ybxiq")
+stream_0/stream = ExtResource("34_fcxw8")
+stream_1/stream = ExtResource("35_qw616")
+stream_2/stream = ExtResource("36_r2fwn")
+stream_3/stream = ExtResource("37_nupyx")
+stream_4/stream = ExtResource("38_4fyt0")
+stream_5/stream = ExtResource("39_k2rnr")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ylwfx"]
 streams_count = 12
-stream_0/stream = ExtResource("39_fm7gj")
-stream_1/stream = ExtResource("40_2n4mo")
-stream_2/stream = ExtResource("41_sy06o")
-stream_3/stream = ExtResource("42_ppofl")
-stream_4/stream = ExtResource("43_eh8p5")
-stream_5/stream = ExtResource("44_cp8kv")
-stream_6/stream = ExtResource("47_8r6si")
-stream_7/stream = ExtResource("48_hdg3k")
-stream_8/stream = ExtResource("49_6gexj")
-stream_9/stream = ExtResource("50_imc7q")
-stream_10/stream = ExtResource("41_ylwfx")
-stream_11/stream = ExtResource("42_ule0m")
+stream_0/stream = ExtResource("40_iyltr")
+stream_1/stream = ExtResource("41_yeddf")
+stream_2/stream = ExtResource("44_x0ok6")
+stream_3/stream = ExtResource("45_dxn3q")
+stream_4/stream = ExtResource("46_u3ay3")
+stream_5/stream = ExtResource("47_btwg6")
+stream_6/stream = ExtResource("48_qss7s")
+stream_7/stream = ExtResource("49_g81hs")
+stream_8/stream = ExtResource("50_g8w31")
+stream_9/stream = ExtResource("51_vdhcx")
+stream_10/stream = ExtResource("42_6kltr")
+stream_11/stream = ExtResource("43_7gi6y")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5swtp"]
 streams_count = 6
-stream_0/stream = ExtResource("51_bfut7")
-stream_1/stream = ExtResource("52_xpc6d")
-stream_2/stream = ExtResource("53_6famx")
-stream_3/stream = ExtResource("54_dw58v")
-stream_4/stream = ExtResource("55_5p8cl")
-stream_5/stream = ExtResource("56_lau27")
+stream_0/stream = ExtResource("52_dew4c")
+stream_1/stream = ExtResource("53_yr8lq")
+stream_2/stream = ExtResource("54_05js7")
+stream_3/stream = ExtResource("55_xawml")
+stream_4/stream = ExtResource("56_b0lxu")
+stream_5/stream = ExtResource("57_dgpxt")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2wn3u"]
 radius = 0.27678946
 
-[node name="TurtleBoss" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_4yckm")]
+[node name="TurtleBoss" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "node_with_animation_tree") instance=ExtResource("1_5oich")]
 collision_layer = 64
 collision_mask = 65
-health = 1000.0
+health = 500.0
 incoming_damage_multiplier = 1.5
 hitbox = NodePath("Visuals/Hitbox")
 hurtbox = NodePath("Visuals/Hurtbox")
@@ -176,7 +176,7 @@ show_in_ui = true
 initial_state = NodePath("InitialShellStart")
 
 [node name="InitialShellStart" type="Node" parent="StateMachine" index="0" unique_id=1890555065 node_paths=PackedStringArray("events", "next_state")]
-script = ExtResource("8_w3w5t")
+script = ExtResource("2_2mmhs")
 events = [NodePath("AdjustAttributesEventStrategy")]
 next_state = NodePath("../InitialWaitTime")
 animation_trigger = Dictionary[String, Variant]({
@@ -186,21 +186,21 @@ animation_trigger = Dictionary[String, Variant]({
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
 [node name="AdjustAttributesEventStrategy" type="Node" parent="StateMachine/InitialShellStart" index="0" unique_id=413247047]
-script = ExtResource("8_s16t0")
-changes = Array[ExtResource("9_w3w5t")]([SubResource("Resource_wbfbl")])
+script = ExtResource("3_0dss8")
+changes = Array[ExtResource("4_wicas")]([SubResource("Resource_wbfbl")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
 [node name="InitialWaitTime" type="Node" parent="StateMachine" index="1" unique_id=1041845556 node_paths=PackedStringArray("next_state")]
-script = ExtResource("7_bjcu4")
+script = ExtResource("5_ngllv")
 random = true
 min_wait_time = 1.5
 max_wait_time = 2.5
 next_state = NodePath("../ChooseStateBasedOnCost")
-resource_cost = -10.0
+resource_cost = -5.0
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="ShellStart" type="Node" parent="StateMachine" index="2" unique_id=1628526716 node_paths=PackedStringArray("events", "next_state")]
-script = ExtResource("8_w3w5t")
+script = ExtResource("2_2mmhs")
 events = [NodePath("AdjustAttributesEventStrategy")]
 next_state = NodePath("../ChooseStateBasedOnCost")
 animation_trigger = Dictionary[String, Variant]({
@@ -210,12 +210,12 @@ animation_trigger = Dictionary[String, Variant]({
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
 [node name="AdjustAttributesEventStrategy" type="Node" parent="StateMachine/ShellStart" index="0" unique_id=1891133070]
-script = ExtResource("8_s16t0")
-changes = Array[ExtResource("9_w3w5t")]([SubResource("Resource_wbfbl")])
+script = ExtResource("3_0dss8")
+changes = Array[ExtResource("4_wicas")]([SubResource("Resource_wbfbl")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
-[node name="ChooseStateBasedOnCost" type="Node" parent="StateMachine" index="3" unique_id=562994267 node_paths=PackedStringArray("fallback", "states")]
-script = ExtResource("6_xpc6d")
+[node name="ChooseStateBasedOnCost" type="Node" parent="StateMachine" index="3" unique_id=1579882945 node_paths=PackedStringArray("fallback", "states")]
+script = ExtResource("6_5oich")
 fallback = NodePath("../Normal/SpawnEntitiesState")
 selection = "HIGHEST"
 states = [NodePath("../Normal/SpawnEntitiesState"), NodePath("../LaunchShell/LookAtPlayerState")]
@@ -227,7 +227,7 @@ metadata/_custom_type_script = "uid://bfy1ig4u2piu5"
 [node name="Normal" type="Node" parent="StateMachine" index="4" unique_id=1522493653]
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine/Normal" index="0" unique_id=1944138119 node_paths=PackedStringArray("next_state")]
-script = ExtResource("2_ay312")
+script = ExtResource("7_vtaa4")
 start_delay = 1.0
 end_delay = 0.4
 next_state = NodePath("../WaitForTimeXState")
@@ -238,19 +238,19 @@ animation_trigger = Dictionary[String, Variant]({
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/Normal/SpawnEntitiesState" index="0" unique_id=1795186278 node_paths=PackedStringArray("spawn_position")]
-script = ExtResource("3_vbct3")
+script = ExtResource("8_v5lqj")
 spawn_position = NodePath("../../../../Visuals/Marker3D")
-damage = 100.0
-max_distance = 10.0
+damage = 50.0
+max_distance = 6.0
 lifetime = 2.0
-entity_to_spawn = ExtResource("4_vwaej")
+entity_to_spawn = ExtResource("9_gvfvq")
 amount_of_spawns = 60
 target_strategy = SubResource("Resource_geoho")
 rotation_strategy = SubResource("Resource_f7jcw")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="WaitForTimeXState" type="Node" parent="StateMachine/Normal" index="1" unique_id=2077457527 node_paths=PackedStringArray("next_state")]
-script = ExtResource("7_bjcu4")
+script = ExtResource("5_ngllv")
 wait_time = 2.0
 random = true
 min_wait_time = 1.0
@@ -264,12 +264,12 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 [node name="LaunchShell" type="Node" parent="StateMachine" index="5" unique_id=1595853023]
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine/LaunchShell" index="0" unique_id=1401893524 node_paths=PackedStringArray("next_state")]
-script = ExtResource("12_6p51q")
+script = ExtResource("12_sv3jh")
 next_state = NodePath("../SpawnShell")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="SpawnShell" type="Node" parent="StateMachine/LaunchShell" index="1" unique_id=727713856 node_paths=PackedStringArray("next_state")]
-script = ExtResource("2_ay312")
+script = ExtResource("7_vtaa4")
 end_delay = 2.0
 next_state = NodePath("../TurtleNaked")
 animation_trigger = Dictionary[String, Variant]({
@@ -279,12 +279,12 @@ animation_trigger = Dictionary[String, Variant]({
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/LaunchShell/SpawnShell" index="0" unique_id=1189513944]
-script = ExtResource("3_vbct3")
-entity_to_spawn = ExtResource("11_wbfbl")
+script = ExtResource("8_v5lqj")
+entity_to_spawn = ExtResource("13_5oich")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="TurtleNaked" type="Node" parent="StateMachine/LaunchShell" index="2" unique_id=361992033 node_paths=PackedStringArray("events", "next_state")]
-script = ExtResource("8_w3w5t")
+script = ExtResource("2_2mmhs")
 events = [NodePath("AdjustAttributesEventStrategy")]
 next_state = NodePath("../../Naked/FleeFromPlayerState")
 animation_trigger = Dictionary[String, Variant]({
@@ -293,18 +293,20 @@ animation_trigger = Dictionary[String, Variant]({
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
 [node name="AdjustAttributesEventStrategy" type="Node" parent="StateMachine/LaunchShell/TurtleNaked" index="0" unique_id=1620633316]
-script = ExtResource("8_s16t0")
-changes = Array[ExtResource("9_w3w5t")]([SubResource("Resource_17bdl")])
+script = ExtResource("3_0dss8")
+changes = Array[ExtResource("4_wicas")]([SubResource("Resource_17bdl")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
 [node name="Naked" type="Node" parent="StateMachine" index="6" unique_id=327813577]
 
 [node name="FleeFromPlayerState" type="Node" parent="StateMachine/Naked" index="0" unique_id=1264551 node_paths=PackedStringArray("next_state")]
-script = ExtResource("12_2wn3u")
+script = ExtResource("14_w1u1b")
 wait_time = 0.2
 flee_distance = 100.0
 time_based = true
 target_flee_time = 5.0
+speed_override = 0.9
+speed_override_active = true
 next_state = NodePath("../MoveTowardsEntityState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/TurtleLocomotion/transition_request": "walk"
@@ -312,7 +314,7 @@ animation_trigger = Dictionary[String, Variant]({
 metadata/_custom_type_script = "uid://mycfudgv475a"
 
 [node name="MoveTowardsEntityState" type="Node" parent="StateMachine/Naked" index="1" unique_id=377656284 node_paths=PackedStringArray("next_state")]
-script = ExtResource("14_7nljg")
+script = ExtResource("15_n1xo5")
 wait_time = 0.0
 stop_distance = 0.0
 rotation_speed = 8.0
@@ -321,28 +323,27 @@ entity_name = "Shell"
 remove_target_entity = true
 speed_override = 2.0
 speed_override_active = true
-debug_show_path = true
 next_state = NodePath("../BackIntoShell")
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="BackIntoShell" type="Node" parent="StateMachine/Naked" index="2" unique_id=78432022 node_paths=PackedStringArray("next_state")]
-script = ExtResource("7_bjcu4")
+script = ExtResource("5_ngllv")
 next_state = NodePath("../../ShellStart")
-resource_cost = -15.0
+resource_cost = -10.0
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Locomotion/transition_request": "shell",
 "parameters/LocomotionShell/transition_request": "reveal"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("4_7yf88")]
+[node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("17_c0d6o")]
 
 [node name="shell" parent="Visuals/boss_turtle/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1575923269, 728901535) index="0" unique_id=192907853]
 mesh = SubResource("ArrayMesh_6famx")
 
 [node name="Marker3D" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=2140617436]
 
-[node name="Hitbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=2070853154 instance=ExtResource("9_geoho")]
+[node name="Hitbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=2070853154 instance=ExtResource("19_7efrx")]
 collision_layer = 32
 collision_mask = 8
 damage = 50.0
@@ -353,7 +354,7 @@ can_hit = 4
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.5, -0.24560547)
 shape = SubResource("CapsuleShape3D_s16t0")
 
-[node name="Hurtbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=762751782 instance=ExtResource("10_f7jcw")]
+[node name="Hurtbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=762751782 instance=ExtResource("20_p4l7v")]
 collision_layer = 64
 collision_mask = 4
 attached_to = 7
@@ -363,23 +364,23 @@ can_be_hit_by = 3
 transform = Transform3D(1, 0, 0, 0, 2.9802322e-08, 1, 0, -1, 2.9802322e-08, 0, 0.5, -0.23754883)
 shape = SubResource("CapsuleShape3D_w3w5t")
 
-[node name="Reveal" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=800119527 instance=ExtResource("20_oe1bn")]
+[node name="Reveal" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=800119527 instance=ExtResource("21_ktw5p")]
 stream = SubResource("AudioStreamRandomizer_fm7gj")
 volume_db = -11.2
 
-[node name="Slam" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=1014397162 instance=ExtResource("20_oe1bn")]
+[node name="Slam" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=1014397162 instance=ExtResource("21_ktw5p")]
 stream = SubResource("AudioStreamRandomizer_asnmi")
 volume_db = -6.0
 
-[node name="ShellShoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=479375374 instance=ExtResource("20_oe1bn")]
+[node name="ShellShoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=479375374 instance=ExtResource("21_ktw5p")]
 stream = SubResource("AudioStreamRandomizer_gaoxt")
 volume_db = -6.0
 
-[node name="Crawl" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=442189775 instance=ExtResource("20_oe1bn")]
+[node name="Crawl" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=442189775 instance=ExtResource("21_ktw5p")]
 stream = SubResource("AudioStreamRandomizer_ylwfx")
 volume_db = -10.0
 
-[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=641712560 instance=ExtResource("20_oe1bn")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=641712560 instance=ExtResource("21_ktw5p")]
 stream = SubResource("AudioStreamRandomizer_5swtp")
 volume_db = -10.0
 

@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://c1tx1asc3eg5u"]
 
-[ext_resource type="PackedScene" uid="uid://dx0p51i2xocu1" path="res://game/enemies/0-Tutorial/dummy_base.tscn" id="1_spq6f"]
+[ext_resource type="PackedScene" uid="uid://dx0p51i2xocu1" path="res://game/enemies/0-tutorial-area/dummy_base.tscn" id="1_spq6f"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_pbdvb"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="2_vbjhq"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_eogt4"]
-[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-Jungle/sniper/sniper_projectile_enemy.tscn" id="4_xrvyw"]
+[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle-area/sniper/sniper_projectile_enemy.tscn" id="4_xrvyw"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="5_pbdvb"]
-[ext_resource type="PackedScene" uid="uid://dawdgb5ljl7x6" path="res://game/enemies/0-Tutorial/dummy_move.tscn" id="5_xrvyw"]
+[ext_resource type="PackedScene" uid="uid://dawdgb5ljl7x6" path="res://game/enemies/0-tutorial-area/dummy_move.tscn" id="5_xrvyw"]
 
 [node name="DummyShoot" unique_id=1898691 node_paths=PackedStringArray("on_death") instance=ExtResource("1_spq6f")]
 on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
