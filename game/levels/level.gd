@@ -110,17 +110,24 @@ func clear_level():
 	state = LEVEL_STATE.FINISHED
 	
 	if is_boss_level:
+		spawn_portals_or_end()
+
+func spawn_portals_or_end():
+	if Data.game_data.difficulty < 4:
 		spawn_portals()
+	else:
+		end_level()
+
 
 func spawn_portals():
-	for pIndex in PORTALS.size():
-		if portal_positions.size() < pIndex: break
-		var portal = PORTALS[pIndex].instantiate() as Node3D
-		var pos = portal_positions[pIndex]
+	for p_index in PORTALS.size():
+		if portal_positions.size() < p_index: break
+		var portal = PORTALS[p_index].instantiate() as Node3D
+		var pos = portal_positions[p_index]
 		add_child(portal)
 		portal.global_position = pos.global_position
 		portal.global_rotation = pos.global_rotation
-		portal.entered.connect(entered_portal.bind(pIndex))
+		portal.entered.connect(entered_portal.bind(p_index))
 
 func entered_portal(id: int):
 	Data.game_data.levels_to_load = AreaPicker.choose_area_levels_from_index(id)
