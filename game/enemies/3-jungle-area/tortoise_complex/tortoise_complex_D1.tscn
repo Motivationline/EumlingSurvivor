@@ -3,11 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_tu2ns"]
 [ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="2_h6n4k"]
 [ext_resource type="PackedScene" uid="uid://cgtlnuch0nmwm" path="res://assets/characters/enemies/tortoise/tortoise_prefab.tscn" id="2_j0ork"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_xkbo4"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_y4gxm"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_gnrjs"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_l7fh3"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_1inio"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="4_sxxkw"]
-[ext_resource type="PackedScene" uid="uid://c03op2rrwafaq" path="res://game/enemies/3-jungle/tortoise/tortoise_projectile.tscn" id="5_1inio"]
+[ext_resource type="PackedScene" uid="uid://c03op2rrwafaq" path="res://game/enemies/3-jungle-area/tortoise/tortoise_projectile.tscn" id="5_1inio"]
 [ext_resource type="PackedScene" uid="uid://d1dloljb16rae" path="res://game/aoes/tortoise_complex_aoe/jungle_tortoise_complex/tortoise_complex_aoe.tscn" id="6_uujif"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_vbkmk"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="8_2gkp5"]
@@ -16,9 +18,137 @@
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="9_h6n4k"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="12_2gkp5"]
 
+[sub_resource type="Resource" id="Resource_6il4h"]
+script = ExtResource("2_xkbo4")
+attribute = "health"
+value = 650.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_xago8"]
+script = ExtResource("2_xkbo4")
+attribute = "health"
+value = 1370.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_qmpt2"]
+script = ExtResource("2_xkbo4")
+attribute = "health"
+value = 200.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_cotbt"]
+script = ExtResource("2_xkbo4")
+attribute = "health"
+value = 870.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_o7jqg"]
+script = ExtResource("3_gnrjs")
+introduction = Array[ExtResource("2_xkbo4")]([SubResource("Resource_qmpt2")])
+easy = Array[ExtResource("2_xkbo4")]([SubResource("Resource_6il4h")])
+medium = Array[ExtResource("2_xkbo4")]([SubResource("Resource_cotbt")])
+hard = Array[ExtResource("2_xkbo4")]([SubResource("Resource_xago8")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_cb8t0"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_mdneh"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_54k7l"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 35.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_b33ii"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_vat17"]
+script = ExtResource("3_gnrjs")
+introduction = Array[ExtResource("2_xkbo4")]([SubResource("Resource_54k7l")])
+easy = Array[ExtResource("2_xkbo4")]([SubResource("Resource_cb8t0")])
+medium = Array[ExtResource("2_xkbo4")]([SubResource("Resource_b33ii")])
+hard = Array[ExtResource("2_xkbo4")]([SubResource("Resource_mdneh")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_1rqwf"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 35.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_2sjow"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_xwmif"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 25.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_3n8im"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_xvwgy"]
+script = ExtResource("3_gnrjs")
+introduction = Array[ExtResource("2_xkbo4")]([SubResource("Resource_xwmif")])
+easy = Array[ExtResource("2_xkbo4")]([SubResource("Resource_1rqwf")])
+medium = Array[ExtResource("2_xkbo4")]([SubResource("Resource_3n8im")])
+hard = Array[ExtResource("2_xkbo4")]([SubResource("Resource_2sjow")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="Resource" id="Resource_wwsu4"]
 script = ExtResource("6_vbkmk")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[sub_resource type="Resource" id="Resource_a6ev1"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_4wsug"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 80.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_v5d1d"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_hb2vx"]
+script = ExtResource("2_xkbo4")
+attribute = "damage"
+value = 55.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_374wd"]
+script = ExtResource("3_gnrjs")
+introduction = Array[ExtResource("2_xkbo4")]([SubResource("Resource_v5d1d")])
+easy = Array[ExtResource("2_xkbo4")]([SubResource("Resource_a6ev1")])
+medium = Array[ExtResource("2_xkbo4")]([SubResource("Resource_hb2vx")])
+hard = Array[ExtResource("2_xkbo4")]([SubResource("Resource_4wsug")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xxr7p"]
 radius = 0.439081
@@ -29,6 +159,7 @@ radius = 0.39281
 
 [node name="tortoise_complex_D1" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_tu2ns")]
 health = 400.0
+difficulty_scaler = SubResource("Resource_o7jqg")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
@@ -102,6 +233,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="spawnerMain" type="Node3D" parent="StateMachine/Chase_and_Attack/SpawnInnerRing" index="0" unique_id=1296606649]
 script = ExtResource("4_1inio")
+difficulty_scaler = SubResource("Resource_vat17")
 entity_to_spawn = ExtResource("6_uujif")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
@@ -115,6 +247,7 @@ ignore_relative_rotation = true
 spawn_position = NodePath("../../../Marker3D")
 max_distance = 10.0
 lifetime = 1.8
+difficulty_scaler = SubResource("Resource_xvwgy")
 entity_to_spawn = ExtResource("5_1inio")
 amount_of_spawns = 5
 rotation_strategy = SubResource("Resource_wwsu4")
@@ -135,6 +268,7 @@ collision_mask = 8
 damage = 30.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_374wd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=480062776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4510494, 0)

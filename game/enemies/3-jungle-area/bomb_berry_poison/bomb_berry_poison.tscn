@@ -226,7 +226,8 @@ state_if_distance_is_smaller = NodePath("../ChasePlayer/MoveTowardsPlayerState")
 state_if_distance_is_larger = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
 state_if_no_node_found = NodePath("../RandomWalk/MoveRandomOnNavMeshState")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Explode/request": 3
+"parameters/Explode/request": 3,
+"parameters/Transition/transition_request": "run"
 })
 metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
@@ -237,6 +238,9 @@ script = ExtResource("3_6mw7y")
 wait_time = 0.0
 min_distance = 3.0
 next_state = NodePath("../../DecideDistanceState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "run"
+})
 metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 
 [node name="ChasePlayer" type="Node" parent="StateMachine" index="2" unique_id=517939569]
@@ -246,6 +250,9 @@ script = ExtResource("4_6mw7y")
 wait_time = 0.0
 stop_distance = 1.0
 next_state = NodePath("../../Explode/SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "run"
+})
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="Explode" type="Node" parent="StateMachine" index="3" unique_id=2131173170]
