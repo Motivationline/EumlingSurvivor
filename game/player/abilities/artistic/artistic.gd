@@ -22,14 +22,12 @@ func _ready() -> void:
 	super ()
 	if eumling_scaler: eumling_scaler.setup_and_apply(self)
 
+var level: Level
+
 func level_start() -> void:
 	clear_points()
 	strength_ability_instance = strength_ability.instantiate()
-	var level = get_tree().get_first_node_in_group("Level")
-	if level:
-		level.add_child(strength_ability_instance)
-		strength_ability_instance.global_position.y = owner.global_position.y
-
+	level = get_tree().get_first_node_in_group("Level")
 
 func _update():
 	if amt_eumlings == 0 and points.size() > 0:
@@ -94,6 +92,10 @@ func clear_points():
 
 func update_area(area: ArtisticAbility, polygon_points: PackedVector2Array):
 	area.polygon = polygon_points
+	if level:
+		if level != strength_ability_instance.get_parent():
+			level.add_child(strength_ability_instance)
+			strength_ability_instance.global_position.y = owner.global_position.y
 
 	# reduce hitbox polygons (currently not needed, but maybe again when we up the amount of points in the poly again)
 	# var hitbox_polygon = CollisionPolygon3D.new()
