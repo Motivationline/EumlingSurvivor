@@ -9,6 +9,7 @@ static var areas = [
 	{
 		name = "Jungle",
 		folder = "3-Jxx-Jungle",
+		type = Enum.EUMLING_TYPE.ARTISTIC,
 		levels = {
 			0: ["J01", "J02", "J04", "J05", "J07", "J10", "J11", "J12", "J13", "J14", "J15", "J16", "J19"],
 			1: ["J01_D1", "J02_D1", "J04_D1", "J05_D1", "J07_D1", "J10_D1", "J15_D1", "J16_D1", "J17", "J18", "J19_D1", "J20"],
@@ -25,6 +26,7 @@ static var areas = [
 	{
 		name = "Volcano",
 		folder = "6-Vxx-Volcano",
+		type = Enum.EUMLING_TYPE.CONVENTIONAL,
 		levels = {
 			0: ["V01","V02","V06","V07","V13","V14","V15","V16","V18","V05","V20","V21"],
 			1: ["V01_D1","V02_D1","V06_D1","V07_D1","V08","V09","V11","V12","V13_D1","V14_D1","V17","V18_D1","V22","V23","V05_D1","V20_D1","V21_D1"],
@@ -42,6 +44,7 @@ static var areas = [
 	{
 		name = "Beach",
 		folder = "5-Bxx-Beach",
+		type = Enum.EUMLING_TYPE.SOCIAL,
 		levels = {
 			0: ["B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B09", "B10", "B12", "B13", "B15", "B16", "B17", "B19", "B20"],
 			1: ["B01_D1", "B02_D1", "B03_D1", "B04_D1", "B05_D1", "B06_D1", "B07_D1", "B08_D1", "B09_D1", "B10_D1", "B12_D1", "B13_D1", "B15_D1", "B16_D1", "B17_D1", "B18_D1", "B19_D1", "B20_D1"],
@@ -75,10 +78,14 @@ func setup():
 	show()
 	$JungleIsland.grab_focus.call_deferred()
 
+static var current_area
+
 static func choose_area_levels_from_index(index: int) -> Array:
 	return choose_area_levels(AreaPicker.areas[index])
 
 static func choose_area_levels(area) -> Array:
+	current_area = area
+	current_area.type = Enum.EUMLING_TYPE.values().pick_random()
 	var level_names: Array = []
 	var difficulty: int = Data.game_data.difficulty
 	var amount_levels = difficulty + 3
@@ -95,6 +102,7 @@ static func choose_area_levels(area) -> Array:
 	var boss_level = area.boss_levels[difficulty]
 	level_names.append({id = folder_name + boss_level + ".tscn", difficulty = difficulty})
 	return level_names
+
 
 func _on_debug_button_pressed() -> void:
 	level_choice_overlay.setup()

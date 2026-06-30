@@ -18,6 +18,11 @@ func setup(upgrade: Upgrade, delay: float = 0.0, sound_pos_offset: float = 0.0):
 	if texture:
 		card.find_child("UpgradeImage").texture = texture
 	var tracker = card.find_child("Tracker");
+	if upgrade.path < 0:
+		tracker.hide()
+		card.find_child("Tag").hide()
+		card.find_child("TrackerPointsBackground").hide()
+
 	var tracker_step = Data.game_data.upgrade_path_progress.get(upgrade.path, 0)
 	if tracker:
 		for i in tracker.get_child_count():

@@ -134,7 +134,11 @@ func end_level():
 
 func unlock_mini_eumling():
 	remove_child(caged_eumling)
-	var eumling_type = Enum.EUMLING_TYPE.values().pick_random()
+	var eumling_type: Enum.EUMLING_TYPE
+	if AreaPicker.current_area:
+		eumling_type = AreaPicker.current_area.type
+	else:
+		eumling_type = Enum.EUMLING_TYPE.values().pick_random()
 	Data.unlocked_eumling(eumling_type)
 	var popup = EUMLING_CELEBRATION.instantiate()
 	popup.find_child("Label").text = "%s eumling has been rescued! Yay!" % Enum.EUMLING_TYPE.keys()[eumling_type]
