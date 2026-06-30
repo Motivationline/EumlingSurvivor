@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://lymk1cp5icg4"]
 
 [ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_cvp71"]
-[ext_resource type="PackedScene" uid="uid://ciil6gb70pro7" path="res://game/enemies/6-volcano/magma_bomb_complex/magma_bomb_complex_D1.tscn" id="2_wjg4u"]
+[ext_resource type="PackedScene" uid="uid://ldbsffwxr25j" path="res://game/enemies/3-Jungle/bomb_berry_complex/bomb_berry_complex_D2.tscn" id="2_cvp71"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_35njp"]
-[ext_resource type="PackedScene" uid="uid://druej6e5xqhd8" path="res://game/enemies/6-volcano/magma_bomb_complex/magma_bomb_complex_D2.tscn" id="3_srnvc"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cvp71"]
 vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 0.75, 1, -5, -0.5, 1, -5, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, 4.75, -4.5, 1, -4.5)
@@ -17,11 +16,8 @@ edge_max_error = 0.25
 [node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
 navigation_mesh = SubResource("NavigationMesh_cvp71")
 
-[node name="magma_bomb_complex" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_wjg4u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2505863, 0, -2.304465)
-
-[node name="magma_bomb_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1204521290 instance=ExtResource("3_srnvc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1171594, 0, -3.3837428)
+[node name="bomb_berry_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_cvp71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3630915)
 
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_35njp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

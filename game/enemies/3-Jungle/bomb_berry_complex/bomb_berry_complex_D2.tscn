@@ -48,6 +48,10 @@ distance_to_check = 2.0
 state_if_distance_is_smaller = NodePath("../Chase Player/MoveTowardsEntityState")
 state_if_distance_is_larger = NodePath("../Idle/IdleWait")
 state_if_no_node_found = NodePath("../Idle/IdleWait")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Explode/request": 3,
+"parameters/Transition/transition_request": "idle"
+})
 metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
 [node name="Chase Player" type="Node" parent="StateMachine" index="2" unique_id=1972843585]
@@ -70,7 +74,8 @@ start_delay = 1.55
 end_delay = 4.2
 next_state = NodePath("../../DecideDistanceState")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Explode/request": 1
+"parameters/Explode/request": 1,
+"parameters/Transition/transition_request": "idle"
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
