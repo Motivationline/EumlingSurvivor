@@ -85,7 +85,7 @@ static func choose_area_levels(area) -> Array:
 	var folder_name: String = "res://game/levels/"
 	if area.folder:
 		folder_name += area.folder + "/"
-a	var levels = area.levels[difficulty].duplicate()
+	var levels = area.levels[difficulty].duplicate()
 	levels.shuffle()
 	for i in amount_levels:
 		if levels.size() == 0: break
