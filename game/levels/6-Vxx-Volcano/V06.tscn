@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="2_csshj"]
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/obstalce_stone/ObstacleStone_Volcano_Material_Base_color.png" id="3_xch84"]
 [ext_resource type="PackedScene" uid="uid://cm8xm0j7ly1d" path="res://game/enemies/6-volcano/magma_toad/magma_toad.tscn" id="5_tc51u"]
-[ext_resource type="LightmapGIData" uid="uid://cqywtj2s0ijfu" path="res://game/levels/6-Vxx-Volcano/lightmaps2/V06.lmbake" id="7_f03s2"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="7_xch84"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cpmku"]
@@ -174,9 +173,6 @@ parent = NodePath("..")
 
 [node name="MagmaToad" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("5_tc51u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9502131, 0, -3.025934)
-
-[node name="LightmapGI" parent="." index="8" unique_id=1520578396]
-light_data = ExtResource("7_f03s2")
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(614762836) index="0" unique_id=1814085372 instance=ExtResource("7_xch84")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2.700603, 0, 1.5740204)
