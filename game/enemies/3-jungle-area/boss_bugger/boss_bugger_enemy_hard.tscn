@@ -1,19 +1,18 @@
 [gd_scene format=3 uid="uid://cjkfwsnjoqk6y"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_c86we"]
-[ext_resource type="Script" uid="uid://cu4a5yufjkwhv" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_enemy.gd" id="2_61ew2"]
+[ext_resource type="Script" uid="uid://cu4a5yufjkwhv" path="res://game/enemies/3-jungle-area/boss_bugger/boss_bugger_enemy.gd" id="2_61ew2"]
 [ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="3_p8oh0"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="4_bopa3"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_7gnyv"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_0irvu"]
 [ext_resource type="PackedScene" uid="uid://b1084wmkhn2en" path="res://game/aoes/boss_bugger_aoe_attack/boss_bugger_aoe.tscn" id="7_irclo"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_5mb7f"]
-[ext_resource type="PackedScene" uid="uid://ddty5phcxxvsi" path="res://game/enemies/3-jungle/bomb_berry_poison/bomb_berry_poison.tscn" id="8_bopa3"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="9_bhsd8"]
-[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle/sniper/sniper_projectile_enemy.tscn" id="10_5vwgk"]
+[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle-area/sniper/sniper_projectile_enemy.tscn" id="10_5vwgk"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="11_movh1"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="12_5klh4"]
-[ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="13_p8oh0"]
+[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="12_aywxq"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="14_4d6kv"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="15_85lgk"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="16_ekuuj"]
@@ -47,31 +46,23 @@
 script = ExtResource("11_movh1")
 metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 
-[sub_resource type="Resource" id="Resource_bopa3"]
-script = ExtResource("13_p8oh0")
-max_negative = -20.0
-max_positive = 20.0
-metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
+[sub_resource type="Resource" id="Resource_cao0i"]
+script = ExtResource("12_aywxq")
+max_negative = -15.0
+max_positive = 15.0
 
 [sub_resource type="Resource" id="Resource_csjgc"]
 script = ExtResource("11_movh1")
 metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 
-[sub_resource type="Resource" id="Resource_7gnyv"]
-script = ExtResource("13_p8oh0")
-max_negative = -20.0
-max_positive = 20.0
-metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
+[sub_resource type="Resource" id="Resource_aywxq"]
+script = ExtResource("12_aywxq")
+max_negative = -15.0
+max_positive = 15.0
 
 [sub_resource type="Resource" id="Resource_c2xk5"]
 script = ExtResource("11_movh1")
 metadata/_custom_type_script = "uid://yd5ytc70xwp6"
-
-[sub_resource type="Resource" id="Resource_0irvu"]
-script = ExtResource("13_p8oh0")
-max_negative = -20.0
-max_positive = 20.0
-metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
 
 [sub_resource type="Resource" id="Resource_4qoll"]
 script = ExtResource("11_movh1")
@@ -109,7 +100,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(0, 0)
+shader_parameter/wobble = Vector2(-0.09952288, 0.009756825)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l4iyu"]
 streams_count = 5
@@ -167,11 +158,11 @@ initial_state = NodePath("ChooseStateBasedOnCost")
 
 [node name="ChooseStateBasedOnCost" type="Node" parent="StateMachine" index="0" unique_id=1409606173 node_paths=PackedStringArray("fallback", "states")]
 script = ExtResource("3_p8oh0")
-fallback = NodePath("../Recharge/SpawnEntitiesState")
+fallback = NodePath("../Recharge/WaitForTimeXState")
 selection = "RANDOM"
 states = [NodePath("../MeleeAttack/MoveTowardsPlayerState"), NodePath("../TripleShot/LookAtPlayerState1"), NodePath("../BigBomba/AimForBig")]
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Salve/request": 3
+"parameters/Transition/transition_request": "normal"
 })
 
 [node name="MeleeAttack" type="Node" parent="StateMachine" index="1" unique_id=849448412]
@@ -208,18 +199,7 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Recharge" type="Node" parent="StateMachine" index="2" unique_id=1782100878]
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Recharge" index="0" unique_id=1635212961 node_paths=PackedStringArray("next_state")]
-script = ExtResource("5_7gnyv")
-next_state = NodePath("../WaitForTimeXState")
-metadata/_custom_type_script = "uid://c1j50itv0hwo2"
-
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/Recharge/SpawnEntitiesState" index="0" unique_id=1353193784]
-script = ExtResource("6_0irvu")
-offset_distance = 1.0
-entity_to_spawn = ExtResource("8_bopa3")
-metadata/_custom_type_script = "uid://1e84fd3xrrff"
-
-[node name="WaitForTimeXState" type="Node" parent="StateMachine/Recharge" index="1" unique_id=818271355 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/Recharge" index="0" unique_id=818271355 node_paths=PackedStringArray("next_state")]
 script = ExtResource("8_5mb7f")
 wait_time = 1.6
 next_state = NodePath("../../ChooseStateBasedOnCost")
@@ -233,21 +213,24 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="LookAtPlayerState1" type="Node" parent="StateMachine/TripleShot" index="0" unique_id=726364628 node_paths=PackedStringArray("next_state")]
 script = ExtResource("9_bhsd8")
-wait_time = 0.15
+wait_time = 0.5
 rotation_speed = 20.0
 speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../Initial Shot")
 resource_cost = 3.0
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "wind up"
+})
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="Initial Shot" type="Node" parent="StateMachine/TripleShot" index="1" unique_id=651062366 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_7gnyv")
-start_delay = 0.5
+start_delay = 0.15
 next_state = NodePath("../LookAtPlayerState2")
 resource_cost = 1.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Salve/request": 1
+"parameters/OneShot/request": 1
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -255,9 +238,8 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 script = ExtResource("6_0irvu")
 offset_distance = 1.6
 entity_to_spawn = ExtResource("10_5vwgk")
-amount_of_spawns = 3
 target_strategy = SubResource("Resource_p8oh0")
-rotation_strategy = SubResource("Resource_bopa3")
+rotation_strategy = SubResource("Resource_cao0i")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="LookAtPlayerState2" type="Node" parent="StateMachine/TripleShot" index="2" unique_id=1133360198 node_paths=PackedStringArray("next_state")]
@@ -278,7 +260,7 @@ start_delay = 0.15
 next_state = NodePath("../LookAtPlayerState3")
 resource_cost = 1.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Salve/request": 1
+"parameters/OneShot/request": 1
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -286,9 +268,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 script = ExtResource("6_0irvu")
 offset_distance = 1.6
 entity_to_spawn = ExtResource("10_5vwgk")
-amount_of_spawns = 3
+amount_of_spawns = 2
 target_strategy = SubResource("Resource_csjgc")
-rotation_strategy = SubResource("Resource_7gnyv")
+rotation_strategy = SubResource("Resource_aywxq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="LookAtPlayerState3" type="Node" parent="StateMachine/TripleShot" index="4" unique_id=718120052 node_paths=PackedStringArray("next_state")]
@@ -309,7 +291,7 @@ start_delay = 0.15
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = 1.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Salve/request": 1
+"parameters/OneShot/request": 1
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -319,7 +301,7 @@ offset_distance = 1.6
 entity_to_spawn = ExtResource("10_5vwgk")
 amount_of_spawns = 3
 target_strategy = SubResource("Resource_c2xk5")
-rotation_strategy = SubResource("Resource_0irvu")
+rotation_strategy = SubResource("Resource_aywxq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="BigBomba" type="Node" parent="StateMachine" index="4" unique_id=1660743935]
@@ -348,7 +330,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 script = ExtResource("6_0irvu")
 offset_distance = 0.6
 entity_to_spawn = ExtResource("10_5vwgk")
-amount_of_spawns = 20
+amount_of_spawns = 12
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -376,7 +358,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 script = ExtResource("6_0irvu")
 offset_distance = 0.6
 entity_to_spawn = ExtResource("10_5vwgk")
-amount_of_spawns = 20
+amount_of_spawns = 16
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -440,85 +422,18 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=604116715 instance=ExtResource("16_ekuuj")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(604116715, 2004708351) index="0" unique_id=358126580]
-bones/0/position = Vector3(0, 1.499749, -4.4329166e-22)
-bones/0/rotation = Quaternion(0.99907374, -1.9663242e-09, -4.5653252e-08, -0.043030974)
-bones/1/position = Vector3(-9.36474e-16, 1.4997488, -1.0246877e-08)
-bones/1/rotation = Quaternion(0.043031022, -2.9774714e-08, -5.215079e-09, 0.99907374)
-bones/1/scale = Vector3(0.9661274, 1.0713955, 0.96612746)
-bones/2/position = Vector3(-2.2890662e-11, 1.4968531, -0.00025046914)
-bones/2/rotation = Quaternion(0.04303105, 1.1909886e-07, 1.1970327e-09, 0.99907374)
-bones/2/scale = Vector3(0.9661274, 1.0713954, 0.96612746)
-bones/4/position = Vector3(-1.7706776e-09, 1.2752535, -0.019374713)
-bones/4/rotation = Quaternion(0.98634726, -3.903239e-09, 4.801102e-10, -0.16467926)
-bones/5/position = Vector3(-3.0720757e-09, 1.1119078, -0.075483)
-bones/5/rotation = Quaternion(0.9453753, -4.9212787e-08, 0, 0.32598415)
-bones/6/position = Vector3(-1.5701225e-08, 1.0050228, 0.008176234)
-bones/6/rotation = Quaternion(0.8615363, -4.7362366e-08, -3.2817233e-09, 0.5076959)
-bones/7/position = Vector3(-2.8125285e-08, 0.92665464, 0.14757304)
-bones/7/rotation = Quaternion(0.7431952, -4.575946e-08, -1.2662069e-08, 0.6690747)
-bones/8/position = Vector3(-3.6126227e-08, 0.9114109, 0.30253386)
-bones/8/rotation = Quaternion(0.5950902, -4.231773e-08, -2.1534891e-08, 0.80365896)
-bones/9/position = Vector3(-3.8801716e-08, 0.96132123, 0.46618724)
-bones/9/rotation = Quaternion(0.2639215, -3.1651517e-08, -3.5395882e-08, 0.9645442)
-bones/10/position = Vector3(-3.1052355e-08, 1.0903257, 0.54250413)
-bones/10/rotation = Quaternion(0.10302348, 1.6690212e-08, 4.4455177e-08, -0.9946789)
-bones/11/position = Vector3(-1.5593482e-08, 1.2549003, 0.5080515)
-bones/11/rotation = Quaternion(0.45600253, -5.365699e-10, 4.7483546e-08, -0.88997847)
-bones/12/position = Vector3(-1.2071459e-09, 1.354976, 0.36901134)
-bones/12/rotation = Quaternion(0.7471673, -5.7079113e-08, -3.2713825e-08, -0.664636)
-bones/13/position = Vector3(-2.276008e-08, 1.3356187, 0.20388715)
-bones/13/rotation = Quaternion(0.96263146, -2.8817253e-08, -4.709296e-08, -0.27081504)
-bones/14/position = Vector3(-3.5460836e-08, 1.2021618, 0.122327134)
-bones/14/rotation = Quaternion(0.9841063, 1.0154454e-08, -5.749353e-08, 0.17758094)
-bones/15/position = Vector3(-2.9109454e-08, 1.0571955, 0.17639166)
-bones/15/rotation = Quaternion(0.80726457, 4.7079904e-08, -5.6307982e-08, 0.5901898)
-bones/16/position = Vector3(-6.0508754e-09, 1.0084528, 0.3294551)
-bones/16/rotation = Quaternion(0.46774337, 7.451781e-08, -4.3775348e-08, 0.88386434)
-bones/17/position = Vector3(-0.2242329, 1.3542602, -0.08845414)
-bones/17/rotation = Quaternion(-0.7783599, 0.00021064762, 0.00026115897, 0.6278182)
-bones/18/position = Vector3(-0.2242329, 1.3542603, -0.08845414)
-bones/18/rotation = Quaternion(-0.6566234, 0.211695, -0.18956448, 0.69863886)
-bones/19/position = Vector3(-0.24529767, 1.4998844, -0.0015714931)
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(604116715, 138527474) index="0" unique_id=189602144]
 bones/19/rotation = Quaternion(-0.52084875, 0.5621063, -0.47125188, -0.4366633)
-bones/20/position = Vector3(-0.7441626, 1.4998841, 0.03649435)
-bones/21/position = Vector3(-1.2430274, 1.4998841, 0.07456017)
-bones/22/position = Vector3(-0.13967307, 1.4073917, 0.11156171)
 bones/22/rotation = Quaternion(-0.39565715, 0.65627927, -0.5502035, -0.33170652)
-bones/23/position = Vector3(-0.58211917, 1.4073913, 0.34513503)
-bones/24/position = Vector3(-1.0245652, 1.4073913, 0.5787084)
-bones/25/position = Vector3(0.2242329, 1.3542602, -0.08845414)
-bones/25/rotation = Quaternion(-0.7783599, -0.00021064762, -0.00026115897, 0.6278182)
-bones/26/position = Vector3(0.2242329, 1.3542603, -0.088454135)
-bones/26/rotation = Quaternion(-0.6663307, -0.1907181, 0.16880538, 0.7008101)
-bones/27/position = Vector3(-0.08559791, 1.3232927, 0.0691871)
-bones/28/position = Vector3(-0.24635461, 1.1617683, 0.08139903)
-bones/29/position = Vector3(-0.3914069, 1.0528538, 0.06918709)
-bones/30/position = Vector3(-0.35764232, 1.0175186, 0.0691871)
-bones/31/position = Vector3(0.24529767, 1.4998844, -0.0015714931)
-bones/32/position = Vector3(0.7441626, 1.4998841, 0.03649435)
-bones/33/position = Vector3(1.2430274, 1.4998841, 0.07456017)
-bones/34/position = Vector3(0.13967304, 1.4073917, 0.11156171)
-bones/35/position = Vector3(0.58211917, 1.4073914, 0.34513503)
-bones/36/position = Vector3(1.0245652, 1.4073914, 0.5787083)
 
-[node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0" unique_id=160595167]
-transform = Transform3D(0.9661274, 8.419079e-09, 2.3001571e-07, 1.2213537e-08, 1.0674276, -0.08306995, -2.2981665e-07, 0.09212114, 0.96254957, -2.2890662e-11, 1.4968531, -0.00025046914)
-
-[node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" index="0" unique_id=450284212]
+[node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" parent_id_path=PackedInt32Array(604116715, 160595167) index="0" unique_id=450284212]
 material_override = SubResource("ShaderMaterial_p8oh0")
 
 [node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2" unique_id=525651175]
-transform = Transform3D(-0.07608365, -0.9971015, -5.066395e-07, -0.17398794, 0.013276516, -0.98465836, 0.9818042, -0.074916236, -0.17449379, -0.24529767, 1.4998844, -0.0015714931)
+transform = Transform3D(-0.07608365, -0.9971015, -5.066395e-07, -0.17398794, 0.013276516, -0.98465836, 0.9818042, -0.074916236, -0.17449379, -0.24529767, 2.003276, -0.0015778542)
 
 [node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="3" unique_id=2129402415]
-transform = Transform3D(-0.46685243, -0.88433516, -2.9802322e-07, -0.15431094, 0.08146322, -0.98465824, 0.8707679, -0.45969012, -0.17449379, -0.13967307, 1.4073917, 0.11156171)
-
-[node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="4" unique_id=1002716327]
-transform = Transform3D(-0.07608401, 0.99710137, 5.066394e-07, 5.9604638e-08, -4.7683713e-07, 0.99999994, 0.9971013, 0.07608398, 0, 0.24529767, 1.4998844, -0.0015714931)
-
-[node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="5" unique_id=831899753]
-transform = Transform3D(-0.46685255, 0.8843351, 3.5762787e-07, -5.9604645e-08, -4.7683716e-07, 1, 0.8843351, 0.46685258, 2.9802322e-07, 0.13967304, 1.4073917, 0.11156171)
+transform = Transform3D(-0.46685243, -0.88433516, -2.9802322e-07, -0.15431094, 0.08146322, -0.98465824, 0.8707679, -0.45969012, -0.17449379, -0.13967305, 1.9208276, 0.11912686)
 
 [node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=642813446 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_l4iyu")
