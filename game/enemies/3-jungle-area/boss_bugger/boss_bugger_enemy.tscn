@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_jhi1l"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="2_3utvs"]
-[ext_resource type="Script" uid="uid://cu4a5yufjkwhv" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
+[ext_resource type="Script" uid="uid://cu4a5yufjkwhv" path="res://game/enemies/3-jungle-area/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_ectag"]
 [ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="3_unkqv"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="3_vgowq"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="4_vgowq"]
 [ext_resource type="PackedScene" uid="uid://b1084wmkhn2en" path="res://game/aoes/boss_bugger_aoe_attack/boss_bugger_aoe.tscn" id="5_0vw1d"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="7_aud5x"]
-[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle/sniper/sniper_projectile_enemy.tscn" id="8_aud5x"]
+[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle-area/sniper/sniper_projectile_enemy.tscn" id="8_aud5x"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_wwgv0"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_fi40l"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_csjgc"]
@@ -154,7 +154,7 @@ end_delay = 0.4
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = 3.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/hit/request": "Fire"
+"parameters/hit/request": 1
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -175,7 +175,7 @@ wait_time = 1.6
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = -9.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Suck/request": "Fire"
+"parameters/Suck/request": 1
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
@@ -196,11 +196,11 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="Initial Shot" type="Node" parent="StateMachine/TripleShot" index="1" unique_id=1397142453 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
-start_delay = 0.5
+end_delay = 0.33
 next_state = NodePath("../LookAtPlayerState2")
 resource_cost = 1.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/OneShot/request": "Fire"
+"parameters/OneShot/request": 1
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -219,13 +219,13 @@ speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState3")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/OneShot/request": "Fire"
+"parameters/OneShot/request": 1
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="SpawnEntitiesState3" type="Node" parent="StateMachine/TripleShot" index="3" unique_id=1204023992 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
-start_delay = 0.15
+end_delay = 0.17
 next_state = NodePath("../LookAtPlayerState3")
 resource_cost = 1.0
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
@@ -245,13 +245,13 @@ speed_override = 0.0
 speed_override_active = true
 next_state = NodePath("../SpawnEntitiesState4")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/OneShot/request": "Fire"
+"parameters/OneShot/request": 1
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="SpawnEntitiesState4" type="Node" parent="StateMachine/TripleShot" index="5" unique_id=550938610 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_ectag")
-start_delay = 0.15
+end_delay = 0.17
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = 1.0
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
@@ -281,7 +281,7 @@ start_delay = 0.5
 next_state = NodePath("../AimForBig2")
 resource_cost = 2.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Boom/request": "Fire"
+"parameters/Boom/request": 1
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -309,7 +309,7 @@ start_delay = 0.5
 next_state = NodePath("../AimForBig3")
 resource_cost = 2.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Boom/request": "Fire"
+"parameters/Boom/request": 1
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -337,7 +337,7 @@ start_delay = 0.5
 next_state = NodePath("../../ChooseStateBasedOnCost")
 resource_cost = 2.0
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Boom/request": "Fire"
+"parameters/Boom/request": 1
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
