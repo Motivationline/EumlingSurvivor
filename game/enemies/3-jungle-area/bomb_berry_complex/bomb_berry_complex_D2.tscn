@@ -15,6 +15,19 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="11_ijoo4"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="12_l5va7"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="12_ok38y"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="14_rx25u"]
+[ext_resource type="AudioStream" uid="uid://la6h3tl6asjn" path="res://assets/characters/enemies/bomberry/sounds/death_1.wav" id="15_7fbru"]
+[ext_resource type="AudioStream" uid="uid://bakryhmuuibrf" path="res://assets/characters/enemies/bomberry/sounds/death_2.wav" id="16_ofpyh"]
+[ext_resource type="AudioStream" uid="uid://djwcj0n4etxuv" path="res://assets/characters/enemies/bomberry/sounds/death_3.wav" id="17_o4uqy"]
+[ext_resource type="AudioStream" uid="uid://bg18bentgbs6a" path="res://assets/characters/enemies/bomberry/sounds/death_4.wav" id="18_f4ncd"]
+[ext_resource type="AudioStream" uid="uid://cy53vxdclxn5v" path="res://assets/characters/enemies/bomberry/sounds/death_5.wav" id="19_ga85s"]
+[ext_resource type="AudioStream" uid="uid://ddoke46qg8u4h" path="res://assets/characters/enemies/bomberry/sounds/death_6.wav" id="20_arbnp"]
+[ext_resource type="AudioStream" uid="uid://gux8h75ckcwo" path="res://assets/characters/enemies/bomberry/sounds/charge_1.wav" id="21_arbnp"]
+[ext_resource type="AudioStream" uid="uid://drhtpeylcv5lm" path="res://assets/characters/enemies/bomberry/sounds/charge_2.wav" id="22_vk06u"]
+[ext_resource type="AudioStream" uid="uid://bulot3ony1hxf" path="res://assets/characters/enemies/bomberry/sounds/charge_3.wav" id="23_kku2p"]
+[ext_resource type="AudioStream" uid="uid://bvb8ynp4xwto0" path="res://assets/characters/enemies/bomberry/sounds/charge_4.wav" id="24_axcm6"]
+[ext_resource type="AudioStream" uid="uid://bher35ljx425f" path="res://assets/characters/enemies/bomberry/sounds/charge_5.wav" id="25_ec0fu"]
+[ext_resource type="AudioStream" uid="uid://ckrptc0lh1gq4" path="res://assets/characters/enemies/bomberry/sounds/charge_6.wav" id="26_ogds3"]
 
 [sub_resource type="Resource" id="Resource_vpf22"]
 script = ExtResource("2_id2ed")
@@ -112,6 +125,24 @@ medium = Array[ExtResource("2_id2ed")]([SubResource("Resource_arbnp")])
 hard = Array[ExtResource("2_id2ed")]([SubResource("Resource_f4ncd")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vk06u"]
+streams_count = 6
+stream_0/stream = ExtResource("15_7fbru")
+stream_1/stream = ExtResource("16_ofpyh")
+stream_2/stream = ExtResource("17_o4uqy")
+stream_3/stream = ExtResource("18_f4ncd")
+stream_4/stream = ExtResource("19_ga85s")
+stream_5/stream = ExtResource("20_arbnp")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_eqlpl"]
+streams_count = 6
+stream_0/stream = ExtResource("21_arbnp")
+stream_1/stream = ExtResource("22_vk06u")
+stream_2/stream = ExtResource("23_kku2p")
+stream_3/stream = ExtResource("24_axcm6")
+stream_4/stream = ExtResource("25_ec0fu")
+stream_5/stream = ExtResource("26_ogds3")
+
 [sub_resource type="Resource" id="Resource_id2ed"]
 script = ExtResource("2_id2ed")
 attribute = "damage"
@@ -155,7 +186,7 @@ health = 100.0
 difficulty_scaler = SubResource("Resource_vhibj")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
+on_death = [NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlaySoundDeath")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
 speed = 2.0
 
@@ -234,6 +265,14 @@ metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("10_106dg")]
 
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("14_rx25u")]
+stream = SubResource("AudioStreamRandomizer_vk06u")
+volume_db = 0.0
+
+[node name="Charge" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=584123539 instance=ExtResource("14_rx25u")]
+stream = SubResource("AudioStreamRandomizer_eqlpl")
+volume_db = -5.0
+
 [node name="hitboxBase" parent="." index="7" unique_id=778874116 instance=ExtResource("11_ijoo4")]
 collision_layer = 32
 collision_mask = 8
@@ -255,3 +294,5 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=1299198363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2127836, 0)
 shape = SubResource("SphereShape3D_x4bae")
+
+[connection signal="play_sound" from="Visuals/bomberry" to="SoundEffectManager" method="play_sound"]
