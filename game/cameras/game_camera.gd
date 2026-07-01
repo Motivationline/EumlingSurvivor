@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 	behaviour.update_camera(self)
 
 
-func switch_to_normal_behaviour() -> void:
-	behaviour = NormalBehaviour.new()
+func switch_to_behaviour(_behavior: CameraBehaviour = NormalBehaviour.new()) -> void:
+	behaviour = _behavior
 	behaviour.setup(self)
 	return_to_original_size = true

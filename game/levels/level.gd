@@ -27,6 +27,11 @@ var difficulty: int
 var state: LEVEL_STATE
 var player: Player
 
+# TODO: let the boss enemy spawn the cage itself
+# which probably prompts a rewrite of the cage system anyways 
+var boss: Enemy
+var boss_position: Vector3
+
 const CAGED_MINI_EUMLING = preload("uid://6lim36lw260g")
 const EUMLING_CELEBRATION = preload("uid://p83xt72cksyt")
 const MINI_EUMLING_E = preload("uid://cd212gh71k5cn")
@@ -52,6 +57,9 @@ func _ready() -> void:
 	if (goal_area):
 		goal_area.set_collision_mask_value(2, true)
 	state = LEVEL_STATE.PLAYING
+	if is_boss_level:
+		boss = get_tree().get_first_node_in_group("Enemy")
+		boss_position = boss.global_position
 
 func spawn_player(_player: Player):
 	player = _player
@@ -80,6 +88,8 @@ func spawn_mini_eumling(type: Enum.EUMLING_TYPE):
 func _process(_delta: float) -> void:
 	if (Engine.is_editor_hint()): return
 	if (state == LEVEL_STATE.PLAYING):
+		if boss:
+			boss_position = boss.global_position
 		var enemies = get_tree().get_nodes_in_group("Enemy")
 		if (enemies.size() <= 0):
 			if is_boss_level:
@@ -91,13 +101,44 @@ func _process(_delta: float) -> void:
 	if (state == LEVEL_STATE.FINISHED && goal_area.overlaps_body(player) && not is_boss_level):
 		end_level()
 
-var caged_eumling
+var caged_eumling: Node3D
 func spawn_cage():
 	state = LEVEL_STATE.CAGE_SPAWNED
 	caged_eumling = CAGED_MINI_EUMLING.instantiate() as Node3D
 	add_child(caged_eumling)
+	var eumling_type: Enum.EUMLING_TYPE
+	if AreaPicker.current_area:
+		eumling_type = AreaPicker.current_area.type
+	else:
+		eumling_type = Enum.EUMLING_TYPE.values().pick_random()
+	caged_eumling.set_mini(eumling_type)
 	caged_eumling.global_position = player_spawn.global_position
+	if boss_position:
+		caged_eumling.global_position = boss_position
+		animate_cage()
+
+	var camera: GameCamera
+	for child in get_children():
+		if child is GameCamera:
+			camera = child
+			break
+
+	var camera_behavior := BossBehaviour.new()
+
+	camera_behavior.boss = caged_eumling.get_path()
+	camera.switch_to_behaviour(camera_behavior)
 	cage_spawned.emit()
+
+func animate_cage():
+	var goal_process_mode = goal_area.process_mode
+	goal_area.process_mode = Node.PROCESS_MODE_DISABLED
+	var tween := caged_eumling.create_tween()
+	tween.tween_property(caged_eumling, "global_position", caged_eumling.global_position + Vector3.UP * 2, 2)
+	tween.tween_property(caged_eumling, "global_position", player_spawn.global_position, 1)
+	tween.tween_callback(func():
+		goal_area.process_mode = goal_process_mode
+	)
+
 
 func clear_level():
 	state = LEVEL_STATE.CLEARED
@@ -140,7 +181,7 @@ func end_level():
 	prints("level ended", name)
 
 func unlock_mini_eumling():
-	remove_child(caged_eumling)
+	caged_eumling.queue_free()
 	var eumling_type: Enum.EUMLING_TYPE
 	if AreaPicker.current_area:
 		eumling_type = AreaPicker.current_area.type

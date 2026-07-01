@@ -15,7 +15,7 @@ extends CameraBehaviour
 ## The minimun size of the camera.
 @export var min_size: float = 5.0
 
-var _boss: Enemy
+var _boss: Node3D
 var aspect_ratio: float = 16.0 / 9.0
 var covered_by_healthbar: float = 1.0
 
@@ -31,8 +31,8 @@ func setup(camera: GameCamera) -> void:
 
 
 func update_camera(camera: GameCamera) -> void:
-	if not camera.player or not _boss:
-		camera.switch_to_normal_behaviour()
+	if not camera.player or not _boss or not _boss.is_inside_tree():
+		camera.switch_to_behaviour()
 		return
 
 	var player_position: Vector3 = camera.player.global_position
