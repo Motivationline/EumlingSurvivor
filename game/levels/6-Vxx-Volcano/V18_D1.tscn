@@ -2,8 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://h20e3tqc3oh4" path="res://game/levels/6-Vxx-Volcano/V18.tscn" id="1_xu5al"]
 [ext_resource type="PackedScene" uid="uid://cm8xm0j7ly1d" path="res://game/enemies/6-volcano/magma_toad/magma_toad.tscn" id="2_s1ek8"]
+[ext_resource type="PackedScene" uid="uid://ciil6gb70pro7" path="res://game/enemies/6-volcano/magma_bomb_complex/magma_bomb_complex_D1.tscn" id="3_4120s"]
 
 [node name="Level" unique_id=1973423689 instance=ExtResource("1_xu5al")]
 
 [node name="MagmaToad" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1898691 instance=ExtResource("2_s1ek8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3767989, 0, -1.8686671)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.413149, 0, -3.5450163)
+
+[node name="magma_bomb_complex" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1998865648 instance=ExtResource("3_4120s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43163586, 0, -1.6863877)
