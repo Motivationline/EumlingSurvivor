@@ -12,10 +12,20 @@ animation = &"mini_eumling_celebrate"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x0k37"]
 animation = &"RESET"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_auhno"]
+animation = &"mini_eumling_charge_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6613k"]
+animation = &"mini_eumling_charge"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_row64"]
+animation = &"mini_eumling_hit"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8vc2i"]
 animation = &"mini_eumling_idle"
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_tw7dt"]
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_s0qdw"]
+fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_vofm8"]
 xfade_time = 0.1
@@ -35,29 +45,42 @@ input_3/name = "no_movement"
 input_3/auto_advance = false
 input_3/break_loop_at_end = false
 input_3/reset = true
+input_4/name = "charge_start"
+input_4/auto_advance = true
+input_4/break_loop_at_end = false
+input_4/reset = true
+input_5/name = "charge_loop"
+input_5/auto_advance = false
+input_5/break_loop_at_end = false
+input_5/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_auhno"]
-graph_offset = Vector2(-756.65106, 138.21146)
-nodes/output/position = Vector2(500, 160)
+graph_offset = Vector2(-698.34753, 14.273682)
+nodes/output/position = Vector2(740, 100)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_8vc2i")
 nodes/Animation/position = Vector2(-440, 60)
 nodes/Transition/node = SubResource("AnimationNodeTransition_vofm8")
-nodes/Transition/position = Vector2(-100.2, 171.5)
+nodes/Transition/position = Vector2(100, 120)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_few7l")
 "nodes/Animation 2/position" = Vector2(-440, 240)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_tw7dt")
-nodes/OneShot/position = Vector2(280, 160)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_row64")
+"nodes/Animation 7/position" = Vector2(300, 320)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_gooxe")
 "nodes/Animation 3/position" = Vector2(-480, 420)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_x0k37")
-"nodes/Animation 4/position" = Vector2(-380, 600)
-node_connections = [&"output", 0, &"OneShot", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 3", &"Transition", 3, &"Animation 4", &"OneShot", 0, &"Transition"]
+"nodes/Animation 4/position" = Vector2(-400, 600)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_auhno")
+"nodes/Animation 5/position" = Vector2(-520, 780)
+"nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_6613k")
+"nodes/Animation 6/position" = Vector2(-480, 960)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_s0qdw")
+nodes/OneShot/position = Vector2(500, 100)
+node_connections = [&"output", 0, &"OneShot", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 3", &"Transition", 3, &"Animation 4", &"Transition", 4, &"Animation 5", &"Transition", 5, &"Animation 6", &"OneShot", 0, &"Transition", &"OneShot", 1, &"Animation 7"]
 
 [node name="mini_entre_ehrgeiz" unique_id=1574503422 instance=ExtResource("1_dj5aq")]
 
-[node name="mini_eumling_ehrgeiz" parent="Aramture_ehrgeiz/Skeleton3D" parent_id_path=PackedInt32Array(1927048722) index="0" unique_id=1650145663]
+[node name="mini_eumling_ehrgeiz" parent="Aramture_ehrgeiz/Skeleton3D" parent_id_path=PackedInt32Array(380973857) index="0" unique_id=1424516440]
 layers = 2
-skeleton = NodePath("..")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=986684622]
 tree_root = SubResource("AnimationNodeBlendTree_auhno")
