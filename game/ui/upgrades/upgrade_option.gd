@@ -51,6 +51,6 @@ func _on_focus_exited():
 func animate_dot(node: Sprite3D):
 	if not node: return
 	var tween := create_tween()
-	tween.tween_property(node, "scale", node.scale * 2, 1.0)
+	tween.tween_property(node, "scale", node.scale * 1.5, 1.0)
 	tween.tween_property(node, "scale", node.scale, 1.0)
 	tween.tween_callback(animate_dot.bind(node))

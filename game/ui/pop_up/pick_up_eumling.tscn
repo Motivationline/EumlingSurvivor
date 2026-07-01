@@ -1,0 +1,242 @@
+[gd_scene format=3 uid="uid://b1frhjc1hws4k"]
+
+[ext_resource type="PackedScene" uid="uid://mdgxtmddpnfr" path="res://assets/ui/pop_up/firework_particles.tscn" id="1_372mq"]
+[ext_resource type="Texture2D" uid="uid://ec8y4dsfst65" path="res://assets/ui/Eumlex/button_sticker_missing_a.png" id="2_fwfbe"]
+[ext_resource type="Texture2D" uid="uid://dj5fnsnkj3y2a" path="res://assets/ui/pop_up/win_strahlen.png" id="3_fwfbe"]
+[ext_resource type="Texture2D" uid="uid://ct0dwwb0l0w2p" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayoutBack.png" id="4_rfacl"]
+[ext_resource type="Texture2D" uid="uid://cls17fca8iawc" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayout.png" id="5_qvilx"]
+
+[node name="PickUpEumling" type="Control" unique_id=200048838]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background_glow" type="TextureRect" parent="." unique_id=447542799]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_fwfbe")
+
+[node name="eumling_placeholder" type="TextureRect" parent="." unique_id=906340904]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 296.0
+offset_right = 1172.0
+offset_bottom = 811.5245
+texture = ExtResource("2_fwfbe")
+
+[node name="fireworks" type="Node2D" parent="." unique_id=470280052]
+
+[node name="firework_particles" parent="fireworks" unique_id=2134858972 instance=ExtResource("1_372mq")]
+position = Vector2(588, 174)
+
+[node name="firework_particles2" parent="fireworks" unique_id=369735308 instance=ExtResource("1_372mq")]
+position = Vector2(1505, 284)
+
+[node name="firework_particles3" parent="fireworks" unique_id=1424378926 instance=ExtResource("1_372mq")]
+position = Vector2(393, 797)
+
+[node name="Banner_side_left" type="TextureRect" parent="." unique_id=536918846]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -387.0
+offset_top = 215.5
+offset_right = -305.0
+offset_bottom = 388.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_rfacl")
+flip_h = true
+
+[node name="Banner_side_right" type="TextureRect" parent="." unique_id=779766755]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 301.0
+offset_top = 214.5
+offset_right = 383.0
+offset_bottom = 387.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_rfacl")
+
+[node name="banner_base" type="TextureRect" parent="." unique_id=1998517802]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = 186.0
+offset_right = 340.0
+offset_bottom = 396.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_qvilx")
+
+[node name="r_eumling_text" type="Label" parent="." unique_id=2135929434]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Du hast einen Geschick-Eumling befreit!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="i_eumling_text" type="Label" parent="." unique_id=1946788000]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Du hast einen Forschungs-Eumling befreit!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="a_eumling_text" type="Label" parent="." unique_id=1373299851]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Du hast einen Artistischen-Eumling befreit!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="s_eumling_text" type="Label" parent="." unique_id=212360585]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Du hast einen Sozialen-Eumling befreit!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="e_eumling_text" type="Label" parent="." unique_id=1954273012]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Du hast einen Ehrgeiz-Eumling befreit!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="c_eumling_text" type="Label" parent="." unique_id=770172916]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Du hast einen Logik-Eumling befreit!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="r_skill_text" type="Label" parent="." unique_id=1434157797]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Repariere den Roboter um ihn im Kampf zu nutzen."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="i_skill_text" type="Label" parent="." unique_id=564999408]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Gegner haben jetzt kritische Trefferzonen."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="a_skill_text" type="Label" parent="." unique_id=1710532615]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Male Formen beim Laufen um Bonis zu erhalten."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="s_skill_text" type="Label" parent="." unique_id=1078234769]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Gegner in der Zone werden besänftigt."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="e_skill_text" type="Label" parent="." unique_id=1772682428]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Erhalte einen Mini Kämpfer an deiner Seite."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="c_skill_text" type="Label" parent="." unique_id=2075640426]
+visible = false
+layout_mode = 0
+offset_left = 653.0
+offset_top = 742.0
+offset_right = 1266.0
+offset_bottom = 885.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Schließe Aufgaben ab um Raum-Boni zu erhalten."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
