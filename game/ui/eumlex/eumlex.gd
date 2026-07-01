@@ -91,13 +91,13 @@ func reveal_new_eumling(eumling: Eumling, btn: EumlingButton):
 	if not eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED: return
 	# $Book.hide();
 	%SeedRevealContainer.show()
-	
+	GlobalMusicManager.fade_out(1.0,true)
 	var reveal = REVEAL_SEED.instantiate()
 	%SeedRevealViewport.add_child(reveal)
 	reveal.setup(eumling)
 	await reveal.completed
 	reveal.queue_free()
-	# GlobalMusicManager.request_music(SongList.TRACK.MENU,MusicTransition.crossfade(1.0))
+	GlobalMusicManager.request_music(SongList.TRACK.MENU,MusicTransition.crossfade(1.0))
 	# _update_buttons()
 	eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.SEEN
 	btn.update_visuals()

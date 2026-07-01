@@ -6,7 +6,8 @@ enum BUS_ID {MASTER, MUSIC, SFX_ALL, SFX_ENEMIES, SFX_UI, ENVIRONMENT}
 @onready var init_bus_volumes: Array[float]
 var active_player: MusicPlayer
 var env_noise_player: AudioStreamPlayer
-var fading_player: MusicPlayer
+var fading_players: Array[MusicPlayer]
+
 var current_track: SongList.TRACK = SongList.TRACK.NOTHING
 var current_noise: int
 var is_playing: bool = false
@@ -64,11 +65,11 @@ func fade_player_volume(_duration: float, _target_volume_db: float = -60, _playe
 	active_tweens.erase([TWEEN_TYPES.PLAYER_FADE, tween, _player])
 	
 	if _stop:
-		_player.stop()
+		
 		if _player == active_player :
 			is_playing = false
 			current_track = SongList.TRACK.NOTHING
-		_player.queue_free()
+		destroy_player(_player)
 	
 
 ## Creates a new [code]MusicPlayer[/code] that will play [param _song].
@@ -90,26 +91,26 @@ func request_music(_track_name: SongList.TRACK, _transition: MusicTransition, _o
 		
 		
 	elif !current_track == _track_name:
-		fading_player = active_player
+		fading_players.append(active_player)
+		var fading_id = fading_players.find(active_player)
 		active_player = make_music_player(_track_name)
 		
 
 		match _transition.type:
 			MusicTransition.TRANSITIONS.CROSSFADE:
-				fade_player_volume(_transition.transition_parameters.get("duration"), -60, fading_player, true)
+				fade_player_volume(_transition.transition_parameters.get("duration"), -60, fading_players[fading_id], true)
 				active_player.volume_db = -60
 				active_player.start_playback()
 				fade_player_volume(_transition.transition_parameters.get("duration"), 0, active_player)
 				
 			MusicTransition.TRANSITIONS.FADE_AND_START:
-				fade_player_volume(_transition.transition_parameters.get("duration"), -60, fading_player, true)
+				fade_player_volume(_transition.transition_parameters.get("duration"), -60, fading_players[fading_id], true)
 				await get_tree().create_timer(_transition.transition_parameters.get("next_track_offset")).timeout
 				active_player.start_playback()
 				
 			MusicTransition.TRANSITIONS.INSTANT:
 				active_player.start_playback()
-				fading_player.stop()
-				fading_player.queue_free()
+				destroy_player(fading_players[fading_id])
 				
 	if _override_environment_noise:
 		set_environment_noise(_environment_noise)
@@ -117,6 +118,10 @@ func request_music(_track_name: SongList.TRACK, _transition: MusicTransition, _o
 		set_environment_noise(SongList.get_noise_of_song(_track_name))
 	current_track = _track_name
 
+func destroy_player(_player:MusicPlayer) ->void:
+	if _player:
+		_player.stop()
+		_player.queue_free()
 ## Switches environment noise to [param _noise].
 func set_environment_noise(_noise: SongList.ENVNOISE) -> void:
 	if _noise != current_noise:
@@ -136,11 +141,14 @@ func set_environment_noise(_noise: SongList.ENVNOISE) -> void:
 func fade_out(_duration: float, _stop: bool = false) -> void:
 	if active_player:
 		if _stop:
-			fading_player = active_player
-			fade_player_volume(_duration, -60, fading_player , _stop)
+			fading_players.append(active_player)
+			var fading_id = fading_players.find(active_player)
+			active_player = null
+			is_playing = false
+			fade_player_volume(_duration, -60, fading_players[fading_id] , _stop)
 			current_track = SongList.TRACK.NOTHING
 		else:
-			fade_player_volume(_duration, -60, active_player , _stop)
+			fade_player_volume(_duration, -60, active_player ,false)
 		
 
 ## Fades in the currently playing music track. Only works if there is a faded out active music track.
