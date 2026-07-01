@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b2rrc21uefymi" path="res://game/projectiles/magma_berry_projectile/magma_berry_projectile.tscn" id="7_uat0f"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="8_pquii"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="10_mlics"]
-[ext_resource type="PackedScene" uid="uid://b8ns3hl23ic6v" path="res://assets/characters/enemies/bomberry/bomberry_prefab.tscn" id="11_uat0f"]
+[ext_resource type="PackedScene" uid="uid://cir2gbm45aqte" path="res://assets/characters/enemies/bomberry/magma/magma_bomberry_prefab.tscn" id="10_uat0f"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="12_ax3or"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="12_o5vot"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="13_o5vot"]
@@ -149,13 +149,14 @@ radius = 0.22945888
 [sub_resource type="SphereShape3D" id="SphereShape3D_rnlhm"]
 radius = 0.29065907
 
-[node name="magma_bomb_complex_D2" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "on_hurt") instance=ExtResource("1_geh3t")]
+[node name="magma_bomb_complex_D2" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_death", "on_hurt", "node_with_animation_tree") instance=ExtResource("1_geh3t")]
 health = 150.0
 difficulty_scaler = SubResource("Resource_ya0xm")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
+node_with_animation_tree = NodePath("Visuals/magma_bomberry")
 speed = 2.0
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -230,7 +231,7 @@ state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/Chase/MoveTowardsEntityState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
 
-[node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("11_uat0f")]
+[node name="magma_bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("10_uat0f")]
 
 [node name="hitboxBase" parent="." index="7" unique_id=1403634002 instance=ExtResource("12_ax3or")]
 collision_layer = 32
