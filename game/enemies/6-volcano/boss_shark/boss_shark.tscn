@@ -8,12 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_a5e3p"]
 [ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="4_cuk8p"]
 [ext_resource type="Script" uid="uid://c8s4y8wjixlok" path="res://state_machine/enemy/follow_path.gd" id="5_du46p"]
+[ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="6_71geg"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="6_cuk8p"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="7_f6ssy"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="7_me4rn"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="9_x8n4w"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="10_du46p"]
 [ext_resource type="PackedScene" uid="uid://dmr83p5o725ie" path="res://game/enemies/6-volcano/boss_shark/vfx/death_from_below_vfx.tscn" id="11_71geg"]
+[ext_resource type="PackedScene" uid="uid://d3h1nvtvp5iwf" path="res://game/shared/target_indicators/directional_mesh/directional_target_indicator_mesh.tscn" id="15_du46p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_71geg"]
 size = Vector3(0.42944336, 1.361084, 1.2124329)
@@ -32,6 +34,67 @@ height = 4.058838
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_71geg"]
 radius = 0.7832031
 height = 3.8457031
+
+[sub_resource type="Animation" id="Animation_71geg"]
+resource_name = "ExtendIndicator"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/pulse")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.33333334, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/extent")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.76666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_yks7y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/pulse")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/extent")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_akcxs"]
+_data = {
+&"ExtendIndicator": SubResource("Animation_71geg"),
+&"RESET": SubResource("Animation_yks7y")
+}
 
 [node name="BossShark" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hurtboxes", "additional_hitboxes") instance=ExtResource("1_5lodq")]
 collision_layer = 80
@@ -52,7 +115,7 @@ initial_state = NodePath("Roam/HitboxFINs")
 
 [node name="PickRandomState" type="Node" parent="StateMachine" index="0" unique_id=36666431 node_paths=PackedStringArray("states")]
 script = ExtResource("3_pytg8")
-states = [NodePath("../DeathFromBelow/Deactivate Everything"), NodePath("../ChargeAttack/LookAtPlayerState")]
+states = [NodePath("../DeathFromBelow/Deactivate Everything"), NodePath("../ChargeAttack/MultistateState"), NodePath("../ChargeAttack/MultistateState")]
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "fin_walk"
 })
@@ -94,11 +157,24 @@ metadata/_custom_type_script = "uid://c8s4y8wjixlok"
 
 [node name="ChargeAttack" type="Node" parent="StateMachine" index="2" unique_id=1246226805]
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine/ChargeAttack" index="0" unique_id=229604355 node_paths=PackedStringArray("next_state")]
+[node name="MultistateState" type="Node" parent="StateMachine/ChargeAttack" index="0" unique_id=2113084805 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+script = ExtResource("6_71geg")
+states_to_execute = [NodePath("LookAtPlayerState"), NodePath("ActivatorState")]
+states_that_need_to_finish = [NodePath("LookAtPlayerState")]
+next_state = NodePath("../HitboxCHARGE")
+metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
+
+[node name="ActivatorState" type="Node" parent="StateMachine/ChargeAttack/MultistateState" index="0" unique_id=1307926446 node_paths=PackedStringArray("enable", "next_state")]
+script = ExtResource("7_f6ssy")
+enable = [NodePath("../../../../Visuals/DirectionalTargetIndicatorMesh")]
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/ChargeAttack/MultistateState" index="1" unique_id=229604355 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_t2b6n")
 wait_time = 1.2
 rotation_speed = 20.0
-next_state = NodePath("../HitboxCHARGE")
+next_state = NodePath("../../HitboxCHARGE")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "dive_down"
 })
@@ -107,7 +183,7 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 [node name="HitboxCHARGE" type="Node" parent="StateMachine/ChargeAttack" index="1" unique_id=576251993 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("7_f6ssy")
 enable = [NodePath("../../../Visuals/HitboxCHARGE"), NodePath("../../../Visuals/HurtboxCharge")]
-disable = [NodePath("../../../Visuals/HurtboxFin")]
+disable = [NodePath("../../../Visuals/HurtboxFin"), NodePath("../../../Visuals/DirectionalTargetIndicatorMesh")]
 next_state = NodePath("../MoveForwardState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -303,3 +379,22 @@ can_hit = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/HitboxLAYING" index="0" unique_id=772501192]
 transform = Transform3D(-4.3679314e-08, -0.99926627, -0.038300607, 1, -4.371139e-08, 0, -1.6741727e-09, -0.038300607, 0.99926627, -0.02285456, 0.5608903, 0.09231527)
 shape = SubResource("CapsuleShape3D_71geg")
+
+[node name="DirectionalTargetIndicatorMesh" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="7" unique_id=2087304134 instance=ExtResource("15_du46p")]
+transform = Transform3D(0.74397767, 0, 0, 0, 1, 0, 0, 0, 3.0274234, 0, 0, -2.771265)
+visible = false
+instance_shader_parameters/color = Color(0.98298115, 0.13550815, 0, 0.8)
+instance_shader_parameters/far_fade = 0.0
+instance_shader_parameters/near = 0.0
+instance_shader_parameters/near_fade = 0.3870000183825
+instance_shader_parameters/pulse = 0.0
+instance_shader_parameters/pulse_color = Color(1, 0, 0, 0.8)
+instance_shader_parameters/pulse_far_fade = 0.13200000627
+instance_shader_parameters/pulse_near_fade = 0.46400002204
+instance_shader_parameters/pulse_width = 1.0
+instance_shader_parameters/width = 1.0
+instance_shader_parameters/width_fade = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/DirectionalTargetIndicatorMesh" index="0" unique_id=1830211739]
+libraries/ = SubResource("AnimationLibrary_akcxs")
+autoplay = &"ExtendIndicator"
