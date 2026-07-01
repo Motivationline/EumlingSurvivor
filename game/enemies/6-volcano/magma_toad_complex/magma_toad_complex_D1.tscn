@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bum8e6lgyjc6"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_3amh6"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_qreux"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_xsop0"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_d3oh5"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_sihax"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_xcncf"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_eetwf"]
@@ -11,6 +13,70 @@
 [ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="9_ug13t"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="10_ug13t"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="11_3i7kj"]
+
+[sub_resource type="Resource" id="Resource_tgg04"]
+script = ExtResource("2_qreux")
+attribute = "health"
+value = 350.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_b86bk"]
+script = ExtResource("2_qreux")
+attribute = "health"
+value = 1100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_raa2v"]
+script = ExtResource("2_qreux")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_yhpqb"]
+script = ExtResource("2_qreux")
+attribute = "health"
+value = 725.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_2trhr"]
+script = ExtResource("3_d3oh5")
+introduction = Array[ExtResource("2_qreux")]([SubResource("Resource_raa2v")])
+easy = Array[ExtResource("2_qreux")]([SubResource("Resource_tgg04")])
+medium = Array[ExtResource("2_qreux")]([SubResource("Resource_yhpqb")])
+hard = Array[ExtResource("2_qreux")]([SubResource("Resource_b86bk")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_xwa72"]
+script = ExtResource("2_qreux")
+attribute = "damage"
+value = 60.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_hciq1"]
+script = ExtResource("2_qreux")
+attribute = "damage"
+value = 125.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_vwpib"]
+script = ExtResource("2_qreux")
+attribute = "damage"
+value = 45.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_rpw1t"]
+script = ExtResource("2_qreux")
+attribute = "damage"
+value = 90.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_1o6ym"]
+script = ExtResource("3_d3oh5")
+introduction = Array[ExtResource("2_qreux")]([SubResource("Resource_vwpib")])
+easy = Array[ExtResource("2_qreux")]([SubResource("Resource_xwa72")])
+medium = Array[ExtResource("2_qreux")]([SubResource("Resource_rpw1t")])
+hard = Array[ExtResource("2_qreux")]([SubResource("Resource_hciq1")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="Resource" id="Resource_4okp4"]
 script = ExtResource("8_d3oh5")
@@ -22,6 +88,38 @@ max_negative = -30.0
 max_positive = 30.0
 metadata/_custom_type_script = "uid://b3cqskctjdm21"
 
+[sub_resource type="Resource" id="Resource_qv54d"]
+script = ExtResource("2_qreux")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_0uc6n"]
+script = ExtResource("2_qreux")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_5c8qi"]
+script = ExtResource("2_qreux")
+attribute = "damage"
+value = 35.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_jnb76"]
+script = ExtResource("2_qreux")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_s7hoa"]
+script = ExtResource("3_d3oh5")
+introduction = Array[ExtResource("2_qreux")]([SubResource("Resource_5c8qi")])
+easy = Array[ExtResource("2_qreux")]([SubResource("Resource_qv54d")])
+medium = Array[ExtResource("2_qreux")]([SubResource("Resource_jnb76")])
+hard = Array[ExtResource("2_qreux")]([SubResource("Resource_0uc6n")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_qreux"]
 radius = 0.26148474
 
@@ -30,7 +128,8 @@ radius = 0.31834328
 
 [node name="magma_toad_complex_D1" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_3amh6")]
 health = 150.0
-hitbox = NodePath("Hitbox")
+difficulty_scaler = SubResource("Resource_2trhr")
+hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -60,6 +159,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="spawnerMain" type="Node3D" parent="StateMachine/Attack/SpawnEntitiesState" index="0" unique_id=1332122889]
 script = ExtResource("5_eetwf")
+difficulty_scaler = SubResource("Resource_1o6ym")
 entity_to_spawn = ExtResource("7_d3oh5")
 amount_of_spawns = 3
 time_between_entities = 0.15
@@ -76,14 +176,15 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("9_ug13t")]
 
-[node name="Hitbox" parent="." index="7" unique_id=412047334 instance=ExtResource("10_ug13t")]
+[node name="hitboxBase" parent="." index="7" unique_id=412047334 instance=ExtResource("10_ug13t")]
 collision_layer = 32
 collision_mask = 8
 damage = 30.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_s7hoa")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=311899383]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=311899383]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
 shape = SubResource("SphereShape3D_qreux")
 debug_color = Color(0.96461874, 0, 0.48390388, 0.41960785)

@@ -3,9 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_4ilc3"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_08ujs"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_4duoe"]
-[ext_resource type="PackedScene" uid="uid://w7uh6pdm3kf4" path="res://game/enemies/3-Jungle/boss_bugger/boss_bugger_easy.tscn" id="4_gxa7e"]
+[ext_resource type="PackedScene" uid="uid://w7uh6pdm3kf4" path="res://game/enemies/3-jungle-area/boss_bugger/boss_bugger_easy.tscn" id="4_gxa7e"]
 [ext_resource type="Script" uid="uid://cn1lytcjvtv58" path="res://game/cameras/behaviours/boss_behaviour.gd" id="4_qla55"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="5_4duoe"]
+[ext_resource type="PackedScene" uid="uid://capkdd2av0w8x" path="res://assets/models/3-Jungle/Spikes/Spikes.glb" id="7_qla55"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_hmbof"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_am3nm"]
 resource_name = "Material"
@@ -174,14 +176,23 @@ script = ExtResource("4_qla55")
 boss = NodePath("../Enemies/BossBugger")
 metadata/_custom_type_script = "uid://cn1lytcjvtv58"
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(2, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ale73"]
+size = Vector3(0.5, 1, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hmbof"]
+size = Vector3(0.5, 1, 0.5)
+
 [node name="Level" unique_id=1578328013 instance=ExtResource("1_4ilc3")]
 is_boss_level = true
 music = 3
 
-[node name="Cube" parent="NavigationRegion3D/base_floor_10x10" parent_id_path=PackedInt32Array(257884405) index="0" unique_id=1334605973]
-surface_material_override/0 = null
+[node name="BorderGridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(974191959) index="0" unique_id=824927406]
+collision_layer = 513
 
-[node name="GridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(974191959) index="2" unique_id=2066079114]
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(974191959) index="1" unique_id=2066079114]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = ExtResource("2_08ujs")
 cell_size = Vector3(0.5, 0.5, 0.5)
@@ -199,6 +210,77 @@ attributes = SubResource("CameraAttributesPractical_gxa7e")
 behaviour = SubResource("Resource_5nfpk")
 
 [node name="BossBugger" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=651925094 instance=ExtResource("4_gxa7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.2694254)
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(9488913) index="0" unique_id=1814085372 instance=ExtResource("5_4duoe")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2.9083428, 0, -2.524825)
+
+[node name="Obstacles" type="Node3D" parent="." index="12" unique_id=1964808840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Spikes2" parent="Obstacles" index="0" unique_id=391389789 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -4.75)
+
+[node name="Spikes7" parent="Obstacles" index="1" unique_id=1700502274 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -4.75)
+
+[node name="Spikes10" parent="Obstacles" index="2" unique_id=321845847 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -4.25)
+
+[node name="Spikes15" parent="Obstacles" index="3" unique_id=1724628156 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -4.25)
+
+[node name="Spikes18" parent="Obstacles" index="4" unique_id=366721684 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -3.75)
+
+[node name="Spikes23" parent="Obstacles" index="5" unique_id=556333562 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -3.75)
+
+[node name="Spikes26" parent="Obstacles" index="6" unique_id=1519745289 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -3.75)
+
+[node name="Spikes39" parent="Obstacles" index="7" unique_id=1517890150 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -3.75)
+
+[node name="Spikes43" parent="Obstacles" index="8" unique_id=2089721155 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -3.25)
+
+[node name="Spikes47" parent="Obstacles" index="9" unique_id=2076917793 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -3.25)
+
+[node name="Spikes44" parent="Obstacles" index="10" unique_id=660482857 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -3.25)
+
+[node name="Spikes45" parent="Obstacles" index="11" unique_id=1980813279 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -3.25)
+
+[node name="Spikes46" parent="Obstacles" index="12" unique_id=557533365 instance=ExtResource("7_qla55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -3.25)
+
+[node name="Hitbox" parent="Obstacles" index="13" unique_id=1403634002 instance=ExtResource("8_hmbof")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/Hitbox" index="0" unique_id=276033816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Obstacles/Hitbox" index="1" unique_id=1222663276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -1.25)
+shape = SubResource("BoxShape3D_ale73")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Obstacles/Hitbox" index="2" unique_id=1003765007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -1.25)
+shape = SubResource("BoxShape3D_ale73")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Obstacles/Hitbox" index="3" unique_id=1512770351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.75)
+shape = SubResource("BoxShape3D_hmbof")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Obstacles/Hitbox" index="4" unique_id=387509088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -0.75)
+shape = SubResource("BoxShape3D_hmbof")

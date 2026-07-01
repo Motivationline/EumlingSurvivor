@@ -41,7 +41,12 @@ func show_upgrades():
 	Utils.remove_all_children(upgrade_container)
 
 	for i in upgrades.size():
-		var upgrade = upgrades[i]
+		var upgrade = upgrades[i].duplicate()
+		if upgrade.path < 0:
+			if upgrade.method == Enum.UPGRADE_METHOD.ABSOLUTE:
+				upgrade.value *= 1.2
+			else:
+				upgrade.value *= 0.8
 		var upgrade_option = UPGRADE_OPTION.instantiate() as UpgradeOption
 		upgrade_container.add_child(upgrade_option)
 		upgrade_option.setup(upgrade, i * delay_between_cards, -2 + i* 2)

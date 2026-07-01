@@ -90,6 +90,7 @@ input_3/break_loop_at_end = false
 input_3/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s0inp"]
+graph_offset = Vector2(-775.31036, 20.561676)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_6yngb")
 "nodes/Animation 4/position" = Vector2(-940, 1000)
 nodes/LocomotionShell/node = SubResource("AnimationNodeTransition_44813")
@@ -121,12 +122,6 @@ node_connections = [&"output", 0, &"Locomotion", &"LocomotionShell", 0, &"Animat
 [node name="boss_turtle" unique_id=1575923269 instance=ExtResource("1_8gxes")]
 script = ExtResource("2_1pj3j")
 
-[node name="shell" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1927793966) index="0" unique_id=185290707]
-skeleton = NodePath("..")
-
-[node name="turtle" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1927793966) index="1" unique_id=1333335847]
-skeleton = NodePath("..")
-
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1775129654]
 tree_root = SubResource("AnimationNodeBlendTree_s0inp")
 anim_player = NodePath("../AnimationPlayer")
@@ -136,6 +131,6 @@ parameters/LocomotionShell/current_index = 0
 parameters/TurtleLocomotion/current_state = "idle"
 parameters/TurtleLocomotion/transition_request = ""
 parameters/TurtleLocomotion/current_index = 0
-parameters/Locomotion/current_state = "turtle"
+parameters/Locomotion/current_state = "shell"
 parameters/Locomotion/transition_request = ""
-parameters/Locomotion/current_index = 1
+parameters/Locomotion/current_index = 0

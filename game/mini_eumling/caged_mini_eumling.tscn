@@ -1,9 +1,24 @@
 [gd_scene format=3 uid="uid://6lim36lw260g"]
 
 [ext_resource type="PackedScene" uid="uid://xx1ogf8cudcr" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/mini_eumling_artistisch_kreativ_visual.tscn" id="1_rt8xe"]
+[ext_resource type="Script" uid="uid://cvqr4dsskckv0" path="res://game/mini_eumling/caged_mini_eumling.gd" id="1_wa4ee"]
 [ext_resource type="PackedScene" uid="uid://csxh6oltwnjsa" path="res://assets/models/cage/Cage.glb" id="2_rt8xe"]
+[ext_resource type="PackedScene" uid="uid://w0h1g2ngldyl" path="res://assets/characters/eumling/mini_eumling/entrepreneurual_ehrgeiz/mini_eumling_entrep_ehrgeiz_visual.tscn" id="3_w4aw3"]
+[ext_resource type="PackedScene" uid="uid://bdx5nmy7mmesh" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik_visual.tscn" id="4_cxkmq"]
+[ext_resource type="PackedScene" uid="uid://pywy6q2jhxwo" path="res://assets/characters/eumling/mini_eumling/investigativ_forschend/mini_investigativ_forschend_visual.tscn" id="5_vprhq"]
+[ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="6_66s3s"]
+[ext_resource type="PackedScene" uid="uid://drn335i4omarh" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial_visual.tscn" id="7_vbht4"]
 
 [node name="caged_mini_eumling" type="Node3D" unique_id=1087139482]
+script = ExtResource("1_wa4ee")
+minis = Dictionary[int, PackedScene]({
+0: ExtResource("1_rt8xe"),
+1: ExtResource("4_cxkmq"),
+2: ExtResource("3_w4aw3"),
+3: ExtResource("5_vprhq"),
+4: ExtResource("6_66s3s"),
+5: ExtResource("7_vbht4")
+})
 
 [node name="MiniEumling" type="Marker3D" parent="." unique_id=1856864363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05326149, 0)
