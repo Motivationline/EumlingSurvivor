@@ -1,17 +1,13 @@
 [gd_scene format=3 uid="uid://crv0inwm70m8u"]
 
 [ext_resource type="PackedScene" uid="uid://cu61do245snrs" path="res://game/levels/6-Vxx-Volcano/V21.tscn" id="1_2s0gq"]
-[ext_resource type="PackedScene" uid="uid://cm8xm0j7ly1d" path="res://game/enemies/6-volcano/magma_toad/magma_toad.tscn" id="2_r8is5"]
 [ext_resource type="PackedScene" uid="uid://bfi1hkkxrugg8" path="res://game/enemies/6-volcano/charger/charger_enemy.tscn" id="3_bf06p"]
-[ext_resource type="PackedScene" uid="uid://cwnvsfbpov2w8" path="res://game/enemies/6-volcano/volcano_turtle/volcano_tortoise_enemy.tscn" id="4_bf06p"]
+[ext_resource type="PackedScene" uid="uid://dimh4wgth5dwg" path="res://game/enemies/6-volcano/volcano_tortoise_complex/volcano_tortoise_complex_D2.tscn" id="3_r8is5"]
 
 [node name="Level" unique_id=1973423689 instance=ExtResource("1_2s0gq")]
 
-[node name="MagmaToad2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1898691 instance=ExtResource("2_r8is5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.909888, 0, 2.6467488)
-
-[node name="Charger2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1917291400 instance=ExtResource("3_bf06p")]
+[node name="Charger2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1917291400 instance=ExtResource("3_bf06p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8579519, 0, -3.8401227)
 
-[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="3" unique_id=1961314702 instance=ExtResource("4_bf06p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2979174, 0, -0.97606426)
+[node name="volcano_tortoise_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1898691 instance=ExtResource("3_r8is5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.325175, 0, -0.97179407)
