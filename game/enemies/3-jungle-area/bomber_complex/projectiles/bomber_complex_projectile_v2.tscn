@@ -13,8 +13,10 @@
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="8_7bgia"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="9_rildt"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="10_o04do"]
-[ext_resource type="PackedScene" uid="uid://b3i03xporqdm7" path="res://game/enemies/3-jungle/bomber/projectile/bomber_explosion_projectile.tscn" id="11_oyass"]
-[ext_resource type="PackedScene" uid="uid://dbwg5pd51l5wa" path="res://game/enemies/3-jungle/bomber/projectile/bomber_explosion_particle.tscn" id="12_1qg4g"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="11_jsdlm"]
+[ext_resource type="PackedScene" uid="uid://b3i03xporqdm7" path="res://game/enemies/3-jungle-area/bomber/projectile/bomber_explosion_projectile.tscn" id="11_oyass"]
+[ext_resource type="PackedScene" uid="uid://dbwg5pd51l5wa" path="res://game/enemies/3-jungle-area/bomber/projectile/bomber_explosion_particle.tscn" id="12_1qg4g"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="12_i2r3v"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_kdgty"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_7bgia"]
 [ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="13_rildt"]
@@ -23,6 +25,38 @@
 _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.4585309), 0.0, 4.5900607, 0, 0, Vector2(0.565, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.950316, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Resource" id="Resource_jxyd3"]
+script = ExtResource("11_jsdlm")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_fw6xi"]
+script = ExtResource("11_jsdlm")
+attribute = "damage"
+value = 80.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_23vhl"]
+script = ExtResource("11_jsdlm")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_p7vjs"]
+script = ExtResource("11_jsdlm")
+attribute = "damage"
+value = 55.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_papk1"]
+script = ExtResource("12_i2r3v")
+introduction = Array[ExtResource("11_jsdlm")]([SubResource("Resource_23vhl")])
+easy = Array[ExtResource("11_jsdlm")]([SubResource("Resource_jxyd3")])
+medium = Array[ExtResource("11_jsdlm")]([SubResource("Resource_p7vjs")])
+hard = Array[ExtResource("11_jsdlm")]([SubResource("Resource_fw6xi")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="Resource" id="Resource_rildt"]
 script = ExtResource("12_kdgty")
@@ -214,6 +248,7 @@ metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 script = ExtResource("10_o04do")
 ignore_relative_rotation = true
 spawn_position = NodePath("../../../../../Marker3D")
+difficulty_scaler = SubResource("Resource_papk1")
 entity_to_spawn = ExtResource("11_oyass")
 amount_of_spawns = 4
 target_strategy = SubResource("Resource_rildt")

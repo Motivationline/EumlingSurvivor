@@ -1,14 +1,112 @@
 [gd_scene format=3 uid="uid://cw1yj7usybkwg"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_8fk6x"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_66qlu"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_ewjtt"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_lcjgu"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_lo05d"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_fvuh5"]
-[ext_resource type="PackedScene" uid="uid://qba3i6xxa5r1" path="res://game/enemies/3-jungle/bomber_complex/projectiles/bomber_complex_projetile_v1.tscn" id="5_e5qk8"]
+[ext_resource type="PackedScene" uid="uid://qba3i6xxa5r1" path="res://game/enemies/3-jungle-area/bomber_complex/projectiles/bomber_complex_projetile_v1.tscn" id="5_e5qk8"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_q8x75"]
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="6_e5qk8"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_fvuh5"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_q8x75"]
+
+[sub_resource type="Resource" id="Resource_8robx"]
+script = ExtResource("2_66qlu")
+attribute = "health"
+value = 350.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_5mv0i"]
+script = ExtResource("2_66qlu")
+attribute = "health"
+value = 1100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_nbqbp"]
+script = ExtResource("2_66qlu")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_febeb"]
+script = ExtResource("2_66qlu")
+attribute = "health"
+value = 725.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ec0fu"]
+script = ExtResource("3_lcjgu")
+introduction = Array[ExtResource("2_66qlu")]([SubResource("Resource_nbqbp")])
+easy = Array[ExtResource("2_66qlu")]([SubResource("Resource_8robx")])
+medium = Array[ExtResource("2_66qlu")]([SubResource("Resource_febeb")])
+hard = Array[ExtResource("2_66qlu")]([SubResource("Resource_5mv0i")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_cs5v4"]
+script = ExtResource("2_66qlu")
+attribute = "damage"
+value = 60.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_6vjho"]
+script = ExtResource("2_66qlu")
+attribute = "damage"
+value = 125.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_smtkt"]
+script = ExtResource("2_66qlu")
+attribute = "damage"
+value = 45.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_51ldy"]
+script = ExtResource("2_66qlu")
+attribute = "damage"
+value = 90.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_p2ta3"]
+script = ExtResource("3_lcjgu")
+introduction = Array[ExtResource("2_66qlu")]([SubResource("Resource_smtkt")])
+easy = Array[ExtResource("2_66qlu")]([SubResource("Resource_cs5v4")])
+medium = Array[ExtResource("2_66qlu")]([SubResource("Resource_51ldy")])
+hard = Array[ExtResource("2_66qlu")]([SubResource("Resource_6vjho")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_s8fvj"]
+script = ExtResource("2_66qlu")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_hhd11"]
+script = ExtResource("2_66qlu")
+attribute = "damage"
+value = 80.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_m6pmt"]
+script = ExtResource("2_66qlu")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_djdpi"]
+script = ExtResource("2_66qlu")
+attribute = "damage"
+value = 55.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_4l681"]
+script = ExtResource("3_lcjgu")
+introduction = Array[ExtResource("2_66qlu")]([SubResource("Resource_m6pmt")])
+easy = Array[ExtResource("2_66qlu")]([SubResource("Resource_s8fvj")])
+medium = Array[ExtResource("2_66qlu")]([SubResource("Resource_djdpi")])
+hard = Array[ExtResource("2_66qlu")]([SubResource("Resource_hhd11")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e5qk8"]
 radius = 0.32468745
@@ -20,6 +118,7 @@ radius = 0.3609349
 radius = 0.0991429
 
 [node name="bomber_complex_D1" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_8fk6x")]
+difficulty_scaler = SubResource("Resource_ec0fu")
 hitbox = NodePath("hitboxbase")
 hurtbox = NodePath("Hurtbox")
 
@@ -43,6 +142,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1103538844]
 script = ExtResource("4_fvuh5")
+difficulty_scaler = SubResource("Resource_p2ta3")
 entity_to_spawn = ExtResource("5_e5qk8")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
@@ -64,6 +164,7 @@ collision_layer = 32
 collision_mask = 8
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_4l681")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxbase" index="0" unique_id=1792304707]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3288139, 0)
