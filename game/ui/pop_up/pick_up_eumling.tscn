@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dj5fnsnkj3y2a" path="res://assets/ui/pop_up/win_strahlen.png" id="3_fwfbe"]
 [ext_resource type="Texture2D" uid="uid://ct0dwwb0l0w2p" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayoutBack.png" id="4_rfacl"]
 [ext_resource type="Texture2D" uid="uid://cls17fca8iawc" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayout.png" id="5_qvilx"]
+[ext_resource type="PackedScene" uid="uid://drxv2fntob1we" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/reveal/mini_eumling_artistisch_reveal.tscn" id="6_76slt"]
 
 [node name="PickUpEumling" type="Control" unique_id=200048838]
 layout_mode = 3
@@ -38,6 +39,30 @@ position = Vector2(1505, 284)
 
 [node name="firework_particles3" parent="fireworks" unique_id=1424378926 instance=ExtResource("1_372mq")]
 position = Vector2(393, 797)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1484812198]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1337560579]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="mini_eumling_var1" parent="SubViewportContainer/SubViewport" unique_id=752790786 instance=ExtResource("6_76slt")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1494324480]
+transform = Transform3D(1, 0, 0, 0, 0.0004475872, 0.99999994, 0, -0.99999994, 0.0004475872, 0, 1.2703482, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1263976116]
+transform = Transform3D(-1, 0, -8.742278e-08, -5.7208172e-08, 0.75616133, 0.6543852, 6.610573e-08, 0.6543852, -0.75616133, -5.9206994e-17, 0.8124004, -0.54282486)
+projection = 1
 
 [node name="Banner_side_left" type="TextureRect" parent="." unique_id=536918846]
 layout_mode = 1
