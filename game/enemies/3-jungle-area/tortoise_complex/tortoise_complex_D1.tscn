@@ -14,9 +14,12 @@
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_vbkmk"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="8_2gkp5"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_f80sp"]
+[ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="8_xago8"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="9_2gkp5"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="9_h6n4k"]
+[ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="9_qmpt2"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="12_2gkp5"]
+[ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="16_gnrjs"]
 
 [sub_resource type="Resource" id="Resource_6il4h"]
 script = ExtResource("2_xkbo4")
@@ -118,6 +121,67 @@ metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 script = ExtResource("6_vbkmk")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
 
+[sub_resource type="Animation" id="Animation_6il4h"]
+resource_name = "ExtendIndicator"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/arc_fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.1666666, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.250000011875, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/arc")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_xago8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/arc_fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.250000011875]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/arc")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qmpt2"]
+_data = {
+&"ExtendIndicator": SubResource("Animation_6il4h"),
+&"RESET": SubResource("Animation_xago8")
+}
+
 [sub_resource type="Resource" id="Resource_a6ev1"]
 script = ExtResource("2_xkbo4")
 attribute = "damage"
@@ -162,7 +226,7 @@ health = 400.0
 difficulty_scaler = SubResource("Resource_o7jqg")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
 speed = 0.4
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -206,33 +270,50 @@ wait_time = 0.5
 stop_distance = 1.0
 max_follow_time = 3.0
 speed_override_active = true
-next_state = NodePath("../Charging")
+next_state = NodePath("../MultistateState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
 })
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="Charging" type="Node" parent="StateMachine/Chase_and_Attack" index="1" unique_id=437544642 node_paths=PackedStringArray("next_state")]
+[node name="MultistateState" type="Node" parent="StateMachine/Chase_and_Attack" index="1" unique_id=2049356790 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+script = ExtResource("8_xago8")
+states_to_execute = [NodePath("Charging"), NodePath("EnableIndicator")]
+states_that_need_to_finish = [NodePath("Charging")]
+which_states_need_to_finish = "any"
+next_state = NodePath("../DisableIndicator")
+metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
+
+[node name="Charging" type="Node" parent="StateMachine/Chase_and_Attack/MultistateState" index="0" unique_id=437544642 node_paths=PackedStringArray("next_state")]
 script = ExtResource("9_2gkp5")
 wait_time = 1.5
-next_state = NodePath("../SpawnInnerRing")
+next_state = NodePath("../../DisableIndicator")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Transition/transition_request": "idle"
+"parameters/stomp/request": 1
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="SpawnInnerRing" type="Node" parent="StateMachine/Chase_and_Attack" index="2" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
+[node name="EnableIndicator" type="Node" parent="StateMachine/Chase_and_Attack/MultistateState" index="1" unique_id=1437784076 node_paths=PackedStringArray("enable", "next_state")]
+script = ExtResource("9_qmpt2")
+enable = [NodePath("../../../../Visuals/CircularTargetIndicator")]
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="DisableIndicator" type="Node" parent="StateMachine/Chase_and_Attack" index="2" unique_id=1108161586 node_paths=PackedStringArray("disable", "next_state")]
+script = ExtResource("9_qmpt2")
+disable = [NodePath("../../../Visuals/CircularTargetIndicator")]
+next_state = NodePath("../SpawnInnerRing")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="SpawnInnerRing" type="Node" parent="StateMachine/Chase_and_Attack" index="3" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_l7fh3")
-start_delay = 0.2
-end_delay = 2.2
+end_delay = 1.0
 next_state = NodePath("../../MoveRandomOnNavMeshState")
-animation_trigger = Dictionary[String, Variant]({
-"parameters/shake/request": 1
-})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="spawnerMain" type="Node3D" parent="StateMachine/Chase_and_Attack/SpawnInnerRing" index="0" unique_id=1296606649]
 script = ExtResource("4_1inio")
+damage = 50.0
 difficulty_scaler = SubResource("Resource_vat17")
 entity_to_spawn = ExtResource("6_uujif")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -262,6 +343,23 @@ metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
 [node name="tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=2050981297 instance=ExtResource("2_j0ork")]
 
+[node name="CircularTargetIndicator" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1351910490 instance=ExtResource("16_gnrjs")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+visible = false
+instance_shader_parameters/arc = 0.0
+instance_shader_parameters/arc_fade = 0.250000011875
+instance_shader_parameters/color = Color(0.9843137, 0.13725491, 0, 0.8)
+instance_shader_parameters/edge = 0.0
+instance_shader_parameters/edge_color = Color(1, 0, 0, 0.8)
+instance_shader_parameters/edge_fade = 0.11200000532
+instance_shader_parameters/inner_fade = 0.0
+instance_shader_parameters/outer_fade = 0.0
+instance_shader_parameters/width = 0.4590000218025
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/CircularTargetIndicator" index="0" unique_id=764535597]
+libraries/ = SubResource("AnimationLibrary_qmpt2")
+autoplay = &"ExtendIndicator"
+
 [node name="hitboxBase" parent="." index="7" unique_id=1235312899 instance=ExtResource("8_f80sp")]
 collision_layer = 32
 collision_mask = 8
@@ -286,3 +384,5 @@ shape = SubResource("SphereShape3D_ygvvl")
 debug_color = Color(0.911452, 0.08323508, 0.69264156, 0.41960785)
 
 [node name="Marker3D" type="Marker3D" parent="." index="9" unique_id=571452532]
+
+[connection signal="visibility_changed" from="Visuals/CircularTargetIndicator" to="Visuals/CircularTargetIndicator/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
