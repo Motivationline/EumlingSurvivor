@@ -41,6 +41,7 @@
 [ext_resource type="AudioStream" uid="uid://bd1pdp5nkt7rs" path="res://assets/characters/eumling/V2/sounds/walk_8.wav" id="47_ipfdr"]
 [ext_resource type="AudioStream" uid="uid://ckt1wmdh0i2s5" path="res://assets/characters/eumling/V2/sounds/walk_9.wav" id="48_wxabu"]
 [ext_resource type="AudioStream" uid="uid://bdu6vr8x2yl1f" path="res://assets/characters/eumling/V2/sounds/walk_10.wav" id="49_snb7b"]
+[ext_resource type="Texture2D" uid="uid://w4m6e1qjb43g" path="res://assets/vfx/particle_pack/circle_05.png" id="60_ddimf"]
 [ext_resource type="PackedScene" uid="uid://dwn8aulqlewsv" path="res://game/player/abilities/conventional/shield/shield.tscn" id="61_od043"]
 [ext_resource type="Script" uid="uid://nmf3f7xinks3" path="res://game/player/abilities/conventional/conventional.gd" id="62_5en5a"]
 [ext_resource type="Texture2D" uid="uid://dbqxunehgsecx" path="res://assets/ui/Eumlex/RedDop.png" id="63_ydmue"]
@@ -73,6 +74,23 @@ gradient = SubResource("Gradient_ddimf")
 fill = 1
 fill_from = Vector2(0.50609756, 0.51585364)
 fill_to = Vector2(0.86219513, 0.19878049)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ej5me"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("60_ddimf")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_btnkn"]
+
+[sub_resource type="Curve" id="Curve_6sv4t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.396517, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1won5"]
+colors = PackedColorArray(0, 0.27999988, 0.7, 0.2901961, 1, 1, 1, 0)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ep63"]
 radius = 0.18164063
@@ -146,7 +164,8 @@ metadata/_custom_type_script = "uid://cfdcthqwyqi3l"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlda6"]
 transparency = 1
-albedo_color = Color(0, 0.14509805, 1, 0.6509804)
+blend_mode = 1
+albedo_color = Color(0, 0.1500001, 1, 0.101960786)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btnkn"]
 transparency = 1
@@ -274,6 +293,32 @@ alpha_scissor_threshold = 0.0
 alpha_hash_scale = 2.0
 alpha_antialiasing_edge = 0.47
 texture = SubResource("GradientTexture2D_ej5me")
+
+[node name="TailParticles" type="Node3D" parent="Eumling_v2" unique_id=190842253]
+
+[node name="BasicStrokes" type="CPUParticles3D" parent="Eumling_v2/TailParticles" unique_id=179918601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065811604, 0)
+material_override = SubResource("StandardMaterial3D_ej5me")
+amount = 24
+lifetime = 1.5
+explosiveness = 0.09
+mesh = SubResource("PlaneMesh_btnkn")
+emission_shape = 3
+emission_box_extents = Vector3(0.1, 0, 0.1)
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 1)
+spread = 15.13
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 0.5
+damping_min = 7.86
+damping_max = 26.201
+angle_min = -201.2
+angle_max = 226.4
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_6sv4t")
+color_ramp = SubResource("Gradient_1won5")
 
 [node name="AttackVisual" parent="." unique_id=375290485 instance=ExtResource("4_fdpga")]
 unique_name_in_owner = true
