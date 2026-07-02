@@ -143,7 +143,7 @@ func animate_cage():
 func clear_level():
 	state = LEVEL_STATE.CLEARED
 	level_cleared.emit()
-	# remove_dangers()
+	remove_dangers()
 	if is_boss_level:
 		await unlock_mini_eumling()
 	else:
