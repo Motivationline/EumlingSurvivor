@@ -9,11 +9,11 @@ func _ready() -> void:
 	game_data = GameData.new() # has to happen here and not at var definition for order reasons
 
 func add_upgrade_to_path(type: Enum.EUMLING_TYPE):
+	game_data.total_upgrades += 1
 	if not type in Enum.EUMLING_TYPE.values():
 		return
 	var amount: int = game_data.upgrade_path_progress.get(type, 0)
 	game_data.upgrade_path_progress.set(type, amount + 1)
-	game_data.total_upgrades += 1
 
 func end_game():
 	game_data.reset()
