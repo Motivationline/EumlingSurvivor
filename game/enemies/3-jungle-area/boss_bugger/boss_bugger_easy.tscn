@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://b1084wmkhn2en" path="res://game/aoes/boss_bugger_aoe_attack/boss_bugger_aoe.tscn" id="7_qqlxf"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_j8njm"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="9_05pcc"]
-[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle-area/sniper/sniper_projectile_enemy.tscn" id="10_30o50"]
 [ext_resource type="PackedScene" uid="uid://dyq7e4rvvp1nu" path="res://game/enemies/3-jungle-area/boss_bugger/boss_bugger_projectile_easy.tscn" id="10_x6iwq"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="11_ct7ls"]
+[ext_resource type="PackedScene" uid="uid://di7u4dovf5ps2" path="res://game/enemies/3-jungle-area/boss_bugger/boss_bugger_projectile_sniper.tscn" id="12_2isie"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="12_ps3lq"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="14_iwrf2"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="15_ekbei"]
@@ -185,7 +185,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(2.1376193e-16, -2.4050328e-16)
+shader_parameter/wobble = Vector2(0.09023065, -0.04310951)
 
 [sub_resource type="Gradient" id="Gradient_qqlxf"]
 offsets = PackedFloat32Array(0.5364583, 0.71875, 0.7760417)
@@ -470,7 +470,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 script = ExtResource("6_urikr")
 offset_distance = 0.6
 damage = 40.0
-entity_to_spawn = ExtResource("10_30o50")
+entity_to_spawn = ExtResource("12_2isie")
 amount_of_spawns = 6
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
@@ -501,7 +501,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 script = ExtResource("6_urikr")
 offset_distance = 0.6
 damage = 40.0
-entity_to_spawn = ExtResource("10_30o50")
+entity_to_spawn = ExtResource("12_2isie")
 amount_of_spawns = 6
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
@@ -532,7 +532,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 script = ExtResource("6_urikr")
 offset_distance = 0.6
 damage = 40.0
-entity_to_spawn = ExtResource("10_30o50")
+entity_to_spawn = ExtResource("12_2isie")
 amount_of_spawns = 6
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
@@ -571,17 +571,14 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("16_ofchx")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 595323077) index="0" unique_id=1169951862]
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 810757630) index="0" unique_id=318944803]
 bones/19/rotation = Quaternion(-0.49805066, 0.5375024, -0.4991323, -0.4624973)
 bones/22/rotation = Quaternion(-0.37833884, 0.6275533, -0.5827548, -0.35133108)
 
-[node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0" unique_id=160595167]
-transform = Transform3D(1, -2.7236666e-15, 2.1060042e-07, -9.829095e-15, 0.9999997, 5.9604634e-08, -2.1060043e-07, -5.960462e-08, 0.99999994, 0, 2.0005624, -3.9715835e-22)
-
-[node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" index="0" unique_id=450284212]
+[node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" parent_id_path=PackedInt32Array(113844681, 160595167) index="0" unique_id=450284212]
 material_override = SubResource("ShaderMaterial_urikr")
 
-[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=25388099]
+[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=92984005]
 mesh = SubResource("ArrayMesh_30o50")
 
 [node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2" unique_id=525651175]
@@ -589,15 +586,6 @@ transform = Transform3D(-0.07608365, -0.99710137, -4.4703484e-07, -0.07371219, 0
 
 [node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="3" unique_id=2129402415]
 transform = Transform3D(-0.46685255, -0.8843353, -4.172325e-07, -0.065375835, 0.034513116, -0.9972638, 0.8819155, -0.46557498, -0.07392681, -0.13967305, 1.9208276, 0.11912686)
-
-[node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="4" unique_id=1002716327]
-transform = Transform3D(-0.07608353, 0.99710137, 2.6822087e-07, 2.9802319e-08, -2.3841856e-07, 0.99999994, 0.9971013, 0.0760835, 0, 0.24529767, 2.003276, -0.0015778542)
-
-[node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="5" unique_id=831899753]
-transform = Transform3D(-0.46685255, 0.8843351, 3.5762787e-07, -5.9604645e-08, -4.7683716e-07, 1, 0.8843351, 0.46685258, 2.9802322e-07, 0.13967305, 1.9208276, 0.11912686)
-
-[node name="hand_particles" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="6" unique_id=287273777]
-transform = Transform3D(0, -0.99867415, -0.05147755, 0, -0.05147755, 0.99867415, -1, 0, 0, -0.3914069, 1.5629306, 0.08412939)
 
 [node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1216685563 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_7rhsi")

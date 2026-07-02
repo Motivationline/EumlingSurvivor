@@ -4,16 +4,35 @@
 [ext_resource type="Script" uid="uid://c1k2fcc6tpf3l" path="res://strategies/projectile_movement/speed.gd" id="2_rbnfw"]
 [ext_resource type="Script" uid="uid://coqjh4l5f0121" path="res://strategies/event/remove.gd" id="3_is310"]
 [ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="4_xinfx"]
+[ext_resource type="ArrayMesh" uid="uid://ckrm8ti4sk7tu" path="res://assets/models/projectiles/leaf_aura.res" id="5_62u7c"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="5_ixmvh"]
+[ext_resource type="Texture2D" uid="uid://t785pom8x3ve" path="res://game/enemies/3-jungle-area/sniper/feather.png" id="6_kvpox"]
 
 [sub_resource type="Curve" id="Curve_wripo"]
 _limits = [0.0, 4.0, 0.0, 4.0]
 _data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
 point_count = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62u7c"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(2.578235, 0.6823058, 2.0726545, 0.95686275)
+grow = true
+grow_amount = 0.02
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uruu7"]
-specular_mode = 1
-albedo_color = Color(0.23838061, 0.5592872, 0.52681357, 1)
+next_pass = SubResource("StandardMaterial3D_62u7c")
+shading_mode = 0
+albedo_color = Color(0.41755995, 0.24959998, 0.78, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(2.578235, 0.6823058, 2.0726545, 0.95686275)
+stencil_outline_thickness = 0.02
 
 [sub_resource type="SphereMesh" id="SphereMesh_byqns"]
 radius = 0.15
@@ -21,16 +40,95 @@ height = 0.3
 radial_segments = 6
 rings = 3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byxc1"]
-cull_mode = 1
+[sub_resource type="Gradient" id="Gradient_hfhp6"]
+offsets = PackedFloat32Array(0.2820513, 1)
+colors = PackedColorArray(0.98, 0.39999998, 1, 0, 2.5025156, 0.5631672, 2.4701927, 0.14117648)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d0u6y"]
+gradient = SubResource("Gradient_hfhp6")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
+transparency = 1
 shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_d0u6y")
+stencil_flags = 2
+stencil_color = Color(0.88916653, 0, 0.97, 0.3019608)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0u6y"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.3019608)
+albedo_texture = ExtResource("6_kvpox")
+
+[sub_resource type="QuadMesh" id="QuadMesh_57qmd"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1mk1u"]
 radius = 0.094646715
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wripo"]
 radius = 0.08118541
+
+[sub_resource type="Animation" id="Animation_kvpox"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Anchor/hull:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hfhp6"]
+resource_name = "rotate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Anchor/hull:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0), Vector3(1.5707964, 18.849556, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 12.566371)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h8ers"]
+_data = {
+&"RESET": SubResource("Animation_kvpox"),
+&"rotate": SubResource("Animation_hfhp6")
+}
 
 [node name="Projectile" unique_id=1098182531 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_hurt", "on_end_of_life") instance=ExtResource("1_q8gbm")]
 damage = 75.0
@@ -51,20 +149,29 @@ metadata/_custom_type_script = "uid://c1k2fcc6tpf3l"
 script = ExtResource("3_is310")
 metadata/_custom_type_script = "uid://coqjh4l5f0121"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=1394156185]
+[node name="Visuals" type="Node3D" parent="." index="2" unique_id=582003978]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" index="0" unique_id=1394156185]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.28753555, -1.2568578e-08)
 material_override = SubResource("StandardMaterial3D_uruu7")
 mesh = SubResource("SphereMesh_byqns")
 
-[node name="outline" type="MeshInstance3D" parent="MeshInstance3D" index="0" unique_id=1414549066]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.009984612, 0)
-material_override = SubResource("StandardMaterial3D_byxc1")
-mesh = SubResource("SphereMesh_byqns")
-skeleton = NodePath("../..")
-
-[node name="DecalShadow" parent="MeshInstance3D" index="1" unique_id=1002455412 instance=ExtResource("4_xinfx")]
+[node name="DecalShadow" parent="Visuals/MeshInstance3D" index="0" unique_id=1002455412 instance=ExtResource("4_xinfx")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.054212e-08, -0.24117559)
 size = Vector3(0.252, 0.05, 0.5)
+
+[node name="Anchor" type="Node3D" parent="Visuals" index="1" unique_id=1532487843]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.2846932, 0.100191966)
+
+[node name="hull" type="MeshInstance3D" parent="Visuals/Anchor" index="0" unique_id=1675341816]
+transform = Transform3D(1.9263408, 0, 0, 0, -8.946632e-08, -1.943046, 0, 2.0467508, -8.4933234e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_57qmd")
+mesh = ExtResource("5_62u7c")
+
+[node name="shadow" type="MeshInstance3D" parent="Visuals/Anchor" index="1" unique_id=237692312]
+transform = Transform3D(0.38974303, 0, 0, 0, 0.57787406, 0, 0, 0, 1, 0, 0.10019199, -0.25070664)
+material_override = SubResource("StandardMaterial3D_d0u6y")
+mesh = SubResource("QuadMesh_57qmd")
 
 [node name="Hitbox" parent="." index="3" unique_id=1696673246 instance=ExtResource("5_ixmvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28896308, 0)
@@ -81,3 +188,7 @@ shape = SubResource("SphereShape3D_1mk1u")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1600524182]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2871864, 0)
 shape = SubResource("SphereShape3D_wripo")
+
+[node name="rotation" type="AnimationPlayer" parent="." index="5" unique_id=1412999813]
+libraries/ = SubResource("AnimationLibrary_h8ers")
+autoplay = &"rotate"

@@ -2,4 +2,28 @@
 
 [ext_resource type="PackedScene" uid="uid://capkdd2av0w8x" path="res://assets/models/3-Jungle/Spikes/Spikes.glb" id="1_b06sr"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_doewu"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.19, 0.06459999, 0.06459999, 1)
+grow = true
+grow_amount = 0.02
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfo4p"]
+next_pass = SubResource("StandardMaterial3D_doewu")
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.19, 0.06459999, 0.06459999, 1)
+stencil_outline_thickness = 0.02
+
 [node name="Spikes" unique_id=2128595803 instance=ExtResource("1_b06sr")]
+
+[node name="Cone" parent="." index="0" unique_id=1557228389]
+material_overlay = SubResource("StandardMaterial3D_wfo4p")

@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://b1084wmkhn2en" path="res://game/aoes/boss_bugger_aoe_attack/boss_bugger_aoe.tscn" id="7_irclo"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_5mb7f"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="9_bhsd8"]
-[ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle-area/sniper/sniper_projectile_enemy.tscn" id="10_5vwgk"]
+[ext_resource type="PackedScene" uid="uid://di7u4dovf5ps2" path="res://game/enemies/3-jungle-area/boss_bugger/boss_bugger_projectile_sniper.tscn" id="10_cao0i"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="11_movh1"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="12_5klh4"]
-[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="12_aywxq"]
+[ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="12_aywxq"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="14_4d6kv"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="15_85lgk"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="16_ekuuj"]
@@ -100,7 +100,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(-0.09952288, 0.009756825)
+shader_parameter/wobble = Vector2(0.028846934, 0.095748916)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l4iyu"]
 streams_count = 5
@@ -237,7 +237,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/Initial Shot" index="0" unique_id=2018637419]
 script = ExtResource("6_0irvu")
 offset_distance = 1.6
-entity_to_spawn = ExtResource("10_5vwgk")
+entity_to_spawn = ExtResource("10_cao0i")
 target_strategy = SubResource("Resource_p8oh0")
 rotation_strategy = SubResource("Resource_cao0i")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
@@ -267,7 +267,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState3" index="0" unique_id=333741779]
 script = ExtResource("6_0irvu")
 offset_distance = 1.6
-entity_to_spawn = ExtResource("10_5vwgk")
+entity_to_spawn = ExtResource("10_cao0i")
 amount_of_spawns = 2
 target_strategy = SubResource("Resource_csjgc")
 rotation_strategy = SubResource("Resource_aywxq")
@@ -298,7 +298,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/TripleShot/SpawnEntitiesState4" index="0" unique_id=2096881438]
 script = ExtResource("6_0irvu")
 offset_distance = 1.6
-entity_to_spawn = ExtResource("10_5vwgk")
+entity_to_spawn = ExtResource("10_cao0i")
 amount_of_spawns = 3
 target_strategy = SubResource("Resource_c2xk5")
 rotation_strategy = SubResource("Resource_aywxq")
@@ -329,7 +329,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom" index="0" unique_id=1099277765]
 script = ExtResource("6_0irvu")
 offset_distance = 0.6
-entity_to_spawn = ExtResource("10_5vwgk")
+entity_to_spawn = ExtResource("10_cao0i")
 amount_of_spawns = 12
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
@@ -357,7 +357,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom2" index="0" unique_id=737046938]
 script = ExtResource("6_0irvu")
 offset_distance = 0.6
-entity_to_spawn = ExtResource("10_5vwgk")
+entity_to_spawn = ExtResource("10_cao0i")
 amount_of_spawns = 16
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
@@ -385,7 +385,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/BigBomba/Booom3" index="0" unique_id=1099679009]
 script = ExtResource("6_0irvu")
 offset_distance = 0.6
-entity_to_spawn = ExtResource("10_5vwgk")
+entity_to_spawn = ExtResource("10_cao0i")
 amount_of_spawns = 20
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
@@ -422,7 +422,7 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=604116715 instance=ExtResource("16_ekuuj")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(604116715, 138527474) index="0" unique_id=189602144]
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(604116715, 810757630) index="0" unique_id=318944803]
 bones/19/rotation = Quaternion(-0.52084875, 0.5621063, -0.47125188, -0.4366633)
 bones/22/rotation = Quaternion(-0.39565715, 0.65627927, -0.5502035, -0.33170652)
 
