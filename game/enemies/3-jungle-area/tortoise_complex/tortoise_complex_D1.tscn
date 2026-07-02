@@ -14,10 +14,8 @@
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_vbkmk"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="8_2gkp5"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_f80sp"]
-[ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="8_xago8"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="9_2gkp5"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="9_h6n4k"]
-[ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="9_qmpt2"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="12_2gkp5"]
 [ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="16_gnrjs"]
 
@@ -270,42 +268,22 @@ wait_time = 0.5
 stop_distance = 1.5
 max_follow_time = 3.0
 speed_override_active = true
-next_state = NodePath("../MultistateState")
+next_state = NodePath("../Charging")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
 })
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="MultistateState" type="Node" parent="StateMachine/Chase_and_Attack" index="1" unique_id=2049356790 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
-script = ExtResource("8_xago8")
-states_to_execute = [NodePath("Charging"), NodePath("EnableIndicator")]
-states_that_need_to_finish = [NodePath("Charging")]
-which_states_need_to_finish = "any"
-next_state = NodePath("../DisableIndicator")
-metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
-
-[node name="Charging" type="Node" parent="StateMachine/Chase_and_Attack/MultistateState" index="0" unique_id=437544642 node_paths=PackedStringArray("next_state")]
+[node name="Charging" type="Node" parent="StateMachine/Chase_and_Attack" index="1" unique_id=437544642 node_paths=PackedStringArray("next_state")]
 script = ExtResource("9_2gkp5")
 wait_time = 1.5
-next_state = NodePath("../../DisableIndicator")
+next_state = NodePath("../SpawnInnerRing")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/stomp/request": 1
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="EnableIndicator" type="Node" parent="StateMachine/Chase_and_Attack/MultistateState" index="1" unique_id=1437784076 node_paths=PackedStringArray("enable", "next_state")]
-script = ExtResource("9_qmpt2")
-enable = [NodePath("../../../../Visuals/CircularTargetIndicator")]
-next_state = NodePath(".")
-metadata/_custom_type_script = "uid://bwy4tebxadp1y"
-
-[node name="DisableIndicator" type="Node" parent="StateMachine/Chase_and_Attack" index="2" unique_id=1108161586 node_paths=PackedStringArray("disable", "next_state")]
-script = ExtResource("9_qmpt2")
-disable = [NodePath("../../../Visuals/CircularTargetIndicator")]
-next_state = NodePath("../SpawnInnerRing")
-metadata/_custom_type_script = "uid://bwy4tebxadp1y"
-
-[node name="SpawnInnerRing" type="Node" parent="StateMachine/Chase_and_Attack" index="3" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
+[node name="SpawnInnerRing" type="Node" parent="StateMachine/Chase_and_Attack" index="2" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_l7fh3")
 end_delay = 1.0
 next_state = NodePath("../../MoveRandomOnNavMeshState")
@@ -385,4 +363,6 @@ debug_color = Color(0.911452, 0.08323508, 0.69264156, 0.41960785)
 
 [node name="Marker3D" type="Marker3D" parent="." index="9" unique_id=571452532]
 
+[connection signal="entered" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator" method="set_visible" binds= [true]]
+[connection signal="exited" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator" method="set_visible" binds= [false]]
 [connection signal="visibility_changed" from="Visuals/CircularTargetIndicator" to="Visuals/CircularTargetIndicator/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]

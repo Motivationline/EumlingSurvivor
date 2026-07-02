@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://bvmgm4ankvew7"]
 
 [ext_resource type="PackedScene" uid="uid://dogmqp6i2jn0e" path="res://game/enemies/3-jungle-area/tortoise_complex/tortoise_complex_D1.tscn" id="1_o66bo"]
-[ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="2_ynkmh"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_uu3eu"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_uyr82"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="4_gi7fd"]
-[ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="4_kj6pd"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_vqhyi"]
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="5_f4g4a"]
 [ext_resource type="PackedScene" uid="uid://88irdt85febg" path="res://game/aoes/tortoise_complex_aoe/jungle_tortoise_complex/tortoise_complex_aoe_D2.tscn" id="5_uyr82"]
@@ -107,43 +105,20 @@ _data = {
 [node name="tortoise_complex_D2" unique_id=1898691 node_paths=PackedStringArray("on_hurt") instance=ExtResource("1_o66bo")]
 on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
 
-[node name="SpawnInnerRing" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(1333608283) index="3" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
+[node name="SpawnInnerRing" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(1333608283) index="2" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
 end_delay = 0.65
-next_state = NodePath("../MultistateState2")
+next_state = NodePath("../Charging2")
 
-[node name="MultistateState2" type="Node" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(1333608283) index="4" unique_id=1402071269 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
-script = ExtResource("2_ynkmh")
-states_to_execute = [NodePath("Charging"), NodePath("EnableIndicator")]
-states_that_need_to_finish = [NodePath("Charging")]
-which_states_need_to_finish = "any"
-next_state = NodePath("../DisableIndicator2")
-animation_trigger = Dictionary[String, Variant]({
-"parameters/stomp/request": 1
-})
-metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
-
-[node name="Charging" type="Node" parent="StateMachine/Chase_and_Attack/MultistateState2" index="0" unique_id=1741058622 node_paths=PackedStringArray("next_state")]
+[node name="Charging2" type="Node" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(1333608283) index="3" unique_id=1741058622 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_uu3eu")
 wait_time = 1.5
-next_state = NodePath("../../DisableIndicator2")
+next_state = NodePath("../SpawnOuterRing")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/stomp/request": 1
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="EnableIndicator" type="Node" parent="StateMachine/Chase_and_Attack/MultistateState2" index="1" unique_id=1265345933 node_paths=PackedStringArray("enable", "next_state")]
-script = ExtResource("4_kj6pd")
-enable = [NodePath("../../../../Visuals/CircularTargetIndicatorBig")]
-next_state = NodePath(".")
-metadata/_custom_type_script = "uid://bwy4tebxadp1y"
-
-[node name="DisableIndicator2" type="Node" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(1333608283) index="5" unique_id=1078625013 node_paths=PackedStringArray("disable", "next_state")]
-script = ExtResource("4_kj6pd")
-disable = [NodePath("../../../Visuals/CircularTargetIndicatorBig")]
-next_state = NodePath("../SpawnOuterRing")
-metadata/_custom_type_script = "uid://bwy4tebxadp1y"
-
-[node name="SpawnOuterRing" type="Node" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(1333608283) index="6" unique_id=2088225781 node_paths=PackedStringArray("next_state")]
+[node name="SpawnOuterRing" type="Node" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(1333608283) index="4" unique_id=2088225781 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_uyr82")
 end_delay = 0.65
 next_state = NodePath("../../MoveRandomOnNavMeshState")
@@ -172,4 +147,6 @@ instance_shader_parameters/width = 0.30000001425
 libraries/ = SubResource("AnimationLibrary_jfkys")
 autoplay = &"ExtendIndicator"
 
+[connection signal="entered" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig" method="set_visible" binds= [true]]
+[connection signal="exited" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig" method="set_visible" binds= [false]]
 [connection signal="visibility_changed" from="Visuals/CircularTargetIndicatorBig" to="Visuals/CircularTargetIndicatorBig/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
