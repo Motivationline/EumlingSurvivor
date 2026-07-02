@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_s0pvf"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="9_o6qy1"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="13_3btfv"]
+[ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="17_a3mrn"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="17_twi3q"]
 [ext_resource type="AudioStream" uid="uid://jw80tpwtp2lw" path="res://assets/characters/enemies/volcano_tortoise/sounds/shake_1.wav" id="18_a3mrn"]
 [ext_resource type="AudioStream" uid="uid://de5py7fhq4jnk" path="res://assets/characters/enemies/volcano_tortoise/sounds/shake_2.wav" id="19_oh0ms"]
@@ -109,6 +110,67 @@ metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 [sub_resource type="Resource" id="Resource_hec8f"]
 script = ExtResource("6_m8pq2")
 metadata/_custom_type_script = "uid://pv70hoylokg6"
+
+[sub_resource type="Animation" id="Animation_6il4h"]
+resource_name = "ExtendIndicator"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/arc_fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.1666666, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.250000011875, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/arc")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_xago8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/arc_fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.250000011875]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/arc")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oh0ms"]
+_data = {
+&"ExtendIndicator": SubResource("Animation_6il4h"),
+&"RESET": SubResource("Animation_xago8")
+}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3vnlf"]
 streams_count = 6
@@ -235,18 +297,14 @@ script = ExtResource("3_3btfv")
 wait_time = 1.5
 next_state = NodePath("../SpawnInnerRing")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Transition/transition_request": "idle"
+"parameters/stomp/request": 1
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="SpawnInnerRing" type="Node" parent="StateMachine/Chase_and_Attack" index="2" unique_id=1622876265 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_v31ca")
-start_delay = 0.2
-end_delay = 2.2
+end_delay = 1.0
 next_state = NodePath("../../DecideDistanceState")
-animation_trigger = Dictionary[String, Variant]({
-"parameters/shake/request": 1
-})
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="spawnerMain" type="Node3D" parent="StateMachine/Chase_and_Attack/SpawnInnerRing" index="0" unique_id=1242991135]
@@ -276,6 +334,23 @@ animation_trigger = Dictionary[String, Variant]({
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
 [node name="volcano_tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1249268255 instance=ExtResource("7_wvq5w")]
+
+[node name="CircularTargetIndicator" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1351910490 instance=ExtResource("17_a3mrn")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+visible = false
+instance_shader_parameters/arc = 0.0
+instance_shader_parameters/arc_fade = 0.250000011875
+instance_shader_parameters/color = Color(0.9843137, 0.13725491, 0, 0.8)
+instance_shader_parameters/edge = 0.0
+instance_shader_parameters/edge_color = Color(1, 0, 0, 0.8)
+instance_shader_parameters/edge_fade = 0.11200000532
+instance_shader_parameters/inner_fade = 0.0
+instance_shader_parameters/outer_fade = 0.0
+instance_shader_parameters/width = 0.4590000218025
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/CircularTargetIndicator" index="0" unique_id=929753532]
+libraries/ = SubResource("AnimationLibrary_oh0ms")
+autoplay = &"ExtendIndicator"
 
 [node name="Shake" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("17_twi3q")]
 stream = SubResource("AudioStreamRandomizer_3vnlf")
@@ -308,4 +383,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3816427, 0)
 shape = SubResource("SphereShape3D_wvq5w")
 debug_color = Color(0.883413, 0.262783, 0.530975, 0.42)
 
+[connection signal="entered" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator" method="set_visible" binds= [true]]
+[connection signal="exited" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator" method="set_visible" binds= [false]]
 [connection signal="play_sound" from="Visuals/volcano_tortoise" to="SoundEffectManager" method="play_sound"]
+[connection signal="visibility_changed" from="Visuals/CircularTargetIndicator" to="Visuals/CircularTargetIndicator/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]

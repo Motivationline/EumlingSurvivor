@@ -2,25 +2,114 @@
 
 [ext_resource type="PackedScene" uid="uid://dgwms5uw0wfje" path="res://game/enemies/6-volcano/volcano_tortoise_complex/volcano_tortoise_complex_D1.tscn" id="1_47h1v"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="2_1kv34"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_wtdsf"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_nk278"]
 [ext_resource type="PackedScene" uid="uid://6l31g58hjjpt" path="res://game/aoes/tortoise_complex_aoe/volcano_tortoise_complex/volcano_tortoise_complex_aoe_D2.tscn" id="4_wtdsf"]
+[ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="6_xg3pc"]
+
+[sub_resource type="Animation" id="Animation_6il4h"]
+resource_name = "ExtendIndicator"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/arc_fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.1666666, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.250000011875, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/arc")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_xago8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/arc_fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.250000011875]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/arc")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_huuul"]
+_data = {
+&"ExtendIndicator": SubResource("Animation_6il4h"),
+&"RESET": SubResource("Animation_xago8")
+}
 
 [node name="volcano_tortoise_complex_D2" unique_id=1898691 instance=ExtResource("1_47h1v")]
 
 [node name="SpawnInnerRing" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(137836916) index="2" unique_id=1622876265 node_paths=PackedStringArray("next_state")]
-next_state = NodePath("../SpawnOuterRing")
+next_state = NodePath("../Charging2")
 
-[node name="SpawnOuterRing" type="Node" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(137836916) index="3" unique_id=278901947 node_paths=PackedStringArray("next_state")]
-script = ExtResource("2_1kv34")
-start_delay = 0.5
-end_delay = 2.2
-next_state = NodePath("../../DecideDistanceState")
+[node name="Charging2" type="Node" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(137836916) index="3" unique_id=1105829469 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_wtdsf")
+wait_time = 1.5
+next_state = NodePath("../SpawnOuterRing")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/shake/request": 1
+"parameters/stomp/request": 1
 })
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="SpawnOuterRing" type="Node" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(137836916) index="4" unique_id=278901947 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_1kv34")
+end_delay = 1.0
+next_state = NodePath("../../DecideDistanceState")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="spawnerTertiary" type="Node3D" parent="StateMachine/Chase_and_Attack/SpawnOuterRing" index="0" unique_id=1744659420]
 script = ExtResource("3_nk278")
 entity_to_spawn = ExtResource("4_wtdsf")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="CircularTargetIndicatorBig" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=1351910490 instance=ExtResource("6_xg3pc")]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
+visible = false
+instance_shader_parameters/arc = 0.0
+instance_shader_parameters/arc_fade = 0.250000011875
+instance_shader_parameters/color = Color(0.9843137, 0.13725491, 0, 0.8)
+instance_shader_parameters/edge = 0.0
+instance_shader_parameters/edge_color = Color(1, 0, 0, 0.8)
+instance_shader_parameters/edge_fade = 0.0
+instance_shader_parameters/inner_fade = 0.0
+instance_shader_parameters/outer_fade = 0.0
+instance_shader_parameters/width = 0.30000001425
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/CircularTargetIndicatorBig" index="0" unique_id=1892779253]
+libraries/ = SubResource("AnimationLibrary_huuul")
+autoplay = &"ExtendIndicator"
+
+[connection signal="entered" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig" method="set_visible" binds= [true]]
+[connection signal="exited" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig" method="set_visible" binds= [false]]
+[connection signal="visibility_changed" from="Visuals/CircularTargetIndicatorBig" to="Visuals/CircularTargetIndicatorBig/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
