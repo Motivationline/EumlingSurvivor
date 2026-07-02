@@ -216,8 +216,8 @@ colors = PackedColorArray(1.7121319, 0.76296145, 0, 1, 1.753959, 0.4108141, 0, 1
 
 [node name="BossShark" unique_id=600562415 instance=ExtResource("1_f8085")]
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(2128422103) index="0" unique_id=1624408568]
-transform = Transform3D(0.319584, 1.0449995e-15, 8.881784e-16, -8.881784e-16, -1.2887936e-24, 0.319584, 1.0449995e-15, -0.319584, -1.2887899e-24, 3.6359863e-15, -4.270939, -0.7198074)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(828919820) index="0" unique_id=1624408568]
+transform = Transform3D(1, -4.5696025e-16, -1.7763568e-15, 1.7763568e-15, 1.6817792e-08, 1, -4.569602e-16, -1, 1.6817792e-08, 7.3285915e-16, -0.00031661987, -2.1370606)
 bone_name = "DEF_TAILFIN"
 bone_idx = 5
 
@@ -229,7 +229,10 @@ lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_tdynr")
 draw_pass_1 = SubResource("QuadMesh_mwvhb")
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=160891042]
+[node name="shark_mesh" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(828919820) index="1" unique_id=685698569]
+skeleton = NodePath("..")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=668941423]
 autoplay = &"fin_walk"
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=75202033]
