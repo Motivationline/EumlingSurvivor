@@ -313,13 +313,14 @@ func block_input_except_for(element: Control, callable: Callable, animate: bool 
 	overlay.add_child(duplicated_element)
 	duplicated_element.set_global_position(element.global_position)
 	duplicated_element.set_size(element.size)
+	duplicated_element.call_deferred("grab_focus")
 
 	if animate:
 		var animator = pulse_animator.instantiate()
 		duplicated_element.add_child(animator)
 		animator.root_node = animator.get_path_to(duplicated_element)
 		duplicated_element.offset_transform_enabled = true
-	
+
 	return cleanup
 
 func show_quest(text: String):
