@@ -4,6 +4,8 @@ extends Ability
 @export var squared_distance_to_check: float = 0.1
 @export var minimum_area_to_trigger: float = 0.5
 
+@export var tail_particles: Node3D
+
 @onready var tail_curve: Curve3D = $Tail.curve
 
 var damage: float = 1.0
@@ -21,6 +23,7 @@ func _ready() -> void:
 	_type = Enum.EUMLING_TYPE.ARTISTIC
 	super ()
 	if eumling_scaler: eumling_scaler.setup_and_apply(self)
+	tail_particles.hide()
 
 var level: Level
 
@@ -32,6 +35,9 @@ func level_start() -> void:
 func _update():
 	if amt_eumlings == 0 and points.size() > 0:
 		clear_points()
+		tail_particles.hide()
+	if amt_eumlings > 0:
+		tail_particles.show()
 
 var current_time: float = 0.0
 var prev_point: Vector3 = Vector3.ZERO
