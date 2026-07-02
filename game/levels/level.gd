@@ -145,7 +145,8 @@ func clear_level():
 	level_cleared.emit()
 	if is_boss_level:
 		await unlock_mini_eumling()
-	await get_tree().create_timer(1).timeout
+	else:
+		await get_tree().create_timer(1).timeout
 
 	level_finished.emit()
 	state = LEVEL_STATE.FINISHED
@@ -191,7 +192,9 @@ func unlock_mini_eumling():
 	var popup = EUMLING_CELEBRATION.instantiate()
 	popup.find_child("Label").text = "%s eumling has been rescued! Yay!" % Enum.EUMLING_TYPE.keys()[eumling_type]
 	add_child(popup)
+	get_tree().paused = true
 	await get_tree().create_timer(2).timeout
+	get_tree().paused = false
 	remove_child(popup)
 
 func _get_configuration_warnings() -> PackedStringArray:
