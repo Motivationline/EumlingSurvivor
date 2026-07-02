@@ -109,14 +109,10 @@ func level_finished():
 
 func display_big_update(upgrade: Upgrade) -> void:
 	var progress = Data.game_data.upgrade_path_progress.get(upgrade.path, 0)
-	var progress_steps: Array[int] = [3, 6, 10]
+	var progress_steps: Array[int] = [3, 6, 9]
 	if not progress_steps.has(progress): return
-	%BigUpgradeInfoText.text = "You got an upgrade for your %s Eumling, YAY!" % Enum.EUMLING_TYPE.keys()[upgrade.path]
-	%BigUpgradeInfo.show()
-	get_tree().paused = true
-	await get_tree().create_timer(3).timeout
-	get_tree().paused = false
-	%BigUpgradeInfo.hide()
+	%MilestoneUpgrade.setup(upgrade.path, progress_steps.find(progress))
+	await %MilestoneUpgrade.done
 
 
 func save_game_data():

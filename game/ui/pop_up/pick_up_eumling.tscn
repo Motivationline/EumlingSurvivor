@@ -1,19 +1,51 @@
 [gd_scene format=3 uid="uid://b1frhjc1hws4k"]
 
 [ext_resource type="PackedScene" uid="uid://mdgxtmddpnfr" path="res://assets/ui/pop_up/firework_particles.tscn" id="1_372mq"]
+[ext_resource type="Script" uid="uid://b2i51gcr0x8k7" path="res://game/ui/pop_up/pick_up_eumling.gd" id="1_fwfbe"]
 [ext_resource type="Texture2D" uid="uid://ec8y4dsfst65" path="res://assets/ui/Eumlex/button_sticker_missing_a.png" id="2_fwfbe"]
+[ext_resource type="PackedScene" uid="uid://xx1ogf8cudcr" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/mini_eumling_artistisch_kreativ_visual.tscn" id="2_ywg43"]
+[ext_resource type="PackedScene" uid="uid://bdx5nmy7mmesh" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik_visual.tscn" id="3_bk87j"]
 [ext_resource type="Texture2D" uid="uid://dj5fnsnkj3y2a" path="res://assets/ui/pop_up/win_strahlen.png" id="3_fwfbe"]
+[ext_resource type="PackedScene" uid="uid://w0h1g2ngldyl" path="res://assets/characters/eumling/mini_eumling/entrepreneurual_ehrgeiz/mini_eumling_entrep_ehrgeiz_visual.tscn" id="4_lcb6e"]
 [ext_resource type="Texture2D" uid="uid://ct0dwwb0l0w2p" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayoutBack.png" id="4_rfacl"]
 [ext_resource type="Texture2D" uid="uid://cls17fca8iawc" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayout.png" id="5_qvilx"]
-[ext_resource type="PackedScene" uid="uid://drxv2fntob1we" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/reveal/mini_eumling_artistisch_reveal.tscn" id="6_76slt"]
+[ext_resource type="PackedScene" uid="uid://pywy6q2jhxwo" path="res://assets/characters/eumling/mini_eumling/investigativ_forschend/mini_investigativ_forschend_visual.tscn" id="5_rnpr1"]
+[ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="6_mn3nd"]
+[ext_resource type="PackedScene" uid="uid://drn335i4omarh" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial_visual.tscn" id="7_j7bcv"]
 
-[node name="PickUpEumling" type="Control" unique_id=200048838]
+[node name="PickUpEumling" type="Control" unique_id=200048838 node_paths=PackedStringArray("eumling_text", "skill_text")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fwfbe")
+eumling_text = {
+0: NodePath("a_eumling_text"),
+1: NodePath("c_eumling_text"),
+2: NodePath("e_eumling_text"),
+3: NodePath("i_eumling_text"),
+4: NodePath("r_eumling_text"),
+5: NodePath("s_eumling_text")
+}
+skill_text = {
+0: NodePath("a_skill_text"),
+1: NodePath("c_skill_text"),
+2: NodePath("e_skill_text"),
+3: NodePath("i_skill_text"),
+4: NodePath("r_skill_text"),
+5: NodePath("s_skill_text")
+}
+eumlings = Dictionary[int, PackedScene]({
+0: ExtResource("2_ywg43"),
+1: ExtResource("3_bk87j"),
+2: ExtResource("4_lcb6e"),
+3: ExtResource("5_rnpr1"),
+4: ExtResource("6_mn3nd"),
+5: ExtResource("7_j7bcv")
+})
 
 [node name="background_glow" type="TextureRect" parent="." unique_id=447542799]
 layout_mode = 0
@@ -50,12 +82,14 @@ grow_vertical = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1337560579]
+own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="mini_eumling_var1" parent="SubViewportContainer/SubViewport" unique_id=752790786 instance=ExtResource("6_76slt")]
+[node name="MiniEumlingMarker" type="Marker3D" parent="SubViewportContainer/SubViewport" unique_id=2106805445]
+unique_name_in_owner = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1494324480]
 transform = Transform3D(1, 0, 0, 0, 0.0004475872, 0.99999994, 0, -0.99999994, 0.0004475872, 0, 1.2703482, 0)
@@ -222,7 +256,7 @@ offset_top = 742.0
 offset_right = 1266.0
 offset_bottom = 885.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Male Formen beim Laufen um Bonis zu erhalten."
+text = "Male Linien zum Schutz und Kreise für Angriffsboni."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -235,7 +269,7 @@ offset_top = 742.0
 offset_right = 1266.0
 offset_bottom = 885.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Gegner in der Zone werden besänftigt."
+text = "Gegner um dich herum werden besänftigt."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -261,7 +295,7 @@ offset_top = 742.0
 offset_right = 1266.0
 offset_bottom = 885.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Schließe Aufgaben ab um Raum-Boni zu erhalten."
+text = "Schließe Aufgaben ab um temporäre Boni zu erhalten."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

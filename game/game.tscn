@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bbnggg8d8khce" path="res://game/touch_joystick_overlay.tscn" id="2_u5opy"]
 [ext_resource type="PackedScene" uid="uid://bojgdqih3kgwl" path="res://game/ui/debug_view.tscn" id="5_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://dlxnvjne1irpy" path="res://game/ui/start_screen/area_picker.tscn" id="6_3vho3"]
+[ext_resource type="PackedScene" uid="uid://dhgv1ki7o8bqr" path="res://game/ui/pop_up/milestone_upgrade.tscn" id="8_l8g03"]
 [ext_resource type="PackedScene" uid="uid://clp10fvyjhivd" path="res://game/ui/battle_overlay/battle_overlay.tscn" id="8_y36n6"]
 [ext_resource type="PackedScene" uid="uid://mxqf8msxqbla" path="res://game/ui/pause_menu/pause_menu.tscn" id="9_l8g03"]
 [ext_resource type="PackedScene" uid="uid://crktwqvaxeyce" path="res://game/ui/upgrades/upgrade_view.tscn" id="10_j8tme"]
@@ -116,28 +117,9 @@ z_index = 2
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1900105531]
 
-[node name="BigUpgradeInfo" type="Control" parent="UI" unique_id=1662023153]
+[node name="MilestoneUpgrade" parent="UI" unique_id=200048838 instance=ExtResource("8_l8g03")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BigUpgradeInfoText" type="Label" parent="UI/BigUpgradeInfo" unique_id=235494553]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "You got an upgrade for your X Eumling, YAY!"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="GameUI/BaseBattleOverlay/PauseButton" to="GameUI/PauseMenu" method="open"]
 

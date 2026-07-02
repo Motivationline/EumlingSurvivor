@@ -1,23 +1,29 @@
 [gd_scene format=3 uid="uid://dhgv1ki7o8bqr"]
 
+[ext_resource type="Script" uid="uid://c184t5kfx6mk8" path="res://game/ui/pop_up/milestone_upgrade.gd" id="1_tk1bf"]
 [ext_resource type="Texture2D" uid="uid://dj5fnsnkj3y2a" path="res://assets/ui/pop_up/win_strahlen.png" id="1_xudu0"]
 [ext_resource type="PackedScene" uid="uid://mdgxtmddpnfr" path="res://assets/ui/pop_up/firework_particles.tscn" id="3_lit0h"]
 [ext_resource type="Texture2D" uid="uid://ct0dwwb0l0w2p" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayoutBack.png" id="4_nm826"]
 [ext_resource type="Texture2D" uid="uid://bulje7ogknyk6" path="res://assets/ui/pop_up/one_star_milestone.png" id="5_aakri"]
 [ext_resource type="Texture2D" uid="uid://cls17fca8iawc" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayout.png" id="5_ge3ns"]
+[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="6_aqe21"]
 [ext_resource type="Texture2D" uid="uid://1h6h6pmshqrb" path="res://assets/ui/pop_up/two_star_milestone.png" id="6_tk1bf"]
 [ext_resource type="Texture2D" uid="uid://mgis70jpjoh7" path="res://assets/ui/pop_up/three_star_milestone.png" id="7_aqe21"]
 [ext_resource type="Texture2D" uid="uid://b72lv5rv46jxb" path="res://assets/ui/pop_up/first_milestone_eumling_icon_placeholder.png" id="8_ippke"]
 [ext_resource type="Texture2D" uid="uid://bq10k87xyljp3" path="res://assets/ui/pop_up/second_milestone_eumling_icon_placeholder.png" id="9_be4jg"]
 [ext_resource type="Texture2D" uid="uid://ckomilo4oq5qs" path="res://assets/ui/pop_up/third_milestone_eumling_icon_placeholder.png" id="10_4hhxx"]
 
-[node name="PickUpEumling" type="Control" unique_id=200048838]
+[node name="MilestoneUpgrade" type="Control" unique_id=200048838 node_paths=PackedStringArray("stars", "icons")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tk1bf")
+stars = [NodePath("first_milestone_stars"), NodePath("second_milestone_stars"), NodePath("third_milestone_stars")]
+icons = [NodePath("first_milestone_icon"), NodePath("second_milestone_icon"), NodePath("third_milestone_icon")]
 
 [node name="background_glow" type="TextureRect" parent="." unique_id=447542799]
 layout_mode = 0
@@ -83,17 +89,22 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_ge3ns")
 
-[node name="Milestone_text" type="Label" parent="." unique_id=2135929434]
+[node name="MilestoneText" type="Label" parent="." unique_id=555346179]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
+offset_left = 652.0
+offset_top = 732.0
+offset_right = 1265.0
+offset_bottom = 892.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 55
 text = "Du hast einen Milestone freigeschalten!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+script = ExtResource("6_aqe21")
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="first_milestone_stars" type="TextureRect" parent="." unique_id=2102771154]
 visible = false
@@ -112,6 +123,7 @@ grow_vertical = 2
 texture = ExtResource("5_aakri")
 
 [node name="second_milestone_stars" type="TextureRect" parent="." unique_id=1132433009]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -175,6 +187,7 @@ grow_vertical = 2
 texture = ExtResource("9_be4jg")
 
 [node name="third_milestone_icon" type="TextureRect" parent="." unique_id=555158193]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

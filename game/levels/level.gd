@@ -33,7 +33,7 @@ var boss: Enemy
 var boss_position: Vector3
 
 const CAGED_MINI_EUMLING = preload("uid://6lim36lw260g")
-const EUMLING_CELEBRATION = preload("uid://p83xt72cksyt")
+const EUMLING_CELEBRATION = preload("uid://b1frhjc1hws4k")
 const MINI_EUMLING_E = preload("uid://cd212gh71k5cn")
 const MINI_EUMLING_R = preload("uid://ecxm5futmmj4")
 
@@ -143,7 +143,7 @@ func animate_cage():
 func clear_level():
 	state = LEVEL_STATE.CLEARED
 	level_cleared.emit()
-	remove_dangers()
+	# remove_dangers()
 	if is_boss_level:
 		await unlock_mini_eumling()
 	else:
@@ -208,12 +208,9 @@ func unlock_mini_eumling():
 		eumling_type = Enum.EUMLING_TYPE.values().pick_random()
 	Data.unlocked_eumling(eumling_type)
 	var popup = EUMLING_CELEBRATION.instantiate()
-	popup.find_child("Label").text = "%s eumling has been rescued! Yay!" % Enum.EUMLING_TYPE.keys()[eumling_type]
 	add_child(popup)
-	get_tree().paused = true
-	await get_tree().create_timer(2).timeout
-	get_tree().paused = false
-	remove_child(popup)
+	popup.setup(eumling_type)
+	await popup.done
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []

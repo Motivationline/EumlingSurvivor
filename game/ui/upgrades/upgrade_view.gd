@@ -27,7 +27,7 @@ func show_upgrades():
 		paths.append(-1)
 	# remove paths that are already maxed out
 	for path in paths:
-		if Data.game_data.upgrade_path_progress.get(path, 0) >= 10: #TODO get that 10 value from somewhere central instead of hardcoding it
+		if Data.game_data.upgrade_path_progress.get(path, 0) >= 9: #TODO get that 9 value from somewhere central instead of hardcoding it
 			paths.remove_at(paths.find(path))
 
 	# limit the array to the max amount of cards
