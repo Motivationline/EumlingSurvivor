@@ -31,8 +31,13 @@ animation = &"tortoise_shake"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0saar"]
 animation = &"hurt"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1huhm"]
+animation = &"tortoise_stomp"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hno28"]
 animation = &"tortoise_idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fgv8n"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5jbpd"]
 
@@ -53,25 +58,36 @@ input_1/reset = true
 fadein_time = 0.1
 fadeout_time = 0.3
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_d5qa0"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xmx1y"]
-nodes/output/position = Vector2(1060, 80)
+graph_offset = Vector2(-202.80795, 62.519012)
+nodes/output/position = Vector2(1360, 100)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_hno28")
 nodes/Animation/position = Vector2(-260, 40)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_l5mbv")
 "nodes/Animation 2/position" = Vector2(-280, 260)
 nodes/shake/node = SubResource("AnimationNodeOneShot_0saar")
-nodes/shake/position = Vector2(460, 60)
+nodes/shake/position = Vector2(440, 80)
 nodes/Transition/node = SubResource("AnimationNodeTransition_mchdf")
 nodes/Transition/position = Vector2(20, 120)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_s50k1")
-"nodes/Animation 3/position" = Vector2(60, 380)
+"nodes/Animation 3/position" = Vector2(100, 400)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5jbpd")
-nodes/TimeScale/position = Vector2(260, 300)
+nodes/TimeScale/position = Vector2(300, 340)
 nodes/hurt/node = SubResource("AnimationNodeOneShot_5jbpd")
-nodes/hurt/position = Vector2(820, 40)
+nodes/hurt/position = Vector2(1120, 60)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_0saar")
-"nodes/Animation 4/position" = Vector2(620, 380)
-node_connections = [&"output", 0, &"hurt", &"shake", 0, &"Transition", &"shake", 1, &"TimeScale", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"TimeScale", 0, &"Animation 3", &"hurt", 0, &"shake", &"hurt", 1, &"Animation 4"]
+"nodes/Animation 4/position" = Vector2(920, 400)
+nodes/stomp/node = SubResource("AnimationNodeOneShot_d5qa0")
+nodes/stomp/position = Vector2(760, 80)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_1huhm")
+"nodes/Animation 5/position" = Vector2(480, 540)
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_fgv8n")
+"nodes/TimeScale 2/position" = Vector2(620, 360)
+node_connections = [&"output", 0, &"hurt", &"shake", 0, &"Transition", &"shake", 1, &"TimeScale", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"TimeScale", 0, &"Animation 3", &"hurt", 0, &"stomp", &"hurt", 1, &"Animation 4", &"stomp", 0, &"shake", &"stomp", 1, &"TimeScale 2", &"TimeScale 2", 0, &"Animation 5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1huhm"]
 transparency = 1
@@ -92,10 +108,9 @@ colors = PackedColorArray(0.29803923, 0.6039216, 0.14117648, 1, 0.078431375, 0.2
 [node name="tortoise" unique_id=2050981297 instance=ExtResource("1_gycm5")]
 script = ExtResource("2_hno28")
 
-[node name="Tortoise" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(511850030) index="0" unique_id=1711248802]
+[node name="Tortoise" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(768973407) index="0" unique_id=1641256760]
 layers = 2
 material_overlay = SubResource("ShaderMaterial_s76xj")
-skeleton = NodePath("..")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1560129507]
 tree_root = SubResource("AnimationNodeBlendTree_xmx1y")
@@ -110,6 +125,10 @@ parameters/TimeScale/scale = 1.7999999999999972
 parameters/hurt/active = false
 parameters/hurt/internal_active = false
 parameters/hurt/request = 0
+parameters/stomp/active = true
+parameters/stomp/internal_active = true
+parameters/stomp/request = 0
+"parameters/TimeScale 2/scale" = 1.0
 
 [node name="DecalShadow" parent="." index="3" unique_id=1002455412 instance=ExtResource("4_u38ti")]
 size = Vector3(1.1, 0.1, 1.1)

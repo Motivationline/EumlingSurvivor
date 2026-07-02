@@ -54,8 +54,17 @@ animation = &"tortoise_shake"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0saar"]
 animation = &"hurt"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sub06"]
+animation = &"tortoise_stomp"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hno28"]
 animation = &"tortoise_idle"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6h4s5"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_53m34"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5jbpd"]
 
@@ -77,7 +86,8 @@ fadein_time = 0.1
 fadeout_time = 0.3
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5ptpm"]
-nodes/output/position = Vector2(1060, 80)
+graph_offset = Vector2(-39.558105, -39.56411)
+nodes/output/position = Vector2(1540, 100)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_hno28")
 nodes/Animation/position = Vector2(-260, 40)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_l5mbv")
@@ -91,18 +101,21 @@ nodes/Transition/position = Vector2(20, 120)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5jbpd")
 nodes/TimeScale/position = Vector2(260, 300)
 nodes/hurt/node = SubResource("AnimationNodeOneShot_5jbpd")
-nodes/hurt/position = Vector2(820, 40)
+nodes/hurt/position = Vector2(1300, 60)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_0saar")
-"nodes/Animation 4/position" = Vector2(620, 380)
-node_connections = [&"output", 0, &"hurt", &"shake", 0, &"Transition", &"shake", 1, &"TimeScale", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"TimeScale", 0, &"Animation 3", &"hurt", 0, &"shake", &"hurt", 1, &"Animation 4"]
+"nodes/Animation 4/position" = Vector2(1100, 400)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_6h4s5")
+nodes/OneShot/position = Vector2(840, 60)
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_53m34")
+"nodes/TimeScale 2/position" = Vector2(736.3861, 396.4795)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_sub06")
+"nodes/Animation 5/position" = Vector2(560, 500)
+node_connections = [&"output", 0, &"hurt", &"shake", 0, &"Transition", &"shake", 1, &"TimeScale", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"TimeScale", 0, &"Animation 3", &"hurt", 0, &"OneShot", &"hurt", 1, &"Animation 4", &"OneShot", 0, &"shake", &"OneShot", 1, &"TimeScale 2", &"TimeScale 2", 0, &"Animation 5"]
 
 [node name="volcano_tortoise" unique_id=1249268255 instance=ExtResource("1_5ptpm")]
 script = ExtResource("2_sub06")
 
-[node name="Tortoise" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(1506783670) index="0" unique_id=1554128864]
-skeleton = NodePath("..")
-
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(1506783670) index="1" unique_id=598909619]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(1292862653) index="1" unique_id=598909619]
 transform = Transform3D(1, 1.323489e-23, -1.9721523e-31, -1.323489e-23, 1, -5.9604645e-08, -5.916457e-31, 5.9604645e-08, 1, -5.22517e-25, 0.71051973, -2.3532074e-09)
 bone_name = "DEF_TRUNK"
 bone_idx = 20
@@ -129,3 +142,7 @@ parameters/TimeScale/scale = 1.7999999999999972
 parameters/hurt/active = false
 parameters/hurt/internal_active = false
 parameters/hurt/request = 0
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+"parameters/TimeScale 2/scale" = 1.0
