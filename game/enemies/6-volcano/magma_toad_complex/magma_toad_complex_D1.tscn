@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_sihax"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_xcncf"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_eetwf"]
-[ext_resource type="PackedScene" uid="uid://qpw2gi1joms5" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/animated_projectile.tscn" id="7_d3oh5"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="8_d3oh5"]
-[ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_tgg04"]
+[ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="8_qreux"]
+[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_tgg04"]
 [ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="9_ug13t"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="10_ug13t"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="11_3i7kj"]
@@ -86,7 +86,6 @@ metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 script = ExtResource("9_tgg04")
 max_negative = -30.0
 max_positive = 30.0
-metadata/_custom_type_script = "uid://b3cqskctjdm21"
 
 [sub_resource type="Resource" id="Resource_qv54d"]
 script = ExtResource("2_qreux")
@@ -160,7 +159,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="spawnerMain" type="Node3D" parent="StateMachine/Attack/SpawnEntitiesState" index="0" unique_id=1332122889]
 script = ExtResource("5_eetwf")
 difficulty_scaler = SubResource("Resource_1o6ym")
-entity_to_spawn = ExtResource("7_d3oh5")
+entity_to_spawn = ExtResource("8_qreux")
 amount_of_spawns = 3
 time_between_entities = 0.15
 target_strategy = SubResource("Resource_4okp4")

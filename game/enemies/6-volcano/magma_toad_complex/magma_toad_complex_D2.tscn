@@ -8,9 +8,9 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="4_dafou"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_15uhc"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_o4imh"]
-[ext_resource type="PackedScene" uid="uid://qpw2gi1joms5" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/animated_projectile.tscn" id="7_icen1"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="8_3kwfh"]
-[ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_r7buu"]
+[ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="9_dafou"]
+[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_r7buu"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="10_dgvcv"]
 [ext_resource type="PackedScene" uid="uid://sp2ju6tpkgag" path="res://game/aoes/magma_toad_complex_aoe/magma_toad_complex_aoe.tscn" id="11_6w0aa"]
 [ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="12_ons1q"]
@@ -89,7 +89,6 @@ metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 script = ExtResource("9_r7buu")
 max_negative = -30.0
 max_positive = 30.0
-metadata/_custom_type_script = "uid://b3cqskctjdm21"
 
 [sub_resource type="Resource" id="Resource_dafou"]
 script = ExtResource("2_dafou")
@@ -173,7 +172,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 [node name="spawnerMain" type="Node3D" parent="StateMachine/Attack/SpawnEntitiesState" index="0" unique_id=1635324960]
 script = ExtResource("6_o4imh")
 difficulty_scaler = SubResource("Resource_aly46")
-entity_to_spawn = ExtResource("7_icen1")
+entity_to_spawn = ExtResource("9_dafou")
 amount_of_spawns = 3
 time_between_entities = 0.15
 target_strategy = SubResource("Resource_akedq")
