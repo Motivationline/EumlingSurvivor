@@ -45,10 +45,10 @@ tracks/0/path = NodePath(".:instance_shader_parameters/pulse")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.33333334, 1.2),
+"times": PackedFloat32Array(0.6666667, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.0, 0.6650000315875]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -398,3 +398,5 @@ instance_shader_parameters/width_fade = 0.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/DirectionalTargetIndicatorMesh" index="0" unique_id=1830211739]
 libraries/ = SubResource("AnimationLibrary_akcxs")
 autoplay = &"ExtendIndicator"
+
+[connection signal="visibility_changed" from="Visuals/DirectionalTargetIndicatorMesh" to="Visuals/DirectionalTargetIndicatorMesh/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
