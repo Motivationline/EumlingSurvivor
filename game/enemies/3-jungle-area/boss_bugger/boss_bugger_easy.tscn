@@ -185,7 +185,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(0.09023065, -0.04310951)
+shader_parameter/wobble = Vector2(-0.056127924, -0.08276265)
 
 [sub_resource type="Gradient" id="Gradient_qqlxf"]
 offsets = PackedFloat32Array(0.5364583, 0.71875, 0.7760417)
@@ -571,21 +571,33 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("16_ofchx")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 810757630) index="0" unique_id=318944803]
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 824327366) index="0" unique_id=939325661]
 bones/19/rotation = Quaternion(-0.49805066, 0.5375024, -0.4991323, -0.4624973)
 bones/22/rotation = Quaternion(-0.37833884, 0.6275533, -0.5827548, -0.35133108)
 
-[node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" parent_id_path=PackedInt32Array(113844681, 160595167) index="0" unique_id=450284212]
+[node name="BoneAttachment3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="0" unique_id=160595167]
+transform = Transform3D(0.9636658, -3.6005535e-11, 2.2975941e-07, 5.0877382e-08, 1.0501381, -0.21326007, -2.2405553e-07, 0.2383051, 0.93977225, 9.6265864e-14, 1.4856249, -0.0006467255)
+
+[node name="MeshInstance3D" parent="Visuals/BossBugger/Armature_001/Skeleton3D/BoneAttachment3D" index="0" unique_id=450284212]
 material_override = SubResource("ShaderMaterial_urikr")
 
-[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=92984005]
+[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=1503693477]
 mesh = SubResource("ArrayMesh_30o50")
 
 [node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2" unique_id=525651175]
-transform = Transform3D(-0.07608365, -0.99710137, -4.4703484e-07, -0.07371219, 0.0056250687, -0.99726367, 0.994373, -0.07587548, -0.07392645, -0.24529767, 2.003276, -0.0015778542)
+transform = Transform3D(-0.07608365, -0.99710137, -4.4703484e-07, -0.07371219, 0.0056250687, -0.99726367, 0.994373, -0.07587548, -0.07392645, -0.24529767, 1.4888238, -0.001538718)
 
 [node name="BoneAttachment3D3" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="3" unique_id=2129402415]
-transform = Transform3D(-0.46685255, -0.8843353, -4.172325e-07, -0.065375835, 0.034513116, -0.9972638, 0.8819155, -0.46557498, -0.07392681, -0.13967305, 1.9208276, 0.11912686)
+transform = Transform3D(-0.46685255, -0.8843353, -4.172325e-07, -0.065375835, 0.034513116, -0.9972638, 0.8819155, -0.46557498, -0.07392681, -0.13967307, 1.381708, 0.09792707)
+
+[node name="BoneAttachment3D4" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="4" unique_id=1002716327]
+transform = Transform3D(-0.07608401, 0.99710137, 5.066394e-07, 5.9604638e-08, -4.7683713e-07, 0.99999994, 0.9971013, 0.07608398, 0, 0.24529767, 1.4888238, -0.001538718)
+
+[node name="BoneAttachment3D5" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="5" unique_id=831899753]
+transform = Transform3D(-0.46685255, 0.8843351, 3.5762787e-07, -5.9604645e-08, -4.7683716e-07, 1, 0.8843351, 0.46685258, 2.9802322e-07, 0.13967304, 1.3817079, 0.09792707)
+
+[node name="hand_particles" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="6" unique_id=287273777]
+transform = Transform3D(5.960463e-08, -0.99867386, -0.051477365, 0, -0.051477302, 0.9986739, -0.9999997, 0, 5.9604634e-08, -0.3914069, 1.0337244, 0.044442903)
 
 [node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1216685563 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_7rhsi")
