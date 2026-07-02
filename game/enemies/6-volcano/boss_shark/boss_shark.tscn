@@ -242,8 +242,9 @@ end_delay = 0.8
 next_state = NodePath("../ActivateHitboxBelow")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/DeathFromBelow/SpawnEntitiesState" index="0" unique_id=118840253]
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/DeathFromBelow/SpawnEntitiesState" index="0" unique_id=118840253 node_paths=PackedStringArray("spawn_position")]
 script = ExtResource("10_du46p")
+spawn_position = NodePath("../../../../death_from_below_particle_marker")
 entity_to_spawn = ExtResource("11_71geg")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
@@ -398,5 +399,8 @@ instance_shader_parameters/width_fade = 0.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/DirectionalTargetIndicatorMesh" index="0" unique_id=1830211739]
 libraries/ = SubResource("AnimationLibrary_akcxs")
 autoplay = &"ExtendIndicator"
+
+[node name="death_from_below_particle_marker" type="Marker3D" parent="." index="7" unique_id=1209712892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [connection signal="visibility_changed" from="Visuals/DirectionalTargetIndicatorMesh" to="Visuals/DirectionalTargetIndicatorMesh/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
