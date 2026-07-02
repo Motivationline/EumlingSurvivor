@@ -143,6 +143,7 @@ func animate_cage():
 func clear_level():
 	state = LEVEL_STATE.CLEARED
 	level_cleared.emit()
+	remove_dangers()
 	if is_boss_level:
 		await unlock_mini_eumling()
 	else:
@@ -153,6 +154,23 @@ func clear_level():
 	
 	if is_boss_level:
 		spawn_portals_or_end()
+
+
+func remove_dangers() -> void:
+	for projectile: Projectile in find_children("*", "Projectile", true, false):
+		projectile.queue_free()
+
+	for aoe: AOE in find_children("*", "AOE", true, false):
+		aoe.queue_free()
+
+	for trap: Enemy in get_tree().get_nodes_in_group("EnvironmentTrap"):
+		trap._die()
+
+	var breakables: Node3D = $Breakables
+	if not breakables: return
+	for breakable: Enemy in breakables.find_children("*", "Enemy"):
+		breakable._die()
+
 
 func spawn_portals_or_end():
 	if Data.game_data.difficulty < 4:
