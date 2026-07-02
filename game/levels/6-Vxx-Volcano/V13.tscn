@@ -4,7 +4,7 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_80h4o"]
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/obstalce_stone/ObstacleStone_Volcano_Material_Base_color.png" id="3_ntt5t"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_rggri"]
-[ext_resource type="PackedScene" uid="uid://cwnvsfbpov2w8" path="res://game/enemies/6-volcano/volcano_turtle/volcano_tortoise_enemy.tscn" id="4_rggri"]
+[ext_resource type="PackedScene" uid="uid://dgwms5uw0wfje" path="res://game/enemies/6-volcano/volcano_tortoise_complex/volcano_tortoise_complex_D1.tscn" id="5_ntt5t"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="7_jsgb6"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_80h4o"]
@@ -96,8 +96,8 @@ metadata/_editor_floor_ = Vector3(0, 2, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
 
-[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1961314702 instance=ExtResource("4_rggri")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6032324, 0, -0.4780333)
+[node name="volcano_tortoise_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("5_ntt5t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5905118, 0, -0.44311345)
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(614762836) index="0" unique_id=1814085372 instance=ExtResource("7_jsgb6")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.1667482, 0, 0.52162695)

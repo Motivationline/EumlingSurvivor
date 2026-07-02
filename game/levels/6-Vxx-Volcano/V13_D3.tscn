@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cgt07jlyp32x2"]
 
 [ext_resource type="PackedScene" uid="uid://byvva0v7fo8rl" path="res://game/levels/6-Vxx-Volcano/V13.tscn" id="1_tw1gt"]
-[ext_resource type="PackedScene" uid="uid://cwnvsfbpov2w8" path="res://game/enemies/6-volcano/volcano_turtle/volcano_tortoise_enemy.tscn" id="2_cibnk"]
 [ext_resource type="PackedScene" uid="uid://dimh4wgth5dwg" path="res://game/enemies/6-volcano/volcano_tortoise_complex/volcano_tortoise_complex_D2.tscn" id="3_7byno"]
+[ext_resource type="PackedScene" uid="uid://druej6e5xqhd8" path="res://game/enemies/6-volcano/magma_bomb_complex/magma_bomb_complex_D2.tscn" id="3_wbe74"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cibnk"]
 vertices = PackedVector3Array(-0.75, 1, 1, -0.75, 1, 0.75, -1, 1, 0.75, -1, 1, 0.5, -1.25, 1, 0.5, -1.25, 1, 0.25, -1.5, 1, 0.25, -1.25, 1, -1.75, -1, 1, -1.75, -1, 1, -2, 0, 1, -4.75, -0.25, 1, -4.75, -0.25, 1, -4.5, 0, 1, -2.25, -0.5, 1, -4.5, -0.5, 1, -4.25, -0.25, 1, 1.25, -0.25, 1, 1, -0.5, 1, -2, -0.5, 1, -2.25, -1.5, 1, -0.75, -1.25, 1, -0.75, -4.25, 1, -4.25, 0.5, 1, 4.5, -4.25, 1, 4.5, 0.5, 1, 1.25, 0.75, 1, -2.25, 0.75, 1, -2, 1, 1, -2, 1.5, 1, -1.75, 1.5, 1, -1.5, 1.75, 1, -1.5, 1.75, 1, -1.25, 2, 1, -1.25, 2, 1, -0.25, 1.75, 1, -0.25, 1.75, 1, 0, 1.5, 1, 0, 1.5, 1, 0.25, 1.25, 1, 1, 1, 1, 1, 1, 1, 1.25, 0.75, 1, -4.25, 0.75, 1, -4.5, 0.5, 1, -4.5, 1, 1, -1.75, 0.5, 1, -4.75, 1.25, 1, 0.25, 4.5, 1, -4.25, 4.5, 1, 4.5)
@@ -15,11 +15,8 @@ edge_max_error = 0.25
 [node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
 navigation_mesh = SubResource("NavigationMesh_cibnk")
 
-[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1961314702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2030237, 0, -1.7118477)
-
-[node name="TortoiseEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1140595537 instance=ExtResource("2_cibnk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3243828, 0, 0.3004539)
-
-[node name="volcano_tortoise_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1898691 instance=ExtResource("3_7byno")]
+[node name="volcano_tortoise_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1898691 instance=ExtResource("3_7byno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2679663, 0, -3.1751513)
+
+[node name="magma_bomb_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1630921643 instance=ExtResource("3_wbe74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2759333, 0, 0.8837404)

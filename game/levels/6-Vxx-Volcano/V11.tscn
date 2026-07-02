@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/obstalce_stone/ObstacleStone_Volcano_Material_Base_color.png" id="3_bgfv3"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_ln11l"]
 [ext_resource type="PackedScene" uid="uid://ctpdnwxhrhuts" path="res://game/enemies/6-volcano/environment/magma_tiles.tscn" id="4_ln11l"]
-[ext_resource type="PackedScene" uid="uid://cm8xm0j7ly1d" path="res://game/enemies/6-volcano/magma_toad/magma_toad.tscn" id="6_iatab"]
+[ext_resource type="PackedScene" uid="uid://ciil6gb70pro7" path="res://game/enemies/6-volcano/magma_bomb_complex/magma_bomb_complex_D1.tscn" id="6_bgfv3"]
+[ext_resource type="PackedScene" uid="uid://bum8e6lgyjc6" path="res://game/enemies/6-volcano/magma_toad_complex/magma_toad_complex_D1.tscn" id="7_u1bnt"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_bgfv3"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ln11l"]
@@ -129,11 +130,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.75, 4.25)
 [node name="magma_tiles10" parent="Obstacle" index="9" unique_id=113196584 instance=ExtResource("4_ln11l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.75, 4.75)
 
-[node name="MagmaToad" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("6_iatab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.198855, 0, 4.3275547)
+[node name="magma_bomb_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("6_bgfv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5103376, 0, 0.96449816)
 
-[node name="MagmaToad3" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=2105034744 instance=ExtResource("6_iatab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.668681, 0, -1.4317937)
+[node name="magma_toad_complex_D1" parent="." index="9" unique_id=1314047979 instance=ExtResource("7_u1bnt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.241149, 0, 3.9504776)
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(614762836) index="0" unique_id=1814085372 instance=ExtResource("8_bgfv3")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2.237535, 0, 0.74046063)
