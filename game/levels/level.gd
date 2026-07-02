@@ -163,8 +163,11 @@ func remove_dangers() -> void:
 	for aoe: AOE in find_children("*", "AOE", true, false):
 		aoe.queue_free()
 
-	for trap: Enemy in get_tree().get_nodes_in_group("EnvironmentTrap"):
-		trap._die()
+	for trap: Node3D in get_tree().get_nodes_in_group("EnvironmentTrap"):
+		if trap is Enemy:
+			trap._die()
+		else:
+			trap.queue_free()
 
 	var breakables: Node3D = $Breakables
 	if not breakables: return
