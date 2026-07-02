@@ -111,7 +111,6 @@ func intro_eumlex():
 	btn.show()
 
 	var pressed = func():
-		complete_quest()
 		eumlex_show()
 	block_input_except_for(btn, pressed)
 	show_quest("Öffne den Eumlex")
@@ -120,6 +119,7 @@ func eumlex_show():
 	progress = PROGRESS.EUMLEX_INTRO
 	eumlex_instance = eumlex.instantiate()
 	add_child(eumlex_instance)
+	await complete_quest()
 	await show_dialogue("eumlex_intro", false)
 	eumlex_click()
 
@@ -131,6 +131,7 @@ func eumlex_click():
 	var button = container.get_child(0)
 	var pressed = func():
 		button.pressed.emit()
+		await get_tree().create_timer(1.5).timeout
 		await show_dialogue("eumlex_clicked", false)
 		eumlex_find()
 	block_input_except_for(button, pressed)
@@ -165,6 +166,7 @@ func run_start():
 		remove_child(main_menu_instance)
 		hide_quest()
 		load_level()
+		await get_tree().create_timer(1).timeout
 		await show_dialogue("training_intro")
 		run_move()
 	block_input_except_for.call_deferred(button, pressed) # calling deferred for the button to be rendered correctly once first
@@ -236,12 +238,13 @@ func run_aim():
 	var dummy = tutorial_level.find_child("Dummy", true, false)
 	dummy.died.connect(func():
 		complete_quest()
-		await show_dialogue("eumling_intro")
 		run_cage_drop()
 	)
 
 
 func run_cage_drop():
+	await get_tree().create_timer(3.5).timeout
+	await show_dialogue("eumling_intro")
 	show_quest("Rette den Eumling")
 	progress = PROGRESS.RUN_CAGE_DROP
 
@@ -279,6 +282,7 @@ func eumlex_show_again():
 
 func eumlex_completed():
 	complete_quest()
+	await get_tree().create_timer(2).timeout
 	await show_dialogue("tutorial_completed")
 	completed()
 	
