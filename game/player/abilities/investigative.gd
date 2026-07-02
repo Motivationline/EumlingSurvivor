@@ -37,6 +37,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func _update():
+	if not is_inside_tree(): return
 	var enemies = get_tree().get_nodes_in_group("Enemy") as Array[Enemy]
 	if amt_eumlings == 0:
 		# disable all existing weakspots
