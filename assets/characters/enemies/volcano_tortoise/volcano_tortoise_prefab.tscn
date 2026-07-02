@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://vjc83kqk3uqf" path="res://assets/characters/enemies/volcano_tortoise/volcano_tortoise.glb" id="1_5ptpm"]
 [ext_resource type="Texture2D" uid="uid://vlfmdleyc6bv" path="res://assets/vfx/particle_pack/trace_06.png" id="2_4atpn"]
 [ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/manager/sound_requester.gd" id="2_sub06"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://up81skuu52jd" path="res://assets/characters/enemies/tortoise/tortoise_blend_tree.res" id="4_6h4s5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sub06"]
 transparency = 1
@@ -45,73 +46,6 @@ color_ramp = SubResource("GradientTexture1D_53m34")
 size = Vector2(2, 0.5)
 center_offset = Vector3(0, 0.1, 0)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l5mbv"]
-animation = &"tortoise_walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s50k1"]
-animation = &"tortoise_shake"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0saar"]
-animation = &"hurt"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sub06"]
-animation = &"tortoise_stomp"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hno28"]
-animation = &"tortoise_idle"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6h4s5"]
-fadein_time = 0.1
-fadeout_time = 0.1
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_53m34"]
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5jbpd"]
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_mchdf"]
-xfade_time = 0.1
-input_0/name = "idle"
-input_0/auto_advance = false
-input_0/break_loop_at_end = false
-input_0/reset = true
-input_1/name = "walk"
-input_1/auto_advance = false
-input_1/break_loop_at_end = false
-input_1/reset = true
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5jbpd"]
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0saar"]
-fadein_time = 0.1
-fadeout_time = 0.3
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5ptpm"]
-graph_offset = Vector2(-39.558105, -39.56411)
-nodes/output/position = Vector2(1540, 100)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_hno28")
-nodes/Animation/position = Vector2(-260, 40)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_l5mbv")
-"nodes/Animation 2/position" = Vector2(-280, 260)
-nodes/shake/node = SubResource("AnimationNodeOneShot_0saar")
-nodes/shake/position = Vector2(460, 60)
-nodes/Transition/node = SubResource("AnimationNodeTransition_mchdf")
-nodes/Transition/position = Vector2(20, 120)
-"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_s50k1")
-"nodes/Animation 3/position" = Vector2(60, 380)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5jbpd")
-nodes/TimeScale/position = Vector2(260, 300)
-nodes/hurt/node = SubResource("AnimationNodeOneShot_5jbpd")
-nodes/hurt/position = Vector2(1300, 60)
-"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_0saar")
-"nodes/Animation 4/position" = Vector2(1100, 400)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_6h4s5")
-nodes/OneShot/position = Vector2(840, 60)
-"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_53m34")
-"nodes/TimeScale 2/position" = Vector2(736.3861, 396.4795)
-"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_sub06")
-"nodes/Animation 5/position" = Vector2(560, 500)
-node_connections = [&"output", 0, &"hurt", &"shake", 0, &"Transition", &"shake", 1, &"TimeScale", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"TimeScale", 0, &"Animation 3", &"hurt", 0, &"OneShot", &"hurt", 1, &"Animation 4", &"OneShot", 0, &"shake", &"OneShot", 1, &"TimeScale 2", &"TimeScale 2", 0, &"Animation 5"]
-
 [node name="volcano_tortoise" unique_id=1249268255 instance=ExtResource("1_5ptpm")]
 script = ExtResource("2_sub06")
 
@@ -130,7 +64,7 @@ process_material = SubResource("ParticleProcessMaterial_y80hq")
 draw_pass_1 = SubResource("QuadMesh_jiyg3")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=63976329]
-tree_root = SubResource("AnimationNodeBlendTree_5ptpm")
+tree_root = ExtResource("4_6h4s5")
 anim_player = NodePath("../AnimationPlayer")
 parameters/shake/active = false
 parameters/shake/internal_active = false
@@ -142,7 +76,7 @@ parameters/TimeScale/scale = 1.7999999999999972
 parameters/hurt/active = false
 parameters/hurt/internal_active = false
 parameters/hurt/request = 0
-parameters/OneShot/active = false
-parameters/OneShot/internal_active = false
-parameters/OneShot/request = 0
+parameters/stomp/active = false
+parameters/stomp/internal_active = false
+parameters/stomp/request = 0
 "parameters/TimeScale 2/scale" = 1.0

@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="3_0saar"]
 [ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="3_s76xj"]
 [ext_resource type="PackedScene" uid="uid://ci076xieq67c" path="res://game/shared/shadow/decal_shadow.tscn" id="4_u38ti"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://up81skuu52jd" path="res://assets/characters/enemies/tortoise/tortoise_blend_tree.res" id="5_1huhm"]
 [ext_resource type="ArrayMesh" uid="uid://bf0lh4o3ufbqb" path="res://assets/characters/eumling/leaf_projectile.res" id="5_d7yk1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1huhm"]
@@ -21,73 +22,6 @@ shader = ExtResource("3_0saar")
 shader_parameter/ball_color = Color(1.6978991, 0, 0, 1)
 shader_parameter/frensel_power = -1.36
 shader_parameter/visibility = 0.0
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l5mbv"]
-animation = &"tortoise_walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s50k1"]
-animation = &"tortoise_shake"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0saar"]
-animation = &"hurt"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1huhm"]
-animation = &"tortoise_stomp"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hno28"]
-animation = &"tortoise_idle"
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fgv8n"]
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5jbpd"]
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_mchdf"]
-xfade_time = 0.1
-input_0/name = "idle"
-input_0/auto_advance = false
-input_0/break_loop_at_end = false
-input_0/reset = true
-input_1/name = "walk"
-input_1/auto_advance = false
-input_1/break_loop_at_end = false
-input_1/reset = true
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5jbpd"]
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0saar"]
-fadein_time = 0.1
-fadeout_time = 0.3
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_d5qa0"]
-fadein_time = 0.1
-fadeout_time = 0.1
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xmx1y"]
-graph_offset = Vector2(-202.80795, 62.519012)
-nodes/output/position = Vector2(1360, 100)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_hno28")
-nodes/Animation/position = Vector2(-260, 40)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_l5mbv")
-"nodes/Animation 2/position" = Vector2(-280, 260)
-nodes/shake/node = SubResource("AnimationNodeOneShot_0saar")
-nodes/shake/position = Vector2(440, 80)
-nodes/Transition/node = SubResource("AnimationNodeTransition_mchdf")
-nodes/Transition/position = Vector2(20, 120)
-"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_s50k1")
-"nodes/Animation 3/position" = Vector2(100, 400)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5jbpd")
-nodes/TimeScale/position = Vector2(300, 340)
-nodes/hurt/node = SubResource("AnimationNodeOneShot_5jbpd")
-nodes/hurt/position = Vector2(1120, 60)
-"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_0saar")
-"nodes/Animation 4/position" = Vector2(920, 400)
-nodes/stomp/node = SubResource("AnimationNodeOneShot_d5qa0")
-nodes/stomp/position = Vector2(760, 80)
-"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_1huhm")
-"nodes/Animation 5/position" = Vector2(480, 540)
-"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_fgv8n")
-"nodes/TimeScale 2/position" = Vector2(620, 360)
-node_connections = [&"output", 0, &"hurt", &"shake", 0, &"Transition", &"shake", 1, &"TimeScale", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"TimeScale", 0, &"Animation 3", &"hurt", 0, &"stomp", &"hurt", 1, &"Animation 4", &"stomp", 0, &"shake", &"stomp", 1, &"TimeScale 2", &"TimeScale 2", 0, &"Animation 5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1huhm"]
 transparency = 1
@@ -113,7 +47,7 @@ layers = 2
 material_overlay = SubResource("ShaderMaterial_s76xj")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1560129507]
-tree_root = SubResource("AnimationNodeBlendTree_xmx1y")
+tree_root = ExtResource("5_1huhm")
 anim_player = NodePath("../AnimationPlayer")
 parameters/shake/active = false
 parameters/shake/internal_active = false
@@ -125,8 +59,8 @@ parameters/TimeScale/scale = 1.7999999999999972
 parameters/hurt/active = false
 parameters/hurt/internal_active = false
 parameters/hurt/request = 0
-parameters/stomp/active = true
-parameters/stomp/internal_active = true
+parameters/stomp/active = false
+parameters/stomp/internal_active = false
 parameters/stomp/request = 0
 "parameters/TimeScale 2/scale" = 1.0
 
