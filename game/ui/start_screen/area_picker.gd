@@ -113,7 +113,7 @@ func level_chosen(level_id: String):
 	var difficulty = 0
 	if split.size() > 1:
 		difficulty = int(split[1])
-	var level_location = find_file(level_id + ".tscn", "res://game/levels")
+	var level_location = find_file(level_id, "res://game/levels")
 	if (level_location != "" and ResourceLoader.exists(level_location)):
 		area_chosen.emit([ {id = level_location, difficulty = difficulty}])
 		hide()
@@ -124,23 +124,21 @@ func level_chosen(level_id: String):
 func level_choice_aborted():
 	pass
 
-func find_file(file_name: String, folder_location: String = "res://game/levels") -> String:
-	# TODO: this might break on exported builds, so this needs to be replaced with something else before release!
-	var dir := DirAccess.open(folder_location)
-	if dir == null:
-		return ""
-	var files := dir.get_files()
-	if files.has(file_name):
-		return folder_location + "/" + file_name
+func find_file(level_id: String, folder_location: String = "res://game/levels") -> String:
 	
-	var dirs := dir.get_directories()
-	for d in dirs:
-		var path = find_file(file_name, folder_location + "/" + d)
-		if path != "":
-			return path
+	for area in areas:
+		var folder_path: String = folder_location
+		if area.folder:
+			folder_path += "/" + area.folder + "/"
+
+		for difficulty_levels in area.levels.values():
+			if difficulty_levels.has(level_id):
+				return folder_path + level_id + ".tscn"
+
+		if area.boss_levels.values().has(level_id):
+			return folder_path + level_id + ".tscn"
 
 	return ""
-
 
 func _on_area_clicked(index: int) -> void:
 	var level_names = choose_area_levels_from_index(index)
