@@ -16,6 +16,19 @@
 [ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="12_ons1q"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="13_32ehm"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="14_1fwax"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="15_rg0m5"]
+[ext_resource type="AudioStream" uid="uid://dhj41c6f3q7xe" path="res://assets/characters/enemies/toad/sounds/death_1.wav" id="16_5yy20"]
+[ext_resource type="AudioStream" uid="uid://6vdufmbcl37m" path="res://assets/characters/enemies/toad/sounds/death_2.wav" id="17_3ntgq"]
+[ext_resource type="AudioStream" uid="uid://vlq3ry4emg84" path="res://assets/characters/enemies/toad/sounds/death_3.wav" id="18_e60ta"]
+[ext_resource type="AudioStream" uid="uid://ckp5qw3vlg43t" path="res://assets/characters/enemies/toad/sounds/death_4.wav" id="19_ium2c"]
+[ext_resource type="AudioStream" uid="uid://dkxeflfjttqol" path="res://assets/characters/enemies/toad/sounds/death_5.wav" id="20_antwl"]
+[ext_resource type="AudioStream" uid="uid://dvodrmw3y5orh" path="res://assets/characters/enemies/toad/sounds/death_6.wav" id="21_wx8qo"]
+[ext_resource type="AudioStream" uid="uid://ccge0eudrj8ee" path="res://assets/characters/enemies/toad/sounds/shoot_1.wav" id="22_mtxep"]
+[ext_resource type="AudioStream" uid="uid://bhge7elf6veva" path="res://assets/characters/enemies/toad/sounds/shoot_2.wav" id="23_uy04u"]
+[ext_resource type="AudioStream" uid="uid://b7sqf5r64oj4" path="res://assets/characters/enemies/toad/sounds/shoot_3.wav" id="24_s8ba6"]
+[ext_resource type="AudioStream" uid="uid://1sp55qnmp7n1" path="res://assets/characters/enemies/toad/sounds/shoot_4.wav" id="25_phl2b"]
+[ext_resource type="AudioStream" uid="uid://dqcwn47y1d4j1" path="res://assets/characters/enemies/toad/sounds/shoot_5.wav" id="26_7orkx"]
+[ext_resource type="AudioStream" uid="uid://2u00rib5gav" path="res://assets/characters/enemies/toad/sounds/shoot_6.wav" id="27_pia2t"]
 
 [sub_resource type="Resource" id="Resource_o4imh"]
 script = ExtResource("2_dafou")
@@ -89,6 +102,24 @@ metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 script = ExtResource("9_r7buu")
 max_negative = -30.0
 max_positive = 30.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pvs3w"]
+streams_count = 6
+stream_0/stream = ExtResource("16_5yy20")
+stream_1/stream = ExtResource("17_3ntgq")
+stream_2/stream = ExtResource("18_e60ta")
+stream_3/stream = ExtResource("19_ium2c")
+stream_4/stream = ExtResource("20_antwl")
+stream_5/stream = ExtResource("21_wx8qo")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mk2yw"]
+streams_count = 6
+stream_0/stream = ExtResource("22_mtxep")
+stream_1/stream = ExtResource("23_uy04u")
+stream_2/stream = ExtResource("24_s8ba6")
+stream_3/stream = ExtResource("25_phl2b")
+stream_4/stream = ExtResource("26_7orkx")
+stream_5/stream = ExtResource("27_pia2t")
 
 [sub_resource type="Resource" id="Resource_dafou"]
 script = ExtResource("2_dafou")
@@ -215,6 +246,14 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("12_ons1q")]
 
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("15_rg0m5")]
+stream = SubResource("AudioStreamRandomizer_pvs3w")
+volume_db = 0.0
+
+[node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=403663708 instance=ExtResource("15_rg0m5")]
+stream = SubResource("AudioStreamRandomizer_mk2yw")
+volume_db = -4.0
+
 [node name="hitboxBase" parent="." index="7" unique_id=1403634002 instance=ExtResource("13_32ehm")]
 collision_layer = 32
 collision_mask = 8
@@ -237,3 +276,5 @@ can_be_hit_by = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30646157, 0)
 shape = SubResource("SphereShape3D_5yy20")
 debug_color = Color(0.95026547, 0.13603836, 0.45342267, 0.41960785)
+
+[connection signal="play_sound" from="Visuals/Toad" to="SoundEffectManager" method="play_sound"]
