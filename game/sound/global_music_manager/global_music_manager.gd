@@ -17,8 +17,7 @@ enum TWEEN_TYPES {PLAYER_FADE, BUS_FADE}
 
 var active_tweens: Array[Array]
 
-
-func _ready():
+func _init():
 	for i in AudioServer.bus_count:
 		init_bus_volumes.append(AudioServer.get_bus_volume_db(i))
 		
@@ -27,6 +26,7 @@ func _ready():
 	env_noise_player.bus = "Environment"
 	
 	add_child(env_noise_player)
+
 
 ## Fade volume of [param _bus] to [param _target_volume_db] in [param _duration] seconds. If [param _to_init_volume] is [code]true[/code], will ignore [param _target_volume_db] and fade to the bus's initial volume.
 func fade_bus_volume(_bus: BUS_ID, _duration: float, _target_volume_db: float = 30, _to_init_volume: bool = false) -> void:
