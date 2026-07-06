@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_cvp71"]
 [ext_resource type="PackedScene" uid="uid://druej6e5xqhd8" path="res://game/enemies/6-volcano/magma_bomb_complex/magma_bomb_complex_D2.tscn" id="2_cvp71"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_35njp"]
+[ext_resource type="PackedScene" uid="uid://ldbsffwxr25j" path="res://game/enemies/3-jungle-area/bomb_berry_complex/bomb_berry_complex_D2.tscn" id="3_wjg4u"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cvp71"]
 vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 0.75, 1, -5, -0.5, 1, -5, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, 4.75, -4.5, 1, -4.5)
@@ -18,6 +19,9 @@ navigation_mesh = SubResource("NavigationMesh_cvp71")
 
 [node name="magma_bomb_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_cvp71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0647976)
+
+[node name="bomb_berry_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1782466046 instance=ExtResource("3_wjg4u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8535452, 0, -1.1367998)
 
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_35njp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
