@@ -85,7 +85,7 @@ static func choose_area_levels_from_index(index: int) -> Array:
 
 static func choose_area_levels(area) -> Array:
 	current_area = area
-	current_area.type = Enum.EUMLING_TYPE.values().pick_random()
+	current_area.type = Enum.EUMLING_TYPE.values().pick_random() # TODO remove this when all 6 areas are in game
 	var level_names: Array = []
 	var difficulty: int = Data.game_data.difficulty
 	var amount_levels = difficulty + 3
@@ -98,7 +98,8 @@ static func choose_area_levels(area) -> Array:
 		if levels.size() == 0: break
 		var level = levels.pop_back()
 		if not level: break
-		level_names.append({id = folder_name + level + ".tscn", difficulty = difficulty})
+		var level_id: String = find_file(level + ".tscn", folder_name)
+		level_names.append({id = level_id, difficulty = difficulty})
 	var boss_level = area.boss_levels[difficulty]
 	level_names.append({id = folder_name + boss_level + ".tscn", difficulty = difficulty})
 	return level_names
@@ -113,7 +114,7 @@ func level_chosen(level_id: String):
 	var difficulty = 0
 	if split.size() > 1:
 		difficulty = int(split[1])
-	var level_location = find_file(level_id + ".tscn", "res://game/levels")
+	var level_location = AreaPicker.find_file(level_id + ".tscn", "res://game/levels")
 	if (level_location != "" and ResourceLoader.exists(level_location)):
 		area_chosen.emit([ {id = level_location, difficulty = difficulty}])
 		hide()
@@ -124,13 +125,15 @@ func level_chosen(level_id: String):
 func level_choice_aborted():
 	pass
 
-func find_file(file_name: String, folder_location: String = "res://game/levels") -> String:
+static func find_file(file_name: String, folder_location: String = "res://game/levels") -> String:
 	# TODO: this might break on exported builds, so this needs to be replaced with something else before release!
 	var dir := DirAccess.open(folder_location)
 	if dir == null:
 		return ""
 	var files := dir.get_files()
 	if files.has(file_name):
+		return folder_location + "/" + file_name
+	if files.has((file_name + ".remap")):
 		return folder_location + "/" + file_name
 	
 	var dirs := dir.get_directories()
