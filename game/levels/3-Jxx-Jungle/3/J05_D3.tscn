@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://btv0ybrmrb48i"]
+
+[ext_resource type="PackedScene" uid="uid://ccy8uuc5psswg" path="res://game/levels/3-Jxx-Jungle/0/J05.tscn" id="1_uwsvn"]
+[ext_resource type="PackedScene" uid="uid://bvmgm4ankvew7" path="res://game/enemies/3-jungle-area/tortoise_complex/tortoise_complex_D2.tscn" id="2_uwsvn"]
+[ext_resource type="PackedScene" uid="uid://ldbsffwxr25j" path="res://game/enemies/3-jungle-area/bomb_berry_complex/bomb_berry_complex_D2.tscn" id="3_da6rw"]
+
+[node name="Level" unique_id=77347882 instance=ExtResource("1_uwsvn")]
+
+[node name="tortoise_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1898691 node_paths=PackedStringArray("on_hurt") instance=ExtResource("2_uwsvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6140518, 0, -3.4789662)
+on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
+
+[node name="bomb_berry_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1834303492 instance=ExtResource("3_da6rw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2946068, 0, -1.217236)

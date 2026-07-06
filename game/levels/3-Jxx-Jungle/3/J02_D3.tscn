@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://vwymlb767o2y"]
+
+[ext_resource type="PackedScene" uid="uid://77mtaj1dedbo" path="res://game/levels/3-Jxx-Jungle/0/J02.tscn" id="1_l5y3t"]
+[ext_resource type="PackedScene" uid="uid://7j4iua7gg3cu" path="res://game/enemies/3-jungle-area/sniper_complex/sniper_complex_D1.tscn" id="2_1as6y"]
+[ext_resource type="PackedScene" uid="uid://bvmgm4ankvew7" path="res://game/enemies/3-jungle-area/tortoise_complex/tortoise_complex_D2.tscn" id="3_1as6y"]
+
+[node name="Level" unique_id=517027440 instance=ExtResource("1_l5y3t")]
+
+[node name="sniper_complex_D0" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1898691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.503721, 0, 3.5323298)
+
+[node name="sniper_complex_D1 2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="3" unique_id=1612155489 instance=ExtResource("2_1as6y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.480231, 0, -3.4228706)
+
+[node name="tortoise_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="4" unique_id=1786582102 node_paths=PackedStringArray("on_hurt") instance=ExtResource("3_1as6y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1010038, 0, 0.04897833)
+on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
+
+[editable path="Enemies/TrapLine2/SpikeTrap"]
+[editable path="Enemies/TrapLine2/SpikeTrap2"]
+[editable path="Enemies/TrapLine2/SpikeTrap3"]
+[editable path="Enemies/TrapLine2/SpikeTrap4"]
+[editable path="Enemies/TrapLine2/SpikeTrap5"]
+[editable path="Enemies/TrapLine2/SpikeTrap6"]
+[editable path="Enemies/TrapLine2/SpikeTrap7"]
+[editable path="Enemies/TrapLine2/SpikeTrap8"]
+[editable path="Enemies/TrapLine2/SpikeTrap9"]
+[editable path="Enemies/TrapLine2/SpikeTrap10"]
+[editable path="Enemies/TrapLine2/SpikeTrap11"]
+[editable path="Enemies/TrapLine2/SpikeTrap12"]
+[editable path="Enemies/TrapLine2/SpikeTrap13"]
+[editable path="Enemies/TrapLine2/SpikeTrap14"]
+[editable path="Enemies/TrapLine2/SpikeTrap15"]
+[editable path="Enemies/TrapLine2/SpikeTrap16"]
+[editable path="Enemies/TrapLine2/SpikeTrap17"]
+[editable path="Enemies/TrapLine2/SpikeTrap18"]
+[editable path="Enemies/TrapLine2/SpikeTrap19"]
+[editable path="Enemies/TrapLine2/SpikeTrap20"]
