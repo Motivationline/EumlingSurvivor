@@ -21,13 +21,13 @@
 [sub_resource type="Resource" id="Resource_jy6pi"]
 script = ExtResource("2_t0052")
 attribute = "health"
-value = 300.0
+value = 200.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_squli"]
 script = ExtResource("2_t0052")
 attribute = "health"
-value = 880.0
+value = 440.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_u10va"]
@@ -39,7 +39,7 @@ metadata/_custom_type_script = "uid://duef27t44qtoy"
 [sub_resource type="Resource" id="Resource_dwp6g"]
 script = ExtResource("2_t0052")
 attribute = "health"
-value = 580.0
+value = 290.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_7xfjr"]
@@ -193,7 +193,7 @@ metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 script = ExtResource("4_1ttmv")
 wait_time = 0.0
 stop_distance = 1.0
-next_state = NodePath("../../Explode/SpawnEntitiesState")
+next_state = NodePath("../../Explode/TriggerEventState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Explode/request": 3,
 "parameters/Transition/transition_request": "run"
@@ -202,10 +202,16 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="Explode" type="Node" parent="StateMachine" index="3" unique_id=814314280]
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Explode" index="0" unique_id=1677719261 node_paths=PackedStringArray("next_state")]
+[node name="TriggerEventState" type="Node" parent="StateMachine/Explode" index="0" unique_id=194747589 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("10_jy6pi")
+events = [NodePath("../../../Eventlisteners/DeactivateEventStrategy")]
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Explode" index="1" unique_id=1677719261 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_whof2")
 start_delay = 1.55
-next_state = NodePath("../TriggerEventState")
+next_state = NodePath("../KillSelfState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Explode/request": 1
 })
@@ -216,12 +222,6 @@ script = ExtResource("6_vsu5q")
 difficulty_scaler = SubResource("Resource_aly46")
 entity_to_spawn = ExtResource("7_t0052")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
-
-[node name="TriggerEventState" type="Node" parent="StateMachine/Explode" index="1" unique_id=194747589 node_paths=PackedStringArray("events", "next_state")]
-script = ExtResource("10_jy6pi")
-events = [NodePath("../../../Eventlisteners/DeactivateEventStrategy")]
-next_state = NodePath("../KillSelfState")
-metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
 [node name="KillSelfState" type="Node" parent="StateMachine/Explode" index="2" unique_id=237385671 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_xmqlf")
@@ -246,7 +246,7 @@ metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="DeactivateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=2106284789 node_paths=PackedStringArray("strategies_to_deactivate")]
 script = ExtResource("14_squli")
-strategies_to_deactivate = [NodePath("../SpawnEntitiesEventStrategy")]
+strategies_to_deactivate = [NodePath("../SpawnEntitiesEventStrategy"), NodePath("../TriggerStateEventStrategy")]
 metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
 
 [node name="magma_bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("11_f4fqd")]
