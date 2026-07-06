@@ -11,9 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://b2rrc21uefymi" path="res://game/projectiles/magma_berry_projectile/magma_berry_projectile.tscn" id="7_t0052"]
 [ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="7_xmqlf"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="8_t0052"]
+[ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="10_jy6pi"]
 [ext_resource type="PackedScene" uid="uid://cir2gbm45aqte" path="res://assets/characters/enemies/bomberry/magma/magma_bomberry_prefab.tscn" id="11_f4fqd"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="12_u10va"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="14_dwp6g"]
+[ext_resource type="Script" uid="uid://d13s0cgbc5iq0" path="res://strategies/event/deactivate.gd" id="14_squli"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="15_2143g"]
 
 [sub_resource type="Resource" id="Resource_jy6pi"]
@@ -203,7 +205,7 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine/Explode" index="0" unique_id=1677719261 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_whof2")
 start_delay = 1.55
-next_state = NodePath("../KillSelfState")
+next_state = NodePath("../TriggerEventState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Explode/request": 1
 })
@@ -215,7 +217,13 @@ difficulty_scaler = SubResource("Resource_aly46")
 entity_to_spawn = ExtResource("7_t0052")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="KillSelfState" type="Node" parent="StateMachine/Explode" index="1" unique_id=237385671 node_paths=PackedStringArray("next_state")]
+[node name="TriggerEventState" type="Node" parent="StateMachine/Explode" index="1" unique_id=194747589 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("10_jy6pi")
+events = [NodePath("../../../Eventlisteners/DeactivateEventStrategy")]
+next_state = NodePath("../KillSelfState")
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="KillSelfState" type="Node" parent="StateMachine/Explode" index="2" unique_id=237385671 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_xmqlf")
 next_state = NodePath("../../Idle/IdleWait")
 metadata/_custom_type_script = "uid://dj632w22te1th"
@@ -235,6 +243,11 @@ script = ExtResource("12_u10va")
 state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/Chase/MoveTowardsEntityState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
+
+[node name="DeactivateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=2106284789 node_paths=PackedStringArray("strategies_to_deactivate")]
+script = ExtResource("14_squli")
+strategies_to_deactivate = [NodePath("../SpawnEntitiesEventStrategy")]
+metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
 
 [node name="magma_bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("11_f4fqd")]
 
