@@ -101,7 +101,8 @@ static func choose_area_levels(area) -> Array:
 		var level_id: String = find_file(level + ".tscn", folder_name)
 		level_names.append({id = level_id, difficulty = difficulty})
 	var boss_level = area.boss_levels[difficulty]
-	level_names.append({id = folder_name + boss_level + ".tscn", difficulty = difficulty})
+	var boss_level_location = find_file(boss_level + ".tscn", folder_name)
+	level_names.append({id = boss_level_location, difficulty = difficulty})
 	return level_names
 
 
