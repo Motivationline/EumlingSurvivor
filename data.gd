@@ -22,9 +22,10 @@ func end_game():
 
 func reset():
 	game_data.reset()
-	_locked_eumlings = {}
-	_unlocked_eumlings = []
-	_seen_eumlings = []
+	_locked_eumlings.clear()
+	_unlocked_eumlings.clear()
+	_seen_eumlings.clear()
+	eumlings.clear()
 
 	_setup_eumlings()
 
@@ -64,6 +65,7 @@ func _load_eumlings(current_path: String = ""):
 				eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.SEEN
 			else:
 				_locked_eumlings[eumling.type].append(eumling)
+				eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.LOCKED
 	var folders := DirAccess.get_directories_at(path)
 	for folder in folders:
 		_load_eumlings(current_path + folder + "/")

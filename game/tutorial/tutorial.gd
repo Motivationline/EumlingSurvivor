@@ -259,6 +259,7 @@ func run_cage_open():
 func return_to_main_menu():
 	progress = PROGRESS.RETURN_EUMLEX
 	level_wrapper.queue_free()
+	player.queue_free()
 	add_child(main_menu_instance)
 	GlobalMusicManager.set_environment_noise(SongList.ENVNOISE.NOTHING)
 	var btn: TextureButton = main_menu_instance.find_child("EumlexButton")
