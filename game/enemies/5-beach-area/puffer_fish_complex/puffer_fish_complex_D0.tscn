@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="9_82dyp"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="9_ycknn"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="10_0ett8"]
-[ext_resource type="PackedScene" uid="uid://b3i03xporqdm7" path="res://game/enemies/3-jungle-area/bomber/projectile/bomber_explosion_projectile.tscn" id="11_qc8ak"]
+[ext_resource type="PackedScene" uid="uid://dw0sq6p2ec161" path="res://game/projectiles/puffer_fish_projectile/puffer_fish_projectile.tscn" id="11_qc8ak"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_y2utl"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_p0112"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="13_qc8ak"]
@@ -188,7 +188,7 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 script = ExtResource("9_82dyp")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="EntitySpawner" type="Node3D" parent="StateMachine/OnDamage/SpawnEntitiesState" index="0" unique_id=484682867]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/OnDamage/SpawnEntitiesState" index="0" unique_id=484682867]
 script = ExtResource("10_0ett8")
 entity_to_spawn = ExtResource("11_qc8ak")
 amount_of_spawns = 4
