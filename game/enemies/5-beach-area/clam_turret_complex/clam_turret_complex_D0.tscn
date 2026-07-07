@@ -1,0 +1,173 @@
+[gd_scene format=3 uid="uid://cueigax4duop0"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_oq203"]
+[ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="2_0ukvt"]
+[ext_resource type="PackedScene" uid="uid://df82hw04o3dnn" path="res://assets/characters/enemies/clam/clam_prefab.tscn" id="2_j40wc"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_ma0s4"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_0ukvt"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_p743l"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_8v5kx"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_p1jnu"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_l6trl"]
+[ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="7_l6trl"]
+[ext_resource type="PackedScene" uid="uid://b2y786mw4lw78" path="res://game/projectiles/clam_projectile/clam_projectile.tscn" id="7_myuco"]
+[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="8_6uf4n"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="8_myuco"]
+[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_o76ae"]
+[ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="10_fd3e2"]
+
+[sub_resource type="Resource" id="Resource_o76ae"]
+script = ExtResource("8_6uf4n")
+metadata/_custom_type_script = "uid://yd5ytc70xwp6"
+
+[sub_resource type="Resource" id="Resource_fd3e2"]
+script = ExtResource("9_o76ae")
+
+[sub_resource type="Resource" id="Resource_6uf4n"]
+script = ExtResource("8_myuco")
+attribute = "incoming_damage_multiplier"
+value = 0.4
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_l6trl"]
+script = ExtResource("8_myuco")
+attribute = "incoming_damage_multiplier"
+value = 1.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o76ae"]
+radius = 0.5188506
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fd3e2"]
+radius = 0.664134
+
+[node name="clam_turret_complex_D0" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_oq203")]
+health = 250.0
+hitbox = NodePath("hitboxBase")
+hurtbox = NodePath("Hurtbox")
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Attack/WaitForTimeXState")
+
+[node name="Open" type="Node" parent="StateMachine" index="0" unique_id=837134847]
+
+[node name="TriggerEventStateOpened" type="Node" parent="StateMachine/Open" index="0" unique_id=1139956059 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("2_0ukvt")
+events = [NodePath("../../../Eventlisteners/AdjustAttributesOpened")]
+next_state = NodePath("../../Attack/WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "idle_open",
+"parameters/turn/blend_amount": 0.0
+})
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="Attack" type="Node" parent="StateMachine" index="1" unique_id=1447179479]
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/Attack" index="0" unique_id=767996384 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ma0s4")
+random = true
+min_wait_time = 0.2
+max_wait_time = 0.6
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/Attack" index="1" unique_id=1331094308 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_0ukvt")
+wait_time = 0.0
+next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/turn/blend_amount": 1.0
+})
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Attack" index="2" unique_id=376748780 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_8v5kx")
+next_state = NodePath("WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Shoot/request": 1,
+"parameters/turn/blend_amount": 0.0
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="spawnerMain" type="Node3D" parent="StateMachine/Attack/SpawnEntitiesState" index="0" unique_id=1780834316]
+script = ExtResource("5_l6trl")
+entity_to_spawn = ExtResource("7_myuco")
+target_strategy = SubResource("Resource_o76ae")
+rotation_strategy = SubResource("Resource_fd3e2")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/Attack/SpawnEntitiesState" index="1" unique_id=1064029527 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ma0s4")
+wait_time = 1.5
+min_wait_time = 0.2
+max_wait_time = 0.6
+next_state = NodePath("../../../Close/TriggerEventStateClosed")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Close" type="Node" parent="StateMachine" index="2" unique_id=1905264692]
+
+[node name="TriggerEventStateClosed" type="Node" parent="StateMachine/Close" index="0" unique_id=1383870932 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("2_0ukvt")
+events = [NodePath("../../../Eventlisteners/AdjustAttributesClosed")]
+next_state = NodePath("../MultistateState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "idle_closed"
+})
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="MultistateState" type="Node" parent="StateMachine/Close" index="1" unique_id=58216497 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+script = ExtResource("10_fd3e2")
+states_to_execute = [NodePath("../LookAtPlayerState"), NodePath("../WaitForTimeClosed")]
+states_that_need_to_finish = [NodePath("../WaitForTimeClosed")]
+which_states_need_to_finish = "any"
+next_state = NodePath("../../Open/TriggerEventStateOpened")
+metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/Close" index="2" unique_id=596234552 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_0ukvt")
+infinite = true
+next_state = NodePath("../WaitForTimeClosed")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/turn/blend_amount": 1.0
+})
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="WaitForTimeClosed" type="Node" parent="StateMachine/Close" index="3" unique_id=583543399 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ma0s4")
+wait_time = 2.0
+next_state = NodePath("../../Open/TriggerEventStateOpened")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="AdjustAttributesClosed" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=935578213]
+script = ExtResource("7_l6trl")
+changes = Array[ExtResource("8_myuco")]([SubResource("Resource_6uf4n")])
+metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
+
+[node name="AdjustAttributesOpened" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=2091939268]
+script = ExtResource("7_l6trl")
+changes = Array[ExtResource("8_myuco")]([SubResource("Resource_l6trl")])
+metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
+
+[node name="clam" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=553851633 instance=ExtResource("2_j40wc")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="hitboxBase" parent="." index="7" unique_id=1403634002 instance=ExtResource("3_p743l")]
+collision_layer = 32
+collision_mask = 8
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1518769642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00091664493, 0.2809551, -0.00023913383)
+shape = SubResource("SphereShape3D_o76ae")
+
+[node name="Hurtbox" parent="." index="8" unique_id=2005433755 instance=ExtResource("4_p1jnu")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=1434648972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3019039, 0)
+shape = SubResource("SphereShape3D_fd3e2")
+debug_color = Color(0.9216081, 0.12424397, 5.7756904e-07, 0.41960785)
