@@ -135,8 +135,8 @@ func _die():
 	_trigger_events(on_death)
 	if not ignore_enemy_in_level:
 		var effect = death_effect.instantiate()
-		get_parent().add_child(effect)
 		effect.global_position = global_position
+		get_parent().add_child(effect)
 	queue_free()
 
 
