@@ -18,7 +18,7 @@ point_count = 3
 render_priority = 1
 transparency = 1
 shading_mode = 0
-albedo_color = Color(0.44166672, 1, 0.32999998, 1)
+albedo_color = Color(1, 0.32156864, 0.050980393, 1)
 grow = true
 grow_amount = 0.02
 stencil_mode = 3
@@ -29,11 +29,13 @@ metadata/_stencil_owned = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8uh7"]
 next_pass = SubResource("StandardMaterial3D_5rbxo")
 transparency = 1
+blend_mode = 1
+cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.045999996, 0.23, 0.045999996, 0.43529412)
+albedo_color = Color(1, 0.5333333, 0.19999999, 0)
 stencil_mode = 1
 stencil_flags = 2
-stencil_color = Color(0.44166672, 1, 0.32999998, 1)
+stencil_color = Color(1, 0.32156864, 0.050980393, 1)
 stencil_outline_thickness = 0.02
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hxsw"]
@@ -83,7 +85,7 @@ billboard_keep_scale = true
 
 [sub_resource type="Gradient" id="Gradient_qq46w"]
 offsets = PackedFloat32Array(0, 0.5137931, 1)
-colors = PackedColorArray(0.64166665, 1, 0.57, 1, 0.080000035, 0.48, 0, 1, 0.080000035, 0.48, 0, 0)
+colors = PackedColorArray(1, 0.8208333, 0.57, 1, 0.48, 0.256, 0, 1, 0.080000035, 0.48, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btksr"]
 transparency = 1
@@ -100,8 +102,8 @@ _data = [Vector2(0, 0), 0.0, 4.5566883, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_y52y5"]
-offsets = PackedFloat32Array(0, 0.18103448, 0.8603448, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1.6852883, 1.6852883, 1.6852883, 0.8627451, 0.35537007, 4.5019746, 0.42445412, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.18678162, 0.8603448, 0.99425286)
+colors = PackedColorArray(1, 0.959, 0.94, 0, 1, 0.36666673, 0.050000012, 0.8627451, 4.5019746, 2.6359904, 0.35537007, 1, 1, 0.050000012, 0.050000012, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5moj2"]
 transparency = 1
@@ -112,7 +114,7 @@ billboard_keep_scale = true
 
 [sub_resource type="Gradient" id="Gradient_6n66p"]
 offsets = PackedFloat32Array(0, 0.87413794, 1)
-colors = PackedColorArray(0.26676002, 0.54, 0.1674, 1, 0.3882353, 0.7882353, 0.24313726, 1, 0, 0.34, 0.04533337, 0)
+colors = PackedColorArray(0.54, 0.32885998, 0.1674, 1, 0.3882353, 0.7882353, 0.24313726, 1, 0, 0.34, 0.04533337, 0)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_860yy"]
 radius = 0.04102301
