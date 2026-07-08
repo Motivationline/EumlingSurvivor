@@ -73,6 +73,7 @@ func select_eumling(btn: EumlingButton, eumling: Eumling):
 	if (selection_overlay.get_parent()):
 		selection_overlay.get_parent().remove_child(selection_overlay)
 	btn.add_child(selection_overlay)
+	sound_effect_manager.play_sound("SelectEumling")
 
 	%EumlexInfo.show()
 	if eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.LOCKED:
