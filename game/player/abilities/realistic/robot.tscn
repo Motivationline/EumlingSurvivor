@@ -84,8 +84,8 @@ stream_11/stream = ExtResource("19_4x3rj")
 
 [node name="MiniEumlingRobot" type="CharacterBody3D" unique_id=1814085372 node_paths=PackedStringArray("repair_area", "repaired_state", "broken_state", "level_completed_state", "status_visuals", "sound_player", "hurtbox", "node_with_animation_tree", "state_machine") groups=["Interactable"]]
 script = ExtResource("1_sjb5n")
-max_health = Array[float]([200.0, 300.0, 500.0])
-repair_per_second = Array[float]([25.0, 50.0, 100.0])
+max_health = Array[float]([200.0, 400.0, 700.0])
+repair_per_second = Array[float]([50.0, 100.0, 180.0])
 repair_area = NodePath("RepairArea")
 repaired_state = NodePath("StateMachine/Repaired/RepairAnimation")
 broken_state = NodePath("StateMachine/WaitToBeRepairedState")
@@ -145,6 +145,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/Repaired/SpawnEntitiesState" unique_id=154277291]
 script = ExtResource("6_b6kjj")
+damage = 40.0
 entity_to_spawn = ExtResource("7_y2li0")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
