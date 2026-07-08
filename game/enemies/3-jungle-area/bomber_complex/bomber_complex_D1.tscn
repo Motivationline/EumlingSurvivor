@@ -154,15 +154,23 @@ hitbox = NodePath("hitboxbase")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("LookAtPlayerState")
+initial_state = NodePath("WaitBeginning")
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" unique_id=1550312346 node_paths=PackedStringArray("next_state")]
+[node name="WaitBeginning" type="Node" parent="StateMachine" index="0" unique_id=1115578794 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_q8x75")
+random = true
+min_wait_time = 0.5
+max_wait_time = 1.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="1" unique_id=1550312346 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_ewjtt")
 wait_time = 2.0
 next_state = NodePath("../SpawnEntitiesState")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=291413817 node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=291413817 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_lo05d")
 start_delay = 0.5
 next_state = NodePath("../WaitForTimeXState")
@@ -177,7 +185,7 @@ difficulty_scaler = SubResource("Resource_p2ta3")
 entity_to_spawn = ExtResource("5_e5qk8")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=1845234742 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="3" unique_id=1845234742 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_q8x75")
 random = true
 max_wait_time = 0.5
