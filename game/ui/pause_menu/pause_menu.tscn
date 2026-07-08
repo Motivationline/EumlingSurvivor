@@ -20,6 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://bvb4cns6l455k" path="res://assets/ui/Eumlex/TagBaseC.png" id="17_sfmqp"]
 [ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="18_8i6dt"]
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="19_huhjg"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="21_huhjg"]
+[ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="22_nmosl"]
+[ext_resource type="AudioStream" uid="uid://cybo744j6vhtf" path="res://assets/sound/ui/pause/open.wav" id="23_1tpup"]
+[ext_resource type="AudioStream" uid="uid://dmw7tqg7s60xk" path="res://assets/sound/ui/pause/close.wav" id="24_7cjl0"]
+[ext_resource type="AudioStream" uid="uid://c4xw8a6a2lao0" path="res://assets/sound/ui/pause/slider_tick.wav" id="25_1cvb6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_edo3p"]
 shader = ExtResource("2_ob8pm")
@@ -50,7 +55,12 @@ region_rect = Rect2(0, 0, 149, 57.17279)
 [sub_resource type="ViewportTexture" id="ViewportTexture_nmosl"]
 viewport_path = NodePath("SettingsTabContainer/Info/EumlingPreview/SubViewport")
 
-[node name="PauseMenu" type="Control" unique_id=1966773529]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_huhjg"]
+random_pitch = 1.2599211
+streams_count = 1
+stream_0/stream = ExtResource("25_1cvb6")
+
+[node name="PauseMenu" type="Control" unique_id=1966773529 node_paths=PackedStringArray("sound_effect_manager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,6 +68,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_062ls")
+sound_effect_manager = NodePath("SoundEffectManager")
 
 [node name="BackgroundBlur" type="TextureRect" parent="." unique_id=1806676172]
 material = SubResource("ShaderMaterial_edo3p")
@@ -177,14 +188,17 @@ offset_top = 26.0
 offset_right = -520.0
 offset_bottom = -591.0
 
-[node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=288030327 node_paths=PackedStringArray("music_slider", "sfx_slider", "ambience_slider")]
+[node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=288030327 node_paths=PackedStringArray("pause_menu", "music_slider", "sfx_slider", "ambience_slider", "sound_effect_manager", "slider_tick_stream_player")]
 layout_mode = 2
 script = ExtResource("9_utddp")
 vol_min = -30.0
 vol_max = 2.0
+pause_menu = NodePath("../..")
 music_slider = NodePath("SliderContainer/MusicContainer/MusicSlider")
 sfx_slider = NodePath("SliderContainer/SFXContainer/SFXSlider")
 ambience_slider = NodePath("SliderContainer/AmbienceContainer/AmbienceSlider")
+sound_effect_manager = NodePath("../../SoundEffectManager")
+slider_tick_stream_player = NodePath("../../SoundEffectManager/SliderTick")
 metadata/_tab_index = 1
 
 [node name="SliderContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound" unique_id=469909064]
@@ -339,6 +353,24 @@ offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_6rxva")
+
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=939590480]
+script = ExtResource("21_huhjg")
+debug = true
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Open" parent="SoundEffectManager" unique_id=451995016 instance=ExtResource("22_nmosl")]
+stream = ExtResource("23_1tpup")
+volume_db = -4.0
+
+[node name="Close" parent="SoundEffectManager" unique_id=1085865123 instance=ExtResource("22_nmosl")]
+stream = ExtResource("24_7cjl0")
+volume_db = -4.0
+
+[node name="SliderTick" parent="SoundEffectManager" unique_id=1234115200 instance=ExtResource("22_nmosl")]
+stream = SubResource("AudioStreamRandomizer_huhjg")
+volume_db = -4.0
+max_polyphony = 5
 
 [connection signal="pressed" from="Buttons/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_resume_button_pressed"]

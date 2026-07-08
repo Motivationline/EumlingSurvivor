@@ -1,6 +1,6 @@
 extends Control
 var is_open = false
-
+@export var sound_effect_manager:SoundEffectManager
 signal return_home
 
 func _ready():
@@ -14,11 +14,14 @@ func _process(_delta):
 			open()
 
 func open():
+	sound_effect_manager.play_sound("Open")
 	visible = true
 	is_open = true
 	get_tree().paused = true
 	
 func close():
+	if is_open:
+		sound_effect_manager.play_sound("Close")
 	get_tree().paused = false
 	visible = false
 	is_open = false
