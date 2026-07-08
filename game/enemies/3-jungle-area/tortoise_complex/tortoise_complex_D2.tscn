@@ -8,9 +8,9 @@
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="5_f4g4a"]
 [ext_resource type="PackedScene" uid="uid://88irdt85febg" path="res://game/aoes/tortoise_complex_aoe/jungle_tortoise_complex/tortoise_complex_aoe_D2.tscn" id="5_uyr82"]
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="8_d33cf"]
+[ext_resource type="Material" uid="uid://bgn1lj00e7ol7" path="res://assets/characters/enemies/buffed_assets/buffed_overlay_shader.res" id="8_uu3eu"]
 [ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="10_ebpng"]
-[ext_resource type="Texture2D" uid="uid://vlfmdleyc6bv" path="res://assets/vfx/particle_pack/trace_06.png" id="10_uu3eu"]
-[ext_resource type="Texture2D" uid="uid://e16xjigucwdo" path="res://assets/vfx/particle_pack/circle_02.png" id="11_uu3eu"]
+[ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/characters/enemies/buffed_assets/buffed_vfx.tscn" id="11_kj6pd"]
 
 [sub_resource type="Resource" id="Resource_xicgf"]
 script = ExtResource("4_gi7fd")
@@ -44,32 +44,10 @@ medium = Array[ExtResource("4_gi7fd")]([SubResource("Resource_uu3eu")])
 hard = Array[ExtResource("4_gi7fd")]([SubResource("Resource_d33cf")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d33cf"]
-render_priority = 1
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0.54167145, 0, 1.4378574, 1)
-grow = true
-grow_amount = 0.02
-stencil_mode = 3
-stencil_flags = 1
-stencil_compare = 5
-metadata/_stencil_owned = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s76xj"]
-next_pass = SubResource("StandardMaterial3D_d33cf")
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0.40816677, 0.111600004, 0.62, 0.26666668)
-stencil_mode = 1
-stencil_flags = 2
-stencil_color = Color(0.54167145, 0, 1.4378574, 1)
-stencil_outline_thickness = 0.02
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d33cf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uu3eu"]
 resource_local_to_scene = true
 render_priority = 0
-next_pass = SubResource("StandardMaterial3D_s76xj")
+next_pass = ExtResource("8_uu3eu")
 shader = ExtResource("8_d33cf")
 shader_parameter/ball_color = Color(1.6978991, 0, 0, 1)
 shader_parameter/frensel_power = -1.36
@@ -136,46 +114,6 @@ _data = {
 &"RESET": SubResource("Animation_xago8")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
-transparency = 1
-blend_mode = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("10_uu3eu")
-disable_receive_shadows = true
-billboard_mode = 1
-billboard_keep_scale = true
-
-[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
-lightmap_size_hint = Vector2i(13, 4)
-size = Vector2(2.39, 0.55)
-center_offset = Vector3(0, 0.11, 0)
-
-[sub_resource type="Curve" id="Curve_57qmd"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_d0u6y"]
-offsets = PackedFloat32Array(0, 0.22126436, 1)
-colors = PackedColorArray(0.76, 0.76, 0.76, 0, 0.76, 0.76, 0.76, 1, 1, 1, 1, 0)
-
-[sub_resource type="Gradient" id="Gradient_qcuuy"]
-offsets = PackedFloat32Array(0, 0.58908045)
-colors = PackedColorArray(0.35000038, 0, 1, 1, 0.78766644, 0.089999974, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
-render_priority = 2
-next_pass = SubResource("ShaderMaterial_yf5fn")
-transparency = 1
-cull_mode = 2
-albedo_color = Color(0.5500002, 0, 1, 0.13725491)
-albedo_texture = ExtResource("11_uu3eu")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_yvy54"]
-
 [node name="tortoise_complex_D2" unique_id=1898691 node_paths=PackedStringArray("on_hurt") instance=ExtResource("1_o66bo")]
 on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
 
@@ -205,7 +143,7 @@ entity_to_spawn = ExtResource("5_uyr82")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(2050981297, 768973407) index="0" unique_id=1641256760]
-material_overlay = SubResource("ShaderMaterial_d33cf")
+material_overlay = SubResource("ShaderMaterial_uu3eu")
 
 [node name="CPUParticles3D" parent="Visuals/tortoise/HitEffect" parent_id_path=PackedInt32Array(2050981297, 63167869) index="0" unique_id=475698339]
 emitting = false
@@ -227,38 +165,7 @@ instance_shader_parameters/width = 0.30000001425
 libraries/ = SubResource("AnimationLibrary_jfkys")
 autoplay = &"ExtendIndicator"
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1225923593]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.051217437, 2.232375e-08)
-material_override = SubResource("StandardMaterial3D_yf5fn")
-amount = 15
-lifetime = 0.8
-local_coords = true
-mesh = SubResource("QuadMesh_g4v7s")
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 0.1
-emission_ring_radius = 0.6
-emission_ring_inner_radius = 0.5
-emission_ring_cone_angle = 90.0
-particle_flag_align_y = true
-particle_flag_rotate_y = true
-direction = Vector3(0, 0, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 3)
-radial_accel_min = -0.3
-radial_accel_max = -0.3
-angle_min = -15.0
-angle_max = 15.0
-scale_amount_min = 0.5
-scale_amount_max = 0.5
-scale_amount_curve = SubResource("Curve_57qmd")
-color_ramp = SubResource("Gradient_d0u6y")
-color_initial_ramp = SubResource("Gradient_qcuuy")
-
-[node name="Hull" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=1863956412]
-transform = Transform3D(0.8854171, 0, 0, 0, 0.8854171, 0, 0, 0, 0.8854171, 0, 0.02, 0)
-material_override = SubResource("StandardMaterial3D_g4v7s")
-mesh = SubResource("PlaneMesh_yvy54")
+[node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1554862748 instance=ExtResource("11_kj6pd")]
 
 [connection signal="entered" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig" method="set_visible" binds= [true]]
 [connection signal="exited" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig" method="set_visible" binds= [false]]

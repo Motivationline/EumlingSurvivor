@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://b4cjsuw0w7wgq"]
+
+[ext_resource type="Texture2D" uid="uid://vlfmdleyc6bv" path="res://assets/vfx/particle_pack/trace_06.png" id="1_kjixy"]
+[ext_resource type="Texture2D" uid="uid://e16xjigucwdo" path="res://assets/vfx/particle_pack/circle_02.png" id="2_hshc8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_kjixy")
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+lightmap_size_hint = Vector2i(13, 4)
+size = Vector2(2.39, 0.55)
+center_offset = Vector3(0, 0.11, 0)
+
+[sub_resource type="Curve" id="Curve_57qmd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_d0u6y"]
+offsets = PackedFloat32Array(0, 0.22126436, 1)
+colors = PackedColorArray(0.76, 0.76, 0.76, 0, 0.76, 0.76, 0.76, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_qcuuy"]
+offsets = PackedFloat32Array(0, 0.58908045)
+colors = PackedColorArray(0.35000038, 0, 1, 1, 0.78766644, 0.089999974, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4v7s"]
+render_priority = 2
+next_pass = SubResource("ShaderMaterial_yf5fn")
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.5500002, 0, 1, 0.13725491)
+albedo_texture = ExtResource("2_hshc8")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yvy54"]
+
+[node name="BuffedVFX" type="Node3D" unique_id=1554862748]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=487664596]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.051217437, 2.232375e-08)
+material_override = SubResource("StandardMaterial3D_yf5fn")
+amount = 15
+lifetime = 0.8
+local_coords = true
+mesh = SubResource("QuadMesh_g4v7s")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.1
+emission_ring_radius = 0.6
+emission_ring_inner_radius = 0.5
+emission_ring_cone_angle = 90.0
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 3)
+radial_accel_min = -0.3
+radial_accel_max = -0.3
+angle_min = -15.0
+angle_max = 15.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_57qmd")
+color_ramp = SubResource("Gradient_d0u6y")
+color_initial_ramp = SubResource("Gradient_qcuuy")
+
+[node name="Hull" type="MeshInstance3D" parent="." unique_id=312891707]
+transform = Transform3D(0.8854171, 0, 0, 0, 0.8854171, 0, 0, 0, 0.8854171, 0, 0.02, 0)
+material_override = SubResource("StandardMaterial3D_g4v7s")
+mesh = SubResource("PlaneMesh_yvy54")
