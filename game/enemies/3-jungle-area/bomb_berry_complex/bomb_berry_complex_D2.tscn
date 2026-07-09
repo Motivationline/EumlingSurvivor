@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="12_ok38y"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="14_rx25u"]
 [ext_resource type="AudioStream" uid="uid://la6h3tl6asjn" path="res://assets/characters/enemies/bomberry/sounds/death_1.wav" id="15_7fbru"]
+[ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="16_axcm6"]
 [ext_resource type="AudioStream" uid="uid://bakryhmuuibrf" path="res://assets/characters/enemies/bomberry/sounds/death_2.wav" id="16_ofpyh"]
 [ext_resource type="AudioStream" uid="uid://djwcj0n4etxuv" path="res://assets/characters/enemies/bomberry/sounds/death_3.wav" id="17_o4uqy"]
 [ext_resource type="AudioStream" uid="uid://bg18bentgbs6a" path="res://assets/characters/enemies/bomberry/sounds/death_4.wav" id="18_f4ncd"]
@@ -278,6 +279,9 @@ metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
 
 [node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("10_106dg")]
 
+[node name="BuffedVFX" parent="Visuals/bomberry" index="5" unique_id=1554862748 instance=ExtResource("16_axcm6")]
+transform = Transform3D(0.46995974, 0, 0, 0, 1, 0, 0, 0, 0.46995974, 0, 0, 0)
+
 [node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("14_rx25u")]
 stream = SubResource("AudioStreamRandomizer_vk06u")
 volume_db = 0.0
@@ -309,3 +313,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2127836, 0)
 shape = SubResource("SphereShape3D_x4bae")
 
 [connection signal="play_sound" from="Visuals/bomberry" to="SoundEffectManager" method="play_sound"]
+
+[editable path="Visuals/bomberry"]
