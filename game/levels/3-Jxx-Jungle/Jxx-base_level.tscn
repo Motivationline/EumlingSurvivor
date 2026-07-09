@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://lg8w37eduu3l" path="res://game/levels/level.gd" id="1_eloi7"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_jyv5p"]
-[ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="3_5nfpk"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_6iiev"]
-[ext_resource type="Script" uid="uid://du18mum64y03k" path="res://game/cameras/behaviours/normal_behaviour.gd" id="4_6iiev"]
+[ext_resource type="PackedScene" uid="uid://dd58l40c5jnhw" path="res://game/cameras/game_camera.tscn" id="4_4y2u6"]
 [ext_resource type="Script" uid="uid://b12g0nyew0m0i" path="res://global/settings/graphics_settings_component_shadow.gd" id="5_v7yfb"]
 [ext_resource type="Texture2D" uid="uid://dco4ph6j88lov" path="res://assets/vfx/particle_pack/smoke_07.png" id="6_5nfpk"]
 [ext_resource type="Texture2D" uid="uid://b8068d1b86nvv" path="res://assets/vfx/particle_pack/dirt_02.png" id="9_cxf2i"]
@@ -241,18 +240,6 @@ size = Vector3(10.591797, 1, 10.109741)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbp8f"]
 size = Vector3(1.9667969, 1.8048096, 1)
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_tl7rq"]
-dof_blur_far_enabled = true
-dof_blur_far_distance = 30.0
-dof_blur_near_enabled = true
-dof_blur_near_distance = 10.0
-dof_blur_near_transition = 2.0
-dof_blur_amount = 0.25
-
-[sub_resource type="Resource" id="Resource_hmbof"]
-script = ExtResource("4_6iiev")
-metadata/_custom_type_script = "uid://du18mum64y03k"
-
 [sub_resource type="Gradient" id="Gradient_gxtsi"]
 offsets = PackedFloat32Array(0.25613078, 0.3133515, 0.373297)
 colors = PackedColorArray(0.32156864, 0.46666667, 0.58431375, 1, 0.68235296, 0.7372549, 0.7882353, 1, 0.6292534, 0.85100484, 0.81591386, 1)
@@ -361,17 +348,8 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_wbp8f")
 
-[node name="GameCamera" type="Camera3D" parent="." unique_id=1387391314]
-transform = Transform3D(0.7071066, -0.6123725, 0.3535537, 0, 0.5000003, 0.86602527, -0.70710695, -0.61237216, 0.35355353, 4.5242615, 11.085632, 4.2108154)
-attributes = SubResource("CameraAttributesPractical_tl7rq")
-projection = 1
-fov = 45.0
-size = 5.5
-near = 0.1
-far = 30.0
-script = ExtResource("3_5nfpk")
-behaviour = SubResource("Resource_hmbof")
-metadata/_custom_type_script = "uid://bftcfposg3qyf"
+[node name="GameCamera" parent="." unique_id=652286553 instance=ExtResource("4_4y2u6")]
+transform = Transform3D(0.7071066, -0.61237246, 0.35355368, 0, 0.5000003, 0.86602527, -0.70710695, -0.61237216, 0.3535535, 4.5242615, 11.085632, 4.2108154)
 
 [node name="Environment" type="Node3D" parent="." unique_id=333127803]
 

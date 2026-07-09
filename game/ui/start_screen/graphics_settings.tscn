@@ -12,74 +12,60 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ukd82")
 
-[node name="RenderScaleLabel" type="Label" parent="." unique_id=313040801]
+[node name="GridContainer" type="GridContainer" parent="." unique_id=777126205]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 329.0
-offset_right = 376.0
-offset_bottom = 399.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RenderScaleLabel" type="Label" parent="GridContainer" unique_id=313040801]
+layout_mode = 2
 text = "3D Render Scale"
 
-[node name="RenderScaleSlider" type="HSlider" parent="." unique_id=398364305]
-custom_minimum_size = Vector2(0, 3.11)
-layout_mode = 0
-offset_left = 1.0
-offset_top = 396.0
-offset_right = 376.0
-offset_bottom = 477.0
+[node name="RenderScaleSlider" type="HSlider" parent="GridContainer" unique_id=398364305]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+offset_transform_position = Vector2(-19, 0)
+offset_transform_scale = Vector2(0.9, 0.9)
 min_value = 0.1
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="GlobalIlluminationLabel" type="Label" parent="." unique_id=946824771]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 16.0
-offset_right = 458.0
-offset_bottom = 83.0
+[node name="ShadowLabel" type="Label" parent="GridContainer" unique_id=1002264529]
+layout_mode = 2
+text = "Shadow Quality"
+
+[node name="ShadowOptions" type="OptionButton" parent="GridContainer" unique_id=1047196321]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="DepthOfFieldLabel" type="Label" parent="GridContainer" unique_id=367807410]
+layout_mode = 2
+text = "Depth of Field"
+
+[node name="DepthOfFieldOptions" type="OptionButton" parent="GridContainer" unique_id=240397707]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="GlobalIlluminationLabel" type="Label" parent="GridContainer" unique_id=946824771]
+layout_mode = 2
 text = "Global Illumination"
 
-[node name="GlobalIlluminationOptions" type="OptionButton" parent="." unique_id=871023816]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 83.0
-offset_right = 390.0
-offset_bottom = 164.0
+[node name="GlobalIlluminationOptions" type="OptionButton" parent="GridContainer" unique_id=871023816]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
 
-[node name="ShadowLabel" type="Label" parent="." unique_id=1002264529]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 171.0
-offset_right = 457.0
-offset_bottom = 238.0
-text = "Shadow Options"
+[node name="SaveButton" type="Button" parent="GridContainer" unique_id=1141342688]
+layout_mode = 2
+text = "Save"
 
-[node name="ShadowOptions" type="OptionButton" parent="." unique_id=1047196321]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 238.0
-offset_right = 389.0
-offset_bottom = 319.0
-
-[node name="ApplyButton" type="Button" parent="." unique_id=1141342688]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 459.0
-offset_right = 377.0
-offset_bottom = 540.0
-text = "Apply"
-
-[node name="CancelButton" type="Button" parent="." unique_id=885995504]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 540.0
-offset_right = 377.0
-offset_bottom = 621.0
+[node name="CancelButton" type="Button" parent="GridContainer" unique_id=885995504]
+layout_mode = 2
 text = "Cancel"
 
-[connection signal="value_changed" from="RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
-[connection signal="item_selected" from="GlobalIlluminationOptions" to="." method="_on_global_illumination_options_item_selected"]
-[connection signal="item_selected" from="ShadowOptions" to="." method="_on_shadow_options_item_selected"]
-[connection signal="pressed" from="ApplyButton" to="." method="_on_apply_button_pressed"]
-[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="value_changed" from="GridContainer/RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
+[connection signal="item_selected" from="GridContainer/ShadowOptions" to="." method="_on_shadow_options_item_selected"]
+[connection signal="item_selected" from="GridContainer/DepthOfFieldOptions" to="." method="_on_depth_of_field_options_item_selected"]
+[connection signal="item_selected" from="GridContainer/GlobalIlluminationOptions" to="." method="_on_global_illumination_options_item_selected"]
+[connection signal="pressed" from="GridContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="GridContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
