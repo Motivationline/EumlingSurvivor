@@ -1,11 +1,10 @@
 [gd_scene format=4 uid="uid://cch1t3hg3mwq3"]
 
-[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_epqyv"]
+[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/base/Jxx-base_level.tscn" id="1_epqyv"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_fkdff"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_37nbn"]
 [ext_resource type="PackedScene" uid="uid://31e8rrg543xf" path="res://assets/models/3-Jungle/JunglePlant/jungle_plant_small.tscn" id="3_mjw8v"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="5_37nbn"]
-[ext_resource type="PackedScene" uid="uid://dogmqp6i2jn0e" path="res://game/enemies/3-jungle-area/tortoise_complex/tortoise_complex_D1.tscn" id="5_mjw8v"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_37nbn"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_fkdff"]
@@ -97,9 +96,6 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="JunglePlant_small4" parent="Env" parent_id_path=PackedInt32Array(1339304514) index="1" unique_id=1361205204 instance=ExtResource("3_mjw8v")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 2.2503555, 0.9922668, -0.2517898)
-
-[node name="tortoise_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1898691 node_paths=PackedStringArray("on_hurt") instance=ExtResource("5_mjw8v")]
-on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
 
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("5_37nbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

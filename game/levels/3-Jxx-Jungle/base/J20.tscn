@@ -1,10 +1,9 @@
 [gd_scene format=4 uid="uid://bxly2vy152dwb"]
 
-[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_pgpn7"]
+[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/base/Jxx-base_level.tscn" id="1_pgpn7"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_tr0pu"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_nj4lx"]
 [ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-jungle-area/environment/spikes.tscn" id="3_t3nw1"]
-[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-jungle-area/sniper/sniper_enemy.tscn" id="4_nj4lx"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="6_o7jqg"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="9_nj4lx"]
 
@@ -149,110 +148,206 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.75)
 [node name="SpikeTrap3" parent="Enemies/Traps" index="1" unique_id=1727926396 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -1.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap3/StateMachine" parent_id_path=PackedInt32Array(1727926396, 2093753398) index="0" unique_id=1705888172]
+wait_time = 0.1
+
 [node name="SpikeTrap4" parent="Enemies/Traps" index="2" unique_id=1237164119 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -1.75)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap4/StateMachine" parent_id_path=PackedInt32Array(1237164119, 2093753398) index="0" unique_id=1705888172]
+wait_time = 0.2
 
 [node name="SpikeTrap5" parent="Enemies/Traps" index="3" unique_id=672423826 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -2.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap5/StateMachine" parent_id_path=PackedInt32Array(672423826, 2093753398) index="0" unique_id=1705888172]
+wait_time = 0.3
+
 [node name="SpikeTrap6" parent="Enemies/Traps" index="4" unique_id=510884922 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -2.75)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap6/StateMachine" parent_id_path=PackedInt32Array(510884922, 2093753398) index="0" unique_id=1705888172]
+wait_time = 0.4
 
 [node name="SpikeTrap7" parent="Enemies/Traps" index="5" unique_id=1102778360 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -3.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap7/StateMachine" parent_id_path=PackedInt32Array(1102778360, 2093753398) index="0" unique_id=1705888172]
+wait_time = 0.5
+
 [node name="SpikeTrap8" parent="Enemies/Traps" index="6" unique_id=843357823 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -3.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap8/StateMachine" parent_id_path=PackedInt32Array(843357823, 2093753398) index="0" unique_id=1705888172]
+wait_time = 0.6
 
 [node name="SpikeTrap9" parent="Enemies/Traps" index="7" unique_id=2020753605 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -3.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap9/StateMachine" parent_id_path=PackedInt32Array(2020753605, 2093753398) index="0" unique_id=1705888172]
+wait_time = 0.7
+
 [node name="SpikeTrap10" parent="Enemies/Traps" index="8" unique_id=1064413144 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, -3.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap10/StateMachine" parent_id_path=PackedInt32Array(1064413144, 2093753398) index="0" unique_id=1705888172]
+wait_time = 0.8
 
 [node name="SpikeTrap11" parent="Enemies/Traps" index="9" unique_id=1954791016 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, -3.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap11/StateMachine" parent_id_path=PackedInt32Array(1954791016, 2093753398) index="0" unique_id=1705888172]
+wait_time = 0.9
+
 [node name="SpikeTrap12" parent="Enemies/Traps" index="10" unique_id=2035657675 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -3.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap12/StateMachine" parent_id_path=PackedInt32Array(2035657675, 2093753398) index="0" unique_id=1705888172]
+wait_time = 1.0
 
 [node name="SpikeTrap13" parent="Enemies/Traps" index="11" unique_id=466989103 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0, -3.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap13/StateMachine" parent_id_path=PackedInt32Array(466989103, 2093753398) index="0" unique_id=1705888172]
+wait_time = 1.1
+
 [node name="SpikeTrap14" parent="Enemies/Traps" index="12" unique_id=402824919 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -3.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap14/StateMachine" parent_id_path=PackedInt32Array(402824919, 2093753398) index="0" unique_id=1705888172]
+wait_time = 1.2
 
 [node name="SpikeTrap15" parent="Enemies/Traps" index="13" unique_id=1727224007 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -3.75)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap15/StateMachine" parent_id_path=PackedInt32Array(1727224007, 2093753398) index="0" unique_id=1705888172]
+wait_time = 1.3
+
 [node name="SpikeTrap16" parent="Enemies/Traps" index="14" unique_id=1138974817 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -4.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap16/StateMachine" parent_id_path=PackedInt32Array(1138974817, 2093753398) index="0" unique_id=1705888172]
+wait_time = 1.4
 
 [node name="SpikeTrap17" parent="Enemies/Traps" index="15" unique_id=430656545 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -4.75)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap17/StateMachine" parent_id_path=PackedInt32Array(430656545, 2093753398) index="0" unique_id=1705888172]
+wait_time = 1.5
+
 [node name="SpikeTrap18" parent="Enemies/Traps" index="16" unique_id=1057628773 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -5.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap18/StateMachine" parent_id_path=PackedInt32Array(1057628773, 2093753398) index="0" unique_id=1705888172]
+wait_time = 1.6
 
 [node name="SpikeTrap19" parent="Enemies/Traps" index="17" unique_id=448126732 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -5.75)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap19/StateMachine" parent_id_path=PackedInt32Array(448126732, 2093753398) index="0" unique_id=1705888172]
+wait_time = 1.7
+
 [node name="SpikeTrap20" parent="Enemies/Traps" index="18" unique_id=859160215 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -6.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap20/StateMachine" parent_id_path=PackedInt32Array(859160215, 2093753398) index="0" unique_id=1705888172]
+wait_time = 1.8
 
 [node name="SpikeTrap21" parent="Enemies/Traps" index="19" unique_id=269860699 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -6.75)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap21/StateMachine" parent_id_path=PackedInt32Array(269860699, 2093753398) index="0" unique_id=1705888172]
+wait_time = 1.9
+
 [node name="SpikeTrap22" parent="Enemies/Traps" index="20" unique_id=719267826 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, -7.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap22/StateMachine" parent_id_path=PackedInt32Array(719267826, 2093753398) index="0" unique_id=1705888172]
+wait_time = 2.0
 
 [node name="SpikeTrap23" parent="Enemies/Traps" index="21" unique_id=1171955838 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 0, -7.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap23/StateMachine" parent_id_path=PackedInt32Array(1171955838, 2093753398) index="0" unique_id=1705888172]
+wait_time = 2.1
+
 [node name="SpikeTrap24" parent="Enemies/Traps" index="22" unique_id=77696071 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -7.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap24/StateMachine" parent_id_path=PackedInt32Array(77696071, 2093753398) index="0" unique_id=1705888172]
+wait_time = 2.2
 
 [node name="SpikeTrap25" parent="Enemies/Traps" index="23" unique_id=379941800 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, -7.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap25/StateMachine" parent_id_path=PackedInt32Array(379941800, 2093753398) index="0" unique_id=1705888172]
+wait_time = 2.3
+
 [node name="SpikeTrap26" parent="Enemies/Traps" index="24" unique_id=1925926877 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0, -7.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap26/StateMachine" parent_id_path=PackedInt32Array(1925926877, 2093753398) index="0" unique_id=1705888172]
+wait_time = 2.4
 
 [node name="SpikeTrap27" parent="Enemies/Traps" index="25" unique_id=1847163051 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, -7.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap27/StateMachine" parent_id_path=PackedInt32Array(1847163051, 2093753398) index="0" unique_id=1705888172]
+wait_time = 2.5
+
 [node name="SpikeTrap28" parent="Enemies/Traps" index="26" unique_id=408908589 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -7.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap28/StateMachine" parent_id_path=PackedInt32Array(408908589, 2093753398) index="0" unique_id=1705888172]
+wait_time = 2.6
 
 [node name="SpikeTrap29" parent="Enemies/Traps" index="27" unique_id=1142445377 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -7.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap29/StateMachine" parent_id_path=PackedInt32Array(1142445377, 2093753398) index="0" unique_id=1705888172]
+wait_time = 2.7
+
 [node name="SpikeTrap30" parent="Enemies/Traps" index="28" unique_id=146046893 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -7.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap30/StateMachine" parent_id_path=PackedInt32Array(146046893, 2093753398) index="0" unique_id=1705888172]
+wait_time = 2.8
 
 [node name="SpikeTrap31" parent="Enemies/Traps" index="29" unique_id=1156650114 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -7.25)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap31/StateMachine" parent_id_path=PackedInt32Array(1156650114, 2093753398) index="0" unique_id=1705888172]
+wait_time = 2.9
+
 [node name="SpikeTrap32" parent="Enemies/Traps" index="30" unique_id=1558144651 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -7.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap32/StateMachine" parent_id_path=PackedInt32Array(1558144651, 2093753398) index="0" unique_id=1705888172]
+wait_time = 3.0
 
 [node name="SpikeTrap33" parent="Enemies/Traps" index="31" unique_id=1677921567 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -7.75)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap33/StateMachine" parent_id_path=PackedInt32Array(1677921567, 2093753398) index="0" unique_id=1705888172]
+wait_time = 3.1
+
 [node name="SpikeTrap34" parent="Enemies/Traps" index="32" unique_id=264881913 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -8.25)
+
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap34/StateMachine" parent_id_path=PackedInt32Array(264881913, 2093753398) index="0" unique_id=1705888172]
+wait_time = 3.2
 
 [node name="SpikeTrap35" parent="Enemies/Traps" index="33" unique_id=672372175 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -8.75)
 
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap35/StateMachine" parent_id_path=PackedInt32Array(672372175, 2093753398) index="0" unique_id=1705888172]
+wait_time = 3.3
+
 [node name="SpikeTrap36" parent="Enemies/Traps" index="34" unique_id=2140828456 instance=ExtResource("3_t3nw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -9.25)
 
-[node name="SniperEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1534333626 instance=ExtResource("4_nj4lx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5552452, 0, 0.6064985)
-
-[node name="SniperEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=824361554 instance=ExtResource("4_nj4lx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6665306, 0, -3.6035318)
+[node name="FirstTimeDelay" parent="Enemies/Traps/SpikeTrap36/StateMachine" parent_id_path=PackedInt32Array(2140828456, 2093753398) index="0" unique_id=1705888172]
+wait_time = 3.4
 
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("6_o7jqg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
@@ -260,3 +355,39 @@ parent = NodePath("..")
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(9488913) index="0" unique_id=1814085372 instance=ExtResource("9_nj4lx")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.1334558, 0, 0.64013827)
+
+[editable path="Enemies/Traps/SpikeTrap2"]
+[editable path="Enemies/Traps/SpikeTrap3"]
+[editable path="Enemies/Traps/SpikeTrap4"]
+[editable path="Enemies/Traps/SpikeTrap5"]
+[editable path="Enemies/Traps/SpikeTrap6"]
+[editable path="Enemies/Traps/SpikeTrap7"]
+[editable path="Enemies/Traps/SpikeTrap8"]
+[editable path="Enemies/Traps/SpikeTrap9"]
+[editable path="Enemies/Traps/SpikeTrap10"]
+[editable path="Enemies/Traps/SpikeTrap11"]
+[editable path="Enemies/Traps/SpikeTrap12"]
+[editable path="Enemies/Traps/SpikeTrap13"]
+[editable path="Enemies/Traps/SpikeTrap14"]
+[editable path="Enemies/Traps/SpikeTrap15"]
+[editable path="Enemies/Traps/SpikeTrap16"]
+[editable path="Enemies/Traps/SpikeTrap17"]
+[editable path="Enemies/Traps/SpikeTrap18"]
+[editable path="Enemies/Traps/SpikeTrap19"]
+[editable path="Enemies/Traps/SpikeTrap20"]
+[editable path="Enemies/Traps/SpikeTrap21"]
+[editable path="Enemies/Traps/SpikeTrap22"]
+[editable path="Enemies/Traps/SpikeTrap23"]
+[editable path="Enemies/Traps/SpikeTrap24"]
+[editable path="Enemies/Traps/SpikeTrap25"]
+[editable path="Enemies/Traps/SpikeTrap26"]
+[editable path="Enemies/Traps/SpikeTrap27"]
+[editable path="Enemies/Traps/SpikeTrap28"]
+[editable path="Enemies/Traps/SpikeTrap29"]
+[editable path="Enemies/Traps/SpikeTrap30"]
+[editable path="Enemies/Traps/SpikeTrap31"]
+[editable path="Enemies/Traps/SpikeTrap32"]
+[editable path="Enemies/Traps/SpikeTrap33"]
+[editable path="Enemies/Traps/SpikeTrap34"]
+[editable path="Enemies/Traps/SpikeTrap35"]
+[editable path="Enemies/Traps/SpikeTrap36"]

@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://fw21r3y1xooc"]
 
-[ext_resource type="PackedScene" uid="uid://bar2qy0w8niee" path="res://game/levels/3-Jxx-Jungle/0/J15.tscn" id="1_em8wa"]
+[ext_resource type="PackedScene" uid="uid://bar2qy0w8niee" path="res://game/levels/3-Jxx-Jungle/base/J15.tscn" id="1_em8wa"]
 [ext_resource type="PackedScene" uid="uid://7j4iua7gg3cu" path="res://game/enemies/3-jungle-area/sniper_complex/sniper_complex_D1.tscn" id="2_bg0ti"]
+[ext_resource type="PackedScene" uid="uid://dogmqp6i2jn0e" path="res://game/enemies/3-jungle-area/tortoise_complex/tortoise_complex_D1.tscn" id="3_fmd0n"]
 
 [node name="Level" unique_id=1578328013 instance=ExtResource("1_em8wa")]
 
-[node name="sniper_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="3" unique_id=1898691 instance=ExtResource("2_bg0ti")]
+[node name="sniper_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1898691 instance=ExtResource("2_bg0ti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0246468, 0, -2.970635)
+
+[node name="tortoise_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="3" unique_id=205427522 node_paths=PackedStringArray("on_hurt") instance=ExtResource("3_fmd0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9882002, 0, -0.99606645)
+on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]

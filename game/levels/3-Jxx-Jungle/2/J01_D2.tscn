@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://247klr3j0tla"]
 
-[ext_resource type="PackedScene" uid="uid://ncnbysiqfcwu" path="res://game/levels/3-Jxx-Jungle/0/J01.tscn" id="1_ekfqk"]
+[ext_resource type="PackedScene" uid="uid://ncnbysiqfcwu" path="res://game/levels/3-Jxx-Jungle/base/J01.tscn" id="1_ekfqk"]
 [ext_resource type="PackedScene" uid="uid://7j4iua7gg3cu" path="res://game/enemies/3-jungle-area/sniper_complex/sniper_complex_D1.tscn" id="2_agham"]
+[ext_resource type="PackedScene" uid="uid://bgqt86il63g0t" path="res://game/enemies/3-jungle-area/sniper_complex/sniper_complex_D0.tscn" id="3_dphnp"]
 
 [node name="Level" unique_id=821801233 instance=ExtResource("1_ekfqk")]
 
-[node name="sniper_complex_D1_2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1898691 instance=ExtResource("2_agham")]
+[node name="sniper_complex_D1_2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="0" unique_id=1898691 instance=ExtResource("2_agham")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.426722, 0, -0.04806654)
+
+[node name="sniper_complex_D0" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=768199931 instance=ExtResource("3_dphnp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0040102, 0, -0.09707999)
+
+[node name="sniper_complex_D1_3" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1182971290 instance=ExtResource("2_agham")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8724833, 0, -3.9963775)

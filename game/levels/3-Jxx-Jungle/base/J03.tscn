@@ -1,12 +1,10 @@
 [gd_scene format=4 uid="uid://b4vousxu5d8ar"]
 
-[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_u0nyo"]
+[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/base/Jxx-base_level.tscn" id="1_u0nyo"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_nao60"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="2_vw6r5"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_tv7ok"]
 [ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-jungle-area/environment/spikes.tscn" id="3_wmcso"]
-[ext_resource type="PackedScene" uid="uid://dogmqp6i2jn0e" path="res://game/enemies/3-jungle-area/tortoise_complex/tortoise_complex_D1.tscn" id="6_mx06p"]
-[ext_resource type="PackedScene" uid="uid://7j4iua7gg3cu" path="res://game/enemies/3-jungle-area/sniper_complex/sniper_complex_D1.tscn" id="6_ye3bt"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_ye3bt"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_nao60"]
@@ -661,13 +659,6 @@ wait_time = 1.5
 
 [node name="Extend" parent="Enemies/Traps0_3/SpikeTrap16/SoundEffectManager" parent_id_path=PackedInt32Array(1023056822, 212820490) index="0" unique_id=1092056025]
 bus = &"Master"
-
-[node name="tortoise_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=946239004 node_paths=PackedStringArray("on_hurt") instance=ExtResource("6_mx06p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.523346, 0, 3.5199585)
-on_hurt = [null, NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
-
-[node name="sniper_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="3" unique_id=1898691 instance=ExtResource("6_ye3bt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.84227, 0, -3.4507601)
 
 [node name="ExitArea" parent="." index="7" unique_id=146691459 node_paths=PackedStringArray("parent") instance=ExtResource("2_vw6r5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

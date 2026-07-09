@@ -1,12 +1,11 @@
 [gd_scene format=4 uid="uid://cejk33bx3mly8"]
 
-[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/Jxx-base_level.tscn" id="1_f2tnl"]
+[ext_resource type="PackedScene" uid="uid://up4ci3iwwg8b" path="res://game/levels/3-Jxx-Jungle/base/Jxx-base_level.tscn" id="1_f2tnl"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_a62oy"]
 [ext_resource type="PackedScene" uid="uid://31e8rrg543xf" path="res://assets/models/3-Jungle/JunglePlant/jungle_plant_small.tscn" id="3_a62oy"]
 [ext_resource type="Texture2D" uid="uid://csbjc343aq0vp" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone_Material_Base_color.png" id="3_h3tdc"]
 [ext_resource type="PackedScene" uid="uid://dk6vxgi2ymgv4" path="res://game/enemies/3-jungle-area/environment/spikes.tscn" id="3_xdtyy"]
 [ext_resource type="PackedScene" uid="uid://bml0rn4uxx07g" path="res://game/exit_area/exit_area_jungle.tscn" id="5_44sxq"]
-[ext_resource type="PackedScene" uid="uid://cw1yj7usybkwg" path="res://game/enemies/3-jungle-area/bomber_complex/bomber_complex_D1.tscn" id="7_yet0g"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="9_44sxq"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_a62oy"]
@@ -107,12 +106,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0.75)
 
 [node name="SpikeTrap6" parent="Enemies/Traps" index="5" unique_id=69000380 instance=ExtResource("3_xdtyy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.75)
-
-[node name="bomber_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=480258980 instance=ExtResource("7_yet0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7938504, 0, 0.76976645)
-
-[node name="bomber_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1898691 instance=ExtResource("7_yet0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3096476, 0, -3.0943632)
 
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("5_44sxq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
