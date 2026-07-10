@@ -1,6 +1,7 @@
 class_name SongList extends Node
 
 enum TRACK {
+	NOTHING = 13,
 	MENU = 0, 
 	COMBAT_FOREST = 1, 
 	COMBAT_ISLAND = 2,
@@ -11,10 +12,11 @@ enum TRACK {
 	BOSS_GENERIC = 3,
 	BOSS_ISLAND = 4, 
 	BOSS_VOLCANO = 5,
+	BOSS_MOUNTAIN = 15,
 	CHASE = 6,
 	GAMBA = 7,
 	TITLE = 11,
-	NOTHING = 13
+	TUTORIAL = 14,
 }
 enum ENVNOISE {
 	NOTHING  = 0,
@@ -36,9 +38,11 @@ static var tracks:Dictionary[TRACK, Array] = {
 	TRACK.BOSS_GENERIC:["res://assets/sound/music/boss_generic.tres", ENVNOISE.FOREST],
 	TRACK.BOSS_ISLAND:["res://assets/sound/music/boss_island.tres", ENVNOISE.ISLAND], 
 	TRACK.BOSS_VOLCANO:["res://assets/sound/music/boss_volcano.tres", ENVNOISE.VOLCANO],
+	TRACK.BOSS_MOUNTAIN:["res://assets/sound/music/boss_mountain.tres", ENVNOISE.MOUNTAIN],
 	TRACK.CHASE:["res://assets/sound/music/chase.tres", ENVNOISE.NOTHING],
 	TRACK.GAMBA:["res://assets/sound/music/gamba.tres", ENVNOISE.NOTHING],
-	TRACK.TITLE:["res://assets/sound/music/title_theme.tres",ENVNOISE.NOTHING]
+	TRACK.TITLE:["res://assets/sound/music/title_theme.tres",ENVNOISE.NOTHING],
+	TRACK.TUTORIAL:["res://assets/sound/music/tutorial.tres",ENVNOISE.FLOWERS]
 }
 static var envnoises:Dictionary[ENVNOISE,String] = {
 	ENVNOISE.FOREST:"res://assets/sound/environment_noise/Env_Forest.ogg",

@@ -11,6 +11,19 @@
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="6_e5qk8"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_fvuh5"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_q8x75"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="10_djdpi"]
+[ext_resource type="AudioStream" uid="uid://dniu2l5tq00nv" path="res://assets/characters/enemies/cactushog/sounds/shoot_1.wav" id="11_ko0vc"]
+[ext_resource type="AudioStream" uid="uid://c3ir1vg3hckvl" path="res://assets/characters/enemies/cactushog/sounds/shoot_2.wav" id="12_2o1t4"]
+[ext_resource type="AudioStream" uid="uid://3qm80ckjhwhf" path="res://assets/characters/enemies/cactushog/sounds/shoot_3.wav" id="13_yv035"]
+[ext_resource type="AudioStream" uid="uid://d1mlqjfghcmc" path="res://assets/characters/enemies/cactushog/sounds/shoot_4.wav" id="14_bo10t"]
+[ext_resource type="AudioStream" uid="uid://b2ds3h3wuxsb6" path="res://assets/characters/enemies/cactushog/sounds/shoot_5.wav" id="15_a2ssq"]
+[ext_resource type="AudioStream" uid="uid://brxgsc6fwcnsk" path="res://assets/characters/enemies/cactushog/sounds/shoot_6.wav" id="16_w07ev"]
+[ext_resource type="AudioStream" uid="uid://l040m6fv328w" path="res://assets/characters/enemies/cactushog/sounds/death_1.wav" id="17_ni03x"]
+[ext_resource type="AudioStream" uid="uid://gwugo6gk60yu" path="res://assets/characters/enemies/cactushog/sounds/death_2.wav" id="18_uwc2i"]
+[ext_resource type="AudioStream" uid="uid://bchjmqbegdlyo" path="res://assets/characters/enemies/cactushog/sounds/death_3.wav" id="19_dlcnd"]
+[ext_resource type="AudioStream" uid="uid://520qwj74f8vi" path="res://assets/characters/enemies/cactushog/sounds/death_4.wav" id="20_7v03m"]
+[ext_resource type="AudioStream" uid="uid://b3j4584k3sp6n" path="res://assets/characters/enemies/cactushog/sounds/death_5.wav" id="21_khj8a"]
+[ext_resource type="AudioStream" uid="uid://hk217hvvo0mk" path="res://assets/characters/enemies/cactushog/sounds/death_6.wav" id="22_7fbpk"]
 
 [sub_resource type="Resource" id="Resource_8robx"]
 script = ExtResource("2_66qlu")
@@ -76,6 +89,24 @@ medium = Array[ExtResource("2_66qlu")]([SubResource("Resource_51ldy")])
 hard = Array[ExtResource("2_66qlu")]([SubResource("Resource_6vjho")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ooynj"]
+streams_count = 6
+stream_0/stream = ExtResource("11_ko0vc")
+stream_1/stream = ExtResource("12_2o1t4")
+stream_2/stream = ExtResource("13_yv035")
+stream_3/stream = ExtResource("14_bo10t")
+stream_4/stream = ExtResource("15_a2ssq")
+stream_5/stream = ExtResource("16_w07ev")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jik7m"]
+streams_count = 6
+stream_0/stream = ExtResource("17_ni03x")
+stream_1/stream = ExtResource("18_uwc2i")
+stream_2/stream = ExtResource("19_dlcnd")
+stream_3/stream = ExtResource("20_7v03m")
+stream_4/stream = ExtResource("21_khj8a")
+stream_5/stream = ExtResource("22_7fbpk")
+
 [sub_resource type="Resource" id="Resource_s8fvj"]
 script = ExtResource("2_66qlu")
 attribute = "damage"
@@ -123,15 +154,23 @@ hitbox = NodePath("hitboxbase")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("LookAtPlayerState")
+initial_state = NodePath("WaitBeginning")
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="0" unique_id=1550312346 node_paths=PackedStringArray("next_state")]
+[node name="WaitBeginning" type="Node" parent="StateMachine" index="0" unique_id=1115578794 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_q8x75")
+random = true
+min_wait_time = 0.5
+max_wait_time = 1.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="1" unique_id=1550312346 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_ewjtt")
 wait_time = 2.0
 next_state = NodePath("../SpawnEntitiesState")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="1" unique_id=291413817 node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=291413817 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_lo05d")
 start_delay = 0.5
 next_state = NodePath("../WaitForTimeXState")
@@ -146,7 +185,7 @@ difficulty_scaler = SubResource("Resource_p2ta3")
 entity_to_spawn = ExtResource("5_e5qk8")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="2" unique_id=1845234742 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="3" unique_id=1845234742 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_q8x75")
 random = true
 max_wait_time = 0.5
@@ -158,6 +197,14 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 
 [node name="cactushog" parent="Visuals" index="0" unique_id=83265788 instance=ExtResource("6_e5qk8")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("10_djdpi")]
+stream = SubResource("AudioStreamRandomizer_ooynj")
+volume_db = -6.0
+
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=396181491 instance=ExtResource("10_djdpi")]
+stream = SubResource("AudioStreamRandomizer_jik7m")
+volume_db = 0.0
 
 [node name="hitboxbase" parent="." index="7" unique_id=957668635 instance=ExtResource("7_fvuh5")]
 collision_layer = 32
@@ -183,3 +230,5 @@ shape = SubResource("SphereShape3D_84kb6")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="9" unique_id=1512088874]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39123645, 0)
 shape = SubResource("SphereShape3D_q8x75")
+
+[connection signal="play_sound" from="Visuals/cactushog" to="SoundEffectManager" method="play_sound"]

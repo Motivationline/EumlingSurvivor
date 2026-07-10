@@ -7,8 +7,6 @@
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="5_hxs22"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="6_r8n3v"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="7_eaowe"]
-[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="8_gtvy5"]
-[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="9_bacrf"]
 [ext_resource type="PackedScene" uid="uid://mvv6hdvfjfw5" path="res://game/enemies/box/wood_explosion_particle.tscn" id="10_77s2v"]
 [ext_resource type="PackedScene" uid="uid://by87cdyijsrbs" path="res://game/shared/animation trigger component/animation_trigger_component.tscn" id="11_uh6ew"]
 [ext_resource type="PackedScene" uid="uid://dfublxubm8cag" path="res://assets/models/breakable_stone/1x2_breakable/1x_2_breakable_base.tscn" id="12_o3rha"]
@@ -68,11 +66,11 @@ stream_1/stream = ExtResource("20_ctrhr")
 stream_2/stream = ExtResource("21_m33lt")
 stream_3/stream = ExtResource("22_2a76r")
 
-[node name="2x1Stone" unique_id=1837394296 node_paths=PackedStringArray("hurtbox", "on_death", "on_hurt") instance=ExtResource("1_o3rha")]
+[node name="2x1Stone" unique_id=1837394296 node_paths=PackedStringArray("hurtbox", "on_hurt") instance=ExtResource("1_o3rha")]
 health = 150.0
+death_effect = ExtResource("10_77s2v")
 ignore_enemy_in_level = true
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("SpawnEntitiesEventStrategy")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerHurt")]
 speed = 0.0
 
@@ -133,23 +131,14 @@ can_be_hit_by = 3
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_6esvg")
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="." index="6" unique_id=566416428]
-script = ExtResource("8_gtvy5")
-metadata/_custom_type_script = "uid://cpx1eq3gu268a"
-
-[node name="EntitySpawner" type="Node3D" parent="SpawnEntitiesEventStrategy" index="0" unique_id=173170513]
-script = ExtResource("9_bacrf")
-entity_to_spawn = ExtResource("10_77s2v")
-metadata/_custom_type_script = "uid://1e84fd3xrrff"
-
-[node name="AnimationTriggerComponent" parent="." index="7" unique_id=1816209221 node_paths=PackedStringArray("node_to_connect", "animation_player") instance=ExtResource("11_uh6ew")]
+[node name="AnimationTriggerComponent" parent="." index="6" unique_id=1816209221 node_paths=PackedStringArray("node_to_connect", "animation_player") instance=ExtResource("11_uh6ew")]
 node_to_connect = NodePath("../Hurtbox")
 signal_to_connect = "hurt_by"
 animation_player = NodePath("../AnimationPlayer")
 animation_to_play = "hurt"
 force_stop_animation = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8" unique_id=2126224140]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7" unique_id=2126224140]
 libraries/ = SubResource("AnimationLibrary_txksh")
 
 [node name="1x2_breakable_base" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1598397480 instance=ExtResource("12_o3rha")]

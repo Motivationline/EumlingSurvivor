@@ -32,5 +32,5 @@ func close():
 
 func _input(event: InputEvent) -> void:
 	if not accepts_input: return
-	if event is InputEventScreenTouch or event.is_action_pressed("ui_accept"):
+	if event.is_pressed() and (event is InputEventScreenTouch or event.is_action_pressed("ui_accept")):
 		close()

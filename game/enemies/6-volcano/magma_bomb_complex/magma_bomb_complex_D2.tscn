@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="4_pquii"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_lmd8j"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_mlics"]
+[ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="7_pdbl0"]
 [ext_resource type="PackedScene" uid="uid://b2rrc21uefymi" path="res://game/projectiles/magma_berry_projectile/magma_berry_projectile.tscn" id="7_uat0f"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="8_pquii"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="10_mlics"]
@@ -14,17 +15,18 @@
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="12_o5vot"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="13_o5vot"]
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="13_pdbl0"]
+[ext_resource type="Script" uid="uid://d13s0cgbc5iq0" path="res://strategies/event/deactivate.gd" id="13_rnlhm"]
 
 [sub_resource type="Resource" id="Resource_ax3or"]
 script = ExtResource("12_o5vot")
 attribute = "health"
-value = 300.0
+value = 200.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_o5vot"]
 script = ExtResource("12_o5vot")
 attribute = "health"
-value = 880.0
+value = 440.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_pdbl0"]
@@ -36,7 +38,7 @@ metadata/_custom_type_script = "uid://duef27t44qtoy"
 [sub_resource type="Resource" id="Resource_icgjh"]
 script = ExtResource("12_o5vot")
 attribute = "health"
-value = 580.0
+value = 290.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_ya0xm"]
@@ -157,7 +159,7 @@ hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
 node_with_animation_tree = NodePath("Visuals/magma_bomberry")
-speed = 2.0
+speed = 2.5
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Idle/IdleWait")
@@ -191,7 +193,7 @@ metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 script = ExtResource("4_pquii")
 wait_time = 0.0
 stop_distance = 1.0
-next_state = NodePath("../../Explode/SpawnEntitiesState")
+next_state = NodePath("../../Explode/TriggerEventState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Explode/request": 3,
 "parameters/Transition/transition_request": "run"
@@ -200,7 +202,13 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="Explode" type="Node" parent="StateMachine" index="3" unique_id=2014446245]
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Explode" index="0" unique_id=1262583709 node_paths=PackedStringArray("next_state")]
+[node name="TriggerEventState" type="Node" parent="StateMachine/Explode" index="0" unique_id=1465530162 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("7_pdbl0")
+events = [NodePath("../../../Eventlisteners/DeactivateEventStrategy")]
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Explode" index="1" unique_id=1262583709 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_lmd8j")
 start_delay = 1.55
 next_state = NodePath("../../Chase/MoveTowardsEntityState")
@@ -230,6 +238,11 @@ script = ExtResource("10_mlics")
 state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/Chase/MoveTowardsEntityState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
+
+[node name="DeactivateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=829959985 node_paths=PackedStringArray("strategies_to_deactivate")]
+script = ExtResource("13_rnlhm")
+strategies_to_deactivate = [NodePath("../TriggerStateEventStrategy")]
+metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
 
 [node name="magma_bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("10_uat0f")]
 

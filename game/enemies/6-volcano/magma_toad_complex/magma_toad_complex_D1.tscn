@@ -13,6 +13,19 @@
 [ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="9_ug13t"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="10_ug13t"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="11_3i7kj"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="12_jnb76"]
+[ext_resource type="AudioStream" uid="uid://dhj41c6f3q7xe" path="res://assets/characters/enemies/toad/sounds/death_1.wav" id="13_dlkr6"]
+[ext_resource type="AudioStream" uid="uid://6vdufmbcl37m" path="res://assets/characters/enemies/toad/sounds/death_2.wav" id="14_37r8w"]
+[ext_resource type="AudioStream" uid="uid://vlq3ry4emg84" path="res://assets/characters/enemies/toad/sounds/death_3.wav" id="15_rfirc"]
+[ext_resource type="AudioStream" uid="uid://ckp5qw3vlg43t" path="res://assets/characters/enemies/toad/sounds/death_4.wav" id="16_tjrnx"]
+[ext_resource type="AudioStream" uid="uid://dkxeflfjttqol" path="res://assets/characters/enemies/toad/sounds/death_5.wav" id="17_ypotc"]
+[ext_resource type="AudioStream" uid="uid://dvodrmw3y5orh" path="res://assets/characters/enemies/toad/sounds/death_6.wav" id="18_h47k0"]
+[ext_resource type="AudioStream" uid="uid://ccge0eudrj8ee" path="res://assets/characters/enemies/toad/sounds/shoot_1.wav" id="19_xxkaf"]
+[ext_resource type="AudioStream" uid="uid://bhge7elf6veva" path="res://assets/characters/enemies/toad/sounds/shoot_2.wav" id="20_jgjtr"]
+[ext_resource type="AudioStream" uid="uid://b7sqf5r64oj4" path="res://assets/characters/enemies/toad/sounds/shoot_3.wav" id="21_68620"]
+[ext_resource type="AudioStream" uid="uid://1sp55qnmp7n1" path="res://assets/characters/enemies/toad/sounds/shoot_4.wav" id="22_kmqrh"]
+[ext_resource type="AudioStream" uid="uid://dqcwn47y1d4j1" path="res://assets/characters/enemies/toad/sounds/shoot_5.wav" id="23_jfk6q"]
+[ext_resource type="AudioStream" uid="uid://2u00rib5gav" path="res://assets/characters/enemies/toad/sounds/shoot_6.wav" id="24_ry51f"]
 
 [sub_resource type="Resource" id="Resource_tgg04"]
 script = ExtResource("2_qreux")
@@ -86,6 +99,24 @@ metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 script = ExtResource("9_tgg04")
 max_negative = -30.0
 max_positive = 30.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1ax78"]
+streams_count = 6
+stream_0/stream = ExtResource("13_dlkr6")
+stream_1/stream = ExtResource("14_37r8w")
+stream_2/stream = ExtResource("15_rfirc")
+stream_3/stream = ExtResource("16_tjrnx")
+stream_4/stream = ExtResource("17_ypotc")
+stream_5/stream = ExtResource("18_h47k0")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ei788"]
+streams_count = 6
+stream_0/stream = ExtResource("19_xxkaf")
+stream_1/stream = ExtResource("20_jgjtr")
+stream_2/stream = ExtResource("21_68620")
+stream_3/stream = ExtResource("22_kmqrh")
+stream_4/stream = ExtResource("23_jfk6q")
+stream_5/stream = ExtResource("24_ry51f")
 
 [sub_resource type="Resource" id="Resource_qv54d"]
 script = ExtResource("2_qreux")
@@ -175,6 +206,14 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("9_ug13t")]
 
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("12_jnb76")]
+stream = SubResource("AudioStreamRandomizer_1ax78")
+volume_db = 0.0
+
+[node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=584086151 instance=ExtResource("12_jnb76")]
+stream = SubResource("AudioStreamRandomizer_ei788")
+volume_db = -4.0
+
 [node name="hitboxBase" parent="." index="7" unique_id=412047334 instance=ExtResource("10_ug13t")]
 collision_layer = 32
 collision_mask = 8
@@ -197,3 +236,5 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=69098704]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3498153, 0)
 shape = SubResource("SphereShape3D_d3oh5")
+
+[connection signal="play_sound" from="Visuals/Toad" to="SoundEffectManager" method="play_sound"]

@@ -11,16 +11,16 @@ static var areas = [
 		folder = "3-Jxx-Jungle",
 		type = Enum.EUMLING_TYPE.ARTISTIC,
 		levels = {
-			0: ["J01", "J02", "J04", "J05", "J07", "J10", "J11", "J12", "J13", "J14", "J15", "J16", "J19"],
-			1: ["J01_D1", "J02_D1", "J04_D1", "J05_D1", "J07_D1", "J10_D1", "J15_D1", "J16_D1", "J17", "J18", "J19_D1", "J20"],
-			2: ["J01_D2", "J02_D2", "J03", "J04_D2", "J05_D2", "J06", "J07_D2", "J08", "J10_D2", "J15_D2", "J16_D2", "J18", "J19_D2"],
-			3: ["J01_D3", "J02_D3", "J03", "J04_D3", "J05_D3", "J06", "J07_D3", "J08", "J10_D3", "J15_D3", "J16_D3", "J17_D3", "J19_D3", "J09"],
+			0: ["J01_D0", "J02_D0", "J04_D0", "J05_D0", "J07_D0", "J10_D0", "J11_D0", "J12_D0", "J13_D0", "J14_D0", "J15_D0", "J16_D0", "J19_D0"],
+			1: ["J01_D1", "J02_D1", "J04_D1", "J05_D1", "J07_D1", "J10_D1", "J15_D1", "J16_D1", "J17_D1", "J18_D1", "J19_D1", "J20_D1"],
+			2: ["J01_D2", "J02_D2", "J03_D2", "J04_D2", "J05_D2", "J06_D2", "J07_D2", "J08_D2", "J10_D2", "J15_D2", "J16_D2", "J18_D2", "J19_D2"],
+			3: ["J01_D3", "J02_D3", "J03_D3", "J04_D3", "J05_D3", "J06_D3", "J07_D3", "J08_D3", "J10_D3", "J15_D3", "J16_D3", "J17_D3", "J19_D3", "J09_D3"],
 		},
 		boss_levels = {
 			0: "JB00",
 			1: "JB01",
 			2: "JB02",
-			3: "JB02",
+			3: "JB03",
 		},
 	},
 	{
@@ -85,7 +85,7 @@ static func choose_area_levels_from_index(index: int) -> Array:
 
 static func choose_area_levels(area) -> Array:
 	current_area = area
-	current_area.type = Enum.EUMLING_TYPE.values().pick_random()
+	current_area.type = Enum.EUMLING_TYPE.values().pick_random() # TODO remove this when all 6 areas are in game
 	var level_names: Array = []
 	var difficulty: int = Data.game_data.difficulty
 	var amount_levels = difficulty + 3
@@ -98,9 +98,11 @@ static func choose_area_levels(area) -> Array:
 		if levels.size() == 0: break
 		var level = levels.pop_back()
 		if not level: break
-		level_names.append({id = folder_name + level + ".tscn", difficulty = difficulty})
+		var level_id: String = find_file(level + ".tscn", folder_name)
+		level_names.append({id = level_id, difficulty = difficulty})
 	var boss_level = area.boss_levels[difficulty]
-	level_names.append({id = folder_name + boss_level + ".tscn", difficulty = difficulty})
+	var boss_level_location = find_file(boss_level + ".tscn", folder_name)
+	level_names.append({id = boss_level_location, difficulty = difficulty})
 	return level_names
 
 
@@ -113,7 +115,7 @@ func level_chosen(level_id: String):
 	var difficulty = 0
 	if split.size() > 1:
 		difficulty = int(split[1])
-	var level_location = find_file(level_id, "res://game/levels")
+	var level_location = AreaPicker.find_file(level_id + ".tscn", "res://game/levels")
 	if (level_location != "" and ResourceLoader.exists(level_location)):
 		area_chosen.emit([ {id = level_location, difficulty = difficulty}])
 		hide()
@@ -124,21 +126,25 @@ func level_chosen(level_id: String):
 func level_choice_aborted():
 	pass
 
-func find_file(level_id: String, folder_location: String = "res://game/levels") -> String:
+static func find_file(file_name: String, folder_location: String = "res://game/levels") -> String:
+	# TODO: this might break on exported builds, so this needs to be replaced with something else before release!
+	var dir := DirAccess.open(folder_location)
+	if dir == null:
+		return ""
+	var files := dir.get_files()
+	if files.has(file_name):
+		return folder_location + "/" + file_name
+	if files.has((file_name + ".remap")):
+		return folder_location + "/" + file_name
 	
-	for area in areas:
-		var folder_path: String = folder_location
-		if area.folder:
-			folder_path += "/" + area.folder + "/"
-
-		for difficulty_levels in area.levels.values():
-			if difficulty_levels.has(level_id):
-				return folder_path + level_id + ".tscn"
-
-		if area.boss_levels.values().has(level_id):
-			return folder_path + level_id + ".tscn"
+	var dirs := dir.get_directories()
+	for d in dirs:
+		var path = find_file(file_name, folder_location + "/" + d)
+		if path != "":
+			return path
 
 	return ""
+
 
 func _on_area_clicked(index: int) -> void:
 	var level_names = choose_area_levels_from_index(index)

@@ -7,16 +7,19 @@
 [ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="4_kgrcu"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="5_l5va7"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="6_3m2jy"]
+[ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="7_kku2p"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="7_lk1su"]
 [ext_resource type="PackedScene" uid="uid://7t81qu54b7am" path="res://game/aoes/explosion/berry_explosion_poison_aoe.tscn" id="8_dh6eo"]
 [ext_resource type="PackedScene" uid="uid://b8ns3hl23ic6v" path="res://assets/characters/enemies/bomberry/bomberry_prefab.tscn" id="10_106dg"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="10_l5va7"]
+[ext_resource type="Script" uid="uid://d13s0cgbc5iq0" path="res://strategies/event/deactivate.gd" id="10_vk06u"]
 [ext_resource type="PackedScene" uid="uid://cir8dxt72i6di" path="res://game/aoes/explosion/berry_explosion_aoe.tscn" id="11_3m2jy"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="11_ijoo4"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="12_l5va7"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="12_ok38y"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="14_rx25u"]
 [ext_resource type="AudioStream" uid="uid://la6h3tl6asjn" path="res://assets/characters/enemies/bomberry/sounds/death_1.wav" id="15_7fbru"]
+[ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="16_axcm6"]
 [ext_resource type="AudioStream" uid="uid://bakryhmuuibrf" path="res://assets/characters/enemies/bomberry/sounds/death_2.wav" id="16_ofpyh"]
 [ext_resource type="AudioStream" uid="uid://djwcj0n4etxuv" path="res://assets/characters/enemies/bomberry/sounds/death_3.wav" id="17_o4uqy"]
 [ext_resource type="AudioStream" uid="uid://bg18bentgbs6a" path="res://assets/characters/enemies/bomberry/sounds/death_4.wav" id="18_f4ncd"]
@@ -32,13 +35,13 @@
 [sub_resource type="Resource" id="Resource_vpf22"]
 script = ExtResource("2_id2ed")
 attribute = "health"
-value = 300.0
+value = 200.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_ctqst"]
 script = ExtResource("2_id2ed")
 attribute = "health"
-value = 880.0
+value = 440.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_1p2rx"]
@@ -50,7 +53,7 @@ metadata/_custom_type_script = "uid://duef27t44qtoy"
 [sub_resource type="Resource" id="Resource_emagn"]
 script = ExtResource("2_id2ed")
 attribute = "health"
-value = 580.0
+value = 290.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_vhibj"]
@@ -188,7 +191,7 @@ hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlaySoundDeath")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
-speed = 2.0
+speed = 2.5
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("Idle/IdleWait")
@@ -221,7 +224,7 @@ metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 script = ExtResource("5_l5va7")
 wait_time = 0.0
 stop_distance = 1.0
-next_state = NodePath("../../Explode/SpawnEntitiesState")
+next_state = NodePath("../../Explode/TriggerEventState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Explode/request": 3,
 "parameters/Transition/transition_request": "run"
@@ -230,10 +233,16 @@ metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="Explode" type="Node" parent="StateMachine" index="3" unique_id=2022961841]
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Explode" index="0" unique_id=356998135 node_paths=PackedStringArray("next_state")]
+[node name="TriggerEventState" type="Node" parent="StateMachine/Explode" index="0" unique_id=332087753 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("7_kku2p")
+events = [NodePath("../../../Eventlisteners/DeactivateEventStrategy")]
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Explode" index="1" unique_id=356998135 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_3m2jy")
 start_delay = 1.55
-end_delay = 4.2
+end_delay = 4.0
 next_state = NodePath("../../Chase Player/MoveTowardsEntityState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Explode/request": 1,
@@ -263,7 +272,15 @@ state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/Chase Player/MoveTowardsEntityState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
 
+[node name="DeactivateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=549457982 node_paths=PackedStringArray("strategies_to_deactivate")]
+script = ExtResource("10_vk06u")
+strategies_to_deactivate = [NodePath("../TriggerStateEventStrategy")]
+metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
+
 [node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("10_106dg")]
+
+[node name="BuffedVFX" parent="Visuals/bomberry" index="5" unique_id=1554862748 instance=ExtResource("16_axcm6")]
+transform = Transform3D(0.46995974, 0, 0, 0, 1, 0, 0, 0, 0.46995974, 0, 0, 0)
 
 [node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("14_rx25u")]
 stream = SubResource("AudioStreamRandomizer_vk06u")
@@ -296,3 +313,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2127836, 0)
 shape = SubResource("SphereShape3D_x4bae")
 
 [connection signal="play_sound" from="Visuals/bomberry" to="SoundEffectManager" method="play_sound"]
+
+[editable path="Visuals/bomberry"]

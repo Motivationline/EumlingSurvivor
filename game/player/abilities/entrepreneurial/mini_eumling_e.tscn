@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b0ivg6djt5ima" path="res://state_machine/enemy/wait_for_entity_distance.gd" id="4_1e7wv"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_jcadt"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_77n6u"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_jcadt"]
 [ext_resource type="PackedScene" uid="uid://bl1lv2uvjkdg1" path="res://game/player/abilities/entrepreneurial/mini_eumling_e_hitbox.tscn" id="6_1e7wv"]
 [ext_resource type="PackedScene" uid="uid://w0h1g2ngldyl" path="res://assets/characters/eumling/mini_eumling/entrepreneurual_ehrgeiz/mini_eumling_entrep_ehrgeiz_visual.tscn" id="8_1e7wv"]
 
@@ -70,18 +71,27 @@ selection_strategy = null
 entity_group = "Enemy"
 speed_override = 3.0
 speed_override_active = true
-next_state = NodePath("../SpawnEntitiesState")
+next_state = NodePath("../WaitCharge")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
 })
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
+[node name="WaitCharge" type="Node" parent="StateMachine/AttackEnemy" unique_id=1360179246 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_jcadt")
+wait_time = 2.0
+next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "charge_start"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine/AttackEnemy" unique_id=1743753910 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_jcadt")
-end_delay = 1.0
+end_delay = 0.5
 next_state = NodePath("../../MoveTowardsPlayer")
 animation_trigger = Dictionary[String, Variant]({
-"parameters/Transition/transition_request": "idle"
+"parameters/OneShot/request": 1
 })
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 

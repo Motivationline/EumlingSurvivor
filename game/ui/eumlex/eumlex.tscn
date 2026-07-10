@@ -23,6 +23,19 @@
 [ext_resource type="Texture2D" uid="uid://cjj03lo1voxow" path="res://assets/ui/Eumlex/TagBaseA.png" id="18_j2jup"]
 [ext_resource type="Texture2D" uid="uid://dwgh2hdeer32g" path="res://assets/ui/Eumlex/TagBaseI.png" id="19_wnors"]
 [ext_resource type="Texture2D" uid="uid://ch6804no7yieo" path="res://assets/ui/Eumlex/TagBaseE.png" id="20_kq6so"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="24_xxm4k"]
+[ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="25_eumhd"]
+[ext_resource type="AudioStream" uid="uid://cpfh1wlogcfm1" path="res://assets/sound/ui/eumlex/click_1.wav" id="26_7xmmu"]
+[ext_resource type="AudioStream" uid="uid://2d2ox2lny2lp" path="res://assets/sound/ui/eumlex/open.wav" id="26_s3287"]
+[ext_resource type="AudioStream" uid="uid://c6xet0inaeif2" path="res://assets/sound/ui/eumlex/click_2.wav" id="27_qunsy"]
+[ext_resource type="AudioStream" uid="uid://bqld1bdh6vsr0" path="res://assets/sound/ui/eumlex/turn_page_1.wav" id="27_wr2lr"]
+[ext_resource type="AudioStream" uid="uid://c566ln2yrk8qp" path="res://assets/sound/ui/eumlex/turn_page_2.wav" id="28_8cgb3"]
+[ext_resource type="AudioStream" uid="uid://qilxmhm7fyyw" path="res://assets/sound/ui/eumlex/click_3.wav" id="28_vtoon"]
+[ext_resource type="AudioStream" uid="uid://80085uxb82sg" path="res://assets/sound/ui/eumlex/click_4.wav" id="29_ls3g4"]
+[ext_resource type="AudioStream" uid="uid://clwklgmnbplu2" path="res://assets/sound/ui/eumlex/turn_page_3.wav" id="29_u8c6k"]
+[ext_resource type="AudioStream" uid="uid://dtst33e4fkm1f" path="res://assets/sound/ui/eumlex/close.wav" id="30_7xmmu"]
+[ext_resource type="AudioStream" uid="uid://bhfafb12ph78w" path="res://assets/sound/ui/eumlex/click_5.wav" id="30_xwhay"]
+[ext_resource type="AudioStream" uid="uid://dfu861o1m18xx" path="res://assets/sound/ui/eumlex/click_6.wav" id="31_bt128"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("14_orh8k")
@@ -30,7 +43,22 @@ shader_parameter/blur_amount = 4.00000019
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_71i0l"]
 
-[node name="Eumlex" type="CanvasLayer" unique_id=2085109886 node_paths=PackedStringArray("tabs_and_containers", "eumling_type_and_container")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xxm4k"]
+streams_count = 6
+stream_0/stream = ExtResource("26_7xmmu")
+stream_1/stream = ExtResource("27_qunsy")
+stream_2/stream = ExtResource("28_vtoon")
+stream_3/stream = ExtResource("29_ls3g4")
+stream_4/stream = ExtResource("30_xwhay")
+stream_5/stream = ExtResource("31_bt128")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kpvxy"]
+streams_count = 3
+stream_0/stream = ExtResource("27_wr2lr")
+stream_1/stream = ExtResource("28_8cgb3")
+stream_2/stream = ExtResource("29_u8c6k")
+
+[node name="Eumlex" type="CanvasLayer" unique_id=2085109886 node_paths=PackedStringArray("tabs_and_containers", "eumling_type_and_container", "sound_effect_manager")]
 layer = 2
 script = ExtResource("1_l0ba2")
 tabs_and_containers = {
@@ -49,6 +77,7 @@ eumling_type_and_container = {
 4: NodePath("Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings/GridContainer"),
 5: NodePath("Book/BookContainer/BookBG/YellowPage/SocialEumlingListings/GridContainer")
 }
+sound_effect_manager = NodePath("SoundEffectManager")
 
 [node name="BackgroundBlur" type="TextureRect" parent="." unique_id=2070093622]
 material = SubResource("ShaderMaterial_g4v7s")
@@ -321,7 +350,7 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 1
+theme_override_font_sizes/font_size = 32
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -447,7 +476,7 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 1
+theme_override_font_sizes/font_size = 32
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -573,7 +602,7 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 1
+theme_override_font_sizes/font_size = 32
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -699,7 +728,7 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 1
+theme_override_font_sizes/font_size = 32
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -825,7 +854,7 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 1
+theme_override_font_sizes/font_size = 32
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -951,7 +980,7 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 1
+theme_override_font_sizes/font_size = 32
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -1006,6 +1035,25 @@ transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 0
+
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=974017451]
+script = ExtResource("24_xxm4k")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="SelectEumling" parent="SoundEffectManager" unique_id=451995016 instance=ExtResource("25_eumhd")]
+stream = SubResource("AudioStreamRandomizer_xxm4k")
+
+[node name="Open" parent="SoundEffectManager" unique_id=2013780315 instance=ExtResource("25_eumhd")]
+stream = ExtResource("26_s3287")
+volume_db = -4.0
+
+[node name="TurnPage" parent="SoundEffectManager" unique_id=1054850247 instance=ExtResource("25_eumhd")]
+stream = SubResource("AudioStreamRandomizer_kpvxy")
+volume_db = -4.0
+
+[node name="Close" parent="SoundEffectManager" unique_id=597591076 instance=ExtResource("25_eumhd")]
+stream = ExtResource("30_7xmmu")
+volume_db = -4.0
 
 [connection signal="pressed" from="Book/TabPanel/OrangeButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/GreenButton" to="." method="_on_tab_pressed" flags=18]

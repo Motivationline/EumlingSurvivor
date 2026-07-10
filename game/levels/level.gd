@@ -71,6 +71,7 @@ func spawn_player(_player: Player):
 		spawn_mini_eumling(type)
 	
 	player.level_start()
+	GlobalMusicManager.request_music(music, MusicTransition.fade_and_start(4,0))
 
 func spawn_mini_eumling(type: Enum.EUMLING_TYPE):
 	# only spawn minis that need to follow player

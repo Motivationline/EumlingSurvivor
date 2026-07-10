@@ -11,7 +11,7 @@ var eumling: Enum.EUMLING_TYPE
 var currently_visible_text: Label
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch or event.is_action_pressed("ui_accept"):
+	if event.is_pressed() and (event is InputEventScreenTouch or event.is_action_pressed("ui_accept")):
 		if progress == 1:
 			next()
 		elif progress == 3:

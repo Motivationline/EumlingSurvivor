@@ -87,7 +87,7 @@ func _load_level():
 		new_level.spawn_player(player)
 		new_level.level_finished.connect(level_finished)
 		new_level.level_ended.connect(level_ended)
-		GlobalMusicManager.request_music(new_level.music, MusicTransition.fade_and_start(4,0))
+		
 
 
 		currently_loaded_level = new_level

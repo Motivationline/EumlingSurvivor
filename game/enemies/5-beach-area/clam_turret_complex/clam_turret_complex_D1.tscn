@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://d4itjqa8fiwj1"]
+
+[ext_resource type="PackedScene" uid="uid://cueigax4duop0" path="res://game/enemies/5-beach-area/clam_turret_complex/clam_turret_complex_D0.tscn" id="1_lfncs"]
+[ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="2_vpg24"]
+[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="3_jtyyr"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="4_jtyyr"]
+
+[sub_resource type="Resource" id="Resource_v4jiu"]
+script = ExtResource("2_vpg24")
+metadata/_custom_type_script = "uid://yd5ytc70xwp6"
+
+[sub_resource type="Resource" id="Resource_ehgpu"]
+script = ExtResource("3_jtyyr")
+max_negative = -15.0
+max_positive = 15.0
+
+[sub_resource type="Resource" id="Resource_cwp2s"]
+script = ExtResource("4_jtyyr")
+attribute = "incoming_damage_multiplier"
+value = 0.25
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[node name="clam_turret_complex_D0" unique_id=1898691 instance=ExtResource("1_lfncs")]
+
+[node name="spawnerMain" parent="StateMachine/Attack/SpawnEntitiesState" parent_id_path=PackedInt32Array(376748780) index="0" unique_id=1780834316]
+amount_of_spawns = 2
+target_strategy = SubResource("Resource_v4jiu")
+rotation_strategy = SubResource("Resource_ehgpu")
+
+[node name="WaitForTimeXState" parent="StateMachine/Attack/SpawnEntitiesState" parent_id_path=PackedInt32Array(376748780) index="1" unique_id=1064029527]
+wait_time = 1.0
+
+[node name="WaitForTimeClosed" parent="StateMachine/Close" parent_id_path=PackedInt32Array(1905264692) index="3" unique_id=583543399]
+wait_time = 3.0
+
+[node name="AdjustAttributesClosed" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=935578213]
+changes = Array[ExtResource("4_jtyyr")]([SubResource("Resource_cwp2s")])

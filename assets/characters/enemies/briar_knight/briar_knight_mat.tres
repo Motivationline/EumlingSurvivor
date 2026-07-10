@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://lbprjhv44yop"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_gln4b"]
+[ext_resource type="Texture2D" uid="uid://dn7bpkrako7de" path="res://assets/characters/enemies/briar_knight/DefaultMaterial_Base_metalness.png" id="1_tkl2r"]
+[ext_resource type="Texture2D" uid="uid://tehpturdasd" path="res://assets/characters/enemies/briar_knight/briar_knight_DefaultMaterial_2D_View.png" id="2_boa5o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boa5o"]
+blend_mode = 1
+albedo_color = Color(0.75, 0.8333334, 1, 1)
+albedo_texture = ExtResource("1_tkl2r")
+metallic = 1.0
+metallic_specular = 0.0
+roughness = 0.03
+
+[sub_resource type="Gradient" id="Gradient_tkl2r"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.07058824, 0.66764706)
+colors = PackedColorArray(0, 0, 0, 1, 0.20152658, 0.20152658, 0.20152658, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_we7ox"]
+gradient = SubResource("Gradient_tkl2r")
+
+[sub_resource type="Gradient" id="Gradient_lagyf"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.4039548)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h1b40"]
+gradient = SubResource("Gradient_lagyf")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_boa5o")
+shader = ExtResource("1_gln4b")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_boa5o")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_we7ox")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_h1b40")
+shader_parameter/rim_focus = 0.4510000214225
+shader_parameter/use_diffuse_smooth_attenuation = true

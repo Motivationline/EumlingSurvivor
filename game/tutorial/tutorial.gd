@@ -93,6 +93,7 @@ func initialize() -> void:
 	add_child(quest_timer)
 
 func start() -> void:
+	GlobalMusicManager.request_music(SongList.TRACK.TUTORIAL,MusicTransition.fade_and_start(1),true,SongList.ENVNOISE.NOTHING)
 	progress = PROGRESS.NONE
 	var video_instance = video.instantiate()
 	progress = PROGRESS.INTRO_VIDEO
@@ -258,7 +259,9 @@ func run_cage_open():
 func return_to_main_menu():
 	progress = PROGRESS.RETURN_EUMLEX
 	level_wrapper.queue_free()
+	player.queue_free()
 	add_child(main_menu_instance)
+	GlobalMusicManager.set_environment_noise(SongList.ENVNOISE.NOTHING)
 	var btn: TextureButton = main_menu_instance.find_child("EumlexButton")
 	block_input_except_for(btn, func():
 		eumlex_show_again()
@@ -282,6 +285,7 @@ func eumlex_show_again():
 
 func eumlex_completed():
 	complete_quest()
+	GlobalMusicManager.request_music(SongList.TRACK.TUTORIAL,MusicTransition.instant(),true, SongList.ENVNOISE.NOTHING)
 	await get_tree().create_timer(2).timeout
 	await show_dialogue("tutorial_completed")
 	completed()

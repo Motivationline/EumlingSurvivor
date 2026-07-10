@@ -8,7 +8,7 @@ var selection_overlay: TextureRect;
 
 @export var tabs_and_containers: Dictionary[TextureButton, Panel]
 @export var eumling_type_and_container: Dictionary[Enum.EUMLING_TYPE, Container]
-
+@export var sound_effect_manager:SoundEffectManager
 signal eumling_revealed
 
 func _on_tab_pressed(tab: TextureButton):
@@ -17,6 +17,7 @@ func _on_tab_pressed(tab: TextureButton):
 	if not panel: return
 	highlight_marker(tab)
 	show_page(panel)
+	sound_effect_manager.play_sound("TurnPage")
 
 # Display active page
 func show_page(active_page):
@@ -41,9 +42,11 @@ func _ready() -> void:
 
 
 func _on_close_button_pressed() -> void:
+	sound_effect_manager.play_sound("Close")
 	hide()
 
 func update_visuals():
+	sound_effect_manager.play_sound("Open")
 	_update_buttons()
 	_update_type_counters_and_new_markings()
 
@@ -70,6 +73,7 @@ func select_eumling(btn: EumlingButton, eumling: Eumling):
 	if (selection_overlay.get_parent()):
 		selection_overlay.get_parent().remove_child(selection_overlay)
 	btn.add_child(selection_overlay)
+	sound_effect_manager.play_sound("SelectEumling")
 
 	%EumlexInfo.show()
 	if eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.LOCKED:

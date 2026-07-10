@@ -23,7 +23,9 @@ signal completed
 var active_press: bool = false
 var progress: int = 0
 func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch or event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept"):
+		advance()
+	elif event is InputEventScreenTouch:
 		if event.is_pressed() and not active_press:
 			active_press = true
 			advance()

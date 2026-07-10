@@ -2,4 +2,28 @@
 
 [ext_resource type="PackedScene" uid="uid://u6lq7hrggp63" path="res://assets/models/breakable_stone/1x2_breakable/1x2_breakable_crack01.glb" id="1_88nsv"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8ecf"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.16589999, 0.21, 0.16810499, 1)
+grow = true
+grow_amount = 0.02
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88nsv"]
+next_pass = SubResource("StandardMaterial3D_g8ecf")
+blend_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0.16589999, 0.21, 0.16810499, 1)
+stencil_outline_thickness = 0.02
+
 [node name="1x2_breakable_crack01" unique_id=1312014012 instance=ExtResource("1_88nsv")]
+
+[node name="stone_crack01" parent="." index="0" unique_id=763421812]
+material_overlay = SubResource("StandardMaterial3D_88nsv")

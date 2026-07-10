@@ -20,6 +20,15 @@
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_kdgty"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_7bgia"]
 [ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="13_rildt"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="18_fle0e"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="21_75c8h"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="22_fle0e"]
+[ext_resource type="AudioStream" uid="uid://b88rsvg2x3fve" path="res://assets/characters/enemies/cactushog/sounds/explode_1.wav" id="23_qgra0"]
+[ext_resource type="AudioStream" uid="uid://cuwnntj8e5e52" path="res://assets/characters/enemies/cactushog/sounds/explode_2.wav" id="24_qhysw"]
+[ext_resource type="AudioStream" uid="uid://c4i14abr7pmcp" path="res://assets/characters/enemies/cactushog/sounds/explode_3.wav" id="25_jqnne"]
+[ext_resource type="AudioStream" uid="uid://bifdy2fiiwafh" path="res://assets/characters/enemies/cactushog/sounds/explode_4.wav" id="26_rxyj2"]
+[ext_resource type="AudioStream" uid="uid://bqbua17664rax" path="res://assets/characters/enemies/cactushog/sounds/explode_5.wav" id="27_vpbxe"]
+[ext_resource type="AudioStream" uid="uid://dou7ybv26pih5" path="res://assets/characters/enemies/cactushog/sounds/explode_6.wav" id="28_pvjqn"]
 
 [sub_resource type="Curve" id="Curve_167yk"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -79,7 +88,7 @@ metadata/_custom_type_script = "uid://pv70hoylokg6"
 render_priority = 1
 transparency = 1
 shading_mode = 0
-albedo_color = Color(1, 0.29000002, 0.9645002, 1)
+albedo_color = Color(1, 0.3254902, 0.05882353, 1)
 grow = true
 grow_amount = 0.02
 stencil_mode = 3
@@ -93,7 +102,7 @@ transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 stencil_mode = 1
 stencil_flags = 2
-stencil_color = Color(1, 0.29000002, 0.9645002, 1)
+stencil_color = Color(1, 0.3254902, 0.05882353, 1)
 stencil_outline_thickness = 0.02
 
 [sub_resource type="Gradient" id="Gradient_b41ea"]
@@ -195,6 +204,15 @@ radius = 0.20644769
 [sub_resource type="SphereShape3D" id="SphereShape3D_vmvgb"]
 radius = 0.0991429
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fn8gm"]
+streams_count = 6
+stream_0/stream = ExtResource("23_qgra0")
+stream_1/stream = ExtResource("24_qhysw")
+stream_2/stream = ExtResource("25_jqnne")
+stream_3/stream = ExtResource("26_rxyj2")
+stream_4/stream = ExtResource("27_vpbxe")
+stream_5/stream = ExtResource("28_pvjqn")
+
 [node name="Projectile" unique_id=1633818281 node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_world_collision", "on_created") instance=ExtResource("1_kum88")]
 max_distance = 100.0
 lifetime = 10.0
@@ -233,7 +251,7 @@ metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
 [node name="TimerEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="2" unique_id=1183479357 node_paths=PackedStringArray("events")]
 script = ExtResource("7_kdgty")
 wait_time = 1.0
-events = [NodePath("RemoveEventStrategy"), NodePath("SpawnSpikes"), NodePath("SpawnExplosion")]
+events = [NodePath("RemoveEventStrategy"), NodePath("SpawnSpikes"), NodePath("SpawnExplosion"), NodePath("PlaySoundEventStrategy")]
 metadata/_custom_type_script = "uid://bmq6jlknuf4wy"
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision/TimerEventStrategy" index="0" unique_id=584777222]
@@ -266,6 +284,13 @@ target_strategy = SubResource("Resource_oyass")
 rotation_strategy = SubResource("Resource_1qg4g")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
+[node name="PlaySoundEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision/TimerEventStrategy" index="3" unique_id=1274129500 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("18_fle0e")
+sound_manager = NodePath("../../../../SoundEffectManager")
+sound_to_play = Array[String](["Explode"])
+needs_to_be_persistent = true
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
 [node name="Marker3D" type="Marker3D" parent="." index="2" unique_id=2129185634]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 0, 0.4, 0)
 gizmo_extents = 1.0
@@ -295,3 +320,11 @@ shape = SubResource("SphereShape3D_mhomq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6" unique_id=1762909192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39123645, 0)
 shape = SubResource("SphereShape3D_vmvgb")
+
+[node name="SoundEffectManager" type="Node3D" parent="." index="7" unique_id=912848146]
+script = ExtResource("21_75c8h")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Explode" parent="SoundEffectManager" index="0" unique_id=1553656196 instance=ExtResource("22_fle0e")]
+stream = SubResource("AudioStreamRandomizer_fn8gm")
+volume_db = -2.0

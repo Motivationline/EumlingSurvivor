@@ -27,7 +27,7 @@ var next_track: SongList.TRACK
 ## The transition to use to switch to [param next_track] if [param oneshot] is  [code]true[/code].
 var transition: MusicTransition
 func _get_property_list():
-	var properties = []
+	var properties:Array[Dictionary] = []
 	if oneshot:
 		properties.append({
 		"name": "transition",
