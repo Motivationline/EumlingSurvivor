@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://crkeay3aoa3j8"]
+
+[ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_vechy"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_uq2ah"]
+[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_3rsq4"]
+[ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_ptuo0"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_hutbq"]
+[ext_resource type="PackedScene" uid="uid://b7cu13tpfbt6k" path="res://game/enemies/5-beach-area/tentacle_slapper/tentacle_slapper_attack/tentacle_attack.tscn" id="6_ptuo0"]
+[ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="6_wgrn5"]
+[ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="7_1eoqp"]
+[ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="8_3rsq4"]
+[ext_resource type="PackedScene" uid="uid://cobx6obdkk5ja" path="res://assets/characters/enemies/squid/squid/squid_prefab.tscn" id="8_riax5"]
+[ext_resource type="PackedScene" uid="uid://dmd2yc2gwjrq3" path="res://game/aoes/squid_aoe/squid_ink_aoe.tscn" id="9_1eoqp"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="11_wgrn5"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="12_1eoqp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_riax5"]
+radius = 0.5125733
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wgrn5"]
+radius = 0.74622554
+
+[node name="squid_complex" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_vechy")]
+health = 200.0
+hitbox = NodePath("hitboxBase")
+hurtbox = NodePath("Hurtbox")
+on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
+
+[node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("SpawnWait")
+
+[node name="SpawnWait" type="Node" parent="StateMachine" index="0" unique_id=425720789 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_uq2ah")
+random = true
+min_wait_time = 0.5
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="1" unique_id=310665069 node_paths=PackedStringArray("next_state")]
+script = ExtResource("3_3rsq4")
+wait_time = 0.5
+next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/attack/request": 1
+})
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=1269902310 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_ptuo0")
+start_delay = 0.2
+next_state = NodePath("../AttackCooldown")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=1006979933]
+script = ExtResource("5_hutbq")
+entity_to_spawn = ExtResource("6_ptuo0")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="AttackCooldown" type="Node" parent="StateMachine" index="3" unique_id=194507998 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_uq2ah")
+wait_time = 3.0
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="onDamage" type="Node" parent="StateMachine" index="4" unique_id=1291546588]
+
+[node name="DisableHitbox" type="Node" parent="StateMachine/onDamage" index="0" unique_id=1713926883 node_paths=PackedStringArray("disable", "next_state")]
+script = ExtResource("6_wgrn5")
+disable = [NodePath("../../../hitboxBase"), NodePath("../../../Hurtbox"), NodePath("../../../StatusVisuals3DEnemy")]
+next_state = NodePath("../HideWait")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="HideWait" type="Node" parent="StateMachine/onDamage" index="1" unique_id=1114074925 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_uq2ah")
+next_state = NodePath("../MarkerWait")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "hide"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="MarkerWait" type="Node" parent="StateMachine/onDamage" index="2" unique_id=1567234556 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_uq2ah")
+next_state = NodePath("../TeleportToOnNavMeshState")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine/onDamage" index="3" unique_id=1729606020 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_1eoqp")
+wait_time = 0.0
+target = 2
+min_radius = 2.0
+max_radius = 3.0
+next_state = NodePath("../EnableHitbox")
+metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
+
+[node name="EnableHitbox" type="Node" parent="StateMachine/onDamage" index="4" unique_id=350533426 node_paths=PackedStringArray("enable", "next_state")]
+script = ExtResource("6_wgrn5")
+enable = [NodePath("../../../hitboxBase"), NodePath("../../../Hurtbox")]
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/onDamage" index="5" unique_id=1151101164 node_paths=PackedStringArray("next_state")]
+script = ExtResource("4_ptuo0")
+end_delay = 3.7
+next_state = NodePath("../ActivateHealthBar")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "show"
+})
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="spawnerSecondary" type="Node3D" parent="StateMachine/onDamage/SpawnEntitiesState" index="0" unique_id=598779029]
+script = ExtResource("5_hutbq")
+offset_distance = 0.5
+entity_to_spawn = ExtResource("9_1eoqp")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="ActivateHealthBar" type="Node" parent="StateMachine/onDamage" index="6" unique_id=336217341 node_paths=PackedStringArray("enable", "next_state")]
+script = ExtResource("6_wgrn5")
+enable = [NodePath("../../../StatusVisuals3DEnemy")]
+next_state = NodePath("../../LookAtPlayerState")
+metadata/_custom_type_script = "uid://bwy4tebxadp1y"
+
+[node name="TriggerStateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=536779340 node_paths=PackedStringArray("state_machine", "state_to_execute")]
+script = ExtResource("8_3rsq4")
+state_machine = NodePath("../../StateMachine")
+state_to_execute = NodePath("../../StateMachine/onDamage/DisableHitbox")
+metadata/_custom_type_script = "uid://ce61jighdgsby"
+
+[node name="squid" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=697439437 instance=ExtResource("8_riax5")]
+
+[node name="hitboxBase" parent="." index="7" unique_id=1403634002 instance=ExtResource("11_wgrn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3388818, 0)
+collision_layer = 32
+collision_mask = 8
+damage = 30.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=596044329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12802029, 0)
+shape = SubResource("SphereShape3D_riax5")
+
+[node name="Hurtbox" parent="." index="8" unique_id=2005433755 instance=ExtResource("12_1eoqp")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=107468706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36569136, 0)
+shape = SubResource("SphereShape3D_wgrn5")
+debug_color = Color(0.8051653, 0.41541824, 0.082558624, 0.41960785)
