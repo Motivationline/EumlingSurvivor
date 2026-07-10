@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dja7e38qqqhkd"]
 
 [ext_resource type="PackedScene" uid="uid://cg73m83g0gu84" path="res://assets/models/3-Jungle/jungle_tree/jungel_tree_01.glb" id="1_c8qm3"]
-[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="2_getry"]
+[ext_resource type="Shader" uid="uid://f1nt4opkdd6j" path="res://game/shared/cel_wind_foliage_shader.gdshader" id="2_getry"]
 [ext_resource type="Texture2D" uid="uid://c64012u2sbk63" path="res://assets/models/3-Jungle/jungle_tree/Tree_Base_color.png" id="3_ri315"]
 
 [sub_resource type="Gradient" id="Gradient_jgx3a"]
@@ -21,6 +21,11 @@ gradient = SubResource("Gradient_getry")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xhi3b"]
 render_priority = 0
 shader = ExtResource("2_getry")
+shader_parameter/wind_influence_start = 0.249999994412
+shader_parameter/wind_influence_end = 1.0
+shader_parameter/stiffness = 0.5999999865888
+shader_parameter/aabb_size = Vector3(8.87442, 9.23138, 8.454952)
+shader_parameter/bounding_radius = 8.570370808683824
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("3_ri315")
 shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_a3von")
@@ -30,5 +35,5 @@ shader_parameter/use_diffuse_smooth_attenuation = true
 
 [node name="jungel_tree_01" unique_id=1323237403 instance=ExtResource("1_c8qm3")]
 
-[node name="TreeMesh" parent="." index="0" unique_id=1310615612]
+[node name="TreeMesh" parent="." index="0" unique_id=1303342691]
 surface_material_override/0 = SubResource("ShaderMaterial_xhi3b")
