@@ -37,6 +37,18 @@
 [ext_resource type="AudioStream" uid="uid://4jk2njcyeur8" path="res://assets/characters/enemies/tortoise/sounds/hurt_4.wav" id="33_au8h2"]
 [ext_resource type="AudioStream" uid="uid://3hjfcl3c58cb" path="res://assets/characters/enemies/tortoise/sounds/hurt_5.wav" id="34_6b2to"]
 [ext_resource type="AudioStream" uid="uid://fs0e6843g5kk" path="res://assets/characters/enemies/tortoise/sounds/hurt_6.wav" id="35_fanp4"]
+[ext_resource type="AudioStream" uid="uid://dukflpipnyek4" path="res://assets/characters/enemies/tortoise/sounds/stomp_wind_1.wav" id="36_hmj2w"]
+[ext_resource type="AudioStream" uid="uid://cgiucpm5p2y1i" path="res://assets/characters/enemies/tortoise/sounds/stomp_wind_2.wav" id="37_fvmdp"]
+[ext_resource type="AudioStream" uid="uid://dx67wwf1slohh" path="res://assets/characters/enemies/tortoise/sounds/stomp_wind_3.wav" id="38_vqxiy"]
+[ext_resource type="AudioStream" uid="uid://c7gv02qt3b0kc" path="res://assets/characters/enemies/tortoise/sounds/stomp_wind_4.wav" id="39_bo5tx"]
+[ext_resource type="AudioStream" uid="uid://bfrrhg64mw82n" path="res://assets/characters/enemies/tortoise/sounds/stomp_wind_5.wav" id="40_1mgfb"]
+[ext_resource type="AudioStream" uid="uid://c8wls8rumpuim" path="res://assets/characters/enemies/tortoise/sounds/stomp_wind_6.wav" id="41_jyw6g"]
+[ext_resource type="AudioStream" uid="uid://0x60gp88najv" path="res://assets/characters/enemies/tortoise/sounds/stomp_impact_1.wav" id="42_d7x07"]
+[ext_resource type="AudioStream" uid="uid://b27s3kwer5fo0" path="res://assets/characters/enemies/tortoise/sounds/stomp_impact_2.wav" id="43_vmt6t"]
+[ext_resource type="AudioStream" uid="uid://bsod2lbud138y" path="res://assets/characters/enemies/tortoise/sounds/stomp_impact_3.wav" id="44_o24pl"]
+[ext_resource type="AudioStream" uid="uid://522btju1xyiv" path="res://assets/characters/enemies/tortoise/sounds/stomp_impact_4.wav" id="45_cxaoy"]
+[ext_resource type="AudioStream" uid="uid://igttl230fbaw" path="res://assets/characters/enemies/tortoise/sounds/stomp_impact_5.wav" id="46_au8h2"]
+[ext_resource type="AudioStream" uid="uid://cklx2a5jy0pr0" path="res://assets/characters/enemies/tortoise/sounds/stomp_impact_6.wav" id="47_6b2to"]
 
 [sub_resource type="Resource" id="Resource_6il4h"]
 script = ExtResource("2_xkbo4")
@@ -226,6 +238,24 @@ stream_3/stream = ExtResource("33_au8h2")
 stream_4/stream = ExtResource("34_6b2to")
 stream_5/stream = ExtResource("35_fanp4")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d7x07"]
+streams_count = 6
+stream_0/stream = ExtResource("36_hmj2w")
+stream_1/stream = ExtResource("37_fvmdp")
+stream_2/stream = ExtResource("38_vqxiy")
+stream_3/stream = ExtResource("39_bo5tx")
+stream_4/stream = ExtResource("40_1mgfb")
+stream_5/stream = ExtResource("41_jyw6g")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fanp4"]
+streams_count = 6
+stream_0/stream = ExtResource("42_d7x07")
+stream_1/stream = ExtResource("43_vmt6t")
+stream_2/stream = ExtResource("44_o24pl")
+stream_3/stream = ExtResource("45_cxaoy")
+stream_4/stream = ExtResource("46_au8h2")
+stream_5/stream = ExtResource("47_6b2to")
+
 [sub_resource type="Resource" id="Resource_a6ev1"]
 script = ExtResource("2_xkbo4")
 attribute = "damage"
@@ -384,14 +414,25 @@ instance_shader_parameters/width = 0.4590000218025
 libraries/ = SubResource("AnimationLibrary_qmpt2")
 autoplay = &"ExtendIndicator"
 
-[node name="Shake" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("17_b4sxt")]
+[node name="SoundEffectManager" parent="." index="5" unique_id=212820490]
+debug = true
+
+[node name="Shake" parent="SoundEffectManager" index="2" unique_id=1553656196 instance=ExtResource("17_b4sxt")]
 stream = SubResource("AudioStreamRandomizer_b4sxt")
 
-[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=864650427 instance=ExtResource("17_b4sxt")]
+[node name="DeathSpecific" parent="SoundEffectManager" index="3" unique_id=864650427 instance=ExtResource("17_b4sxt")]
 stream = SubResource("AudioStreamRandomizer_3krlo")
+volume_db = 4.0
 
-[node name="Hurt" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=1840658554 instance=ExtResource("17_b4sxt")]
+[node name="Hurt" parent="SoundEffectManager" index="4" unique_id=1840658554 instance=ExtResource("17_b4sxt")]
 stream = SubResource("AudioStreamRandomizer_2urcv")
+volume_db = -12.0
+
+[node name="StompWindUp" parent="SoundEffectManager" index="5" unique_id=498760753 instance=ExtResource("17_b4sxt")]
+stream = SubResource("AudioStreamRandomizer_d7x07")
+
+[node name="StompImpact" parent="SoundEffectManager" index="6" unique_id=223835618 instance=ExtResource("17_b4sxt")]
+stream = SubResource("AudioStreamRandomizer_fanp4")
 
 [node name="hitboxBase" parent="." index="7" unique_id=1235312899 instance=ExtResource("8_f80sp")]
 collision_layer = 32
@@ -421,4 +462,5 @@ debug_color = Color(0.911452, 0.08323508, 0.69264156, 0.41960785)
 [connection signal="entered" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator" method="set_visible" binds= [true]]
 [connection signal="exited" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator" method="set_visible" binds= [false]]
 [connection signal="play_sound" from="Visuals/tortoise" to="SoundEffectManager" method="play_sound"]
+[connection signal="stop_sound" from="Visuals/tortoise" to="SoundEffectManager" method="stop_sound"]
 [connection signal="visibility_changed" from="Visuals/CircularTargetIndicator" to="Visuals/CircularTargetIndicator/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
