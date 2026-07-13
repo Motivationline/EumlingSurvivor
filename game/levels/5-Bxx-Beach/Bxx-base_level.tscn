@@ -306,6 +306,12 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 1.51
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c8p5i"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2s71f"]
+noise = SubResource("FastNoiseLite_c8p5i")
+seamless = true
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbp8f"]
 size = Vector3(1.9667969, 1.8048096, 1)
 
@@ -340,13 +346,6 @@ size = Vector2(30, 30)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvf3w"]
 render_priority = -100
 albedo_color = Color(0, 0.2750001, 0.5, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_c8p5i"]
-frequency = 0.0021
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2s71f"]
-noise = SubResource("FastNoiseLite_c8p5i")
-seamless = true
 
 [node name="Level" type="Node3D" unique_id=1268816340 node_paths=PackedStringArray("player_spawn", "goal_area", "portal_positions") groups=["Level"]]
 script = ExtResource("1_nf22f")
@@ -413,9 +412,11 @@ directional_shadow_split_1 = 0.013
 script = ExtResource("8_xepbt")
 metadata/_custom_type_script = "uid://b12g0nyew0m0i"
 
-[node name="WorldWind" type="Node3D" parent="Environment" unique_id=1550408015]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+[node name="WorldWind" type="Node3D" parent="Environment" unique_id=1268440061]
+transform = Transform3D(-0.77484524, 0, 0.632151, 0, 1, 0, -0.632151, 0, -0.77484524, 0, 9.424431, 0)
 script = ExtResource("9_yuro1")
+wind_noise = SubResource("NoiseTexture2D_2s71f")
+wind_strength = 0.35
 metadata/_custom_type_script = "uid://do4ujdcqq0nii"
 
 [node name="islands" type="Node3D" parent="Environment" unique_id=1173818599]
@@ -597,12 +598,6 @@ transform = Transform3D(-3.074911, -0.9021384, 5.029722, 2.0039845, 5.187002, 2.
 
 [node name="rock_v29" parent="Env/rocks" unique_id=428320959 instance=ExtResource("14_646ns")]
 transform = Transform3D(-5.616777, 1.87241, 0.7161938, 2.0039845, 5.187002, 2.1554801, 0.05383134, 2.2707124, -5.514346, -3.8850055, -1.3073857, -6.5764437)
-
-[node name="WorldWind" type="Node3D" parent="." unique_id=1268440061]
-transform = Transform3D(-0.77484524, 0, 0.632151, 0, 1, 0, -0.632151, 0, -0.77484524, 0, 3.1637135, 0)
-script = ExtResource("9_yuro1")
-wind_noise = SubResource("NoiseTexture2D_2s71f")
-metadata/_custom_type_script = "uid://do4ujdcqq0nii"
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1274813267]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
