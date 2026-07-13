@@ -249,8 +249,9 @@ disable = [NodePath("../../../hitboxBase")]
 next_state = NodePath("../SpawnEntitiesState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/OnDamage" index="5" unique_id=1242062148]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/OnDamage" index="5" unique_id=1242062148 node_paths=PackedStringArray("next_state")]
 script = ExtResource("9_82dyp")
+next_state = NodePath("../TriggerSoundDeflate")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="spawnerMain" type="Node3D" parent="StateMachine/OnDamage/SpawnEntitiesState" index="0" unique_id=484682867]
