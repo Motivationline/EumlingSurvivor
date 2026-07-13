@@ -1,6 +1,8 @@
 shader_type spatial;
 render_mode blend_mix, depth_prepass_alpha;
 
+#include "res://game/shared/wind/wind_global_uniforms.gdshaderinc"
+
 uniform bool billboard = false;
 
 uniform sampler2D shape_texture;
@@ -14,7 +16,7 @@ uniform float random_variation : hint_range(0.0, 1.0, 0.001) = 0.002;
 
 group_uniforms Wind;
 uniform sampler2D wind_texture;
-uniform vec2 wind_velocity;
+uniform float wind_power;
 
 group_uniforms Transparency;
 uniform float alpha_cut_start : hint_range(0.0, 1.0, 0.05) = 0.1;
@@ -40,18 +42,19 @@ float randomf(int index, int seed){
 	return value;
 }
 
-float wind_noise(){
-	float value = texture(wind_texture, (world_pos.xz*0.03) - (vec2(TIME * 0.01) * wind_velocity)).r;
+float sample_wind_noise(vec2 wind_velocity){
+	float value = texture(wind_texture, (world_pos.xz*0.03) - (vec2(TIME * 0.01) *  wind_velocity)).r;
 	return value;
 }
 
 vec3 wind(vec2 uv){
-	float wind_noise = wind_noise();
+	vec2 wind_velocity = normalize(wind_direction).xz * wind_power;
+	float wind_noise_value = sample_wind_noise(wind_velocity);
 	float wind_affect = pow(1.0 - uv.y, 2.0);
 	vec3 value = vec3(
-		wind_noise * (wind_velocity.x),
+		wind_noise_value * (wind_velocity.x),
 		0.0,
-		wind_noise * (wind_velocity.y)) * 0.25;
+		wind_noise_value * (wind_velocity.y)) * 0.25;
 	value *= wind_affect;
 	return value;
 }

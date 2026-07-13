@@ -14,8 +14,6 @@ func _init() -> void:
 func _redraw(gizmo: EditorNode3DGizmo) -> void:
 	gizmo.clear()
 
-	var world_wind: WorldWind = gizmo.get_node_3d()
-
 	var lines = PackedVector3Array()
 
 	lines.push_back(Vector3(0, 0, 0))
@@ -23,12 +21,6 @@ func _redraw(gizmo: EditorNode3DGizmo) -> void:
 	var shaft_end: Vector3 = Vector3.FORWARD * ARROW_LENGTH
 	lines.push_back(shaft_end)
 
-	#var up_hint: Vector3 = Vector3.UP
-	#if abs(direction.dot(up_hint)) > 0.95:
-		#up_hint = Vector3.RIGHT
-#
-	#var right: Vector3 = direction.cross(up_hint).normalized()
-	#var up: Vector3 = right.cross(direction).normalized()
 	var head_base: Vector3 = shaft_end - (Vector3.FORWARD * ARROW_HEAD_LENGTH)
 
 	lines.push_back(shaft_end)
