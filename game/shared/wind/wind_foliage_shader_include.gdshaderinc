@@ -1,18 +1,19 @@
-global uniform sampler2D wind_noise;
-global uniform float wind_noise_scale;
-global uniform float wind_speed;
-global uniform float wind_strength; // between 0 and 1, controls how much the wind affects the foliage
-global uniform vec3 wind_direction;
+#include "wind_global_uniforms.gdshaderinc"
 
 group_uniforms wind;
+/** How much the plant is influenced by the wind. */
+uniform float wind_influence = 1.0; 
+/** Distance where the plant begins to be influenced by the wind. */
 uniform float wind_influence_start : hint_range(0.0, 1.0, 0.01) = 0.01;
+/** Distance where the plant reaches maximum wind influence. */
 uniform float wind_influence_end : hint_range(0.0, 2.0, 0.01) = 1.0;
-uniform float stiffness : hint_range(0.0, 1.0, 0.01) = 0.0; // controls the maximum displacement of vertices, 0 = max displacment is the root mean square of the aabb size of the mesh (in local space), 1 = no displacement
 group_uniforms;
 
 group_uniforms mesh;
-uniform vec3 aabb_size; // aabb size of the mesh in local space
-uniform float bounding_radius; // aabb bounding radius of the mesh centered at origin in local space
+/** The aabb size of the mesh. */
+uniform vec3 mesh_aabb_size;
+/** The origin-centered bounding radius of the mesh. */
+uniform float mesh_bounding_radius;
 group_uniforms;
 
 float inverseLerp(float a, float b, float v) {
@@ -24,25 +25,22 @@ float rootMeanSquare(vec3 v) {
 }
 
 void vertex() {
-	vec3 wind_direction_normalized = normalize(wind_direction);
+	vec3 direction_normalized = normalize(wind_direction);
 
-	vec2 wind_noise_offset = (NODE_POSITION_WORLD.xz - TIME * wind_speed * wind_direction_normalized.xz) / wind_noise_scale;
-	float noise = texture(wind_noise, wind_noise_offset).r;
+	vec2 noise_uv = (NODE_POSITION_WORLD.xz - TIME * wind_speed * direction_normalized.xz) * wind_frequency;
+	float noise = texture(wind_noise, noise_uv).r;
     
-	vec3 world_aabb_size = aabb_size * vec3(length(MODEL_MATRIX[0]), length(MODEL_MATRIX[1]), length(MODEL_MATRIX[2]));
-	float max_displacement = rootMeanSquare(world_aabb_size); // maximum displacement based on the aabb size of the mesh
-	// float max_displacement = bounding_radius * length(MODEL_MATRIX[0]); // assuming uniform scaling
+	vec3 world_aabb_size = mesh_aabb_size * vec3(length(MODEL_MATRIX[0]), length(MODEL_MATRIX[1]), length(MODEL_MATRIX[2]));
+	float foliage_size = rootMeanSquare(world_aabb_size); // maximum displacement based on the aabb size of the mesh
+	// float foliage_size = mesh_bounding_radius * length(MODEL_MATRIX[0]); // assuming uniform scaling
 
-	float displacement = noise * wind_strength * max_displacement;
-	float normalized_distance = length(VERTEX) / bounding_radius;
-    float distance_factor = inverseLerp(wind_influence_start, wind_influence_end, normalized_distance);
+	float distance_normalized = length(VERTEX) / mesh_bounding_radius;
+    float distance_factor = inverseLerp(wind_influence_start, wind_influence_end, distance_normalized);
 	
-	float resistance_factor = 1.0 - stiffness;
-
-	displacement = displacement * distance_factor * resistance_factor;
+	float displacement = noise * wind_strength * wind_influence * distance_factor * foliage_size;
 	
 	mat3 inv_model = inverse(mat3(MODEL_MATRIX));
-	vec3 direction = inv_model * wind_direction_normalized;
+	vec3 direction = inv_model * direction_normalized;
 	
     VERTEX.x += direction.x * displacement;
     VERTEX.z += direction.z * displacement;

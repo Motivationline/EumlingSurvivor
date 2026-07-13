@@ -95,5 +95,5 @@ func refresh_shader_material_properties(shader_material: ShaderMaterial, src_mat
 	shader_material.set_shader_parameter("metallic", metallic)
 	shader_material.set_shader_parameter("specular", specular)
 	shader_material.set_shader_parameter("roughness", roughness)
-	shader_material.set_shader_parameter("aabb_size", aabb_size)
-	shader_material.set_shader_parameter("bounding_radius", bounding_radius)
+	shader_material.set_shader_parameter("mesh_aabb_size", aabb_size)
+	shader_material.set_shader_parameter("mesh_bounding_radius", bounding_radius)

@@ -3,11 +3,12 @@
 class_name WorldWind extends Node3D
 
 const WIND_NOISE_UNIFORM: StringName = &"wind_noise"
-const WIND_NOISE_SCALE_UNIFORM: StringName = &"wind_noise_scale"
+const WIND_FREQUENCY_UNIFORM: StringName = &"wind_frequency"
 const WIND_SPEED_UNIFORM: StringName = &"wind_speed"
 const WIND_STRENGTH_UNIFORM: StringName = &"wind_strength"
 const WIND_DIRECTION_UNIFORM: StringName = &"wind_direction"
 
+## Noise texture defining the wind pattern.
 @export var wind_noise: Texture2D:
 	set(value):
 		wind_noise = value
@@ -16,16 +17,19 @@ const WIND_DIRECTION_UNIFORM: StringName = &"wind_direction"
 		else:
 			RenderingServer.global_shader_parameter_set_override(WIND_NOISE_UNIFORM, null)
 
-@export var wind_noise_scale: float = 20.0:
+## Spatial scale of the wind pattern, i.e. how quickly it varies over space.
+@export var wind_frequency: float = 0.05:
 	set(value):
-		wind_noise_scale = value
-		RenderingServer.global_shader_parameter_set_override(WIND_NOISE_SCALE_UNIFORM, wind_noise_scale)
+		wind_frequency = value
+		RenderingServer.global_shader_parameter_set_override(WIND_FREQUENCY_UNIFORM, wind_frequency)
 
+## Speed at which the wind pattern moves.
 @export_range(0.0, 3.0, 0.001) var wind_speed: float = 0.2:
 	set(value):
 		wind_speed = value
 		RenderingServer.global_shader_parameter_set_override(WIND_SPEED_UNIFORM, wind_speed)
 
+## Strength of the foliage displacement.
 @export_range(0.0, 1.0, 0.001) var wind_strength: float = 0.2:
 	set(value):
 		wind_strength = value
@@ -34,7 +38,7 @@ const WIND_DIRECTION_UNIFORM: StringName = &"wind_direction"
 func _ready() -> void:
 	set_notify_transform(true)
 	wind_noise = wind_noise # trigger setter to update shader uniform
-	wind_noise_scale = wind_noise_scale # trigger setter to update shader uniform
+	wind_frequency = wind_frequency # trigger setter to update shader uniform
 	wind_speed = wind_speed # trigger setter to update shader uniform
 	wind_strength = wind_strength # trigger setter to update shader uniform
 	set_wind_direction_uniform()
