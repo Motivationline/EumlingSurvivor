@@ -2,17 +2,15 @@
 
 [ext_resource type="Shader" uid="uid://bojk1vuqb7sj4" path="res://assets/models/2-flower_field/grass/grass_field/grass_field_shader.gdshader" id="1_6aae2"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_6aae2"]
-fractal_type = 2
-fractal_gain = 0.05
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wrrqd"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pmikj"]
-noise = SubResource("FastNoiseLite_6aae2")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qogei"]
+noise = SubResource("FastNoiseLite_wrrqd")
 seamless = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_grbe2"]
 fractal_type = 2
-fractal_gain = 0.05
+fractal_gain = 0.1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qyh7c"]
 noise = SubResource("FastNoiseLite_grbe2")
@@ -21,17 +19,17 @@ seamless = true
 [resource]
 render_priority = 0
 shader = ExtResource("1_6aae2")
-shader_parameter/backlight = Color(0.5, 0.5, 0.5, 1)
-shader_parameter/color_tip = Color(0, 0.23921569, 0, 1)
-shader_parameter/color_base = Color(0.081022345, 0.124861084, 0.0019904112, 1)
+shader_parameter/billboard = true
+shader_parameter/backlight = Color(1, 1, 1, 1)
+shader_parameter/color_tip = Color(0.16862746, 0.34901962, 0, 1)
+shader_parameter/color_base = Color(0.10983103, 0.24279407, 0, 1)
 shader_parameter/blade_bend_angle = 0.0
-shader_parameter/blade_width = 0.555
-shader_parameter/variation_noise = SubResource("NoiseTexture2D_pmikj")
-shader_parameter/variation_noise_scale = 5.0
-shader_parameter/blade_size_min = 1.55
-shader_parameter/blade_size_max = 0.445
+shader_parameter/blade_width = 0.3
+shader_parameter/variation_noise = SubResource("NoiseTexture2D_qogei")
+shader_parameter/variation_frequency = 0.2
+shader_parameter/blade_size_min = 0.185
+shader_parameter/blade_size_max = 0.545
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_qyh7c")
-shader_parameter/wind_noise_scale = 0.1
-shader_parameter/wind_direction = Vector3(3, 3, 0)
-shader_parameter/wind_speed = 0.0770000036575
-shader_parameter/wind_bend_angle = 2.60000003874312
+shader_parameter/wind_frequency = 0.05
+shader_parameter/wind_speed = 1.0000000475
+shader_parameter/wind_bend_angle = 35.90000053495308

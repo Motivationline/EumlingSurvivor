@@ -6,6 +6,11 @@ const vec3 UP = vec3(0.0, 1.0, 0.0);
 const float MAX_BEND_ANGLE = 90.0;
 const float MAX_BEND_ANGLE_RAD = radians(MAX_BEND_ANGLE);
 
+//#include "res://game/shared/wind/wind_global_uniforms.gdshaderinc"
+global uniform vec3 wind_direction;
+
+uniform bool billboard = false;
+
 group_uniforms appearance;
 
 uniform vec3 backlight: source_color = vec3(0.5);
@@ -19,15 +24,15 @@ group_uniforms;
 
 group_uniforms variation;
 uniform sampler2D variation_noise;
-uniform float variation_noise_scale = 5.0;
+uniform float variation_frequency = 0.2;
 uniform float blade_size_min = 0.4;
 uniform float blade_size_max = 0.6;
 group_uniforms;
 
 group_uniforms wind;
 uniform sampler2D wind_noise;
-uniform float wind_noise_scale = 10.0;
-uniform vec3 wind_direction = vec3(1.0, 0.0, 0.0);
+uniform float wind_frequency = 0.1;
+//uniform vec3 wind_direction = vec3(1.0, 0.0, 0.0);
 uniform float wind_speed: hint_range(0, 2.0, 0.001) = 0.1;
 uniform float wind_bend_angle: hint_range(0, MAX_BEND_ANGLE, 0.1) = 35.0;
 group_uniforms;
@@ -52,7 +57,7 @@ void vertex() {
 	height_factor = VERTEX.y;
 	VERTEX.xz *= blade_width;
 
-	float patch_factor = texture(variation_noise, NODE_POSITION_WORLD.xz / variation_noise_scale).x;
+	float patch_factor = texture(variation_noise, NODE_POSITION_WORLD.xz * variation_frequency).x;
 	VERTEX *= mix(blade_size_min, blade_size_max, patch_factor);
 
 	COLOR = mix(color_base, color_tip, height_factor);
@@ -65,8 +70,22 @@ void vertex() {
 		vec3(0.0, c, s),
 		vec3(0.0, -s, c)
 	);
+	
+	mat3 model_matrix;
+	if(billboard){
+		mat4 billboard_matrix = mat4(
+				MAIN_CAM_INV_VIEW_MATRIX[0],
+				MAIN_CAM_INV_VIEW_MATRIX[1],
+				MAIN_CAM_INV_VIEW_MATRIX[2],
+				MODEL_MATRIX[3]);
+		MODELVIEW_MATRIX = VIEW_MATRIX * billboard_matrix;
+		model_matrix = mat3(billboard_matrix);
+	} else {
+		model_matrix = mat3(MODEL_MATRIX);
+	}
 
-	mat3 model_bend = mat3(MODEL_MATRIX) * forward_rot;
+	mat3 model_bend = model_matrix * forward_rot;
+
 	mat3 inv_model_bend = transpose(model_bend);
 
 	vec3 wind_forward = normalize(wind_direction);
@@ -78,17 +97,16 @@ void vertex() {
 	float angle = acos(alignment);
 	float tilt_factor = clamp(angle / MAX_BEND_ANGLE_RAD, 0.0, 1.0);
 
-	vec2 wind_uv = NODE_POSITION_WORLD.xz / wind_noise_scale;
-	wind_uv -= wind_forward.xz * TIME * wind_speed;
-	float wind_strength = texture(wind_noise, wind_uv).x;
+	vec2 wind_uv = (NODE_POSITION_WORLD.xz - TIME * wind_speed * wind_forward.xz) * wind_frequency;
+	float wind_amplitude = texture(wind_noise, wind_uv).x;
 
 	float wind_bend_angle_rad = radians(wind_bend_angle) * tilt_factor;
 	wind_right = inv_model_bend * wind_right;
 
-	mat3 wind_rot_right = mat3_from_axis_angle(wind_right, wind_bend_angle_rad * wind_strength);
+	mat3 wind_rot_right = mat3_from_axis_angle(wind_right, wind_bend_angle_rad * wind_amplitude);
 	mat3 bend_rot = forward_rot * wind_rot_right;
 
-	if (height_factor > 0.0)
+	if (height_factor > 0.001)
 		VERTEX = bend_rot * VERTEX;
 
 	NORMAL = bend_rot * NORMAL;
