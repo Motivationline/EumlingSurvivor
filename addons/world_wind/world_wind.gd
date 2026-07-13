@@ -52,7 +52,7 @@ func set_wind_direction_uniform() -> void:
 
 func get_wind_direction() -> Vector3:
 	var forward: Vector3 = -global_basis.z
-	if forward.length() > 0.00001:
+	if forward.length_squared() > 0.00001:
 		return forward.normalized()
 
 	return Vector3(1.0, 0.0, 0.0)
