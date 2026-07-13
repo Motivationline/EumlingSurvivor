@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="13_o5vot"]
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="13_pdbl0"]
 [ext_resource type="Script" uid="uid://d13s0cgbc5iq0" path="res://strategies/event/deactivate.gd" id="13_rnlhm"]
+[ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="15_rnlhm"]
 
 [sub_resource type="Resource" id="Resource_ax3or"]
 script = ExtResource("12_o5vot")
@@ -246,6 +247,9 @@ metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
 
 [node name="magma_bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("10_uat0f")]
 
+[node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1554862748 instance=ExtResource("15_rnlhm")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
 [node name="hitboxBase" parent="." index="7" unique_id=1403634002 instance=ExtResource("12_ax3or")]
 collision_layer = 32
 collision_mask = 8
@@ -267,3 +271,5 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=865370484]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2127836, 0)
 shape = SubResource("SphereShape3D_rnlhm")
+
+[editable path="Visuals/magma_bomberry"]

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b8pyr01ci80m4"]
+
+[ext_resource type="PackedScene" uid="uid://dqyhe73kt4b8c" path="res://game/enemies/5-beach-area/ninja_starfish_complex/ninja_starfish_complex_D0.tscn" id="1_t4hax"]
+[ext_resource type="Material" uid="uid://bgn1lj00e7ol7" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.res" id="2_hx07b"]
+[ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="3_6g73k"]
+
+[node name="ninja_starfish_complex" unique_id=1898691 instance=ExtResource("1_t4hax")]
+
+[node name="MoveRandomOnNavMeshState" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="3" unique_id=836245794]
+speed_override = 2.5
+speed_override_active = true
+
+[node name="MoveRandomOnNavMeshState2" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="5" unique_id=206147343]
+speed_override = 2.5
+speed_override_active = true
+
+[node name="MoveRandomOnNavMeshState3" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="7" unique_id=1417798447]
+speed_override = 2.5
+speed_override_active = true
+
+[node name="BreakAfterAttack" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="10" unique_id=1243693146]
+wait_time = 1.0
+
+[node name="starfish_model" parent="Visuals/ninja_starfish/Armature/Skeleton3D" parent_id_path=PackedInt32Array(725910630, 538509895) index="1" unique_id=1081757371]
+material_overlay = ExtResource("2_hx07b")
+
+[node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=1554862748 instance=ExtResource("3_6g73k")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[editable path="Visuals/ninja_starfish"]

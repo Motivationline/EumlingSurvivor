@@ -8,11 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cva8asb61h88s" path="res://assets/vfx/particle_pack/trace_05.png" id="6_g8uh7"]
 [ext_resource type="Texture2D" uid="uid://byv4tpivicj4n" path="res://assets/vfx/particle_pack/slash_01.png" id="7_5moj2"]
 [ext_resource type="Texture2D" uid="uid://w4m6e1qjb43g" path="res://assets/vfx/particle_pack/circle_05.png" id="8_g8uh7"]
+[ext_resource type="PackedScene" uid="uid://d3h1nvtvp5iwf" path="res://game/shared/target_indicators/directional_mesh/directional_target_indicator_mesh.tscn" id="9_c5ouh"]
 
 [sub_resource type="Curve" id="Curve_860yy"]
 _limits = [0.0, 6.0, 0.0, 1.0]
-_data = [Vector2(0, 6), 0.0, -0.15139665, 0, 0, Vector2(0.11458333, 6), 0.0, 0.0, 0, 0, Vector2(0.39930555, 0), 0.15010071, 0.15010071, 0, 0]
-point_count = 3
+_data = [Vector2(0.25, 0), 0.0, -0.15139665, 0, 0, Vector2(0.25, 6), 0.0, 0.0, 0, 0, Vector2(0.3827839, 6), 0.0, 0.0, 0, 0, Vector2(0.7, 0), 0.15010071, 0.15010071, 0, 0]
+point_count = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rbxo"]
 render_priority = 1
@@ -134,7 +135,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(0.5, -0.25, 0, 0.26666668, 0.003987491, 0.51739776, -0.46653485, 0.0021708745, 0.13333327, -0.00062042475, 0.48214775, -0.06666672, 0.0013760328, 0.16666663, -0.0022051334, 0.27226475, -0.100000024, 0.0020175576, 0.23333335, -0.004121542, 0.1398942, -0.100000024, 0.0013739765, 0.13333333, 0.0008623749, 0.05, -0.0333333, 0.043690037, 0, 0),
-"times": PackedFloat32Array(0, 0.46666667, 0.93333334, 1.3333334, 1.7, 2)
+"times": PackedFloat32Array(0.26666668, 0.6666667, 1.0333333, 1.3333334, 1.7, 2)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -145,7 +146,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.13333336, 0, 0.11666666, 0, 0.24782404, -0.1406179, -0.0004259646, 0.1927154, 0.0010649264, -0.19290753, -0.17395127, 0.0004927516, 0.1927154, 0.0009897202, 0.2563694, -0.24061799, -0.0025108159, 0.1927154, 0.0004709661, 0, -0.040617943, 0.030721916, 0, 0),
-"times": PackedFloat32Array(0, 0.46666667, 0.93333334, 1.3333334, 1.7, 2)
+"times": PackedFloat32Array(0.26666668, 0.6666667, 1.0333333, 1.3333334, 1.7, 2)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -154,9 +155,9 @@ tracks/2/path = NodePath("Visuals:rotation:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(2, 0, 0, 0, 2, 2),
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 2, 2),
 "points": PackedFloat32Array(0.00065004826, 0, 0, 0.2666667, 0, 0.07948657, -0.26643756, -0.0021977616, 0.16666657, 0.0013747811, -0.32698318, -0.1080328, -0.00022414618, 0.12531126, 0.00025999546, 0.3177414, -0.1302675, 0.0003900826, 0.11111064, -0.0003327179, -0.30788937, -0.11110918, -0.00066883874, 0.11095321, 0.00066789985, 0.006793478, -0.025966167, -0.05919337, 0, 0),
-"times": PackedFloat32Array(0, 0.46666667, 0.93333334, 1.3333334, 1.7, 2)
+"times": PackedFloat32Array(0.26666668, 0.6666667, 1.0333333, 1.3333334, 1.7, 2)
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -165,7 +166,7 @@ tracks/3/path = NodePath("CollisionShape3D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.033333335, 1.3333334),
+"times": PackedFloat32Array(0.26666668, 1.3333334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -177,7 +178,7 @@ tracks/4/path = NodePath("Visuals/mosntera_projectile/trail:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.033333335),
+"times": PackedFloat32Array(0.26666668),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -189,7 +190,7 @@ tracks/5/path = NodePath("Visuals/mosntera_projectile/slash:emitting")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.033333335, 2),
+"times": PackedFloat32Array(0.26666668, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -201,7 +202,7 @@ tracks/6/path = NodePath("Visuals/mosntera_projectile/leaves:emitting")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.16666667),
+"times": PackedFloat32Array(0.26666668),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -298,6 +299,347 @@ _data = {
 }
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g8uh7"]
+
+[sub_resource type="Animation" id="Animation_hxdop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/extent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/pulse")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:instance_shader_parameters/far")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/extent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/extent")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/pulse")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/far")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/far")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/pulse")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/extent")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/far")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/pulse")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_au8h2"]
+resource_name = "indicator5"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/extent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.3, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/far")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.3, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:instance_shader_parameters/pulse")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_jcuqe"]
+resource_name = "indicator_extend"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/extent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/pulse")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.56666666, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8550000406125]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:instance_shader_parameters/far")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/extent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/extent")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/pulse")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.56666666, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8550000406125]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/far")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.93233323),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/pulse")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.56666666, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8550000406125]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/far")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.93233323),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/extent")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/pulse")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.56666666, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8550000406125]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/far")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.93233323),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xd2n7"]
+_data = {
+&"RESET": SubResource("Animation_hxdop"),
+&"indicator5": SubResource("Animation_au8h2"),
+&"indicator_extend": SubResource("Animation_jcuqe")
+}
 
 [node name="Projectile" unique_id=1490739829 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_end_of_life") instance=ExtResource("1_ohwqb")]
 collision_mask = 1793
@@ -423,3 +765,18 @@ modulate = Color(0, 0, 0, 0.5019608)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="7" unique_id=1973379640]
 visible = false
 mesh = SubResource("PlaneMesh_g8uh7")
+
+[node name="Indicator" type="Node3D" parent="." index="8" unique_id=1514120197]
+
+[node name="DirectionalTargetIndicatorMesh" parent="Indicator" index="0" unique_id=2087304134 instance=ExtResource("9_c5ouh")]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, -1.5)
+instance_shader_parameters/color = Color(0.9843137, 0.13725491, 0, 0.8)
+instance_shader_parameters/extent = 0.0
+instance_shader_parameters/far = 0.0
+instance_shader_parameters/pulse = 0.0
+instance_shader_parameters/pulse_color = Color(0.9843137, 0.13725491, 0, 0.8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Indicator" index="1" unique_id=1233603894]
+root_node = NodePath("../DirectionalTargetIndicatorMesh")
+libraries/ = SubResource("AnimationLibrary_xd2n7")
+autoplay = &"indicator5"

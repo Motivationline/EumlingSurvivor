@@ -33,14 +33,14 @@ gradient = SubResource("Gradient_vkxpk")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_url60"]
 render_priority = 0
 shader = ExtResource("2_lvjto")
-shader_parameter/liquid_height = 0.0
+shader_parameter/liquid_height = -0.488
 shader_parameter/liquid_surface_color = Color(0.8693332, 0.44, 1, 1)
 shader_parameter/liquid_rim_gradient = SubResource("GradientTexture1D_djlvw")
 shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(0, 0)
+shader_parameter/wobble = Vector2(-0.0058040433, -0.019538624)
 
 [sub_resource type="SphereMesh" id="SphereMesh_vkxpk"]
 radius = 0.6
@@ -164,6 +164,7 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_h430l"]
+graph_offset = Vector2(-338.1063, -115.98795)
 nodes/output/position = Vector2(1200, 80)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_s05r0")
 nodes/Animation/position = Vector2(-280, 100)
@@ -190,7 +191,7 @@ nodes/Bomba/position = Vector2(380, 380)
 node_connections = [&"output", 0, &"OneShot", &"Suck", 0, &"Animation", &"Suck", 1, &"Animation 2", &"Transition", 0, &"Boom", &"Transition", 1, &"Animation 5", &"OneShot", 0, &"Transition", &"OneShot", 1, &"Animation 3", &"hit", 0, &"Suck", &"hit", 1, &"Animation 4", &"Boom", 0, &"hit", &"Boom", 1, &"Bomba"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tuq3u"]
-size = Vector3(1.127523, 2.1611328, 1.2962757)
+size = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gngh"]
 transparency = 1
@@ -245,7 +246,7 @@ size = Vector2(1, 1)
 [node name="BossBugger" unique_id=1437495985 instance=ExtResource("1_kivi1")]
 script = SubResource("GDScript_djlvw")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(939325661) index="0" unique_id=160595167]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(189157085) index="0" unique_id=160595167]
 transform = Transform3D(1, -2.7236666e-15, 2.1060042e-07, -9.829095e-15, 0.9999997, 5.9604634e-08, -2.1060043e-07, -5.960462e-08, 0.99999994, 0, 2.0005624, -3.9715835e-22)
 bone_name = "DEF_FLUID"
 bone_idx = 2
@@ -256,12 +257,12 @@ layers = 2
 material_override = SubResource("ShaderMaterial_url60")
 mesh = SubResource("SphereMesh_vkxpk")
 script = ExtResource("3_vkxpk")
-liquid_height = 0.0
+liquid_height = -0.488
 
-[node name="Bugger" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(939325661) index="1" unique_id=1503693477]
+[node name="Bugger" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(189157085) index="1" unique_id=504410357]
 layers = 2
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(939325661) index="2" unique_id=525651175]
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(189157085) index="2" unique_id=525651175]
 transform = Transform3D(-0.07608353, -0.99710137, -3.2782555e-07, -8.940696e-08, -3.5762784e-07, 1, -0.99710137, 0.0760835, -1.1920929e-07, -0.24529767, 2.003276, -0.0015778542)
 bone_name = "DEF_FRONTWING.L"
 bone_idx = 19
@@ -274,7 +275,7 @@ animation = &"wings"
 autoplay = "wings"
 frame_progress = 0.57338506
 
-[node name="BoneAttachment3D3" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(939325661) index="3" unique_id=2129402415]
+[node name="BoneAttachment3D3" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(189157085) index="3" unique_id=2129402415]
 transform = Transform3D(-0.46685255, -0.88433516, -3.874302e-07, 2.9802322e-08, -4.7683716e-07, 1, -0.88433516, 0.46685258, 2.3841858e-07, -0.13967305, 1.9208276, 0.11912686)
 bone_name = "DEF_BACKWING.L"
 bone_idx = 22
@@ -287,7 +288,7 @@ animation = &"wings"
 autoplay = "wings"
 frame_progress = 0.73371595
 
-[node name="BoneAttachment3D4" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(939325661) index="4" unique_id=1002716327]
+[node name="BoneAttachment3D4" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(189157085) index="4" unique_id=1002716327]
 transform = Transform3D(-0.07608353, 0.99710137, 2.6822087e-07, 2.9802319e-08, -2.3841856e-07, 0.99999994, 0.9971013, 0.0760835, 0, 0.24529767, 2.003276, -0.0015778542)
 bone_name = "DEF_FRONTWING.R"
 bone_idx = 31
@@ -300,7 +301,7 @@ animation = &"wings"
 autoplay = "wings"
 frame_progress = 0.91042536
 
-[node name="BoneAttachment3D5" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(939325661) index="5" unique_id=831899753]
+[node name="BoneAttachment3D5" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(189157085) index="5" unique_id=831899753]
 transform = Transform3D(-0.46685255, 0.8843351, 3.5762787e-07, -5.9604645e-08, -4.7683716e-07, 1, 0.8843351, 0.46685258, 2.9802322e-07, 0.13967305, 1.9208276, 0.11912686)
 bone_name = "DEF_BACKWING.R"
 bone_idx = 34
@@ -313,7 +314,7 @@ animation = &"wings"
 autoplay = "wings"
 frame_progress = 0.10922122
 
-[node name="hand_particles" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(939325661) index="6" unique_id=287273777]
+[node name="hand_particles" type="BoneAttachment3D" parent="Armature_001/Skeleton3D" parent_id_path=PackedInt32Array(189157085) index="6" unique_id=287273777]
 transform = Transform3D(0, -0.99867415, -0.05147755, 0, -0.05147755, 0.99867415, -1, 0, 0, -0.3914069, 1.5629306, 0.08412939)
 bone_name = "DEF_HANDTOP"
 bone_idx = 29
@@ -366,13 +367,11 @@ attached_to = 6
 can_hit = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1905568893]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.246, 1.2, 0.922)
 shape = SubResource("BoxShape3D_tuq3u")
-disabled = true
 debug_color = Color(13.1910305, 0, 0, 1)
 
 [node name="slash" type="MeshInstance3D" parent="." index="4" unique_id=851717288]
-transform = Transform3D(0.9994167, 0, -1.7034645, 0, 1.975, 0, 1.7034645, 0, 0.9994167, 0, 1.033, -0.1)
+transform = Transform3D(1.975, 0, 0, 0, 1.975, 0, 0, 0, 1.975, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_3gngh")
 mesh = SubResource("PlaneMesh_57qmd")
 
@@ -397,7 +396,7 @@ scale_amount_curve = SubResource("Curve_nsj6h")
 color_ramp = SubResource("Gradient_j6h5s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="shoot_particle" index="1" unique_id=512699989]
-transform = Transform3D(1.4142135, -1.4142135, -1.6188436e-07, -1.3093787, -1.3093787, 0.7556816, -0.53434765, -0.5343474, -1.8517412, 0, 1.4025986, -0.8685752)
+transform = Transform3D(-1, -2.1365826e-08, 1.3981759e-07, 3.301055e-08, 0.9259701, 0.37759668, -1.375346e-07, 0.37759668, -0.9259701, 0, 1.4025986, -0.8685752)
 material_override = SubResource("StandardMaterial3D_yf5fn")
 mesh = SubResource("QuadMesh_g4v7s")
 

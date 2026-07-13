@@ -10,14 +10,16 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_o4imh"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="8_3kwfh"]
 [ext_resource type="PackedScene" uid="uid://d2d31toherh53" path="res://game/enemies/6-volcano/magma_toad/projectile/magma_ball.tscn" id="9_dafou"]
-[ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_r7buu"]
+[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_r7buu"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="10_dgvcv"]
 [ext_resource type="PackedScene" uid="uid://sp2ju6tpkgag" path="res://game/aoes/magma_toad_complex_aoe/magma_toad_complex_aoe.tscn" id="11_6w0aa"]
 [ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="12_ons1q"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="13_32ehm"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="14_1fwax"]
+[ext_resource type="Material" uid="uid://bgn1lj00e7ol7" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.res" id="15_3ntgq"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="15_rg0m5"]
 [ext_resource type="AudioStream" uid="uid://dhj41c6f3q7xe" path="res://assets/characters/enemies/toad/sounds/death_1.wav" id="16_5yy20"]
+[ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="16_e60ta"]
 [ext_resource type="AudioStream" uid="uid://6vdufmbcl37m" path="res://assets/characters/enemies/toad/sounds/death_2.wav" id="17_3ntgq"]
 [ext_resource type="AudioStream" uid="uid://vlq3ry4emg84" path="res://assets/characters/enemies/toad/sounds/death_3.wav" id="18_e60ta"]
 [ext_resource type="AudioStream" uid="uid://ckp5qw3vlg43t" path="res://assets/characters/enemies/toad/sounds/death_4.wav" id="19_ium2c"]
@@ -246,6 +248,11 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("12_ons1q")]
 
+[node name="Toad_Mesh" parent="Visuals/Toad/Armature_TOAD/Skeleton3D" parent_id_path=PackedInt32Array(1388801067, 2034549238) index="0" unique_id=1321559621]
+material_overlay = ExtResource("15_3ntgq")
+
+[node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1554862748 instance=ExtResource("16_e60ta")]
+
 [node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("15_rg0m5")]
 stream = SubResource("AudioStreamRandomizer_pvs3w")
 volume_db = 0.0
@@ -278,3 +285,5 @@ shape = SubResource("SphereShape3D_5yy20")
 debug_color = Color(0.95026547, 0.13603836, 0.45342267, 0.41960785)
 
 [connection signal="play_sound" from="Visuals/Toad" to="SoundEffectManager" method="play_sound"]
+
+[editable path="Visuals/Toad"]

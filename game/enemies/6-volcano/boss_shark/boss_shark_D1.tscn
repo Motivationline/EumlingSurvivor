@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://deg1bloat3i7u"]
+
+[ext_resource type="PackedScene" uid="uid://buu1fct1h48qb" path="res://game/enemies/6-volcano/boss_shark/boss_shark_D0.tscn" id="1_buitt"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_3p18y"]
+
+[sub_resource type="Resource" id="Resource_i61op"]
+script = ExtResource("2_3p18y")
+attribute = "incoming_damage_multiplier"
+value = 0.4
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[node name="BossShark_D1" unique_id=1898691 instance=ExtResource("1_buitt")]
+health = 800.0
+
+[node name="AdjustAttributesEventStrategy" parent="StateMachine/Roam/StartDamageReduction" parent_id_path=PackedInt32Array(2092753318) index="0" unique_id=1253592898]
+changes = Array[ExtResource("2_3p18y")]([SubResource("Resource_i61op")])
+
+[node name="FollowPathState" parent="StateMachine/Roam" parent_id_path=PackedInt32Array(1527752898) index="3" unique_id=986101278]
+min_exit_time = 5.0
+speed_override = 3.0
+
+[node name="HitboxCHARGE" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1471176632]
+damage = 60.0
+
+[node name="HitboxDeathBelow" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=2126019899]
+damage = 120.0

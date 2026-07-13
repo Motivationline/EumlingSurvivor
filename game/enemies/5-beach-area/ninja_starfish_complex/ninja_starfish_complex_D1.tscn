@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://25a6po8hj6db"]
+
+[ext_resource type="PackedScene" uid="uid://dqyhe73kt4b8c" path="res://game/enemies/5-beach-area/ninja_starfish_complex/ninja_starfish_complex_D0.tscn" id="1_h2m15"]
+
+[node name="ninja_starfish_complex" unique_id=1898691 instance=ExtResource("1_h2m15")]
+
+[node name="MoveRandomOnNavMeshState" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="3" unique_id=836245794]
+max_distance = 0.2
+speed_override_active = true
+
+[node name="MoveRandomOnNavMeshState2" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="5" unique_id=206147343]
+speed_override_active = true
+
+[node name="MoveRandomOnNavMeshState3" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="7" unique_id=1417798447]
+speed_override_active = true
+
+[node name="BreakAfterAttack" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="10" unique_id=1243693146]
+wait_time = 2.0
