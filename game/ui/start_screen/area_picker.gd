@@ -28,10 +28,10 @@ static var areas = [
 		folder = "6-Vxx-Volcano",
 		type = Enum.EUMLING_TYPE.CONVENTIONAL,
 		levels = {
-			0: ["V01","V02","V06","V07","V13","V14","V15","V16","V18","V05","V20","V21"],
-			1: ["V01_D1","V02_D1","V06_D1","V07_D1","V08","V09","V11","V12","V13_D1","V14_D1","V17","V18_D1","V22","V23","V05_D1","V20_D1","V21_D1"],
-			2: ["V01_D2","V02_D2","V06_D2","V07_D2","V08_D2","V09_D2","V11_D2","V12_D2","V13_D2","V14_D2","V17_D2","V18_D2","V19","V22_D2","V23","V05_D2","V20_D2","V21_D2"],
-			3: ["V01_D3","V02_D3","V06_D3","V07_D3","V08_D3","V09_D3","V11_D3","V12_D3","V13_D3","V14_D3","V17_D3","V18_D3","V19","V22_D3","V05_D3","V20_D3","V21_D3"],
+			0: ["V01", "V02", "V06", "V07", "V13", "V14", "V15", "V16", "V18", "V05", "V20", "V21"],
+			1: ["V01_D1", "V02_D1", "V06_D1", "V07_D1", "V08", "V09", "V11", "V12", "V13_D1", "V14_D1", "V17", "V18_D1", "V22", "V23", "V05_D1", "V20_D1", "V21_D1"],
+			2: ["V01_D2", "V02_D2", "V06_D2", "V07_D2", "V08_D2", "V09_D2", "V11_D2", "V12_D2", "V13_D2", "V14_D2", "V17_D2", "V18_D2", "V19", "V22_D2", "V23", "V05_D2", "V20_D2", "V21_D2"],
+			3: ["V01_D3", "V02_D3", "V06_D3", "V07_D3", "V08_D3", "V09_D3", "V11_D3", "V12_D3", "V13_D3", "V14_D3", "V17_D3", "V18_D3", "V19", "V22_D3", "V05_D3", "V20_D3", "V21_D3"],
 		},
 		boss_levels = {
 			0: "VB01",
@@ -48,7 +48,7 @@ static var areas = [
 		levels = {
 			0: ["B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B09", "B10", "B12", "B13", "B15", "B16", "B17", "B19", "B20"],
 			1: ["B01_D1", "B02_D1", "B03_D1", "B04_D1", "B05_D1", "B06_D1", "B07_D1", "B08_D1", "B09_D1", "B10_D1", "B12_D1", "B13_D1", "B15_D1", "B16_D1", "B17_D1", "B18_D1", "B19_D1", "B20_D1"],
-			2: ["B01_D2", "B02_D2", "B03_D2", "B04_D2", "B05_D2", "B06_D2", "B07_D2", "B08_D2", "B09_D2", "B10_D2", "B12_D2", "B13_D2", "B15_D2", "B16_D2", "B17_D2", "B18_D2", "B19_D2", "B20_D2","B14"],
+			2: ["B01_D2", "B02_D2", "B03_D2", "B04_D2", "B05_D2", "B06_D2", "B07_D2", "B08_D2", "B09_D2", "B10_D2", "B12_D2", "B13_D2", "B15_D2", "B16_D2", "B17_D2", "B18_D2", "B19_D2", "B20_D2", "B14"],
 			3: ["B01_D3", "B02_D3", "B03_D3", "B04_D3", "B05_D3", "B06_D3", "B07_D3", "B08_D3", "B09_D3", "B10_D3", "B12_D3", "B13_D3", "B15_D3", "B16_D3", "B17_D3", "B18_D3", "B19_D3", "B20_D3"],
 		},
 		boss_levels = {
@@ -89,9 +89,9 @@ static func choose_area_levels(area) -> Array:
 	var level_names: Array = []
 	var difficulty: int = Data.game_data.difficulty
 	var amount_levels = difficulty + 3
-	var folder_name: String = "res://game/levels/"
+	var folder_name: String = "res://game/levels"
 	if area.folder:
-		folder_name += area.folder + "/"
+		folder_name += "/" + area.folder
 	var levels = area.levels[difficulty].duplicate()
 	levels.shuffle()
 	for i in amount_levels:
@@ -99,6 +99,10 @@ static func choose_area_levels(area) -> Array:
 		var level = levels.pop_back()
 		if not level: break
 		var level_id: String = find_file(level + ".tscn", folder_name)
+		if level_id == "":
+			printerr("Couldn't find level %s in folder %s or its subfolders. Make sure it's there or remove it from the area picker list." % [level, folder_name])
+			i -= 1;
+			continue
 		level_names.append({id = level_id, difficulty = difficulty})
 	var boss_level = area.boss_levels[difficulty]
 	var boss_level_location = find_file(boss_level + ".tscn", folder_name)
