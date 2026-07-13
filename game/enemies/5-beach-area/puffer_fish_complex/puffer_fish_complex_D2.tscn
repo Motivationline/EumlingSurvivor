@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://dpr7tw8u8thjy"]
 
 [ext_resource type="PackedScene" uid="uid://coe5ikmtqyvx" path="res://game/enemies/5-beach-area/puffer_fish_complex/puffer_fish_complex_D0.tscn" id="1_jif07"]
+[ext_resource type="Material" uid="uid://bgn1lj00e7ol7" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.res" id="2_6lkdm"]
+[ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="3_78v1k"]
 
 [node name="puffer_fish_complex" unique_id=1898691 instance=ExtResource("1_jif07")]
 
 [node name="spawnerMain" parent="StateMachine/OnDamage/SpawnEntitiesState" parent_id_path=PackedInt32Array(1242062148) index="0" unique_id=484682867]
 amount_of_spawns = 8
+
+[node name="pufferfish_model" parent="Visuals/Pufferfish/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1528906013, 934039303) index="0" unique_id=686826668]
+material_overlay = ExtResource("2_6lkdm")
+
+[node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1554862748 instance=ExtResource("3_78v1k")]
+
+[editable path="Visuals/Pufferfish"]

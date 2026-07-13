@@ -146,11 +146,8 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine/onDamage" index="5" unique_id=1151101164 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_ptuo0")
-end_delay = 3.7
-next_state = NodePath("../ActivateHealthBar")
-animation_trigger = Dictionary[String, Variant]({
-"parameters/Transition/transition_request": "show"
-})
+end_delay = 0.2
+next_state = NodePath("../WaitForAnimation")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="spawnerSecondary" type="Node3D" parent="StateMachine/onDamage/SpawnEntitiesState" index="0" unique_id=598779029]
@@ -159,7 +156,16 @@ offset_distance = 0.5
 entity_to_spawn = ExtResource("9_1eoqp")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="ActivateHealthBar" type="Node" parent="StateMachine/onDamage" index="6" unique_id=336217341 node_paths=PackedStringArray("enable", "next_state")]
+[node name="WaitForAnimation" type="Node" parent="StateMachine/onDamage" index="6" unique_id=1387710849 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_uq2ah")
+wait_time = 3.7
+next_state = NodePath("../ActivateHealthBar")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "show"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="ActivateHealthBar" type="Node" parent="StateMachine/onDamage" index="7" unique_id=336217341 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("6_wgrn5")
 enable = [NodePath("../../../StatusVisuals3DEnemy")]
 next_state = NodePath("../../LookAtPlayerState")

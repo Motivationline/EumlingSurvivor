@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://lymk1cp5icg4"]
 
 [ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_cvp71"]
-[ext_resource type="PackedScene" uid="uid://dqyhe73kt4b8c" path="res://game/enemies/5-beach-area/ninja_starfish_complex/ninja_starfish_complex_D0.tscn" id="2_cvp71"]
+[ext_resource type="PackedScene" uid="uid://dtjifkmwg50fg" path="res://game/enemies/5-beach-area/squid_complex/squid_complex_test_version.tscn" id="2_cvp71"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_35njp"]
-[ext_resource type="PackedScene" uid="uid://25a6po8hj6db" path="res://game/enemies/5-beach-area/ninja_starfish_complex/ninja_starfish_complex_D1.tscn" id="3_srnvc"]
-[ext_resource type="PackedScene" uid="uid://b8pyr01ci80m4" path="res://game/enemies/5-beach-area/ninja_starfish_complex/ninja_starfish_complex_D2.tscn" id="4_ugi3q"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cvp71"]
 vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, 0.75, 1, -4.75, -0.5, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 0.75, 1, -5, -0.5, 1, -5, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, 4.75, -4.5, 1, -4.5)
@@ -18,14 +16,7 @@ edge_max_error = 0.25
 [node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
 navigation_mesh = SubResource("NavigationMesh_cvp71")
 
-[node name="ninja_starfish_complex" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_cvp71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0899742, 0, -2.5749786)
-
-[node name="ninja_starfish_complex2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1694443523 instance=ExtResource("3_srnvc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5524492, 0, -2.518797)
-
-[node name="ninja_starfish_complex3" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1716683917 instance=ExtResource("4_ugi3q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.717333, 0, -2.5749784)
+[node name="squid_complex_test" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("2_cvp71")]
 
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_35njp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
