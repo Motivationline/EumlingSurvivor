@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_3efgl"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_bjcf0"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="3_wmipm"]
-[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="4_xjhl8"]
+[ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="4_mntns"]
 [ext_resource type="PackedScene" uid="uid://dbb2lje457spb" path="res://assets/characters/enemies/ninja_starfish/ninja_starfish_prefab.tscn" id="5_7te5n"]
+[ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="5_62xe7"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="5_xjhl8"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="6_wmipm"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="7_xjhl8"]
@@ -100,61 +101,47 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("3_wmipm")
 enable = [NodePath("../../Visuals/hitboxAttack")]
 disable = [NodePath("../../Visuals/hitboxBase")]
-next_state = NodePath("../MoveRandomOnNavMeshState")
+next_state = NodePath("../LookAtPlayerState2")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="3" unique_id=836245794 node_paths=PackedStringArray("next_state")]
-script = ExtResource("4_xjhl8")
-wait_time = 0.0
-target = 1
-min_distance = 0.1
-max_distance = 0.2
-speed_override = 1.5
-next_state = NodePath("../LookAtPlayerState")
-metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
-
-[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="4" unique_id=1422856074 node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState2" type="Node" parent="StateMachine" index="3" unique_id=1447003198 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_xjhl8")
-wait_time = 0.0
-rotation_speed = 0.5
-next_state = NodePath("../MoveRandomOnNavMeshState2")
+wait_time = 0.2
+next_state = NodePath("../MultistateState")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="MoveRandomOnNavMeshState2" type="Node" parent="StateMachine" index="5" unique_id=206147343 node_paths=PackedStringArray("next_state")]
-script = ExtResource("4_xjhl8")
-wait_time = 0.0
-target = 1
-min_distance = 0.1
-max_distance = 0.2
-speed_override = 1.5
-next_state = NodePath("../LookAtPlayerState2")
-metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
-
-[node name="LookAtPlayerState2" type="Node" parent="StateMachine" index="6" unique_id=994758402 node_paths=PackedStringArray("next_state")]
-script = ExtResource("5_xjhl8")
-wait_time = 0.0
-rotation_speed = 0.5
-next_state = NodePath("../MoveRandomOnNavMeshState3")
-metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
-
-[node name="MoveRandomOnNavMeshState3" type="Node" parent="StateMachine" index="7" unique_id=1417798447 node_paths=PackedStringArray("next_state")]
-script = ExtResource("4_xjhl8")
-wait_time = 0.0
-target = 1
-min_distance = 0.1
-max_distance = 0.2
-speed_override = 1.5
+[node name="MultistateState" type="Node" parent="StateMachine" index="4" unique_id=3280317 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+script = ExtResource("4_mntns")
+states_to_execute = [NodePath("../MoveForwardState"), NodePath("../LookAtPlayerState")]
+states_that_need_to_finish = [NodePath("../MoveForwardState")]
 next_state = NodePath("../DisableAttackHitbox")
-metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
 
-[node name="DisableAttackHitbox" type="Node" parent="StateMachine" index="8" unique_id=679383708 node_paths=PackedStringArray("enable", "disable", "next_state")]
+[node name="MoveForwardState" type="Node" parent="StateMachine" index="5" unique_id=476224329 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_62xe7")
+max_distance = 3.0
+max_time = 3.0
+speed_override = 2.0
+speed_override_active = true
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://cjkeo3brnvde2"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="6" unique_id=1596057073 node_paths=PackedStringArray("next_state")]
+script = ExtResource("5_xjhl8")
+infinite = true
+wait_time = 0.0
+rotation_speed = 1.5
+next_state = NodePath("../DisableAttackHitbox")
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="DisableAttackHitbox" type="Node" parent="StateMachine" index="7" unique_id=679383708 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("3_wmipm")
 enable = [NodePath("../../Visuals/hitboxBase")]
 disable = [NodePath("../../Visuals/hitboxAttack")]
 next_state = NodePath("../end_spin")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="end_spin" type="Node" parent="StateMachine" index="9" unique_id=341316441 node_paths=PackedStringArray("next_state")]
+[node name="end_spin" type="Node" parent="StateMachine" index="8" unique_id=341316441 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_bjcf0")
 next_state = NodePath("../BreakAfterAttack")
 animation_trigger = Dictionary[String, Variant]({
@@ -162,7 +149,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="BreakAfterAttack" type="Node" parent="StateMachine" index="10" unique_id=1243693146 node_paths=PackedStringArray("next_state")]
+[node name="BreakAfterAttack" type="Node" parent="StateMachine" index="9" unique_id=1243693146 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_bjcf0")
 wait_time = 3.0
 next_state = NodePath("../WaitForAttackAnimation")

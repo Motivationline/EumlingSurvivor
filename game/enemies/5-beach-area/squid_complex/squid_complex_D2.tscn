@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bny37wxkpo0eq"]
+
+[ext_resource type="PackedScene" uid="uid://dtjifkmwg50fg" path="res://game/enemies/5-beach-area/squid_complex/squid_complex_D0.tscn" id="1_nkpm3"]
+[ext_resource type="Material" uid="uid://bgn1lj00e7ol7" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.res" id="2_v2vbu"]
+[ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="3_u8cd0"]
+
+[node name="squid_complex_test" unique_id=1898691 instance=ExtResource("1_nkpm3")]
+
+[node name="AttackCooldown" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="3" unique_id=1468352519]
+wait_time = 4.0
+
+[node name="SquidObject" parent="Visuals/squid/Squid_Armature/Skeleton3D" parent_id_path=PackedInt32Array(697439437, 989749496) index="0" unique_id=1033371588]
+material_overlay = ExtResource("2_v2vbu")
+
+[node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1554862748 instance=ExtResource("3_u8cd0")]
+
+[editable path="Visuals/squid"]
