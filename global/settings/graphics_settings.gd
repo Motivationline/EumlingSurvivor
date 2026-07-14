@@ -108,7 +108,11 @@ func load_settings():
 
 func has_unsaved_changes() -> bool:
 	for key in settings:
-		var saved_value = config.get_value(SECTION, str(key))
+		var string_key = str(key)
+		if not config.has_section_key(SECTION, string_key):
+			return true;
+
+		var saved_value = config.get_value(SECTION, string_key)
 		if saved_value != settings[key]:
 			return true
 
