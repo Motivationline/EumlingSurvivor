@@ -29,6 +29,9 @@ var consume_resource_on_enter: bool = false
 ## use the full path for the name, e.g. "parameters/conditions/attack" and make sure to use the correct type!
 @export var animation_trigger: Dictionary[String, Variant]
 
+## Can the state be interrupted by something? Set it up here.
+@export var interrupts: Array[Interrupt] = []
+
 var parent: StateMachinePoweredEntity
 var anim_player: AnimationTree
 
@@ -39,6 +42,8 @@ signal exited
 func setup(_parent: StateMachinePoweredEntity, _animation: AnimationTree) -> void:
 	parent = _parent
 	anim_player = _animation
+	for interrupt in interrupts:
+		if interrupt: interrupt.setup(_parent)
 
 ## Called every time the state is set to be the active state
 func enter() -> void:
@@ -46,6 +51,8 @@ func enter() -> void:
 		for key in animation_trigger.keys():
 			anim_player.set(key, animation_trigger.get(key))
 	if consume_resource_on_enter: consume_resource()
+	for interrupt in interrupts:
+		if interrupt: interrupt.start()
 	entered.emit()
 
 ## Called every time the state is no longer the active state
@@ -56,6 +63,13 @@ func exit() -> void:
 
 ## While active, this is called with the parents regular _process() function
 func process(_delta: float) -> State:
+	for interrupt in interrupts:
+		if interrupt:
+			if interrupt.evaluate():
+				if interrupt.state_to_go_to:
+					return interrupt.state_to_go_to
+				else:
+					return return_next()
 	return null
 
 ## While active, this is called with the parents regular _physics_process() function
