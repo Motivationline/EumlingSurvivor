@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://bqbua17664rax" path="res://assets/characters/enemies/cactushog/sounds/explode_5.wav" id="26_n5o17"]
 [ext_resource type="AudioStream" uid="uid://dou7ybv26pih5" path="res://assets/characters/enemies/cactushog/sounds/explode_6.wav" id="27_ianhs"]
 [ext_resource type="PackedScene" uid="uid://d3h1nvtvp5iwf" path="res://game/shared/target_indicators/directional_mesh/directional_target_indicator_mesh.tscn" id="29_hxdop"]
+[ext_resource type="Script" uid="uid://cmyw736wiad14" path="res://game/shared/transform/global_rotation_override.gd" id="29_jcuqe"]
 
 [sub_resource type="Curve" id="Curve_fg3k6"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -628,6 +629,7 @@ stream = SubResource("AudioStreamRandomizer_hujsl")
 volume_db = -2.0
 
 [node name="Indicator" type="Node3D" parent="." index="8" unique_id=573035606]
+script = ExtResource("29_jcuqe")
 
 [node name="DirectionalTargetIndicatorMesh" parent="Indicator" index="0" unique_id=2087304134 instance=ExtResource("29_hxdop")]
 transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, -1.5)
