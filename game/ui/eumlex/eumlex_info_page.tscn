@@ -151,11 +151,11 @@ theme_override_font_sizes/font_size = 60
 text = "Game Name"
 horizontal_alignment = 1
 vertical_alignment = 1
-clip_text = true
 script = ExtResource("10_5qkcb")
 max_font_size = 60
 
 [node name="Beruf" type="Label" parent="." unique_id=386384428]
+visible = false
 layout_mode = 0
 offset_left = 210.0
 offset_top = 130.0
@@ -172,15 +172,17 @@ script = ExtResource("10_5qkcb")
 max_font_size = 35
 
 [node name="BeschreibungText" type="Label" parent="." unique_id=1758753502]
+custom_minimum_size = Vector2(600, 150)
+custom_maximum_size = Vector2(600, 200)
 layout_mode = 0
 offset_left = 83.0
-offset_top = 196.0
+offset_top = 143.0
 offset_right = 683.0
-offset_bottom = 296.0
+offset_bottom = 343.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_d8n6m")
 theme_override_font_sizes/font_size = 20
-text = "Technische Produktdesigner/innen der Fachrichtung Maschinen- und Anlagenkonstruktion entwerfen und konstruieren Bauteile, Baugruppen oder Gesamtanlagen nach Kundenwunsch."
+vertical_alignment = 1
 autowrap_mode = 2
 clip_text = true
 
@@ -201,6 +203,7 @@ offset_bottom = 40.0
 texture = ExtResource("11_2f624")
 
 [node name="AutoSizeLabel" type="Label" parent="ExternalLink" unique_id=548164262]
+z_index = -1
 layout_mode = 0
 offset_left = 52.0
 offset_top = 10.0
@@ -216,9 +219,9 @@ metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=579591905]
 layout_mode = 0
-offset_left = 484.99997
-offset_top = 292.0
-offset_right = 654.0
-offset_bottom = 463.0
+offset_left = 538.00006
+offset_top = 345.0
+offset_right = 707.0001
+offset_bottom = 516.0
 scale = Vector2(0.7498504, 0.7498504)
 texture = ExtResource("20_b400u")
