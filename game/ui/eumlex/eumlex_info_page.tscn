@@ -147,7 +147,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("5_d8n6m")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "Game Name"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -164,7 +164,7 @@ offset_bottom = 182.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("5_d8n6m")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 35
 text = "Job Titel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -184,13 +184,35 @@ text = "Technische Produktdesigner/innen der Fachrichtung Maschinen- und Anlagen
 autowrap_mode = 2
 clip_text = true
 
-[node name="ExternalLink" type="TextureButton" parent="." unique_id=1603087190]
+[node name="ExternalLink" type="LinkButton" parent="." unique_id=865913191]
+unique_name_in_owner = true
+z_index = 1
 layout_mode = 0
 offset_left = 257.0
 offset_top = 712.0
 offset_right = 522.0
 offset_bottom = 791.0
-texture_normal = ExtResource("11_2f624")
+
+[node name="TextureRect" type="TextureRect" parent="ExternalLink" unique_id=718854059]
+z_index = -1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("11_2f624")
+
+[node name="AutoSizeLabel" type="Label" parent="ExternalLink" unique_id=548164262]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 10.0
+offset_right = 209.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 30
+text = "Mehr Infos"
+vertical_alignment = 1
+script = ExtResource("10_5qkcb")
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=579591905]
 layout_mode = 0
