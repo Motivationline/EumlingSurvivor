@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dnrlfw8cygdwx"]
 
 [ext_resource type="PackedScene" uid="uid://bju85d7ivy2tk" path="res://assets/characters/enemies/boss_shark/BossShark.glb" id="1_f8085"]
+[ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/manager/sound_requester.gd" id="2_dw5fl"]
 [ext_resource type="Texture2D" uid="uid://sniqi7s4m1r0" path="res://assets/vfx/particle_pack/flame_05.png" id="3_lgeeb"]
 [ext_resource type="Texture2D" uid="uid://ci4ryvrg020gj" path="res://assets/vfx/particle_pack/flame_06.png" id="4_2ajlj"]
 [ext_resource type="Texture2D" uid="uid://nrrqjw7rn6t5" path="res://assets/vfx/particle_pack/light_02.png" id="5_2ajlj"]
@@ -117,7 +118,6 @@ animation = &"fin_dive"
 play_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f8085"]
-graph_offset = Vector2(-662.2338, -182.78734)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_1oe4f")
 nodes/Animation/position = Vector2(-740, -180)
 nodes/Transition/node = SubResource("AnimationNodeTransition_gfhsp")
@@ -215,8 +215,9 @@ offsets = PackedFloat32Array(0, 0.6165803, 1)
 colors = PackedColorArray(1.7121319, 0.76296145, 0, 1, 1.753959, 0.4108141, 0, 1, 0.28, 0.19740002, 0.114800006, 0)
 
 [node name="BossShark" unique_id=600562415 instance=ExtResource("1_f8085")]
+script = ExtResource("2_dw5fl")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(828919820) index="0" unique_id=1624408568]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(225970840) index="0" unique_id=1624408568]
 transform = Transform3D(1, -4.5696025e-16, -1.7763568e-15, 1.7763568e-15, 1.6817792e-08, 1, -4.569602e-16, -1, 1.6817792e-08, 7.3285915e-16, -0.00031661987, -2.1370606)
 bone_name = "DEF_TAILFIN"
 bone_idx = 5
@@ -229,10 +230,10 @@ lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_tdynr")
 draw_pass_1 = SubResource("QuadMesh_mwvhb")
 
-[node name="shark_mesh" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(828919820) index="1" unique_id=685698569]
+[node name="shark_mesh" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(225970840) index="1" unique_id=116822943]
 skeleton = NodePath("..")
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=668941423]
+[node name="AnimationPlayer" parent="." index="1" unique_id=686731500]
 autoplay = &"fin_walk"
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=75202033]

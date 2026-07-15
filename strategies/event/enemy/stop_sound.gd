@@ -1,6 +1,6 @@
 @tool
 extends EventStrategy
-## Triggers a State from the State Machine
+##Stops given sounds
 class_name StopSoundEventStrategy
 
 @export var sound_manager: SoundEffectManager:
@@ -8,7 +8,6 @@ class_name StopSoundEventStrategy
 		sound_manager = value
 		update_configuration_warnings()
 @export var sound_to_stop: Array[String]
-@export var needs_to_be_persistent: bool = false
 
 func _ready() -> void:
 	pass

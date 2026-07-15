@@ -1,6 +1,6 @@
 @tool
 extends EventStrategy
-## Triggers a State from the State Machine
+## Plays given sounds.
 class_name PlaySoundEventStrategy
 
 @export var sound_manager: SoundEffectManager:
