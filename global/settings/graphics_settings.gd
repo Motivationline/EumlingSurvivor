@@ -103,8 +103,10 @@ func load_settings():
 	for key in settings:
 		var string_key = str(key)
 		if config.has_section_key(SECTION, string_key):
-			var value = config.get_value(SECTION, string_key)
-			set_setting(key, value)
+			set_setting(key, config.get_value(SECTION, string_key))
+	
+	if has_unsaved_changes(): # save newly added settings that where not yet in the config
+		save_settings()
 
 func has_unsaved_changes() -> bool:
 	for key in settings:
