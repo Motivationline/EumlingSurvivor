@@ -43,6 +43,7 @@ func _ready() -> void:
 
 var quest_timer: Timer
 var blocking_overlay: PackedScene
+var blocking_overlay_light: CanvasLayer
 
 var video: PackedScene
 var dialogue_overlay: PackedScene
@@ -79,6 +80,9 @@ func initialize() -> void:
 	pulse_animator = load("uid://dolfciwn4ppmn")
 
 	blocking_overlay = load("uid://d05r8yipgc3ya")
+	blocking_overlay_light = load("uid://d05r8yipgc3ya").instantiate()
+	blocking_overlay_light.get_child(0).color.a = 0
+	add_child(blocking_overlay_light)
 	quest_overlay = load("uid://dfijg5cgisnps").instantiate()
 	add_child(quest_overlay)
 	quest_overlay.hide()
@@ -113,7 +117,7 @@ func intro_eumlex():
 
 	var pressed = func():
 		eumlex_show()
-	block_input_except_for(btn, pressed)
+	darken_input_highlight_element(btn, pressed)
 	show_quest("Öffne den Eumlex")
 
 func eumlex_show():
@@ -135,11 +139,11 @@ func eumlex_click():
 		await get_tree().create_timer(1.5).timeout
 		await show_dialogue("eumlex_clicked", false)
 		eumlex_find()
-	block_input_except_for(button, pressed)
+	darken_input_highlight_element(button, pressed)
 
 func eumlex_find():
 	var page = eumlex_instance.find_child("EumlexInfoPageMissing");
-	var cleanup = block_input_except_for(page, func(): pass, false)
+	var cleanup = darken_input_highlight_element(page, func(): pass, false)
 	await get_tree().create_timer(3).timeout
 	cleanup.call()
 	await show_dialogue("eumlex_found", false)
@@ -153,7 +157,7 @@ func eumlex_close():
 		remove_child(eumlex_instance)
 		await show_dialogue("play_intro", false)
 		run_start()
-	block_input_except_for(button, pressed)
+	darken_input_highlight_element(button, pressed)
 
 
 func run_start():
@@ -170,7 +174,7 @@ func run_start():
 		await get_tree().create_timer(1).timeout
 		await show_dialogue("training_intro")
 		run_move()
-	block_input_except_for.call_deferred(button, pressed) # calling deferred for the button to be rendered correctly once first
+	darken_input_highlight_element.call_deferred(button, pressed) # calling deferred for the button to be rendered correctly once first
 	show_quest("Starte eine neue Runde")
 
 func run_move():
@@ -263,7 +267,7 @@ func return_to_main_menu():
 	add_child(main_menu_instance)
 	GlobalMusicManager.set_environment_noise(SongList.ENVNOISE.NOTHING)
 	var btn: TextureButton = main_menu_instance.find_child("EumlexButton")
-	block_input_except_for(btn, func():
+	darken_input_highlight_element(btn, func():
 		eumlex_show_again()
 	)
 	complete_quest()
@@ -276,9 +280,11 @@ func eumlex_show_again():
 	await get_tree().process_frame
 	var container: GridContainer = eumlex_instance.eumling_type_and_container.get(Enum.EUMLING_TYPE.REALISTIC)
 	var button = container.get_child(0)
-	block_input_except_for(button, func():
+	darken_input_highlight_element(button, func():
 		button.pressed.emit()
+		blocking_overlay_light.hide()
 		await eumlex_instance.eumling_revealed
+		blocking_overlay_light.show()
 		eumlex_completed()
 	)
 
@@ -300,7 +306,7 @@ func player_died():
 	run_move()
 
 
-func block_input_except_for(element: Control, callable: Callable, animate: bool = true) -> Callable:
+func darken_input_highlight_element(element: Control, callable: Callable, animate: bool = true) -> Callable:
 	var overlay = blocking_overlay.instantiate()
 	add_child(overlay)
 	var duplicated_element = element.duplicate()
