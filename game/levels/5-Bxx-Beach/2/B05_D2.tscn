@@ -1,15 +1,19 @@
 [gd_scene format=3 uid="uid://b8h3056cnruh5"]
 
 [ext_resource type="PackedScene" uid="uid://cmkygq5lxho1t" path="res://game/levels/5-Bxx-Beach/base/B05.tscn" id="1_37rbg"]
-[ext_resource type="PackedScene" uid="uid://bqp7c4em584k2" path="res://game/enemies/5-beach-area/puffer_fish/puffer_fish_enemy.tscn" id="2_niymi"]
-[ext_resource type="PackedScene" uid="uid://yki87lnkx75s" path="res://game/enemies/5-beach-area/ninja_starfish/ninja_starfish_enemy.tscn" id="3_kbfkg"]
+[ext_resource type="PackedScene" uid="uid://dpr7tw8u8thjy" path="res://game/enemies/5-beach-area/puffer_fish_complex/puffer_fish_complex_D2.tscn" id="2_cvat2"]
+[ext_resource type="PackedScene" uid="uid://25a6po8hj6db" path="res://game/enemies/5-beach-area/ninja_starfish_complex/ninja_starfish_complex_D1.tscn" id="3_2qmuw"]
+[ext_resource type="PackedScene" uid="uid://d4itjqa8fiwj1" path="res://game/enemies/5-beach-area/clam_turret_complex/clam_turret_complex_D1.tscn" id="4_y8ayj"]
 
 [node name="Level" unique_id=1268816340 instance=ExtResource("1_37rbg")]
 
-[node name="puffer_fish" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("2_niymi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01982832, 0, -3.580905)
+[node name="puffer_fish_complex" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("2_cvat2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42159653, 0, -0.2409125)
 
-[node name="NinjaStarfish2" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="2" unique_id=1777671033 instance=ExtResource("3_kbfkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3922265, 0, -3.4075832)
+[node name="ninja_starfish_complex" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=13273616 instance=ExtResource("3_2qmuw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.995132, 0, -0.3513307)
+
+[node name="clam_turret_complex_D0" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="2" unique_id=2089649002 instance=ExtResource("4_y8ayj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.314981, 0, -3.7441819)
 
 [editable path="ExitVisual"]

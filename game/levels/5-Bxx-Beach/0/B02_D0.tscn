@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://c1r3cjymkwvni"]
 
 [ext_resource type="PackedScene" uid="uid://d04uk2ptqxwd" path="res://game/levels/5-Bxx-Beach/base/B02.tscn" id="1_ll3ce"]
+[ext_resource type="PackedScene" uid="uid://dtjifkmwg50fg" path="res://game/enemies/5-beach-area/squid_complex/squid_complex_D0.tscn" id="2_i0m5k"]
 
 [node name="Level" unique_id=1268816340 instance=ExtResource("1_ll3ce")]
+
+[node name="squid_complex" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("2_i0m5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.44099307)
 
 [editable path="ExitVisual"]

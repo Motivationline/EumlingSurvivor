@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://dxade3fl825u3"]
 
 [ext_resource type="PackedScene" uid="uid://dl8eque14at06" path="res://game/levels/5-Bxx-Beach/base/B17.tscn" id="1_sub5v"]
-[ext_resource type="PackedScene" uid="uid://du3rk8ailumbh" path="res://game/enemies/5-beach-area/clam_turret/clam_turret_enemy.tscn" id="2_a8tu3"]
-[ext_resource type="PackedScene" uid="uid://yki87lnkx75s" path="res://game/enemies/5-beach-area/ninja_starfish/ninja_starfish_enemy.tscn" id="3_t5tl1"]
+[ext_resource type="PackedScene" uid="uid://b8pyr01ci80m4" path="res://game/enemies/5-beach-area/ninja_starfish_complex/ninja_starfish_complex_D2.tscn" id="2_i3cjf"]
 
 [node name="Level" unique_id=1268816340 instance=ExtResource("1_sub5v")]
 
-[node name="clam_turret" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=1898691 instance=ExtResource("2_a8tu3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5)
+[node name="ninja_starfish_complex" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("2_i3cjf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6153193, 0, 0)
 
-[node name="NinjaStarfish2" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="2" unique_id=314547621 instance=ExtResource("3_t5tl1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0)
+[node name="ninja_starfish_complex2" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=1415977797 instance=ExtResource("2_i3cjf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5271397, 0, 0)
+
+[node name="ninja_starfish_complex3" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="2" unique_id=1501636613 instance=ExtResource("2_i3cjf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22044468, 0, -3.5859258)
 
 [editable path="ExitVisual"]

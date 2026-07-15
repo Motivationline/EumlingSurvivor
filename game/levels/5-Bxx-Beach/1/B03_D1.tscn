@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://cfoqindkrqe74"]
 
 [ext_resource type="PackedScene" uid="uid://dcodjsuox4clr" path="res://game/levels/5-Bxx-Beach/base/B03.tscn" id="1_4v5ng"]
-[ext_resource type="PackedScene" uid="uid://cex68esqyxyua" path="res://game/enemies/5-beach-area/tentacle_slapper/tentacle_slapper_enemy.tscn" id="2_tiarw"]
+[ext_resource type="PackedScene" uid="uid://d4itjqa8fiwj1" path="res://game/enemies/5-beach-area/clam_turret_complex/clam_turret_complex_D1.tscn" id="2_70ysu"]
+[ext_resource type="PackedScene" uid="uid://i2bde5eniyx" path="res://game/enemies/5-beach-area/squid_complex/squid_complex_D1.tscn" id="3_fxm51"]
 
 [node name="Level" unique_id=1268816340 instance=ExtResource("1_4v5ng")]
 
-[node name="tentacle_slapper" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=1898691 instance=ExtResource("2_tiarw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+[node name="clam_turret_complex_D0" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("2_70ysu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.060228348, 0, -0.11041808)
+
+[node name="squid_complex_test" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=1270528498 instance=ExtResource("3_fxm51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.2322426)
 
 [editable path="ExitVisual"]
