@@ -14,3 +14,6 @@ func set_info(eumling: Eumling) -> void:
 	%Taglines/Tagline1.texture = tags.get(eumling.type)
 	%Taglines/Tagline2.texture = tags.get(eumling.type_secondary)
 	%Taglines/Tagline3.texture = tags.get(eumling.type_tertiary)
+	
+	%StampApprenticeship.visible = eumling.education == "Ausbildung"
+	%StampUniversity.visible = eumling.education == "Studium"

@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://be0ca3llwbdrf" path="res://assets/ui/Eumlex/TagBaseR.png" id="12_vptb8"]
 [ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="16_b400u"]
 [ext_resource type="Texture2D" uid="uid://ca4s6k3b885wn" path="res://assets/ui/Eumlex/ausbildung_stempel.png" id="20_b400u"]
+[ext_resource type="Texture2D" uid="uid://cyy0gdmxc6a36" path="res://assets/ui/Eumlex/studium_stempel.png" id="21_vptb8"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3u4jb"]
 viewport_path = NodePath("EumlingPreview/SubViewport")
@@ -217,7 +218,8 @@ vertical_alignment = 1
 script = ExtResource("10_5qkcb")
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=579591905]
+[node name="StampApprenticeship" type="TextureRect" parent="." unique_id=579591905]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 538.00006
 offset_top = 345.0
@@ -225,3 +227,13 @@ offset_right = 707.0001
 offset_bottom = 516.0
 scale = Vector2(0.7498504, 0.7498504)
 texture = ExtResource("20_b400u")
+
+[node name="StampUniversity" type="TextureRect" parent="." unique_id=286624613]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 538.00006
+offset_top = 345.0
+offset_right = 707.0001
+offset_bottom = 516.0
+scale = Vector2(0.7498504, 0.7498504)
+texture = ExtResource("21_vptb8")
