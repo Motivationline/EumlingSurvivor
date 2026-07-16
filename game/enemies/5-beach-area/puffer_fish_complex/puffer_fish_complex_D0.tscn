@@ -3,12 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_22b46"]
 [ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="2_i4gb2"]
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_jwsnu"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_mabmm"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="4_owfw2"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="5_mgxs6"]
 [ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="6_0wsrk"]
 [ext_resource type="PackedScene" uid="uid://b7i8simxasxfx" path="res://assets/characters/enemies/pufferfish/pufferfish_prefab.tscn" id="6_agfvd"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="6_dmvtj"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_dmvtj"]
+[ext_resource type="Script" uid="uid://3q8mspcqcwpf" path="res://state_machine/interrupts/conditions/in_range.gd" id="8_8adn0"]
 [ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="8_q5s5i"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_t1j6t"]
 [ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="8_y07py"]
@@ -39,6 +41,72 @@
 [ext_resource type="AudioStream" uid="uid://did7s0ctgvww" path="res://assets/characters/enemies/pufferfish/sounds/deflate_4.wav" id="34_8fplm"]
 [ext_resource type="AudioStream" uid="uid://88kksoddt838" path="res://assets/characters/enemies/pufferfish/sounds/deflate_5.wav" id="35_i1niy"]
 [ext_resource type="AudioStream" uid="uid://c1737vmrv34hg" path="res://assets/characters/enemies/pufferfish/sounds/deflate_6.wav" id="36_t4lm1"]
+[ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="41_6pew2"]
+[ext_resource type="Script" uid="uid://2eouphasjx1o" path="res://state_machine/interrupts/conditions/signal.gd" id="42_8adn0"]
+
+[sub_resource type="Resource" id="Resource_4pcr6"]
+script = ExtResource("9_ycknn")
+attribute = "health"
+value = 350.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_6pew2"]
+script = ExtResource("9_ycknn")
+attribute = "health"
+value = 1100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_8adn0"]
+script = ExtResource("9_ycknn")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_trsfq"]
+script = ExtResource("9_ycknn")
+attribute = "health"
+value = 725.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_glrw4"]
+script = ExtResource("3_mabmm")
+introduction = Array[ExtResource("9_ycknn")]([SubResource("Resource_8adn0")])
+easy = Array[ExtResource("9_ycknn")]([SubResource("Resource_4pcr6")])
+medium = Array[ExtResource("9_ycknn")]([SubResource("Resource_trsfq")])
+hard = Array[ExtResource("9_ycknn")]([SubResource("Resource_6pew2")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_mabmm"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_g45vs"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 60.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_8uu8e"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 20.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_1bk3l"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_wjg4u"]
+script = ExtResource("3_mabmm")
+introduction = Array[ExtResource("9_ycknn")]([SubResource("Resource_8uu8e")])
+easy = Array[ExtResource("9_ycknn")]([SubResource("Resource_mabmm")])
+medium = Array[ExtResource("9_ycknn")]([SubResource("Resource_1bk3l")])
+hard = Array[ExtResource("9_ycknn")]([SubResource("Resource_g45vs")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="Resource" id="Resource_y2utl"]
 script = ExtResource("12_y2utl")
@@ -87,21 +155,85 @@ stream_3/stream = ExtResource("34_8fplm")
 stream_4/stream = ExtResource("35_i1niy")
 stream_5/stream = ExtResource("36_t4lm1")
 
+[sub_resource type="Resource" id="Resource_34nh2"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 40.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_p8s2s"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 80.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_qcsaw"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 30.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_o4i1o"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 55.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_8g8rn"]
+script = ExtResource("3_mabmm")
+introduction = Array[ExtResource("9_ycknn")]([SubResource("Resource_qcsaw")])
+easy = Array[ExtResource("9_ycknn")]([SubResource("Resource_34nh2")])
+medium = Array[ExtResource("9_ycknn")]([SubResource("Resource_o4i1o")])
+hard = Array[ExtResource("9_ycknn")]([SubResource("Resource_p8s2s")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_t1j6t"]
 radius = 0.29099485
 
+[sub_resource type="Resource" id="Resource_40mw5"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ibqiw"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_8fplm"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 35.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_i1niy"]
+script = ExtResource("9_ycknn")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_jtmj5"]
+script = ExtResource("3_mabmm")
+introduction = Array[ExtResource("9_ycknn")]([SubResource("Resource_8fplm")])
+easy = Array[ExtResource("9_ycknn")]([SubResource("Resource_40mw5")])
+medium = Array[ExtResource("9_ycknn")]([SubResource("Resource_i1niy")])
+hard = Array[ExtResource("9_ycknn")]([SubResource("Resource_ibqiw")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_76vcu"]
-radius = 0.5085375
+radius = 0.5651545
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0wsrk"]
 radius = 0.3849951
 
-[node name="puffer_fish_complex" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hitboxes", "on_hurt") instance=ExtResource("1_22b46")]
+[node name="puffer_fish_complex" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hitboxes") instance=ExtResource("1_22b46")]
 health = 250.0
+difficulty_scaler = SubResource("Resource_glrw4")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 additional_hitboxes = [NodePath("hitboxAttack")]
-on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
 speed = 0.5
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -109,7 +241,6 @@ initial_state = NodePath("InitialWait")
 
 [node name="InitialWait" type="Node" parent="StateMachine" index="0" unique_id=946795536 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_owfw2")
-wait_time = 0.2
 next_state = NodePath("../DecideDistanceState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "idle"
@@ -129,7 +260,7 @@ metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
 [node name="RandomWalk" type="Node" parent="StateMachine" index="2" unique_id=1668121150]
 
-[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine/RandomWalk" index="0" unique_id=148627884 node_paths=PackedStringArray("next_state")]
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine/RandomWalk" index="0" unique_id=148627884 node_paths=PackedStringArray("next_state", "interrupts")]
 script = ExtResource("3_jwsnu")
 wait_time = 0.0
 max_distance = 1.5
@@ -137,11 +268,23 @@ next_state = NodePath("../../DecideDistanceState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
 })
+interrupts = [NodePath("../../OnDamage/InterruptOnHurt"), NodePath("InterruptDistance")]
 metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="InterruptDistance" type="Node" parent="StateMachine/RandomWalk/MoveRandomOnNavMeshState" index="0" unique_id=1245127493 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("41_6pew2")
+state_to_go_to = NodePath("../../../ChasePlayer/MoveTowardsEntityState")
+condition = NodePath("InRangeToPlayerInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="InRangeToPlayerInterruptCondition" type="Node" parent="StateMachine/RandomWalk/MoveRandomOnNavMeshState/InterruptDistance" index="0" unique_id=464271547]
+script = ExtResource("8_8adn0")
+distance = 3.0
+metadata/_custom_type_script = "uid://3q8mspcqcwpf"
 
 [node name="ChasePlayer" type="Node" parent="StateMachine" index="3" unique_id=1920938586]
 
-[node name="MoveTowardsEntityState" type="Node" parent="StateMachine/ChasePlayer" index="0" unique_id=530589196 node_paths=PackedStringArray("next_state")]
+[node name="MoveTowardsEntityState" type="Node" parent="StateMachine/ChasePlayer" index="0" unique_id=530589196 node_paths=PackedStringArray("next_state", "interrupts")]
 script = ExtResource("5_mgxs6")
 wait_time = 0.0
 stop_distance = 1.0
@@ -151,6 +294,7 @@ next_state = NodePath("../../Inflate/ReduceDamageWhileInlfated")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
 })
+interrupts = [NodePath("../../OnDamage/InterruptOnHurt")]
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
 [node name="Inflate" type="Node" parent="StateMachine" index="4" unique_id=1727306305]
@@ -256,6 +400,7 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="spawnerMain" type="Node3D" parent="StateMachine/OnDamage/SpawnEntitiesState" index="0" unique_id=484682867]
 script = ExtResource("10_0ett8")
+difficulty_scaler = SubResource("Resource_wjg4u")
 entity_to_spawn = ExtResource("11_qc8ak")
 amount_of_spawns = 4
 target_strategy = SubResource("Resource_y2utl")
@@ -289,6 +434,16 @@ script = ExtResource("6_0wsrk")
 events = [NodePath("../../../Eventlisteners/AdjustAttributesEventNormal")]
 next_state = NodePath("../../DecideDistanceState")
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="InterruptOnHurt" type="Node" parent="StateMachine/OnDamage" index="10" unique_id=1302639850 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("41_6pew2")
+state_to_go_to = NodePath("../ReduceDamage")
+condition = NodePath("SignalInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="SignalInterruptCondition" type="Node" parent="StateMachine/OnDamage/InterruptOnHurt" index="0" unique_id=1090405334]
+script = ExtResource("42_8adn0")
+metadata/_custom_type_script = "uid://2eouphasjx1o"
 
 [node name="PlaySoundInflate" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=185873983 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("14_att7n")
@@ -336,6 +491,7 @@ collision_mask = 8
 damage = 20.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_8g8rn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1983420904]
 shape = SubResource("SphereShape3D_t1j6t")
@@ -346,6 +502,7 @@ collision_mask = 8
 damage = 20.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_jtmj5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxAttack" index="0" unique_id=1189229308]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52435994, 0)
@@ -361,3 +518,5 @@ can_be_hit_by = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0050926954, 0, 0)
 shape = SubResource("SphereShape3D_0wsrk")
 debug_color = Color(0.9999998, 0.010455347, 0.05978582, 0.41960785)
+
+[connection signal="hurt" from="." to="StateMachine/OnDamage/InterruptOnHurt/SignalInterruptCondition" method="trigger_interrupt"]

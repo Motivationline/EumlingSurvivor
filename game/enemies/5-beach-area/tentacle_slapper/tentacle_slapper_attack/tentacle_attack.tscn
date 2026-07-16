@@ -2,8 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_vto4e"]
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="2_gnpyw"]
-[ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_5be5r"]
-[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="4_o4g8i"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="5_o4g8i"]
 [ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="5_vfhb7"]
 [ext_resource type="PackedScene" uid="uid://bfh0cfobkh20v" path="res://assets/characters/enemies/squid/squid_arm/squid_arm_prefab.tscn" id="6_5be5r"]
@@ -102,7 +100,7 @@ initial_state = NodePath("DisableHitbox")
 
 [node name="DisableHitbox" type="Node" parent="StateMachine" index="0" unique_id=1921158989 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("5_o4g8i")
-disable = [NodePath("../../Visuals/hitboxBase")]
+disable = [NodePath("../../Visuals/hitboxBase/CollisionShape3D")]
 next_state = NodePath("../TeleportToOnNavMeshState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -110,52 +108,13 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 script = ExtResource("2_gnpyw")
 wait_time = 0.0
 max_radius = 10.0
-next_state = NodePath("../LookAtPlayerState")
+next_state = NodePath("../KillSelfState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "show"
 })
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="2" unique_id=1340628182 node_paths=PackedStringArray("next_state")]
-script = ExtResource("3_5be5r")
-rotation_speed = 8.0
-next_state = NodePath("../WaitForTimeXState")
-metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
-
-[node name="WaitForTimeXState" type="Node" parent="StateMachine" index="3" unique_id=1316598777 node_paths=PackedStringArray("next_state")]
-script = ExtResource("4_o4g8i")
-wait_time = 0.2
-next_state = NodePath("../EnableHitbox")
-animation_trigger = Dictionary[String, Variant]({
-"parameters/Transition/transition_request": "slap"
-})
-metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="EnableHitbox" type="Node" parent="StateMachine" index="4" unique_id=834714894 node_paths=PackedStringArray("enable", "next_state")]
-script = ExtResource("5_o4g8i")
-enable = [NodePath("../../Visuals/hitboxBase")]
-next_state = NodePath("../WaitForAnimation")
-metadata/_custom_type_script = "uid://bwy4tebxadp1y"
-
-[node name="WaitForAnimation" type="Node" parent="StateMachine" index="5" unique_id=294796444 node_paths=PackedStringArray("next_state")]
-script = ExtResource("4_o4g8i")
-wait_time = 0.5
-next_state = NodePath("../DisableHitboxAgain")
-metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="DisableHitboxAgain" type="Node" parent="StateMachine" index="6" unique_id=1163834385 node_paths=PackedStringArray("disable", "next_state")]
-script = ExtResource("5_o4g8i")
-disable = [NodePath("../../Visuals/hitboxBase")]
-next_state = NodePath("../WaitForAnimationEnd")
-metadata/_custom_type_script = "uid://bwy4tebxadp1y"
-
-[node name="WaitForAnimationEnd" type="Node" parent="StateMachine" index="7" unique_id=789656957 node_paths=PackedStringArray("next_state")]
-script = ExtResource("4_o4g8i")
-wait_time = 0.5
-next_state = NodePath("../KillSelfState")
-metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="KillSelfState" type="Node" parent="StateMachine" index="8" unique_id=2140091015]
+[node name="KillSelfState" type="Node" parent="StateMachine" index="2" unique_id=2140091015]
 script = ExtResource("5_vfhb7")
 metadata/_custom_type_script = "uid://dj632w22te1th"
 
@@ -177,7 +136,7 @@ can_hit = 4
 difficulty_scaler = SubResource("Resource_eqoe5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/hitboxBase" index="0" unique_id=1481071548]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.09161654, -0.66845703)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.31147638, -0.66845703)
 shape = SubResource("CapsuleShape3D_t3syi")
 
 [node name="Appear" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=873902143 instance=ExtResource("11_xid0n")]

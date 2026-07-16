@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_3efgl"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_bjcf0"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_xxsie"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_177fm"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="3_wmipm"]
 [ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="4_mntns"]
 [ext_resource type="PackedScene" uid="uid://dbb2lje457spb" path="res://assets/characters/enemies/ninja_starfish/ninja_starfish_prefab.tscn" id="5_7te5n"]
@@ -30,6 +32,70 @@
 [ext_resource type="AudioStream" uid="uid://bxcp3b54365r3" path="res://assets/characters/enemies/ninja_starfish/sounds/woosh_5.wav" id="27_uclwh"]
 [ext_resource type="AudioStream" uid="uid://crweofrtr0jw6" path="res://assets/characters/enemies/ninja_starfish/sounds/woosh_6.wav" id="28_4u6kx"]
 [ext_resource type="AudioStream" uid="uid://bgokngm6xudkt" path="res://assets/characters/enemies/ninja_starfish/sounds/spin_end.wav" id="29_k7gj4"]
+
+[sub_resource type="Resource" id="Resource_lidwo"]
+script = ExtResource("2_xxsie")
+attribute = "health"
+value = 300.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_n1rvc"]
+script = ExtResource("2_xxsie")
+attribute = "health"
+value = 880.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_a7exr"]
+script = ExtResource("2_xxsie")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_guxkb"]
+script = ExtResource("2_xxsie")
+attribute = "health"
+value = 580.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_wips1"]
+script = ExtResource("3_177fm")
+introduction = Array[ExtResource("2_xxsie")]([SubResource("Resource_a7exr")])
+easy = Array[ExtResource("2_xxsie")]([SubResource("Resource_lidwo")])
+medium = Array[ExtResource("2_xxsie")]([SubResource("Resource_guxkb")])
+hard = Array[ExtResource("2_xxsie")]([SubResource("Resource_n1rvc")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_hqhu3"]
+script = ExtResource("2_xxsie")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_n4cho"]
+script = ExtResource("2_xxsie")
+attribute = "health"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_0gbw3"]
+script = ExtResource("2_xxsie")
+attribute = "damage"
+value = 35.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_vv5w5"]
+script = ExtResource("2_xxsie")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_h602d"]
+script = ExtResource("3_177fm")
+introduction = Array[ExtResource("2_xxsie")]([SubResource("Resource_0gbw3")])
+easy = Array[ExtResource("2_xxsie")]([SubResource("Resource_hqhu3")])
+medium = Array[ExtResource("2_xxsie")]([SubResource("Resource_vv5w5")])
+hard = Array[ExtResource("2_xxsie")]([SubResource("Resource_n4cho")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xjhl8"]
 radius = 0.2622659
@@ -70,6 +136,7 @@ stream_5/stream = ExtResource("28_4u6kx")
 
 [node name="ninja_starfish_complex" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hitboxes") instance=ExtResource("1_3efgl")]
 health = 200.0
+difficulty_scaler = SubResource("Resource_wips1")
 hitbox = NodePath("Visuals/hitboxBase")
 hurtbox = NodePath("Visuals/Hurtbox")
 additional_hitboxes = [NodePath("Visuals/hitboxAttack")]
@@ -166,6 +233,7 @@ collision_mask = 8
 damage = 30.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_h602d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/hitboxBase" index="0" unique_id=618713184]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0910784, 0)
