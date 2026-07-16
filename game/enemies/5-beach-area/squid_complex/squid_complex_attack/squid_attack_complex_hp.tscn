@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://rj6bm63r588c"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_easpj"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_8yeke"]
 [ext_resource type="PackedScene" uid="uid://bfh0cfobkh20v" path="res://assets/characters/enemies/squid/squid_arm/squid_arm_prefab.tscn" id="2_s43a1"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="2_xclxu"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_4dlsx"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_susxk"]
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="3_vyctp"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_380mr"]
@@ -27,6 +29,70 @@
 [ext_resource type="AudioStream" uid="uid://dx00jpvqrh1ly" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_disappear_4.wav" id="25_guumo"]
 [ext_resource type="AudioStream" uid="uid://be3188q52s127" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_disappear_5.wav" id="26_wi2qq"]
 [ext_resource type="AudioStream" uid="uid://y8hkirctbg2q" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_disappear_6.wav" id="27_wac7o"]
+
+[sub_resource type="Resource" id="Resource_pk8bi"]
+script = ExtResource("2_8yeke")
+attribute = "health"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_uii50"]
+script = ExtResource("2_8yeke")
+attribute = "health"
+value = 200.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_sivo7"]
+script = ExtResource("2_8yeke")
+attribute = "health"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_osc0l"]
+script = ExtResource("2_8yeke")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_2woi3"]
+script = ExtResource("3_4dlsx")
+introduction = Array[ExtResource("2_8yeke")]([SubResource("Resource_sivo7")])
+easy = Array[ExtResource("2_8yeke")]([SubResource("Resource_pk8bi")])
+medium = Array[ExtResource("2_8yeke")]([SubResource("Resource_osc0l")])
+hard = Array[ExtResource("2_8yeke")]([SubResource("Resource_uii50")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_8yeke"]
+script = ExtResource("2_8yeke")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_4dlsx"]
+script = ExtResource("2_8yeke")
+attribute = "damage"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_4626f"]
+script = ExtResource("2_8yeke")
+attribute = "damage"
+value = 35.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_mhgh6"]
+script = ExtResource("2_8yeke")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_dfe6k"]
+script = ExtResource("3_4dlsx")
+introduction = Array[ExtResource("2_8yeke")]([SubResource("Resource_4626f")])
+easy = Array[ExtResource("2_8yeke")]([SubResource("Resource_8yeke")])
+medium = Array[ExtResource("2_8yeke")]([SubResource("Resource_mhgh6")])
+hard = Array[ExtResource("2_8yeke")]([SubResource("Resource_4dlsx")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xclxu"]
 radius = 0.2006836
@@ -69,7 +135,8 @@ stream_5/stream = ExtResource("27_wac7o")
 
 [node name="BaseEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hurtboxes") instance=ExtResource("1_easpj")]
 health = 100.0
-hitbox = NodePath("Visuals/Hitbox")
+difficulty_scaler = SubResource("Resource_2woi3")
+hitbox = NodePath("Visuals/hitboxBase")
 hurtbox = NodePath("Visuals/Hurtbox")
 additional_hurtboxes = [NodePath("Visuals/Hurtbox2")]
 
@@ -80,7 +147,7 @@ initial_state = NodePath("moveToPlayer/DisableHitbox")
 
 [node name="DisableHitbox" type="Node" parent="StateMachine/moveToPlayer" index="0" unique_id=1716878135 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("2_xclxu")
-disable = [NodePath("../../../Visuals/Hitbox"), NodePath("../../../Visuals/Hurtbox2")]
+disable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2")]
 next_state = NodePath("../TeleportToOnNavMeshState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -112,7 +179,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="EnableHitbox" type="Node" parent="StateMachine/attack" index="2" unique_id=1652727634 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("2_xclxu")
-enable = [NodePath("../../../Visuals/Hitbox"), NodePath("../../../Visuals/Hurtbox2")]
+enable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2")]
 disable = [NodePath("../../../Visuals/Hurtbox")]
 next_state = NodePath("../WaitForAnimation")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
@@ -125,7 +192,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="DisableHitboxAgain" type="Node" parent="StateMachine/attack" index="4" unique_id=452213003 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("2_xclxu")
-enable = [NodePath("../../../Visuals/Hitbox"), NodePath("../../../Visuals/Hurtbox2")]
+enable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2")]
 disable = [NodePath("../../../Visuals/Hurtbox")]
 next_state = NodePath("../WaitForAnimationEnd")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
@@ -138,13 +205,14 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="squid_arm" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1132374932 instance=ExtResource("2_s43a1")]
 
-[node name="Hitbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1403634002 instance=ExtResource("3_susxk")]
+[node name="hitboxBase" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1403634002 instance=ExtResource("3_susxk")]
 collision_layer = 32
 collision_mask = 8
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_dfe6k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/Hitbox" index="0" unique_id=2046143593]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/hitboxBase" index="0" unique_id=2046143593]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.09161654, -0.66845703)
 shape = SubResource("CapsuleShape3D_xclxu")
 debug_color = Color(0.9325174, 0.2046122, 0.4158566, 0.41960785)

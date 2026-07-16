@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_u582v"]
 [ext_resource type="PackedScene" uid="uid://cobx6obdkk5ja" path="res://assets/characters/enemies/squid/squid/squid_prefab.tscn" id="2_1qui8"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_i4ho2"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_riax5"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="3_7xbjf"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_gvoqi"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_jkmx4"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_drskb"]
 [ext_resource type="PackedScene" uid="uid://rj6bm63r588c" path="res://game/enemies/5-beach-area/squid_complex/squid_complex_attack/squid_attack_complex_hp.tscn" id="6_alqjo"]
@@ -13,6 +15,70 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_jkmx4"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_drskb"]
 
+[sub_resource type="Resource" id="Resource_lk1l6"]
+script = ExtResource("2_riax5")
+attribute = "health"
+value = 200.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_kkfk7"]
+script = ExtResource("2_riax5")
+attribute = "health"
+value = 440.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_24qky"]
+script = ExtResource("2_riax5")
+attribute = "health"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_b68b6"]
+script = ExtResource("2_riax5")
+attribute = "health"
+value = 290.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_8adn0"]
+script = ExtResource("3_gvoqi")
+introduction = Array[ExtResource("2_riax5")]([SubResource("Resource_24qky")])
+easy = Array[ExtResource("2_riax5")]([SubResource("Resource_lk1l6")])
+medium = Array[ExtResource("2_riax5")]([SubResource("Resource_b68b6")])
+hard = Array[ExtResource("2_riax5")]([SubResource("Resource_kkfk7")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="Resource" id="Resource_gvoqi"]
+script = ExtResource("2_riax5")
+attribute = "damage"
+value = 50.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_4ymtx"]
+script = ExtResource("2_riax5")
+attribute = "damage"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_icdxp"]
+script = ExtResource("2_riax5")
+attribute = "damage"
+value = 35.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_putxo"]
+script = ExtResource("2_riax5")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_riax5"]
+script = ExtResource("3_gvoqi")
+introduction = Array[ExtResource("2_riax5")]([SubResource("Resource_icdxp")])
+easy = Array[ExtResource("2_riax5")]([SubResource("Resource_gvoqi")])
+medium = Array[ExtResource("2_riax5")]([SubResource("Resource_putxo")])
+hard = Array[ExtResource("2_riax5")]([SubResource("Resource_4ymtx")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_b5djj"]
 radius = 0.5125733
 
@@ -20,6 +86,7 @@ radius = 0.5125733
 radius = 0.74622554
 
 [node name="squid_complex" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_u582v")]
+difficulty_scaler = SubResource("Resource_8adn0")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
@@ -105,6 +172,7 @@ collision_mask = 8
 damage = 30.0
 attached_to = 6
 can_hit = 4
+difficulty_scaler = SubResource("Resource_riax5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=1025777836]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3935027, 0)
