@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="4_kyxhj"]
 [ext_resource type="Script" uid="uid://dqnkkoud1fnae" path="res://state_machine/enemy/collision_activator.gd" id="4_pk8bi"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_v47a7"]
-[ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="8_uii50"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="9_5kvpg"]
 [ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="9_sivo7"]
 [ext_resource type="AudioStream" uid="uid://dns62sj3ohg2s" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_1.wav" id="10_jakvp"]
@@ -160,17 +159,17 @@ wait_time = 0.0
 y_offset_override = true
 y_offset_override_value = 0.5
 max_radius = 10.0
-next_state = NodePath("../../attack/LookAtPlayerState")
-animation_trigger = Dictionary[String, Variant]({
-"parameters/Transition/transition_request": "show"
-})
+next_state = NodePath("../../attack/AttackAim")
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
 [node name="attack" type="Node" parent="StateMachine" index="1" unique_id=1953983034]
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine/attack" index="0" unique_id=1650706798 node_paths=PackedStringArray("next_state")]
+[node name="AttackAim" type="Node" parent="StateMachine/attack" index="0" unique_id=1650706798 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_kyxhj")
 next_state = NodePath("../WaitForTimeXState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "show"
+})
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="WaitForTimeXState" type="Node" parent="StateMachine/attack" index="1" unique_id=352423571 node_paths=PackedStringArray("next_state")]
@@ -204,24 +203,22 @@ metadata/_custom_type_script = "uid://dqnkkoud1fnae"
 [node name="WaitForAnimationEnd" type="Node" parent="StateMachine/attack" index="5" unique_id=803979567 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_v47a7")
 wait_time = 3.0
-next_state = NodePath("../../Idle/IdleWait")
+next_state = NodePath("../../Idle/HideWait")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Idle" type="Node" parent="StateMachine" index="2" unique_id=1235022100]
 
-[node name="IdleWait" type="Node" parent="StateMachine/Idle" index="0" unique_id=252497271 node_paths=PackedStringArray("next_state", "interrupts")]
+[node name="HideWait" type="Node" parent="StateMachine/Idle" index="0" unique_id=252497271 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_v47a7")
-wait_time = 3.0
-next_state = NodePath("../WaitForHideAnimation")
+next_state = NodePath("")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "show"
 })
-interrupts = [NodePath("../Interrupt")]
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Interrupt" type="Node" parent="StateMachine/Idle" index="1" unique_id=356304684 node_paths=PackedStringArray("state_to_go_to", "condition")]
 script = ExtResource("9_sivo7")
-state_to_go_to = NodePath("../../attack/LookAtPlayerState")
+state_to_go_to = NodePath("../../attack/AttackAim")
 condition = NodePath("InRangeToPlayerInterruptCondition")
 metadata/_custom_type_script = "uid://dl3af38o4df2f"
 
@@ -229,18 +226,6 @@ metadata/_custom_type_script = "uid://dl3af38o4df2f"
 script = ExtResource("10_osc0l")
 distance = 2.0
 metadata/_custom_type_script = "uid://3q8mspcqcwpf"
-
-[node name="WaitForHideAnimation" type="Node" parent="StateMachine/Idle" index="2" unique_id=743538298 node_paths=PackedStringArray("next_state")]
-script = ExtResource("5_v47a7")
-next_state = NodePath("../KillSelfState")
-animation_trigger = Dictionary[String, Variant]({
-"parameters/Transition/transition_request": "leave"
-})
-metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="KillSelfState" type="Node" parent="StateMachine/Idle" index="3" unique_id=1678059701]
-script = ExtResource("8_uii50")
-metadata/_custom_type_script = "uid://dj632w22te1th"
 
 [node name="squid_arm" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1132374932 instance=ExtResource("2_s43a1")]
 
