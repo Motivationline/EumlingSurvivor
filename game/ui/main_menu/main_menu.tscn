@@ -27,6 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://b1dehhangi7ko" path="res://assets/characters/eumling/main_menu_eumling/main_menu_eumling.tscn" id="20_oup2s"]
 [ext_resource type="PackedScene" uid="uid://b2gactr5k8m8l" path="res://assets/characters/eumling/main_menu_eumling/backpack/backpack_prop.tscn" id="21_jxl6k"]
 [ext_resource type="PackedScene" uid="uid://dnpkx1sg04yw3" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/main_menu/main_menu_sozial.tscn" id="23_hutre"]
+[ext_resource type="Texture2D" uid="uid://cc7jd3p1iwvpq" path="res://assets/vfx/fireball/flame.png" id="24_705nu"]
+[ext_resource type="Texture2D" uid="uid://bu8auxyk3gmp4" path="res://assets/vfx/fireball/flare.png" id="25_w4r1y"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0bhyy"]
 dof_blur_far_distance = 164.99
@@ -175,9 +177,6 @@ point_count = 3
 offsets = PackedFloat32Array(0, 0.59310347, 0.99310344)
 colors = PackedColorArray(0.44, 0.44, 0.44, 0.27450982, 0.48, 0.48, 0.48, 0.58431375, 0.48, 0.48, 0.48, 0)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oup2s"]
-load_path = "res://.godot/imported/flame.png-94757bae31dd2b7dba970f774cf08e5b.s3tc.ctex"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hutre"]
 render_priority = 2
 transparency = 1
@@ -185,57 +184,23 @@ blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_texture = SubResource("CompressedTexture2D_oup2s")
+albedo_texture = ExtResource("24_705nu")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Curve" id="Curve_246bn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_talkm"]
-curve = SubResource("Curve_246bn")
-
-[sub_resource type="Gradient" id="Gradient_oknsj"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.4558233, 0.67469877)
-colors = PackedColorArray(1, 0.7666667, 0, 1, 1, 0.4616667, 0.050000012, 1, 0.73, 0.051099997, 0.051099997, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_eya0d"]
-gradient = SubResource("Gradient_oknsj")
+[sub_resource type="QuadMesh" id="QuadMesh_d7anh"]
 
 [sub_resource type="Curve" id="Curve_bntwx"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.093023255, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_u3sb7"]
-curve = SubResource("Curve_bntwx")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s7kb2"]
-emission_shape = 1
-emission_sphere_radius = 0.05
-angle_min = -34.99999
-angle_max = 15.0000105
-direction = Vector3(0, 1, 1)
-spread = 15.0
-initial_velocity_min = 0.5
-initial_velocity_max = 0.79999995
-gravity = Vector3(0, 0, 0)
-damping_min = 0.2
-damping_max = 1.0
-scale_min = 0.19999999
-scale_max = 0.39999998
-scale_curve = SubResource("CurveTexture_u3sb7")
-color_ramp = SubResource("GradientTexture1D_eya0d")
-alpha_curve = SubResource("CurveTexture_talkm")
-
-[sub_resource type="QuadMesh" id="QuadMesh_d7anh"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i1dr8"]
-load_path = "res://.godot/imported/flare.png-a8f3541ddf94b4e5ee3d63ace4cb909e.s3tc.ctex"
+[sub_resource type="Gradient" id="Gradient_oknsj"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.4558233, 0.67469877)
+colors = PackedColorArray(1, 0.7666667, 0, 1, 1, 0.4616667, 0.050000012, 1, 0.73, 0.051099997, 0.051099997, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyaa6"]
 render_priority = 1
@@ -243,50 +208,21 @@ transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_texture = SubResource("CompressedTexture2D_i1dr8")
+albedo_texture = ExtResource("25_w4r1y")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Curve" id="Curve_hpwr3"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5248092, 0.20304751), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_fkgrk"]
-curve = SubResource("Curve_hpwr3")
+[sub_resource type="Curve" id="Curve_w4r1y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3827073), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_njswq"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.4558233)
 colors = PackedColorArray(0.16, 0.16, 0.16, 1, 0.49, 0.49, 0.49, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_705nu"]
-gradient = SubResource("Gradient_njswq")
-
-[sub_resource type="Curve" id="Curve_w4r1y"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3827073), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_nekgt"]
-curve = SubResource("Curve_w4r1y")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_73pe5"]
-emission_shape = 1
-emission_sphere_radius = 0.05
-direction = Vector3(0, 1, 0)
-spread = 15.0
-initial_velocity_min = 0.59999996
-initial_velocity_max = 0.79999995
-gravity = Vector3(0, 0, 0)
-damping_min = 0.2
-damping_max = 1.0
-scale_min = 0.5
-scale_max = 0.79999995
-scale_curve = SubResource("CurveTexture_nekgt")
-color_ramp = SubResource("GradientTexture1D_705nu")
-alpha_curve = SubResource("CurveTexture_fkgrk")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mkp5f"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -733,24 +669,54 @@ scale_amount_min = 0.5
 scale_amount_curve = SubResource("Curve_i1dr8")
 color_ramp = SubResource("Gradient_hyaa6")
 
-[node name="Flame" type="GPUParticles3D" parent="Background_Tile/campfire/Particles" unique_id=1725944331]
+[node name="Flame" type="CPUParticles3D" parent="Background_Tile/campfire/Particles" unique_id=353292614]
 transform = Transform3D(-0.8425021, 0.005894868, -0.013573462, -0.0070606824, 0.7497404, 0.7371359, 0.011139415, 0.79093754, -0.71355397, -0.0009212494, -0.19989532, 0.058878064)
 material_override = SubResource("StandardMaterial3D_hutre")
 amount = 5
 lifetime = 0.4
 randomness = 1.0
+fixed_fps = 30
+visibility_aabb = AABB(-4, -4, -4, 8, 8, 8)
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_s7kb2")
-draw_pass_1 = SubResource("QuadMesh_d7anh")
+mesh = SubResource("QuadMesh_d7anh")
+emission_shape = 1
+emission_sphere_radius = 0.05
+direction = Vector3(0, 1, 1)
+spread = 15.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 0.79999995
+damping_min = 0.2
+damping_max = 1.0
+angle_min = -34.99999
+angle_max = 15.0000105
+scale_amount_min = 0.19999999
+scale_amount_max = 0.39999998
+scale_amount_curve = SubResource("Curve_bntwx")
+color_ramp = SubResource("Gradient_oknsj")
 
-[node name="Smoke" type="GPUParticles3D" parent="Background_Tile/campfire/Particles/Flame" unique_id=1498395296]
+[node name="Smoke" type="CPUParticles3D" parent="Background_Tile/campfire/Particles/Flame" unique_id=388961207]
 transform = Transform3D(0.99999976, 0, 0, 0, 1, 0, 9.313226e-10, 0, 1.0000001, 0.0018606186, 0.13966525, -0.113102555)
 material_override = SubResource("StandardMaterial3D_hyaa6")
 amount = 12
 lifetime = 0.8
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_73pe5")
-draw_pass_1 = SubResource("QuadMesh_d7anh")
+fixed_fps = 30
+visibility_aabb = AABB(-4, -4, -4, 8, 8, 8)
+mesh = SubResource("QuadMesh_d7anh")
+emission_shape = 1
+emission_sphere_radius = 0.05
+direction = Vector3(0, 1, 0)
+spread = 15.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.59999996
+initial_velocity_max = 0.79999995
+damping_min = 0.2
+damping_max = 1.0
+scale_amount_min = 0.5
+scale_amount_max = 0.79999995
+scale_amount_curve = SubResource("Curve_w4r1y")
+color_ramp = SubResource("Gradient_njswq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=190124401]
 transform = Transform3D(0.3513351, 0.069814935, -0.9336433, 0.885652, -0.34817237, 0.30724055, -0.30361876, -0.9348272, -0.18415691, 2.2258372, 4.583892, 0)
