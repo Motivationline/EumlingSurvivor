@@ -116,10 +116,15 @@ start_delay = 0.2
 next_state = NodePath("../AttackCooldown")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
-[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=403370021]
+[node name="spawnerMain" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=403370021 node_paths=PackedStringArray("spawn_position")]
 script = ExtResource("5_drskb")
+ignore_relative_rotation = true
+spawn_position = NodePath("SpawnPos")
 entity_to_spawn = ExtResource("6_alqjo")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="SpawnPos" type="Marker3D" parent="StateMachine/SpawnEntitiesState/spawnerMain" index="0" unique_id=69437972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.4001038, 0)
 
 [node name="AttackCooldown" type="Node" parent="StateMachine" index="3" unique_id=1468352519 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
@@ -152,6 +157,8 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("7_alqjo")
 wait_time = 2.0
 target = 2
+y_offset_override = null
+y_offset_override_value = null
 next_state = NodePath("../EnableHitbox")
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 

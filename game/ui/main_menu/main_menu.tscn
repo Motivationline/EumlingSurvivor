@@ -19,9 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://31sl2tycnpxy" path="res://assets/ui/Buttons/new_run_button.png" id="14_fkgrk"]
 [ext_resource type="PackedScene" uid="uid://m14qxh5fce8m" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone.glb" id="14_orue0"]
 [ext_resource type="Texture2D" uid="uid://bl41m3gtmqhmi" path="res://assets/ui/Buttons/continue_button.png" id="15_njswq"]
-[ext_resource type="PackedScene" uid="uid://bd6al6p5ch00v" path="res://assets/models/bush/bush_prefab.tscn" id="15_orue0"]
 [ext_resource type="Material" uid="uid://dcxlase0almr2" path="res://assets/models/3-Jungle/jungle_tree/jungel_tree_01_foliage_material_1.tres" id="16_lnduv"]
 [ext_resource type="PackedScene" uid="uid://b7ild54ax5g7a" path="res://assets/models/main_menu/campfire/campfire.tscn" id="18_06kjt"]
+[ext_resource type="Texture2D" uid="uid://co2dlumvhahno" path="res://assets/vfx/particle_pack/smoke_04.png" id="18_fkgrk"]
 [ext_resource type="Texture2D" uid="uid://bvaa0nxjehm86" path="res://assets/ui/startScreen/godrays01.png" id="18_i63cf"]
 [ext_resource type="Texture2D" uid="uid://bwf6nign48iqb" path="res://assets/vfx/particle_pack/smoke_06.png" id="19_oup2s"]
 [ext_resource type="PackedScene" uid="uid://b1dehhangi7ko" path="res://assets/characters/eumling/main_menu_eumling/main_menu_eumling.tscn" id="20_oup2s"]
@@ -74,11 +74,10 @@ _data = {
 }
 
 [sub_resource type="QuadMesh" id="QuadMesh_0p1rw"]
-size = Vector2(20, 100)
+size = Vector2(20, 20)
 
 [sub_resource type="Gradient" id="Gradient_ghvui"]
-offsets = PackedFloat32Array(0.0019607844, 0.5117647, 1)
-colors = PackedColorArray(0.14342006, 0.71, 0.113600016, 1, 0.71259993, 0.84, 0.252, 1, 0.14509805, 0.70980394, 0.11372549, 1)
+colors = PackedColorArray(0.14509805, 0.70980394, 0.11372549, 1, 0.42839998, 0.84, 0.252, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_n4wbu"]
 gradient = SubResource("Gradient_ghvui")
@@ -88,9 +87,6 @@ fill_to = Vector2(0.44444445, 0)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1bca"]
 albedo_color = Color(0.5145284, 0.73, 0.16790001, 1)
 albedo_texture = SubResource("GradientTexture2D_n4wbu")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_i63cf"]
-size = Vector2(20, 50)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_f57g5"]
 _surfaces = [{
@@ -330,7 +326,7 @@ script = ExtResource("1_2ww3u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Anchor" unique_id=1004034311]
-transform = Transform3D(-0.9875789, 0, 0.15712403, 0, 1, 0, -0.15712403, 0, -0.9875789, -0.45651054, 0.55791473, -3.042206)
+transform = Transform3D(-0.98757887, 0, 0.15712413, 0, 1, 0, -0.15712413, 0, -0.98757887, -0.45651054, 0.55791473, -3.0422058)
 attributes = SubResource("CameraAttributesPractical_0bhyy")
 current = true
 fov = 35.0
@@ -584,14 +580,46 @@ offset_bottom = 1519.0
 scale = Vector2(0.0736165, 0.0736165)
 texture = ExtResource("13_06kjt")
 
+[node name="TextureRect" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=795901332]
+modulate = Color(1, 0.92333335, 0.53999996, 1)
+layout_mode = 0
+offset_left = 822.0
+offset_top = -340.0
+offset_right = 2624.0
+offset_bottom = 1462.0
+mouse_filter = 2
+texture = ExtResource("18_i63cf")
+
+[node name="TextureRect2" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1200448651]
+modulate = Color(1, 0.92333335, 0.53999996, 1)
+layout_mode = 0
+offset_left = -556.0
+offset_top = -311.0
+offset_right = 1246.0
+offset_bottom = 1491.0
+rotation = -0.12709244
+mouse_filter = 2
+texture = ExtResource("18_i63cf")
+flip_h = true
+
 [node name="Background_Tile" type="Node3D" parent="." unique_id=272850613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7447424, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Background_Tile" unique_id=550108225]
-transform = Transform3D(1.0166885, 0, 0, 0, -4.4440867e-08, 1.0166885, 0, -1.0166885, -4.4440867e-08, -0.097, 0, 44.181)
+transform = Transform3D(1.0166885, 0, 0, 0, -4.4440867e-08, 1.0166885, 0, -1.0166885, -4.4440867e-08, -0.09700012, 0, 7.363776)
 cast_shadow = 0
 mesh = SubResource("QuadMesh_0p1rw")
 surface_material_override/0 = SubResource("StandardMaterial3D_m1bca")
+
+[node name="Sprite3D" type="Sprite3D" parent="Background_Tile/MeshInstance3D" unique_id=857041728]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, -7.1054274e-15, 0, 7.1054274e-15, 0.99999994, 2.6969628, 7.9295225, 0.008855724)
+modulate = Color(0.58479995, 0.86, 0.03440002, 1)
+texture = ExtResource("18_fkgrk")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Background_Tile/MeshInstance3D" unique_id=878979396]
+transform = Transform3D(-0.38020962, 0.9249003, 4.042866e-08, -0.9249003, -0.38020962, -6.033086e-08, -4.042867e-08, -6.033086e-08, 0.99999994, -0.40115976, 7.4451976, 0.010200794)
+modulate = Color(0.58479995, 0.86, 0.03440002, 1)
+texture = ExtResource("18_fkgrk")
 
 [node name="jungel_tree_01" parent="Background_Tile" unique_id=367397392 instance=ExtResource("13_o0d2s")]
 transform = Transform3D(-0.35476434, 0, 0.9349558, 0, 1, 0, -0.9349558, 0, -0.35476434, 5.3090286, -0.4108057, 6.454933)
@@ -628,52 +656,30 @@ transform = Transform3D(1.102659, 0.3218743, -0.9439587, -0.24451421, 1.4515216,
 
 [node name="Bushes" type="Node3D" parent="Background_Tile" unique_id=140934548]
 
-[node name="bush" parent="Background_Tile/Bushes" unique_id=898966180 instance=ExtResource("15_orue0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1767187, 0, 3.1498542)
-
-[node name="bush6" parent="Background_Tile/Bushes" unique_id=672098474 instance=ExtResource("15_orue0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3736367, -2.3841858e-07, 4.547392)
-
-[node name="bush7" parent="Background_Tile/Bushes" unique_id=556458282 instance=ExtResource("15_orue0")]
-transform = Transform3D(0.25654247, 0, -0.96653295, 0, 1, 0, 0.96653295, 0, 0.25654247, -1.0006132, 0.29438293, 0.40549183)
-
-[node name="bush8" parent="Background_Tile/Bushes" unique_id=179838073 instance=ExtResource("15_orue0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2766714, 0, 0.34821773)
-
-[node name="bush2" parent="Background_Tile/Bushes" unique_id=1257267555 instance=ExtResource("15_orue0")]
-transform = Transform3D(1.5301275, 0, 0, 0, 1.5301275, 0, 0, 0, 1.5301275, 4.7126217, 0, 7.9960804)
-
-[node name="bush3" parent="Background_Tile/Bushes" unique_id=8742337 instance=ExtResource("15_orue0")]
-transform = Transform3D(1.5301275, 0, 0, 0, 1.5301275, 0, 0, 0, 1.5301275, 2.8490906, 0, 10.168353)
-
-[node name="bush11" parent="Background_Tile/Bushes" unique_id=825640458 instance=ExtResource("15_orue0")]
-transform = Transform3D(0.16166812, 0, -1.5215628, 0, 1.5301274, 0, 1.5215628, 0, 0.16166812, -2.9455986, 0.8100164, 2.403891)
-
-[node name="bush4" parent="Background_Tile/Bushes" unique_id=684594074 instance=ExtResource("15_orue0")]
-transform = Transform3D(0.024942037, 0, -1.5299242, 0, 1.5301274, 0, 1.5299242, 0, 0.024942037, 1.0529156, 2.3841858e-07, 12.697131)
-
-[node name="bush12" parent="Background_Tile/Bushes" unique_id=1881962631 instance=ExtResource("15_orue0")]
-transform = Transform3D(1.5301275, 0, 0, 0, 1.5301275, 0, 0, 0, 1.5301275, 4.961808, 1.3780942, 9.5755625)
-
-[node name="bush13" parent="Background_Tile/Bushes" unique_id=661441772 instance=ExtResource("15_orue0")]
-transform = Transform3D(1.5301275, 0, 0, 0, 1.5301275, 0, 0, 0, 1.5301275, -0.22851086, 1.6298678, 18.267586)
-
-[node name="bush5" parent="Background_Tile/Bushes" unique_id=34044721 instance=ExtResource("15_orue0")]
-transform = Transform3D(1.0478725, 0, -1.1150125, 0, 1.5301274, 0, 1.1150125, 0, 1.0478725, -0.795599, 2.3841858e-07, 12.697131)
-
-[node name="bush9" parent="Background_Tile/Bushes" unique_id=302322648 instance=ExtResource("15_orue0")]
-transform = Transform3D(1.5289896, 0, -1.6526043, 0, 2.251424, 0, 1.6526043, 0, 1.5289896, -4.783182, 0.28268528, 13.845516)
-
-[node name="bush10" parent="Background_Tile/Bushes" unique_id=1952922036 instance=ExtResource("15_orue0")]
-transform = Transform3D(2.251424, 0, 0, 0, 2.251424, 0, 0, 0, 2.251424, -9.5341015, 1.7090917, 13.845516)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Background_Tile/Bushes" unique_id=1623889189]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11925793, 44.202145)
-mesh = SubResource("PlaneMesh_i63cf")
-
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Background_Tile/Bushes" unique_id=1542985883]
 transform = Transform3D(1, 0, 0, 0, 0.99999565, 0.0029496022, 0, -0.0029496022, 0.99999565, -2.7288017, 0, -15.355307)
 multimesh = SubResource("MultiMesh_oup2s")
+
+[node name="Sprite3D" type="Sprite3D" parent="Background_Tile/Bushes" unique_id=1355177284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.57628155, 5.0246053, 7.807886)
+texture = ExtResource("6_k3ypk")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Background_Tile/Bushes" unique_id=1605874187]
+transform = Transform3D(0.67, 0, 0, 0, 0.67, 0, 0, 0, 0.67, 2.4835634, 3.4710073, 4.3554134)
+flip_h = true
+modulate = Color(0.42328137, 0.93510866, 3.85046e-07, 1)
+texture = ExtResource("6_k3ypk")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Background_Tile/Bushes" unique_id=395224767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4403887, 4.795501, 11.220575)
+flip_h = true
+modulate = Color(0.99999994, 0.96205777, 0.8252595, 1)
+texture = ExtResource("6_k3ypk")
+
+[node name="Sprite3D3" type="Sprite3D" parent="Background_Tile/Bushes" unique_id=1219547504]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -46.680588, 26.216795, 74.78391)
+flip_h = true
+texture = ExtResource("6_k3ypk")
 
 [node name="Godrays" type="Node3D" parent="Background_Tile" unique_id=584159429]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7447424, 0, 0)
@@ -753,14 +759,13 @@ process_material = SubResource("ParticleProcessMaterial_73pe5")
 draw_pass_1 = SubResource("QuadMesh_d7anh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=190124401]
-transform = Transform3D(0.3513351, 0.069814935, -0.9336433, 0.885652, -0.34817237, 0.30724055, -0.30361876, -0.9348272, -0.18415691, 2.2258372, 4.583892, 0)
-light_color = Color(1, 0.613, 0.45999998, 1)
-light_energy = 3.426
+transform = Transform3D(0.79785764, -0.14380313, -0.5854434, 0.52080613, -0.32468256, 0.7895204, -0.30361876, -0.9348272, -0.1841569, 2.2258372, 4.583892, 0)
+light_color = Color(1, 0.8423333, 0.78, 1)
 light_bake_mode = 1
 shadow_enabled = true
-shadow_normal_bias = 1.355
-shadow_opacity = 0.33
-shadow_blur = 2.581
+shadow_bias = 0.01
+shadow_transmittance_bias = 16.0
+shadow_opacity = 0.42
 directional_shadow_mode = 0
 
 [node name="GraphicsSettingsComponentShadow" type="Node" parent="DirectionalLight3D" unique_id=1546927452]
@@ -769,7 +774,9 @@ metadata/_custom_type_script = "uid://b12g0nyew0m0i"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="DirectionalLight3D" unique_id=1661053577]
 transform = Transform3D(0.9999999, 2.9802322e-08, -2.0116568e-07, -2.9802322e-08, 1, -2.9802322e-08, 2.1979213e-07, 2.9802322e-08, 0.99999994, -1.7517011, 0.77608204, -8.11125)
+visible = false
 light_color = Color(0.9254902, 0.3372549, 0, 1)
+shadow_enabled = true
 omni_range = 4.61
 omni_attenuation = 0.054
 

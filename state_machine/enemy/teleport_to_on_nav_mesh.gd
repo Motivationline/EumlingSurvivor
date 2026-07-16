@@ -21,6 +21,10 @@ enum TARGET_TYPES { PLAYER, TEAMMEMBER, RANDOM, BACK }
 ## used when teleporting to player or team member, to not land inside them
 @export var offset: float = 0.5
 
+@export_group("Y Offset Override")
+@export var y_offset_override:bool = false
+@export var y_offset_override_value:float = 0.0
+@export_group("Radius")
 @export var min_radius: float = 1
 @export var max_radius: float = 5
 
@@ -86,7 +90,8 @@ func find_new_target():
 			var back_position = parent.position + (parent.global_transform.basis.z * back) + Vector3(0,0.5,0)
 			tp_position = get_point_on_map(back_position,0.2) * Vector3(1,0,1)
 			#TODO: the npcs only rotate their visuals forward vector never changes
-		
+	if y_offset_override:
+		tp_position.y = y_offset_override_value
 	parent.position = tp_position
 	await get_tree().create_timer(wait_time).timeout
 	done = true
