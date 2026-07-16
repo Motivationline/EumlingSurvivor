@@ -51,6 +51,7 @@ const DAMAGE_NUMBER_LABEL = preload("uid://dm4mgjmi078lm")
 
 signal died
 signal hurt
+signal hit
 
 var max_health: float:
 	set(value):
@@ -97,6 +98,7 @@ func fix_visuals_and_root_rotation():
 
 func _hit(_attackee: HurtBox):
 	_trigger_events(on_hit, _attackee)
+	hit.emit()
 
 func _hurt_by(_attacker: HitBox):
 	if _attacker is SocialAOEHitBox:

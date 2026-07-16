@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="12_i2r3v"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_kdgty"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_7bgia"]
-[ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="13_rildt"]
+[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="13_rildt"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="18_fle0e"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="21_75c8h"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="22_fle0e"]
@@ -29,6 +29,8 @@
 [ext_resource type="AudioStream" uid="uid://bifdy2fiiwafh" path="res://assets/characters/enemies/cactushog/sounds/explode_4.wav" id="26_rxyj2"]
 [ext_resource type="AudioStream" uid="uid://bqbua17664rax" path="res://assets/characters/enemies/cactushog/sounds/explode_5.wav" id="27_vpbxe"]
 [ext_resource type="AudioStream" uid="uid://dou7ybv26pih5" path="res://assets/characters/enemies/cactushog/sounds/explode_6.wav" id="28_pvjqn"]
+[ext_resource type="Script" uid="uid://cmyw736wiad14" path="res://game/shared/transform/global_rotation_override.gd" id="30_qhysw"]
+[ext_resource type="PackedScene" uid="uid://d3h1nvtvp5iwf" path="res://game/shared/target_indicators/directional_mesh/directional_target_indicator_mesh.tscn" id="31_jqnne"]
 
 [sub_resource type="Curve" id="Curve_167yk"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -213,6 +215,306 @@ stream_3/stream = ExtResource("26_rxyj2")
 stream_4/stream = ExtResource("27_vpbxe")
 stream_5/stream = ExtResource("28_pvjqn")
 
+[sub_resource type="Animation" id="Animation_hxdop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/extent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/pulse")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:instance_shader_parameters/far")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/extent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/extent")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/pulse")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/far")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/far")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/pulse")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/extent")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/far")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/pulse")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jcuqe"]
+resource_name = "indicator_extend"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:instance_shader_parameters/extent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:instance_shader_parameters/pulse")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.56666666, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8550000406125]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:instance_shader_parameters/far")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/extent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/extent")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/pulse")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.56666666, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8550000406125]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../DirectionalTargetIndicatorMesh2:instance_shader_parameters/far")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.93233323),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/pulse")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.56666666, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8550000406125]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../DirectionalTargetIndicatorMesh3:instance_shader_parameters/far")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.93233323),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/extent")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/pulse")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.56666666, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8550000406125]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../DirectionalTargetIndicatorMesh4:instance_shader_parameters/far")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.93233323),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxyj2"]
+_data = {
+&"RESET": SubResource("Animation_hxdop"),
+&"indicator_extend": SubResource("Animation_jcuqe")
+}
+
 [node name="Projectile" unique_id=1633818281 node_paths=PackedStringArray("hit_box", "movement", "targeting", "on_world_collision", "on_created") instance=ExtResource("1_kum88")]
 max_distance = 100.0
 lifetime = 10.0
@@ -328,3 +630,46 @@ metadata/_custom_type_script = "uid://fxqs1lioec3e"
 [node name="Explode" parent="SoundEffectManager" index="0" unique_id=1553656196 instance=ExtResource("22_fle0e")]
 stream = SubResource("AudioStreamRandomizer_fn8gm")
 volume_db = -2.0
+
+[node name="Indicator" type="Node3D" parent="." index="8" unique_id=2050509567]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
+script = ExtResource("30_qhysw")
+global_rotation_override = Vector3(0, 45, 0)
+
+[node name="DirectionalTargetIndicatorMesh" parent="Indicator" index="0" unique_id=2087304134 instance=ExtResource("31_jqnne")]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1.2, 0, 0, -1.35)
+instance_shader_parameters/color = Color(0.9843137, 0.13725491, 0, 0.8)
+instance_shader_parameters/extent = 0.0
+instance_shader_parameters/far = 0.0
+instance_shader_parameters/pulse = 0.0
+instance_shader_parameters/pulse_color = Color(0.9843137, 0.13725491, 0, 0.8)
+
+[node name="DirectionalTargetIndicatorMesh2" parent="Indicator" index="1" unique_id=2126407067 instance=ExtResource("31_jqnne")]
+transform = Transform3D(-4.371139e-09, 0, -1.2, 0, 1, 0, 0.1, 0, -5.2453668e-08, 1.35, 0, 0)
+instance_shader_parameters/color = Color(0.9843137, 0.13725491, 0, 0.8)
+instance_shader_parameters/extent = 0.0
+instance_shader_parameters/far = 0.0
+instance_shader_parameters/pulse = 0.0
+instance_shader_parameters/pulse_color = Color(0.9843137, 0.13725491, 0, 0.8)
+
+[node name="DirectionalTargetIndicatorMesh3" parent="Indicator" index="2" unique_id=834024450 instance=ExtResource("31_jqnne")]
+transform = Transform3D(-0.1, 0, 1.8119498e-07, 0, 1, 0, -1.509958e-08, 0, -1.2, 0, 0, 1.35)
+instance_shader_parameters/color = Color(0.9843137, 0.13725491, 0, 0.8)
+instance_shader_parameters/extent = 0.0
+instance_shader_parameters/far = 0.0
+instance_shader_parameters/pulse = 0.0
+instance_shader_parameters/pulse_color = Color(0.9843137, 0.13725491, 0, 0.8)
+
+[node name="DirectionalTargetIndicatorMesh4" parent="Indicator" index="3" unique_id=1751289754 instance=ExtResource("31_jqnne")]
+transform = Transform3D(7.54979e-09, 0, 1.2, 0, 1, 0, -0.1, 0, 9.059749e-08, -1.35, 0, 0)
+instance_shader_parameters/color = Color(0.9843137, 0.13725491, 0, 0.8)
+instance_shader_parameters/extent = 0.0
+instance_shader_parameters/far = 0.0
+instance_shader_parameters/pulse = 0.0
+instance_shader_parameters/pulse_color = Color(0.9843137, 0.13725491, 0, 0.8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Indicator" index="4" unique_id=709183692]
+root_node = NodePath("../DirectionalTargetIndicatorMesh")
+libraries/ = SubResource("AnimationLibrary_rxyj2")
+
+[connection signal="event_happened" from="EventStrategies/OnWorldCollision/ActivatorEventStrategy" to="Indicator/AnimationPlayer" method="play" binds= ["indicator_extend"]]

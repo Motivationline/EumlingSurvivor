@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dls5ayaqksb7" path="res://assets/vfx/particle_pack/scratch_01.png" id="5_5srn5"]
 
 [sub_resource type="Curve" id="Curve_wripo"]
-_limits = [0.0, 5.0, 0.0, 5.0]
+_limits = [0.0, 7.0, 0.0, 7.0]
 _data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
 point_count = 1
 metadata/_snap_enabled = true
@@ -71,7 +71,7 @@ radius = 0.08118541
 [node name="Projectile" unique_id=1098182531 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_hurt", "on_end_of_life") instance=ExtResource("1_gidt5")]
 damage = 75.0
 max_distance = 100.0
-lifetime = 0.8
+lifetime = 0.6
 hit_box = NodePath("Hitbox")
 movement = [NodePath("MovementStrategies/SpeedProjectileMovementStrategy")]
 on_world_collision = [NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]

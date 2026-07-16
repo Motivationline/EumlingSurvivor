@@ -19,6 +19,21 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="10_du46p"]
 [ext_resource type="PackedScene" uid="uid://dmr83p5o725ie" path="res://game/enemies/6-volcano/boss_shark/vfx/death_from_below_vfx.tscn" id="11_71geg"]
 [ext_resource type="PackedScene" uid="uid://d3h1nvtvp5iwf" path="res://game/shared/target_indicators/directional_mesh/directional_target_indicator_mesh.tscn" id="15_du46p"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="20_jddde"]
+[ext_resource type="AudioStream" uid="uid://ewl2of0m4ulh" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_1.wav" id="21_dch67"]
+[ext_resource type="AudioStream" uid="uid://bwcwstecykw3f" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_2.wav" id="22_n7nk8"]
+[ext_resource type="AudioStream" uid="uid://cnq1av5iqgo7h" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_3.wav" id="23_yomc5"]
+[ext_resource type="AudioStream" uid="uid://dcmgl40oyso0o" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_4.wav" id="24_hsm62"]
+[ext_resource type="AudioStream" uid="uid://u4pqwlp2ppyl" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_5.wav" id="25_7l2a3"]
+[ext_resource type="AudioStream" uid="uid://ctwjtqau3nejd" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_6.wav" id="26_qvcg0"]
+[ext_resource type="AudioStream" uid="uid://bso5n323ppebq" path="res://assets/characters/enemies/boss_shark/sounds/charge_loop.wav" id="27_d2qpc"]
+[ext_resource type="AudioStream" uid="uid://cfqmi12uh5lvi" path="res://assets/characters/enemies/boss_shark/sounds/charge_end.wav" id="28_38sif"]
+[ext_resource type="AudioStream" uid="uid://dr34kwkbpiq4m" path="res://assets/characters/enemies/boss_shark/sounds/dive_1.wav" id="30_ycxtd"]
+[ext_resource type="AudioStream" uid="uid://b2u7uxnf1dxvk" path="res://assets/characters/enemies/boss_shark/sounds/dive_2.wav" id="31_m7nup"]
+[ext_resource type="AudioStream" uid="uid://b88w54emrc3kw" path="res://assets/characters/enemies/boss_shark/sounds/dive_3.wav" id="32_d05rv"]
+[ext_resource type="AudioStream" uid="uid://b7m4nm2hrel8r" path="res://assets/characters/enemies/boss_shark/sounds/dive_4.wav" id="33_065fm"]
+[ext_resource type="AudioStream" uid="uid://d4a3k3ypfxk73" path="res://assets/characters/enemies/boss_shark/sounds/dive_5.wav" id="34_22i6i"]
+[ext_resource type="AudioStream" uid="uid://blat8kwgpmpej" path="res://assets/characters/enemies/boss_shark/sounds/dive_6.wav" id="35_0i18n"]
 
 [sub_resource type="Resource" id="Resource_g4v7s"]
 script = ExtResource("6_tfkkn")
@@ -110,6 +125,24 @@ _data = {
 &"ExtendIndicator": SubResource("Animation_71geg"),
 &"RESET": SubResource("Animation_yks7y")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4rsw4"]
+streams_count = 6
+stream_0/stream = ExtResource("21_dch67")
+stream_1/stream = ExtResource("22_n7nk8")
+stream_2/stream = ExtResource("23_yomc5")
+stream_3/stream = ExtResource("24_hsm62")
+stream_4/stream = ExtResource("25_7l2a3")
+stream_5/stream = ExtResource("26_qvcg0")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h7cx0"]
+streams_count = 6
+stream_0/stream = ExtResource("30_ycxtd")
+stream_1/stream = ExtResource("31_m7nup")
+stream_2/stream = ExtResource("32_d05rv")
+stream_3/stream = ExtResource("33_065fm")
+stream_4/stream = ExtResource("34_22i6i")
+stream_5/stream = ExtResource("35_0i18n")
 
 [node name="BossShark_D0" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hurtboxes", "additional_hitboxes") instance=ExtResource("1_5lodq")]
 collision_layer = 80
@@ -438,7 +471,25 @@ instance_shader_parameters/width_fade = 0.0
 libraries/ = SubResource("AnimationLibrary_akcxs")
 autoplay = &"ExtendIndicator"
 
+[node name="ChargeStart" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1553656196 instance=ExtResource("20_jddde")]
+stream = SubResource("AudioStreamRandomizer_4rsw4")
+volume_db = 2.0
+
+[node name="ChargeLoop" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=69523412 instance=ExtResource("20_jddde")]
+stream = ExtResource("27_d2qpc")
+volume_db = -4.0
+
+[node name="ChargeEnd" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=2003760380 instance=ExtResource("20_jddde")]
+stream = ExtResource("28_38sif")
+volume_db = 0.0
+
+[node name="Dive" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=1402643250 instance=ExtResource("20_jddde")]
+stream = SubResource("AudioStreamRandomizer_h7cx0")
+volume_db = -2.0
+
 [node name="death_from_below_particle_marker" type="Marker3D" parent="." index="7" unique_id=1209712892]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
+[connection signal="play_sound" from="Visuals/BossShark" to="SoundEffectManager" method="play_sound"]
+[connection signal="stop_sound" from="Visuals/BossShark" to="SoundEffectManager" method="stop_sound"]
 [connection signal="visibility_changed" from="Visuals/DirectionalTargetIndicatorMesh" to="Visuals/DirectionalTargetIndicatorMesh/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]

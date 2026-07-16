@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cqy3ys23usncg"]
+
+[ext_resource type="PackedScene" uid="uid://cyb66ykugipr6" path="res://assets/characters/enemies/snail/snail.glb" id="1_cki6w"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cki6w"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_guvpb"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_08c4d"]
+animation = &"die"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_18n3b"]
+xfade_time = 0.1
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "die"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g4v7s"]
+graph_offset = Vector2(-529.1375, -13.268372)
+nodes/Transition/node = SubResource("AnimationNodeTransition_18n3b")
+nodes/Transition/position = Vector2(-120, 120)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_guvpb")
+"nodes/Animation 3/position" = Vector2(-420, 300)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_08c4d")
+nodes/Animation/position = Vector2(-440, 500)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_cki6w")
+"nodes/Animation 2/position" = Vector2(-400, 120)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation 2", &"Transition", 1, &"Animation 3", &"Transition", 2, &"Animation"]
+
+[node name="SnailScene" unique_id=831722633 instance=ExtResource("1_cki6w")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=526923805]
+tree_root = SubResource("AnimationNodeBlendTree_g4v7s")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "die"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 2

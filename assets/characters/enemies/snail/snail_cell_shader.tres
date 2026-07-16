@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dj07by5ce6mct"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_k4i2g"]
+[ext_resource type="Texture2D" uid="uid://cllcdt1f873a2" path="res://assets/characters/enemies/snail/snail_snail_mat_2D_View.png" id="2_37olt"]
+
+[sub_resource type="Gradient" id="Gradient_d4onf"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.40443215)
+colors = PackedColorArray(0.24477637, 0.2447764, 0.24477637, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l8172"]
+gradient = SubResource("Gradient_d4onf")
+width = 8
+
+[sub_resource type="Gradient" id="Gradient_2ulnc"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5207756)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_glrw4"]
+gradient = SubResource("Gradient_2ulnc")
+width = 8
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_k4i2g")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_37olt")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_l8172")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_glrw4")
+shader_parameter/rim_focus = 0.3130000148675
+shader_parameter/use_diffuse_smooth_attenuation = true

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bnysxsdygcrse"]
+
+[ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_bsc77"]
+[ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_lbnsb"]
+[ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="5_qbhcm"]
+[ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="6_kukyi"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_23txd"]
+vertices = PackedVector3Array(-1, 1, -2.5, -1, 1, -2.25, -0.75, 1, -2.25, -0.75, 1, -2.5, 1.75, 1, 1.75, 0.75, 1, 2, 0.5, 1, 4.75, 0.5, 1, -2.5, 0.5, 1, -2.25, 0.75, 1, -2.25, 1.5, 1, -2, 1.5, 1, -1.75, 1.75, 1, -1.75, 2, 1, -0.75, 1.75, 1, -0.75, 1.75, 1, -0.5, 1.5, 1, -0.5, 1.5, 1, -0.25, 1.75, 1, -0.25, 1, 1, -4.5, 2.25, 1, 0, 2.25, 1, 0.25, 2.5, 1, 0.25, 2.5, 1, 1, 2.25, 1, 1, 2.25, 1, 1.25, 2, 1, 1.25, 2, 1, 1.5, 1.75, 1, 1.5, 1.75, 1, -1.25, 2, 1, -1.25, 1.75, 1, 0, 0.75, 1, -2, 0.75, 1, 1.75, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 4.75, 1, 4.75, -1.5, 1, -4.5, -1.5, 1, -2.5, 4.75, 1, -4.5, 0.5, 1, 2, -1.75, 1, 1.5, -1.75, 1, 1.25, -2, 1, 1.25, -2, 1, 0.5, -1.75, 1, 0.5, -1.75, 1, 0.25, 0.5, 1, -0.25, 0.75, 1, -0.25, 0.75, 1, -0.5, -2.25, 1, -0.5, -2.25, 1, -0.75, -2.5, 1, -0.75, -2.5, 1, -1.5, -2.25, 1, -1.5, -2.25, 1, -1.75, -2, 1, -2.25, -1.75, 1, -2.25, -1.75, 1, -2.5, 0, 1, 2, 0, 1, 1.75, -0.5, 1, 1.75, 0, 1, 0, 0, 1, 0.25, 0.5, 1, 0.25, -2, 1, -1.75, -1.5, 1, -0.25, -1.5, 1, -0.5, -0.75, 1, 0, -1, 1, -0.5, -1, 1, -0.25, -4.5, 1, -4.5, -0.75, 1, 0.25, -4.5, 1, 4.75, -0.5, 1, 1.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(9, 8, 7), PackedInt32Array(12, 11, 10), PackedInt32Array(15, 14, 13), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(19, 12, 10), PackedInt32Array(22, 21, 20), PackedInt32Array(25, 24, 23), PackedInt32Array(27, 26, 25), PackedInt32Array(4, 28, 27), PackedInt32Array(30, 29, 12), PackedInt32Array(15, 13, 18), PackedInt32Array(18, 13, 20), PackedInt32Array(20, 31, 18), PackedInt32Array(10, 32, 9), PackedInt32Array(30, 12, 19), PackedInt32Array(5, 33, 4), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 19), PackedInt32Array(20, 13, 22), PackedInt32Array(22, 13, 30), PackedInt32Array(6, 4, 27), PackedInt32Array(36, 35, 19), PackedInt32Array(19, 35, 34), PackedInt32Array(25, 23, 6), PackedInt32Array(6, 23, 37), PackedInt32Array(39, 38, 0), PackedInt32Array(0, 38, 36), PackedInt32Array(30, 19, 22), PackedInt32Array(22, 19, 40), PackedInt32Array(22, 40, 37), PackedInt32Array(3, 0, 36), PackedInt32Array(3, 36, 7), PackedInt32Array(7, 36, 19), PackedInt32Array(37, 23, 22), PackedInt32Array(27, 25, 6), PackedInt32Array(6, 41, 5), PackedInt32Array(44, 43, 42), PackedInt32Array(47, 46, 45), PackedInt32Array(50, 49, 48), PackedInt32Array(53, 52, 51), PackedInt32Array(56, 55, 54), PackedInt32Array(59, 58, 57), PackedInt32Array(62, 61, 60), PackedInt32Array(64, 63, 65), PackedInt32Array(65, 63, 48), PackedInt32Array(62, 60, 42), PackedInt32Array(42, 60, 6), PackedInt32Array(57, 66, 56), PackedInt32Array(67, 47, 68), PackedInt32Array(68, 47, 45), PackedInt32Array(68, 45, 51), PackedInt32Array(71, 70, 69), PackedInt32Array(69, 70, 63), PackedInt32Array(63, 70, 48), PackedInt32Array(48, 70, 50), PackedInt32Array(56, 54, 57), PackedInt32Array(57, 54, 38), PackedInt32Array(38, 54, 72), PackedInt32Array(69, 73, 71), PackedInt32Array(71, 73, 67), PackedInt32Array(67, 73, 47), PackedInt32Array(60, 41, 6), PackedInt32Array(72, 54, 53), PackedInt32Array(53, 51, 45), PackedInt32Array(38, 39, 59), PackedInt32Array(42, 6, 44), PackedInt32Array(44, 6, 74), PackedInt32Array(45, 44, 53), PackedInt32Array(53, 44, 74), PackedInt32Array(53, 74, 72), PackedInt32Array(57, 38, 59), PackedInt32Array(42, 75, 62)]
+agent_radius = 0.25
+agent_max_climb = 0.0
+edge_max_error = 0.25
+
+[node name="Level" unique_id=1268816340 instance=ExtResource("1_bsc77")]
+
+[node name="NavigationRegion3D" parent="." index="0" unique_id=843824706]
+navigation_mesh = SubResource("NavigationMesh_23txd")
+
+[node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" index="1" unique_id=265180136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("2_lbnsb")
+cell_size = Vector3(0.5, 0.5, 0.5)
+data = {
+"cells": PackedInt32Array(65535, 1, 655363, 0, 1, 1441795, 65534, 1, 1048579, 1, 1, 3, 65533, 1, 3, 2, 1, 1048579, 2, 0, 655363, 65533, 65534, 655363, 65533, 65533, 1048579, 65534, 65533, 3, 65535, 65533, 1441795, 0, 65533, 655363, 1, 65533, 3, 2, 65533, 3, 65535, 65532, 655363, 0, 65532, 655363, 65535, 2, 1048579, 0, 2, 3, 65532, 65533, 1441795, 65533, 65532, 655363, 2, 2, 1048579, 3, 1, 1048579, 131069, 65533, 1048579, 65538, 1, 3, 131071, 65533, 1441795, 65536, 65533, 1441795, 131071, 1, 655363, 65536, 1, 3, 131069, 1, 1441795, 65538, 65533, 655363)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Box" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="0" unique_id=1837394296 instance=ExtResource("6_kukyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2668843, 0, 0.25337708)
+
+[node name="Box3" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="1" unique_id=1633352503 instance=ExtResource("6_kukyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2668843, 0, -0.24662292)
+
+[node name="Box2" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="2" unique_id=15013371 instance=ExtResource("6_kukyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.237927, 0, -0.73841244)
+
+[node name="Box4" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="3" unique_id=1238387634 instance=ExtResource("6_kukyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.237927, 0, -0.23841244)
+
+[node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(111514245) index="0" unique_id=1814085372 instance=ExtResource("5_qbhcm")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.0752621, 0, 1.6763499)
+
+[editable path="ExitVisual"]

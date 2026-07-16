@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cueigax4duop0" path="res://game/enemies/5-beach-area/clam_turret_complex/clam_turret_complex_D0.tscn" id="1_4tr1a"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="2_0qyms"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_6gaqa"]
-[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="3_5mjbb"]
+[ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="3_5mjbb"]
 [ext_resource type="Material" uid="uid://bgn1lj00e7ol7" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.res" id="5_v4yq3"]
 [ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="6_w3fao"]
 
@@ -38,10 +38,9 @@ wait_time = 2.0
 [node name="AdjustAttributesClosed" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=935578213]
 changes = Array[ExtResource("2_6gaqa")]([SubResource("Resource_blos7")])
 
-[node name="mesh_clam" parent="Visuals/clam/Armature/Skeleton3D" parent_id_path=PackedInt32Array(553851633, 1477176766) index="0" unique_id=1413790537]
+[node name="mesh_clam" parent="Visuals/clam/Armature/Skeleton3D" parent_id_path=PackedInt32Array(553851633, 1139400217) index="0" unique_id=1174247479]
 material_overlay = ExtResource("5_v4yq3")
 
 [node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1554862748 instance=ExtResource("6_w3fao")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [editable path="Visuals/clam"]

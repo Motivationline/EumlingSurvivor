@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://denswswbwctek"]
+
+[ext_resource type="PackedScene" uid="uid://cmkygq5lxho1t" path="res://game/levels/5-Bxx-Beach/base/B05.tscn" id="1_55t30"]
+[ext_resource type="PackedScene" uid="uid://dpr7tw8u8thjy" path="res://game/enemies/5-beach-area/puffer_fish_complex/puffer_fish_complex_D2.tscn" id="2_crvpt"]
+[ext_resource type="PackedScene" uid="uid://d4itjqa8fiwj1" path="res://game/enemies/5-beach-area/clam_turret_complex/clam_turret_complex_D1.tscn" id="3_s63ag"]
+
+[node name="Level" unique_id=1268816340 instance=ExtResource("1_55t30")]
+
+[node name="puffer_fish_complex" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("2_crvpt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7666912, 0, 0.7327752)
+
+[node name="clam_turret_complex_D0" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=1489006011 instance=ExtResource("3_s63ag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7767305, 0, -2.6199236)
+
+[editable path="ExitVisual"]

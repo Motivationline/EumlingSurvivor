@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bxnw4cu3ffmtx"]
+
+[ext_resource type="PackedScene" uid="uid://dcodjsuox4clr" path="res://game/levels/5-Bxx-Beach/base/B03.tscn" id="1_qoxqe"]
+[ext_resource type="PackedScene" uid="uid://dpr7tw8u8thjy" path="res://game/enemies/5-beach-area/puffer_fish_complex/puffer_fish_complex_D2.tscn" id="2_i01ta"]
+[ext_resource type="PackedScene" uid="uid://i2bde5eniyx" path="res://game/enemies/5-beach-area/squid_complex/squid_complex_D1.tscn" id="3_s8rqx"]
+
+[node name="Level" unique_id=1268816340 instance=ExtResource("1_qoxqe")]
+
+[node name="puffer_fish_complex" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="0" unique_id=1898691 instance=ExtResource("2_i01ta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5703607, 0, 0.21419632)
+
+[node name="puffer_fish_complex2" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="1" unique_id=859924748 instance=ExtResource("2_i01ta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3435645, 0, 0.21419632)
+
+[node name="squid_complex" parent="Enemies" parent_id_path=PackedInt32Array(1274813267) index="2" unique_id=581719621 instance=ExtResource("3_s8rqx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.872756)
+
+[editable path="ExitVisual"]
