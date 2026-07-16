@@ -9,5 +9,4 @@ class_name InRangeToPlayerInterruptCondition extends InterruptCondition
 func evaluate() -> bool:
 	if not parent or not parent.is_inside_tree(): return false
 	if not Player.player or not Player.player.is_inside_tree(): return false
-	prints(parent.global_position.distance_to(Player.player.global_position), distance)
 	return parent.global_position.distance_to(Player.player.global_position) <= distance
