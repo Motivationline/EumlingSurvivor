@@ -105,6 +105,9 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("3_7xbjf")
 wait_time = 0.5
 next_state = NodePath("../SpawnEntitiesState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/attack/request": 1
+})
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=386062104 node_paths=PackedStringArray("next_state")]
@@ -135,6 +138,9 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 [node name="HideWait" type="Node" parent="StateMachine/onDamage" index="1" unique_id=1369659944 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
 next_state = NodePath("../MarkerWait")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "hide"
+})
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="MarkerWait" type="Node" parent="StateMachine/onDamage" index="2" unique_id=1256341859 node_paths=PackedStringArray("next_state")]
@@ -144,6 +150,8 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine/onDamage" index="3" unique_id=1900754059 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_alqjo")
+wait_time = 2.0
+target = 2
 next_state = NodePath("../EnableHitbox")
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
@@ -155,7 +163,11 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="ShowWait" type="Node" parent="StateMachine/onDamage" index="5" unique_id=445945042 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
+wait_time = 2.0
 next_state = NodePath("../../LookAtPlayerState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "show"
+})
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="TriggerStateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1994101922 node_paths=PackedStringArray("state_machine", "state_to_execute")]
