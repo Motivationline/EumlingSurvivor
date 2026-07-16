@@ -1,26 +1,36 @@
 [gd_scene format=3 uid="uid://dm4mgjmi078lm"]
 
-[sub_resource type="GDScript" id="GDScript_v754s"]
-script/source = "extends Node3D
+[ext_resource type="Script" uid="uid://bvgnicyl4o2qu" path="res://game/healthbar/damage_number_label/damage_number_label.gd" id="1_qhlkb"]
+[ext_resource type="Script" uid="uid://qc6t4ksgomty" path="res://game/healthbar/damage_number_label/damage_number_style.gd" id="2_ru7xr"]
 
-## How far from the center of the entity can the damage number be offset
-@export var max_offset: float = 0.2
+[sub_resource type="Resource" id="Resource_j3pel"]
+script = ExtResource("2_ru7xr")
+metadata/_custom_type_script = "uid://qc6t4ksgomty"
 
-var text: String:
-	set(value):
-		$DamageNumberLabel.text = value
-		text = value
+[sub_resource type="Resource" id="Resource_g28q7"]
+script = ExtResource("2_ru7xr")
+color = Color(0, 1, 0, 1)
+metadata/_custom_type_script = "uid://qc6t4ksgomty"
 
-var healing: bool = false:
-	set(value):
-		healing = value
-		if healing:
-			$DamageNumberLabel.modulate = Color(0, 1, 0)
+[sub_resource type="Resource" id="Resource_n8wo2"]
+script = ExtResource("2_ru7xr")
+scale = 0.8
+color = Color(0.5014065, 0.50140655, 0.50140643, 1)
+metadata/_custom_type_script = "uid://qc6t4ksgomty"
 
-func _ready() -> void:
-	position.x += randf_range(-max_offset, max_offset)
-	position.z += randf_range(-max_offset, max_offset)
-"
+[sub_resource type="Resource" id="Resource_dqt2m"]
+script = ExtResource("2_ru7xr")
+scale = 1.2
+color = Color(1, 1, 0, 1)
+suffix = "!"
+metadata/_custom_type_script = "uid://qc6t4ksgomty"
+
+[sub_resource type="Resource" id="Resource_7kkex"]
+script = ExtResource("2_ru7xr")
+scale = 1.4
+color = Color(1, 0.5019608, 0, 1)
+suffix = "!!"
+metadata/_custom_type_script = "uid://qc6t4ksgomty"
 
 [sub_resource type="Animation" id="Animation_v754s"]
 length = 0.001
@@ -97,7 +107,12 @@ _data = {
 }
 
 [node name="DamageNumberLabel" type="Node3D" unique_id=290456004]
-script = SubResource("GDScript_v754s")
+script = ExtResource("1_qhlkb")
+normal_style = SubResource("Resource_j3pel")
+healing_style = SubResource("Resource_g28q7")
+reduced_style = SubResource("Resource_n8wo2")
+increased_style = SubResource("Resource_dqt2m")
+multiple_increased_style = SubResource("Resource_7kkex")
 
 [node name="DamageNumberLabel" type="Label3D" parent="." unique_id=188368092]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)

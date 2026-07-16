@@ -13,9 +13,9 @@ var health: float = 10.0:
 		var change = health - new_value
 		if change > 0:
 			anim_player.set("parameters/GetHitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			Utils.create_damage_number(self , "%d" % change)
+			Utils.create_damage_number_label(self, DamageInfo.new(change))
 		elif change < 0:
-			Utils.create_damage_number(self , "%d" % abs(change), true)
+			Utils.create_damage_number_label(self, DamageInfo.new(change))
 		if (max_health <= 0):
 			health = new_value
 		else:
@@ -143,7 +143,7 @@ func hurt_by(_area: HitBox):
 	if health == 0: return
 	if dead: return
 	
-	health -= _area.damage
+	health -= _area.get_damage_info().amount
 	hurt.emit()
 
 	if _area.causes_iframes:

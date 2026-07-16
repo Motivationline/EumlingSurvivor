@@ -47,8 +47,6 @@ class_name Enemy
 @onready var visuals: Node3D = $Visuals
 @onready var vulnerability_display: VulnerabilityDisplay = $VulnerabilityDisplay
 
-const DAMAGE_NUMBER_LABEL = preload("uid://dm4mgjmi078lm")
-
 signal died
 signal hurt
 
@@ -107,26 +105,26 @@ func _hurt_by(_attacker: HitBox):
 			health = 0
 		return
 	var projectile = _attacker.get_parent()
-	var damage = _attacker.damage
+	var damage_info := _attacker.get_damage_info()
 	var hit_vulnerability: bool = false
 	if projectile is Projectile:
 		hit_vulnerability = vulnerability_display.try_to_hit(projectile)
 		if hit_vulnerability:
-			damage *= Player.player.get_ability(Enum.EUMLING_TYPE.INVESTIGATIVE).multiplier
-	damage *= incoming_damage_multiplier
+			damage_info.amount *= Player.player.get_ability(Enum.EUMLING_TYPE.INVESTIGATIVE).multiplier
+	damage_info.amount *= incoming_damage_multiplier
 
-	if damage > 0:
+	if damage_info.amount > 0:
 		hurt.emit()
-	health -= damage
+	health -= damage_info.amount
 	_trigger_events(on_hurt, _attacker)
 	if (heal_back_to_full): reset_timer.start(3)
-	if damage > 0:
+	if damage_info.amount > 0:
 		convince_progress = 0
 		status_visuals.social_progress = 0
 
-		var dmgText = "%d" % damage
-		if hit_vulnerability: dmgText += "!"
-		Utils.create_damage_number(self, dmgText)
+		damage_info.vulnerability = hit_vulnerability
+		damage_info.multiplier = incoming_damage_multiplier
+		Utils.create_damage_number_label(self, damage_info)
 	if projectile is Projectile and projectile.shooter == Player.player:
 		Player.player.hit.emit(self)
 
