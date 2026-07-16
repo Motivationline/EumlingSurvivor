@@ -17,5 +17,4 @@ void fragment() {
 	float blur = amount * mask;
     
     ALBEDO = textureLod(screen_texture, SCREEN_UV, blur).xyz;
-	ALPHA = 1.0;
 }
