@@ -11,7 +11,9 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="4_kyxhj"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_v47a7"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="9_5kvpg"]
+[ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="9_sivo7"]
 [ext_resource type="AudioStream" uid="uid://dns62sj3ohg2s" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_1.wav" id="10_jakvp"]
+[ext_resource type="Script" uid="uid://3q8mspcqcwpf" path="res://state_machine/interrupts/conditions/in_range.gd" id="10_osc0l"]
 [ext_resource type="AudioStream" uid="uid://b7pbmjhqc5b3j" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_2.wav" id="11_8yeke"]
 [ext_resource type="AudioStream" uid="uid://cfk1lhvo7fb7b" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_3.wav" id="12_4dlsx"]
 [ext_resource type="AudioStream" uid="uid://cwjj120d5rk37" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_4.wav" id="13_pk8bi"]
@@ -192,16 +194,38 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="DisableHitboxAgain" type="Node" parent="StateMachine/attack" index="4" unique_id=452213003 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("2_xclxu")
-enable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2")]
-disable = [NodePath("../../../Visuals/Hurtbox")]
+enable = [NodePath("../../../Visuals/Hurtbox")]
+disable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2")]
 next_state = NodePath("../WaitForAnimationEnd")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="WaitForAnimationEnd" type="Node" parent="StateMachine/attack" index="5" unique_id=803979567 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_v47a7")
 wait_time = 3.0
-next_state = NodePath("../LookAtPlayerState")
+next_state = NodePath("../../Idle/IdleWait")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Idle" type="Node" parent="StateMachine" index="2" unique_id=1235022100]
+
+[node name="IdleWait" type="Node" parent="StateMachine/Idle" index="0" unique_id=252497271 node_paths=PackedStringArray("next_state", "interrupts")]
+script = ExtResource("5_v47a7")
+next_state = NodePath(".")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "show"
+})
+interrupts = [NodePath("../Interrupt")]
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="Interrupt" type="Node" parent="StateMachine/Idle" index="1" unique_id=356304684 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("9_sivo7")
+state_to_go_to = NodePath("../../attack/LookAtPlayerState")
+condition = NodePath("InRangeToPlayerInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="InRangeToPlayerInterruptCondition" type="Node" parent="StateMachine/Idle/Interrupt" index="0" unique_id=1142471285]
+script = ExtResource("10_osc0l")
+distance = 1.0
+metadata/_custom_type_script = "uid://3q8mspcqcwpf"
 
 [node name="squid_arm" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1132374932 instance=ExtResource("2_s43a1")]
 
