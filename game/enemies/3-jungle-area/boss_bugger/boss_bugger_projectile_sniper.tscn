@@ -2,9 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle-area/sniper/sniper_projectile_enemy.tscn" id="1_sv0hd"]
 [ext_resource type="Texture2D" uid="uid://1583oa3cnkm" path="res://assets/vfx/projectile_realistic/Swirl 11 - 256x256.png" id="2_5qnx4"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sv0hd"]
-load_path = "res://.godot/imported/feather.png-d6b93ce52cdcf11c530267092a29cb0d.s3tc.ctex"
+[ext_resource type="Texture2D" uid="uid://t785pom8x3ve" path="res://game/enemies/3-jungle-area/sniper/feather.png" id="2_hjgos"]
+[ext_resource type="Texture2D" uid="uid://bswhnoci50wst" path="res://assets/vfx/particle_pack/trace_01.png" id="2_p5gm5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qnx4"]
 render_priority = 1
@@ -13,7 +12,7 @@ shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_color = Color(0.31, 0, 0.28416675, 0.37254903)
-albedo_texture = SubResource("CompressedTexture2D_sv0hd")
+albedo_texture = ExtResource("2_hjgos")
 disable_receive_shadows = true
 stencil_flags = 2
 stencil_outline_thickness = 0.264
@@ -38,35 +37,26 @@ albedo_texture = SubResource("GradientTexture2D_p5gm5")
 stencil_flags = 2
 stencil_color = Color(0.89, 0.2225, 0, 1)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5qnx4"]
-load_path = "res://.godot/imported/trace_01.png-63f24019e002671413a1d649841a0b18.s3tc.ctex"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5gm5"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
 albedo_color = Color(0.6228335, 0.26999998, 1, 1)
-albedo_texture = SubResource("CompressedTexture2D_5qnx4")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p5gm5"]
-load_path = "res://.godot/imported/trace_01.png-63f24019e002671413a1d649841a0b18.s3tc.ctex"
+albedo_texture = ExtResource("2_p5gm5")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb50n"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
 albedo_color = Color(0.69583344, 0.26999998, 1, 1)
-albedo_texture = SubResource("CompressedTexture2D_p5gm5")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hjgos"]
-load_path = "res://.godot/imported/trace_01.png-63f24019e002671413a1d649841a0b18.s3tc.ctex"
+albedo_texture = ExtResource("2_p5gm5")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpuxo"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
 albedo_color = Color(0.7931667, 0.26999998, 1, 1)
-albedo_texture = SubResource("CompressedTexture2D_hjgos")
+albedo_texture = ExtResource("2_p5gm5")
 
 [sub_resource type="Gradient" id="Gradient_p5gm5"]
 colors = PackedColorArray(0.06, 0.052, 0, 1, 0.92, 0, 0.88933337, 1)

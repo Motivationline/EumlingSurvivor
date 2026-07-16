@@ -13,6 +13,7 @@
 [ext_resource type="Material" uid="uid://bpyxd1yi1e1gi" path="res://game/enemies/3-jungle-area/sniper/sniper_projectile_mat.tres" id="8_enl2e"]
 [ext_resource type="Texture2D" uid="uid://bswhnoci50wst" path="res://assets/vfx/particle_pack/trace_01.png" id="8_vnlnp"]
 [ext_resource type="Shader" uid="uid://5lep1if814ha" path="res://assets/vfx/projectile_realistic/shader_vfx_realistic.tres" id="9_67uvf"]
+[ext_resource type="ArrayMesh" uid="uid://daudb4fy4cefl" path="res://assets/models/projectiles/cone_projectile.res" id="13_aa6of"]
 
 [sub_resource type="Curve" id="Curve_wripo"]
 _limits = [0.0, 5.0, 0.0, 5.0]
@@ -122,13 +123,6 @@ stencil_flags = 2
 stencil_color = Color(1, 0.2833333, 0, 1)
 stencil_outline_thickness = 0.02
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_vnlnp"]
-top_radius = 0.0
-bottom_radius = 0.08
-height = 0.3
-radial_segments = 4
-rings = 0
-
 [node name="Projectile" unique_id=1098182531 node_paths=PackedStringArray("hit_box", "movement", "on_world_collision", "on_hit", "on_hurt", "on_end_of_life") instance=ExtResource("1_6j6bh")]
 damage = 75.0
 max_distance = 100.0
@@ -221,7 +215,7 @@ mesh = SubResource("PlaneMesh_qymwb")
 [node name="outline" type="MeshInstance3D" parent="Visual" index="6" unique_id=98360098]
 transform = Transform3D(1.461, 0, 0, 0, -6.386234e-08, 1.461, 0, -1.461, -6.386234e-08, 0, 0.3131714, 0.05339928)
 material_override = SubResource("StandardMaterial3D_vkwat")
-mesh = SubResource("CylinderMesh_vnlnp")
+mesh = ExtResource("13_aa6of")
 
 [node name="DecalShadow" parent="Visual" index="7" unique_id=1002455412 instance=ExtResource("4_uruu7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046359956, 0.035308838)
