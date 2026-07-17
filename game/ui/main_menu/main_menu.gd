@@ -9,11 +9,13 @@ var eumlingclopedia = EUMLINGCLOPEDIA.instantiate()
 # func _ready() -> void:
 # 	eumlingclopedia.unlocked_eumling.connect(update_eumlex_number)
 
+func _ready():
+	if not Data.is_on_mobile:
+		end_game_button.show()
+
 func _enter_tree() -> void:
 	update_eumlex_number()
 	update_continue_button()
-	if Data.is_on_mobile:
-		end_game_button.hide()
 
 func update_eumlex_number():
 	if Data._unlocked_eumlings.size() > 0:
