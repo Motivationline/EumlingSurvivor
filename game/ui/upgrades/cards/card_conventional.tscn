@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://umtjixecg24" path="res://game/ui/upgrades/cards/card_base.tscn" id="1_dngs2"]
 [ext_resource type="Texture2D" uid="uid://u5e76dthfhwb" path="res://assets/ui/UpgradeCards/Lava/lava_card_backdrop.png" id="2_32gl8"]
 [ext_resource type="Texture2D" uid="uid://dw0jooxk3cqlp" path="res://assets/ui/UpgradeCards/Lava/lava_card_marker.png" id="3_x01tu"]
+[ext_resource type="Texture2D" uid="uid://b6bxybop5o8ks" path="res://assets/ui/Eumlex/IconC.png" id="4_4xws8"]
 [ext_resource type="Texture2D" uid="uid://ucg7x5nhjxv3" path="res://assets/ui/UpgradeCards/Lava/lava_card_big_stone_middle.png" id="4_l5c76"]
 [ext_resource type="Texture2D" uid="uid://cuf55aockm30" path="res://assets/ui/UpgradeCards/Lava/lava_card_left_corner_big.png" id="5_spr6t"]
 [ext_resource type="Texture2D" uid="uid://bqr6vkgbp6t1k" path="res://assets/ui/UpgradeCards/Lava/lava_card_small_stones.png" id="6_5xnbt"]
@@ -19,7 +20,13 @@ texture = ExtResource("2_32gl8")
 
 [node name="Tag" parent="Card/CardBack" index="0" unique_id=1896575900]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.112286, 2.5314813, 0.19999418)
+visible = true
 texture = ExtResource("3_x01tu")
+
+[node name="Icon" type="Sprite3D" parent="Card/CardBack/Tag" index="0" unique_id=1665352894]
+transform = Transform3D(0.9998561, -0.016971156, 6.1428364e-07, 0.016971156, 0.9998561, 3.9143197e-07, -6.2083745e-07, -3.8095095e-07, 1, 0.040819645, -0.026626348, 0.1000019)
+sorting_offset = 5.0
+texture = ExtResource("4_4xws8")
 
 [node name="LavaRock" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="0" unique_id=589850286]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72374094, 0.99689394, 0.23627077)
@@ -45,6 +52,9 @@ texture = ExtResource("7_fbmbs")
 transform = Transform3D(1, 3.6123315e-06, 2.883171e-07, -3.6123106e-06, 0.9873281, 0.15869229, 2.8858267e-07, -0.15869229, 0.9873281, 0.9930445, 2.2620873, 0.10984326)
 sorting_offset = 5.0
 texture = ExtResource("8_1bkpd")
+
+[node name="GrassBot" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="5" unique_id=2024262237]
+visible = false
 
 [node name="Tracker" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="5" unique_id=413882802]
 texture = ExtResource("9_8i3b1")

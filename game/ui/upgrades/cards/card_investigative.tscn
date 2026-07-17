@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://umtjixecg24" path="res://game/ui/upgrades/cards/card_base.tscn" id="1_y4mne"]
 [ext_resource type="Texture2D" uid="uid://dpehrd4k88gse" path="res://assets/ui/UpgradeCards/Flower/flower_card_backdrop.png" id="2_86s8u"]
 [ext_resource type="Texture2D" uid="uid://ckl73p505ndtl" path="res://assets/ui/UpgradeCards/Flower/flower_card_marker.png" id="3_7wfoe"]
+[ext_resource type="Texture2D" uid="uid://dnatt3uej2715" path="res://assets/ui/Eumlex/IconI.png" id="4_mwty3"]
 [ext_resource type="Texture2D" uid="uid://qhoiv03s0pud" path="res://assets/ui/UpgradeCards/Flower/flower_card_clover.png" id="4_sutxf"]
 [ext_resource type="Texture2D" uid="uid://yp46t4sq1vlh" path="res://assets/ui/UpgradeCards/Flower/flower_card_hanging_flower.png" id="5_4timh"]
 [ext_resource type="Texture2D" uid="uid://ugavesj3jnoh" path="res://assets/ui/UpgradeCards/Flower/flower_card_moss.png" id="6_mwty3"]
@@ -16,7 +17,13 @@
 texture = ExtResource("2_86s8u")
 
 [node name="Tag" parent="Card/CardBack" index="0" unique_id=1896575900]
+visible = true
 texture = ExtResource("3_7wfoe")
+
+[node name="Icon" type="Sprite3D" parent="Card/CardBack/Tag" index="0" unique_id=1027077279]
+transform = Transform3D(0.9300448, 0.36744654, -1.4962838e-05, -0.36744654, 0.9300448, -5.8158657e-06, 1.177909e-05, 1.09070625e-05, 1, 0.071793556, -0.03901577, 0.10000305)
+sorting_offset = 5.0
+texture = ExtResource("4_mwty3")
 
 [node name="Clovers" type="Sprite3D" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="0" unique_id=1699619563]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2742597e-06, 3.6356168e-06, 0.09991014)
@@ -42,6 +49,9 @@ texture = ExtResource("7_1dre7")
 transform = Transform3D(0.9940696, -3.9571237e-06, -0.10874543, 3.957122e-06, 1, -2.1580126e-07, 0.108745426, -2.1579763e-07, 0.9940697, -1.324203, 0.4392386, 0.12762918)
 sorting_offset = 4.0
 texture = ExtResource("8_43x5g")
+
+[node name="GrassBot" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="5" unique_id=2024262237]
+visible = false
 
 [node name="Tracker" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="5" unique_id=413882802]
 texture = ExtResource("9_4timh")

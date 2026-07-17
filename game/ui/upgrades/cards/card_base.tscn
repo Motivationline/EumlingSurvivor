@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bh7iefvel1djl" path="res://game/ui/auto_size_label_3d.gd" id="6_04cqa"]
 [ext_resource type="Texture2D" uid="uid://ct0dwwb0l0w2p" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayoutBack.png" id="6_ykpu1"]
 [ext_resource type="Texture2D" uid="uid://c4xwloo8etajn" path="res://assets/ui/UpgradeCards/Icons/tracker_backdrop.png" id="8_gbuuv"]
+[ext_resource type="Texture2D" uid="uid://bwxy2wdpm4ux8" path="res://assets/ui/UpgradeCards/basic/basic_card_grass.png" id="8_hqtij"]
 [ext_resource type="Texture2D" uid="uid://bnymyyw1b74vg" path="res://assets/ui/UpgradeCards/Icons/Tracke_point_placeholder.png" id="9_ykpu1"]
 [ext_resource type="Texture2D" uid="uid://dtbwppywisjcg" path="res://assets/ui/UpgradeCards/Icons/tracker_route_placeholder.png" id="10_hqtij"]
 [ext_resource type="Texture2D" uid="uid://dqweoljlvk5q7" path="res://assets/ui/UpgradeCards/Icons/last_marker.png" id="10_ykpu1"]
@@ -318,6 +319,7 @@ texture = ExtResource("1_gbuuv")
 
 [node name="Tag" type="Sprite3D" parent="Card/CardBack" unique_id=1896575900]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.157, 2.3436825, 0.2)
+visible = false
 sorting_offset = 5.0
 texture = ExtResource("2_04cqa")
 
@@ -354,6 +356,11 @@ texture = ExtResource("6_ykpu1")
 
 [node name="Visuals" type="Node3D" parent="Card" unique_id=1008643825]
 transform = Transform3D(1, 0, 3.7252903e-09, 0, 1, 0, 3.7252903e-09, 0, 1, 0, 0, 0)
+
+[node name="GrassBot" type="Sprite3D" parent="Card/Visuals" unique_id=2024262237]
+transform = Transform3D(1, 9.222099e-06, 1.9514027e-06, -9.221953e-06, 0.9142585, 0.40513137, 1.952074e-06, -0.40513137, 0.9142585, -0.010232908, -0.24735406, 0.20878297)
+sorting_offset = 1.0
+texture = ExtResource("8_hqtij")
 
 [node name="TrackerPointsBackground" type="Node3D" parent="Card" unique_id=1925757366]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.184001e-07, 3.0518923, -0.040463757)

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dc2tndjbcl02s" path="res://assets/ui/UpgradeCards/Mushroom/MushroomCardBackdrop.png" id="2_0plfx"]
 [ext_resource type="Texture2D" uid="uid://b4xcolvjnetcl" path="res://assets/ui/UpgradeCards/Mushroom/MushroomStemRed.png" id="2_wufc1"]
 [ext_resource type="Texture2D" uid="uid://d2bvqrpxey1hw" path="res://assets/ui/UpgradeCards/Mushroom/MushroomHatRed.png" id="3_7uqep"]
+[ext_resource type="Texture2D" uid="uid://sbq7w3rqne2i" path="res://assets/ui/Eumlex/IconS.png" id="3_c37ev"]
 [ext_resource type="Texture2D" uid="uid://dn50m5b8jpwhk" path="res://assets/ui/UpgradeCards/Mushroom/MushroomYellowSide.png" id="4_uk6w6"]
 [ext_resource type="Texture2D" uid="uid://clccjcf0imrby" path="res://assets/ui/UpgradeCards/Mushroom/MushroomLog.png" id="5_tgcmx"]
 [ext_resource type="Texture2D" uid="uid://b5qto88ehss3y" path="res://assets/ui/UpgradeCards/Mushroom/MushroomStemPurple.png" id="6_yq2ym"]
@@ -14,6 +15,14 @@
 
 [node name="CardBack" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="0" unique_id=122314553]
 texture = ExtResource("2_0plfx")
+
+[node name="Tag" parent="Card/CardBack" index="0" unique_id=1896575900]
+visible = true
+
+[node name="Icon" type="Sprite3D" parent="Card/CardBack/Tag" index="0" unique_id=1399263373]
+transform = Transform3D(0.9478026, -0.017431855, 6.142818e-07, 0.01608762, 1.0269982, 3.9143197e-07, -5.8851583e-07, -3.9128645e-07, 0.99999785, 0.070055485, -0.15192294, 0.10000713)
+sorting_offset = 5.0
+texture = ExtResource("3_c37ev")
 
 [node name="Banner" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="2" unique_id=289770061]
 transform = Transform3D(1, 0, -3.7252903e-09, 0, 1, 0, 3.7252903e-09, 0, 1, -0.13539152, -1.435, 0.5)
@@ -47,6 +56,9 @@ texture = ExtResource("6_yq2ym")
 transform = Transform3D(1, 0, 0, 0, 0.99423003, 0.10727057, 0, -0.10727057, 0.99423003, 0.03530264, 0.36163157, 0.061547667)
 sorting_offset = 7.0
 texture = ExtResource("7_i31r2")
+
+[node name="GrassBot" parent="Card/Visuals" parent_id_path=PackedInt32Array(1008643825) index="3" unique_id=2024262237]
+visible = false
 
 [node name="Tracker" parent="Card" parent_id_path=PackedInt32Array(1596175525) index="5" unique_id=413882802]
 texture = ExtResource("8_kflg7")

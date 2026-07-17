@@ -6,15 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://deob3fhl16jrg" path="res://assets/ui/Eumlex/TabMarkerI.png" id="3_orh8k"]
 [ext_resource type="Texture2D" uid="uid://dxlkxqou0ag2g" path="res://assets/ui/Eumlex/TabMarkerA.png" id="4_y7di5"]
 [ext_resource type="Texture2D" uid="uid://wxbw8ln2ppqw" path="res://assets/ui/Eumlex/TabMarkerS.png" id="5_17oye"]
+[ext_resource type="Texture2D" uid="uid://8gogno32qkaf" path="res://assets/ui/Eumlex/IconR.png" id="5_fmuvr"]
 [ext_resource type="Texture2D" uid="uid://dy2ppkees51a1" path="res://assets/ui/Eumlex/TabMarkerE.png" id="6_71i0l"]
 [ext_resource type="Texture2D" uid="uid://c7ckxj0bkdqw7" path="res://assets/ui/Eumlex/TabMarkerC.png" id="7_jyuqq"]
+[ext_resource type="Texture2D" uid="uid://dnatt3uej2715" path="res://assets/ui/Eumlex/IconI.png" id="7_q5hyn"]
 [ext_resource type="Texture2D" uid="uid://ch18yvwyg6mv2" path="res://assets/ui/Eumlex/EumlexBlank.png" id="8_3iwa0"]
+[ext_resource type="Texture2D" uid="uid://bcatobc2j03sb" path="res://assets/ui/Eumlex/IconA.png" id="9_48btb"]
 [ext_resource type="Texture2D" uid="uid://d1ajjlroi6yyx" path="res://assets/ui/Eumlex/EumlexScrollBackground.png" id="9_gqdvb"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="10_amahl"]
+[ext_resource type="Texture2D" uid="uid://sbq7w3rqne2i" path="res://assets/ui/Eumlex/IconS.png" id="11_665xe"]
 [ext_resource type="PackedScene" uid="uid://b6vj3geh4ibvg" path="res://game/ui/eumlex/eumling_button/eumlex_button.tscn" id="11_w24f0"]
 [ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="12_ikcm3"]
+[ext_resource type="Texture2D" uid="uid://dcumrupa7bvdu" path="res://assets/ui/Eumlex/IconE.png" id="13_h87jw"]
 [ext_resource type="Texture2D" uid="uid://be0ca3llwbdrf" path="res://assets/ui/Eumlex/TagBaseR.png" id="14_ikcm3"]
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="14_orh8k"]
+[ext_resource type="Texture2D" uid="uid://b6bxybop5o8ks" path="res://assets/ui/Eumlex/IconC.png" id="15_4f41a"]
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="15_xeq76"]
 [ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="15_y7di5"]
 [ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="16_7mh0x"]
@@ -118,6 +124,19 @@ offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
 
+[node name="Icon" type="TextureRect" parent="Book/TabPanel/OrangeButton" unique_id=2104983446]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.5
+offset_top = 17.0
+offset_right = 33.5
+offset_bottom = 69.0
+grow_horizontal = 2
+texture = ExtResource("5_fmuvr")
+stretch_mode = 4
+
 [node name="GreenButton" type="TextureButton" parent="Book/TabPanel" unique_id=565872638]
 layout_mode = 0
 offset_left = 118.0
@@ -133,6 +152,19 @@ offset_top = -7.0
 offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
+
+[node name="Icon" type="TextureRect" parent="Book/TabPanel/GreenButton" unique_id=497545965]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_top = 13.0
+offset_right = 34.5
+offset_bottom = 65.0
+grow_horizontal = 2
+texture = ExtResource("7_q5hyn")
+stretch_mode = 4
 
 [node name="PurpleButton" type="TextureButton" parent="Book/TabPanel" unique_id=1068037442]
 layout_mode = 0
@@ -150,6 +182,20 @@ offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
 
+[node name="Icon" type="TextureRect" parent="Book/TabPanel/PurpleButton" unique_id=1191177753]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_top = 13.0
+offset_right = 34.5
+offset_bottom = 65.0
+grow_horizontal = 2
+texture = ExtResource("9_48btb")
+stretch_mode = 4
+flip_h = true
+
 [node name="YellowButton" type="TextureButton" parent="Book/TabPanel" unique_id=128397190]
 layout_mode = 0
 offset_left = 331.0
@@ -165,6 +211,19 @@ offset_top = -7.0
 offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
+
+[node name="Icon" type="TextureRect" parent="Book/TabPanel/YellowButton" unique_id=946420858]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_top = 13.0
+offset_right = 34.5
+offset_bottom = 65.0
+grow_horizontal = 2
+texture = ExtResource("11_665xe")
+stretch_mode = 4
 
 [node name="RedButton" type="TextureButton" parent="Book/TabPanel" unique_id=570840646]
 layout_mode = 0
@@ -182,6 +241,19 @@ offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
 
+[node name="Icon" type="TextureRect" parent="Book/TabPanel/RedButton" unique_id=1609913383]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_top = 12.0
+offset_right = 34.5
+offset_bottom = 64.0
+grow_horizontal = 2
+texture = ExtResource("13_h87jw")
+stretch_mode = 4
+
 [node name="BlueButton" type="TextureButton" parent="Book/TabPanel" unique_id=1096261708]
 layout_mode = 0
 offset_left = 540.0
@@ -197,6 +269,19 @@ offset_top = -7.0
 offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
+
+[node name="Icon" type="TextureRect" parent="Book/TabPanel/BlueButton" unique_id=1249381863]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.5
+offset_top = 14.0
+offset_right = 32.5
+offset_bottom = 66.0
+grow_horizontal = 2
+texture = ExtResource("15_4f41a")
+stretch_mode = 4
 
 [node name="BackdropEumlex" type="TextureRect" parent="Book" unique_id=236310539]
 layout_mode = 1
@@ -252,7 +337,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
-text = "Geschick..."
+text = "Realistische..."
 
 [node name="RealisticInfo" type="Label" parent="Book/BookContainer/BookBG/OrangePage/RealisticText" unique_id=1959594975]
 custom_minimum_size = Vector2(20, 20)
@@ -378,7 +463,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
-text = "Forschung..."
+text = "Investigative..."
 
 [node name="InvestigativeInfo" type="Label" parent="Book/BookContainer/BookBG/GreenPage/InvestigativeText" unique_id=1200829753]
 custom_minimum_size = Vector2(20, 20)
@@ -756,7 +841,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
-text = "Ehrgeiz..."
+text = "Enterprising..."
 
 [node name="EnterprisingInfo" type="Label" parent="Book/BookContainer/BookBG/RedPage/EnterprisingText" unique_id=1588086190]
 custom_minimum_size = Vector2(20, 20)
@@ -882,7 +967,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_amahl")
 theme_override_font_sizes/font_size = 60
-text = "Logik..."
+text = "Conventional..."
 
 [node name="ConventionalInfo" type="Label" parent="Book/BookContainer/BookBG/BluePage/ConventionalText" unique_id=1355773388]
 custom_minimum_size = Vector2(20, 20)
