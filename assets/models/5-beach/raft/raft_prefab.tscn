@@ -2,25 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://cc0s0gryl86fd" path="res://assets/models/5-beach/raft/raft.glb" id="1_wdxdu"]
 [ext_resource type="Texture2D" uid="uid://bkg7efa6ccrvi" path="res://assets/models/5-beach/raft/raft_DefaultMaterial_2D_View.png" id="2_l566j"]
-[ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="3_j7ane"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xg7qm"]
-render_priority = 0
-shader = ExtResource("3_j7ane")
-shader_parameter/color = Color(0.14117648, 0.07058824, 0.023529412, 1)
-shader_parameter/width = 0.03
+[ext_resource type="Material" uid="uid://dkvo02pw0hfgd" path="res://game/shared/outline/outline_material_black.tres" id="3_l566j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vceqn"]
-next_pass = SubResource("ShaderMaterial_xg7qm")
+next_pass = ExtResource("3_l566j")
 albedo_texture = ExtResource("2_l566j")
 
 [node name="raft" unique_id=1245706343 instance=ExtResource("1_wdxdu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75896037, 0, 0)
 
-[node name="Cube_007" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(491644066) index="0" unique_id=744933746]
+[node name="Cube_007" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1475157719) index="0" unique_id=1154637815]
 material_override = SubResource("StandardMaterial3D_vceqn")
 
-[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(491644066) index="1" unique_id=58994210]
+[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1475157719) index="1" unique_id=58994210]
 setting_count = 1
 settings/0/root_bone_name = "DEF_TAIl1"
 settings/0/root_bone = 0

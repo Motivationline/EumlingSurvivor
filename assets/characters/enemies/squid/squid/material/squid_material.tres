@@ -1,14 +1,8 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://cjbon2fhctqrm"]
 
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_jo4fi"]
-[ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="1_oykyq"]
+[ext_resource type="Material" uid="uid://dkvo02pw0hfgd" path="res://game/shared/outline/outline_material_black.tres" id="1_oykyq"]
 [ext_resource type="Texture2D" uid="uid://e6wcjb7su323" path="res://assets/characters/enemies/squid/squid/squid_octo_mat_2D_View.png" id="2_oykyq"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_40h8i"]
-render_priority = 0
-shader = ExtResource("1_oykyq")
-shader_parameter/color = Color(0.15804905, 0.08133093, 0.051183544, 1)
-shader_parameter/width = 0.006
 
 [sub_resource type="Gradient" id="Gradient_40h8i"]
 interpolation_mode = 1
@@ -24,7 +18,7 @@ gradient = SubResource("Gradient_gmlis")
 
 [resource]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_40h8i")
+next_pass = ExtResource("1_oykyq")
 shader = ExtResource("1_jo4fi")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("2_oykyq")

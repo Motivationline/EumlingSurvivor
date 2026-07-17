@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="10_84v5a"]
 [ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="11_ql6kd"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="12_scaj3"]
-[ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="14_mc1rk"]
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="15_7y1eb"]
 [ext_resource type="AudioStream" uid="uid://cq74ndddkno7h" path="res://assets/characters/enemies/tortoise/sounds/shake_1.wav" id="16_0jpdq"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="16_gjal0"]
@@ -312,16 +311,9 @@ radius = 0.39281
 [sub_resource type="SphereShape3D" id="SphereShape3D_fgitk"]
 radius = 0.37732264
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1huhm"]
-render_priority = 1
-shader = ExtResource("14_mc1rk")
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/width = 0.006
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hr18v"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0yfls"]
 resource_local_to_scene = true
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_1huhm")
 shader = ExtResource("15_7y1eb")
 shader_parameter/ball_color = Color(1.6978991, 0, 0, 1)
 shader_parameter/frensel_power = -1.36
@@ -527,11 +519,11 @@ shape = SubResource("SphereShape3D_fgitk")
 
 [node name="tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1904037027 instance=ExtResource("2_s8eqa")]
 
-[node name="Skeleton3D" parent="Visuals/tortoise/Armature_Tortoise" parent_id_path=PackedInt32Array(1904037027, 1558866415) index="0" unique_id=1020121028]
+[node name="Skeleton3D" parent="Visuals/tortoise/Armature_Tortoise" parent_id_path=PackedInt32Array(1904037027, 675312915) index="0" unique_id=777752585]
 bones/32/scale = Vector3(1, 1, 1.0000001)
 
-[node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" index="0" unique_id=489273383]
-material_overlay = SubResource("ShaderMaterial_hr18v")
+[node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" index="0" unique_id=759909679]
+material_overlay = SubResource("ShaderMaterial_0yfls")
 
 [node name="Shake" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=610131262 instance=ExtResource("16_gjal0")]
 stream = SubResource("AudioStreamRandomizer_dchbn")

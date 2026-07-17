@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c0os0pr2ppn2i" path="res://game/projectiles/totally_basic_eumling_projectile/leaf_3.png" id="13_h5f0h"]
 [ext_resource type="Texture2D" uid="uid://8x2lm5odpjh3" path="res://assets/vfx/particle_pack/slash_02.png" id="14_2uqe5"]
 [ext_resource type="Texture2D" uid="uid://d1cu14uoatrlx" path="res://assets/vfx/particle_pack/muzzle_04.png" id="15_f7sbq"]
-[ext_resource type="Shader" uid="uid://ci3mafowxfyxs" path="res://game/shared/outline_shader.gdshader" id="16_n1kd3"]
+[ext_resource type="Material" uid="uid://dkvo02pw0hfgd" path="res://game/shared/outline/outline_material_black.tres" id="16_n1kd3"]
 [ext_resource type="Shader" uid="uid://vg0ogqjiohli" path="res://assets/vfx/portal/portal_entrance_shader.tres" id="16_ovhqn"]
 [ext_resource type="Texture2D" uid="uid://xhwkbpsdwste" path="res://assets/vfx/portal/vornoi.png" id="17_n1kd3"]
 
@@ -270,15 +270,9 @@ colors = PackedColorArray(1, 1, 0, 0, 0.94, 0.94, 0.065799996, 0.078431375, 0.37
 [sub_resource type="Gradient" id="Gradient_h247g"]
 colors = PackedColorArray(2.409395, 3.9143686, 0, 1, 1, 1, 1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_chctk"]
-render_priority = 2
-shader = ExtResource("16_n1kd3")
-shader_parameter/color = Color(0, 0.28, 0.023333311, 1)
-shader_parameter/width = 0.05
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e565q"]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_chctk")
+next_pass = ExtResource("16_n1kd3")
 shader = ExtResource("16_ovhqn")
 shader_parameter/Glow = 44.535
 shader_parameter/ColorParameter = Color(0.14166674, 0.85, 0, 1)

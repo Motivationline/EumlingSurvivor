@@ -7,29 +7,9 @@
 [ext_resource type="AnimationNodeBlendTree" uid="uid://up81skuu52jd" path="res://assets/characters/enemies/tortoise/tortoise_blend_tree.res" id="5_1huhm"]
 [ext_resource type="ArrayMesh" uid="uid://bf0lh4o3ufbqb" path="res://assets/characters/eumling/leaf_projectile.res" id="5_d7yk1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s76xj"]
-render_priority = 1
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
-grow = true
-grow_amount = 0.01
-stencil_mode = 3
-stencil_flags = 1
-stencil_compare = 5
-metadata/_stencil_owned = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qpakq"]
-next_pass = SubResource("StandardMaterial3D_s76xj")
-blend_mode = 1
-albedo_color = Color(0, 0, 0, 1)
-stencil_mode = 1
-stencil_flags = 2
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s76xj"]
 resource_local_to_scene = true
 render_priority = 0
-next_pass = SubResource("StandardMaterial3D_qpakq")
 shader = ExtResource("3_0saar")
 shader_parameter/ball_color = Color(1.6978991, 0, 0, 1)
 shader_parameter/frensel_power = -1.36
@@ -54,7 +34,7 @@ colors = PackedColorArray(0.29803923, 0.6039216, 0.14117648, 1, 0.078431375, 0.2
 [node name="tortoise" unique_id=2050981297 instance=ExtResource("1_gycm5")]
 script = ExtResource("2_hno28")
 
-[node name="Tortoise" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(1020121028) index="0" unique_id=489273383]
+[node name="Tortoise" parent="Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(777752585) index="0" unique_id=759909679]
 layers = 2
 material_overlay = SubResource("ShaderMaterial_s76xj")
 

@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://mdfyj6v6ifdd"]
+
+[ext_resource type="Material" uid="uid://dkvo02pw0hfgd" path="res://game/shared/outline/outline_material_black.tres" id="1_jyg5c"]
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="2_nt310"]
+[ext_resource type="Texture2D" uid="uid://c22wnjnpitgyx" path="res://assets/characters/enemies/clam/clam_ClamMat_2D_View.png" id="3_mmjj3"]
+
+[sub_resource type="Gradient" id="Gradient_rshof"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.1309255)
+colors = PackedColorArray(0.3515629, 0.3515629, 0.35156286, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hy6gg"]
+gradient = SubResource("Gradient_rshof")
+
+[sub_resource type="Gradient" id="Gradient_hy6gg"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7629797)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1wwrd"]
+gradient = SubResource("Gradient_hy6gg")
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_jyg5c")
+shader = ExtResource("2_nt310")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_mmjj3")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_hy6gg")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_1wwrd")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_diffuse_smooth_attenuation = true
