@@ -4,6 +4,7 @@ const GAME = preload("uid://bck4sy6x58mj2")
 var game: Game = GAME.instantiate()
 const EUMLINGCLOPEDIA = preload("uid://ba2ayes40wtdh")
 var eumlingclopedia = EUMLINGCLOPEDIA.instantiate()
+@onready var end_game_button: TextureButton = %EndGameButton
 
 # func _ready() -> void:
 # 	eumlingclopedia.unlocked_eumling.connect(update_eumlex_number)
@@ -11,6 +12,8 @@ var eumlingclopedia = EUMLINGCLOPEDIA.instantiate()
 func _enter_tree() -> void:
 	update_eumlex_number()
 	update_continue_button()
+	if Data.is_on_mobile:
+		end_game_button.hide()
 
 func update_eumlex_number():
 	if Data._unlocked_eumlings.size() > 0:
@@ -43,3 +46,7 @@ func update_continue_button():
 		find_child("ContinueButton").show()
 	else:
 		find_child("ContinueButton").hide()
+
+
+func _on_end_game_button_pressed() -> void:
+	get_tree().quit()

@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://bvaa0nxjehm86" path="res://assets/ui/startScreen/godrays01.png" id="18_i63cf"]
 [ext_resource type="Texture2D" uid="uid://b0ckwddoapbo5" path="res://assets/vfx/particle_pack/dirt_03.png" id="19_nekgt"]
 [ext_resource type="Texture2D" uid="uid://bwf6nign48iqb" path="res://assets/vfx/particle_pack/smoke_06.png" id="19_oup2s"]
+[ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="19_vt321"]
 [ext_resource type="PackedScene" uid="uid://b1dehhangi7ko" path="res://assets/characters/eumling/main_menu_eumling/main_menu_eumling.tscn" id="20_oup2s"]
 [ext_resource type="PackedScene" uid="uid://b2gactr5k8m8l" path="res://assets/characters/eumling/main_menu_eumling/backpack/backpack_prop.tscn" id="21_jxl6k"]
 [ext_resource type="PackedScene" uid="uid://dnpkx1sg04yw3" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/main_menu/main_menu_sozial.tscn" id="23_hutre"]
@@ -38,6 +39,7 @@
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0bhyy"]
 dof_blur_far_distance = 54.35
 dof_blur_far_transition = 20.0
+dof_blur_near_enabled = true
 dof_blur_amount = 0.55
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0bhyy"]
@@ -603,6 +605,15 @@ mouse_filter = 2
 texture = ExtResource("18_i63cf")
 flip_h = true
 
+[node name="EndGameButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=576263562]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 33.0
+offset_top = 14.0
+offset_right = 165.0
+offset_bottom = 153.0
+texture_normal = ExtResource("19_vt321")
+
 [node name="Background_Tile" type="Node3D" parent="." unique_id=272850613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7447424, 0, 0)
 
@@ -868,6 +879,7 @@ transform = Transform3D(0.46461144, 0, -0.18475986, 0, 0.5, 0, 0.18475986, 0, 0.
 [connection signal="pressed" from="UIOverlay/StaticUI/EumlexButton" to="." method="_on_eumlex_button_pressed"]
 [connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="UIOverlay/StaticUI/EndGameButton" to="." method="_on_end_game_button_pressed"]
 
 [editable path="Background_Tile/jungel_tree_01"]
 [editable path="Background_Tile/jungel_tree_02"]
