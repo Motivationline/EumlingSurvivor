@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_ses7p"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_44kh4"]
+[ext_resource type="PackedScene" uid="uid://dyyhy5suplkkk" path="res://game/enemies/box/DestructibleBox2x1.tscn" id="3_ig5gj"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="5_44kh4"]
-[ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="5_a781b"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_l5wm5"]
 vertices = PackedVector3Array(-3.25, 1, -1.5, -3, 1, -1.5, -3, 1, -1.75, -1.5, 1, -2, -1.5, 1, -1.75, -1.25, 1, -1.75, -0.75, 1, -1.5, -0.5, 1, -1.5, -0.5, 1, -1.75, 0.75, 1, -2, 0.75, 1, -1.75, 1, 1, -1.75, 1, 1, -1.5, 1.25, 1, -1.5, 1.25, 1, -1.75, 1.5, 1, -2, 2.25, 1, -2, 1, 1, -4.5, 1.5, 1, -1.75, 3.25, 1, -2, 3.25, 1, -1.75, 3.5, 1, -1.75, 3.5, 1, -1.5, 3.75, 1, -1.5, 3.75, 1, -1.75, -4.25, 1, -2, -4, 1, -1.75, -2.25, 1, -2, -0.75, 1, -4.5, -4.5, 1, -4.5, -4.25, 1, -1.75, -4, 1, -1.5, -3.75, 1, -1.5, -3.75, 1, -1.25, -3.25, 1, -1.25, 2.75, 1, -2, -1.25, 1, -1.25, -0.75, 1, -1.25, 4.25, 1, -2, 4.75, 1, -2, 4.75, 1, -4.5, 2.25, 1, -1.75, 2.75, 1, -1.75, 4.25, 1, -1.75, 1, 1, -4.75, -0.75, 1, -4.75, -4.5, 1, -2, -2.25, 1, -1.75, 0.25, 1, -1.75, 0.25, 1, -2, -1.25, 1, -0.75, -1.5, 1, -0.75, -1.5, 1, -0.5, -3, 1, -0.5, -3, 1, -0.75, -3.25, 1, -0.75, -3.75, 1, -1, -4, 1, -1, -4, 1, -0.75, -4.25, 1, -0.75, -4.25, 1, -0.5, -4.25, 1, 1, -4.25, 1, 1.25, -4, 1, 1.25, -4, 1, 1.5, -3.75, 1, 1.5, -3.5, 1, 1.25, -3.75, 1, 1.75, -3.5, 1, 1.75, -3.25, 1, 1, -2.5, 1, 1, -3.25, 1, 1.25, -1.5, 1, 1.25, -1.5, 1, 1.5, -1.25, 1, 1.5, -1.25, 1, 2.25, -1.5, 1, 2.25, -1.5, 1, 2.5, -3, 1, 2.25, -3, 1, 2, -3.25, 1, 2, -3.5, 1, 2.25, -3.25, 1, 1.75, -1, 1, 2, -0.75, 1, 2.25, -0.75, 1, 2, -3.75, 1, 2.25, -3.75, 1, 2.5, 4.25, 1, 2.5, 4.25, 1, 2.25, 4, 1, 2.25, 4, 1, 2, 3.75, 1, 2, 3.5, 1, 2.25, 3.75, 1, 1.75, 3.5, 1, 1.75, 4.5, 1, 1, 4.5, 1, -0.5, 4.25, 1, -0.5, 3.25, 1, 2.25, 3.25, 1, 2.5, 2.5, 1, 2.5, 2.5, 1, 2.25, 2.25, 1, 2.25, 2.25, 1, 2.5, -0.5, 1, 2.5, 1.5, 1, 2.5, 1.5, 1, 2.25, 1.25, 1, 2.25, 1, 1, 2.25, 0.75, 1, 2.25, 0.75, 1, 2.5, 4.75, 1, 4.75, -0.5, 1, 2.25, -4.5, 1, 4.75, -1, 1, 1.5, -0.75, 1, 1.5, -0.75, 1, 1.25, 0.25, 1, 1, 0.25, 1, 1.25, 0.5, 1, 1.25, 0.5, 1, 1.5, 0.75, 1, 1.5, 1, 1, 1.25, 0.75, 1, 1.75, 1, 1, 1.75, -4.5, 1, -0.5, -4.5, 1, 1, 1.25, 1, 1.25, 1.25, 1, 1, 2, 1, 1, 2, 1, 1.25, 2.25, 1, 1.25, 2.25, 1, 1, -0.25, 1, 1, 0.5, 1, -0.5, -0.5, 1, -0.5, 2.75, 1, 1, 2.75, 1, 1.25, 3, 1, 1.25, 3, 1, 1.5, 3.25, 1, 1.5, 3.5, 1, 1.25, 3.25, 1, 1.75, -2.5, 1, 1.25, 3.75, 1, 1.25, 3.75, 1, 1, 4.5, 1, 1.25, 4.75, 1, 1.25, 4.5, 1, -0.75, 4.25, 1, -0.75, 3.75, 1, -0.5, 3.75, 1, -0.75, 3.5, 1, -0.75, 3.5, 1, -1, 3.25, 1, -1, 3.25, 1, -0.75, 2, 1, -0.5, 2, 1, -0.75, 1.75, 1, -0.75, 1.75, 1, -0.5, -2.5, 1, 2.5, 1.25, 1, -0.5, 1.25, 1, -0.75, 1, 1, -0.75, 1, 1, -1, 0.75, 1, -1, 0.75, 1, -0.75, 2.75, 1, -0.5, 0.5, 1, -0.75, -0.5, 1, -0.75, -0.75, 1, -0.75, 4.75, 1, 2.5, -2.5, 1, 2.25, 1.25, 1, 1.75, -0.25, 1, 1.25, 2.75, 1, -0.75, -4.5, 1, 2.5, 4.75, 1, -0.5)
@@ -26,53 +26,29 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="Box" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="0" unique_id=1656823302 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7481515, 0, 1.7707801)
+[node name="2x1Stone" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="0" unique_id=1837394296 instance=ExtResource("3_ig5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 1.75)
 
-[node name="Box9" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="1" unique_id=1837394296 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2481515, 0, 1.7707801)
+[node name="2x1Stone2" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="1" unique_id=1016525561 instance=ExtResource("3_ig5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.75)
 
-[node name="Box2" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="2" unique_id=576583583 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2469249, 0, 1.7707801)
+[node name="2x1Stone3" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="2" unique_id=801071292 instance=ExtResource("3_ig5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.75)
 
-[node name="Box10" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="3" unique_id=1053513316 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7469249, 0, 1.7707801)
+[node name="2x1Stone4" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="3" unique_id=1263812618 instance=ExtResource("3_ig5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 1.75)
 
-[node name="Box3" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="4" unique_id=1711775635 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2469234, 0, 1.7707801)
+[node name="2x1Stone5" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="4" unique_id=1245767082 instance=ExtResource("3_ig5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -1.25)
 
-[node name="Box11" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="5" unique_id=1498642180 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74692345, 0, 1.7707801)
+[node name="2x1Stone6" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="5" unique_id=812729236 instance=ExtResource("3_ig5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.25)
 
-[node name="Box4" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="6" unique_id=780777222 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7481503, 0, 1.7707801)
+[node name="2x1Stone7" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="6" unique_id=1001957517 instance=ExtResource("3_ig5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1.25)
 
-[node name="Box12" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="7" unique_id=1371840018 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2481503, 0, 1.7707801)
-
-[node name="Box5" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="8" unique_id=1729952035 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7481503, 0, -1.2395458)
-
-[node name="Box13" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="9" unique_id=2107254185 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2481503, 0, -1.2395458)
-
-[node name="Box6" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="10" unique_id=2002213736 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2616796, 0, -1.2395458)
-
-[node name="Box14" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="11" unique_id=2026040281 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.76167965, 0, -1.2395458)
-
-[node name="Box7" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="12" unique_id=1156676526 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2469263, 0, -1.2395458)
-
-[node name="Box15" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="13" unique_id=528922506 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7469263, 0, -1.2395458)
-
-[node name="Box8" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="14" unique_id=613906173 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7407746, 0, -1.2395458)
-
-[node name="Box16" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="15" unique_id=1565216580 instance=ExtResource("5_a781b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2407746, 0, -1.2395458)
+[node name="2x1Stone8" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="7" unique_id=392318056 instance=ExtResource("3_ig5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -1.25)
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(111514245) index="0" unique_id=1814085372 instance=ExtResource("5_44kh4")]
 transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, -4.097323, 0, 3.0288327)

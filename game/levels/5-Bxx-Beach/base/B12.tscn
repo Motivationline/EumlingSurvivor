@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://b2qejxcrt8si1" path="res://game/levels/5-Bxx-Beach/Bxx-base_level.tscn" id="1_bsc77"]
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_lbnsb"]
+[ext_resource type="PackedScene" uid="uid://dyyhy5suplkkk" path="res://game/enemies/box/DestructibleBox2x1.tscn" id="3_8wbxe"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="5_qbhcm"]
-[ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="6_kukyi"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_23txd"]
 vertices = PackedVector3Array(-1, 1, -2.5, -1, 1, -2.25, -0.75, 1, -2.25, -0.75, 1, -2.5, 1.75, 1, 1.75, 0.75, 1, 2, 0.5, 1, 4.75, 0.5, 1, -2.5, 0.5, 1, -2.25, 0.75, 1, -2.25, 1.5, 1, -2, 1.5, 1, -1.75, 1.75, 1, -1.75, 2, 1, -0.75, 1.75, 1, -0.75, 1.75, 1, -0.5, 1.5, 1, -0.5, 1.5, 1, -0.25, 1.75, 1, -0.25, 1, 1, -4.5, 2.25, 1, 0, 2.25, 1, 0.25, 2.5, 1, 0.25, 2.5, 1, 1, 2.25, 1, 1, 2.25, 1, 1.25, 2, 1, 1.25, 2, 1, 1.5, 1.75, 1, 1.5, 1.75, 1, -1.25, 2, 1, -1.25, 1.75, 1, 0, 0.75, 1, -2, 0.75, 1, 1.75, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, 4.75, 1, 4.75, -1.5, 1, -4.5, -1.5, 1, -2.5, 4.75, 1, -4.5, 0.5, 1, 2, -1.75, 1, 1.5, -1.75, 1, 1.25, -2, 1, 1.25, -2, 1, 0.5, -1.75, 1, 0.5, -1.75, 1, 0.25, 0.5, 1, -0.25, 0.75, 1, -0.25, 0.75, 1, -0.5, -2.25, 1, -0.5, -2.25, 1, -0.75, -2.5, 1, -0.75, -2.5, 1, -1.5, -2.25, 1, -1.5, -2.25, 1, -1.75, -2, 1, -2.25, -1.75, 1, -2.25, -1.75, 1, -2.5, 0, 1, 2, 0, 1, 1.75, -0.5, 1, 1.75, 0, 1, 0, 0, 1, 0.25, 0.5, 1, 0.25, -2, 1, -1.75, -1.5, 1, -0.25, -1.5, 1, -0.5, -0.75, 1, 0, -1, 1, -0.5, -1, 1, -0.25, -4.5, 1, -4.5, -0.75, 1, 0.25, -4.5, 1, 4.75, -0.5, 1, 1.5)
@@ -26,17 +26,11 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Box" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="0" unique_id=1837394296 instance=ExtResource("6_kukyi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2668843, 0, 0.25337708)
+[node name="2x1Stone" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="0" unique_id=1837394296 instance=ExtResource("3_8wbxe")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.25, 0, 0)
 
-[node name="Box3" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="1" unique_id=1633352503 instance=ExtResource("6_kukyi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2668843, 0, -0.24662292)
-
-[node name="Box2" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="2" unique_id=15013371 instance=ExtResource("6_kukyi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.237927, 0, -0.73841244)
-
-[node name="Box4" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="3" unique_id=1238387634 instance=ExtResource("6_kukyi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.237927, 0, -0.23841244)
+[node name="2x1Stone2" parent="Destructables" parent_id_path=PackedInt32Array(1237699256) index="1" unique_id=476041834 instance=ExtResource("3_8wbxe")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.25, 0, -0.5)
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(111514245) index="0" unique_id=1814085372 instance=ExtResource("5_qbhcm")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.0752621, 0, 1.6763499)
