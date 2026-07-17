@@ -38,6 +38,9 @@ node_connections = [&"output", 0, &"Slingshot", &"Shoot", 0, &"Animation", &"Sho
 [node name="Toad" unique_id=1388801067 instance=ExtResource("1_snqxu")]
 script = ExtResource("2_4acqn")
 
+[node name="Toad_Mesh" parent="Armature_TOAD/Skeleton3D" parent_id_path=PackedInt32Array(698875072) index="0" unique_id=659377971]
+skeleton = NodePath("..")
+
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=185618591]
 tree_root = SubResource("AnimationNodeBlendTree_snqxu")
 anim_player = NodePath("../AnimationPlayer")
