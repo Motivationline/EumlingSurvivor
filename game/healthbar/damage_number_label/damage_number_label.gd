@@ -6,8 +6,8 @@ extends Node3D
 
 @export_category("Label Styles")
 @export var player_style: DamageNumberStyle
-@export var healing_style: DamageNumberStyle
 @export var enemy_style: DamageNumberStyle
+@export var healing_style: DamageNumberStyle
 @export var reduced_style: DamageNumberStyle
 @export var increased_style: DamageNumberStyle
 @export var multiple_increased_style: DamageNumberStyle

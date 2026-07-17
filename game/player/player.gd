@@ -35,6 +35,7 @@ var dead: bool = false
 
 signal died
 signal hurt
+@warning_ignore("unused_signal")
 signal hit(enemy: Enemy)
 signal attacked
 
