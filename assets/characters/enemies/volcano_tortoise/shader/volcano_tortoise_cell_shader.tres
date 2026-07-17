@@ -1,6 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://bqbbh2idsokrk"]
 
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_ekn8h"]
+[ext_resource type="Material" uid="uid://dkvo02pw0hfgd" path="res://game/shared/outline/outline_material_black.tres" id="1_huntm"]
 [ext_resource type="Texture2D" uid="uid://cmbbykr6l2bs6" path="res://assets/characters/enemies/volcano_tortoise/volcano_tortoise_Tortoise_Base_color.png" id="2_wqcns"]
 
 [sub_resource type="Gradient" id="Gradient_2whqy"]
@@ -20,6 +21,7 @@ gradient = SubResource("Gradient_d7871")
 
 [resource]
 render_priority = 0
+next_pass = ExtResource("1_huntm")
 shader = ExtResource("1_ekn8h")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("2_wqcns")

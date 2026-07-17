@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="5_f4g4a"]
 [ext_resource type="PackedScene" uid="uid://88irdt85febg" path="res://game/aoes/tortoise_complex_aoe/jungle_tortoise_complex/tortoise_complex_aoe_D2.tscn" id="5_uyr82"]
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="8_d33cf"]
-[ext_resource type="Material" uid="uid://bgn1lj00e7ol7" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.res" id="8_uu3eu"]
+[ext_resource type="Material" uid="uid://bl46tp3s7w71l" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.tres" id="8_ynkmh"]
 [ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="10_ebpng"]
 [ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="11_kj6pd"]
 
@@ -47,7 +47,7 @@ metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uu3eu"]
 resource_local_to_scene = true
 render_priority = 0
-next_pass = ExtResource("8_uu3eu")
+next_pass = ExtResource("8_ynkmh")
 shader = ExtResource("8_d33cf")
 shader_parameter/ball_color = Color(1.6978991, 0, 0, 1)
 shader_parameter/frensel_power = -1.36
@@ -142,11 +142,8 @@ difficulty_scaler = SubResource("Resource_b8ffy")
 entity_to_spawn = ExtResource("5_uyr82")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(2050981297, 1020121028) index="0" unique_id=489273383]
+[node name="Tortoise" parent="Visuals/tortoise/Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(2050981297, 777752585) index="0" unique_id=759909679]
 material_overlay = SubResource("ShaderMaterial_uu3eu")
-
-[node name="CPUParticles3D" parent="Visuals/tortoise/HitEffect" parent_id_path=PackedInt32Array(2050981297, 63167869) index="0" unique_id=475698339]
-emitting = false
 
 [node name="CircularTargetIndicatorBig" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=1351910490 instance=ExtResource("10_ebpng")]
 transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)

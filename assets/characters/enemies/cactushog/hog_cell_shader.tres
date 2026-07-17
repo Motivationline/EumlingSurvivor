@@ -1,26 +1,8 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://83vywe1d4268"]
 
+[ext_resource type="Material" uid="uid://dkvo02pw0hfgd" path="res://game/shared/outline/outline_material_black.tres" id="1_5qax6"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_vhibj"]
 [ext_resource type="Texture2D" uid="uid://dbrhvyvo6kah" path="res://assets/characters/enemies/cactushog/cactushog_Hog_Base_color.png" id="2_vhibj"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhibj"]
-render_priority = 1
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
-grow = true
-grow_amount = 0.01
-stencil_mode = 3
-stencil_flags = 1
-stencil_compare = 5
-metadata/_stencil_owned = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qax6"]
-next_pass = SubResource("StandardMaterial3D_vhibj")
-transparency = 1
-albedo_color = Color(1, 1, 1, 0)
-stencil_mode = 1
-stencil_flags = 2
 
 [sub_resource type="Gradient" id="Gradient_y1yp5"]
 interpolation_mode = 1
@@ -38,7 +20,7 @@ gradient = SubResource("Gradient_v3mi3")
 
 [resource]
 render_priority = 0
-next_pass = SubResource("StandardMaterial3D_5qax6")
+next_pass = ExtResource("1_5qax6")
 shader = ExtResource("1_vhibj")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("2_vhibj")

@@ -1,6 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://cbhrroiishjr6"]
 
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_3ti1q"]
+[ext_resource type="Material" uid="uid://dkvo02pw0hfgd" path="res://game/shared/outline/outline_material_black.tres" id="1_kcwnw"]
 [ext_resource type="Texture2D" uid="uid://bm57nj2b2808p" path="res://assets/characters/enemies/peacock/peacock_Pfau_Base_color.png" id="2_kcwnw"]
 
 [sub_resource type="Gradient" id="Gradient_byp6g"]
@@ -20,6 +21,7 @@ gradient = SubResource("Gradient_a8n7h")
 
 [resource]
 render_priority = 0
+next_pass = ExtResource("1_kcwnw")
 shader = ExtResource("1_3ti1q")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/albedo_texture = ExtResource("2_kcwnw")
