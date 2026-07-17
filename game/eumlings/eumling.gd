@@ -2,6 +2,7 @@ class_name Eumling extends Resource
 
 
 @export var id: String
+@export var unlock_priority: bool = false
 
 @export_category("Type Info")
 @export var type: Enum.EUMLING_TYPE

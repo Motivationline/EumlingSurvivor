@@ -92,8 +92,9 @@ func _unlock_eumling(type: Enum.EUMLING_TYPE) -> Eumling:
 
 	for t in types:
 		if _locked_eumlings[t].size() > 0:
-			var index = randi_range(0, _locked_eumlings[t].size() - 1)
-			var eumling = _locked_eumlings[t].pop_at(index)
+			_locked_eumlings[t].shuffle()
+			_locked_eumlings[t].sort_custom(_sort_eumlings_to_unlock) # TODO: remove this before shipping, this is only for demo purposes
+			var eumling = _locked_eumlings[t].pop_front()
 			eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED
 			_unlocked_eumlings.push_back(eumling.id)
 			SaveData.set_data("unlocked_eumlings", _unlocked_eumlings)
@@ -111,7 +112,7 @@ func sort_eumlings():
 	for category: Array in eumlings.values():
 		category.sort_custom(_sort_eumlings)
 
-func _sort_eumlings(a: Eumling, b: Eumling) -> int:
+func _sort_eumlings(a: Eumling, b: Eumling) -> bool:
 	var progress = a.progress - b.progress
 	if progress > 0:
 		return true
@@ -119,5 +120,11 @@ func _sort_eumlings(a: Eumling, b: Eumling) -> int:
 		return false
 		
 	return a.name.naturalnocasecmp_to(b.name) < 0
+
+# TODO: remove this before shipping, this is only for demo purposes
+func _sort_eumlings_to_unlock(a: Eumling, b: Eumling) -> bool:
+	if a.unlock_priority and not b.unlock_priority:
+		return true
+	return false
 
 #endregion
