@@ -169,7 +169,7 @@ metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
 [node name="EnableHurtbox" type="Node" parent="StateMachine/attack" index="0" unique_id=996281842 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("6_uii50")
-enable = [NodePath("../../../Visuals/Hurtbox")]
+enable = [NodePath("../../../Visuals/Hurtbox"), NodePath("../../../StatusVisuals3DEnemy")]
 next_state = NodePath("../AttackAim")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -205,7 +205,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="DisableHitbox" type="Node" parent="StateMachine/attack" index="5" unique_id=710102785 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("6_uii50")
-disable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2")]
+disable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2"), NodePath("../../../StatusVisuals3DEnemy")]
 next_state = NodePath("../WaitForAnimationEnd")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
