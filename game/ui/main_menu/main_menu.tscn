@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://m14qxh5fce8m" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone.glb" id="14_orue0"]
 [ext_resource type="Texture2D" uid="uid://bl41m3gtmqhmi" path="res://assets/ui/Buttons/continue_button.png" id="15_njswq"]
 [ext_resource type="Material" uid="uid://dcxlase0almr2" path="res://assets/models/3-Jungle/jungle_tree/jungel_tree_01_foliage_material_1.tres" id="16_lnduv"]
+[ext_resource type="Texture2D" uid="uid://ddc7l41e04xpn" path="res://assets/ui/logos/boostline_logo.png" id="17_alg0g"]
 [ext_resource type="PackedScene" uid="uid://b7ild54ax5g7a" path="res://assets/models/main_menu/campfire/campfire.tscn" id="18_06kjt"]
 [ext_resource type="Texture2D" uid="uid://co2dlumvhahno" path="res://assets/vfx/particle_pack/smoke_04.png" id="18_fkgrk"]
 [ext_resource type="Texture2D" uid="uid://bvaa0nxjehm86" path="res://assets/ui/startScreen/godrays01.png" id="18_i63cf"]
@@ -375,12 +376,12 @@ expand_mode = 1
 [node name="eumlingLogo2" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=451272343]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 1017.7167
-offset_top = 71.0
-offset_right = 4777.1855
-offset_bottom = 2954.6138
+offset_left = 1237.0
+offset_top = 685.99994
+offset_right = 2215.357
+offset_bottom = 1097.6895
 rotation = 0.14376397
-scale = Vector2(0.5197274, 0.5197274)
+scale = Vector2(0.4962722, 0.4962722)
 texture = ExtResource("7_o0d2s")
 expand_mode = 5
 stretch_mode = 5
@@ -388,10 +389,10 @@ stretch_mode = 5
 [node name="eumlingLogo" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1054500430]
 modulate = Color(1, 0.6166667, 0, 1)
 layout_mode = 0
-offset_left = 1041.7167
-offset_top = 101.0
-offset_right = 4801.1855
-offset_bottom = 2984.6138
+offset_left = 1243.0
+offset_top = 685.0
+offset_right = 2195.1226
+offset_bottom = 1085.6501
 rotation = 0.14376397
 scale = Vector2(0.4962722, 0.4962722)
 texture = ExtResource("7_o0d2s")
@@ -401,15 +402,18 @@ stretch_mode = 5
 [node name="motivationlineLogo" type="Label" parent="UIOverlay/StaticUI" unique_id=309874239]
 visible = false
 layout_mode = 0
-offset_left = 30.0
-offset_top = 1014.0
-offset_right = 277.0
-offset_bottom = 1063.0
+offset_left = 1243.0
+offset_top = 685.0
+offset_right = 2195.1226
+offset_bottom = 1085.6501
+rotation = 0.14376397
+scale = Vector2(0.4962722, 0.4962722)
 theme_override_fonts/font = ExtResource("4_m1bca")
 theme_override_font_sizes/font_size = 30
 text = "motivationline©"
 
 [node name="boostlineLoggo" type="Label" parent="UIOverlay/StaticUI" unique_id=183309719]
+visible = false
 layout_mode = 0
 offset_left = 401.0
 offset_top = 1014.0
@@ -472,6 +476,7 @@ libraries/ = SubResource("AnimationLibrary_njswq")
 autoplay = &"number_wiggle"
 
 [node name="SettingsButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1014587333]
+visible = false
 layout_mode = 0
 offset_left = 311.0
 offset_top = 821.0
@@ -559,11 +564,22 @@ horizontal_alignment = 1
 [node name="logo_ml" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1254517399]
 layout_mode = 0
 offset_left = 50.0
-offset_top = 1018.00006
+offset_top = 1004.2
 offset_right = 4144.0
-offset_bottom = 1519.0
+offset_bottom = 2014.2006
 scale = Vector2(0.0736165, 0.0736165)
 texture = ExtResource("13_06kjt")
+stretch_mode = 4
+
+[node name="logo_bl" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=229417253]
+layout_mode = 0
+offset_left = 342.03
+offset_top = 995.575
+offset_right = 4436.025
+offset_bottom = 2156.5752
+scale = Vector2(0.0736165, 0.0736165)
+texture = ExtResource("17_alg0g")
+stretch_mode = 4
 
 [node name="TextureRect" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=795901332]
 modulate = Color(1, 0.92333335, 0.53999996, 1)
