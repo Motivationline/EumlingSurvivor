@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://blj5iejn3ubvh"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_gxtow"]
+[ext_resource type="Material" uid="uid://dkosy1i5i04st" path="res://assets/models/3-Jungle/Spikes/spikes_outline_shader.tres" id="1_wcxpq"]
+[ext_resource type="Texture2D" uid="uid://da68njbyyor5u" path="res://assets/models/3-Jungle/Spikes/Spikes_Gradient.png" id="3_tfaww"]
+
+[sub_resource type="Gradient" id="Gradient_yhke2"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.79205173)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r83qf"]
+gradient = SubResource("Gradient_yhke2")
+width = 100
+
+[sub_resource type="Gradient" id="Gradient_eva7j"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.58935016)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1xpr6"]
+gradient = SubResource("Gradient_eva7j")
+width = 100
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_wcxpq")
+shader = ExtResource("1_gxtow")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_tfaww")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_r83qf")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_1xpr6")
+shader_parameter/rim_focus = 0.638000030305
+shader_parameter/use_diffuse_smooth_attenuation = true
