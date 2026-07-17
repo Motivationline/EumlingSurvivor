@@ -106,6 +106,7 @@ func _hurt_by(_attacker: HitBox):
 		return
 	var projectile = _attacker.get_parent()
 	var damage_info := _attacker.get_damage_info()
+	damage_info.entity_type = Enum.HITBOX.ENEMY
 	var hit_vulnerability: bool = false
 	if projectile is Projectile:
 		hit_vulnerability = vulnerability_display.try_to_hit(projectile)

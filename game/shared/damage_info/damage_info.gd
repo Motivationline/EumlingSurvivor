@@ -2,6 +2,7 @@ class_name DamageInfo
 extends RefCounted
 
 var amount: float
+var entity_type := Enum.HITBOX.NONE
 var multiplier: float = 1.0
 var critical: bool = false
 var vulnerability: bool = false

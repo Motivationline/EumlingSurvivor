@@ -5,8 +5,9 @@ extends Node3D
 @export var max_offset: float = 0.2
 
 @export_category("Label Styles")
-@export var normal_style: DamageNumberStyle
+@export var player_style: DamageNumberStyle
 @export var healing_style: DamageNumberStyle
+@export var enemy_style: DamageNumberStyle
 @export var reduced_style: DamageNumberStyle
 @export var increased_style: DamageNumberStyle
 @export var multiple_increased_style: DamageNumberStyle
@@ -48,7 +49,10 @@ func get_label_style(damage_info: DamageInfo, single_increased: bool, multiple_i
 	elif multiple_increased:
 		return multiple_increased_style
 	
-	return normal_style
+	if damage_info.entity_type == Enum.HITBOX.ENEMY:
+		return enemy_style
+	
+	return player_style
 
 
 func random_offset() -> Vector3:

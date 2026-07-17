@@ -3,14 +3,23 @@
 [ext_resource type="Script" uid="uid://bvgnicyl4o2qu" path="res://game/healthbar/damage_number_label/damage_number_label.gd" id="1_qhlkb"]
 [ext_resource type="Script" uid="uid://qc6t4ksgomty" path="res://game/healthbar/damage_number_label/damage_number_style.gd" id="2_ru7xr"]
 
-[sub_resource type="Resource" id="Resource_j3pel"]
+[sub_resource type="Resource" id="Resource_qw4tv"]
 script = ExtResource("2_ru7xr")
-color = Color(1, 0.21568628, 0, 1)
 metadata/_custom_type_script = "uid://qc6t4ksgomty"
 
 [sub_resource type="Resource" id="Resource_g28q7"]
 script = ExtResource("2_ru7xr")
 color = Color(0.56078434, 1, 0, 1)
+metadata/_custom_type_script = "uid://qc6t4ksgomty"
+
+[sub_resource type="Resource" id="Resource_2y083"]
+script = ExtResource("2_ru7xr")
+color = Color(0, 1, 1, 1)
+metadata/_custom_type_script = "uid://qc6t4ksgomty"
+
+[sub_resource type="Resource" id="Resource_sdcy0"]
+script = ExtResource("2_ru7xr")
+color = Color(1, 0.21568628, 0, 1)
 metadata/_custom_type_script = "uid://qc6t4ksgomty"
 
 [sub_resource type="Resource" id="Resource_n8wo2"]
@@ -109,8 +118,10 @@ _data = {
 
 [node name="DamageNumberLabel" type="Node3D" unique_id=290456004]
 script = ExtResource("1_qhlkb")
-normal_style = SubResource("Resource_j3pel")
+player_style = SubResource("Resource_qw4tv")
 healing_style = SubResource("Resource_g28q7")
+max_health_style = SubResource("Resource_2y083")
+enemy_style = SubResource("Resource_sdcy0")
 reduced_style = SubResource("Resource_n8wo2")
 increased_style = SubResource("Resource_dqt2m")
 multiple_increased_style = SubResource("Resource_7kkex")
