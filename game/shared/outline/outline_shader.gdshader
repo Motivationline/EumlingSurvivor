@@ -1,6 +1,6 @@
 shader_type spatial;
 stencil_mode read, write, compare_not_equal, 1;
-render_mode unshaded, cull_front, depth_draw_always;
+render_mode unshaded, depth_draw_always;
 
 uniform vec4 outline_color : source_color;
 
