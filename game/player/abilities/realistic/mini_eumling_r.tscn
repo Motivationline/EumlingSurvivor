@@ -2,9 +2,18 @@
 
 [ext_resource type="Script" uid="uid://7s5cfab4ondl" path="res://game/mini_eumling/mini_eumling.gd" id="1_yekch"]
 [ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="2_xr7ev"]
-[ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="3_yekch"]
+[ext_resource type="Script" uid="uid://bv0063su8u65x" path="res://state_machine/mini_eumling/flock_towards_entity.gd" id="4_7k0is"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="4_gtdpp"]
+[ext_resource type="Script" uid="uid://5su3djcnrpmc" path="res://state_machine/mini_eumling/flock_movement_configuration.gd" id="5_t7ndm"]
 [ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="5_yekch"]
+[ext_resource type="Script" uid="uid://8ediw3s5ybnw" path="res://state_machine/mini_eumling/flock_movement_controller.gd" id="6_t7ndm"]
+
+[sub_resource type="Resource" id="Resource_mg3to"]
+script = ExtResource("5_t7ndm")
+path_desired_distance = 0.25
+avoidance_enabled = true
+radius = 0.25
+metadata/_custom_type_script = "uid://5su3djcnrpmc"
 
 [node name="MiniEumlingR" type="CharacterBody3D" unique_id=379433697 node_paths=PackedStringArray("celebration_state", "node_with_animation_tree", "state_machine") groups=["MiniEumling"]]
 script = ExtResource("1_yekch")
@@ -14,21 +23,20 @@ state_machine = NodePath("StateMachine")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1402273970 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_xr7ev")
-initial_state = NodePath("MoveTowardsEntityState")
+initial_state = NodePath("FlockTowardsEntityState")
 metadata/_custom_type_script = "uid://cio21hucnk80k"
 
-[node name="MoveTowardsEntityState" type="Node" parent="StateMachine" unique_id=1327852600 node_paths=PackedStringArray("next_state")]
-script = ExtResource("3_yekch")
-wait_time = 0.0
-stop_distance = 1.0
-rotation_speed = 50.0
+[node name="FlockTowardsEntityState" type="Node" parent="StateMachine" unique_id=1099064778 node_paths=PackedStringArray("flock_controller", "next_state")]
+script = ExtResource("4_7k0is")
+flock_controller = NodePath("../../FlockMovementController")
+flock_configuration = SubResource("Resource_mg3to")
 entity_group = "Interactable"
 entity_name = "MiniEumlingRobot"
 next_state = NodePath("../LookAtPlayerState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
 })
-metadata/_custom_type_script = "uid://dmskxets4soyo"
+metadata/_custom_type_script = "uid://bv0063su8u65x"
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine" unique_id=711200958 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_gtdpp")
@@ -47,6 +55,10 @@ animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "celebrate"
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="FlockMovementController" type="Node3D" parent="." unique_id=1786020169]
+script = ExtResource("6_t7ndm")
+metadata/_custom_type_script = "uid://8ediw3s5ybnw"
 
 [node name="Visuals" type="Node3D" parent="." unique_id=1108405542]
 
