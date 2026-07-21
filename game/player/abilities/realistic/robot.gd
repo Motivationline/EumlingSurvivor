@@ -106,5 +106,6 @@ func level_cleared():
 func _hurt_by(area: HitBox):
 	if area.owner.is_in_group("EnvironmentTrap"):
 		return
-	health -= area.damage
-	Utils.create_damage_number(self , "%d" % area.damage)
+	var damage_info := area.get_damage_info()
+	health -= damage_info.amount
+	Utils.create_damage_number_label(self, damage_info)

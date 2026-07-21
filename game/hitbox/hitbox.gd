@@ -5,12 +5,8 @@ extends Area3D
 class_name HitBox
 
 ## How much damage should this hitbox deal. Might be modified by the parent of the hitbox, e.g. a projectile.
-@export var damage: float = 0.0:
-	get():
-		if critical_hit_chance > randf():
-			# critical hit
-			return damage * critical_hit_damage_multiplier
-		return damage
+## Do not use this to get the damage information from a hitbox. Instead use the `get_damage_info` function.
+@export var damage: float = 0.0
 
 ## How often this hitbox can hit a specific hurtbox. 0 or less = no limit 
 @export var individual_hit_limit: int = 0
@@ -96,3 +92,11 @@ func _physics_process(delta: float) -> void:
 			obj.area.hurt(self)
 			obj.counter += 1
 			obj.cooldown = damage_cooldown
+
+
+func get_damage_info() -> DamageInfo:
+	var damage_info := DamageInfo.new(damage)
+	if critical_hit_chance > randf():
+		damage_info.critical = true
+		damage_info.amount *= critical_hit_damage_multiplier
+	return damage_info
