@@ -15,7 +15,7 @@ func attack_enemy(enemy: Enemy):
 	if current_enemy: return
 	if enemy.health <= 0: return
 	if current_enemy == enemy: return
-	attack_enemy_state.fixed_target = enemy
+	attack_enemy_state.target_entity = enemy
 	state_machine.switch_to_state(attack_enemy_state)
 
 	if not enemy.died.is_connected(stop_attacking_enemy):
