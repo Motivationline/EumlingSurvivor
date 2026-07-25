@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="10_du46p"]
 [ext_resource type="PackedScene" uid="uid://dmr83p5o725ie" path="res://game/enemies/6-volcano/boss_shark/vfx/death_from_below_vfx.tscn" id="11_71geg"]
 [ext_resource type="PackedScene" uid="uid://d3h1nvtvp5iwf" path="res://game/shared/target_indicators/directional_mesh/directional_target_indicator_mesh.tscn" id="15_du46p"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="16_ru4a0"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="20_jddde"]
 [ext_resource type="AudioStream" uid="uid://ewl2of0m4ulh" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_1.wav" id="21_dch67"]
 [ext_resource type="AudioStream" uid="uid://bwcwstecykw3f" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_2.wav" id="22_n7nk8"]
@@ -34,6 +35,24 @@
 [ext_resource type="AudioStream" uid="uid://b7m4nm2hrel8r" path="res://assets/characters/enemies/boss_shark/sounds/dive_4.wav" id="33_065fm"]
 [ext_resource type="AudioStream" uid="uid://d4a3k3ypfxk73" path="res://assets/characters/enemies/boss_shark/sounds/dive_5.wav" id="34_22i6i"]
 [ext_resource type="AudioStream" uid="uid://blat8kwgpmpej" path="res://assets/characters/enemies/boss_shark/sounds/dive_6.wav" id="35_0i18n"]
+[ext_resource type="AudioStream" uid="uid://c72luiiar6mgm" path="res://assets/characters/enemies/boss_shark/sounds/jump_charge_1.wav" id="35_qd3ug"]
+[ext_resource type="AudioStream" uid="uid://dnx5lr230bkm4" path="res://assets/characters/enemies/boss_shark/sounds/jump_charge_2.wav" id="36_ru4a0"]
+[ext_resource type="AudioStream" uid="uid://b72k4pq5cp7kc" path="res://assets/characters/enemies/boss_shark/sounds/surface_1.wav" id="36_w7gfe"]
+[ext_resource type="AudioStream" uid="uid://2a7t7v0nvhkl" path="res://assets/characters/enemies/boss_shark/sounds/surface_2.wav" id="37_0nc6q"]
+[ext_resource type="AudioStream" uid="uid://bfxs7maip3kin" path="res://assets/characters/enemies/boss_shark/sounds/jump_charge_3.wav" id="37_q8rre"]
+[ext_resource type="AudioStream" uid="uid://cgol7uvtjr40t" path="res://assets/characters/enemies/boss_shark/sounds/jump_charge_4.wav" id="38_mf16t"]
+[ext_resource type="AudioStream" uid="uid://s5ie8oosgbxm" path="res://assets/characters/enemies/boss_shark/sounds/surface_3.wav" id="38_q445x"]
+[ext_resource type="AudioStream" uid="uid://ca7u1w41mutan" path="res://assets/characters/enemies/boss_shark/sounds/jump_charge_5.wav" id="39_5pgkn"]
+[ext_resource type="AudioStream" uid="uid://cjde6hcg6bxfm" path="res://assets/characters/enemies/boss_shark/sounds/surface_4.wav" id="39_uwaj3"]
+[ext_resource type="AudioStream" uid="uid://b4yn03qd0p6lw" path="res://assets/characters/enemies/boss_shark/sounds/jump_charge_6.wav" id="40_3ybr5"]
+[ext_resource type="AudioStream" uid="uid://evl3m8iuetr1" path="res://assets/characters/enemies/boss_shark/sounds/surface_5.wav" id="40_avcgj"]
+[ext_resource type="AudioStream" uid="uid://cuc0bhptsx72s" path="res://assets/characters/enemies/boss_shark/sounds/surface_6.wav" id="41_oba3r"]
+[ext_resource type="AudioStream" uid="uid://bp3uxgd8rig5j" path="res://assets/characters/enemies/boss_shark/sounds/jump_attack_1.wav" id="41_tlahk"]
+[ext_resource type="AudioStream" uid="uid://bmp06y74hgo73" path="res://assets/characters/enemies/boss_shark/sounds/jump_attack_2.wav" id="42_w7gfe"]
+[ext_resource type="AudioStream" uid="uid://c71t6nhwv6ncl" path="res://assets/characters/enemies/boss_shark/sounds/jump_attack_3.wav" id="43_0nc6q"]
+[ext_resource type="AudioStream" uid="uid://dwnaiphh0ii77" path="res://assets/characters/enemies/boss_shark/sounds/jump_attack_4.wav" id="44_q445x"]
+[ext_resource type="AudioStream" uid="uid://kcd1cixxb4ou" path="res://assets/characters/enemies/boss_shark/sounds/jump_attack_5.wav" id="45_uwaj3"]
+[ext_resource type="AudioStream" uid="uid://bnf5fuwiis0db" path="res://assets/characters/enemies/boss_shark/sounds/jump_attack_6.wav" id="46_avcgj"]
 
 [sub_resource type="Resource" id="Resource_g4v7s"]
 script = ExtResource("6_tfkkn")
@@ -144,6 +163,33 @@ stream_3/stream = ExtResource("33_065fm")
 stream_4/stream = ExtResource("34_22i6i")
 stream_5/stream = ExtResource("35_0i18n")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_po8s7"]
+streams_count = 6
+stream_0/stream = ExtResource("36_w7gfe")
+stream_1/stream = ExtResource("37_0nc6q")
+stream_2/stream = ExtResource("38_q445x")
+stream_3/stream = ExtResource("39_uwaj3")
+stream_4/stream = ExtResource("40_avcgj")
+stream_5/stream = ExtResource("41_oba3r")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oba3r"]
+streams_count = 6
+stream_0/stream = ExtResource("35_qd3ug")
+stream_1/stream = ExtResource("36_ru4a0")
+stream_2/stream = ExtResource("37_q8rre")
+stream_3/stream = ExtResource("38_mf16t")
+stream_4/stream = ExtResource("39_5pgkn")
+stream_5/stream = ExtResource("40_3ybr5")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tkyjd"]
+streams_count = 6
+stream_0/stream = ExtResource("41_tlahk")
+stream_1/stream = ExtResource("42_w7gfe")
+stream_2/stream = ExtResource("43_0nc6q")
+stream_3/stream = ExtResource("44_q445x")
+stream_4/stream = ExtResource("45_uwaj3")
+stream_5/stream = ExtResource("46_avcgj")
+
 [node name="BossShark_D0" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hurtboxes", "additional_hitboxes") instance=ExtResource("1_5lodq")]
 collision_layer = 80
 collision_mask = 577
@@ -175,13 +221,19 @@ metadata/_custom_type_script = "uid://cp33buoo5xtgx"
 script = ExtResource("7_f6ssy")
 enable = [NodePath("../../../Visuals/HurtboxFin")]
 disable = [NodePath("../../../Visuals/HurtboxCharge"), NodePath("../../../Visuals/HitboxCHARGE"), NodePath("../../../Visuals/HitboxDeathBelow"), NodePath("../../../Visuals/HurtboxLaying"), NodePath("../../../Visuals/HitboxLAYING")]
-next_state = NodePath("../StartDamageReduction")
+next_state = NodePath("../TriggerSoundSurfaceEventState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "dive_up"
 })
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="StartDamageReduction" type="Node" parent="StateMachine/Roam" index="1" unique_id=2092753318 node_paths=PackedStringArray("events", "next_state")]
+[node name="TriggerSoundSurfaceEventState" type="Node" parent="StateMachine/Roam" index="1" unique_id=2144905603 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("4_j8lv2")
+events = [NodePath("../../../Eventlisteners/PlaySoundSurface")]
+next_state = NodePath("../StartDamageReduction")
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="StartDamageReduction" type="Node" parent="StateMachine/Roam" index="2" unique_id=2092753318 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("4_j8lv2")
 events = [NodePath("AdjustAttributesEventStrategy")]
 next_state = NodePath("../WaitForTimeXState")
@@ -192,13 +244,13 @@ script = ExtResource("5_jddde")
 changes = Array[ExtResource("6_tfkkn")]([SubResource("Resource_g4v7s")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine/Roam" index="2" unique_id=1451810536 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/Roam" index="3" unique_id=1451810536 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_cuk8p")
 wait_time = 0.33
 next_state = NodePath("../FollowPathState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="FollowPathState" type="Node" parent="StateMachine/Roam" index="3" unique_id=986101278 node_paths=PackedStringArray("next_state")]
+[node name="FollowPathState" type="Node" parent="StateMachine/Roam" index="4" unique_id=986101278 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_du46p")
 path_name = "SharkCircle"
 path_end_behavior = 1
@@ -214,7 +266,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://c8s4y8wjixlok"
 
-[node name="EndDamageReduction" type="Node" parent="StateMachine/Roam" index="4" unique_id=1216978533 node_paths=PackedStringArray("events", "next_state")]
+[node name="EndDamageReduction" type="Node" parent="StateMachine/Roam" index="5" unique_id=1216978533 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("4_j8lv2")
 events = [NodePath("AdjustAttributesEventStrategy")]
 next_state = NodePath("../../PickRandomState")
@@ -229,7 +281,7 @@ metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
 [node name="MultistateState" type="Node" parent="StateMachine/ChargeAttack" index="0" unique_id=2113084805 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
 script = ExtResource("6_71geg")
-states_to_execute = [NodePath("LookAtPlayerState"), NodePath("ActivatorState")]
+states_to_execute = [NodePath("LookAtPlayerState"), NodePath("ActivatorState"), NodePath("TriggerSoundDiveEventState")]
 states_that_need_to_finish = [NodePath("LookAtPlayerState")]
 next_state = NodePath("../HitboxCHARGE")
 metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
@@ -240,7 +292,12 @@ enable = [NodePath("../../../../Visuals/DirectionalTargetIndicatorMesh")]
 next_state = NodePath(".")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine/ChargeAttack/MultistateState" index="1" unique_id=229604355 node_paths=PackedStringArray("next_state")]
+[node name="TriggerSoundDiveEventState" type="Node" parent="StateMachine/ChargeAttack/MultistateState" index="1" unique_id=1774613833 node_paths=PackedStringArray("events")]
+script = ExtResource("4_j8lv2")
+events = [NodePath("../../../../Eventlisteners/PlaySoundDive")]
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/ChargeAttack/MultistateState" index="2" unique_id=229604355 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_t2b6n")
 wait_time = 1.2
 rotation_speed = 20.0
@@ -283,10 +340,16 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 [node name="Deactivate Everything" type="Node" parent="StateMachine/DeathFromBelow" index="0" unique_id=1270717497 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("7_f6ssy")
 disable = [NodePath("../../../Visuals/HurtboxFin"), NodePath("../../../Visuals/HurtboxCharge"), NodePath("../../../Visuals/HitboxCHARGE"), NodePath("../../../Visuals/HitboxDeathBelow"), NodePath("../../../Visuals/HurtboxLaying"), NodePath("../../../Visuals/HitboxLAYING")]
-next_state = NodePath("../LookAtPlayerState")
+next_state = NodePath("../TriggerSoundDiveEventState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine/DeathFromBelow" index="1" unique_id=584227813 node_paths=PackedStringArray("next_state")]
+[node name="TriggerSoundDiveEventState" type="Node" parent="StateMachine/DeathFromBelow" index="1" unique_id=721662046 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("4_j8lv2")
+events = [NodePath("../../../Eventlisteners/PlaySoundDive")]
+next_state = NodePath("../LookAtPlayerState")
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/DeathFromBelow" index="2" unique_id=584227813 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_t2b6n")
 wait_time = 0.8
 rotation_speed = 8.0
@@ -296,17 +359,23 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/DeathFromBelow" index="2" unique_id=1816508408 node_paths=PackedStringArray("next_state")]
+[node name="MoveTowardsPlayerState" type="Node" parent="StateMachine/DeathFromBelow" index="3" unique_id=1816508408 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_me4rn")
 wait_time = 0.0
 stop_distance = 0.75
 rotation_speed = 20.0
 speed_override = 5.0
 speed_override_active = true
-next_state = NodePath("../SpawnEntitiesState")
+next_state = NodePath("../TriggerEventChargeSoundState")
 metadata/_custom_type_script = "uid://dmskxets4soyo"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/DeathFromBelow" index="3" unique_id=160712446 node_paths=PackedStringArray("next_state")]
+[node name="TriggerEventChargeSoundState" type="Node" parent="StateMachine/DeathFromBelow" index="4" unique_id=806143294 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("4_j8lv2")
+events = [NodePath("../../../Eventlisteners/PlaySoundJumpCharge")]
+next_state = NodePath("../SpawnEntitiesState")
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/DeathFromBelow" index="5" unique_id=160712446 node_paths=PackedStringArray("next_state")]
 script = ExtResource("9_x8n4w")
 end_delay = 0.8
 next_state = NodePath("../ActivateHitboxBelow")
@@ -319,13 +388,13 @@ lifetime = 10.0
 entity_to_spawn = ExtResource("11_71geg")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="ActivateHitboxBelow" type="Node" parent="StateMachine/DeathFromBelow" index="4" unique_id=541053763 node_paths=PackedStringArray("enable", "next_state")]
+[node name="ActivateHitboxBelow" type="Node" parent="StateMachine/DeathFromBelow" index="6" unique_id=541053763 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("7_f6ssy")
 enable = [NodePath("../../../Visuals/HitboxDeathBelow")]
 next_state = NodePath("../WaitForTimeXState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine/DeathFromBelow" index="5" unique_id=1081690435 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/DeathFromBelow" index="7" unique_id=1081690435 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_cuk8p")
 wait_time = 0.5
 next_state = NodePath("../DeactivateHitboxBelow")
@@ -334,13 +403,13 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="DeactivateHitboxBelow" type="Node" parent="StateMachine/DeathFromBelow" index="6" unique_id=1523358893 node_paths=PackedStringArray("disable", "next_state")]
+[node name="DeactivateHitboxBelow" type="Node" parent="StateMachine/DeathFromBelow" index="8" unique_id=1523358893 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("7_f6ssy")
 disable = [NodePath("../../../Visuals/HitboxDeathBelow")]
 next_state = NodePath("../WaitForTimeXState3")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="WaitForTimeXState3" type="Node" parent="StateMachine/DeathFromBelow" index="7" unique_id=2023836428 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState3" type="Node" parent="StateMachine/DeathFromBelow" index="9" unique_id=2023836428 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_cuk8p")
 wait_time = 0.2
 next_state = NodePath("../ActivateHitboxLanding")
@@ -349,25 +418,25 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="ActivateHitboxLanding" type="Node" parent="StateMachine/DeathFromBelow" index="8" unique_id=104364880 node_paths=PackedStringArray("enable", "next_state")]
+[node name="ActivateHitboxLanding" type="Node" parent="StateMachine/DeathFromBelow" index="10" unique_id=104364880 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("7_f6ssy")
 enable = [NodePath("../../../Visuals/HurtboxLaying"), NodePath("../../../Visuals/HitboxLAYING")]
 next_state = NodePath("../WaitForTimeXState2")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="WaitForTimeXState2" type="Node" parent="StateMachine/DeathFromBelow" index="9" unique_id=1821772157 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState2" type="Node" parent="StateMachine/DeathFromBelow" index="11" unique_id=1821772157 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_cuk8p")
 wait_time = 3.6
 next_state = NodePath("../Reactivate Hitboxes")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="Reactivate Hitboxes" type="Node" parent="StateMachine/DeathFromBelow" index="10" unique_id=2025234761 node_paths=PackedStringArray("disable", "next_state")]
+[node name="Reactivate Hitboxes" type="Node" parent="StateMachine/DeathFromBelow" index="12" unique_id=2025234761 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("7_f6ssy")
 disable = [NodePath("../../../Visuals/HurtboxLaying"), NodePath("../../../Visuals/HitboxLAYING")]
 next_state = NodePath("../BackOnPath")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="BackOnPath" type="Node" parent="StateMachine/DeathFromBelow" index="11" unique_id=153889228 node_paths=PackedStringArray("next_state")]
+[node name="BackOnPath" type="Node" parent="StateMachine/DeathFromBelow" index="13" unique_id=153889228 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_du46p")
 path_name = "SharkCircle"
 path_end_behavior = 1
@@ -377,6 +446,24 @@ speed_override = 3.0
 speed_override_active = true
 next_state = NodePath("../../Roam/HitboxFINs")
 metadata/_custom_type_script = "uid://c8s4y8wjixlok"
+
+[node name="PlaySoundJumpCharge" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1760906265 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("16_ru4a0")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = Array[String](["JumpCharge"])
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
+[node name="PlaySoundDive" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=403634876 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("16_ru4a0")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = Array[String](["Dive"])
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
+[node name="PlaySoundSurface" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=1850539934 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("16_ru4a0")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = Array[String](["Surface"])
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="BossShark" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=566136492 instance=ExtResource("2_3ft0s")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.002074957, 0.0035419464, 0.0012545586)
@@ -473,19 +560,30 @@ autoplay = &"ExtendIndicator"
 
 [node name="ChargeStart" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1553656196 instance=ExtResource("20_jddde")]
 stream = SubResource("AudioStreamRandomizer_4rsw4")
-volume_db = 2.0
+volume_db = -10.0
 
 [node name="ChargeLoop" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=69523412 instance=ExtResource("20_jddde")]
 stream = ExtResource("27_d2qpc")
-volume_db = -4.0
+volume_db = -12.0
 
 [node name="ChargeEnd" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=2003760380 instance=ExtResource("20_jddde")]
 stream = ExtResource("28_38sif")
-volume_db = 0.0
+volume_db = -12.0
 
 [node name="Dive" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=1402643250 instance=ExtResource("20_jddde")]
 stream = SubResource("AudioStreamRandomizer_h7cx0")
-volume_db = -2.0
+volume_db = -14.0
+
+[node name="Surface" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="6" unique_id=1551775250 instance=ExtResource("20_jddde")]
+stream = SubResource("AudioStreamRandomizer_po8s7")
+volume_db = -12.0
+
+[node name="JumpCharge" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="7" unique_id=1824441953 instance=ExtResource("20_jddde")]
+stream = SubResource("AudioStreamRandomizer_oba3r")
+
+[node name="JumpAttack" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="8" unique_id=16303037 instance=ExtResource("20_jddde")]
+stream = SubResource("AudioStreamRandomizer_tkyjd")
+volume_db = -12.0
 
 [node name="death_from_below_particle_marker" type="Marker3D" parent="." index="7" unique_id=1209712892]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
