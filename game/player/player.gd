@@ -6,20 +6,22 @@ static var player: Player
 
 var speed: float
 
+var _accumulated_health: float = 0.0
 var health: float = 10.0:
 	set(new_value):
+		new_value = clampf(new_value + _accumulated_health, 0.0, max_health)
+		_accumulated_health = 0.0
 		if health == 0 and new_value > 0 and not dead:
 			revive()
 		var change = health - new_value
+		var damage_info := DamageInfo.new(change)
+		damage_info.entity_type = Enum.HITBOX.PLAYER
 		if change > 0:
 			anim_player.set("parameters/GetHitOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-			Utils.create_damage_number(self , "%d" % change)
+			Utils.create_damage_number_label(self, damage_info)
 		elif change < 0:
-			Utils.create_damage_number(self , "%d" % abs(change), true)
-		if (max_health <= 0):
-			health = new_value
-		else:
-			health = clampf(new_value, 0, max_health)
+			Utils.create_damage_number_label(self, damage_info)
+		health = new_value
 		if (status_visuals):
 			status_visuals.health = health
 		if (health == 0):
@@ -33,6 +35,7 @@ var dead: bool = false
 
 signal died
 signal hurt
+@warning_ignore("unused_signal")
 signal hit(enemy: Enemy)
 signal attacked
 
@@ -143,7 +146,7 @@ func hurt_by(_area: HitBox):
 	if health == 0: return
 	if dead: return
 	
-	health -= _area.damage
+	health -= _area.get_damage_info().amount
 	hurt.emit()
 
 	if _area.causes_iframes:
@@ -239,7 +242,7 @@ func check_upgrades_affecting_player(upgrade: Upgrade):
 			var new_max_health = get_value(Enum.UPGRADE.HEALTH)
 			var heal_amount = new_max_health - max_health
 			max_health = new_max_health
-			if (heal_amount > 0): health += heal_amount
+			if (heal_amount > 0): _accumulated_health += heal_amount
 		Enum.UPGRADE.MOVEMENT_SPEED:
 			speed = get_value(Enum.UPGRADE.MOVEMENT_SPEED)
 		Enum.UPGRADE.SIZE:
@@ -328,7 +331,8 @@ func level_completed(level: Level) -> void:
 	var amount_to_regenerate: float = get_value(Enum.UPGRADE.HEALTH_REGENERATION)
 	if level.is_boss_level:
 		amount_to_regenerate += floorf(max_health / 2 + amount_to_regenerate)
-	health += amount_to_regenerate
+	if health < max_health:
+		health += amount_to_regenerate
 
 	for ability in %SpecialAbilities.get_children():
 		if ability is Ability:
