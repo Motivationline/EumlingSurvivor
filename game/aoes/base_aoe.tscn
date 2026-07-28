@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b80rxujvjbxg0" path="res://game/aoes/aoe.gd" id="1_iiy76"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="2_k1thb"]
+[ext_resource type="Script" uid="uid://by51r5jdix8de" path="res://game/shared/on_level_cleared/on_level_cleared.gd" id="3_k1thb"]
 
 [node name="AOE" type="Node3D" unique_id=1436195783 node_paths=PackedStringArray("collsion_shape", "visuals")]
 script = ExtResource("1_iiy76")
@@ -13,3 +14,9 @@ visuals = NodePath("Visuals")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1346345033]
 
 [node name="Visuals" type="Node3D" parent="." unique_id=312663566]
+
+[node name="OnLevelCleared" type="Node" parent="." unique_id=372933904]
+script = ExtResource("3_k1thb")
+metadata/_custom_type_script = "uid://by51r5jdix8de"
+
+[connection signal="level_cleared" from="OnLevelCleared" to="." method="queue_free"]
