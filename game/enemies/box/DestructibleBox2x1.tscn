@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_o3rha"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_exrew"]
 [ext_resource type="Script" uid="uid://cmyfq2hkdphym" path="res://state_machine/enemy/decider/decide_value.gd" id="3_wdsll"]
-[ext_resource type="Script" path="res://state_machine/enemy/decider/decide_value_check.gd" id="4_dyix2"]
+[ext_resource type="Script" uid="uid://h0pcow7hrs72" path="res://state_machine/enemy/decider/decide_value_check.gd" id="4_dyix2"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="5_hxs22"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="6_r8n3v"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="7_eaowe"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://bpd3ta8ur6udi" path="res://assets/models/breakable_stone/sounds/destroy_4.wav" id="18_4hp68"]
 [ext_resource type="AudioStream" uid="uid://eft4dab1fbj7" path="res://assets/models/breakable_stone/sounds/hit_1.wav" id="19_s3hk7"]
 [ext_resource type="AudioStream" uid="uid://d0w5pyeilxrcq" path="res://assets/models/breakable_stone/sounds/hit_2.wav" id="20_ctrhr"]
+[ext_resource type="Script" uid="uid://by51r5jdix8de" path="res://game/shared/on_level_cleared/on_level_cleared.gd" id="21_lyomp"]
 [ext_resource type="AudioStream" uid="uid://dwlr78vumldt" path="res://assets/models/breakable_stone/sounds/hit_3.wav" id="21_m33lt"]
 [ext_resource type="AudioStream" uid="uid://cbm5nr1i4c2rk" path="res://assets/models/breakable_stone/sounds/hit_4.wav" id="22_2a76r"]
 
@@ -156,3 +157,9 @@ volume_db = 0.0
 [node name="Hit" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="1" unique_id=41969835]
 stream = SubResource("AudioStreamRandomizer_3s8a7")
 volume_db = 0.0
+
+[node name="OnLevelCleared" type="Node" parent="." index="11" unique_id=1770926341]
+script = ExtResource("21_lyomp")
+metadata/_custom_type_script = "uid://by51r5jdix8de"
+
+[connection signal="level_cleared" from="OnLevelCleared" to="." method="_die"]
