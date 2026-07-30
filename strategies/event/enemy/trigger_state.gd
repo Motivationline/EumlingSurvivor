@@ -9,5 +9,5 @@ class_name TriggerStateEventStrategy
 func _ready() -> void:
 	pass
 
-func execute_event(_data):
+func execute_event(_data = null) -> void:
 	state_machine.switch_to_state(state_to_execute)
