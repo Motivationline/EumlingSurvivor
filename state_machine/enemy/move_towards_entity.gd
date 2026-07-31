@@ -15,7 +15,7 @@ class_name MoveTowardsEntityState
 ## amount to rotate when directions change
 @export_range(0.0,50.0,0.1) var rotation_speed: float = 5
 ## how to choose from a potential list of enemies 
-@export_enum("random", "closest", "furthest") var selection_strategy = "random"
+@export var selection_strategy := Enum.SELECTION_STRATEGY.RANDOM
 
 ## Which entity group to find an entity to move towards
 @export var entity_group: String = "Player"
@@ -67,9 +67,9 @@ func enter():
 		target_reached()
 		return
 	match selection_strategy:
-		"nearest":
+		Enum.SELECTION_STRATEGY.NEAREST:
 			Utils.sort_array_by_distance(entities, parent)
-		"furthest":
+		Enum.SELECTION_STRATEGY.FURTHEST:
 			Utils.sort_array_by_distance(entities, parent)
 			entities.reverse()
 		_:
