@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="9_4bggp"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="10_k35ae"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="11_pbrkx"]
+[ext_resource type="PackedScene" uid="uid://sp2ju6tpkgag" path="res://game/aoes/magma_toad_complex_aoe/magma_toad_complex_aoe.tscn" id="11_s1gmj"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="12_vwqld"]
 
 [sub_resource type="Resource" id="Resource_05fwf"]
@@ -58,19 +59,18 @@ metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 [node name="disableHitboxes" type="Node" parent="StateMachine" index="2" unique_id=1163834021 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("4_myjgq")
 disable = [NodePath("../../Hitbox"), NodePath("../../Hurtbox"), NodePath("../../StatusVisuals3DEnemy")]
-next_state = NodePath("../IndicatoWait")
+next_state = NodePath("../TeleportToOnNavMeshState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="IndicatoWait" type="Node" parent="StateMachine" index="3" unique_id=1785661498 node_paths=PackedStringArray("next_state")]
-script = ExtResource("2_kdfcx")
-wait_time = 2.0
-next_state = NodePath("../TeleportToOnNavMeshState")
-metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine" index="4" unique_id=382484724 node_paths=PackedStringArray("next_state")]
+[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine" index="3" unique_id=382484724 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_hs10d")
-next_state = NodePath("../enableHitboxes")
+next_state = NodePath("../IndicatoWait")
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
+
+[node name="IndicatoWait" type="Node" parent="StateMachine" index="4" unique_id=1785661498 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_kdfcx")
+next_state = NodePath("../enableHitboxes")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="enableHitboxes" type="Node" parent="StateMachine" index="5" unique_id=643744080 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("4_myjgq")
@@ -81,7 +81,7 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="6" unique_id=1924493201 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_m6our")
 start_delay = 0.3
-next_state = NodePath("../Dazed")
+next_state = NodePath("../SpawnEntitiesState2")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
 [node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState" index="0" unique_id=75136106]
@@ -92,7 +92,17 @@ target_strategy = SubResource("Resource_05fwf")
 rotation_strategy = SubResource("Resource_epwph")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="Dazed" type="Node" parent="StateMachine" index="7" unique_id=710094010 node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState2" type="Node" parent="StateMachine" index="7" unique_id=634571760 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_m6our")
+next_state = NodePath("../Dazed")
+metadata/_custom_type_script = "uid://c1j50itv0hwo2"
+
+[node name="EntitySpawner" type="Node3D" parent="StateMachine/SpawnEntitiesState2" index="0" unique_id=934827645]
+script = ExtResource("7_a2g48")
+entity_to_spawn = ExtResource("11_s1gmj")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="Dazed" type="Node" parent="StateMachine" index="8" unique_id=710094010 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_kdfcx")
 wait_time = 3.0
 next_state = NodePath("../MoveRandomOnNavMeshState")

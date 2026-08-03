@@ -31,9 +31,11 @@ height = 0.6582031
 radius = 0.16113281
 height = 0.6582031
 
-[node name="BaseEnemy" unique_id=1898691 instance=ExtResource("1_juqyu")]
+[node name="BaseEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox") instance=ExtResource("1_juqyu")]
 collision_mask = 513
 health = 150.0
+hitbox = NodePath("Hitbox")
+hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveRandomOnNavMeshState")
