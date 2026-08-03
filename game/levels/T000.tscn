@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://co52j3d3jhmoy" path="res://game/levels/6-Vxx-Volcano/Vxx-base_level.tscn" id="1_cvp71"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_35njp"]
+[ext_resource type="PackedScene" uid="uid://clvvrssu46t7l" path="res://game/enemies/7-mountain-area/prototypes/tank_prototype.tscn" id="3_srnvc"]
 [ext_resource type="PackedScene" uid="uid://byt766jahjc2" path="res://game/enemies/7-mountain-area/prototypes/charge_prototype.tscn" id="3_wjg4u"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cvp71"]
@@ -17,7 +18,10 @@ edge_max_error = 0.25
 navigation_mesh = SubResource("NavigationMesh_cvp71")
 
 [node name="BaseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("3_wjg4u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5524368)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19754028, 0, -2.942871)
+
+[node name="BaseEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=836874334 instance=ExtResource("3_srnvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.906472, 0, -1.4019202)
 
 [node name="ExitArea" parent="." index="8" unique_id=609974398 node_paths=PackedStringArray("parent") instance=ExtResource("3_35njp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)

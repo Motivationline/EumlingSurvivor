@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://byt766jahjc2"]
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_juqyu"]
-[ext_resource type="Script" uid="uid://dtkjuiec5d6t0" path="res://state_machine/enemy/move_random_not_on_nav_mesh.gd" id="2_8408s"]
+[ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="2_mg10u"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="3_mg10u"]
 [ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="4_8yv2b"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="5_adi7q"]
@@ -11,29 +11,28 @@
 [ext_resource type="PackedScene" uid="uid://sp2ju6tpkgag" path="res://game/aoes/magma_toad_complex_aoe/magma_toad_complex_aoe.tscn" id="9_mg10u"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bhunq"]
-radius = 0.26757813
-height = 1.0478516
+radius = 0.14013672
+height = 0.61621094
 
 [sub_resource type="BoxMesh" id="BoxMesh_bhunq"]
 size = Vector3(0.27246094, 0.025634766, 0.13378906)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bhunq"]
-radius = 0.12890625
-height = 1.0141602
+radius = 0.10546875
+height = 0.4807129
 
 [node name="BaseEnemy" unique_id=1898691 instance=ExtResource("1_juqyu")]
+collision_mask = 513
 health = 150.0
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("MoveRandomNotOnNavMeshState")
+initial_state = NodePath("MoveRandomOnNavMeshState")
 
-[node name="MoveRandomNotOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=1569468400 node_paths=PackedStringArray("next_state", "interrupts")]
-script = ExtResource("2_8408s")
-wait_time = 0.5
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=1150770957 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_mg10u")
 max_distance = 2.0
 next_state = NodePath("../WaitAfterWalk")
-interrupts = [null]
-metadata/_custom_type_script = "uid://dtkjuiec5d6t0"
+metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
 
 [node name="WaitAfterWalk" type="Node" parent="StateMachine" index="1" unique_id=286114208 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_mg10u")
@@ -47,8 +46,8 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("4_8yv2b")
 distance_to_check = 3.0
 state_if_distance_is_smaller = NodePath("../Charge/LookAtPlayerState")
-state_if_distance_is_larger = NodePath("../MoveRandomNotOnNavMeshState")
-state_if_no_node_found = NodePath("../MoveRandomNotOnNavMeshState")
+state_if_distance_is_larger = NodePath("../MoveRandomOnNavMeshState")
+state_if_no_node_found = NodePath("../MoveRandomOnNavMeshState")
 metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
 [node name="Charge" type="Node" parent="StateMachine" index="3" unique_id=788451759]
@@ -60,32 +59,29 @@ metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="MoveForwardState" type="Node" parent="StateMachine/Charge" index="1" unique_id=862262121 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_m6qic")
-speed_override = 3.0
+max_distance = 10.0
+speed_override = 4.0
 speed_override_active = true
 next_state = NodePath("../LookAtPlayerState2")
 metadata/_custom_type_script = "uid://cjkeo3brnvde2"
 
 [node name="LookAtPlayerState2" type="Node" parent="StateMachine/Charge" index="2" unique_id=1195884749 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_adi7q")
-wait_time = 0.0
+wait_time = 0.5
 next_state = NodePath("../MoveForwardState2")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
 [node name="MoveForwardState2" type="Node" parent="StateMachine/Charge" index="3" unique_id=2104423647 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_m6qic")
-speed_override = 3.0
+max_distance = 10.0
+speed_override = 4.0
 speed_override_active = true
-next_state = NodePath("../WaitForTimeXState")
+next_state = NodePath("../SpawnEntitiesState")
 metadata/_custom_type_script = "uid://cjkeo3brnvde2"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine/Charge" index="4" unique_id=1443540388 node_paths=PackedStringArray("next_state")]
-script = ExtResource("3_mg10u")
-wait_time = 0.3
-next_state = NodePath("../SpawnEntitiesState")
-metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Charge" index="5" unique_id=1017675086 node_paths=PackedStringArray("next_state")]
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine/Charge" index="4" unique_id=1017675086 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_y2s47")
+start_delay = 0.2
 next_state = NodePath("../Dazed")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
@@ -94,20 +90,20 @@ script = ExtResource("8_ase0c")
 entity_to_spawn = ExtResource("9_mg10u")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="Dazed" type="Node" parent="StateMachine/Charge" index="6" unique_id=213199176 node_paths=PackedStringArray("next_state")]
+[node name="Dazed" type="Node" parent="StateMachine/Charge" index="5" unique_id=213199176 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_mg10u")
 wait_time = 2.0
-next_state = NodePath("../../MoveRandomNotOnNavMeshState")
+next_state = NodePath("../../MoveRandomOnNavMeshState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=478022118]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34686345, 0)
 mesh = SubResource("CapsuleMesh_bhunq")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=365621337]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4843798, -0.50030875)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5060997, -0.12152192)
 mesh = SubResource("BoxMesh_bhunq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7" unique_id=1010683165]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.47696936, -0.037841797)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28823292, -0.004134327)
 shape = SubResource("CapsuleShape3D_bhunq")
