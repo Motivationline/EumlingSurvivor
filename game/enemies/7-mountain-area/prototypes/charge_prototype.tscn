@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="7_y2s47"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="8_ase0c"]
 [ext_resource type="PackedScene" uid="uid://sp2ju6tpkgag" path="res://game/aoes/magma_toad_complex_aoe/magma_toad_complex_aoe.tscn" id="9_mg10u"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="10_adi7q"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="11_m6qic"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bhunq"]
 radius = 0.14013672
@@ -20,6 +22,14 @@ size = Vector3(0.27246094, 0.025634766, 0.13378906)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bhunq"]
 radius = 0.10546875
 height = 0.4807129
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_05fwf"]
+radius = 0.1430664
+height = 0.6582031
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y2s47"]
+radius = 0.16113281
+height = 0.6582031
 
 [node name="BaseEnemy" unique_id=1898691 instance=ExtResource("1_juqyu")]
 collision_mask = 513
@@ -107,3 +117,26 @@ mesh = SubResource("BoxMesh_bhunq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7" unique_id=1010683165]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28823292, -0.004134327)
 shape = SubResource("CapsuleShape3D_bhunq")
+
+[node name="Hitbox" parent="." index="8" unique_id=1403634002 instance=ExtResource("10_adi7q")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+attached_to = 6
+can_hit = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1519140721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33411568, 0)
+shape = SubResource("CapsuleShape3D_05fwf")
+debug_color = Color(0.9449514, 0.19117105, 0.368325, 0.41960785)
+
+[node name="Hurtbox" parent="." index="9" unique_id=2005433755 instance=ExtResource("11_m6qic")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=792070474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33411568, 0)
+shape = SubResource("CapsuleShape3D_y2s47")
+debug_color = Color(0.2331762, 0.5127174, 0.98985344, 0.41960785)
