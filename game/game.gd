@@ -102,17 +102,20 @@ func level_finished():
 		upgrade_view.show_upgrades()
 		var chosen_upgrade: Upgrade = await upgrade_view.upgrade_chosen
 		player.add_upgrade(chosen_upgrade)
-		display_big_update(chosen_upgrade)
+		var chosen_upgrades: Array = await display_big_update(chosen_upgrade)
+		for upgrade in chosen_upgrades:
+			player.add_upgrade(upgrade)
+
 
 	player.level_completed(currently_loaded_level)
 	save_game_data()
 
-func display_big_update(upgrade: Upgrade) -> void:
+func display_big_update(upgrade: Upgrade) -> Array:
 	var progress = Data.game_data.upgrade_path_progress.get(upgrade.path, 0)
 	var progress_steps: Array[int] = [3, 6, 9]
-	if not progress_steps.has(progress): return
+	if not progress_steps.has(progress): return []
 	%MilestoneUpgrade.setup(upgrade.path, progress_steps.find(progress))
-	await %MilestoneUpgrade.done
+	return await %MilestoneUpgrade.upgrade_chosen
 
 
 func save_game_data():
@@ -154,4 +157,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		upgrade_view.show_upgrades()
 		var chosen_upgrade = await upgrade_view.upgrade_chosen
 		player.add_upgrade(chosen_upgrade)
-		display_big_update(chosen_upgrade)
+		var chosen_upgrades: Array = await display_big_update(chosen_upgrade)
+		for upgrade in chosen_upgrades:
+			player.add_upgrade(upgrade)

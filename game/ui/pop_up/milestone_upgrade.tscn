@@ -201,3 +201,44 @@ offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_4hhxx")
+
+[node name="CardsOverlay" type="Control" parent="." unique_id=1969015124]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CardsOverlay" unique_id=756051188]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.43137255)
+
+[node name="MarginContainer" type="MarginContainer" parent="CardsOverlay" unique_id=1549866685]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="CenterContainer" type="CenterContainer" parent="CardsOverlay/MarginContainer" unique_id=1383534587]
+layout_mode = 2
+
+[node name="UpgradeContainer" type="HBoxContainer" parent="CardsOverlay/MarginContainer/CenterContainer" unique_id=730604084]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10

@@ -3,8 +3,25 @@ class_name UpgradeOption
 
 @export var cards: Dictionary[Enum.EUMLING_TYPE, PackedScene] = {}
 const CARD_BASE = preload("uid://umtjixecg24")
+const SPECIAL_ICON_PLACEHOLDER = preload("uid://cmslavw1w4df3")
 @export var textures: Dictionary[Enum.UPGRADE, Texture] = {}
 @export var sound_effect_manager : SoundEffectManager
+
+func setup_multiple(upgrades: Array, delay: float = 0.0, sound_pos_offset: float = 0.0):
+	if upgrades.size() == 0: return
+	var card: Node3D = CARD_BASE.instantiate()
+	var text = card.find_child("Text")
+	text.text = ""
+	for i in upgrades.size():
+		if i > 0:
+			text.text += "\n"
+		text.text += upgrades[i]._to_string()	
+	card.find_child("UpgradeImage").texture = SPECIAL_ICON_PLACEHOLDER
+	card.find_child("Tracker").hide()
+	card.find_child("Tag").hide()
+	card.find_child("TrackerPointsBackground").hide()
+	_shared_setup(card, delay, sound_pos_offset)
+
 
 func setup(upgrade: Upgrade, delay: float = 0.0, sound_pos_offset: float = 0.0):
 	var scene = cards.get(upgrade.path)
@@ -13,7 +30,6 @@ func setup(upgrade: Upgrade, delay: float = 0.0, sound_pos_offset: float = 0.0):
 	var card: Node3D = scene.instantiate()
 
 	card.find_child("Text").text = upgrade._to_string()
-	sound_effect_manager.position.x = sound_pos_offset
 	var texture = textures.get(upgrade.type)
 	if texture:
 		card.find_child("UpgradeImage").texture = texture
@@ -28,8 +44,11 @@ func setup(upgrade: Upgrade, delay: float = 0.0, sound_pos_offset: float = 0.0):
 		for i in tracker.get_child_count():
 			tracker.get_child(i).visible = i <= tracker_step
 		animate_dot(tracker.get_child(tracker_step))
+	_shared_setup(card, delay, sound_pos_offset)
 
-	
+
+func _shared_setup(card: Node3D, delay: float = 0.0, sound_pos_offset: float = 0.0):
+	sound_effect_manager.position.x = sound_pos_offset
 	focus_entered.connect(_on_focus_entered)
 	focus_exited.connect(_on_focus_exited)
 	mouse_entered.connect(_on_focus_entered)

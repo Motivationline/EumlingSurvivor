@@ -26,7 +26,10 @@ func apply(_value: float) -> float:
 
 
 func _to_string() -> String:
-	return text % [value * display_factor]
+	var display_value := value
+	if type == Enum.UPGRADE.ATTACK_COOLDOWN:
+		display_value = 1 - value
+	return text % [display_value * display_factor]
 
 # TODO: remove this? or sort first?
 static func apply_all(_value: float, all: Array[Upgrade]) -> float:
