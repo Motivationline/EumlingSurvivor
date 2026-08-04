@@ -64,8 +64,8 @@ layout(location = 0) out vec4 frag_color;
 
     vec4 dof() {
         float depth = texture(depth_texture, screen_uv).r;
-        vec4 upos = inv_projection_matrix * vec4(screen_uv * 2.0f - 1.0f, depth, 1.0f);
-        float z = abs(upos.z / upos.w);
+        vec4 view = inv_projection_matrix * vec4(screen_uv * 2.0 - 1.0, depth, 1.0);
+        float z = -view.z / view.w;
 
         float blur = 0.0f;
         if (z > far_distance)
@@ -93,8 +93,6 @@ layout(location = 0) out vec4 frag_color;
     }
 
 #endif
-
-
 
 void main() {
     

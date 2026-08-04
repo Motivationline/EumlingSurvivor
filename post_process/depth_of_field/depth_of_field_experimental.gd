@@ -120,25 +120,17 @@ func _create_settings_buffer():
 	db.append_array(settings.to_byte_array())
 	settings_buffer = rd.uniform_buffer_create(db.size(), db)
 
-func _create_scene_buffer(render_scene_data):
+func _create_scene_buffer(render_scene_data: RenderSceneData):
 	if scene_buffer.is_valid():
 		rd.free_rid(scene_buffer)
 
-	var cam = render_scene_data.get_cam_projection()
+	var inverse_projection := render_scene_data.get_cam_projection().inverse()
+	var inverse_projection_array := PackedVector4Array([
+		inverse_projection.x, inverse_projection.y, inverse_projection.z, inverse_projection.w
+	])
 
-	var cam_mat = [
-		cam.x.x, cam.x.y, cam.x.z, cam.x.w,
-		cam.y.x, cam.y.y, cam.y.z, cam.y.w,
-		cam.z.x, cam.z.y, cam.z.z, cam.z.w,
-		cam.w.x, cam.w.y, cam.w.z, cam.w.w,
-	]
-
-	var cma = PackedFloat32Array(cam_mat).to_byte_array()
-
-	var pb = PackedByteArray()
-	pb.append_array(cma)
-
-	scene_buffer = rd.uniform_buffer_create(pb.size(), pb)
+	var data = inverse_projection_array.to_byte_array()
+	scene_buffer = rd.uniform_buffer_create(data.size(), data)
 
 # func _create_textures(color_format: RenderingDevice.DataFormat, size: Vector2i) -> void:
 # 	var half_screen_texture = RDTextureFormat.new()

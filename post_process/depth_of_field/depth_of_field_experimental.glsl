@@ -139,10 +139,14 @@ layout(set=2, binding=0) uniform settings_buffer {
     float amount;
 };
 
-vec4 apply() {
+float get_z() {
     float depth = texture(depth_texture, screen_uv).r;
-	vec4 upos = inv_projection_matrix * vec4(screen_uv * 2.0f - 1.0f, depth, 1.0f);
-	float z = abs(upos.z / upos.w);
+    vec4 view = inv_projection_matrix * vec4(screen_uv * 2.0 - 1.0, depth, 1.0);
+    return -view.z / view.w;
+}
+
+vec4 apply() {
+    float z = get_z();
 
 	float blur = 0.0f;
 	if (z > far_distance)
@@ -182,9 +186,7 @@ void main() {
 
         // frag_color = vec4(downsample().rgb, z_near > near_distance && z_far < far_distance ? 0.0 : 1.0);
 
-        float depth = texture(depth_texture, screen_uv).r;
-        vec4 upos = inv_projection_matrix * vec4(screen_uv * 2.0f - 1.0f, depth, 1.0f);
-        float z = abs(upos.z / upos.w);
+        float z = get_z();
 
         float blur = 0.0f;
         if (z > far_distance)
