@@ -112,25 +112,17 @@ func _create_settings_buffer():
 	db.append_array(settings.to_byte_array())
 	settings_buffer = rd.uniform_buffer_create(db.size(), db)
 
-func _create_scene_buffer(render_scene_data):
+func _create_scene_buffer(render_scene_data: RenderSceneData):
 	if scene_buffer.is_valid():
 		rd.free_rid(scene_buffer)
 
-	var cam = render_scene_data.get_cam_projection()
+	var inverse_projection := render_scene_data.get_cam_projection().inverse()
+	var inverse_projection_array := PackedVector4Array([
+		inverse_projection.x, inverse_projection.y, inverse_projection.z, inverse_projection.w
+	])
 
-	var cam_mat = [
-		cam.x.x, cam.x.y, cam.x.z, cam.x.w,
-		cam.y.x, cam.y.y, cam.y.z, cam.y.w,
-		cam.z.x, cam.z.y, cam.z.z, cam.z.w,
-		cam.w.x, cam.w.y, cam.w.z, cam.w.w,
-	]
-
-	var cma = PackedFloat32Array(cam_mat).to_byte_array()
-
-	var pb = PackedByteArray()
-	pb.append_array(cma)
-
-	scene_buffer = rd.uniform_buffer_create(pb.size(), pb)
+	var data = inverse_projection_array.to_byte_array()
+	scene_buffer = rd.uniform_buffer_create(data.size(), data)
 
 func _create_textures(color_format: RenderingDevice.DataFormat, size: Vector2i) -> void:
 	var half_screen_texture = RDTextureFormat.new()
@@ -198,6 +190,9 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 	if not rd:
 		return
 
+	if amount == 0.0:
+		return
+
 	# Get our render scene buffers object, this gives us access to our render buffers.
 	# Note that implementation differs per renderer hence the need for the cast.
 	var render_scene_buffers: RenderSceneBuffersRD = p_render_data.get_render_scene_buffers()
@@ -226,7 +221,7 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 	
 	# Loop through views just in case we're doing stereo rendering. No extra cost if this is mono.
 	var view_count: int = render_scene_buffers.get_view_count()
-	var render_scene_data = p_render_data.get_render_scene_data()
+	var render_scene_data: RenderSceneData = p_render_data.get_render_scene_data()
 	for view in view_count:
 		# Get the RID for our color image, we will be reading from and writing to it.
 		var input_image: RID = render_scene_buffers.get_color_layer(view)

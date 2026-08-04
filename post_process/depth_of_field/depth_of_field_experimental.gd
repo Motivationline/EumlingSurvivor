@@ -23,9 +23,11 @@ var scene_buffer: RID
 
 var framebuffer_size: Vector2i = Vector2i(0, 0)
 
+var screen_texture: RID
 var screen_textures: Array[RID]
 var screen_textures_dirty: bool = true
-var screen_texture_levels: int = 6:
+var screen_texture_max_levels: int = 6
+var screen_texture_levels: int:
 	set(value):
 		if value == screen_texture_levels: return
 		screen_texture_levels = value
@@ -64,6 +66,7 @@ var mutex: Mutex = Mutex.new()
 	set(value):
 		amount = value
 		settings_dirty = true
+		screen_texture_levels = int(ceilf(value * screen_texture_max_levels))
 
 func _init() -> void:
 	effect_callback_type = EFFECT_CALLBACK_TYPE_POST_TRANSPARENT
@@ -81,6 +84,7 @@ func _init() -> void:
 	sampler_state_linear.repeat_u = RenderingDevice.SAMPLER_REPEAT_MODE_CLAMP_TO_EDGE
 	sampler_state_linear.repeat_v = RenderingDevice.SAMPLER_REPEAT_MODE_CLAMP_TO_EDGE
 	sampler_state_linear.min_filter = RenderingDevice.SAMPLER_FILTER_LINEAR
+	sampler_state.mip_filter = RenderingDevice.SAMPLER_FILTER_LINEAR
 	sampler_state_linear.mag_filter = RenderingDevice.SAMPLER_FILTER_LINEAR
 	linear_sampler = RenderingServer.get_rendering_device().sampler_create(sampler_state_linear)
 
@@ -109,8 +113,8 @@ func _create_settings_buffer():
 		far_transition,
 		near_distance,
 		near_transition,
-		amount,
-		0.0,
+		amount * screen_texture_max_levels,
+		screen_texture_levels - 1,
 		0.0,
 		0.0
 	])
@@ -120,60 +124,52 @@ func _create_settings_buffer():
 	db.append_array(settings.to_byte_array())
 	settings_buffer = rd.uniform_buffer_create(db.size(), db)
 
-func _create_scene_buffer(render_scene_data):
+func _create_scene_buffer(render_scene_data: RenderSceneData):
 	if scene_buffer.is_valid():
 		rd.free_rid(scene_buffer)
 
-	var cam = render_scene_data.get_cam_projection()
+	var inverse_projection := render_scene_data.get_cam_projection().inverse()
+	var inverse_projection_array := PackedVector4Array([
+		inverse_projection.x, inverse_projection.y, inverse_projection.z, inverse_projection.w
+	])
 
-	var cam_mat = [
-		cam.x.x, cam.x.y, cam.x.z, cam.x.w,
-		cam.y.x, cam.y.y, cam.y.z, cam.y.w,
-		cam.z.x, cam.z.y, cam.z.z, cam.z.w,
-		cam.w.x, cam.w.y, cam.w.z, cam.w.w,
-	]
-
-	var cma = PackedFloat32Array(cam_mat).to_byte_array()
-
-	var pb = PackedByteArray()
-	pb.append_array(cma)
-
-	scene_buffer = rd.uniform_buffer_create(pb.size(), pb)
-
-# func _create_textures(color_format: RenderingDevice.DataFormat, size: Vector2i) -> void:
-# 	var half_screen_texture = RDTextureFormat.new()
-# 	half_screen_texture.format = color_format
-# 	half_screen_texture.width = size.x / 2
-# 	half_screen_texture.height = size.y / 2
-# 	half_screen_texture.depth = 1
-# 	half_screen_texture.mipmaps = screen_texture_levels
-# 	half_screen_texture.usage_bits = RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT + RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT
-
-# 	screen_texture = rd.texture_create(half_screen_texture, RDTextureView.new())
-
-# 	screen_textures = [RID()] # index 0 is reserved for the full screen image
-# 	screen_textures.resize(1 + screen_texture_levels)
-# 	for i in range(1, screen_textures.size()):
-# 		screen_textures[i] = rd.texture_create_shared_from_slice(RDTextureView.new(), screen_texture, 0, i - 1) # create texture views into mip levels
+	var data = inverse_projection_array.to_byte_array()
+	scene_buffer = rd.uniform_buffer_create(data.size(), data)
 
 func _create_textures(color_format: RenderingDevice.DataFormat, size: Vector2i) -> void:
+	var half_screen_texture = RDTextureFormat.new()
+	half_screen_texture.format = color_format
+	half_screen_texture.width = size.x / 2
+	half_screen_texture.height = size.y / 2
+	half_screen_texture.depth = 1
+	half_screen_texture.mipmaps = screen_texture_levels
+	half_screen_texture.usage_bits = RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT + RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT
+
+	screen_texture = rd.texture_create(half_screen_texture, RDTextureView.new())
+
 	screen_textures = [RID()] # index 0 is reserved for the full screen image
 	screen_textures.resize(1 + screen_texture_levels)
-
-	print("Create Textures " + str(screen_texture_levels))
-
-	var target_size: Vector2
 	for i in range(1, screen_textures.size()):
-		target_size = size / (2 ** i)
+		screen_textures[i] = rd.texture_create_shared_from_slice(RDTextureView.new(), screen_texture, 0, i - 1) # create texture views into mip levels
 
-		var texture = RDTextureFormat.new()
-		texture.format = color_format
-		texture.width = target_size.x
-		texture.height = target_size.y
-		texture.depth = 1
-		texture.mipmaps = 1
-		texture.usage_bits = RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT + RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT
-		screen_textures[i] = rd.texture_create(texture, RDTextureView.new())
+# func _create_textures(color_format: RenderingDevice.DataFormat, size: Vector2i) -> void:
+# 	screen_textures = [RID()] # index 0 is reserved for the full screen image
+# 	screen_textures.resize(1 + screen_texture_levels)
+
+# 	print("Create Textures " + str(screen_texture_levels))
+
+# 	var target_size: Vector2
+# 	for i in range(1, screen_textures.size()):
+# 		target_size = size / (2 ** i)
+
+# 		var texture = RDTextureFormat.new()
+# 		texture.format = color_format
+# 		texture.width = target_size.x
+# 		texture.height = target_size.y
+# 		texture.depth = 1
+# 		texture.mipmaps = 1
+# 		texture.usage_bits = RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT + RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT
+# 		screen_textures[i] = rd.texture_create(texture, RDTextureView.new())
 
 func _clean_textures() -> void:
 	for i in range(1, screen_textures.size()):
@@ -358,41 +354,45 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 			rd.draw_list_draw(downsample_draw_list, false, 1, 3)
 			rd.draw_list_end()
 
-		for i in range(screen_textures.size() - 1, 1, -1):
-			var color_uniform := RDUniform.new()
-			color_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_SAMPLER_WITH_TEXTURE
-			color_uniform.binding = 0
-			color_uniform.add_id(linear_sampler)
-			color_uniform.add_id(screen_textures[i])
+		# for i in range(screen_textures.size() - 1, 1, -1):
+		# 	var color_uniform := RDUniform.new()
+		# 	color_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_SAMPLER_WITH_TEXTURE
+		# 	color_uniform.binding = 0
+		# 	color_uniform.add_id(linear_sampler)
+		# 	color_uniform.add_id(screen_textures[i])
 
-			var target_size: Vector2 = size / (2 ** (i - 1))
-			push_constant.set(0, 0.5 / target_size.x)
-			push_constant.set(1, 0.5 / target_size.y)
+		# 	var target_size: Vector2 = size / (2 ** (i - 1))
+		# 	push_constant.set(0, 0.5 / target_size.x)
+		# 	push_constant.set(1, 0.5 / target_size.y)
 
-			var pipeline: RID = upsample_pipeline
-			var shader: RID = upsample_shader
+		# 	var pipeline: RID = upsample_pipeline
+		# 	var shader: RID = upsample_shader
 
-			var upsample_framebuffer = FramebufferCacheRD.get_cache_multipass([screen_textures[i - 1]], [], 1)
-			var upsample_draw_list := rd.draw_list_begin(upsample_framebuffer, RenderingDevice.DRAW_IGNORE_ALL);
-			rd.draw_list_bind_render_pipeline(upsample_draw_list, pipeline)
+		# 	var upsample_framebuffer = FramebufferCacheRD.get_cache_multipass([screen_textures[i - 1]], [], 1)
+		# 	var upsample_draw_list := rd.draw_list_begin(upsample_framebuffer, RenderingDevice.DRAW_IGNORE_ALL);
+		# 	rd.draw_list_bind_render_pipeline(upsample_draw_list, pipeline)
 
-			rd.draw_list_set_push_constant(upsample_draw_list, push_constant.to_byte_array(), push_constant.size() * 4)
-			rd.draw_list_bind_uniform_set(upsample_draw_list, UniformSetCacheRD.get_cache(shader, 0, [color_uniform]), 0)
+		# 	rd.draw_list_set_push_constant(upsample_draw_list, push_constant.to_byte_array(), push_constant.size() * 4)
+		# 	rd.draw_list_bind_uniform_set(upsample_draw_list, UniformSetCacheRD.get_cache(shader, 0, [color_uniform]), 0)
 
-			rd.draw_list_bind_uniform_set(upsample_draw_list, UniformSetCacheRD.get_cache(shader, 3, [scene_uniform]), 3)
+		# 	rd.draw_list_bind_uniform_set(upsample_draw_list, UniformSetCacheRD.get_cache(shader, 3, [scene_uniform]), 3)
 
-			rd.draw_list_draw(upsample_draw_list, false, 1, 3)
-			rd.draw_list_end()
+		# 	rd.draw_list_draw(upsample_draw_list, false, 1, 3)
+		# 	rd.draw_list_end()
 
 		var color_texture_uniform := RDUniform.new()
 		color_texture_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_SAMPLER_WITH_TEXTURE
 		color_texture_uniform.binding = 0
 		color_texture_uniform.add_id(linear_sampler)
-		color_texture_uniform.add_id(screen_textures[1])
+		color_texture_uniform.add_id(screen_texture)
+
+		push_constant.set(0, 0.5 / size.x)
+		push_constant.set(1, 0.5 / size.y)
 		
 		var clear_colors := PackedColorArray()
 		var dof_draw_list := rd.draw_list_begin(input_framebuffer, 0, clear_colors);
 		rd.draw_list_bind_render_pipeline(dof_draw_list, dof_pipeline)
+		rd.draw_list_set_push_constant(dof_draw_list, push_constant.to_byte_array(), push_constant.size() * 4)
 		rd.draw_list_bind_uniform_set(dof_draw_list, UniformSetCacheRD.get_cache(dof_shader, 0, [color_texture_uniform]), 0)
 		rd.draw_list_bind_uniform_set(dof_draw_list, UniformSetCacheRD.get_cache(dof_shader, 1, [depth_texture_uniform]), 1)
 		rd.draw_list_bind_uniform_set(dof_draw_list, UniformSetCacheRD.get_cache(dof_shader, 2, [settings_uniform]), 2)
