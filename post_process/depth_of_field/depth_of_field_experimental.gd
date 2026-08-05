@@ -1,5 +1,5 @@
 @tool
-class_name depth_of_field_experimental extends CompositorEffect
+class_name DepthOfFieldExperimental extends CompositorEffect
 
 var rd: RenderingDevice
 

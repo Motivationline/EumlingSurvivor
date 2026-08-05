@@ -30,7 +30,6 @@ func _ready() -> void:
 
 	depth_of_field_options.clear()
 	depth_of_field_options.add_item("Off", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.OFF)
-	depth_of_field_options.add_item("Very Low", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.VERY_LOW)
 	depth_of_field_options.add_item("Low", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.LOW)
 	depth_of_field_options.add_item("Medium", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.MEDIUM)
 	depth_of_field_options.add_item("High", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.HIGH)

@@ -1,5 +1,5 @@
 @tool
-class_name depth_of_field_mip extends CompositorEffect
+class_name DepthOfFieldMip extends CompositorEffect
 
 var rd: RenderingDevice
 

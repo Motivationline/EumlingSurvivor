@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://dd58l40c5jnhw"]
 
 [ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="1_5rwd2"]
+[ext_resource type="Script" uid="uid://pamwcg5vfvvr" path="res://post_process/depth_of_field/depth_of_field_experimental.gd" id="1_s8nde"]
 [ext_resource type="Script" uid="uid://du18mum64y03k" path="res://game/cameras/behaviours/normal_behaviour.gd" id="2_q70lv"]
 [ext_resource type="Script" uid="uid://spl4xxjjutfc" path="res://global/settings/graphics_settings_component_depth_of_field.gd" id="3_6u4uq"]
-[ext_resource type="Shader" uid="uid://du3cv0eh422o5" path="res://game/shared/depth_of_field/low_depth_of_field_shader.gdshader" id="4_r71th"]
-[ext_resource type="Shader" uid="uid://cs0mg6y80laql" path="res://game/shared/depth_of_field/very_low_depth_of_field_shader.gdshader" id="5_2pine"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_tl7rq"]
 dof_blur_far_enabled = true
@@ -14,33 +13,32 @@ dof_blur_near_distance = 10.0
 dof_blur_near_transition = 2.0
 dof_blur_amount = 0.25
 
+[sub_resource type="CompositorEffect" id="CompositorEffect_budnn"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = false
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("1_s8nde")
+far_distance = 13.401
+far_transition = 0.201
+near_distance = 10.001
+near_transition = 2.001
+amount = 0.7
+metadata/_custom_type_script = "uid://pamwcg5vfvvr"
+
+[sub_resource type="Compositor" id="Compositor_qfygk"]
+compositor_effects = Array[CompositorEffect]([null, SubResource("CompositorEffect_budnn")])
+
 [sub_resource type="Resource" id="Resource_hmbof"]
 script = ExtResource("2_q70lv")
 metadata/_custom_type_script = "uid://du18mum64y03k"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_egalt"]
-render_priority = -128
-shader = ExtResource("4_r71th")
-shader_parameter/far_distance = 13.4
-shader_parameter/far_transition = 0.6
-shader_parameter/near_distance = 8.0
-shader_parameter/near_transition = 5.0
-shader_parameter/amount = 3.0000001425
-
-[sub_resource type="QuadMesh" id="QuadMesh_qfygk"]
-flip_faces = true
-size = Vector2(2, 2)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0y437"]
-render_priority = -128
-shader = ExtResource("5_2pine")
-shader_parameter/amount = 3.0000001425
-shader_parameter/dist = 0.330000015675
-shader_parameter/transition = 0.14000000665
-
 [node name="GameCamera" type="Camera3D" unique_id=652286553]
 transform = Transform3D(0.7071066, -0.6123725, 0.3535537, 0, 0.5000003, 0.86602527, -0.70710695, -0.61237216, 0.35355353, 0, 0, 0)
 attributes = SubResource("CameraAttributesPractical_tl7rq")
+compositor = SubResource("Compositor_qfygk")
 projection = 1
 fov = 45.0
 size = 5.5
@@ -51,29 +49,5 @@ behaviour = SubResource("Resource_hmbof")
 metadata/_custom_type_script = "uid://bftcfposg3qyf"
 
 [node name="GraphicsSettingsComponentDepthOfField" type="Node" parent="." unique_id=545616104]
-script = ExtResource("3_6u4uq")
-metadata/_custom_type_script = "uid://spl4xxjjutfc"
-
-[node name="CustomDephtOfFieldPostProcess" type="Node" parent="." unique_id=392438328]
-
-[node name="LowDephtOfField" type="MeshInstance3D" parent="CustomDephtOfFieldPostProcess" unique_id=351252573]
-transform = Transform3D(0.7071066, -0.6123725, 0.3535537, 0, 0.5000003, 0.86602527, -0.70710695, -0.61237216, 0.35355353, 4.5242615, 11.085632, 4.2108154)
-visible = false
-material_override = SubResource("ShaderMaterial_egalt")
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_qfygk")
-
-[node name="GraphicsSettingsComponentDepthOfField" type="Node" parent="CustomDephtOfFieldPostProcess/LowDephtOfField" unique_id=1535263728]
-script = ExtResource("3_6u4uq")
-metadata/_custom_type_script = "uid://spl4xxjjutfc"
-
-[node name="VeryLowDephtOfField" type="MeshInstance3D" parent="CustomDephtOfFieldPostProcess" unique_id=382287496]
-transform = Transform3D(0.7071066, -0.6123725, 0.3535537, 0, 0.5000003, 0.86602527, -0.70710695, -0.61237216, 0.35355353, 4.5242615, 11.085632, 4.2108154)
-visible = false
-material_override = SubResource("ShaderMaterial_0y437")
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_qfygk")
-
-[node name="GraphicsSettingsComponentDepthOfField" type="Node" parent="CustomDephtOfFieldPostProcess/VeryLowDephtOfField" unique_id=1668501751]
 script = ExtResource("3_6u4uq")
 metadata/_custom_type_script = "uid://spl4xxjjutfc"
