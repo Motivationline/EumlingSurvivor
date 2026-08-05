@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://dd58l40c5jnhw"]
 
 [ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="1_5rwd2"]
+[ext_resource type="Script" uid="uid://b6ii8oyy2hxm8" path="res://post_process/ssao/ssao.gd" id="1_q70lv"]
 [ext_resource type="Script" uid="uid://pamwcg5vfvvr" path="res://post_process/depth_of_field/depth_of_field_experimental.gd" id="1_s8nde"]
 [ext_resource type="Script" uid="uid://du18mum64y03k" path="res://game/cameras/behaviours/normal_behaviour.gd" id="2_q70lv"]
 [ext_resource type="Script" uid="uid://spl4xxjjutfc" path="res://global/settings/graphics_settings_component_depth_of_field.gd" id="3_6u4uq"]
+[ext_resource type="Script" uid="uid://ce3uevtwoe7te" path="res://global/settings/graphics_settings_component_global_illumination.gd" id="6_q70lv"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_tl7rq"]
 dof_blur_far_enabled = true
@@ -12,6 +14,20 @@ dof_blur_near_enabled = true
 dof_blur_near_distance = 10.0
 dof_blur_near_transition = 2.0
 dof_blur_amount = 0.25
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_s8nde"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = false
+effect_callback_type = 3
+access_resolved_color = false
+access_resolved_depth = false
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("1_q70lv")
+ssao_radius = 0.04
+ssao_intensity = 0.7
+metadata/_custom_type_script = "uid://b6ii8oyy2hxm8"
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_budnn"]
 resource_local_to_scene = false
@@ -29,7 +45,7 @@ amount = 0.7
 metadata/_custom_type_script = "uid://pamwcg5vfvvr"
 
 [sub_resource type="Compositor" id="Compositor_qfygk"]
-compositor_effects = Array[CompositorEffect]([null, SubResource("CompositorEffect_budnn")])
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_s8nde"), SubResource("CompositorEffect_budnn")])
 
 [sub_resource type="Resource" id="Resource_hmbof"]
 script = ExtResource("2_q70lv")
@@ -51,3 +67,7 @@ metadata/_custom_type_script = "uid://bftcfposg3qyf"
 [node name="GraphicsSettingsComponentDepthOfField" type="Node" parent="." unique_id=545616104]
 script = ExtResource("3_6u4uq")
 metadata/_custom_type_script = "uid://spl4xxjjutfc"
+
+[node name="GraphicsSettingsComponentGlobalIllumination" type="Node" parent="." unique_id=1187478496]
+script = ExtResource("6_q70lv")
+metadata/_custom_type_script = "uid://ce3uevtwoe7te"

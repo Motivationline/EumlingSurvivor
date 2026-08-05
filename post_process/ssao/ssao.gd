@@ -1,6 +1,5 @@
 @tool
-extends CompositorEffect
-class_name ssao
+class_name SSAO extends CompositorEffect
 
 var rd: RenderingDevice
 
