@@ -12,9 +12,6 @@ var downsample_pipeline: RID
 var downsample_first_pass_shader: RID
 var downsample_first_pass_pipeline: RID
 
-var upsample_shader: RID
-var upsample_pipeline: RID
-
 var nearest_sampler: RID
 var linear_sampler: RID
 
@@ -26,7 +23,7 @@ var framebuffer_size: Vector2i = Vector2i(0, 0)
 var screen_texture: RID
 var screen_textures: Array[RID]
 var screen_textures_dirty: bool = true
-var screen_texture_max_levels: int = 6
+var screen_texture_max_levels: int = 5
 var screen_texture_levels: int:
 	set(value):
 		if value == screen_texture_levels: return
@@ -62,11 +59,16 @@ var mutex: Mutex = Mutex.new()
 		near_transition = value
 		settings_dirty = true
 
-@export_range(0.0, 1.0, 0.001) var amount: float = 0.35:
+@export_range(0.0, 1.0, 0.001) var amount: float = 1.0:
 	set(value):
 		amount = value
 		settings_dirty = true
 		screen_texture_levels = int(ceilf(value * screen_texture_max_levels))
+
+@export_group("Advanced")
+@export_range(0.0, 1.0, 0.001) var radius: float = 0.75:
+	set(value):
+		radius = value
 
 func _init() -> void:
 	effect_callback_type = EFFECT_CALLBACK_TYPE_POST_TRANSPARENT
@@ -84,7 +86,7 @@ func _init() -> void:
 	sampler_state_linear.repeat_u = RenderingDevice.SAMPLER_REPEAT_MODE_CLAMP_TO_EDGE
 	sampler_state_linear.repeat_v = RenderingDevice.SAMPLER_REPEAT_MODE_CLAMP_TO_EDGE
 	sampler_state_linear.min_filter = RenderingDevice.SAMPLER_FILTER_LINEAR
-	sampler_state.mip_filter = RenderingDevice.SAMPLER_FILTER_LINEAR
+	sampler_state_linear.mip_filter = RenderingDevice.SAMPLER_FILTER_LINEAR
 	sampler_state_linear.mag_filter = RenderingDevice.SAMPLER_FILTER_LINEAR
 	linear_sampler = RenderingServer.get_rendering_device().sampler_create(sampler_state_linear)
 
@@ -100,9 +102,6 @@ func _notification(what: int) -> void:
 
 		if downsample_first_pass_shader.is_valid():
 			rd.free_rid(downsample_first_pass_shader)
-
-		if upsample_shader.is_valid():
-			rd.free_rid(upsample_shader)
 			
 func _create_settings_buffer():
 	if settings_buffer.is_valid():
@@ -198,21 +197,6 @@ func _create_pipeline_blend_disabled(shader: RID, framebuffer_format: int) -> RI
 	var attachment = RDPipelineColorBlendStateAttachment.new()
 	attachment.enable_blend = false;
 	return _create_pipeline(shader, framebuffer_format, attachment)
-
-func _create_pipeline_upsample(shader: RID, framebuffer_format: int) -> RID:
-	var attachment = RDPipelineColorBlendStateAttachment.new()
-	attachment.enable_blend = false;
-	attachment.write_a = false;
-
-	# attachment.color_blend_op = RenderingDevice.BLEND_OP_ADD
-	# attachment.src_color_blend_factor = RenderingDevice.BLEND_FACTOR_DST_ALPHA
-	# attachment.dst_color_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_DST_ALPHA
-
-	# attachment.alpha_blend_op = RenderingDevice.BLEND_OP_ADD
-	# attachment.src_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE
-	# attachment.dst_alpha_blend_factor = RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA
-	return _create_pipeline(shader, framebuffer_format, attachment)
-
 	
 #region Code in this region runs on the rendering thread.
 # Compile our dof_shader at initialization.
@@ -229,9 +213,6 @@ func _initialize_compute() -> void:
 	shader_spirv = shader_file.get_spirv("downsample_first_pass")
 	downsample_first_pass_shader = rd.shader_create_from_spirv(shader_spirv)
 
-	shader_spirv = shader_file.get_spirv("upsample")
-	upsample_shader = rd.shader_create_from_spirv(shader_spirv)
-
 	shader_spirv = shader_file.get_spirv("apply")
 	dof_shader = rd.shader_create_from_spirv(shader_spirv)
 
@@ -239,6 +220,9 @@ func _initialize_compute() -> void:
 # Called by the rendering thread every frame.
 func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data: RenderData) -> void:
 	if not rd:
+		return
+
+	if amount == 0.0:
 		return
 
 	# Get our render scene buffers object, this gives us access to our render buffers.
@@ -292,9 +276,6 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 		if not downsample_first_pass_pipeline.is_valid():
 			downsample_first_pass_pipeline = _create_pipeline_blend_disabled(downsample_first_pass_shader, input_framebuffer_format)
 
-		if not upsample_pipeline.is_valid():
-			upsample_pipeline = _create_pipeline_upsample(upsample_shader, input_framebuffer_format)
-
 		if not dof_pipeline.is_valid():
 			dof_pipeline = _create_pipeline_blend_mix(dof_shader, input_framebuffer_format)
 
@@ -328,8 +309,8 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 			color_uniform.add_id(screen_textures[i - 1])
 
 			var target_size: Vector2 = size / (2 ** i)
-			push_constant.set(0, 0.5 / target_size.x)
-			push_constant.set(1, 0.5 / target_size.y)
+			push_constant.set(0, radius / target_size.x)
+			push_constant.set(1, radius / target_size.y)
 
 			var first_pass: bool = i == 1;
 			var pipeline: RID = downsample_pipeline
@@ -354,45 +335,15 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 			rd.draw_list_draw(downsample_draw_list, false, 1, 3)
 			rd.draw_list_end()
 
-		# for i in range(screen_textures.size() - 1, 1, -1):
-		# 	var color_uniform := RDUniform.new()
-		# 	color_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_SAMPLER_WITH_TEXTURE
-		# 	color_uniform.binding = 0
-		# 	color_uniform.add_id(linear_sampler)
-		# 	color_uniform.add_id(screen_textures[i])
-
-		# 	var target_size: Vector2 = size / (2 ** (i - 1))
-		# 	push_constant.set(0, 0.5 / target_size.x)
-		# 	push_constant.set(1, 0.5 / target_size.y)
-
-		# 	var pipeline: RID = upsample_pipeline
-		# 	var shader: RID = upsample_shader
-
-		# 	var upsample_framebuffer = FramebufferCacheRD.get_cache_multipass([screen_textures[i - 1]], [], 1)
-		# 	var upsample_draw_list := rd.draw_list_begin(upsample_framebuffer, RenderingDevice.DRAW_IGNORE_ALL);
-		# 	rd.draw_list_bind_render_pipeline(upsample_draw_list, pipeline)
-
-		# 	rd.draw_list_set_push_constant(upsample_draw_list, push_constant.to_byte_array(), push_constant.size() * 4)
-		# 	rd.draw_list_bind_uniform_set(upsample_draw_list, UniformSetCacheRD.get_cache(shader, 0, [color_uniform]), 0)
-
-		# 	rd.draw_list_bind_uniform_set(upsample_draw_list, UniformSetCacheRD.get_cache(shader, 3, [scene_uniform]), 3)
-
-		# 	rd.draw_list_draw(upsample_draw_list, false, 1, 3)
-		# 	rd.draw_list_end()
-
 		var color_texture_uniform := RDUniform.new()
 		color_texture_uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_SAMPLER_WITH_TEXTURE
 		color_texture_uniform.binding = 0
 		color_texture_uniform.add_id(linear_sampler)
 		color_texture_uniform.add_id(screen_texture)
-
-		push_constant.set(0, 0.5 / size.x)
-		push_constant.set(1, 0.5 / size.y)
 		
 		var clear_colors := PackedColorArray()
 		var dof_draw_list := rd.draw_list_begin(input_framebuffer, 0, clear_colors);
 		rd.draw_list_bind_render_pipeline(dof_draw_list, dof_pipeline)
-		rd.draw_list_set_push_constant(dof_draw_list, push_constant.to_byte_array(), push_constant.size() * 4)
 		rd.draw_list_bind_uniform_set(dof_draw_list, UniformSetCacheRD.get_cache(dof_shader, 0, [color_texture_uniform]), 0)
 		rd.draw_list_bind_uniform_set(dof_draw_list, UniformSetCacheRD.get_cache(dof_shader, 1, [depth_texture_uniform]), 1)
 		rd.draw_list_bind_uniform_set(dof_draw_list, UniformSetCacheRD.get_cache(dof_shader, 2, [settings_uniform]), 2)
