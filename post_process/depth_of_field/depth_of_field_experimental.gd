@@ -59,7 +59,7 @@ var mutex: Mutex = Mutex.new()
 		near_transition = value
 		settings_dirty = true
 
-@export_range(0.0, 1.0, 0.001) var amount: float = 1.0:
+@export_range(0.0, 1.0, 0.001) var amount: float = 0.35:
 	set(value):
 		amount = value
 		settings_dirty = true
