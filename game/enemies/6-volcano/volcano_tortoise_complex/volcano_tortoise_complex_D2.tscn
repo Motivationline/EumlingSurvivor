@@ -95,7 +95,7 @@ script = ExtResource("3_nk278")
 entity_to_spawn = ExtResource("4_wtdsf")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="Tortoise" parent="Visuals/volcano_tortoise/Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(1249268255, 1992266124) index="0" unique_id=611799923]
+[node name="Tortoise" parent="Visuals/volcano_tortoise/Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(1249268255, 371009607) index="0" unique_id=2087206713]
 material_overlay = ExtResource("6_huuul")
 
 [node name="CircularTargetIndicatorBig" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=1351910490 instance=ExtResource("6_xg3pc")]
@@ -116,6 +116,9 @@ libraries/ = SubResource("AnimationLibrary_huuul")
 autoplay = &"ExtendIndicator"
 
 [node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1554862748 instance=ExtResource("8_x0m6m")]
+
+[node name="SoundEffectManager" parent="." index="5" unique_id=212820490]
+debug = true
 
 [connection signal="entered" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig" method="set_visible" binds= [true]]
 [connection signal="exited" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig" method="set_visible" binds= [false]]
