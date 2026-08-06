@@ -414,24 +414,21 @@ instance_shader_parameters/width = 0.4590000218025
 libraries/ = SubResource("AnimationLibrary_qmpt2")
 autoplay = &"ExtendIndicator"
 
-[node name="SoundEffectManager" parent="." index="5" unique_id=212820490]
-debug = true
-
-[node name="Shake" parent="SoundEffectManager" index="2" unique_id=1553656196 instance=ExtResource("17_b4sxt")]
+[node name="Shake" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("17_b4sxt")]
 stream = SubResource("AudioStreamRandomizer_b4sxt")
 
-[node name="DeathSpecific" parent="SoundEffectManager" index="3" unique_id=864650427 instance=ExtResource("17_b4sxt")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=864650427 instance=ExtResource("17_b4sxt")]
 stream = SubResource("AudioStreamRandomizer_3krlo")
 volume_db = 4.0
 
-[node name="Hurt" parent="SoundEffectManager" index="4" unique_id=1840658554 instance=ExtResource("17_b4sxt")]
+[node name="Hurt" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=1840658554 instance=ExtResource("17_b4sxt")]
 stream = SubResource("AudioStreamRandomizer_2urcv")
 volume_db = -12.0
 
-[node name="StompWindUp" parent="SoundEffectManager" index="5" unique_id=498760753 instance=ExtResource("17_b4sxt")]
+[node name="StompWindUp" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=498760753 instance=ExtResource("17_b4sxt")]
 stream = SubResource("AudioStreamRandomizer_d7x07")
 
-[node name="StompImpact" parent="SoundEffectManager" index="6" unique_id=223835618 instance=ExtResource("17_b4sxt")]
+[node name="StompImpact" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="6" unique_id=223835618 instance=ExtResource("17_b4sxt")]
 stream = SubResource("AudioStreamRandomizer_fanp4")
 
 [node name="hitboxBase" parent="." index="7" unique_id=1235312899 instance=ExtResource("8_f80sp")]
