@@ -17,13 +17,17 @@ var mutex: Mutex = Mutex.new()
 
 @export_range(0.001, 16.0, 0.001) var ssao_radius: float = 0.5:
 	set(value):
+		mutex.lock()
 		ssao_radius = value
 		settings_dirty = true
+		mutex.unlock()
 
 @export_range(0.0, 16.0, 0.001) var ssao_intensity: float = 3.0:
 	set(value):
+		mutex.lock()
 		ssao_intensity = value
 		settings_dirty = true
+		mutex.unlock()
 
 func _init() -> void:
 	effect_callback_type = EFFECT_CALLBACK_TYPE_PRE_TRANSPARENT
