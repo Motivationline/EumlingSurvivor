@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dmr83p5o725ie" path="res://game/enemies/6-volcano/boss_shark/vfx/death_from_below_vfx.tscn" id="11_71geg"]
 [ext_resource type="PackedScene" uid="uid://d3h1nvtvp5iwf" path="res://game/shared/target_indicators/directional_mesh/directional_target_indicator_mesh.tscn" id="15_du46p"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="16_ru4a0"]
+[ext_resource type="Script" uid="uid://6312uopesj43" path="res://strategies/event/enemy/stop_sound.gd" id="17_q445x"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="20_jddde"]
 [ext_resource type="AudioStream" uid="uid://ewl2of0m4ulh" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_1.wav" id="21_dch67"]
 [ext_resource type="AudioStream" uid="uid://bwcwstecykw3f" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_2.wav" id="22_n7nk8"]
@@ -53,6 +54,7 @@
 [ext_resource type="AudioStream" uid="uid://dwnaiphh0ii77" path="res://assets/characters/enemies/boss_shark/sounds/jump_attack_4.wav" id="44_q445x"]
 [ext_resource type="AudioStream" uid="uid://kcd1cixxb4ou" path="res://assets/characters/enemies/boss_shark/sounds/jump_attack_5.wav" id="45_uwaj3"]
 [ext_resource type="AudioStream" uid="uid://bnf5fuwiis0db" path="res://assets/characters/enemies/boss_shark/sounds/jump_attack_6.wav" id="46_avcgj"]
+[ext_resource type="AudioStream" uid="uid://da1laggr35oa6" path="res://assets/characters/enemies/boss_shark/sounds/swim_loop.wav" id="54_0nc6q"]
 
 [sub_resource type="Resource" id="Resource_g4v7s"]
 script = ExtResource("6_tfkkn")
@@ -229,7 +231,7 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="TriggerSoundSurfaceEventState" type="Node" parent="StateMachine/Roam" index="1" unique_id=2144905603 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("4_j8lv2")
-events = [NodePath("../../../Eventlisteners/PlaySoundSurface")]
+events = [NodePath("../../../Eventlisteners/PlaySoundSurfaceAndSwim")]
 next_state = NodePath("../StartDamageReduction")
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
@@ -294,7 +296,7 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="TriggerSoundDiveEventState" type="Node" parent="StateMachine/ChargeAttack/MultistateState" index="1" unique_id=1774613833 node_paths=PackedStringArray("events")]
 script = ExtResource("4_j8lv2")
-events = [NodePath("../../../../Eventlisteners/PlaySoundDive")]
+events = [NodePath("../../../../Eventlisteners/PlaySoundDive"), NodePath("../../../../Eventlisteners/StopSoundSwim")]
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
 [node name="LookAtPlayerState" type="Node" parent="StateMachine/ChargeAttack/MultistateState" index="2" unique_id=229604355 node_paths=PackedStringArray("next_state")]
@@ -345,7 +347,7 @@ metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="TriggerSoundDiveEventState" type="Node" parent="StateMachine/DeathFromBelow" index="1" unique_id=721662046 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("4_j8lv2")
-events = [NodePath("../../../Eventlisteners/PlaySoundDive")]
+events = [NodePath("../../../Eventlisteners/PlaySoundDive"), NodePath("../../../Eventlisteners/StopSoundSwim")]
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
@@ -459,11 +461,17 @@ sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = Array[String](["Dive"])
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
-[node name="PlaySoundSurface" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=1850539934 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundSurfaceAndSwim" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=1850539934 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("16_ru4a0")
 sound_manager = NodePath("../../SoundEffectManager")
-sound_to_play = Array[String](["Surface"])
+sound_to_play = Array[String](["Surface", "SwimLoop"])
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
+[node name="StopSoundSwim" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="5" unique_id=495680464 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("17_q445x")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_stop = Array[String](["SwimLoop"])
+metadata/_custom_type_script = "uid://6312uopesj43"
 
 [node name="BossShark" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=566136492 instance=ExtResource("2_3ft0s")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.002074957, 0.0035419464, 0.0012545586)
@@ -572,7 +580,7 @@ volume_db = -12.0
 
 [node name="Dive" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=1402643250 instance=ExtResource("20_jddde")]
 stream = SubResource("AudioStreamRandomizer_h7cx0")
-volume_db = -14.0
+volume_db = -12.0
 
 [node name="Surface" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="6" unique_id=1551775250 instance=ExtResource("20_jddde")]
 stream = SubResource("AudioStreamRandomizer_po8s7")
@@ -584,6 +592,9 @@ stream = SubResource("AudioStreamRandomizer_oba3r")
 [node name="JumpAttack" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="8" unique_id=16303037 instance=ExtResource("20_jddde")]
 stream = SubResource("AudioStreamRandomizer_tkyjd")
 volume_db = -12.0
+
+[node name="SwimLoop" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="9" unique_id=2057433510 instance=ExtResource("20_jddde")]
+stream = ExtResource("54_0nc6q")
 
 [node name="death_from_below_particle_marker" type="Marker3D" parent="." index="7" unique_id=1209712892]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
