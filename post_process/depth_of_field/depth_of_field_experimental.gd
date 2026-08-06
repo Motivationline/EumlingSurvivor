@@ -24,11 +24,7 @@ var screen_texture: RID
 var screen_textures: Array[RID]
 var screen_textures_dirty: bool = true
 var screen_texture_max_levels: int = 5
-var screen_texture_levels: int:
-	set(value):
-		if value == screen_texture_levels: return
-		screen_texture_levels = value
-		screen_textures_dirty = true
+var screen_texture_levels: int
 
 var push_constant: PackedFloat32Array = PackedFloat32Array([0.0, 0.0])
 
@@ -41,34 +37,51 @@ var mutex: Mutex = Mutex.new()
 
 @export_range(0.001, 8192.0, 0.01, "exp", "suffix:m") var far_distance: float = 10.0:
 	set(value):
+		mutex.lock()
 		far_distance = value
 		settings_dirty = true
+		mutex.unlock()
 
 @export_range(0.001, 8192.0, 0.01, "exp", "suffix:m") var far_transition: float = 5.0:
 	set(value):
+		mutex.lock()
 		far_transition = value
 		settings_dirty = true
+		mutex.unlock()
 
 @export_range(0.001, 8192.0, 0.01, "exp", "suffix:m") var near_distance: float = 2.0:
 	set(value):
+		mutex.lock()
 		near_distance = value
 		settings_dirty = true
+		mutex.unlock()
 
 @export_range(0.001, 8192.0, 0.01, "exp", "suffix:m") var near_transition: float = 1.0:
 	set(value):
+		mutex.lock()
 		near_transition = value
 		settings_dirty = true
+		mutex.unlock()
 
 @export_range(0.0, 1.0, 0.001) var amount: float = 0.35:
 	set(value):
+		mutex.lock()
 		amount = value
 		settings_dirty = true
-		screen_texture_levels = int(ceilf(value * screen_texture_max_levels))
+
+		var next_screen_texture_levels := int(ceilf(value * screen_texture_max_levels))
+		if next_screen_texture_levels != screen_texture_levels:
+			screen_texture_levels = next_screen_texture_levels
+			screen_textures_dirty = true
+
+		mutex.unlock()
 
 @export_group("Advanced")
 @export_range(0.0, 1.0, 0.001) var radius: float = 0.75:
 	set(value):
+		mutex.lock()
 		radius = value
+		mutex.unlock()
 
 func _init() -> void:
 	effect_callback_type = EFFECT_CALLBACK_TYPE_POST_TRANSPARENT
@@ -135,40 +148,21 @@ func _create_scene_buffer(render_scene_data: RenderSceneData):
 	var data = inverse_projection_array.to_byte_array()
 	scene_buffer = rd.uniform_buffer_create(data.size(), data)
 
-func _create_textures(color_format: RenderingDevice.DataFormat, size: Vector2i) -> void:
+func _create_textures(color_format: RenderingDevice.DataFormat, size: Vector2i, mipmaps: int) -> void:
 	var half_screen_texture = RDTextureFormat.new()
 	half_screen_texture.format = color_format
 	half_screen_texture.width = size.x / 2
 	half_screen_texture.height = size.y / 2
 	half_screen_texture.depth = 1
-	half_screen_texture.mipmaps = screen_texture_levels
+	half_screen_texture.mipmaps = mipmaps
 	half_screen_texture.usage_bits = RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT + RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT
 
 	screen_texture = rd.texture_create(half_screen_texture, RDTextureView.new())
 
 	screen_textures = [RID()] # index 0 is reserved for the full screen image
-	screen_textures.resize(1 + screen_texture_levels)
+	screen_textures.resize(1 + mipmaps)
 	for i in range(1, screen_textures.size()):
 		screen_textures[i] = rd.texture_create_shared_from_slice(RDTextureView.new(), screen_texture, 0, i - 1) # create texture views into mip levels
-
-# func _create_textures(color_format: RenderingDevice.DataFormat, size: Vector2i) -> void:
-# 	screen_textures = [RID()] # index 0 is reserved for the full screen image
-# 	screen_textures.resize(1 + screen_texture_levels)
-
-# 	print("Create Textures " + str(screen_texture_levels))
-
-# 	var target_size: Vector2
-# 	for i in range(1, screen_textures.size()):
-# 		target_size = size / (2 ** i)
-
-# 		var texture = RDTextureFormat.new()
-# 		texture.format = color_format
-# 		texture.width = target_size.x
-# 		texture.height = target_size.y
-# 		texture.depth = 1
-# 		texture.mipmaps = 1
-# 		texture.usage_bits = RenderingDevice.TEXTURE_USAGE_SAMPLING_BIT + RenderingDevice.TEXTURE_USAGE_COLOR_ATTACHMENT_BIT
-# 		screen_textures[i] = rd.texture_create(texture, RDTextureView.new())
 
 func _clean_textures() -> void:
 	for i in range(1, screen_textures.size()):
@@ -222,9 +216,6 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 	if not rd:
 		return
 
-	if amount == 0.0:
-		return
-
 	# Get our render scene buffers object, this gives us access to our render buffers.
 	# Note that implementation differs per renderer hence the need for the cast.
 	var render_scene_buffers: RenderSceneBuffersRD = p_render_data.get_render_scene_buffers()
@@ -237,7 +228,7 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 	if size.x == 0 and size.y == 0:
 		return
 	
-	mutex.lock()
+	mutex.lock() # do all shared data reads at once
 
 	if size != framebuffer_size:
 		framebuffer_size = size
@@ -246,8 +237,19 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 	if settings_dirty == true:
 		_create_settings_buffer()
 		settings_dirty = false
-	
+
+	var radius := self.radius
+	var amount := self.amount
+	var texture_levels := screen_texture_levels
+
+	var recreate_textures = screen_textures_dirty
+	if recreate_textures:
+		screen_textures_dirty = false
+
 	mutex.unlock()
+
+	if amount == 0.0:
+		return
 
 	rd.draw_command_begin_label("DOF", Color.YELLOW)
 	
@@ -265,10 +267,10 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 		var depth_image: RID = render_scene_buffers.get_depth_layer(view)
 
 		# textures and pipelines need to match formats of the device
-		if screen_textures_dirty:
+		if recreate_textures:
 			_clean_textures()
-			_create_textures(input_texture_color_format, size)
-			screen_textures_dirty = false
+			_create_textures(input_texture_color_format, size, texture_levels)
+			recreate_textures = false
 
 		if not downsample_pipeline.is_valid():
 			downsample_pipeline = _create_pipeline_blend_disabled(downsample_shader, input_framebuffer_format)
