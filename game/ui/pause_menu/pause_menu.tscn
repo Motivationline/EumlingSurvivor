@@ -355,21 +355,25 @@ grow_vertical = 2
 texture = ExtResource("10_6rxva")
 
 [node name="SoundEffectManager" type="Node3D" parent="." unique_id=939590480]
+process_mode = 2
 script = ExtResource("21_huhjg")
 metadata/_custom_type_script = "uid://fxqs1lioec3e"
 
 [node name="Open" parent="SoundEffectManager" unique_id=451995016 instance=ExtResource("22_nmosl")]
 stream = ExtResource("23_1tpup")
-volume_db = -4.0
+volume_db = -6.0
+bus = &"SFXUI"
 
 [node name="Close" parent="SoundEffectManager" unique_id=1085865123 instance=ExtResource("22_nmosl")]
 stream = ExtResource("24_7cjl0")
-volume_db = -4.0
+volume_db = -6.0
+bus = &"SFXUI"
 
 [node name="SliderTick" parent="SoundEffectManager" unique_id=1234115200 instance=ExtResource("22_nmosl")]
 stream = SubResource("AudioStreamRandomizer_huhjg")
 volume_db = -4.0
 max_polyphony = 5
+bus = &"SFXUI"
 
 [connection signal="pressed" from="Buttons/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_resume_button_pressed"]
