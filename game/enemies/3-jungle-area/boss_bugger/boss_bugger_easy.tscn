@@ -197,7 +197,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(-0.09768151, -0.021408496)
+shader_parameter/wobble = Vector2(-0.09183272, 0.03958222)
 
 [sub_resource type="Gradient" id="Gradient_qqlxf"]
 offsets = PackedFloat32Array(0.5364583, 0.71875, 0.7760417)
@@ -606,7 +606,7 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("16_ofchx")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 404333478) index="0" unique_id=669067690]
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 1089246375) index="0" unique_id=189157085]
 bones/19/rotation = Quaternion(-0.49805066, 0.5375024, -0.4991323, -0.4624973)
 bones/22/rotation = Quaternion(-0.37833884, 0.6275533, -0.5827548, -0.35133108)
 
@@ -614,7 +614,7 @@ bones/22/rotation = Quaternion(-0.37833884, 0.6275533, -0.5827548, -0.35133108)
 material_override = SubResource("ShaderMaterial_urikr")
 liquid_height = 0.0
 
-[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=343054566]
+[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=504410357]
 mesh = SubResource("ArrayMesh_30o50")
 
 [node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2" unique_id=525651175]
@@ -638,6 +638,7 @@ autoplay = true
 
 [node name="Slash" parent="SoundEffectManager" index="4" unique_id=362248317 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_285am")
+volume_db = -11.0
 
 [node name="Refill1" parent="SoundEffectManager" index="5" unique_id=1495248777 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_dmgsw")
@@ -657,7 +658,7 @@ volume_db = -13.0
 
 [node name="Slam" parent="SoundEffectManager" index="9" unique_id=731546518 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_gch53")
-volume_db = -6.0
+volume_db = -10.0
 max_polyphony = 3
 
 [connection signal="play_sound" from="Visuals/BossBugger" to="SoundEffectManager" method="play_sound"]

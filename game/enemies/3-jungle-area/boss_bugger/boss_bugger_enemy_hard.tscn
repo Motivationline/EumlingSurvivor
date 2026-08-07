@@ -112,7 +112,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(-0.043416247, -0.09008346)
+shader_parameter/wobble = Vector2(0.09578708, 0.028719947)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l4iyu"]
 streams_count = 5
@@ -457,7 +457,7 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=604116715 instance=ExtResource("16_ekuuj")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(604116715, 404333478) index="0" unique_id=669067690]
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(604116715, 1089246375) index="0" unique_id=189157085]
 bones/19/rotation = Quaternion(-0.52084875, 0.5621063, -0.47125188, -0.4366633)
 bones/22/rotation = Quaternion(-0.39565715, 0.65627927, -0.5502035, -0.33170652)
 
@@ -486,6 +486,7 @@ autoplay = true
 
 [node name="Slash" parent="SoundEffectManager" index="4" unique_id=1724893805 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_d5fd7")
+volume_db = -11.0
 
 [node name="Shoot" parent="SoundEffectManager" index="5" unique_id=793024143 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_hpfgd")
@@ -505,7 +506,7 @@ volume_db = 0.0
 
 [node name="Slam" parent="SoundEffectManager" index="9" unique_id=1222423028 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_rcok2")
-volume_db = -6.0
+volume_db = -10.0
 max_polyphony = 3
 
 [connection signal="play_sound" from="Visuals/BossBugger" to="SoundEffectManager" method="play_sound"]

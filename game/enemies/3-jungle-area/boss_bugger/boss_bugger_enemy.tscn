@@ -425,6 +425,7 @@ autoplay = true
 
 [node name="Slash" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=362248317 instance=ExtResource("18_jtynk")]
 stream = SubResource("AudioStreamRandomizer_285am")
+volume_db = -11.0
 
 [node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=2101134799 instance=ExtResource("18_jtynk")]
 stream = SubResource("AudioStreamRandomizer_qun2s")
@@ -444,7 +445,7 @@ volume_db = 0.0
 
 [node name="Slam" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="9" unique_id=1079053624 instance=ExtResource("18_jtynk")]
 stream = SubResource("AudioStreamRandomizer_m6hmx")
-volume_db = -6.0
+volume_db = -10.0
 max_polyphony = 3
 
 [connection signal="play_sound" from="Visuals/BossBugger" to="SoundEffectManager" method="play_sound"]
