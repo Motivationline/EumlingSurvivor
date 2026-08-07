@@ -272,12 +272,6 @@ adjustment_brightness = 1.09
 adjustment_contrast = 1.055
 adjustment_saturation = 1.23
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_q377s"]
-size = Vector2(30, 30)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqsn0"]
-albedo_color = Color(0.22352941, 0.047058824, 0.039215688, 1)
-
 [sub_resource type="QuadMesh" id="QuadMesh_8l1px"]
 size = Vector2(30, 30)
 subdivide_width = 30
@@ -398,11 +392,6 @@ script = ExtResource("7_aga4b")
 metadata/_custom_type_script = "uid://b12g0nyew0m0i"
 
 [node name="Env" type="Node3D" parent="." unique_id=1593707156]
-
-[node name="Bedrock" type="MeshInstance3D" parent="Env" unique_id=1601940965]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015992403, -1.2169609, -1.2509851)
-mesh = SubResource("PlaneMesh_q377s")
-surface_material_override/0 = SubResource("StandardMaterial3D_yqsn0")
 
 [node name="Node3D" type="Node3D" parent="Env" unique_id=1846319933]
 
