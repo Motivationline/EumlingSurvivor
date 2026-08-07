@@ -50,7 +50,7 @@ func _start_quest() -> void:
 	if not active_quest.can_be_repeated:
 		unavailable_quests.append(active_quest)
 	
-	%QuestIcon.texture = active_quest.icon
+	#%QuestIcon.texture = active_quest.icon
 	%QuestLabel.text = active_quest.text
 
 	%QuestProgressLabel.text = ""
@@ -99,12 +99,12 @@ func _quest_progress(value: float, maximum: float):
 
 func _quest_complete() -> void:
 	_end_quest()
-	await get_tree().create_timer(time_between_quests).timeout
+	await get_tree().create_timer(time_between_quests, false).timeout
 	_start_quest()
 
 func _quest_failed() -> void:
 	_end_quest()
-	await get_tree().create_timer(time_between_quests).timeout
+	await get_tree().create_timer(time_between_quests, false).timeout
 	_start_quest()
 
 
