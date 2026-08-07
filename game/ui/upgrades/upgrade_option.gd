@@ -57,11 +57,13 @@ func _shared_setup(card: Node3D, delay: float = 0.0, sound_pos_offset: float = 0
 	await get_tree().create_timer(delay).timeout
 	$SubViewport.add_child(card)
 	sound_effect_manager.play_sound("Reveal")
+	pressed.connect(sound_effect_manager.play_sound.bind("Select"))
 	if get_parent().get_child(0) == self:
 		grab_focus()
 
 func _on_focus_entered():
 	scale = Vector2(1.1, 1.1)
+	sound_effect_manager.play_sound("Hover")
 	grab_focus()
 
 func _on_focus_exited():
