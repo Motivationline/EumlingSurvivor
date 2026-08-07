@@ -5,6 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://cbg63rgvhxjya" path="res://assets/ui/gameOverlay/LowerBarBackdrop.png" id="3_ll4hx"]
 [ext_resource type="Texture2D" uid="uid://cgou6yjv471k6" path="res://assets/ui/gameOverlay/LowerBarOutline.png" id="4_nvvhl"]
 [ext_resource type="Texture2D" uid="uid://db1acrfx3gskr" path="res://assets/ui/gameOverlay/LowerBarFillReload.png" id="5_mhmqk"]
+[ext_resource type="Texture2D" uid="uid://dlpuj8aqyh3qi" path="res://assets/ui/gameOverlay/boss_healthbar_background.png" id="7_rpe6w"]
+[ext_resource type="Texture2D" uid="uid://d2tkpme573joq" path="res://assets/ui/gameOverlay/boss_healthbar_hit.png" id="8_oex5w"]
+[ext_resource type="Texture2D" uid="uid://drjnmtx3s4y78" path="res://assets/ui/gameOverlay/boss_healthbar.png" id="9_4omxj"]
+[ext_resource type="Texture2D" uid="uid://d23tkhmitttx3" path="res://assets/ui/gameOverlay/turtle_backdrop_unified.png" id="10_5ff46"]
+[ext_resource type="Texture2D" uid="uid://ctinxp05crr3l" path="res://assets/ui/gameOverlay/mosquito_trunk_unified.png" id="11_i0vrw"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_2fanj"]
 viewport_path = NodePath("SubViewport")
@@ -69,42 +74,65 @@ hide_initially = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 100.0
+offset_left = 174.0
+offset_top = 112.0
+offset_right = -172.0
+offset_bottom = 156.0
 grow_horizontal = 2
 nine_patch_stretch = true
-stretch_margin_left = 10
-stretch_margin_top = 10
-stretch_margin_right = 10
-stretch_margin_bottom = 10
+stretch_margin_left = 12
+stretch_margin_top = 12
+stretch_margin_right = 12
+stretch_margin_bottom = 12
+texture_under = ExtResource("7_rpe6w")
+texture_progress = ExtResource("8_oex5w")
+texture_progress_offset = Vector2(0, 0)
 
 [node name="HealthBar" parent="UIOverlay/Healthbar" index="1" unique_id=2126327555]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 100.0
+offset_left = 174.0
+offset_top = 112.0
+offset_right = -172.0
+offset_bottom = 156.0
 grow_horizontal = 2
 nine_patch_stretch = true
-stretch_margin_left = 10
-stretch_margin_top = 10
-stretch_margin_right = 10
-stretch_margin_bottom = 10
+stretch_margin_left = 12
+stretch_margin_top = 12
+stretch_margin_right = 12
+stretch_margin_bottom = 12
+texture_progress = ExtResource("9_4omxj")
+texture_progress_offset = Vector2(0, 0)
 
 [node name="HealthPointsDisplay" parent="UIOverlay/Healthbar" index="2" unique_id=410759965]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -119.0
-offset_top = 0.0
-offset_right = 119.0
-offset_bottom = 143.0
+offset_left = -116.0
+offset_top = -161.0
+offset_right = 122.0
+offset_bottom = -18.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
+
+[node name="Backdrop" type="TextureRect" parent="UIOverlay/Healthbar" unique_id=2006166573]
+unique_name_in_owner = true
+visible = false
+z_index = 9
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 227.75171
+texture = ExtResource("10_5ff46")
+
+[node name="Overlay" type="TextureRect" parent="UIOverlay/Healthbar" unique_id=661459489]
+unique_name_in_owner = true
+visible = false
+z_index = 11
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 227.75171
+texture = ExtResource("11_i0vrw")
 
 [editable path="UIOverlay/Healthbar"]

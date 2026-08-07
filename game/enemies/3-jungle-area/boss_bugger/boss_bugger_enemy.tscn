@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="2_3utvs"]
 [ext_resource type="Script" uid="uid://cu4a5yufjkwhv" path="res://game/enemies/3-jungle-area/boss_bugger/boss_bugger_enemy.gd" id="2_unkqv"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="3_ectag"]
+[ext_resource type="Texture2D" uid="uid://c63jw727e4gtf" path="res://assets/ui/gameOverlay/mosquito_backdrop_unified.png" id="3_hqrcl"]
 [ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="3_unkqv"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="3_vgowq"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_fi40l"]
+[ext_resource type="Texture2D" uid="uid://ctinxp05crr3l" path="res://assets/ui/gameOverlay/mosquito_trunk_unified.png" id="4_teup8"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="4_vgowq"]
 [ext_resource type="PackedScene" uid="uid://b1084wmkhn2en" path="res://game/aoes/boss_bugger_aoe_attack/boss_bugger_aoe.tscn" id="5_0vw1d"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="7_aud5x"]
@@ -153,6 +155,8 @@ node_with_animation_tree = NodePath("Visuals/BossBugger")
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, -0.5)
 show_in_ui = true
+boss_bar_backdrop = ExtResource("3_hqrcl")
+boss_bar_overlay = ExtResource("4_teup8")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("ChooseStateBasedOnCost")
