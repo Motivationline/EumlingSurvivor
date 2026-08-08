@@ -8,8 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://pywy6q2jhxwo" path="res://assets/characters/eumling/mini_eumling/investigativ_forschend/mini_investigativ_forschend_visual.tscn" id="5_vprhq"]
 [ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="6_66s3s"]
 [ext_resource type="PackedScene" uid="uid://drn335i4omarh" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial_visual.tscn" id="7_vbht4"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="9_66s3s"]
+[ext_resource type="AudioStream" uid="uid://cuck8qc4nc4ky" path="res://assets/sound/events/eumling_cage/roll_start.wav" id="10_vbht4"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="10_vprhq"]
+[ext_resource type="AudioStream" uid="uid://dq2r5l0b1w0gn" path="res://assets/sound/events/eumling_cage/roll_loop.wav" id="11_r4xk0"]
+[ext_resource type="AudioStream" uid="uid://djd1lbvpne7id" path="res://assets/sound/events/eumling_cage/roll_end.wav" id="13_r4xk0"]
 
-[node name="caged_mini_eumling" type="Node3D" unique_id=1087139482]
+[node name="caged_mini_eumling" type="Node3D" unique_id=1087139482 node_paths=PackedStringArray("sound_effect_manager")]
 script = ExtResource("1_wa4ee")
 minis = Dictionary[int, PackedScene]({
 0: ExtResource("1_rt8xe"),
@@ -19,6 +24,7 @@ minis = Dictionary[int, PackedScene]({
 4: ExtResource("6_66s3s"),
 5: ExtResource("7_vbht4")
 })
+sound_effect_manager = NodePath("SoundEffectManager")
 
 [node name="MiniEumling" type="Marker3D" parent="." unique_id=1856864363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05326149, 0)
@@ -28,3 +34,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05326149, 0)
 [node name="cage" type="Node3D" parent="." unique_id=938304996]
 
 [node name="Cage2" parent="cage" unique_id=1873368903 instance=ExtResource("2_rt8xe")]
+
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=762824589]
+script = ExtResource("9_66s3s")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="DrumRollStart" parent="SoundEffectManager" unique_id=227296530 instance=ExtResource("10_vprhq")]
+stream = ExtResource("10_vbht4")
+volume_db = 10.0
+autoplay = true
+bus = &"SFXUI"
+
+[node name="DrumRollLoop" parent="SoundEffectManager" unique_id=1553656196 instance=ExtResource("10_vprhq")]
+stream = ExtResource("11_r4xk0")
+volume_db = 10.0
+autoplay = true
+bus = &"SFXUI"
+
+[node name="DrumRollEnd" parent="SoundEffectManager" unique_id=563755258 instance=ExtResource("10_vprhq")]
+process_mode = 3
+stream = ExtResource("13_r4xk0")
+volume_db = 10.0
+bus = &"SFXUI"

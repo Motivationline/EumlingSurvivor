@@ -42,7 +42,8 @@ static var tracks:Dictionary[TRACK, Array] = {
 	TRACK.CHASE:["res://assets/sound/music/chase.tres", ENVNOISE.NOTHING],
 	TRACK.GAMBA:["res://assets/sound/music/gamba.tres", ENVNOISE.NOTHING],
 	TRACK.TITLE:["res://assets/sound/music/title_theme.tres",ENVNOISE.NOTHING],
-	TRACK.TUTORIAL:["res://assets/sound/music/tutorial.tres",ENVNOISE.FLOWERS]
+	TRACK.TUTORIAL:["res://assets/sound/music/tutorial.tres",ENVNOISE.FLOWERS],
+	TRACK.NOTHING:["", ENVNOISE.NOTHING]
 }
 static var envnoises:Dictionary[ENVNOISE,String] = {
 	ENVNOISE.FOREST:"res://assets/sound/environment_noise/Env_Forest.ogg",
@@ -69,6 +70,8 @@ static func get_noise_resource(noise:ENVNOISE) -> AudioStream:
 	return res
 
 static func get_song_resource(song:TRACK) -> Song:
+	if song == TRACK.NOTHING:
+		return Song.new()
 	var path:String = tracks[song][0]
 	var res:Song = load(path)
 	return res

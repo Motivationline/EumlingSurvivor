@@ -95,6 +95,7 @@ func _process(_delta: float) -> void:
 		if (enemies.size() <= 0):
 			if is_boss_level:
 				spawn_cage()
+				GlobalMusicManager.request_music(SongList.TRACK.NOTHING,MusicTransition.instant(), true, GlobalMusicManager.current_noise)
 			else:
 				clear_level()
 	if (state == LEVEL_STATE.CAGE_SPAWNED && goal_area.overlaps_body(player)):
@@ -139,6 +140,9 @@ func animate_cage():
 	tween.tween_callback(func():
 		goal_area.process_mode = goal_process_mode
 	)
+	await tween.finished
+	caged_eumling.sound_effect_manager.play_sound("DrumRollEnd", false, true)
+	caged_eumling.sound_effect_manager.stop_sound("DrumRollLoop")
 
 
 func clear_level():

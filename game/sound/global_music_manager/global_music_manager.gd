@@ -93,8 +93,9 @@ func request_music(_track_name: SongList.TRACK, _transition: MusicTransition, _o
 	elif !current_track == _track_name:
 		fading_players.append(active_player)
 		var fading_id = fading_players.find(active_player)
+
 		active_player = make_music_player(_track_name)
-		
+
 
 		match _transition.type:
 			MusicTransition.TRANSITIONS.CROSSFADE:
