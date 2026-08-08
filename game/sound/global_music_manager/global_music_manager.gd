@@ -174,3 +174,14 @@ func focus_on_bus(_bus: BUS_ID, _duration: float, _reduction_db: float) -> void:
 	
 	for bus in other_buses:
 		fade_bus_volume(bus, 0.4, previous_volumes[bus])
+
+
+func request_incidental(_incidental:SongList.INCIDENTAL, _bus:BUS_ID, _volume_db:float) -> void:
+	var stream:AudioStream = SongList.get_incidental(_incidental)
+	var player:AudioStreamPlayer = AudioStreamPlayer.new()
+	add_child(player)
+	player.stream = stream
+	player.volume_db = _volume_db
+	player.bus = AudioServer.get_bus_name(_bus)
+	player.finished.connect(player.queue_free)
+	player.play()

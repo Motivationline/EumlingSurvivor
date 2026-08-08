@@ -96,6 +96,7 @@ func _process(_delta: float) -> void:
 			if is_boss_level:
 				spawn_cage()
 				GlobalMusicManager.request_music(SongList.TRACK.NOTHING,MusicTransition.instant(), true, GlobalMusicManager.current_noise)
+				GlobalMusicManager.request_incidental(SongList.INCIDENTAL.BOSS_DEFEATED, GlobalMusicManager.BUS_ID.MUSIC, 2)
 			else:
 				clear_level()
 	if (state == LEVEL_STATE.CAGE_SPAWNED && goal_area.overlaps_body(player)):
