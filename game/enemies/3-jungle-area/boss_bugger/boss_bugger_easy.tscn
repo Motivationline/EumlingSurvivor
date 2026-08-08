@@ -197,7 +197,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(-0.09183272, 0.03958222)
+shader_parameter/wobble = Vector2(0.040425472, -0.091464646)
 
 [sub_resource type="Gradient" id="Gradient_qqlxf"]
 offsets = PackedFloat32Array(0.5364583, 0.71875, 0.7760417)
@@ -626,37 +626,34 @@ transform = Transform3D(-0.46685255, -0.8843353, -4.172325e-07, -0.065375835, 0.
 [node name="MeshInstance3D" parent="Visuals/BossBugger/shoot_particle" parent_id_path=PackedInt32Array(113844681, 404730907) index="1" unique_id=512699989]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.4025986, -0.8685752)
 
-[node name="SoundEffectManager" parent="." index="8" unique_id=212820490]
-debug = true
-
-[node name="DeathSpecific" parent="SoundEffectManager" index="2" unique_id=1216685563 instance=ExtResource("17_7htsj")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1216685563 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_7rhsi")
 
-[node name="Buzz" parent="SoundEffectManager" index="3" unique_id=596778459 instance=ExtResource("17_7htsj")]
+[node name="Buzz" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=596778459 instance=ExtResource("17_7htsj")]
 stream = ExtResource("23_vs2qg")
 autoplay = true
 
-[node name="Slash" parent="SoundEffectManager" index="4" unique_id=362248317 instance=ExtResource("17_7htsj")]
+[node name="Slash" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=362248317 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_285am")
 volume_db = -11.0
 
-[node name="Refill1" parent="SoundEffectManager" index="5" unique_id=1495248777 instance=ExtResource("17_7htsj")]
+[node name="Refill1" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=1495248777 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_dmgsw")
 volume_db = 0.0
 
-[node name="Refill2" parent="SoundEffectManager" index="6" unique_id=1553656196 instance=ExtResource("17_7htsj")]
+[node name="Refill2" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="6" unique_id=1553656196 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_ywf4e")
 volume_db = 0.0
 
-[node name="Refill3" parent="SoundEffectManager" index="7" unique_id=1203968812 instance=ExtResource("17_7htsj")]
+[node name="Refill3" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="7" unique_id=1203968812 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_yusfo")
 volume_db = 0.0
 
-[node name="Shoot" parent="SoundEffectManager" index="8" unique_id=2101134799 instance=ExtResource("17_7htsj")]
+[node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="8" unique_id=2101134799 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_qun2s")
 volume_db = -13.0
 
-[node name="Slam" parent="SoundEffectManager" index="9" unique_id=731546518 instance=ExtResource("17_7htsj")]
+[node name="Slam" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="9" unique_id=731546518 instance=ExtResource("17_7htsj")]
 stream = SubResource("AudioStreamRandomizer_gch53")
 volume_db = -10.0
 max_polyphony = 3
