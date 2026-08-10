@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_5oich"]
 [ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="2_2mmhs"]
+[ext_resource type="Texture2D" uid="uid://d23tkhmitttx3" path="res://assets/ui/gameOverlay/turtle_backdrop_unified.png" id="2_pdb2e"]
 [ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="3_0dss8"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="4_wicas"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_ngllv"]
@@ -171,6 +172,7 @@ node_with_animation_tree = NodePath("Visuals/boss_turtle")
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4654425, -0.5)
 show_in_ui = true
+boss_bar_backdrop = ExtResource("2_pdb2e")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("InitialShellStart")
@@ -338,7 +340,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("17_c0d6o")]
 
-[node name="shell" parent="Visuals/boss_turtle/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1575923269, 728901535) index="0" unique_id=192907853]
+[node name="shell" parent="Visuals/boss_turtle/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1575923269, 2071725269) index="0" unique_id=1083326251]
 mesh = SubResource("ArrayMesh_6famx")
 
 [node name="Marker3D" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=2140617436]

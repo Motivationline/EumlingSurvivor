@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_c86we"]
 [ext_resource type="Script" uid="uid://cu4a5yufjkwhv" path="res://game/enemies/3-jungle-area/boss_bugger/boss_bugger_enemy.gd" id="2_61ew2"]
+[ext_resource type="Texture2D" uid="uid://c63jw727e4gtf" path="res://assets/ui/gameOverlay/mosquito_backdrop_unified.png" id="3_1fpmf"]
 [ext_resource type="Script" uid="uid://bfy1ig4u2piu5" path="res://state_machine/enemy/choose_state_based_on_cost.gd" id="3_p8oh0"]
+[ext_resource type="Texture2D" uid="uid://ctinxp05crr3l" path="res://assets/ui/gameOverlay/mosquito_trunk_unified.png" id="4_a1bwh"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="4_bopa3"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_7gnyv"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_0irvu"]
@@ -110,7 +112,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(-0.04198227, 0.09076061)
+shader_parameter/wobble = Vector2(0.007771539, -0.09969756)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l4iyu"]
 streams_count = 5
@@ -183,6 +185,8 @@ speed = 1.1
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
 show_in_ui = true
+boss_bar_backdrop = ExtResource("3_1fpmf")
+boss_bar_overlay = ExtResource("4_a1bwh")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("ChooseStateBasedOnCost")
@@ -470,39 +474,36 @@ transform = Transform3D(-0.46685243, -0.88433516, -2.9802322e-07, -0.15431094, 0
 [node name="MeshInstance3D" parent="Visuals/BossBugger/shoot_particle" parent_id_path=PackedInt32Array(604116715, 404730907) index="1" unique_id=512699989]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.4025986, -0.8685752)
 
-[node name="SoundEffectManager" parent="." index="8" unique_id=212820490]
-debug = true
-
-[node name="DeathSpecific" parent="SoundEffectManager" index="2" unique_id=642813446 instance=ExtResource("20_5vwgk")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=642813446 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_l4iyu")
 
-[node name="Buzz" parent="SoundEffectManager" index="3" unique_id=1665122136 instance=ExtResource("20_5vwgk")]
+[node name="Buzz" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=1665122136 instance=ExtResource("20_5vwgk")]
 stream = ExtResource("26_81idp")
-volume_db = -4.0
 autoplay = true
 
-[node name="Slash" parent="SoundEffectManager" index="4" unique_id=1724893805 instance=ExtResource("20_5vwgk")]
+[node name="Slash" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=1724893805 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_d5fd7")
+volume_db = -11.0
 
-[node name="Shoot" parent="SoundEffectManager" index="5" unique_id=793024143 instance=ExtResource("20_5vwgk")]
+[node name="Shoot" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=793024143 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_hpfgd")
-volume_db = -10.0
+volume_db = -13.0
 
-[node name="Refill1" parent="SoundEffectManager" index="6" unique_id=1553656196 instance=ExtResource("20_5vwgk")]
+[node name="Refill1" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="6" unique_id=1553656196 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_a1bwh")
 volume_db = 0.0
 
-[node name="Refill2" parent="SoundEffectManager" index="7" unique_id=2019297558 instance=ExtResource("20_5vwgk")]
+[node name="Refill2" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="7" unique_id=2019297558 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_0m5bt")
 volume_db = 0.0
 
-[node name="Refill3" parent="SoundEffectManager" index="8" unique_id=651689775 instance=ExtResource("20_5vwgk")]
+[node name="Refill3" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="8" unique_id=651689775 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_62516")
 volume_db = 0.0
 
-[node name="Slam" parent="SoundEffectManager" index="9" unique_id=1222423028 instance=ExtResource("20_5vwgk")]
+[node name="Slam" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="9" unique_id=1222423028 instance=ExtResource("20_5vwgk")]
 stream = SubResource("AudioStreamRandomizer_rcok2")
-volume_db = -6.0
+volume_db = -10.0
 max_polyphony = 3
 
 [connection signal="play_sound" from="Visuals/BossBugger" to="SoundEffectManager" method="play_sound"]

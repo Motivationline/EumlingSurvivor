@@ -2,6 +2,7 @@ extends Node3D
 
 @export var minis: Dictionary[Enum.EUMLING_TYPE, PackedScene] = {}
 @onready var mini_eumling_marker: Marker3D = $MiniEumling
+@export var sound_effect_manager:SoundEffectManager
 
 func set_mini(type: Enum.EUMLING_TYPE):
 	var mini_scene = minis.get(type)

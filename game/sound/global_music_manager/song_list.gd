@@ -27,6 +27,10 @@ enum ENVNOISE {
 	MUSHROOMS = 5,
 	MOUNTAIN = 6
 }
+enum INCIDENTAL {
+	BOSS_DEFEATED = 0,
+}
+
 static var tracks:Dictionary[TRACK, Array] = {
 	TRACK.MENU :["res://assets/sound/music/menu.tres", ENVNOISE.NOTHING],
 	TRACK.COMBAT_FOREST:["res://assets/sound/music/combat_forest.tres",ENVNOISE.FOREST], 
@@ -42,7 +46,8 @@ static var tracks:Dictionary[TRACK, Array] = {
 	TRACK.CHASE:["res://assets/sound/music/chase.tres", ENVNOISE.NOTHING],
 	TRACK.GAMBA:["res://assets/sound/music/gamba.tres", ENVNOISE.NOTHING],
 	TRACK.TITLE:["res://assets/sound/music/title_theme.tres",ENVNOISE.NOTHING],
-	TRACK.TUTORIAL:["res://assets/sound/music/tutorial.tres",ENVNOISE.FLOWERS]
+	TRACK.TUTORIAL:["res://assets/sound/music/tutorial.tres",ENVNOISE.FLOWERS],
+	TRACK.NOTHING:["", ENVNOISE.NOTHING]
 }
 static var envnoises:Dictionary[ENVNOISE,String] = {
 	ENVNOISE.FOREST:"res://assets/sound/environment_noise/Env_Forest.ogg",
@@ -51,6 +56,10 @@ static var envnoises:Dictionary[ENVNOISE,String] = {
 	ENVNOISE.FLOWERS:"res://assets/sound/environment_noise/Env_Flowers.ogg",
 	ENVNOISE.MUSHROOMS:"res://assets/sound/environment_noise/Env_Mushrooms.ogg",
 	ENVNOISE.MOUNTAIN:"res://assets/sound/environment_noise/Env_Mountain.ogg"
+}
+
+static var incidentals:Dictionary[INCIDENTAL, String] = {
+	INCIDENTAL.BOSS_DEFEATED:"res://assets/sound/incidental/eumling_cage/boss_defeat.wav",
 }
 static func get_noise_of_song(song:TRACK) -> int:
 	var noise = tracks[song][1]
@@ -69,6 +78,13 @@ static func get_noise_resource(noise:ENVNOISE) -> AudioStream:
 	return res
 
 static func get_song_resource(song:TRACK) -> Song:
+	if song == TRACK.NOTHING:
+		return Song.new()
 	var path:String = tracks[song][0]
 	var res:Song = load(path)
+	return res
+
+static func get_incidental(incidental:INCIDENTAL) -> AudioStream:
+	var path:String = incidentals[incidental]
+	var res:AudioStream = load(path)
 	return res

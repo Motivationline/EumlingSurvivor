@@ -93,8 +93,9 @@ func request_music(_track_name: SongList.TRACK, _transition: MusicTransition, _o
 	elif !current_track == _track_name:
 		fading_players.append(active_player)
 		var fading_id = fading_players.find(active_player)
+
 		active_player = make_music_player(_track_name)
-		
+
 
 		match _transition.type:
 			MusicTransition.TRANSITIONS.CROSSFADE:
@@ -173,3 +174,14 @@ func focus_on_bus(_bus: BUS_ID, _duration: float, _reduction_db: float) -> void:
 	
 	for bus in other_buses:
 		fade_bus_volume(bus, 0.4, previous_volumes[bus])
+
+
+func request_incidental(_incidental:SongList.INCIDENTAL, _bus:BUS_ID, _volume_db:float) -> void:
+	var stream:AudioStream = SongList.get_incidental(_incidental)
+	var player:AudioStreamPlayer = AudioStreamPlayer.new()
+	add_child(player)
+	player.stream = stream
+	player.volume_db = _volume_db
+	player.bus = AudioServer.get_bus_name(_bus)
+	player.finished.connect(player.queue_free)
+	player.play()

@@ -39,8 +39,15 @@
 [ext_resource type="Script" uid="uid://cfdcthqwyqi3l" path="res://game/shared/scaler/eumling_scaler.gd" id="45_od043"]
 [ext_resource type="AudioStream" uid="uid://fhjbibcyr3sc" path="res://assets/characters/eumling/V2/sounds/walk_7.wav" id="46_gs6ky"]
 [ext_resource type="AudioStream" uid="uid://bd1pdp5nkt7rs" path="res://assets/characters/eumling/V2/sounds/walk_8.wav" id="47_ipfdr"]
+[ext_resource type="Texture2D" uid="uid://byltvibidc8y" path="res://assets/ui/textfenster/conventioneller_eumling_marker_text.png" id="48_2qewa"]
 [ext_resource type="AudioStream" uid="uid://ckt1wmdh0i2s5" path="res://assets/characters/eumling/V2/sounds/walk_9.wav" id="48_wxabu"]
+[ext_resource type="Texture2D" uid="uid://cbg63rgvhxjya" path="res://assets/ui/gameOverlay/LowerBarBackdrop.png" id="49_40jwy"]
 [ext_resource type="AudioStream" uid="uid://bdu6vr8x2yl1f" path="res://assets/characters/eumling/V2/sounds/walk_10.wav" id="49_snb7b"]
+[ext_resource type="Texture2D" uid="uid://cgou6yjv471k6" path="res://assets/ui/gameOverlay/LowerBarOutline.png" id="50_kqpmw"]
+[ext_resource type="Texture2D" uid="uid://db1acrfx3gskr" path="res://assets/ui/gameOverlay/LowerBarFillReload.png" id="51_3p3em"]
+[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="52_0jq7b"]
+[ext_resource type="Texture2D" uid="uid://rmsvtoa26ujw" path="res://assets/ui/textfenster/conventioneller_eumling_marker.png" id="53_kqpmw"]
+[ext_resource type="Texture2D" uid="uid://b6bxybop5o8ks" path="res://assets/ui/Eumlex/IconC.png" id="54_3p3em"]
 [ext_resource type="Texture2D" uid="uid://w4m6e1qjb43g" path="res://assets/vfx/particle_pack/circle_05.png" id="60_ddimf"]
 [ext_resource type="PackedScene" uid="uid://dwn8aulqlewsv" path="res://game/player/abilities/conventional/shield/shield.tscn" id="61_od043"]
 [ext_resource type="Script" uid="uid://nmf3f7xinks3" path="res://game/player/abilities/conventional/conventional.gd" id="62_5en5a"]
@@ -170,19 +177,6 @@ albedo_color = Color(0, 0.1500001, 1, 0.101960786)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btnkn"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qewa"]
-bg_color = Color(0, 0, 0, 0.22745098)
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40jwy"]
-bg_color = Color(0.9372549, 0.24313726, 0.36078432, 0.7882353)
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
 
 [sub_resource type="Resource" id="Resource_2qewa"]
 script = ExtResource("66_40jwy")
@@ -466,69 +460,96 @@ mouse_filter = 2
 [node name="QuestProgress" type="Control" parent="SpecialAbilities/Conventional/QuestDisplay/Control" unique_id=426358315]
 layout_mode = 1
 anchor_top = 0.097
-anchor_right = 0.147
-anchor_bottom = 0.23522224
+anchor_right = 0.29439583
+anchor_bottom = 0.2657778
 offset_top = 0.23999786
 offset_right = -0.23999023
 offset_bottom = -0.040008545
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="QuestProgressBar" type="ProgressBar" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=1459785066]
+[node name="ConventionellerEumlingMarkerText" type="TextureRect" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=1410201049]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 9.0
+offset_right = 583.0
+offset_bottom = 139.0
+texture = ExtResource("48_2qewa")
+
+[node name="QuestProgressBar" type="TextureProgressBar" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=1354518331]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_2qewa")
-theme_override_styles/fill = SubResource("StyleBoxFlat_40jwy")
-value = 50.0
-show_percentage = false
+layout_mode = 0
+offset_left = 151.0
+offset_top = 143.0
+offset_right = 584.0
+offset_bottom = 168.0
+step = 0.1
+nine_patch_stretch = true
+stretch_margin_left = 15
+stretch_margin_right = 15
+texture_under = ExtResource("49_40jwy")
+texture_over = ExtResource("50_kqpmw")
+texture_progress = ExtResource("51_3p3em")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=1706770471]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress/HBoxContainer" unique_id=707745158]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-
-[node name="QuestLabel" type="Label" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress/HBoxContainer/VBoxContainer" unique_id=1027857774]
+[node name="QuestLabel" type="Label" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=698357019]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(185, 75)
-layout_mode = 2
+custom_maximum_size = Vector2(-1, 87.91)
+layout_mode = 0
+offset_left = 169.0
+offset_top = 23.0
+offset_right = 562.0
+offset_bottom = 110.91
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-theme_override_font_sizes/font_size = 32
-text = "Attack Anything"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 47
+text = "Attack Something"
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 autowrap_mode = 2
+script = ExtResource("52_0jq7b")
+max_font_size = 60
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
-[node name="QuestProgressLabel" type="Label" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress/HBoxContainer/VBoxContainer" unique_id=2014980565]
+[node name="QuestProgressLabel" type="Label" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=985201243]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(185, 75)
-layout_mode = 2
+layout_mode = 0
+offset_left = 426.0
+offset_top = 84.0
+offset_right = 568.0
+offset_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 30
 text = "0 / 8"
-horizontal_alignment = 1
+horizontal_alignment = 2
+script = ExtResource("52_0jq7b")
+max_font_size = 30
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
-[node name="QuestIcon" type="TextureRect" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress/HBoxContainer" unique_id=1757481272]
+[node name="QuestIcon" type="TextureRect" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=1757481272]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 137.0
+offset_bottom = 135.0
 size_flags_horizontal = 3
-texture = ExtResource("63_ydmue")
+texture = ExtResource("53_kqpmw")
 expand_mode = 4
 stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress/QuestIcon" unique_id=2039872130]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 27.0
+offset_right = 106.75
+offset_bottom = 94.0
+texture = ExtResource("54_3p3em")
 
 [node name="MoveQuest" type="Node3D" parent="SpecialAbilities/Conventional" unique_id=1404887968]
 script = ExtResource("64_2qewa")

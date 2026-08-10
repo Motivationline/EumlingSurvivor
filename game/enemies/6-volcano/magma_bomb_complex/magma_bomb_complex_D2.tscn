@@ -17,6 +17,19 @@
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="13_pdbl0"]
 [ext_resource type="Script" uid="uid://d13s0cgbc5iq0" path="res://strategies/event/deactivate.gd" id="13_rnlhm"]
 [ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="15_rnlhm"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="16_rkhve"]
+[ext_resource type="AudioStream" uid="uid://cimc7bjb75lhq" path="res://assets/characters/enemies/bomberry/magma/sounds/charge_1.wav" id="17_cebrb"]
+[ext_resource type="AudioStream" uid="uid://dqnmd6svmtq0l" path="res://assets/characters/enemies/bomberry/magma/sounds/charge_2.wav" id="18_465ce"]
+[ext_resource type="AudioStream" uid="uid://bnn5kx05xjipk" path="res://assets/characters/enemies/bomberry/magma/sounds/charge_3.wav" id="19_ofp6b"]
+[ext_resource type="AudioStream" uid="uid://bcivb054legwl" path="res://assets/characters/enemies/bomberry/magma/sounds/charge_4.wav" id="20_4ebql"]
+[ext_resource type="AudioStream" uid="uid://dx4m72lx73f1k" path="res://assets/characters/enemies/bomberry/magma/sounds/charge_5.wav" id="21_i7jmg"]
+[ext_resource type="AudioStream" uid="uid://cueagosk88a5q" path="res://assets/characters/enemies/bomberry/magma/sounds/charge_6.wav" id="22_5xf5h"]
+[ext_resource type="AudioStream" uid="uid://oy10kdj1sitt" path="res://assets/characters/enemies/bomberry/magma/sounds/death_1.wav" id="23_ir2ky"]
+[ext_resource type="AudioStream" uid="uid://df1vs3tno3p8g" path="res://assets/characters/enemies/bomberry/magma/sounds/death_2.wav" id="24_sewq5"]
+[ext_resource type="AudioStream" uid="uid://l1gwb6yptui7" path="res://assets/characters/enemies/bomberry/magma/sounds/death_3.wav" id="25_wpa70"]
+[ext_resource type="AudioStream" uid="uid://bucgdu6bjlxf0" path="res://assets/characters/enemies/bomberry/magma/sounds/death_4.wav" id="26_7vg5v"]
+[ext_resource type="AudioStream" uid="uid://wkpwncw0jt2" path="res://assets/characters/enemies/bomberry/magma/sounds/death_5.wav" id="27_fdlyl"]
+[ext_resource type="AudioStream" uid="uid://801ocn6w7nto" path="res://assets/characters/enemies/bomberry/magma/sounds/death_6.wav" id="28_uug3c"]
 
 [sub_resource type="Resource" id="Resource_ax3or"]
 script = ExtResource("12_o5vot")
@@ -113,6 +126,24 @@ easy = Array[ExtResource("12_o5vot")]([SubResource("Resource_g5e66")])
 medium = Array[ExtResource("12_o5vot")]([SubResource("Resource_1fsl0")])
 hard = Array[ExtResource("12_o5vot")]([SubResource("Resource_eebu3")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i2tqu"]
+streams_count = 6
+stream_0/stream = ExtResource("17_cebrb")
+stream_1/stream = ExtResource("18_465ce")
+stream_2/stream = ExtResource("19_ofp6b")
+stream_3/stream = ExtResource("20_4ebql")
+stream_4/stream = ExtResource("21_i7jmg")
+stream_5/stream = ExtResource("22_5xf5h")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ofbuq"]
+streams_count = 6
+stream_0/stream = ExtResource("23_ir2ky")
+stream_1/stream = ExtResource("24_sewq5")
+stream_2/stream = ExtResource("25_wpa70")
+stream_3/stream = ExtResource("26_7vg5v")
+stream_4/stream = ExtResource("27_fdlyl")
+stream_5/stream = ExtResource("28_uug3c")
 
 [sub_resource type="Resource" id="Resource_rnlhm"]
 script = ExtResource("12_o5vot")
@@ -250,6 +281,14 @@ metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
 [node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1554862748 instance=ExtResource("15_rnlhm")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
+[node name="Charge" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("16_rkhve")]
+stream = SubResource("AudioStreamRandomizer_i2tqu")
+volume_db = -6.0
+
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=414824599 instance=ExtResource("16_rkhve")]
+stream = SubResource("AudioStreamRandomizer_ofbuq")
+volume_db = -6.0
+
 [node name="hitboxBase" parent="." index="7" unique_id=1403634002 instance=ExtResource("12_ax3or")]
 collision_layer = 32
 collision_mask = 8
@@ -271,5 +310,7 @@ can_be_hit_by = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=865370484]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2127836, 0)
 shape = SubResource("SphereShape3D_rnlhm")
+
+[connection signal="play_sound" from="Visuals/magma_bomberry" to="SoundEffectManager" method="play_sound"]
 
 [editable path="Visuals/magma_bomberry"]

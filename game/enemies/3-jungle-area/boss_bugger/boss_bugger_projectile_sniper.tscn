@@ -2,8 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle-area/sniper/sniper_projectile_enemy.tscn" id="1_sv0hd"]
 [ext_resource type="Texture2D" uid="uid://1583oa3cnkm" path="res://assets/vfx/projectile_realistic/Swirl 11 - 256x256.png" id="2_5qnx4"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="2_aialb"]
 [ext_resource type="Texture2D" uid="uid://t785pom8x3ve" path="res://game/enemies/3-jungle-area/sniper/feather.png" id="2_hjgos"]
 [ext_resource type="Texture2D" uid="uid://bswhnoci50wst" path="res://assets/vfx/particle_pack/trace_01.png" id="2_p5gm5"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="6_3v2so"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="7_qog3a"]
+[ext_resource type="AudioStream" uid="uid://def32vj4ses8q" path="res://assets/characters/enemies/bossbugger/sounds/projectile/arrow_shoot_1.wav" id="8_cdgi4"]
+[ext_resource type="AudioStream" uid="uid://txn285eps8hk" path="res://assets/characters/enemies/bossbugger/sounds/projectile/arrow_shoot_2.wav" id="9_2t0a0"]
+[ext_resource type="AudioStream" uid="uid://bdnhtyxcyn27g" path="res://assets/characters/enemies/bossbugger/sounds/projectile/arrow_shoot_3.wav" id="10_ns8tc"]
+[ext_resource type="AudioStream" uid="uid://bqlk8w442ydkq" path="res://assets/characters/enemies/bossbugger/sounds/projectile/arrow_shoot_4.wav" id="11_irdrx"]
+[ext_resource type="AudioStream" uid="uid://bwx2aagid45y0" path="res://assets/characters/enemies/bossbugger/sounds/projectile/arrow_shoot_5.wav" id="12_6244u"]
+[ext_resource type="AudioStream" uid="uid://bqkdfnirbfhkk" path="res://assets/characters/enemies/bossbugger/sounds/projectile/arrow_shoot_6.wav" id="13_0o0cf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qnx4"]
 render_priority = 1
@@ -172,7 +181,24 @@ stencil_flags = 2
 stencil_color = Color(0.99, 0.7, 1, 1)
 stencil_outline_thickness = 0.02
 
-[node name="Projectile" unique_id=1098182531 instance=ExtResource("1_sv0hd")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kpvxy"]
+random_pitch = 1.0994891
+streams_count = 6
+stream_0/stream = ExtResource("8_cdgi4")
+stream_1/stream = ExtResource("9_2t0a0")
+stream_2/stream = ExtResource("10_ns8tc")
+stream_3/stream = ExtResource("11_irdrx")
+stream_4/stream = ExtResource("12_6244u")
+stream_5/stream = ExtResource("13_0o0cf")
+
+[node name="Projectile" unique_id=1098182531 node_paths=PackedStringArray("on_created") instance=ExtResource("1_sv0hd")]
+on_created = [NodePath("EventStrategies/PlaySoundEventStrategy")]
+
+[node name="PlaySoundEventStrategy" type="Node" parent="EventStrategies" parent_id_path=PackedInt32Array(1037534760) index="6" unique_id=1664875636 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("2_aialb")
+sound_manager = NodePath("../../SoundEffectManager")
+sound_to_play = Array[String](["Shoot"])
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="feather" parent="Visual" parent_id_path=PackedInt32Array(497810501) index="0" unique_id=380665093]
 material_override = SubResource("StandardMaterial3D_5qnx4")
@@ -194,3 +220,11 @@ material_override = SubResource("StandardMaterial3D_mpuxo")
 
 [node name="outline" parent="Visual" parent_id_path=PackedInt32Array(497810501) index="6" unique_id=98360098]
 material_override = SubResource("StandardMaterial3D_ns8tc")
+
+[node name="SoundEffectManager" type="Node3D" parent="." index="6" unique_id=1562239950]
+script = ExtResource("6_3v2so")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Shoot" parent="SoundEffectManager" index="0" unique_id=1553656196 instance=ExtResource("7_qog3a")]
+stream = SubResource("AudioStreamRandomizer_kpvxy")
+volume_db = -20.0

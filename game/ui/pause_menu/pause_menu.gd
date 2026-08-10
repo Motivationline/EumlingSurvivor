@@ -20,14 +20,14 @@ func open():
 	get_tree().paused = true
 	
 func close():
-	if is_open:
-		sound_effect_manager.play_sound("Close")
 	get_tree().paused = false
 	visible = false
 	is_open = false
 
 
 func _on_resume_button_pressed() -> void:
+	if is_open:
+		sound_effect_manager.play_sound("Close")
 	close()
 
 

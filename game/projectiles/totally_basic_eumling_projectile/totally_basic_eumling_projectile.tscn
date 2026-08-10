@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_h4lxs"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="4_x7orq"]
 [ext_resource type="PackedScene" uid="uid://bov1hcmo0on0h" path="res://game/vfx/firehit/fire_hit.tscn" id="5_x7orq"]
+[ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="6_hflnj"]
 [ext_resource type="Texture2D" uid="uid://w4m6e1qjb43g" path="res://assets/vfx/particle_pack/circle_05.png" id="7_rqm5e"]
 [ext_resource type="ArrayMesh" uid="uid://bf0lh4o3ufbqb" path="res://assets/characters/eumling/leaf_projectile.res" id="8_aejtm"]
 [ext_resource type="Texture2D" uid="uid://dno25gc2sf2m3" path="res://assets/vfx/fireball/shockwave.png" id="8_rqm5e"]
@@ -18,6 +19,14 @@
 [ext_resource type="Material" uid="uid://dkvo02pw0hfgd" path="res://game/shared/outline/outline_material_black.tres" id="16_n1kd3"]
 [ext_resource type="Shader" uid="uid://vg0ogqjiohli" path="res://assets/vfx/portal/portal_entrance_shader.tres" id="16_ovhqn"]
 [ext_resource type="Texture2D" uid="uid://xhwkbpsdwste" path="res://assets/vfx/portal/vornoi.png" id="17_n1kd3"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="19_1dfdt"]
+[ext_resource type="AudioStream" uid="uid://c7f1b02l8rsvn" path="res://assets/characters/eumling/eumling_robot/sounds/pop_1.wav" id="20_hflnj"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="21_kecty"]
+[ext_resource type="AudioStream" uid="uid://c5phjyffj4abg" path="res://assets/characters/eumling/eumling_robot/sounds/pop_2.wav" id="21_tocte"]
+[ext_resource type="AudioStream" uid="uid://cnptwghwh41im" path="res://assets/characters/eumling/eumling_robot/sounds/pop_3.wav" id="22_kecty"]
+[ext_resource type="AudioStream" uid="uid://d2opp44p6t5dq" path="res://assets/characters/eumling/eumling_robot/sounds/pop_4.wav" id="23_w2igl"]
+[ext_resource type="AudioStream" uid="uid://bkqy1t1utpqv6" path="res://assets/characters/eumling/eumling_robot/sounds/pop_5.wav" id="24_7v1xk"]
+[ext_resource type="AudioStream" uid="uid://vybaerjlknrq" path="res://assets/characters/eumling/eumling_robot/sounds/pop_6.wav" id="25_5j104"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_706qm"]
 transparency = 1
@@ -329,13 +338,22 @@ point_count = 4
 offsets = PackedFloat32Array(0, 0.08196721, 0.90710384, 1)
 colors = PackedColorArray(1, 1, 1, 0, 0.5333333, 1, 0, 1, 2.0562143, 2.4061394, 0, 1, 1, 1, 1, 0)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kpvxy"]
+streams_count = 6
+stream_0/stream = ExtResource("20_hflnj")
+stream_1/stream = ExtResource("21_tocte")
+stream_2/stream = ExtResource("22_kecty")
+stream_3/stream = ExtResource("23_w2igl")
+stream_4/stream = ExtResource("24_7v1xk")
+stream_5/stream = ExtResource("25_5j104")
+
 [node name="Projectile" unique_id=374127890 node_paths=PackedStringArray("hit_box", "on_world_collision", "on_hit", "on_end_of_life") instance=ExtResource("1_5adta")]
 collision_mask = 257
 critical_hit_chance = 0.1
 hit_box = NodePath("Hitbox")
-on_world_collision = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy")]
-on_hit = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy")]
-on_end_of_life = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy")]
+on_world_collision = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnWorldCollision/RemoveEventStrategy"), NodePath("EventStrategies/OnRemove/PlaySoundEventStrategy")]
+on_hit = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnRemove/PlaySoundEventStrategy")]
+on_end_of_life = [NodePath("EventStrategies/OnHit/SpawnEntitiesEventStrategy"), NodePath("EventStrategies/OnRemove/PlaySoundEventStrategy")]
 
 [node name="RemoveEventStrategy" type="Node" parent="EventStrategies/OnWorldCollision" parent_id_path=PackedInt32Array(655878415) index="0" unique_id=214177895]
 script = ExtResource("3_yusjb")
@@ -350,6 +368,13 @@ script = ExtResource("4_h4lxs")
 spawn_position = NodePath("../../../../particle_spawn_pos")
 entity_to_spawn = ExtResource("5_x7orq")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="PlaySoundEventStrategy" type="Node" parent="EventStrategies/OnRemove" parent_id_path=PackedInt32Array(542146259) index="0" unique_id=734669587 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("6_hflnj")
+sound_manager = NodePath("../../../SoundEffectManager")
+sound_to_play = Array[String](["Pop"])
+needs_to_be_persistent = true
+metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=973658270]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.0070329984, 0.26158795, 0)
@@ -535,3 +560,11 @@ scale_amount_min = 0.5
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_n1kd3")
 color_ramp = SubResource("Gradient_n1kd3")
+
+[node name="SoundEffectManager" type="Node3D" parent="." index="9" unique_id=555287456]
+script = ExtResource("19_1dfdt")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="Pop" parent="SoundEffectManager" index="0" unique_id=1553656196 instance=ExtResource("21_kecty")]
+stream = SubResource("AudioStreamRandomizer_kpvxy")
+volume_db = -6.0
