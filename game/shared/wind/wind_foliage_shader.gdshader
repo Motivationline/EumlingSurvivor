@@ -1,5 +1,7 @@
 shader_type spatial;
 
+render_mode specular_disabled;
+
 group_uniforms appearance;
 uniform sampler2D albedo_texture : source_color;
 uniform float metallic : hint_range(0.0, 1.0, 0.01);

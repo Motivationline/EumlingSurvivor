@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix, depth_prepass_alpha;
+render_mode blend_mix, depth_prepass_alpha, specular_disabled;
 
 #include "res://game/shared/wind/wind_global_uniforms.gdshaderinc"
 
