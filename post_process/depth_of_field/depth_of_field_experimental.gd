@@ -238,9 +238,9 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 		_create_settings_buffer()
 		settings_dirty = false
 
-	var radius := self.radius
-	var amount := self.amount
-	var texture_levels := screen_texture_levels
+	var radius_copy := self.radius
+	var amount_copy := self.amount
+	var screen_texture_levels_copy := screen_texture_levels
 
 	var recreate_textures = screen_textures_dirty
 	if recreate_textures:
@@ -248,7 +248,7 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 
 	mutex.unlock()
 
-	if amount == 0.0:
+	if amount_copy == 0.0:
 		return
 
 	rd.draw_command_begin_label("DOF", Color.YELLOW)
@@ -269,7 +269,7 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 		# textures and pipelines need to match formats of the device
 		if recreate_textures:
 			_clean_textures()
-			_create_textures(input_texture_color_format, size, texture_levels)
+			_create_textures(input_texture_color_format, size, screen_texture_levels_copy)
 			recreate_textures = false
 
 		if not downsample_pipeline.is_valid():
@@ -311,8 +311,8 @@ func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data:
 			color_uniform.add_id(screen_textures[i - 1])
 
 			var target_size: Vector2 = size / (2 ** i)
-			push_constant.set(0, radius / target_size.x)
-			push_constant.set(1, radius / target_size.y)
+			push_constant.set(0, radius_copy / target_size.x)
+			push_constant.set(1, radius_copy / target_size.y)
 
 			var first_pass: bool = i == 1;
 			var pipeline: RID = downsample_pipeline

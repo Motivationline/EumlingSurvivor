@@ -77,7 +77,7 @@ layout(location = 0) out vec4 frag_color;
         }
 
         if (weight == 0.0) {
-            return vec4(1.0, 0.0, 0.0, 0.0);
+            return vec4(samples[0].rgb, 0.0);
         }
 
         return vec4(color / weight, 1.0);
