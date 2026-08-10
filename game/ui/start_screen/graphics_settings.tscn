@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://m8calhmgu23g" path="res://game/ui/start_screen/graphics_settings.gd" id="1_ukd82"]
 
-[node name="GraphicsSettings" type="Control" unique_id=1082587673]
+[node name="GraphicsSettings" type="Control" unique_id=1082587673 node_paths=PackedStringArray("render_scale_slider", "global_illumination_options", "shadow_options", "depth_of_field_options", "save_button", "cancel_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +11,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ukd82")
+render_scale_slider = NodePath("GridContainer/RenderScaleSlider")
+global_illumination_options = NodePath("GridContainer/GlobalIlluminationOptions")
+shadow_options = NodePath("GridContainer/ShadowOptions")
+depth_of_field_options = NodePath("GridContainer/DepthOfFieldOptions")
+save_button = NodePath("GridContainer/SaveButton")
+cancel_button = NodePath("GridContainer/CancelButton")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=777126205]
 layout_mode = 0
