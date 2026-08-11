@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dbdq8srcm3cec" path="res://game/exit_area/exit_area_beach.tscn" id="13_2s71f"]
 [ext_resource type="PackedScene" uid="uid://cf6x8bs20xxr3" path="res://assets/models/5-beach/rocks/rock_v_2.tscn" id="13_4eacr"]
 [ext_resource type="PackedScene" uid="uid://ddmt4bmt2k3hy" path="res://assets/models/5-beach/rocks/rock_v_3.tscn" id="14_646ns"]
+[ext_resource type="PackedScene" uid="uid://2mkjw8bxnn1a" path="res://game/shared/offscreen_rendering/offscreen_viewport.tscn" id="19_f2gdq"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_c8p5i"]
 vertices = PackedVector3Array(1, 1, -4.5, 1, 1, -4.75, -0.75, 1, -4.75, -0.75, 1, -4.5, -4.5, 1, 4.75, 4.75, 1, 4.75, 4.75, 1, -4.5, -4.5, 1, -4.5)
@@ -242,7 +243,7 @@ _surfaces = [{
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_euww8"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_lttw8"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_5hxvk"]
 _surfaces = [{
 "aabb": AABB(-5, -0.5, -5, 10, 1, 10),
 "format": 34896613377,
@@ -271,10 +272,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AACgQAAAAD8AAKDAAACgwAAAAD8AAKBAAACgwAAAAD8AAKDAAACgQAAAAD8AAKBAAACgQAAAAL8AAKBAAACgwAAAAD8AAKBAAACgQAAAAD8AAKBAAACgwAAAAL8AAKBAAACgwAAAAL8AAKBAAACgwAAAAD8AAKDAAACgwAAAAD8AAKBAAACgwAAAAL8AAKDAAACgQAAAAL8AAKDAAACgQAAAAD8AAKBAAACgQAAAAD8AAKDAAACgQAAAAL8AAKBAAACgwAAAAL8AAKDAAACgQAAAAD8AAKDAAACgwAAAAD8AAKDAAACgQAAAAL8AAKDAAYD7/wAA/v8BgPv/AAD+/wGA+/8AAP7/AYD7/wAA/v//f/9/1H/p//9//38WgPP//3//f85/5v//f/9/GYDy/wAA/n///wCAAAD6f/7//f8AAP5///8AgAAA+n/+//3//f8AgP7//v/9/wCA/v/+//7//3/+/wCA/f8AgP7//v8BAP7/0n8VgAAA/v8SgAiAAQD+/85/F4AAAP7/FoAKgA==")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_lttw8")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_p2l1w"]
-size = Vector3(10, 1, 10)
+shadow_mesh = SubResource("ArrayMesh_5hxvk")
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_yf5fn"]
 transparency = 1
@@ -283,6 +281,17 @@ albedo_texture = ExtResource("5_4eacr")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 size = Vector2(5, 5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4stgv"]
+viewport_path = NodePath("OffscreenViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_646ns"]
+resource_local_to_scene = true
+specular_mode = 2
+albedo_texture = SubResource("ViewportTexture_4stgv")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p2l1w"]
+size = Vector3(10, 1, 10)
 
 [sub_resource type="Resource" id="Resource_4usp2"]
 script = ExtResource("7_66g43")
@@ -357,6 +366,42 @@ shading_mode = 0
 disable_ambient_light = true
 albedo_color = Color(0.12566668, 0, 0.29, 1)
 
+[sub_resource type="Gradient" id="Gradient_646ns"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.16819572, 0.20489296, 0.36391437, 0.52905196, 0.64831805, 1)
+colors = PackedColorArray(0.7, 0.5936, 0.434, 1, 0.7, 0.5936, 0.434, 1, 0.6, 0.456, 0.33, 1, 0.59, 0.44289333, 0.3304, 1, 0.65, 0.5135, 0.3575, 1, 0.75, 0.666875, 0.48749998, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_f2gdq"]
+noise_type = 3
+frequency = 0.0093
+fractal_type = 2
+fractal_lacunarity = 0.375
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xepbt"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_f2gdq")
+color_ramp = SubResource("Gradient_646ns")
+seamless = true
+invert = true
+seamless_blend_skirt = 0.606
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcjkn"]
+shading_mode = 0
+albedo_texture = SubResource("NoiseTexture2D_xepbt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w62fo"]
+size = Vector2(10, 10)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_g0eqd"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.45, 0.2619, 0.1935, 0.2901961)
+albedo_texture = ExtResource("5_4eacr")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fd8y6"]
+size = Vector2(5, 5)
+
 [node name="Level" type="Node3D" unique_id=1268816340 node_paths=PackedStringArray("player_spawn", "goal_area", "portal_positions") groups=["Level"]]
 script = ExtResource("1_nf22f")
 player_spawn = NodePath("PlayerSpawnMarker")
@@ -382,8 +427,29 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="base_floor_10x10" type="Node3D" parent="NavigationRegion3D" unique_id=257884405]
 
-[node name="Cube" type="MeshInstance3D" parent="NavigationRegion3D/base_floor_10x10" unique_id=1334605973]
+[node name="FloorComposed" type="MeshInstance3D" parent="NavigationRegion3D/base_floor_10x10" unique_id=1334605973]
+visible = false
 material_override = ExtResource("4_eyygh")
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_p2l1w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/base_floor_10x10/FloorComposed" unique_id=182352456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.60249, 0.501, 2.3239732)
+material_override = SubResource("ORMMaterial3D_yf5fn")
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/base_floor_10x10/FloorComposed" unique_id=866708358]
+transform = Transform3D(-0.33303046, 0, 0.9429161, 0, 1, 0, -0.9429161, 0, -0.33303046, -3.2744327, 0.50100046, -3.097495)
+material_override = SubResource("ORMMaterial3D_yf5fn")
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/base_floor_10x10/FloorComposed" unique_id=319531950]
+transform = Transform3D(-0.33303046, 0, 0.9429161, 0, 1, 0, -0.9429161, 0, -0.33303046, 0.10601395, 0.5010002, -3.9456046)
+material_override = SubResource("ORMMaterial3D_yf5fn")
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="FloorOffscreen" type="MeshInstance3D" parent="NavigationRegion3D/base_floor_10x10" unique_id=200489969]
+material_override = SubResource("StandardMaterial3D_646ns")
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_p2l1w")
 
@@ -391,21 +457,6 @@ mesh = SubResource("ArrayMesh_p2l1w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/base_floor_10x10/StaticBody3D" unique_id=1663311686]
 shape = SubResource("BoxShape3D_p2l1w")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/base_floor_10x10" unique_id=182352456]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.60249, 0.501, 2.3239732)
-material_override = SubResource("ORMMaterial3D_yf5fn")
-mesh = SubResource("PlaneMesh_g4v7s")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/base_floor_10x10" unique_id=866708358]
-transform = Transform3D(-0.33303046, 0, 0.9429161, 0, 1, 0, -0.9429161, 0, -0.33303046, -3.2744327, 0.50100046, -3.097495)
-material_override = SubResource("ORMMaterial3D_yf5fn")
-mesh = SubResource("PlaneMesh_g4v7s")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/base_floor_10x10" unique_id=319531950]
-transform = Transform3D(-0.33303046, 0, 0.9429161, 0, 1, 0, -0.9429161, 0, -0.33303046, 0.10601395, 0.5010002, -3.9456046)
-material_override = SubResource("ORMMaterial3D_yf5fn")
-mesh = SubResource("PlaneMesh_g4v7s")
 
 [node name="PlayerSpawnMarker" type="Marker3D" parent="." unique_id=1024321425]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
@@ -662,4 +713,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6821852, 0, 0)
 [node name="Marker3D3" type="Marker3D" parent="Portals" unique_id=1831658428]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.253746, 0, 0)
 
+[node name="OffscreenViewport" parent="." unique_id=1938886258 instance=ExtResource("19_f2gdq")]
+
+[node name="Camera3D" parent="OffscreenViewport" index="0" unique_id=2047216808]
+transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, -30, 2, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="OffscreenViewport" unique_id=260154050]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30, 0, -3.821371e-15)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_tcjkn")
+mesh = SubResource("PlaneMesh_w62fo")
+
+[node name="Dirt1" type="MeshInstance3D" parent="OffscreenViewport/Floor" unique_id=1212672867]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1427958, 0.5009998, 2.0186958)
+layers = 1024
+material_override = SubResource("ORMMaterial3D_g0eqd")
+mesh = SubResource("PlaneMesh_fd8y6")
+
+[node name="Dirt2" type="MeshInstance3D" parent="OffscreenViewport/Floor" unique_id=1248126530]
+transform = Transform3D(0.9429161, 0, 0.33303043, -1.7763568e-15, 1, 0, -0.33303043, 0, 0.9429161, 2.392916, 0.50100017, -2.8919487)
+layers = 1024
+material_override = SubResource("ORMMaterial3D_g0eqd")
+mesh = SubResource("PlaneMesh_fd8y6")
+
+[node name="Dirt3" type="MeshInstance3D" parent="OffscreenViewport/Floor" unique_id=1828952202]
+transform = Transform3D(0.9429161, 0, 0.33303043, -1.7763568e-15, 1, 0, -0.33303043, 0, 0.9429161, 3.4789808, 0.50100005, -0.15724754)
+layers = 1024
+material_override = SubResource("ORMMaterial3D_g0eqd")
+mesh = SubResource("PlaneMesh_fd8y6")
+
 [editable path="ExitVisual"]
+[editable path="OffscreenViewport"]
