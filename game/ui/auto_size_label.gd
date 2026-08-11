@@ -2,7 +2,15 @@
 class_name AutoSizeLabel
 extends Label
 ## Automatically adjusts the font size to fit into the label bounds.
+## Changing it's size via the bounding box won't work with this label.
 
+@export var label_size := Vector2i(160, 90):
+	set(value):
+		label_size = value
+		size = value
+		custom_minimum_size = value
+		custom_maximum_size = value
+		resize_font()
 @export var min_font_size: int = 1:
 	set(size):
 		min_font_size = mini(size, max_font_size)
@@ -18,29 +26,24 @@ extends Label
 		resize_font()
 
 
-func _set(property: StringName, _value: Variant) -> bool:
-	match property:
-		"text", "size", "autowrap_mode":
-			resize_font()
+func _ready() -> void:
+	# Make sure all values are set correctly when creating a new label.
+	label_size = label_size
+
+
+func _set(_property: StringName, _value: Variant) -> bool:
+	resize_font()
 	return false
 
 
-func create_paragraph() -> TextParagraph:
-	var paragraph := TextParagraph.new()
-	paragraph.alignment = horizontal_alignment
-	paragraph.break_flags = autowrap_trim_flags | AutoSizer.get_break_flags(autowrap_mode)
-	paragraph.direction = text_direction as TextServer.Direction
-	paragraph.ellipsis_char = ellipsis_char
-	paragraph.justification_flags = justification_flags
-	paragraph.line_spacing = get_theme_constant("line_spacing")
-	paragraph.max_lines_visible = max_lines_visible
-	paragraph.text_overrun_behavior = text_overrun_behavior
-	paragraph.width = size.x
-	return paragraph
+func _validate_property(property: Dictionary) -> void:
+	match property.name:
+		"size", "custom_minimum_size", "custom_maximum_size":
+			property.usage |= PROPERTY_USAGE_READ_ONLY
 
 
-func calc_line_spacing(font_size: int) -> int:
-	return int(font_size * line_spacing_ratio)
+func calc_line_spacing(font_size: int) -> float:
+	return font_size * line_spacing_ratio
 
 
 func resize_font() -> void:
@@ -49,7 +52,6 @@ func resize_font() -> void:
 
 func _resize_font() -> void:
 	var font: Font = get_theme_font("font")
-	var _size := Vector2(size.x, font.get_height(max_font_size))
-	var font_size: int = AutoSizer.calc_font_size(self, font, _size)
+	var font_size: int = AutoSizer.calc_font_size(self, font, label_size)
 	add_theme_font_size_override("font_size", font_size)
-	add_theme_constant_override("line_spacing", calc_line_spacing(font_size))
+	add_theme_constant_override("line_spacing", int(calc_line_spacing(font_size)))

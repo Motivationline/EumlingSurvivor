@@ -2,7 +2,15 @@
 class_name AutoSizeRichTextLabel
 extends RichTextLabel
 ## Automatically adjusts the font size(s) to fit into the label bounds.
+## Changing it's size via the bounding box won't work with this label.
 
+@export var label_size := Vector2i(160, 90):
+	set(value):
+		label_size = value
+		size = value
+		custom_minimum_size = value
+		custom_maximum_size = value
+		resize_font()
 @export var min_font_size: int = 1:
 	set(size):
 		min_font_size = mini(size, max_font_size)
@@ -11,10 +19,10 @@ extends RichTextLabel
 	set(size):
 		max_font_size = maxi(size, min_font_size)
 		resize_font()
-## Line Spacing = Normal Font Size * Line Spacing Ratio
-@export_range(-1.0, 1.0, 0.01) var line_spacing_ratio: float = 0.0:
+## Line Separation = Normal Font Size * Line Separation Ratio
+@export_range(-1.0, 1.0, 0.01) var line_separation_ratio: float = 0.0:
 	set(ratio):
-		line_spacing_ratio = ratio
+		line_separation_ratio = ratio
 		resize_font()
 
 @export_group("Font Size Ratios")
@@ -40,11 +48,20 @@ extends RichTextLabel
 		resize_font()
 
 
-func _set(property: StringName, _value: Variant) -> bool:
-	match property:
-		"text", "size", "bbcode_enabled", "autowrap_mode":
-			resize_font()
+func _ready() -> void:
+	# Make sure all values are set correctly when creating a new label.
+	label_size = label_size
+
+
+func _set(_property: StringName, _value: Variant) -> bool:
+	resize_font()
 	return false
+
+
+func _validate_property(property: Dictionary) -> void:
+	match property.name:
+		"size", "custom_minimum_size", "custom_maximum_size":
+			property.usage |= PROPERTY_USAGE_READ_ONLY
 
 
 func bulk_rich_font_size_override(normal_font_size: int) -> void:
@@ -58,7 +75,7 @@ func bulk_rich_font_size_override(normal_font_size: int) -> void:
 
 
 func set_line_separation(font_size: int) -> void:
-	add_theme_constant_override("line_separation", int(font_size * line_spacing_ratio))
+	add_theme_constant_override("line_separation", int(font_size * line_separation_ratio))
 
 
 func resize_font() -> void:

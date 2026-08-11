@@ -3,6 +3,11 @@ class_name AutoSizeLabel3D
 extends Label3D
 ## Automatically adjusts the font size to fit into the label bounds.
 
+@export var label_size := Vector2i(160, 90):
+	set(value):
+		label_size = value
+		width = value.x
+		resize_font()
 @export var min_font_size: int = 1:
 	set(size):
 		min_font_size = mini(size, max_font_size)
@@ -17,23 +22,28 @@ extends Label3D
 		line_spacing_ratio = ratio
 		resize_font()
 
+var bounding_box := AutoSizeLabel3DBoundingBox.new()
 
-func _set(property: StringName, _value: Variant) -> bool:
-	match property:
-		"text", "width", "autowrap_mode":
-			resize_font()
+
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		add_child(bounding_box)
+	elif is_instance_valid(bounding_box):
+		bounding_box.queue_free()
+
+	# Make sure all values are set correctly when creating a new label.
+	label_size = label_size
+
+
+func _set(_property: StringName, _value: Variant) -> bool:
+	resize_font()
 	return false
 
 
-func create_paragraph() -> TextParagraph:
-	var paragraph := TextParagraph.new()
-	paragraph.alignment = horizontal_alignment
-	paragraph.break_flags = autowrap_trim_flags | AutoSizer.get_break_flags(autowrap_mode)
-	paragraph.direction = text_direction
-	paragraph.justification_flags = justification_flags
-	paragraph.line_spacing = line_spacing
-	paragraph.width = width
-	return paragraph
+func _validate_property(property: Dictionary) -> void:
+	match property.name:
+		"width", "font_size", "line_spacing":
+			property.usage |= PROPERTY_USAGE_READ_ONLY
 
 
 func calc_line_spacing(_font_size: int) -> float:
@@ -41,10 +51,11 @@ func calc_line_spacing(_font_size: int) -> float:
 
 
 func resize_font() -> void:
+	if is_instance_valid(bounding_box):
+		bounding_box.update(self)
 	_resize_font.call_deferred()
 
 
 func _resize_font() -> void:
-	var size := Vector2(width, font.get_height(max_font_size))
-	font_size = AutoSizer.calc_font_size(self, font, size)
-	line_spacing = font_size * line_spacing_ratio
+	font_size = AutoSizer.calc_font_size(self, font, label_size)
+	line_spacing = calc_line_spacing(font_size)
