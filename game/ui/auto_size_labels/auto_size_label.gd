@@ -7,9 +7,9 @@ extends Label
 @export var label_size := Vector2i(160, 90):
 	set(value):
 		label_size = value
-		size = value
 		custom_minimum_size = value
 		custom_maximum_size = value
+		set_deferred("size", value)
 		resize_font()
 @export var min_font_size: int = 1:
 	set(size):
