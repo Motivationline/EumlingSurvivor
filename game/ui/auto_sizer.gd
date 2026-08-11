@@ -3,19 +3,32 @@ class_name AutoSizer
 
 
 ## Calculates the largest font size that fits within the label bounds.
-static func calc_font_size(label: Variant, font: Font, size: Vector2) -> int:
+static func calc_font_size(label: Variant, font: Font, size: Vector2i) -> int:
 	if label is not AutoSizeLabel and label is not AutoSizeLabel3D:
 		return -1
 	
-	var paragraph: TextParagraph = label.create_paragraph()
+	if not font:
+		push_warning("No font assigned to: " + label.name + ". A Fallback font is used.")
+		font = SystemFont.new()
 
 	var comparable := func(middle: float) -> bool:
-		paragraph.clear()
-		paragraph.line_spacing = label.calc_line_spacing(middle)
-		paragraph.add_string(label.text, font, int(middle), label.language)
+		var font_size := int(middle)
+		
+		var text_size: Vector2 = font.get_multiline_string_size(
+				label.text,
+				label.horizontal_alignment,
+				-1 if label.autowrap_mode == TextServer.AUTOWRAP_OFF else size.x,
+				font_size,
+				-1,
+				get_break_flags(label.autowrap_mode),
+				label.justification_flags,
+				label.text_direction)
 
-		var text_size: Vector2 = paragraph.get_size()
-		return text_size.x <= size.x and text_size.y <= size.y
+		var line_count := int(text_size.y / font.get_height(font_size))
+		var line_spacing: float = label.calc_line_spacing(font_size)
+		var total_spacing: float = line_spacing * maxf(0.0, line_count - 1.0)
+
+		return text_size.x <= size.x and text_size.y + total_spacing <= size.y
 
 	return int(Utils.binary_search(label.min_font_size, label.max_font_size, comparable))
 
@@ -27,7 +40,7 @@ static func calc_rich_font_size(label: AutoSizeRichTextLabel) -> int:
 		label.bulk_rich_font_size_override(int(middle))
 		
 		var text_size := Vector2(label.get_content_width(), label.get_content_height())
-		return text_size.x <= label.size.x and text_size.y <= label.size.y
+		return text_size.x <= label.label_size.x and text_size.y <= label.label_size.y
 
 	return int(Utils.binary_search(label.min_font_size, label.max_font_size, comparable))
 
