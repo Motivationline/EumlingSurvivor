@@ -1,4 +1,4 @@
-extends Node3D
+class_name BossPortal extends Node3D
 
 signal entered
 

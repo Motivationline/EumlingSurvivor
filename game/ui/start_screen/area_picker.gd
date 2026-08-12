@@ -1,7 +1,7 @@
 class_name AreaPicker extends Control
 
 
-signal area_chosen(levels: Array[String])
+signal area_chosen(levels: Array[Dictionary])
 # @onready var grid_container: GridContainer = $Control/CenterContainer/GridContainer
 @onready var level_choice_overlay: Control = $LevelChoiceOverlay
 
@@ -64,9 +64,8 @@ static var areas = [
 func _ready() -> void:
 	level_choice_overlay.abort.connect(level_choice_aborted)
 	level_choice_overlay.level_chosen.connect(level_chosen)
-	$JungleIsland.grab_focus.call_deferred()
 
-func setup():
+# func setup():
 	# for child in grid_container.get_children():
 	# 	grid_container.remove_child(child)
 	# 	child.queue_free()
@@ -75,8 +74,8 @@ func setup():
 	# 	btn.text = area.name
 	# 	grid_container.add_child(btn)
 	# 	btn.pressed.connect(choose_area_levels.bind(area))
-	show()
-	$JungleIsland.grab_focus.call_deferred()
+	# show()
+	# $JungleIsland.grab_focus.call_deferred()
 
 static var current_area
 
@@ -122,7 +121,7 @@ func level_chosen(level_id: String):
 	var level_location = AreaPicker.find_file(level_id + ".tscn", "res://game/levels")
 	if (level_location != "" and ResourceLoader.exists(level_location)):
 		area_chosen.emit([ {id = level_location, difficulty = difficulty}])
-		hide()
+		# hide()
 	else:
 		printerr("Level '%s.tscn' doesn't exist in '/game/levels/' or its subfolders. Try again." % level_id)
 		level_choice_overlay.setup()
@@ -153,4 +152,4 @@ static func find_file(file_name: String, folder_location: String = "res://game/l
 func _on_area_clicked(index: int) -> void:
 	var level_names = choose_area_levels_from_index(index)
 	area_chosen.emit(level_names)
-	hide()
+	# hide()

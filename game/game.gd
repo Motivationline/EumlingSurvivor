@@ -6,7 +6,6 @@ var player: Player
 @onready var level_wrapper: Node3D = $Level
 @onready var scene_fade_animation_player: AnimationPlayer = $SceneFadeOverlay/AnimationPlayer
 @onready var upgrade_view: CanvasLayer = $UpgradeView
-@onready var area_choice_overlay: Control = $AreaChoiceOverlay/AreaPicker
 @onready var touch_joystick_overlay: CanvasLayer = $TouchJoystickOverlay
 
 @onready var debug_view: CanvasLayer = $DebugView
@@ -14,6 +13,7 @@ var player: Player
 #signal requestMusic
 
 var faded_to_black: bool = true
+var debug_run: bool = false
 
 func _ready() -> void:
 	# connect to home signal
@@ -22,7 +22,6 @@ func _ready() -> void:
 	# remove mobile overlay if not on mobile
 	if not Data.is_on_mobile:
 		touch_joystick_overlay.queue_free()
-	area_choice_overlay.hide()
 
 var currently_loaded_level: Level
 var currently_loaded_level_info: Dictionary
@@ -37,6 +36,12 @@ func continue_run():
 func start_new_run():
 	Data.game_data.reset()
 	_setup_player()
+	_load_level()
+
+func play_select_levels(levels):
+	Data.game_data.levels_to_load = levels
+	_setup_player()
+	debug_run = true
 	_load_level()
 
 func _setup_player():
@@ -58,16 +63,20 @@ func _load_level():
 	# remove old stuff
 	Utils.remove_all_children(level_wrapper)
 	
-	if !Data.game_data.levels_to_load.size() > 0:
+	if Data.game_data.levels_to_load.is_empty():
+		if debug_run:
+			end_run()
+			return
 		if Data.game_data.difficulty >= 4:
 			$AreaChoiceOverlay/GameCompleteOverlay.show()
 			await get_tree().create_timer(3).timeout
 			$AreaChoiceOverlay/GameCompleteOverlay.hide()
 			end_run()
 			return
-		area_choice_overlay.setup()
-		GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2,0))
-		Data.game_data.levels_to_load = await area_choice_overlay.area_chosen
+		Data.game_data.levels_to_load = [{id = "res://game/levels/start_level.tscn", difficulty = 0}]
+		# area_choice_overlay.setup()
+		# GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2,0))
+		# Data.game_data.levels_to_load = await area_choice_overlay.area_chosen
 
 	var stage_progress = Data.game_data.difficulty + 4
 	%BaseBattleOverlay.update_visuals(stage_progress, Data.game_data.levels_to_load.size())
@@ -84,7 +93,7 @@ func _load_level():
 		var new_level = level_to_load.instantiate() as Level
 		new_level.difficulty = difficulty
 		level_wrapper.add_child(new_level)
-		new_level.spawn_player(player)
+		new_level.spawn_player(player) 
 		new_level.level_finished.connect(level_finished)
 		new_level.level_ended.connect(level_ended)
 		
@@ -128,6 +137,7 @@ func level_ended():
 
 func end_run():
 	Data.end_game()
+	debug_run = false
 	return_to_main_menu()
 
 func return_to_main_menu():
