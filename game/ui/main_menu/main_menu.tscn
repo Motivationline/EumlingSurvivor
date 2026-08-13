@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://b0ckwddoapbo5" path="res://assets/vfx/particle_pack/dirt_03.png" id="19_nekgt"]
 [ext_resource type="Texture2D" uid="uid://bwf6nign48iqb" path="res://assets/vfx/particle_pack/smoke_06.png" id="19_oup2s"]
 [ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="19_vt321"]
+[ext_resource type="PackedScene" uid="uid://dlxnvjne1irpy" path="res://game/ui/start_screen/area_picker.tscn" id="20_2f5e2"]
 [ext_resource type="PackedScene" uid="uid://b1dehhangi7ko" path="res://assets/characters/eumling/main_menu_eumling/main_menu_eumling.tscn" id="20_oup2s"]
 [ext_resource type="PackedScene" uid="uid://b2gactr5k8m8l" path="res://assets/characters/eumling/main_menu_eumling/backpack/backpack_prop.tscn" id="21_jxl6k"]
 [ext_resource type="PackedScene" uid="uid://dnpkx1sg04yw3" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/main_menu/main_menu_sozial.tscn" id="23_hutre"]
@@ -615,6 +616,8 @@ offset_right = 165.0
 offset_bottom = 153.0
 texture_normal = ExtResource("19_vt321")
 
+[node name="AreaPicker" parent="UIOverlay" unique_id=1083536254 instance=ExtResource("20_2f5e2")]
+
 [node name="Background_Tile" type="Node3D" parent="." unique_id=272850613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7447424, 0, 0)
 
@@ -881,6 +884,7 @@ transform = Transform3D(0.46461144, 0, -0.18475986, 0, 0.5, 0, 0.18475986, 0, 0.
 [connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="UIOverlay/StaticUI/EndGameButton" to="." method="_on_end_game_button_pressed"]
+[connection signal="area_chosen" from="UIOverlay/AreaPicker" to="." method="_on_debug_level_chosen"]
 
 [editable path="Background_Tile/jungel_tree_01"]
 [editable path="Background_Tile/jungel_tree_02"]

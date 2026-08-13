@@ -52,3 +52,7 @@ func update_continue_button():
 
 func _on_end_game_button_pressed() -> void:
 	get_tree().quit()
+
+func _on_debug_level_chosen(levels) -> void:
+	Main.controller.load_scene(game, false)
+	game.play_select_levels(levels)

@@ -1,14 +1,6 @@
 [gd_scene format=3 uid="uid://dlxnvjne1irpy"]
 
 [ext_resource type="Script" uid="uid://dctuhox5lephu" path="res://game/ui/start_screen/area_picker.gd" id="1_i6bfq"]
-[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="2_27jtl"]
-[ext_resource type="Texture2D" uid="uid://vxp35wsb3lwk" path="res://assets/ui/Map/BackdropMap.png" id="3_ga7dw"]
-[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/rectangleStickerButtonFocused.png" id="5_s4q5g"]
-[ext_resource type="Texture2D" uid="uid://b4wy7vt8llog" path="res://assets/ui/Map/JungleIsland.png" id="6_rrmdi"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bi2ca"]
-shader = ExtResource("2_27jtl")
-shader_parameter/blur_amount = 2.0
 
 [sub_resource type="GDScript" id="GDScript_i6bfq"]
 script/source = "extends Control
@@ -50,88 +42,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i6bfq")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1616126693]
-material = SubResource("ShaderMaterial_bi2ca")
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(48.197548, 27.088264)
-
-[node name="BackdropMap" type="TextureRect" parent="." unique_id=99526782]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("3_ga7dw")
-
-[node name="JungleIsland" type="TextureButton" parent="." unique_id=1916810980]
-layout_mode = 0
-offset_left = 238.0
-offset_top = 508.0
-offset_right = 1916.0
-offset_bottom = 1366.0
-scale = Vector2(0.43269822, 0.43269822)
-focus_neighbor_right = NodePath("../VolcanoIsland")
-texture_normal = ExtResource("6_rrmdi")
-texture_focused = ExtResource("5_s4q5g")
-
-[node name="Label" type="Label" parent="JungleIsland" unique_id=1370604895]
-layout_mode = 0
-offset_left = 614.74713
-offset_top = 432.17188
-offset_right = 1012.25287
-offset_bottom = 647.1023
-theme_override_font_sizes/font_size = 128
-text = "Jungle"
-
-[node name="VolcanoIsland" type="TextureButton" parent="." unique_id=951427565]
-layout_mode = 0
-offset_left = 890.99994
-offset_top = 209.0
-offset_right = 2569.0
-offset_bottom = 1067.0
-scale = Vector2(0.43269822, 0.43269822)
-focus_neighbor_left = NodePath("../JungleIsland")
-focus_neighbor_bottom = NodePath("../BeachIsland")
-texture_normal = ExtResource("6_rrmdi")
-texture_focused = ExtResource("5_s4q5g")
-
-[node name="Label2" type="Label" parent="VolcanoIsland" unique_id=978962773]
-layout_mode = 0
-offset_left = 559.2815
-offset_top = 379.01697
-offset_right = 956.78723
-offset_bottom = 593.9474
-theme_override_font_sizes/font_size = 128
-text = "Volcano"
-
-[node name="BeachIsland" type="TextureButton" parent="." unique_id=1728157726]
-layout_mode = 0
-offset_left = 991.0
-offset_top = 598.0
-offset_right = 2669.0
-offset_bottom = 1456.0
-scale = Vector2(0.43269822, 0.43269822)
-focus_neighbor_left = NodePath("../JungleIsland")
-focus_neighbor_top = NodePath("../VolcanoIsland")
-texture_normal = ExtResource("6_rrmdi")
-texture_focused = ExtResource("5_s4q5g")
-
-[node name="Label3" type="Label" parent="BeachIsland" unique_id=509590096]
-layout_mode = 0
-offset_left = 552.348
-offset_top = 466.838
-offset_right = 949.85376
-offset_bottom = 681.76843
-theme_override_font_sizes/font_size = 128
-text = "Beach"
-
 [node name="DebugButton" type="Button" parent="." unique_id=215559793]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -335.0
 offset_top = -42.0
-offset_right = 335.0
+grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "Select Level Directly (Debug)"
@@ -184,9 +104,6 @@ layout_mode = 2
 text = "cancel
 "
 
-[connection signal="pressed" from="JungleIsland" to="." method="_on_area_clicked" binds= [0]]
-[connection signal="pressed" from="VolcanoIsland" to="." method="_on_area_clicked" binds= [1]]
-[connection signal="pressed" from="BeachIsland" to="." method="_on_area_clicked" binds= [2]]
 [connection signal="pressed" from="DebugButton" to="." method="_on_debug_button_pressed"]
 [connection signal="text_submitted" from="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer/DebugLevelInput" to="LevelChoiceOverlay" method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="LevelChoiceOverlay/PanelContainer/CenterContainer/VBoxContainer/ButtonConfirm" to="LevelChoiceOverlay" method="_on_button_confirm_pressed"]
