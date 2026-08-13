@@ -12,10 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://bb6f45cgpgqwg" path="res://assets/models/5-beach/crate/crate_v_2.tscn" id="9_eyygh"]
 [ext_resource type="Script" uid="uid://do4ujdcqq0nii" path="res://addons/world_wind/world_wind.gd" id="9_yuro1"]
 [ext_resource type="PackedScene" uid="uid://bli8pja4rp1qc" path="res://assets/models/5-beach/palm1_prefab.tscn" id="10_c8p5i"]
-[ext_resource type="Shader" uid="uid://38jq7gal13tn" path="res://game/levels/6-Vxx-Volcano/shader2/water_ripples_shader_.tres" id="12_n7ths"]
+[ext_resource type="Shader" uid="uid://38jq7gal13tn" path="res://game/levels/5-Bxx-Beach/shader/water_ripples_shader_.tres" id="12_n7ths"]
 [ext_resource type="PackedScene" uid="uid://rmo2uwmnpogp" path="res://assets/models/5-beach/rocks/rock_v_1.tscn" id="12_sv6f4"]
 [ext_resource type="PackedScene" uid="uid://dbdq8srcm3cec" path="res://game/exit_area/exit_area_beach.tscn" id="13_2s71f"]
 [ext_resource type="PackedScene" uid="uid://cf6x8bs20xxr3" path="res://assets/models/5-beach/rocks/rock_v_2.tscn" id="13_4eacr"]
+[ext_resource type="Shader" uid="uid://b3px12a4nm76f" path="res://game/levels/5-Bxx-Beach/shader/water_ripples_shader_fast.tres" id="13_f2gdq"]
 [ext_resource type="PackedScene" uid="uid://ddmt4bmt2k3hy" path="res://assets/models/5-beach/rocks/rock_v_3.tscn" id="14_646ns"]
 [ext_resource type="PackedScene" uid="uid://2mkjw8bxnn1a" path="res://game/shared/offscreen_rendering/offscreen_viewport.tscn" id="19_f2gdq"]
 
@@ -312,7 +313,7 @@ panorama = SubResource("GradientTexture2D_weh0f")
 sky_material = SubResource("PanoramaSkyMaterial_c8p5i")
 
 [sub_resource type="Environment" id="Environment_2s71f"]
-background_mode = 2
+background_mode = 1
 background_color = Color(0.2772, 0.67144, 0.77, 1)
 sky = SubResource("Sky_826sl")
 ambient_light_source = 2
@@ -365,6 +366,18 @@ render_priority = -100
 shading_mode = 0
 disable_ambient_light = true
 albedo_color = Color(0.12566668, 0, 0.29, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f2gdq"]
+render_priority = 0
+shader = ExtResource("13_f2gdq")
+shader_parameter/Viscosity = 0.4
+shader_parameter/WaveHeight = 0.1
+shader_parameter/SurfaceColor = Color(0.07016479, 0.72538966, 0.71387357, 0.4)
+shader_parameter/RipplesColor = Color(0.819608, 1, 0.980392, 0.901961)
+shader_parameter/RippleFade = 0.5
+shader_parameter/RippleSpeed = 4.0
+shader_parameter/DeepColor = Color(0.066667, 0.72549, 0.713726, 1)
+shader_parameter/DepthFade = 1.0
 
 [sub_resource type="Gradient" id="Gradient_646ns"]
 interpolation_mode = 2
@@ -539,14 +552,19 @@ shape = SubResource("BoxShape3D_wbp8f")
 [node name="Env" type="Node3D" parent="." unique_id=662491825]
 
 [node name="WaterRipples" type="MeshInstance3D" parent="Env" unique_id=1760121797]
+visible = false
 material_override = SubResource("ShaderMaterial_66g43")
 mesh = SubResource("PlaneMesh_sv6f4")
 
 [node name="WaterFloor" type="MeshInstance3D" parent="Env/WaterRipples" unique_id=136313282]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015992403, -0.523157, -1.2509851)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.523, 0)
 mesh = SubResource("PlaneMesh_q377s")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_wvf3w")
+
+[node name="WaterFast" type="MeshInstance3D" parent="Env" unique_id=637959974]
+material_override = SubResource("ShaderMaterial_f2gdq")
+mesh = SubResource("PlaneMesh_sv6f4")
 
 [node name="Crates" type="Node3D" parent="Env" unique_id=1145411901]
 
