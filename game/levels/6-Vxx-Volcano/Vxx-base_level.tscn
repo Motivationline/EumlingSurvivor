@@ -7,9 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://dtp8b2rwwfwym" path="res://assets/vfx/projectile_realistic/Swirl 2 - 256x256.png" id="5_ep3q7"]
 [ext_resource type="PackedScene" uid="uid://dd58l40c5jnhw" path="res://game/cameras/game_camera.tscn" id="6_jpdpo"]
 [ext_resource type="PackedScene" uid="uid://bd4kom8lyyin5" path="res://assets/models/6-volcano/stones/stone_01/volcano_stone_01.tscn" id="6_r7r6h"]
+[ext_resource type="ArrayMesh" uid="uid://creytde6ihqed" path="res://assets/models/Tilemaps/base_floor/base_floor_10x10.tres" id="6_wj84g"]
 [ext_resource type="Shader" uid="uid://bcr3jkq4ohhuh" path="res://game/levels/6-Vxx-Volcano/shader2/lava.tres" id="7_8l1px"]
 [ext_resource type="Script" uid="uid://b12g0nyew0m0i" path="res://global/settings/graphics_settings_component_shadow.gd" id="7_aga4b"]
 [ext_resource type="Shader" uid="uid://chiexwbpmjuuj" path="res://assets/vfx/projectile_realistic/shader_fireheader.tres" id="7_g1dqc"]
+[ext_resource type="PackedScene" uid="uid://2mkjw8bxnn1a" path="res://game/shared/offscreen_rendering/offscreen_viewport.tscn" id="11_ep3q7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wbp8f"]
 
@@ -229,14 +231,14 @@ _surfaces = [{
 }]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpdpo"]
-albedo_color = Color(0.24, 0.16048001, 0.0696, 1)
+albedo_color = Color(0.23921569, 0.16078432, 0.07058824, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8l1px"]
 size = Vector3(10, 1, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
 transparency = 1
-albedo_color = Color(0.31, 0.18507001, 0.1178, 0.5529412)
+albedo_color = Color(0.31, 0.10850001, 0, 0.5529412)
 albedo_texture = ExtResource("4_aga4b")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
@@ -249,6 +251,14 @@ albedo_texture = ExtResource("5_ep3q7")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_57qmd"]
 size = Vector2(10, 10)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_euqv4"]
+viewport_path = NodePath("OffscreenViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep3q7"]
+resource_local_to_scene = true
+specular_mode = 2
+albedo_texture = SubResource("ViewportTexture_euqv4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g1dqc"]
 size = Vector3(10.591797, 1, 10.109741)
@@ -301,6 +311,38 @@ radial_segments = 8
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Gradient" id="Gradient_vqvin"]
+offsets = PackedFloat32Array(0.23348264, 1)
+colors = PackedColorArray(0.25, 0.18833333, 0.15, 1, 0.29, 0.20300001, 0.145, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dtrmy"]
+noise_type = 3
+frequency = 0.0085
+fractal_type = 3
+fractal_octaves = 2
+fractal_lacunarity = 2.405
+fractal_gain = 1.0
+fractal_ping_pong_strength = 2.3
+domain_warp_amplitude = 10.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_slert"]
+noise = SubResource("FastNoiseLite_dtrmy")
+color_ramp = SubResource("Gradient_vqvin")
+invert = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p02lk"]
+shading_mode = 0
+albedo_texture = SubResource("NoiseTexture2D_slert")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0ti16"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbji1"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.3, 0.16935, 0.099, 0.3764706)
+albedo_texture = ExtResource("4_aga4b")
+
 [node name="Level" type="Node3D" unique_id=1973423689 node_paths=PackedStringArray("player_spawn", "goal_area") groups=["Level"]]
 script = ExtResource("1_gmd22")
 player_spawn = NodePath("PlayerSpawnMarker")
@@ -325,33 +367,38 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D" unique_id=2126814094]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1370452096]
+[node name="FloorComposed" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1370452096]
+visible = false
 material_override = SubResource("StandardMaterial3D_jpdpo")
 mesh = SubResource("BoxMesh_8l1px")
 
-[node name="Decals" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/MeshInstance3D" unique_id=807673958]
+[node name="Decals" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/FloorComposed" unique_id=807673958]
 transform = Transform3D(0.9079961, 0, 0.41897863, 0, 1, 0, -0.41897863, 0, 0.9079961, -2.4521942, 0.51, -2.5677226)
 material_override = SubResource("StandardMaterial3D_yf5fn")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_g4v7s")
 
-[node name="Decals2" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/MeshInstance3D" unique_id=1179081394]
+[node name="Decals2" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/FloorComposed" unique_id=1179081394]
 transform = Transform3D(0.22418813, 0, -0.7679451, 0, 0.8, 0, 0.7679451, 0, 0.22418813, 2.4657059, 0.5099995, -1.4081581)
 material_override = SubResource("StandardMaterial3D_yf5fn")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_g4v7s")
 
-[node name="Decals3" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/MeshInstance3D" unique_id=217794900]
+[node name="Decals3" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/FloorComposed" unique_id=217794900]
 transform = Transform3D(0.28023523, 0, -0.9599314, 0, 1, 0, 0.9599314, 0, 0.28023523, -2.1342182, 0.5099995, 1.8125052)
 material_override = SubResource("StandardMaterial3D_yf5fn")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_g4v7s")
 
-[node name="Decals4" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/MeshInstance3D" unique_id=694027630]
+[node name="Decals4" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D/FloorComposed" unique_id=694027630]
 transform = Transform3D(-0.9999867, 0, 0.0051497817, 0, 1, 0, -0.0051497817, 0, -0.9999867, -0.028246522, 0.5099995, -0.009070754)
 material_override = SubResource("StandardMaterial3D_wj84g")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_57qmd")
+
+[node name="FloorOffscreen" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1090963421]
+material_override = SubResource("StandardMaterial3D_ep3q7")
+mesh = ExtResource("6_wj84g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=423930638]
 visible = false
@@ -558,3 +605,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Robot" type="Node3D" parent="." unique_id=614762836]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="OffscreenViewport" parent="." unique_id=1938886258 instance=ExtResource("11_ep3q7")]
+size = Vector2i(512, 512)
+
+[node name="Camera3D" parent="OffscreenViewport" index="0" unique_id=2047216808]
+transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 0, 2, -30)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="OffscreenViewport/Camera3D" index="0" unique_id=1457648584]
+transform = Transform3D(-4.371139e-08, 0, -1, -1, -4.371139e-08, 4.371139e-08, -4.371139e-08, 1, 1.9106855e-15, 0, 8.742278e-08, -2)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_p02lk")
+mesh = SubResource("PlaneMesh_0ti16")
+
+[node name="Decals5" type="MeshInstance3D" parent="OffscreenViewport/Camera3D/MeshInstance3D2" unique_id=1841669883]
+transform = Transform3D(0.8171965, 0, 0.37708074, 0, 0.9, 0, -0.37708074, 0, 0.8171965, -2.041154, 0.04021603, -2.1069489)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_xbji1")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="Decals6" type="MeshInstance3D" parent="OffscreenViewport/Camera3D/MeshInstance3D2" unique_id=978362705]
+transform = Transform3D(0.19616462, 0, -0.67195195, 0, 0.7, 0, 0.67195195, 0, 0.19616462, 2.0542235, 0.04021555, -1.1443729)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_xbji1")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="Decals7" type="MeshInstance3D" parent="OffscreenViewport/Camera3D/MeshInstance3D2" unique_id=782734124]
+transform = Transform3D(0.25221166, 0, -0.8639382, 0, 0.9, 0, 0.8639382, 0, 0.25221166, -1.7886497, 0.04021555, 1.898428)
+layers = 1024
+material_override = SubResource("StandardMaterial3D_xbji1")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[editable path="OffscreenViewport"]
