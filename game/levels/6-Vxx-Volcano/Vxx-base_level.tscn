@@ -312,12 +312,12 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_vqvin"]
-offsets = PackedFloat32Array(0.23348264, 1)
-colors = PackedColorArray(0.25, 0.18833333, 0.15, 1, 0.29, 0.20300001, 0.145, 1)
+offsets = PackedFloat32Array(0.23348264, 0.7189626, 1)
+colors = PackedColorArray(0.25, 0.18833333, 0.15, 1, 0.26823443, 0.1950193, 0.1477207, 1, 0.29, 0.20300001, 0.145, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dtrmy"]
 noise_type = 3
-frequency = 0.0085
+frequency = 0.0123
 fractal_type = 3
 fractal_octaves = 2
 fractal_lacunarity = 2.405
@@ -326,6 +326,9 @@ fractal_ping_pong_strength = 2.3
 domain_warp_amplitude = 10.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_slert"]
+width = 256
+height = 256
+generate_mipmaps = false
 noise = SubResource("FastNoiseLite_dtrmy")
 color_ramp = SubResource("Gradient_vqvin")
 invert = true
@@ -340,7 +343,7 @@ size = Vector2(10, 10)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbji1"]
 transparency = 1
 shading_mode = 0
-albedo_color = Color(0.3, 0.16935, 0.099, 0.3764706)
+albedo_color = Color(0.32, 0.18896, 0.1184, 0.32941177)
 albedo_texture = ExtResource("4_aga4b")
 
 [node name="Level" type="Node3D" unique_id=1973423689 node_paths=PackedStringArray("player_spawn", "goal_area") groups=["Level"]]
