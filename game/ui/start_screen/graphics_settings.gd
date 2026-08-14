@@ -17,7 +17,6 @@ func _ready() -> void:
 	if global_illumination_options:
 		global_illumination_options.clear()
 		global_illumination_options.add_item("Off", GraphicsSettings.GLOBAL_ILLUMINATION_OPTIONS.OFF)
-		#global_illumination_options.add_item("Baked", GraphicsSettings.GLOBAL_ILLUMINATION_OPTIONS.BAKED)
 		global_illumination_options.add_item("SSAO", GraphicsSettings.GLOBAL_ILLUMINATION_OPTIONS.SSAO)
 		global_illumination_options.select(GraphicsSettings.get_setting(GraphicsSettings.SETTING.GLOBAL_ILLUMINATION))
 
