@@ -17,8 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://rmo2uwmnpogp" path="res://assets/models/5-beach/rocks/rock_v_1.tscn" id="12_sv6f4"]
 [ext_resource type="PackedScene" uid="uid://dbdq8srcm3cec" path="res://game/exit_area/exit_area_beach.tscn" id="13_2s71f"]
 [ext_resource type="PackedScene" uid="uid://cf6x8bs20xxr3" path="res://assets/models/5-beach/rocks/rock_v_2.tscn" id="13_4eacr"]
-[ext_resource type="Shader" uid="uid://b3px12a4nm76f" path="res://game/levels/5-Bxx-Beach/shader/water_ripples_shader_fast.tres" id="13_f2gdq"]
 [ext_resource type="PackedScene" uid="uid://ddmt4bmt2k3hy" path="res://assets/models/5-beach/rocks/rock_v_3.tscn" id="14_646ns"]
+[ext_resource type="Shader" uid="uid://bdo4mmbka2f87" path="res://game/levels/5-Bxx-Beach/shader/beach_water_shader.tres" id="15_w62fo"]
 [ext_resource type="PackedScene" uid="uid://2mkjw8bxnn1a" path="res://game/shared/offscreen_rendering/offscreen_viewport.tscn" id="19_f2gdq"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_c8p5i"]
@@ -335,17 +335,18 @@ shading_mode = 0
 disable_ambient_light = true
 albedo_color = Color(0.12566668, 0, 0.29, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f2gdq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0eqd"]
 render_priority = 0
-shader = ExtResource("13_f2gdq")
+shader = ExtResource("15_w62fo")
 shader_parameter/Viscosity = 0.4
 shader_parameter/WaveHeight = 0.1
-shader_parameter/SurfaceColor = Color(0.066667, 0.72549, 0.713726, 0.392157)
-shader_parameter/RipplesColor = Color(0.819608, 1, 0.980392, 0.901961)
-shader_parameter/RippleFade = 0.5
-shader_parameter/RippleSpeed = 4.0
+shader_parameter/ShallowColor = Color(0.066667, 0.72549, 0.713726, 0.392157)
+shader_parameter/FoamColor = Color(0.901961, 1, 0.992157, 0.882353)
+shader_parameter/FoamFade = 0.5
+shader_parameter/FoamCutoff = 0.9
+shader_parameter/FoamSpeed = 0.25
 shader_parameter/DeepColor = Color(0.066667, 0.72549, 0.713726, 1)
-shader_parameter/DepthFade = 1.0
+shader_parameter/DepthFade = 0.185
 
 [sub_resource type="Gradient" id="Gradient_646ns"]
 interpolation_mode = 2
@@ -530,8 +531,8 @@ mesh = SubResource("PlaneMesh_q377s")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_wvf3w")
 
-[node name="WaterFast" type="MeshInstance3D" parent="Env" unique_id=637959974]
-material_override = SubResource("ShaderMaterial_f2gdq")
+[node name="Water" type="MeshInstance3D" parent="Env" unique_id=827454979]
+material_override = SubResource("ShaderMaterial_g0eqd")
 mesh = SubResource("PlaneMesh_sv6f4")
 
 [node name="Crates" type="Node3D" parent="Env" unique_id=1145411901]
