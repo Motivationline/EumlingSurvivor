@@ -6,8 +6,7 @@ extends Label3D
 @export var label_size := Vector2i(160, 90):
 	set(value):
 		label_size = value
-		width = value.x
-		resize_font()
+		apply_label_size()
 @export var min_font_size: int = 1:
 	set(size):
 		min_font_size = mini(size, max_font_size)
@@ -31,8 +30,7 @@ func _ready() -> void:
 	elif is_instance_valid(bounding_box):
 		bounding_box.queue_free()
 
-	# Make sure all values are set correctly when creating a new label.
-	label_size = label_size
+	apply_label_size()
 
 
 func _set(_property: StringName, _value: Variant) -> bool:
@@ -46,6 +44,11 @@ func _validate_property(property: Dictionary) -> void:
 			property.usage |= PROPERTY_USAGE_READ_ONLY
 
 
+func apply_label_size() -> void:
+	width = label_size.x
+	resize_font()
+
+
 func calc_line_spacing(_font_size: int) -> float:
 	return _font_size * line_spacing_ratio
 
@@ -57,5 +60,5 @@ func resize_font() -> void:
 
 
 func _resize_font() -> void:
-	font_size = AutoSizer.calc_font_size(self, font, label_size)
+	font_size = AutoSizer.calc_font_size(self, font)
 	line_spacing = calc_line_spacing(font_size)

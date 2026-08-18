@@ -7,10 +7,7 @@ extends RichTextLabel
 @export var label_size := Vector2i(160, 90):
 	set(value):
 		label_size = value
-		custom_minimum_size = value
-		custom_maximum_size = value
-		set_deferred("size", value)
-		resize_font()
+		apply_label_size()
 @export var min_font_size: int = 1:
 	set(size):
 		min_font_size = mini(size, max_font_size)
@@ -49,8 +46,7 @@ extends RichTextLabel
 
 
 func _ready() -> void:
-	# Make sure all values are set correctly when creating a new label.
-	label_size = label_size
+	apply_label_size()
 
 
 func _set(_property: StringName, _value: Variant) -> bool:
@@ -62,6 +58,12 @@ func _validate_property(property: Dictionary) -> void:
 	match property.name:
 		"size", "custom_minimum_size", "custom_maximum_size":
 			property.usage |= PROPERTY_USAGE_READ_ONLY
+
+
+func apply_label_size() -> void:
+	custom_minimum_size = label_size
+	custom_maximum_size = label_size
+	resize_font()
 
 
 func bulk_rich_font_size_override(normal_font_size: int) -> void:
@@ -82,7 +84,7 @@ func resize_font() -> void:
 	_resize_font.call_deferred()
 
 
-func _resize_font() -> void:	
+func _resize_font() -> void:
 	var font_size: int = AutoSizer.calc_rich_font_size(self)
 	bulk_rich_font_size_override(font_size)
 	set_line_separation(font_size)

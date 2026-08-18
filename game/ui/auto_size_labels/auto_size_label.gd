@@ -7,10 +7,7 @@ extends Label
 @export var label_size := Vector2i(160, 90):
 	set(value):
 		label_size = value
-		custom_minimum_size = value
-		custom_maximum_size = value
-		set_deferred("size", value)
-		resize_font()
+		apply_label_size()
 @export var min_font_size: int = 1:
 	set(size):
 		min_font_size = mini(size, max_font_size)
@@ -27,8 +24,7 @@ extends Label
 
 
 func _ready() -> void:
-	# Make sure all values are set correctly when creating a new label.
-	label_size = label_size
+	apply_label_size()
 
 
 func _set(_property: StringName, _value: Variant) -> bool:
@@ -42,6 +38,12 @@ func _validate_property(property: Dictionary) -> void:
 			property.usage |= PROPERTY_USAGE_READ_ONLY
 
 
+func apply_label_size() -> void:
+	custom_minimum_size = label_size
+	custom_maximum_size = label_size
+	resize_font()
+
+
 func calc_line_spacing(font_size: int) -> float:
 	return font_size * line_spacing_ratio
 
@@ -51,7 +53,6 @@ func resize_font() -> void:
 
 
 func _resize_font() -> void:
-	var font: Font = get_theme_font("font")
-	var font_size: int = AutoSizer.calc_font_size(self, font, label_size)
+	var font_size: int = AutoSizer.calc_font_size(self, get_theme_font("font"))
 	add_theme_font_size_override("font_size", font_size)
 	add_theme_constant_override("line_spacing", int(calc_line_spacing(font_size)))
