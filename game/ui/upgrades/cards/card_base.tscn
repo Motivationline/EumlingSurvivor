@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://h5kxhyqayvrf" path="res://assets/ui/UpgradeCards/Icons/HealthIcon.png" id="3_5l67c"]
 [ext_resource type="Texture2D" uid="uid://cls17fca8iawc" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayout.png" id="4_h1an0"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="5_gbuuv"]
-[ext_resource type="Script" uid="uid://bh7iefvel1djl" path="res://game/ui/auto_size_label_3d.gd" id="6_04cqa"]
+[ext_resource type="Script" uid="uid://bh7iefvel1djl" path="res://game/ui/auto_size_labels/auto_size_label_3d.gd" id="6_04cqa"]
 [ext_resource type="Texture2D" uid="uid://ct0dwwb0l0w2p" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayoutBack.png" id="6_ykpu1"]
 [ext_resource type="Texture2D" uid="uid://c4xwloo8etajn" path="res://assets/ui/UpgradeCards/Icons/tracker_backdrop.png" id="8_gbuuv"]
 [ext_resource type="Texture2D" uid="uid://bwxy2wdpm4ux8" path="res://assets/ui/UpgradeCards/basic/basic_card_grass.png" id="8_hqtij"]
@@ -334,7 +334,7 @@ sorting_offset = 20.0
 texture = ExtResource("4_h1an0")
 
 [node name="Text" type="Label3D" parent="Card/Banner" unique_id=1578198311]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.036, 0.21, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0.1)
 sorting_offset = 30.0
 modulate = Color(0.09239701, 0.09239709, 0.092397, 1)
 text = "+50 Health"
@@ -342,6 +342,7 @@ font = ExtResource("5_gbuuv")
 font_size = 120
 width = 900.0
 script = ExtResource("6_04cqa")
+label_size = Vector2i(900, 300)
 
 [node name="BannerR" type="Sprite3D" parent="Card/Banner" unique_id=723991499]
 transform = Transform3D(1, -9.313226e-10, -1.4901161e-08, -9.313226e-10, 1.0000001, -7.450581e-09, 1.4901161e-08, -7.450581e-09, 1, 2.5369747, -0.10535431, -0.1432088)

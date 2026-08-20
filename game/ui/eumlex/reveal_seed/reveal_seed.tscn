@@ -28,7 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://cp2ipirxmy5xt" path="res://assets/sound/ui/reveal/wiggle_4.wav" id="22_xfaou"]
 [ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="23_cruav"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="24_yl3bw"]
-[ext_resource type="Script" uid="uid://bh7iefvel1djl" path="res://game/ui/auto_size_label_3d.gd" id="25_eryco"]
+[ext_resource type="Script" uid="uid://bh7iefvel1djl" path="res://game/ui/auto_size_labels/auto_size_label_3d.gd" id="25_eryco"]
 [ext_resource type="Texture2D" uid="uid://cj7g4uo8iuhc4" path="res://assets/thumbnails/sozial_sozial/sozial_base.PNG" id="26_yl3bw"]
 [ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="31_q5eef"]
 
@@ -889,6 +889,7 @@ font = ExtResource("24_yl3bw")
 font_size = 120
 width = 900.0
 script = ExtResource("25_eryco")
+label_size = Vector2i(900, 175)
 
 [node name="job_image" type="Sprite3D" parent="Banner" unique_id=619686975]
 unique_name_in_owner = true
@@ -907,6 +908,8 @@ modulate = Color(0, 0, 0, 1)
 text = "1"
 font = ExtResource("24_yl3bw")
 font_size = 34
+width = 45.0
 script = ExtResource("25_eryco")
+label_size = Vector2i(45, 50)
 max_font_size = 34
 metadata/_custom_type_script = "uid://bh7iefvel1djl"

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dfijg5cgisnps"]
 
 [ext_resource type="Texture2D" uid="uid://cm2y3w088uf03" path="res://assets/ui/textfenster/tutorox_marker.png" id="1_b4cia"]
-[ext_resource type="Script" uid="uid://b0m0jlnyu1gcp" path="res://game/ui/auto_size_rich_text_label.gd" id="3_bhcdq"]
+[ext_resource type="Script" uid="uid://b0m0jlnyu1gcp" path="res://game/ui/auto_size_labels/auto_size_rich_text_label.gd" id="3_bhcdq"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_b4cia"]
 [ext_resource type="Texture2D" uid="uid://c25hfu5gdb5mo" path="res://assets/ui/textfenster/quest_haken.png" id="6_210ck"]
 [ext_resource type="Texture2D" uid="uid://dljuyqo7nmcmd" path="res://assets/ui/textfenster/tutorox_marker_text.png" id="6_cyu13"]
@@ -28,6 +28,8 @@ layout_mode = 2
 texture = ExtResource("6_cyu13")
 
 [node name="Text" type="RichTextLabel" parent="." unique_id=1602466990]
+custom_minimum_size = Vector2(395, 96)
+custom_maximum_size = Vector2(395, 96)
 offset_left = 267.0
 offset_top = 207.0
 offset_right = 662.0
@@ -41,9 +43,11 @@ theme_override_font_sizes/bold_italics_font_size = 65
 theme_override_font_sizes/italics_font_size = 65
 theme_override_font_sizes/mono_font_size = 65
 text = "Aufgabe"
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_bhcdq")
+label_size = Vector2i(395, 96)
 metadata/_custom_type_script = "uid://b0m0jlnyu1gcp"
 
 [node name="CompletedIcon" type="TextureRect" parent="." unique_id=2126770377]

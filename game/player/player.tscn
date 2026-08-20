@@ -45,7 +45,7 @@
 [ext_resource type="AudioStream" uid="uid://bdu6vr8x2yl1f" path="res://assets/characters/eumling/V2/sounds/walk_10.wav" id="49_snb7b"]
 [ext_resource type="Texture2D" uid="uid://cgou6yjv471k6" path="res://assets/ui/gameOverlay/LowerBarOutline.png" id="50_kqpmw"]
 [ext_resource type="Texture2D" uid="uid://db1acrfx3gskr" path="res://assets/ui/gameOverlay/LowerBarFillReload.png" id="51_3p3em"]
-[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="52_0jq7b"]
+[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="52_0jq7b"]
 [ext_resource type="Texture2D" uid="uid://rmsvtoa26ujw" path="res://assets/ui/textfenster/conventioneller_eumling_marker.png" id="53_kqpmw"]
 [ext_resource type="Texture2D" uid="uid://b6bxybop5o8ks" path="res://assets/ui/Eumlex/IconC.png" id="54_3p3em"]
 [ext_resource type="Texture2D" uid="uid://w4m6e1qjb43g" path="res://assets/vfx/particle_pack/circle_05.png" id="60_ddimf"]
@@ -493,8 +493,8 @@ texture_progress = ExtResource("51_3p3em")
 
 [node name="QuestLabel" type="Label" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=698357019]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(185, 75)
-custom_maximum_size = Vector2(-1, 87.91)
+custom_minimum_size = Vector2(393, 88)
+custom_maximum_size = Vector2(393, 88)
 layout_mode = 0
 offset_left = 169.0
 offset_top = 23.0
@@ -510,11 +510,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 script = ExtResource("52_0jq7b")
+label_size = Vector2i(393, 88)
 max_font_size = 60
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="QuestProgressLabel" type="Label" parent="SpecialAbilities/Conventional/QuestDisplay/Control/QuestProgress" unique_id=985201243]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(142, 44)
+custom_maximum_size = Vector2(142, 44)
 layout_mode = 0
 offset_left = 426.0
 offset_top = 84.0
@@ -528,6 +531,7 @@ theme_override_font_sizes/font_size = 30
 text = "0 / 8"
 horizontal_alignment = 2
 script = ExtResource("52_0jq7b")
+label_size = Vector2i(142, 44)
 max_font_size = 30
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 

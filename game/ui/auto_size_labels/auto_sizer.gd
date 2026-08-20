@@ -3,19 +3,36 @@ class_name AutoSizer
 
 
 ## Calculates the largest font size that fits within the label bounds.
-static func calc_font_size(label: Variant, font: Font, size: Vector2) -> int:
+static func calc_font_size(label: Variant, font: Font) -> int:
 	if label is not AutoSizeLabel and label is not AutoSizeLabel3D:
 		return -1
-	
-	var paragraph: TextParagraph = label.create_paragraph()
+
+	if not font:
+		push_warning("No font assigned to: " + label.name + ". A fallback font will be used.")
+		font = SystemFont.new()
+
+	var width: float = -1 if label.autowrap_mode == TextServer.AUTOWRAP_OFF else label.label_size.x
+	var break_flags: int = get_break_flags(label.autowrap_mode)
+	var text_direction: TextServer.Direction = label.text_direction as TextServer.Direction
 
 	var comparable := func(middle: float) -> bool:
-		paragraph.clear()
-		paragraph.line_spacing = label.calc_line_spacing(middle)
-		paragraph.add_string(label.text, font, int(middle), label.language)
+		var font_size := int(middle)
 
-		var text_size: Vector2 = paragraph.get_size()
-		return text_size.x <= size.x and text_size.y <= size.y
+		var text_size: Vector2 = font.get_multiline_string_size(
+				label.text,
+				label.horizontal_alignment,
+				width,
+				font_size,
+				-1,
+				break_flags,
+				label.justification_flags,
+				text_direction)
+
+		var line_count := int(text_size.y / font.get_height(font_size))
+		var line_spacing: float = label.calc_line_spacing(font_size)
+		var total_spacing: float = line_spacing * maxf(0, line_count - 1)
+
+		return text_size.x <= label.label_size.x and text_size.y + total_spacing <= label.label_size.y
 
 	return int(Utils.binary_search(label.min_font_size, label.max_font_size, comparable))
 
@@ -23,11 +40,13 @@ static func calc_font_size(label: Variant, font: Font, size: Vector2) -> int:
 ## Calculates the largest font size that fits within the label bounds, taking rich text and BBCode into account.
 static func calc_rich_font_size(label: AutoSizeRichTextLabel) -> int:
 	var comparable := func(middle: float) -> bool:
-		label.set_line_separation(int(middle))
-		label.bulk_rich_font_size_override(int(middle))
-		
+		var font_size := int(middle)
+
+		label.set_line_separation(font_size)
+		label.bulk_rich_font_size_override(font_size)
+
 		var text_size := Vector2(label.get_content_width(), label.get_content_height())
-		return text_size.x <= label.size.x and text_size.y <= label.size.y
+		return text_size.x <= label.label_size.x and text_size.y <= label.label_size.y
 
 	return int(Utils.binary_search(label.min_font_size, label.max_font_size, comparable))
 

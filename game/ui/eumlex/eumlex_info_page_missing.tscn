@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="16_i5ahr"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="17_b7vvx"]
 [ext_resource type="Texture2D" uid="uid://b4wy7vt8llog" path="res://assets/ui/Map/JungleIsland.png" id="17_bby07"]
-[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_label.gd" id="18_657gf"]
+[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="18_657gf"]
 [ext_resource type="Texture2D" uid="uid://6itd87mqu01y" path="res://assets/ui/Eumlex/eumlex_zuletzt_gesehen.png" id="18_ccn3p"]
 [ext_resource type="Texture2D" uid="uid://coka5lrauhsno" path="res://assets/ui/Eumlex/eumlex_fragezeichen.png" id="19_kmscr"]
 
@@ -59,6 +59,8 @@ texture = ExtResource("16_i5ahr")
 
 [node name="Name" type="Label" parent="Banner" unique_id=888141994]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(586, 88)
+custom_maximum_size = Vector2(586, 88)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -80,10 +82,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 script = ExtResource("18_657gf")
+label_size = Vector2i(586, 88)
 max_font_size = 60
 
 [node name="Job" type="Label" parent="." unique_id=386384428]
 visible = false
+custom_minimum_size = Vector2(333, 52)
+custom_maximum_size = Vector2(333, 52)
 layout_mode = 0
 offset_left = 211.0
 offset_top = 137.0
@@ -97,6 +102,7 @@ text = "Job Titel"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("18_657gf")
+label_size = Vector2i(333, 52)
 max_font_size = 35
 
 [node name="Location" type="TextureRect" parent="." unique_id=2086759245]
