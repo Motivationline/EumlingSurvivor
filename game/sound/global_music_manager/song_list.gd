@@ -15,8 +15,10 @@ enum TRACK {
 	BOSS_MOUNTAIN = 15,
 	CHASE = 6,
 	GAMBA = 7,
+	VICTORY_THEME = 16,
 	TITLE = 11,
 	TUTORIAL = 14,
+	
 }
 enum ENVNOISE {
 	NOTHING  = 0,
@@ -45,6 +47,7 @@ static var tracks:Dictionary[TRACK, Array] = {
 	TRACK.BOSS_MOUNTAIN:["res://assets/sound/music/boss_mountain.tres", ENVNOISE.MOUNTAIN],
 	TRACK.CHASE:["res://assets/sound/music/chase.tres", ENVNOISE.NOTHING],
 	TRACK.GAMBA:["res://assets/sound/music/gamba.tres", ENVNOISE.NOTHING],
+	TRACK.VICTORY_THEME:["res://assets/sound/music/victory_theme.tres", ENVNOISE.NOTHING],
 	TRACK.TITLE:["res://assets/sound/music/title_theme.tres",ENVNOISE.NOTHING],
 	TRACK.TUTORIAL:["res://assets/sound/music/tutorial.tres",ENVNOISE.FLOWERS],
 	TRACK.NOTHING:["", ENVNOISE.NOTHING]

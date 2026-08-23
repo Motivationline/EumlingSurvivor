@@ -197,6 +197,7 @@ func unlock_mini_eumling():
 		eumling_type = Enum.EUMLING_TYPE.values().pick_random()
 	Data.unlocked_eumling(eumling_type)
 	var popup = EUMLING_CELEBRATION.instantiate()
+	GlobalMusicManager.request_music(SongList.TRACK.VICTORY_THEME,MusicTransition.instant())
 	add_child(popup)
 	popup.setup(eumling_type)
 	await popup.done
