@@ -3,23 +3,19 @@ class_name UpgradeOption
 
 @export var cards: Dictionary[Enum.EUMLING_TYPE, PackedScene] = {}
 const CARD_BASE = preload("uid://umtjixecg24")
-const SPECIAL_ICON_PLACEHOLDER = preload("uid://cmslavw1w4df3")
+const CARD_SPECIAL = preload("uid://cayygfleuixoa")
 @export var textures: Dictionary[Enum.UPGRADE, Texture] = {}
 @export var sound_effect_manager : SoundEffectManager
 
 func setup_multiple(upgrades: Array, delay: float = 0.0, sound_pos_offset: float = 0.0):
 	if upgrades.size() == 0: return
-	var card: Node3D = CARD_BASE.instantiate()
+	var card: Node3D = CARD_SPECIAL.instantiate()
 	var text = card.find_child("Text")
 	text.text = ""
 	for i in upgrades.size():
 		if i > 0:
 			text.text += "\n"
-		text.text += upgrades[i]._to_string()	
-	card.find_child("UpgradeImage").texture = SPECIAL_ICON_PLACEHOLDER
-	card.find_child("Tracker").hide()
-	card.find_child("Tag").hide()
-	card.find_child("TrackerPointsBackground").hide()
+		text.text += upgrades[i]._to_string()
 	_shared_setup(card, delay, sound_pos_offset)
 
 
