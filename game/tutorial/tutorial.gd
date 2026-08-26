@@ -102,7 +102,7 @@ func start() -> void:
 	var video_instance = video.instantiate()
 	progress = PROGRESS.INTRO_VIDEO
 	add_child(video_instance)
-	await get_tree().create_timer(2).timeout
+	await video_instance.finished
 
 	add_child(main_menu_instance)
 	remove_child(video_instance)
