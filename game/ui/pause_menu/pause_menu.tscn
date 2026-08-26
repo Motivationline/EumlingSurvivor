@@ -32,6 +32,12 @@ shader_parameter/blur_amount = 4.00000019
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7phrv"]
 
+[sub_resource type="InputEventAction" id="InputEventAction_kko3x"]
+action = &"openPauseMenu"
+
+[sub_resource type="Shortcut" id="Shortcut_vyndw"]
+events = [SubResource("InputEventAction_kko3x")]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f4s3b"]
 texture = ExtResource("9_edo3p")
 
@@ -156,6 +162,7 @@ texture_normal = ExtResource("4_ob8pm")
 
 [node name="PlayButton" type="TextureButton" parent="Buttons" unique_id=555258968]
 layout_mode = 2
+shortcut = SubResource("Shortcut_vyndw")
 texture_normal = ExtResource("5_edo3p")
 
 [node name="SettingsTabContainer" type="TabContainer" parent="." unique_id=1951920544]

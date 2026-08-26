@@ -2,7 +2,7 @@ extends Control
 
 const PROGRESS_EMPTY = preload("uid://cjaigtkg6fgd8")
 const PROGRESS_ACTIVE = preload("uid://chlu42bsc22aa")
-const PROGRESS_COMPLETE = preload("uid://c25hfu5gdb5mo")
+const PROGRESS_COMPLETE = preload("uid://bbwwbsr1l4lty")
 const PROGRESS_BOSS = preload("uid://dg4xb1ktpoadp")
 
 func update_visuals(total: int, remaining: int):

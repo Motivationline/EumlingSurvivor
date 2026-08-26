@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://b31bh35rs35er" path="res://assets/ui/Buttons/PauseButton.png" id="5_58y8o"]
 [ext_resource type="Texture2D" uid="uid://chlu42bsc22aa" path="res://assets/ui/gameOverlay/ProgressActive.png" id="5_vyndw"]
 
+[sub_resource type="InputEventAction" id="InputEventAction_kko3x"]
+action = &"openPauseMenu"
+
+[sub_resource type="Shortcut" id="Shortcut_vyndw"]
+events = [SubResource("InputEventAction_kko3x")]
+
 [node name="BaseBattleOverlay" type="Control" unique_id=322158331]
 layout_mode = 3
 anchors_preset = 15
@@ -21,6 +27,7 @@ offset_left = 1710.0
 offset_top = 36.0
 offset_right = 1850.0
 offset_bottom = 180.0
+shortcut = SubResource("Shortcut_vyndw")
 texture_normal = ExtResource("5_58y8o")
 
 [node name="ProgressDisplay" type="Control" parent="." unique_id=2048125288]
