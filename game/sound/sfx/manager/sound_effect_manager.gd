@@ -37,6 +37,7 @@ func play_sound(_sounds, _focus:bool = false, _persistent = false):
 				print("Sound " + sound_name)
 		if sound_list.has(sound_name):
 			var sound = sound_list[sound_name] 
+			if not sound: break
 			if _persistent:
 				sound.reparent(get_tree().get_first_node_in_group("Level"))
 				if !sound.finished.is_connected(sound.queue_free):

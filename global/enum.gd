@@ -29,6 +29,11 @@ enum UPGRADE {
 	# LUCK,
 	# XP_GAIN,
 	# REROLL,
+
+	# DEBUG STUFF
+	NEUTRAL,
+	# TODO: this is a hack and should be replaced with a proper way to prevent this from counting towards total upgrades
+	DONT_COUNT,  
 }
 
 
