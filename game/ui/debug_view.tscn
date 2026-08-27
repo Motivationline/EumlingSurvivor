@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bi18neffxur7j" path="res://game/ui/debug_view.gd" id="1_wj8x7"]
 [ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/start_screen/graphics_settings.tscn" id="2_2pq5q"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+bg_color = Color(0.6, 0.18039216, 0.1882353, 1)
+
 [node name="DebugView" type="CanvasLayer" unique_id=389825636]
 layer = 12
 script = ExtResource("1_wj8x7")
@@ -289,6 +292,14 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.8745098, 0, 0, 1)
 text = "Delete save file"
 
+[node name="SkipLevelButton" type="Button" parent="." unique_id=864659327]
+offset_left = 1257.0
+offset_top = 73.0
+offset_right = 1714.0
+offset_bottom = 187.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_g4v7s")
+text = "SKIP LEVEL"
+
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/AddUpgradeButton" to="." method="_on_add_upgrade_button_pressed"]
 [connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/A" to="." method="add_eumling" binds= [0]]
 [connection signal="pressed" from="MiniEumlings/VBoxContainer/GridContainer/C" to="." method="add_eumling" binds= [1]]
@@ -301,3 +312,4 @@ text = "Delete save file"
 [connection signal="toggled" from="Player/InvulToggle" to="." method="player_invulnerability"]
 [connection signal="pressed" from="CloseButton" to="." method="close"]
 [connection signal="pressed" from="DeleteSaveButton" to="." method="delete_save"]
+[connection signal="pressed" from="SkipLevelButton" to="." method="_on_skip_level_pressed"]

@@ -55,3 +55,10 @@ func _on_add_upgrade_button_pressed() -> void:
 func delete_save() -> void:
 	SaveData.reset()
 	get_tree().quit()
+
+
+func _on_skip_level_pressed() -> void:
+	var games = get_tree().root.find_children("", "Game", true, false)
+	if games.is_empty(): return
+	games[0].level_ended()
+	close()
