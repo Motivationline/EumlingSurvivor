@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="13_32ehm"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="14_1fwax"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="15_rg0m5"]
+[ext_resource type="Material" uid="uid://bl46tp3s7w71l" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.tres" id="15_uy04u"]
 [ext_resource type="AudioStream" uid="uid://dhj41c6f3q7xe" path="res://assets/characters/enemies/toad/sounds/death_1.wav" id="16_5yy20"]
 [ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="16_e60ta"]
 [ext_resource type="AudioStream" uid="uid://6vdufmbcl37m" path="res://assets/characters/enemies/toad/sounds/death_2.wav" id="17_3ntgq"]
@@ -261,6 +262,9 @@ next_state = NodePath("../../CheckDistance/DecideDistanceState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("12_ons1q")]
+
+[node name="Toad_Mesh" parent="Visuals/Toad/Armature_TOAD/Skeleton3D" parent_id_path=PackedInt32Array(1388801067, 1888242381) index="0" unique_id=651354387]
+material_overlay = ExtResource("15_uy04u")
 
 [node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1554862748 instance=ExtResource("16_e60ta")]
 
