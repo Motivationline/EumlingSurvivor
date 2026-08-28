@@ -7,13 +7,21 @@ class_name Upgrade
 @export var text: String
 @export var path: Enum.EUMLING_TYPE
 @export var display_factor: float
+@export var milestone: bool
 
-func _init(_type: Enum.UPGRADE = Enum.UPGRADE.MOVEMENT_SPEED, _method: Enum.UPGRADE_METHOD = Enum.UPGRADE_METHOD.ABSOLUTE, _value: float = 0, _text: String = "%s", _display_factor: float = 1) -> void:
+func _init(
+	_type: Enum.UPGRADE = Enum.UPGRADE.MOVEMENT_SPEED,
+	_method: Enum.UPGRADE_METHOD = Enum.UPGRADE_METHOD.ABSOLUTE,
+	_value: float = 0,
+	_text: String = "%s",
+	_display_factor: float = 1,
+	_milestone: bool = false) -> void:
 	type = _type
 	method = _method
 	value = _value
 	text = _text
 	display_factor = _display_factor
+	milestone = _milestone
 
 func apply(_value: float) -> float:
 	match method:

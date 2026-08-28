@@ -57,11 +57,12 @@ func _load_upgrades():
 		var key = Enum.UPGRADE.keys().find(upgrade.type)
 		var info = player_upgrade_info.get(upgrade.type)
 		type_array[index].append(Upgrade.new(
-			Enum.UPGRADE.DONT_COUNT, # TODO: this is a hack and should be replaced with a proper way to prevent this from counting towards total upgrades
+			key,
 			Enum.UPGRADE_METHOD.ABSOLUTE if upgrade.method == "Additiv" else Enum.UPGRADE_METHOD.MULTIPLIER,
 			upgrade.value,
 			info.text,
-			info.display_factor
+			info.display_factor,
+			true,
 		))
 
 

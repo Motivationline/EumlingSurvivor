@@ -276,7 +276,7 @@ func add_upgrade(upgrade: Upgrade, temporary: bool = false) -> void:
 			var limits: Vector2 = min_max_values.get(upgrade.type)
 			new_value = clamp(new_value, limits.x, limits.y)
 		values.set(upgrade.type, new_value)
-		if upgrade.type != Enum.UPGRADE.DONT_COUNT:
+		if not upgrade.milestone:
 			Data.add_upgrade_to_path(upgrade.path)
 	upgrade_added.emit(upgrade)
 	check_upgrades_affecting_player(upgrade)
