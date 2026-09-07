@@ -65,35 +65,35 @@ func _save() -> void:
 	EditorInterface.get_resource_filesystem().update_file(path)
 
 
-func _find_scene_path(directory_name: String) -> String:
+func _find_scene_path(directory: String) -> String:
 	var found: String = ""
 
-	var directory: DirAccess = DirAccess.open(directory_name)
+	var dir_access: DirAccess = DirAccess.open(directory)
 	var error: Error = DirAccess.get_open_error()
 	if error:
-		_error_state.set_error("Failed to open directory %s with error %s" % [directory_name, error_string(error)])
+		_error_state.set_error("Failed to open directory %s with error %s" % [directory, error_string(error)])
 		return ""
 
-	error = directory.list_dir_begin()
+	error = dir_access.list_dir_begin()
 	if error:
-		_error_state.set_error("Failed to initialize directory stream for %s with error %s" % [directory_name, error_string(error)])
+		_error_state.set_error("Failed to initialize directory stream for %s with error %s" % [directory, error_string(error)])
 		return ""
 
-	var entry: String = directory.get_next()
+	var entry: String = dir_access.get_next()
 	while not entry.is_empty() and found.is_empty():
 		if entry.begins_with("."):
-			entry = directory.get_next()
+			entry = dir_access.get_next()
 			continue
 
-		var current_path: String = directory_name.path_join(entry)
-		if directory.current_is_dir():
+		var current_path: String = directory.path_join(entry)
+		if dir_access.current_is_dir():
 			found = _find_scene_path(current_path)
 			if _error_state.has_error:
 				break
 		elif entry == name:
 			found = current_path
 
-		entry = directory.get_next()
+		entry = dir_access.get_next()
 
-	directory.list_dir_end()
+	dir_access.list_dir_end()
 	return found

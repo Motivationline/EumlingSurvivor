@@ -13,12 +13,12 @@ func read_json_file() -> String:
 	var config := BalancingConfig
 	var file: String = FileAccess.get_file_as_string(config.JSON_FILE)
 
-	var error: int = FileAccess.get_open_error()
+	var error: Error = FileAccess.get_open_error()
 	if error:
 		_error_state.set_error("Opening %s failed with error %s" % [config.JSON_FILE, error_string(error)])
 		return ""
 	if file.is_empty():
-		_error_state.set_error("File %s is empty" % [config.JSON_FILE])
+		_error_state.set_error("File %s is empty" % config.JSON_FILE)
 		return ""
 
 	return file
