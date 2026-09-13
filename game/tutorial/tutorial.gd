@@ -97,13 +97,13 @@ func initialize() -> void:
 	add_child(quest_timer)
 
 func start() -> void:
-	GlobalMusicManager.request_music(SongList.TRACK.TUTORIAL,MusicTransition.fade_and_start(1),true,SongList.ENVNOISE.NOTHING)
+	
 	progress = PROGRESS.NONE
 	var video_instance = video.instantiate()
 	progress = PROGRESS.INTRO_VIDEO
 	add_child(video_instance)
 	await video_instance.finished
-
+	GlobalMusicManager.request_music(SongList.TRACK.TUTORIAL,MusicTransition.fade_and_start(1),true,SongList.ENVNOISE.NOTHING)
 	add_child(main_menu_instance)
 	remove_child(video_instance)
 	progress = PROGRESS.INTRO_TEXT
