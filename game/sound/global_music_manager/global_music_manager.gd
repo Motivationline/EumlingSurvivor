@@ -114,7 +114,8 @@ func request_music(_track_name: SongList.TRACK, _transition: MusicTransition, _o
 				destroy_player(fading_players[fading_id])
 				
 	if _override_environment_noise:
-		set_environment_noise(_environment_noise)
+		if _environment_noise:
+			set_environment_noise(_environment_noise)
 	else:
 		set_environment_noise(SongList.get_noise_of_song(_track_name))
 	current_track = _track_name
