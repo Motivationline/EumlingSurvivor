@@ -7,6 +7,22 @@
 [ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle-area/sniper/sniper_projectile_enemy.tscn" id="4_xrvyw"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="5_pbdvb"]
 [ext_resource type="PackedScene" uid="uid://dawdgb5ljl7x6" path="res://game/enemies/0-tutorial-area/dummy_move.tscn" id="5_xrvyw"]
+[ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="8_mp8ru"]
+[ext_resource type="AudioStream" uid="uid://m0ud1mllhale" path="res://assets/characters/enemies/saeckle/sounds/attack_1.wav" id="9_poywg"]
+[ext_resource type="AudioStream" uid="uid://ddnw7msiw31iw" path="res://assets/characters/enemies/saeckle/sounds/attack_2.wav" id="10_2r3hy"]
+[ext_resource type="AudioStream" uid="uid://fg0p80l2q72c" path="res://assets/characters/enemies/saeckle/sounds/attack_3.wav" id="11_uxni1"]
+[ext_resource type="AudioStream" uid="uid://1as1yxuwk4rs" path="res://assets/characters/enemies/saeckle/sounds/attack_4.wav" id="12_q357j"]
+[ext_resource type="AudioStream" uid="uid://di7xpmr8xyomc" path="res://assets/characters/enemies/saeckle/sounds/attack_5.wav" id="13_j2vdq"]
+[ext_resource type="AudioStream" uid="uid://wrdbw883a4tu" path="res://assets/characters/enemies/saeckle/sounds/attack_6.wav" id="14_h7mow"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ly1cu"]
+streams_count = 6
+stream_0/stream = ExtResource("9_poywg")
+stream_1/stream = ExtResource("10_2r3hy")
+stream_2/stream = ExtResource("11_uxni1")
+stream_3/stream = ExtResource("12_q357j")
+stream_4/stream = ExtResource("13_j2vdq")
+stream_5/stream = ExtResource("14_h7mow")
 
 [node name="DummyShoot" unique_id=1898691 node_paths=PackedStringArray("on_death") instance=ExtResource("1_spq6f")]
 on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
@@ -54,3 +70,9 @@ transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, 0, 0, 0)
 
 [node name="ProjectileSpawnPos" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1144174269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.415)
+
+[node name="Attack" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="0" unique_id=1553656196 instance=ExtResource("8_mp8ru")]
+stream = SubResource("AudioStreamRandomizer_ly1cu")
+volume_db = -12.0
+
+[connection signal="play_sound" from="Visuals/saeckle" to="SoundEffectManager" method="play_sound"]

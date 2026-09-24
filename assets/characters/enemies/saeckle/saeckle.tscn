@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bxbgptpji15jk"]
 
 [ext_resource type="PackedScene" uid="uid://daxibk5x6ufly" path="res://assets/characters/enemies/saeckle/saeckle.glb" id="1_5f01d"]
+[ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/manager/sound_requester.gd" id="2_p2eby"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5f01d"]
 animation = &"walk"
@@ -34,7 +35,7 @@ input_2/break_loop_at_end = false
 input_2/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g4v7s"]
-graph_offset = Vector2(-551.8761, -120.01654)
+graph_offset = Vector2(-686.32806, -313.2761)
 nodes/output/position = Vector2(500, 60)
 nodes/Transition/node = SubResource("AnimationNodeTransition_5f01d")
 nodes/Transition/position = Vector2(-120, 0)
@@ -51,11 +52,12 @@ nodes/OneShot/position = Vector2(220, 0)
 node_connections = [&"output", 0, &"OneShot", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 2", &"Transition", 2, &"Animation 3", &"OneShot", 0, &"Transition", &"OneShot", 1, &"Animation 4"]
 
 [node name="saeckle" unique_id=1803899971 instance=ExtResource("1_5f01d")]
+script = ExtResource("2_p2eby")
 
-[node name="Cube_002" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1428706016) index="0" unique_id=1392395471]
+[node name="Cube_002" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(290428680) index="0" unique_id=1545815835]
 skeleton = NodePath("..")
 
-[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1428706016) index="1" unique_id=1160345917]
+[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(290428680) index="1" unique_id=1160345917]
 setting_count = 1
 settings/0/root_bone_name = "DEF_LEAF01"
 settings/0/root_bone = 5
