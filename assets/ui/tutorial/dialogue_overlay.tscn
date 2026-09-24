@@ -6,6 +6,27 @@
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_64t52"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="5_lw68k"]
 [ext_resource type="Texture2D" uid="uid://cndgq7ancyfru" path="res://assets/ui/textfenster/tutorox_sprite.png" id="5_ugc8f"]
+[ext_resource type="Script" uid="uid://b0gme4b05twlj" path="res://game/sound/sfx/manager/dialogue_sound_effect_manager.gd" id="7_6utu6"]
+[ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="8_lw68k"]
+[ext_resource type="AudioStream" uid="uid://diyxvqakvgbly" path="res://assets/sound/ui/dialogue/tutorox/speak_1.wav" id="9_dbo1v"]
+[ext_resource type="AudioStream" uid="uid://drrntvnqxya6e" path="res://assets/sound/ui/dialogue/tutorox/speak_2.wav" id="10_jubhp"]
+[ext_resource type="AudioStream" uid="uid://5bepyh28e7o7" path="res://assets/sound/ui/dialogue/tutorox/speak_11.wav" id="11_rofbf"]
+[ext_resource type="AudioStream" uid="uid://dcs5vrletms5o" path="res://assets/sound/ui/dialogue/tutorox/speak_12.wav" id="12_xn3mc"]
+[ext_resource type="AudioStream" uid="uid://yrtunymkjtma" path="res://assets/sound/ui/dialogue/tutorox/speak_13.wav" id="13_3idp0"]
+[ext_resource type="AudioStream" uid="uid://de27baoa4jukl" path="res://assets/sound/ui/dialogue/tutorox/speak_14.wav" id="14_kclet"]
+[ext_resource type="AudioStream" uid="uid://ccaqgkuvn7c5s" path="res://assets/sound/ui/dialogue/tutorox/speak_15.wav" id="15_dwfxm"]
+[ext_resource type="AudioStream" uid="uid://c0i0m20y265tv" path="res://assets/sound/ui/dialogue/tutorox/speak_16.wav" id="16_undpl"]
+[ext_resource type="AudioStream" uid="uid://c35c8mjaf4esn" path="res://assets/sound/ui/dialogue/tutorox/speak_17.wav" id="17_gn40v"]
+[ext_resource type="AudioStream" uid="uid://c4llo4gq27qg" path="res://assets/sound/ui/dialogue/tutorox/speak_18.wav" id="18_rmif8"]
+[ext_resource type="AudioStream" uid="uid://cmsfgeai7thf8" path="res://assets/sound/ui/dialogue/tutorox/speak_19.wav" id="19_a0hao"]
+[ext_resource type="AudioStream" uid="uid://cw6vpuhga8a8i" path="res://assets/sound/ui/dialogue/tutorox/speak_3.wav" id="20_s4mb4"]
+[ext_resource type="AudioStream" uid="uid://bl3pevd2ijsan" path="res://assets/sound/ui/dialogue/tutorox/speak_4.wav" id="21_toy7s"]
+[ext_resource type="AudioStream" uid="uid://dfflanwa0pvae" path="res://assets/sound/ui/dialogue/tutorox/speak_5.wav" id="22_m7t33"]
+[ext_resource type="AudioStream" uid="uid://bv7ictwvdn5ff" path="res://assets/sound/ui/dialogue/tutorox/speak_6.wav" id="23_mntvb"]
+[ext_resource type="AudioStream" uid="uid://rfr6sbsxq762" path="res://assets/sound/ui/dialogue/tutorox/speak_7.wav" id="24_5can3"]
+[ext_resource type="AudioStream" uid="uid://1ll01bh71wl5" path="res://assets/sound/ui/dialogue/tutorox/speak_8.wav" id="25_gmd3b"]
+[ext_resource type="AudioStream" uid="uid://ddukjtb2tkcax" path="res://assets/sound/ui/dialogue/tutorox/speak_9.wav" id="26_bcbg7"]
+[ext_resource type="AudioStream" uid="uid://dupla2t3ylpwx" path="res://assets/sound/ui/dialogue/tutorox/speak_10.wav" id="27_mg432"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -104,6 +125,28 @@ _data = {
 &"RESET": SubResource("Animation_nlsx6"),
 &"progress": SubResource("Animation_qkmqt")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kpvxy"]
+streams_count = 19
+stream_0/stream = ExtResource("9_dbo1v")
+stream_1/stream = ExtResource("10_jubhp")
+stream_2/stream = ExtResource("20_s4mb4")
+stream_3/stream = ExtResource("21_toy7s")
+stream_4/stream = ExtResource("22_m7t33")
+stream_5/stream = ExtResource("23_mntvb")
+stream_6/stream = ExtResource("24_5can3")
+stream_7/stream = ExtResource("25_gmd3b")
+stream_8/stream = ExtResource("26_bcbg7")
+stream_9/stream = ExtResource("27_mg432")
+stream_10/stream = ExtResource("11_rofbf")
+stream_11/stream = ExtResource("12_xn3mc")
+stream_12/stream = ExtResource("13_3idp0")
+stream_13/stream = ExtResource("14_kclet")
+stream_14/stream = ExtResource("15_dwfxm")
+stream_15/stream = ExtResource("16_undpl")
+stream_16/stream = ExtResource("17_gn40v")
+stream_17/stream = ExtResource("18_rmif8")
+stream_18/stream = ExtResource("19_a0hao")
 
 [node name="DialogueOverlay" type="CanvasLayer" unique_id=174690453]
 process_mode = 3
@@ -233,6 +276,19 @@ text = "Response example"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1582575704]
 unique_name_in_owner = true
+bus = &"SFXAll"
+
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=389418428 node_paths=PackedStringArray("dialogue_label")]
+script = ExtResource("7_6utu6")
+sound_name = "ElderSound"
+sound_cooldown = 8
+dialogue_label = NodePath("../Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="ElderSound" parent="SoundEffectManager" unique_id=451995016 instance=ExtResource("8_lw68k")]
+stream = SubResource("AudioStreamRandomizer_kpvxy")
+volume_db = -8.0
+bus = &"SFXAll"
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="Balloon/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
