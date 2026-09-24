@@ -5,11 +5,6 @@ resource_name = "HardLimiter"
 
 [sub_resource type="AudioEffectEQ" id="AudioEffectEQ_j3pel"]
 resource_name = "EQ"
-band_db/32_hz = -10.1
-band_db/100_hz = -7.6
-band_db/320_hz = -8.7
-band_db/1000_hz = -9.3
-band_db/3200_hz = -9.0
 
 [sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_g28q7"]
 resource_name = "HardLimiter"
@@ -36,7 +31,7 @@ bus/1/name = &"Music"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = -9.209199
+bus/1/volume_db = -12.984423
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectEQ_j3pel")
 bus/1/effect/0/enabled = true
@@ -44,7 +39,7 @@ bus/2/name = &"SFXAll"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = -3.1173582
 bus/2/send = &"Master"
 bus/3/name = &"SFXEnemies"
 bus/3/solo = false
