@@ -1,4 +1,6 @@
-class_name DifficultyScaler extends Resource
+@tool
+class_name DifficultyScaler
+extends Resource
 
 @export var introduction: Array[AdjustAttributesElement]
 @export var easy: Array[AdjustAttributesElement]
