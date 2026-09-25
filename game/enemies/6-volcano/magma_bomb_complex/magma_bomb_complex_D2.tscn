@@ -189,7 +189,7 @@ difficulty_scaler = SubResource("Resource_ya0xm")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
-on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundEnemyHurtEventStrategy"), NodePath("Eventlisteners/TriggerStateEventStrategy")]
 node_with_animation_tree = NodePath("Visuals/magma_bomberry")
 speed = 2.5
 

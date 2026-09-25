@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="5_4ghmt"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="5_ohdoq"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="6_4ghmt"]
+[ext_resource type="Script" uid="uid://dtq2slclidi3f" path="res://strategies/event/enemy/play_sound_enemy_hurt.gd" id="6_wjam3"]
 [ext_resource type="AudioStream" uid="uid://cwx0xunov8ayx" path="res://assets/sound/hit_sfx/death_1.wav" id="7_l5jqn"]
 [ext_resource type="AudioStream" uid="uid://i43phfxlj3d3" path="res://assets/sound/hit_sfx/death_2.wav" id="8_tsf4b"]
 [ext_resource type="AudioStream" uid="uid://cswruhi8fcsvd" path="res://assets/sound/hit_sfx/death_3.wav" id="9_p6bpy"]
@@ -24,6 +25,16 @@
 [ext_resource type="AudioStream" uid="uid://divfgafb7b3c4" path="res://assets/sound/hit_sfx/hit_9.wav" id="21_tbsjp"]
 [ext_resource type="AudioStream" uid="uid://bpsnjbmf667ua" path="res://assets/sound/hit_sfx/hit_10.wav" id="22_igjq0"]
 [ext_resource type="PackedScene" uid="uid://crhvycqx837en" path="res://game/enemies/vulnerability_display/vulnerability_display.tscn" id="23_4ghmt"]
+[ext_resource type="AudioStream" uid="uid://ds0xtswl3y356" path="res://assets/sound/hit_sfx/crit_hit_1.wav" id="25_scfqi"]
+[ext_resource type="AudioStream" uid="uid://cusxjhp4ba7p8" path="res://assets/sound/hit_sfx/crit_hit_2.wav" id="26_bi11c"]
+[ext_resource type="AudioStream" uid="uid://bkdphx3m82yrx" path="res://assets/sound/hit_sfx/crit_hit_3.wav" id="27_tbsjp"]
+[ext_resource type="AudioStream" uid="uid://pb7c1tpnskgh" path="res://assets/sound/hit_sfx/crit_hit_4.wav" id="28_igjq0"]
+[ext_resource type="AudioStream" uid="uid://cvxy0xkx4uo06" path="res://assets/sound/hit_sfx/crit_hit_5.wav" id="29_bauuv"]
+[ext_resource type="AudioStream" uid="uid://cfb4ijuipyc52" path="res://assets/sound/hit_sfx/crit_hit_6.wav" id="30_ji8hj"]
+[ext_resource type="AudioStream" uid="uid://b1lme60nelywa" path="res://assets/sound/hit_sfx/crit_hit_7.wav" id="31_r82uu"]
+[ext_resource type="AudioStream" uid="uid://d33epnt7alndr" path="res://assets/sound/hit_sfx/crit_hit_8.wav" id="32_d2rhx"]
+[ext_resource type="AudioStream" uid="uid://bq16aajujswhi" path="res://assets/sound/hit_sfx/crit_hit_9.wav" id="33_3m2as"]
+[ext_resource type="AudioStream" uid="uid://bsd1lyabl63bl" path="res://assets/sound/hit_sfx/crit_hit_10.wav" id="34_cf8mh"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bauuv"]
 streams_count = 6
@@ -47,6 +58,19 @@ stream_7/stream = ExtResource("20_bi11c")
 stream_8/stream = ExtResource("21_tbsjp")
 stream_9/stream = ExtResource("22_igjq0")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6mfuy"]
+streams_count = 10
+stream_0/stream = ExtResource("25_scfqi")
+stream_1/stream = ExtResource("26_bi11c")
+stream_2/stream = ExtResource("27_tbsjp")
+stream_3/stream = ExtResource("28_igjq0")
+stream_4/stream = ExtResource("29_bauuv")
+stream_5/stream = ExtResource("30_ji8hj")
+stream_6/stream = ExtResource("31_r82uu")
+stream_7/stream = ExtResource("32_d2rhx")
+stream_8/stream = ExtResource("33_3m2as")
+stream_9/stream = ExtResource("34_cf8mh")
+
 [node name="BaseEnemy" type="CharacterBody3D" unique_id=1898691 node_paths=PackedStringArray("status_visuals", "on_death", "on_hurt", "state_machine")]
 collision_layer = 16
 script = ExtResource("1_axhys")
@@ -54,7 +78,7 @@ health = 10.0
 death_effect = ExtResource("2_l5jqn")
 status_visuals = NodePath("StatusVisuals3DEnemy")
 on_death = [NodePath("Eventlisteners/PlaySoundDeath")]
-on_hurt = [NodePath("Eventlisteners/PlaySoundHurt")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundEnemyHurtEventStrategy")]
 state_machine = NodePath("StateMachine")
 
 [node name="StatusVisuals3DEnemy" parent="." unique_id=691291944 instance=ExtResource("3_qbujc")]
@@ -72,10 +96,12 @@ sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = Array[String](["DeathGeneral", "DeathSpecific"])
 needs_to_be_persistent = true
 
-[node name="PlaySoundHurt" type="Node" parent="Eventlisteners" unique_id=75111653 node_paths=PackedStringArray("sound_manager")]
-script = ExtResource("5_4ghmt")
+[node name="PlaySoundEnemyHurtEventStrategy" type="Node" parent="Eventlisteners" unique_id=662367104 node_paths=PackedStringArray("sound_manager")]
+script = ExtResource("6_wjam3")
+sound_to_play_on_crit = Array[String](["Crit"])
 sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = Array[String](["Hit"])
+metadata/_custom_type_script = "uid://dtq2slclidi3f"
 
 [node name="EventEmitters" type="Node" parent="." unique_id=1816335374]
 
@@ -91,6 +117,10 @@ volume_db = 0.0
 
 [node name="Hit" parent="SoundEffectManager" unique_id=41969835 instance=ExtResource("6_4ghmt")]
 stream = SubResource("AudioStreamRandomizer_ji8hj")
+volume_db = -4.0
+
+[node name="Crit" parent="SoundEffectManager" unique_id=1553656196 instance=ExtResource("6_4ghmt")]
+stream = SubResource("AudioStreamRandomizer_6mfuy")
 volume_db = -4.0
 
 [node name="VulnerabilityDisplay" parent="." unique_id=1768099244 instance=ExtResource("23_4ghmt")]

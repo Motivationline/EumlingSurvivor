@@ -16,7 +16,7 @@ height = 0.9921875
 [node name="Dummy" unique_id=1898691 node_paths=PackedStringArray("hurtbox", "on_hurt") instance=ExtResource("1_0bfnj")]
 health = 150.0
 hurtbox = NodePath("Hurtbox")
-on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("EventEmitters/PlayAnimationEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundEnemyHurtEventStrategy"), NodePath("EventEmitters/PlayAnimationEventStrategy")]
 
 [node name="PlayAnimationEventStrategy" type="Node" parent="EventEmitters" parent_id_path=PackedInt32Array(1816335374) index="0" unique_id=874374946]
 script = ExtResource("2_5jdep")

@@ -300,7 +300,7 @@ health = 400.0
 difficulty_scaler = SubResource("Resource_o7jqg")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_hurt = [NodePath("Eventlisteners/PlaySoundHurt"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundEnemyHurtEventStrategy"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlayAnimationEventStrategy")]
 speed = 0.4
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]

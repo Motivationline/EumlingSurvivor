@@ -24,8 +24,9 @@ stream_3/stream = ExtResource("12_q357j")
 stream_4/stream = ExtResource("13_j2vdq")
 stream_5/stream = ExtResource("14_h7mow")
 
-[node name="DummyShoot" unique_id=1898691 node_paths=PackedStringArray("on_death") instance=ExtResource("1_spq6f")]
+[node name="DummyShoot" unique_id=1898691 node_paths=PackedStringArray("on_death", "on_hurt") instance=ExtResource("1_spq6f")]
 on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy")]
+on_hurt = [NodePath("Eventlisteners/PlaySoundEnemyHurtEventStrategy"), NodePath("EventEmitters/PlayAnimationEventStrategy")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("WaitForTimeXState")
