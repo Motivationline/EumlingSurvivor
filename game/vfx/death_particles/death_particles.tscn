@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://buywg7fur4w1w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_d0u6y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.8133864, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_3gngh"]
+colors = PackedColorArray(1.2742168, 0, 0.72825086, 1, 0.29333332, 0, 0.55, 1)
+
+[node name="Node3D" type="Node3D" unique_id=21540505]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1129645646]
+material_override = SubResource("StandardMaterial3D_57qmd")
+speed_scale = 3.0
+explosiveness = 0.46
+mesh = SubResource("SphereMesh_g4v7s")
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 5.0
+damping_min = 4.0
+damping_max = 5.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_d0u6y")
+color_initial_ramp = SubResource("Gradient_3gngh")

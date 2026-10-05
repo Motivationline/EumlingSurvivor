@@ -19,8 +19,25 @@ height = 0.5
 radial_segments = 8
 rings = 4
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upxv0"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.3254902, 0.05882353, 1)
+grow = true
+grow_amount = 0.027
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jeq8"]
+next_pass = SubResource("StandardMaterial3D_upxv0")
 albedo_color = Color(0.7019608, 0.5921569, 0.43529412, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(1, 0.3254902, 0.05882353, 1)
+stencil_outline_thickness = 0.027
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_upxv0"]
 size = Vector3(0.564209, 0.20458984, 0.6883545)

@@ -9,7 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="6_4ghmt"]
 [ext_resource type="Script" uid="uid://dtq2slclidi3f" path="res://strategies/event/enemy/play_sound_enemy_hurt.gd" id="6_wjam3"]
 [ext_resource type="AudioStream" uid="uid://cwx0xunov8ayx" path="res://assets/sound/hit_sfx/death_1.wav" id="7_l5jqn"]
+[ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="7_tbsjp"]
+[ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="8_igjq0"]
 [ext_resource type="AudioStream" uid="uid://i43phfxlj3d3" path="res://assets/sound/hit_sfx/death_2.wav" id="8_tsf4b"]
+[ext_resource type="PackedScene" uid="uid://bkff3bbbcyrcj" path="res://assets/models/3-Jungle/momument/prefab_monument.tscn" id="9_bauuv"]
 [ext_resource type="AudioStream" uid="uid://cswruhi8fcsvd" path="res://assets/sound/hit_sfx/death_3.wav" id="9_p6bpy"]
 [ext_resource type="AudioStream" uid="uid://dsmxr6c62vur3" path="res://assets/sound/hit_sfx/death_4.wav" id="10_oapxy"]
 [ext_resource type="AudioStream" uid="uid://drohccsrkuoxj" path="res://assets/sound/hit_sfx/death_5.wav" id="11_ybmbl"]
@@ -77,7 +80,7 @@ script = ExtResource("1_axhys")
 health = 10.0
 death_effect = ExtResource("2_l5jqn")
 status_visuals = NodePath("StatusVisuals3DEnemy")
-on_death = [NodePath("Eventlisteners/PlaySoundDeath")]
+on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnFriendlyMob")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundEnemyHurtEventStrategy")]
 state_machine = NodePath("StateMachine")
 
@@ -102,6 +105,15 @@ sound_to_play_on_crit = Array[String](["Crit"])
 sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = Array[String](["Hit"])
 metadata/_custom_type_script = "uid://dtq2slclidi3f"
+
+[node name="SpawnFriendlyMob" type="Node" parent="Eventlisteners" unique_id=935622948]
+script = ExtResource("7_tbsjp")
+metadata/_custom_type_script = "uid://cpx1eq3gu268a"
+
+[node name="EntitySpawner" type="Node3D" parent="Eventlisteners/SpawnFriendlyMob" unique_id=2045474360]
+script = ExtResource("8_igjq0")
+entity_to_spawn = ExtResource("9_bauuv")
+metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="EventEmitters" type="Node" parent="." unique_id=1816335374]
 
