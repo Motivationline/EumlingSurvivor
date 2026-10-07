@@ -14,10 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://b2y786mw4lw78" path="res://game/projectiles/clam_projectile/clam_projectile.tscn" id="7_myuco"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="8_6uf4n"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="8_myuco"]
-[ext_resource type="Script" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_o76ae"]
+[ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_o76ae"]
 [ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="10_fd3e2"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="13_onacd"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="15_cxjil"]
+[ext_resource type="PackedScene" uid="uid://bqhc8xapvpcdc" path="res://assets/characters/enemies/friednly_animals/fish/fish_.tscn" id="15_vxwlt"]
 [ext_resource type="AudioStream" uid="uid://cyy015a80gd1s" path="res://assets/characters/enemies/clam/sounds/open_1.wav" id="16_jiy3g"]
 [ext_resource type="AudioStream" uid="uid://cw7xmflf22ncy" path="res://assets/characters/enemies/clam/sounds/open_2.wav" id="17_v4op6"]
 [ext_resource type="AudioStream" uid="uid://p3cx84ld3bg4" path="res://assets/characters/enemies/clam/sounds/open_3.wav" id="18_7tfva"]
@@ -320,6 +321,9 @@ metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 script = ExtResource("7_l6trl")
 changes = Array[ExtResource("8_myuco")]([SubResource("Resource_l6trl")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("15_vxwlt")
 
 [node name="clam" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=553851633 instance=ExtResource("2_j40wc")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
