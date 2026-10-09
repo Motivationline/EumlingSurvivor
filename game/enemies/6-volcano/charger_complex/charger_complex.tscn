@@ -27,6 +27,16 @@
 [ext_resource type="AudioStream" uid="uid://d0s1hxphaig7e" path="res://assets/characters/enemies/lizard/sounds/charge_5.wav" id="23_pjk31"]
 [ext_resource type="AudioStream" uid="uid://gmw6bkurkcl8" path="res://assets/characters/enemies/lizard/sounds/charge_6.wav" id="24_udkwe"]
 [ext_resource type="AudioStream" uid="uid://cbkdqfu4lmuy0" path="res://assets/characters/enemies/lizard/sounds/dash_loop.wav" id="25_8hflu"]
+[ext_resource type="AudioStream" uid="uid://c0x2kfydfp5w" path="res://assets/characters/enemies/lizard/sounds/walk_1.wav" id="27_4g731"]
+[ext_resource type="AudioStream" uid="uid://btxdr02n34ol3" path="res://assets/characters/enemies/lizard/sounds/walk_2.wav" id="28_6sqlj"]
+[ext_resource type="AudioStream" uid="uid://cp10j24xnti1" path="res://assets/characters/enemies/lizard/sounds/walk_3.wav" id="29_t3sli"]
+[ext_resource type="AudioStream" uid="uid://dpnad1sk5ni14" path="res://assets/characters/enemies/lizard/sounds/walk_4.wav" id="30_ancvi"]
+[ext_resource type="AudioStream" uid="uid://1g4vuxsmnegq" path="res://assets/characters/enemies/lizard/sounds/walk_5.wav" id="31_mly75"]
+[ext_resource type="AudioStream" uid="uid://cm2n351l4r71v" path="res://assets/characters/enemies/lizard/sounds/run_1.wav" id="33_4g731"]
+[ext_resource type="AudioStream" uid="uid://r2dmjl5ad6vv" path="res://assets/characters/enemies/lizard/sounds/run_2.wav" id="34_6sqlj"]
+[ext_resource type="AudioStream" uid="uid://cb2mb5v8roivr" path="res://assets/characters/enemies/lizard/sounds/run_3.wav" id="35_t3sli"]
+[ext_resource type="AudioStream" uid="uid://dhohya7e5nnwk" path="res://assets/characters/enemies/lizard/sounds/run_4.wav" id="36_ancvi"]
+[ext_resource type="AudioStream" uid="uid://dx1vqur2rh67u" path="res://assets/characters/enemies/lizard/sounds/run_5.wav" id="37_mly75"]
 
 [sub_resource type="Resource" id="Resource_bfwf6"]
 script = ExtResource("6_m6bdr")
@@ -57,6 +67,22 @@ stream_2/stream = ExtResource("21_wq8og")
 stream_3/stream = ExtResource("22_6knsg")
 stream_4/stream = ExtResource("23_pjk31")
 stream_5/stream = ExtResource("24_udkwe")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kpvxy"]
+streams_count = 5
+stream_0/stream = ExtResource("27_4g731")
+stream_1/stream = ExtResource("28_6sqlj")
+stream_2/stream = ExtResource("29_t3sli")
+stream_3/stream = ExtResource("30_ancvi")
+stream_4/stream = ExtResource("31_mly75")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bm6wf"]
+streams_count = 5
+stream_0/stream = ExtResource("33_4g731")
+stream_1/stream = ExtResource("34_6sqlj")
+stream_2/stream = ExtResource("35_t3sli")
+stream_3/stream = ExtResource("36_ancvi")
+stream_4/stream = ExtResource("37_mly75")
 
 [node name="BaseEnemy" unique_id=1898691 instance=ExtResource("1_ryjt0")]
 
@@ -165,5 +191,14 @@ volume_db = -4.0
 [node name="DashStart" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=473640209 instance=ExtResource("12_46o4k")]
 stream = SubResource("AudioStreamRandomizer_wq8og")
 
-[node name="DashLoop" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=195469090 instance=ExtResource("12_46o4k")]
+[node name="Walk" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=1553656196 instance=ExtResource("12_46o4k")]
+stream = SubResource("AudioStreamRandomizer_kpvxy")
+
+[node name="Run" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=1903050638 instance=ExtResource("12_46o4k")]
+stream = SubResource("AudioStreamRandomizer_bm6wf")
+volume_db = 21.88
+
+[node name="DashLoop" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="6" unique_id=195469090 instance=ExtResource("12_46o4k")]
 stream = ExtResource("25_8hflu")
+
+[connection signal="play_sound" from="Visuals/lizard" to="SoundEffectManager" method="play_sound"]

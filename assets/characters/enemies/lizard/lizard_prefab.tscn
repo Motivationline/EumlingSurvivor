@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ciyhp1yy70dph"]
 
 [ext_resource type="PackedScene" uid="uid://ul7ob4nqfeug" path="res://assets/characters/enemies/lizard/lizard.glb" id="1_cwscd"]
+[ext_resource type="Script" uid="uid://dpx7tmnfa6now" path="res://game/sound/sfx/manager/sound_requester.gd" id="2_3kdoh"]
 [ext_resource type="ArrayMesh" uid="uid://b3xkjd0m1y6lw" path="res://assets/vfx/hull/hull_mesh.res" id="2_56hc8"]
 [ext_resource type="ArrayMesh" uid="uid://ckrm8ti4sk7tu" path="res://assets/models/projectiles/leaf_aura.res" id="2_bhxjt"]
 [ext_resource type="Shader" uid="uid://5lep1if814ha" path="res://assets/vfx/projectile_realistic/shader_vfx_realistic.tres" id="3_f5fqv"]
@@ -32,7 +33,7 @@ input_2/break_loop_at_end = false
 input_2/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bhxjt"]
-graph_offset = Vector2(-60.357143, 137.27228)
+graph_offset = Vector2(-953.5395, -93.78573)
 nodes/output/position = Vector2(540, 120)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_cwscd")
 nodes/Animation/position = Vector2(-300, 240)
@@ -91,8 +92,9 @@ offsets = PackedFloat32Array(0, 0.5641509, 1)
 colors = PackedColorArray(2.055, 1.6883333, 0, 1, 1, 0.68333334, 0, 1, 1, 0.20500004, 0.100000024, 1)
 
 [node name="lizard" unique_id=1314517611 instance=ExtResource("1_cwscd")]
+script = ExtResource("2_3kdoh")
 
-[node name="Cube_157" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(2087789705) index="0" unique_id=486745038]
+[node name="Cube_157" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1575472381) index="0" unique_id=279338735]
 skeleton = NodePath("..")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=864660537]
