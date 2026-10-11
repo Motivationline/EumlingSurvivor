@@ -238,27 +238,24 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 target_position = Vector3(0, -8, 0)
 collision_mask = 2
 
-[node name="SoundEffectManager" parent="." index="5" unique_id=212820490]
-debug = true
-
-[node name="DeathSpecific" parent="SoundEffectManager" index="2" unique_id=173297068 instance=ExtResource("12_k0gop")]
+[node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=173297068 instance=ExtResource("12_k0gop")]
 stream = SubResource("AudioStreamRandomizer_xi0i5")
 volume_db = -4.0
 
-[node name="DashStart" parent="SoundEffectManager" index="3" unique_id=414695467 instance=ExtResource("12_k0gop")]
+[node name="DashStart" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=414695467 instance=ExtResource("12_k0gop")]
 stream = SubResource("AudioStreamRandomizer_4ctwp")
 volume_db = -6.0
 
-[node name="DashLoop" parent="SoundEffectManager" index="4" unique_id=345722284 instance=ExtResource("12_k0gop")]
+[node name="DashLoop" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=345722284 instance=ExtResource("12_k0gop")]
 stream = ExtResource("25_b7u1r")
 
-[node name="Run" parent="SoundEffectManager" index="6" unique_id=1553656196 instance=ExtResource("12_k0gop")]
+[node name="Run" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="6" unique_id=1553656196 instance=ExtResource("12_k0gop")]
 stream = SubResource("AudioStreamRandomizer_0ukq5")
 volume_db = -10.0
 max_polyphony = 3
 panning_strength = 3.0
 
-[node name="Walk" parent="SoundEffectManager" index="7" unique_id=607184088 instance=ExtResource("12_k0gop")]
+[node name="Walk" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="7" unique_id=607184088 instance=ExtResource("12_k0gop")]
 stream = SubResource("AudioStreamRandomizer_c0vlg")
 volume_db = -10.0
 panning_strength = 3.0
