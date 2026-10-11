@@ -9,10 +9,7 @@ class_name Projectile
 		damage = new_dmg
 		if (hit_box): hit_box.damage = new_dmg
 ## How far this projectile can move at most
-@export var max_distance: float = 2.0:
-	set(_value):
-		max_distance = _value
-		max_distance_squared = _value*_value
+@export var max_distance: float = 2.0
 var max_distance_squared: float
 var start_position: Vector3
 ## How long this projectile lives at most, in seconds
