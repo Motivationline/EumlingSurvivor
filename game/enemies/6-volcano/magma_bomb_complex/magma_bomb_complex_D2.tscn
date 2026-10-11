@@ -30,6 +30,16 @@
 [ext_resource type="AudioStream" uid="uid://bucgdu6bjlxf0" path="res://assets/characters/enemies/bomberry/magma/sounds/death_4.wav" id="26_7vg5v"]
 [ext_resource type="AudioStream" uid="uid://wkpwncw0jt2" path="res://assets/characters/enemies/bomberry/magma/sounds/death_5.wav" id="27_fdlyl"]
 [ext_resource type="AudioStream" uid="uid://801ocn6w7nto" path="res://assets/characters/enemies/bomberry/magma/sounds/death_6.wav" id="28_uug3c"]
+[ext_resource type="AudioStream" uid="uid://bewi5wg53lj03" path="res://assets/characters/enemies/bomberry/sounds/walk_1.wav" id="29_7vg5v"]
+[ext_resource type="AudioStream" uid="uid://dk4608cauob5t" path="res://assets/characters/enemies/bomberry/sounds/walk_2.wav" id="30_fdlyl"]
+[ext_resource type="AudioStream" uid="uid://h7bac8haniho" path="res://assets/characters/enemies/bomberry/sounds/walk_3.wav" id="31_uug3c"]
+[ext_resource type="AudioStream" uid="uid://bv35tpmfroyyt" path="res://assets/characters/enemies/bomberry/sounds/walk_4.wav" id="32_i2tqu"]
+[ext_resource type="AudioStream" uid="uid://c6fjk2xmxdvpx" path="res://assets/characters/enemies/bomberry/sounds/walk_5.wav" id="33_ofbuq"]
+[ext_resource type="AudioStream" uid="uid://bd7ods6l5x7wx" path="res://assets/characters/enemies/bomberry/sounds/walk_6.wav" id="34_8njf6"]
+[ext_resource type="AudioStream" uid="uid://bkqqosl8121qr" path="res://assets/characters/enemies/bomberry/sounds/walk_7.wav" id="35_i5eqc"]
+[ext_resource type="AudioStream" uid="uid://22n4aeasjk5s" path="res://assets/characters/enemies/bomberry/sounds/walk_8.wav" id="36_ync30"]
+[ext_resource type="AudioStream" uid="uid://x1hpudatw8yj" path="res://assets/characters/enemies/bomberry/sounds/walk_9.wav" id="37_u8aw2"]
+[ext_resource type="AudioStream" uid="uid://dbg08j3kiugu6" path="res://assets/characters/enemies/bomberry/sounds/walk_10.wav" id="38_g0ney"]
 
 [sub_resource type="Resource" id="Resource_ax3or"]
 script = ExtResource("12_o5vot")
@@ -144,6 +154,20 @@ stream_2/stream = ExtResource("25_wpa70")
 stream_3/stream = ExtResource("26_7vg5v")
 stream_4/stream = ExtResource("27_fdlyl")
 stream_5/stream = ExtResource("28_uug3c")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dddki"]
+random_pitch = 1.0594631
+streams_count = 10
+stream_0/stream = ExtResource("29_7vg5v")
+stream_1/stream = ExtResource("30_fdlyl")
+stream_2/stream = ExtResource("31_uug3c")
+stream_3/stream = ExtResource("32_i2tqu")
+stream_4/stream = ExtResource("33_ofbuq")
+stream_5/stream = ExtResource("34_8njf6")
+stream_6/stream = ExtResource("35_i5eqc")
+stream_7/stream = ExtResource("36_ync30")
+stream_8/stream = ExtResource("37_u8aw2")
+stream_9/stream = ExtResource("38_g0ney")
 
 [sub_resource type="Resource" id="Resource_rnlhm"]
 script = ExtResource("12_o5vot")
@@ -288,6 +312,10 @@ volume_db = -6.0
 [node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="3" unique_id=414824599 instance=ExtResource("16_rkhve")]
 stream = SubResource("AudioStreamRandomizer_ofbuq")
 volume_db = -6.0
+
+[node name="Walk" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="5" unique_id=2051351098 instance=ExtResource("16_rkhve")]
+stream = SubResource("AudioStreamRandomizer_dddki")
+volume_db = -5.0
 
 [node name="hitboxBase" parent="." index="7" unique_id=1403634002 instance=ExtResource("12_ax3or")]
 collision_layer = 32
