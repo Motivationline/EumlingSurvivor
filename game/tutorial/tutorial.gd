@@ -218,6 +218,8 @@ func run_shoot():
 	var quest_text = "Zerstöre den Stein"
 	if Data.is_on_mobile:
 		quest_text += " indem du auf der rechten Bildschirmseite tippst"
+	else:
+		quest_text += " indem du mit einer der Schultertasten schießt."
 	show_quest(quest_text)
 	var rock = tutorial_level.find_child("Breakables").get_child(0)
 	rock.died.connect(func():

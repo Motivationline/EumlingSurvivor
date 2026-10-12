@@ -58,7 +58,7 @@ func _shared_setup(card: Node3D, delay: float = 0.0, sound_pos_offset: float = 0
 		grab_focus()
 
 func _on_focus_entered():
-	scale = Vector2(1.1, 1.1)
+	scale = Vector2(1.3, 1.3)
 	sound_effect_manager.play_sound("Hover")
 	grab_focus()
 
