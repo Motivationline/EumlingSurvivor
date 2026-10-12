@@ -1,6 +1,89 @@
 [gd_scene format=3 uid="uid://d2kq1cxqiwbkm"]
 
 [ext_resource type="Script" uid="uid://cvquwldvvv4ii" path="res://global/loading/loading_screen.gd" id="1_wy4fx"]
+[ext_resource type="Theme" uid="uid://u1iy4y0s7n01" path="res://assets/ui/base_theme.tres" id="2_1lco4"]
+[ext_resource type="Texture2D" uid="uid://bxcht2kgiyaru" path="res://assets/ui/loading_screen/eumling_run.png" id="3_kh7x7"]
+[ext_resource type="SpriteFrames" uid="uid://k0lgfs7cf3j3" path="res://assets/ui/loading_screen/mini_i_run.tres" id="4_n0gxb"]
+[ext_resource type="SpriteFrames" uid="uid://cd3gr6kk3u7pp" path="res://assets/ui/loading_screen/mini_r_run.tres" id="5_i3ypf"]
+[ext_resource type="SpriteFrames" uid="uid://d35g2wlx6iprd" path="res://assets/ui/loading_screen/mini_s_run.tres" id="6_33hg4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eo8e"]
+atlas = ExtResource("3_kh7x7")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtk78"]
+atlas = ExtResource("3_kh7x7")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq2hg"]
+atlas = ExtResource("3_kh7x7")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayeti"]
+atlas = ExtResource("3_kh7x7")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8af1"]
+atlas = ExtResource("3_kh7x7")
+region = Rect2(2000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blpsv"]
+atlas = ExtResource("3_kh7x7")
+region = Rect2(0, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieqrd"]
+atlas = ExtResource("3_kh7x7")
+region = Rect2(500, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r37lv"]
+atlas = ExtResource("3_kh7x7")
+region = Rect2(1000, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwu7i"]
+atlas = ExtResource("3_kh7x7")
+region = Rect2(1500, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igyue"]
+atlas = ExtResource("3_kh7x7")
+region = Rect2(2000, 500, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lwrw7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eo8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtk78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq2hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayeti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8af1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blpsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieqrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r37lv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwu7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igyue")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]
 
 [sub_resource type="Animation" id="Animation_wy4fx"]
 length = 0.001
@@ -75,14 +158,45 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -83.0
-offset_top = -70.0
-offset_right = 83.0
+offset_left = -308.0
+offset_top = -312.0
+offset_right = 303.8286
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Laden..."
+theme = ExtResource("2_1lco4")
+theme_override_font_sizes/font_size = 80
+text = "Auf Erkundungstour..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control" unique_id=262958374]
+[node name="Eumling" type="AnimatedSprite2D" parent="Control" unique_id=262958374]
+position = Vector2(928.99976, 487.99994)
+scale = Vector2(0.832, 0.832)
+sprite_frames = SubResource("SpriteFrames_lwrw7")
+autoplay = "default"
+frame_progress = 0.029561836
+
+[node name="Mini_1" type="AnimatedSprite2D" parent="Control" unique_id=1027176072]
+position = Vector2(605.9999, 590)
+scale = Vector2(0.832, 0.832)
+sprite_frames = ExtResource("4_n0gxb")
+autoplay = "default"
+frame_progress = 0.05020805
+
+[node name="Mini_2" type="AnimatedSprite2D" parent="Control" unique_id=410894683]
+position = Vector2(376.99985, 590)
+scale = Vector2(0.832, 0.832)
+sprite_frames = ExtResource("5_i3ypf")
+autoplay = "default"
+frame_progress = 0.50847393
+
+[node name="Mini_3" type="AnimatedSprite2D" parent="Control" unique_id=840606600]
+position = Vector2(153.99997, 590)
+scale = Vector2(0.832, 0.832)
+sprite_frames = ExtResource("6_33hg4")
+autoplay = "default"
+frame_progress = 0.32591867
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1805076694]
 libraries/ = SubResource("AnimationLibrary_xw17a")
