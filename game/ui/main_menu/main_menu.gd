@@ -25,11 +25,11 @@ func update_eumlex_number():
 		%NumberCircleLabel3D.get_parent().hide()
 
 func _on_play_button_pressed() -> void:
-	Main.controller.load_scene(game, false)
+	await Main.controller.load_scene(game, false)
 	game.start_new_run()
 
 func _on_continue_button_pressed() -> void:
-	Main.controller.load_scene(game, false)
+	await Main.controller.load_scene(game, false)
 	# TODO someone should really clean up the whole "save run and continue" logic.
 	game.continue_run()
 
@@ -54,5 +54,5 @@ func _on_end_game_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_debug_level_chosen(levels) -> void:
-	Main.controller.load_scene(game, false)
+	await Main.controller.load_scene(game, false)
 	game.play_select_levels(levels)

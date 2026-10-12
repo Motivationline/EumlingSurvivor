@@ -2,6 +2,7 @@ extends Node
 class_name GameController
 
 const MAIN_MENU = preload("res://game/ui/main_menu/main_menu.tscn")
+var loading_screen: PackedScene = preload("uid://d2kq1cxqiwbkm")
 
 var main_menu: Node3D
 var delete_current_scene: bool
@@ -14,14 +15,19 @@ func load_main() -> void:
 	load_scene(main_menu, false)
 	GlobalMusicManager.request_music(SongList.TRACK.TITLE, MusicTransition.instant())
 
-func _clear():
-	for child in get_children():
+func _clear(nodes_to_clear:Array[Node] = get_children()):
+	for child in nodes_to_clear:
 		if delete_current_scene:
 			child.queue_free()
 		else:
 			remove_child(child)
 
 func load_scene(node: Node, delete_scene_when_done: bool = false):
-	_clear()
+	var children = get_children()
+	var new_loading_screen: LoadingScreen = loading_screen.instantiate()
+	add_child(new_loading_screen)
+	await new_loading_screen.loading_screen_ready
+	_clear(children)
 	delete_current_scene = delete_scene_when_done
 	add_child(node)
+	new_loading_screen._on_load_finished(null)

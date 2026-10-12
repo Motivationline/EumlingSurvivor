@@ -8,65 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://mxqf8msxqbla" path="res://game/ui/pause_menu/pause_menu.tscn" id="9_l8g03"]
 [ext_resource type="PackedScene" uid="uid://crktwqvaxeyce" path="res://game/ui/upgrades/upgrade_view.tscn" id="10_j8tme"]
 
-[sub_resource type="Animation" id="Animation_dakft"]
-resource_name = "RESET"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_u5opy"]
-resource_name = "fade"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_y36n6"]
-_data = {
-&"RESET": SubResource("Animation_dakft"),
-&"fade": SubResource("Animation_u5opy")
-}
-
 [node name="Game" type="Node3D" unique_id=1590639331]
 script = ExtResource("1_dakft")
 
 [node name="Level" type="Node3D" parent="." unique_id=2144892213]
 
 [node name="TouchJoystickOverlay" parent="." unique_id=1541613713 instance=ExtResource("2_u5opy")]
-
-[node name="SceneFadeOverlay" type="CanvasLayer" parent="." unique_id=190604314]
-layer = 120
-
-[node name="ColorRect" type="ColorRect" parent="SceneFadeOverlay" unique_id=1564976176]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SceneFadeOverlay" unique_id=1285537579]
-libraries/ = SubResource("AnimationLibrary_y36n6")
 
 [node name="DebugView" parent="." unique_id=992518092 instance=ExtResource("5_dxrkv")]
 process_mode = 2

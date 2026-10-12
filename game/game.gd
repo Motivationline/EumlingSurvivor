@@ -4,7 +4,6 @@ class_name Game
 var player_scene: PackedScene = preload("res://game/player/player.tscn")
 var player: Player
 @onready var level_wrapper: Node3D = $Level
-@onready var scene_fade_animation_player: AnimationPlayer = $SceneFadeOverlay/AnimationPlayer
 @onready var upgrade_view: CanvasLayer = $UpgradeView
 @onready var touch_joystick_overlay: CanvasLayer = $TouchJoystickOverlay
 
@@ -12,7 +11,6 @@ var player: Player
 
 #signal requestMusic
 
-var faded_to_black: bool = true
 var debug_run: bool = false
 
 func _ready() -> void:
@@ -55,14 +53,6 @@ func _load_level():
 	if player.dead:
 		return
 	
-	if not faded_to_black:
-		scene_fade_animation_player.play("fade")
-		await scene_fade_animation_player.animation_finished
-		faded_to_black = true
-
-	# remove old stuff
-	Utils.remove_all_children(level_wrapper)
-	
 	if Data.game_data.levels_to_load.is_empty():
 		if debug_run:
 			end_run()
@@ -73,7 +63,7 @@ func _load_level():
 			$AreaChoiceOverlay/GameCompleteOverlay.hide()
 			end_run()
 			return
-		Data.game_data.levels_to_load = [{id = "res://game/levels/start_level.tscn", difficulty = 0}]
+		Data.game_data.levels_to_load = [ {id = "res://game/levels/start_level.tscn", difficulty = 0}]
 		# area_choice_overlay.setup()
 		# GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2,0))
 		# Data.game_data.levels_to_load = await area_choice_overlay.area_chosen
@@ -81,30 +71,30 @@ func _load_level():
 	var stage_progress = Data.game_data.difficulty + 4
 	%BaseBattleOverlay.update_visuals(stage_progress, Data.game_data.levels_to_load.size())
 
-	Engine.time_scale = 0
+	get_tree().paused = true
 	var level_info = Data.game_data.levels_to_load.pop_front()
 	var level_location: String = level_info.id
 	var difficulty: int = level_info.difficulty
 	$DebugView.set_lvl(level_location, difficulty)
 	# add new stuff
-	var level_to_load = load(level_location) as PackedScene
+	SceneLoader.load_scene(level_location)
+	await SceneLoader.ready_to_load
+	remove_loaded_level()
+	var level_to_load: PackedScene = await SceneLoader.load_finished
 	if (level_to_load && level_to_load.can_instantiate()):
 		currently_loaded_level_info = level_info
 		var new_level = level_to_load.instantiate() as Level
 		new_level.difficulty = difficulty
 		level_wrapper.add_child(new_level)
-		new_level.spawn_player(player) 
+		new_level.spawn_player(player)
 		new_level.level_finished.connect(level_finished)
 		new_level.level_ended.connect(level_ended)
 		
 
-
 		currently_loaded_level = new_level
 	
 
-	scene_fade_animation_player.play_backwards("fade")
-	faded_to_black = false
-	Engine.time_scale = 1
+	get_tree().paused = false
 
 func level_finished():
 	if not currently_loaded_level.is_boss_level:
@@ -141,11 +131,7 @@ func end_run():
 	return_to_main_menu()
 
 func return_to_main_menu():
-	GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2,0))
-	if not faded_to_black:
-		scene_fade_animation_player.play("fade")
-		await scene_fade_animation_player.animation_finished
-		faded_to_black = true
+	GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2, 0))
 	Main.controller.load_scene(Main.controller.main_menu, false)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -170,3 +156,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		var chosen_upgrades: Array = await display_big_update(chosen_upgrade)
 		for upgrade in chosen_upgrades:
 			player.add_upgrade(upgrade)
+
+func remove_loaded_level():
+	Utils.remove_all_children(level_wrapper)
