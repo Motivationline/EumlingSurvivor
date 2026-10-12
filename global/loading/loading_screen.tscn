@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://d2kq1cxqiwbkm"]
+
+[ext_resource type="Script" uid="uid://cvquwldvvv4ii" path="res://global/loading/loading_screen.gd" id="1_wy4fx"]
+
+[sub_resource type="Animation" id="Animation_wy4fx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5lp6x"]
+resource_name = "fade_blackout"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xw17a"]
+_data = {
+&"RESET": SubResource("Animation_wy4fx"),
+&"transition": SubResource("Animation_5lp6x")
+}
+
+[node name="LoadingScreen" type="CanvasLayer" unique_id=57493212 node_paths=PackedStringArray("animation_player")]
+process_mode = 3
+layer = 100
+script = ExtResource("1_wy4fx")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Control" type="Control" parent="." unique_id=1843206674]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Blackout" type="ColorRect" parent="Control" unique_id=1779372236]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1003.0
+offset_top = -568.5
+offset_right = 1003.0
+offset_bottom = 568.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Control" unique_id=1216974375]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -70.0
+offset_right = 83.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Laden..."
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control" unique_id=262958374]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1805076694]
+libraries/ = SubResource("AnimationLibrary_xw17a")
+autoplay = &"transition"
