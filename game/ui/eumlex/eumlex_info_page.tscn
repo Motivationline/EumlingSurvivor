@@ -18,12 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://ckeoxcg4dlw3k" path="res://assets/ui/Buttons/rectangleStickerButton.png" id="11_2f624"]
 [ext_resource type="Texture2D" uid="uid://dwgh2hdeer32g" path="res://assets/ui/Eumlex/TagBaseI.png" id="11_b400u"]
 [ext_resource type="Texture2D" uid="uid://be0ca3llwbdrf" path="res://assets/ui/Eumlex/TagBaseR.png" id="12_vptb8"]
+[ext_resource type="Texture2D" uid="uid://d1bg4x3c3so4n" path="res://assets/thumbnails/artistisch_kreativ/florist.png" id="14_mc0o3"]
+[ext_resource type="Texture2D" uid="uid://cpfpybfxwb08q" path="res://assets/ui/Eumlex/eumlex_right_page_mask.png" id="14_x33qp"]
 [ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="16_b400u"]
 [ext_resource type="Texture2D" uid="uid://ca4s6k3b885wn" path="res://assets/ui/Eumlex/ausbildung_stempel.png" id="20_b400u"]
 [ext_resource type="Texture2D" uid="uid://cyy0gdmxc6a36" path="res://assets/ui/Eumlex/studium_stempel.png" id="21_vptb8"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_3u4jb"]
-viewport_path = NodePath("EumlingPreview/SubViewport")
 
 [node name="EumlexInfoPage" type="Control" unique_id=1340831237]
 layout_mode = 3
@@ -53,6 +52,7 @@ tags = Dictionary[int, Texture]({
 })
 
 [node name="ColorBackground" type="TextureRect" parent="." unique_id=415432338]
+visible = false
 layout_mode = 0
 offset_left = 18.0
 offset_top = 12.0
@@ -60,23 +60,34 @@ offset_right = 722.0
 offset_bottom = 830.0
 texture = ExtResource("2_d8n6m")
 
-[node name="EumlingPreview" type="TextureRect" parent="." unique_id=1356534360]
+[node name="EumlingPageMask" type="TextureRect" parent="." unique_id=1535804987]
+clip_children = 1
 layout_mode = 0
-offset_left = 174.0
-offset_top = 351.0
-offset_right = 724.0
-offset_bottom = 901.0
+offset_left = -6.0
+offset_top = -11.0
+offset_right = 740.0
+offset_bottom = 861.0
+texture = ExtResource("14_x33qp")
+
+[node name="EumlingPreview" type="TextureRect" parent="EumlingPageMask" unique_id=1356534360]
+modulate = Color(1, 1, 1, 0.36862746)
+layout_mode = 0
+offset_left = -49.999996
+offset_top = 13.999992
+offset_right = 1101.4307
+offset_bottom = 1165.4305
 scale = Vector2(0.73560673, 0.73560673)
 size_flags_vertical = 3
-texture = SubResource("ViewportTexture_3u4jb")
+texture = ExtResource("14_mc0o3")
 
-[node name="SubViewport" type="SubViewport" parent="EumlingPreview" unique_id=1541320579]
+[node name="SubViewport" type="SubViewport" parent="EumlingPageMask/EumlingPreview" unique_id=1541320579]
 own_world_3d = true
 
-[node name="EumlingInfoScene" parent="EumlingPreview/SubViewport" unique_id=561343103 instance=ExtResource("2_71bnp")]
+[node name="EumlingInfoScene" parent="EumlingPageMask/EumlingPreview/SubViewport" unique_id=561343103 instance=ExtResource("2_71bnp")]
 unique_name_in_owner = true
 
-[node name="frameScene" type="TextureRect" parent="EumlingPreview" unique_id=740379524]
+[node name="frameScene" type="TextureRect" parent="EumlingPageMask/EumlingPreview" unique_id=740379524]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,7 +99,7 @@ pivot_offset = Vector2(275, 275)
 texture = ExtResource("3_3l5pn")
 metadata/_edit_lock_ = true
 
-[node name="Taglines" type="HBoxContainer" parent="EumlingPreview" unique_id=706411811]
+[node name="Taglines" type="HBoxContainer" parent="EumlingPageMask/EumlingPreview" unique_id=706411811]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(10, 10)
@@ -108,17 +119,17 @@ scale = Vector2(1.5448594, 1.5448594)
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Tagline1" type="TextureRect" parent="EumlingPreview/Taglines" unique_id=1530801634]
+[node name="Tagline1" type="TextureRect" parent="EumlingPageMask/EumlingPreview/Taglines" unique_id=1530801634]
 layout_mode = 2
 texture = ExtResource("4_3l5pn")
 expand_mode = 3
 
-[node name="Tagline2" type="TextureRect" parent="EumlingPreview/Taglines" unique_id=706823415]
+[node name="Tagline2" type="TextureRect" parent="EumlingPageMask/EumlingPreview/Taglines" unique_id=706823415]
 layout_mode = 2
 texture = ExtResource("5_3u4jb")
 expand_mode = 3
 
-[node name="Tagline3" type="TextureRect" parent="EumlingPreview/Taglines" unique_id=777719808]
+[node name="Tagline3" type="TextureRect" parent="EumlingPageMask/EumlingPreview/Taglines" unique_id=777719808]
 layout_mode = 2
 texture = ExtResource("6_d8n6m")
 expand_mode = 3
@@ -180,27 +191,29 @@ max_font_size = 35
 
 [node name="BeschreibungText" type="Label" parent="." unique_id=1758753502]
 custom_minimum_size = Vector2(600, 150)
-custom_maximum_size = Vector2(600, 200)
+custom_maximum_size = Vector2(600, 600)
 layout_mode = 0
-offset_left = 83.0
-offset_top = 143.0
-offset_right = 683.0
-offset_bottom = 343.0
+offset_left = 63.0
+offset_top = 152.0
+offset_right = 663.0
+offset_bottom = 752.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.08627451)
+theme_override_constants/line_spacing = -2
+theme_override_constants/shadow_outline_size = 14
 theme_override_fonts/font = ExtResource("5_d8n6m")
-theme_override_font_sizes/font_size = 20
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 36
+text = "Erzieher*innen nehmen Betreuungs-, Erziehungs- und Bildungsaufgaben in Einrichtungen für Kinder, Jugendliche und junge Erwachsene wahr. Ihre Arbeitsschwerpunkte liegen dabei auf sozialpädagogischen Aufgaben in der Kinder- und Jugendarbeit, in Kindertageseinrichtungen und Schulen oder in Einrichtungen für Menschen mit Behinderungen."
 autowrap_mode = 2
-clip_text = true
 
 [node name="ExternalLink" type="LinkButton" parent="." unique_id=865913191]
 unique_name_in_owner = true
 z_index = 1
 layout_mode = 0
-offset_left = 257.0
-offset_top = 712.0
-offset_right = 522.0
-offset_bottom = 791.0
+offset_left = 457.0
+offset_top = 728.0
+offset_right = 722.0
+offset_bottom = 807.0
 
 [node name="TextureRect" type="TextureRect" parent="ExternalLink" unique_id=718854059]
 z_index = -1
@@ -220,6 +233,7 @@ offset_right = 209.0
 offset_bottom = 66.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("5_d8n6m")
 theme_override_font_sizes/font_size = 30
 text = "Mehr Infos"
 vertical_alignment = 1
@@ -230,19 +244,19 @@ metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 [node name="StampApprenticeship" type="TextureRect" parent="." unique_id=579591905]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 538.00006
-offset_top = 345.0
-offset_right = 707.0001
-offset_bottom = 516.0
+offset_left = 573.0
+offset_top = 72.99997
+offset_right = 742.00006
+offset_bottom = 243.99997
 scale = Vector2(0.7498504, 0.7498504)
 texture = ExtResource("20_b400u")
 
 [node name="StampUniversity" type="TextureRect" parent="." unique_id=286624613]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 538.00006
-offset_top = 345.0
-offset_right = 707.0001
-offset_bottom = 516.0
+offset_left = 573.0
+offset_top = 72.99997
+offset_right = 742.00006
+offset_bottom = 243.99997
 scale = Vector2(0.7498504, 0.7498504)
 texture = ExtResource("21_vptb8")

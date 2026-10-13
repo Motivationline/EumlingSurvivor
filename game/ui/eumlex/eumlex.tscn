@@ -40,8 +40,11 @@
 [ext_resource type="AudioStream" uid="uid://80085uxb82sg" path="res://assets/sound/ui/eumlex/click_4.wav" id="29_ls3g4"]
 [ext_resource type="AudioStream" uid="uid://clwklgmnbplu2" path="res://assets/sound/ui/eumlex/turn_page_3.wav" id="29_u8c6k"]
 [ext_resource type="AudioStream" uid="uid://dtst33e4fkm1f" path="res://assets/sound/ui/eumlex/close.wav" id="30_7xmmu"]
+[ext_resource type="Texture2D" uid="uid://yvpnypi1a61" path="res://assets/ui/Map/portal_wood.png" id="30_665xe"]
 [ext_resource type="AudioStream" uid="uid://bhfafb12ph78w" path="res://assets/sound/ui/eumlex/click_5.wav" id="30_xwhay"]
 [ext_resource type="AudioStream" uid="uid://dfu861o1m18xx" path="res://assets/sound/ui/eumlex/click_6.wav" id="31_bt128"]
+[ext_resource type="Texture2D" uid="uid://x3fv7l135fu0" path="res://assets/ui/Map/portal_lava.png" id="31_h87jw"]
+[ext_resource type="Texture2D" uid="uid://c4ldmcilt2tlp" path="res://assets/ui/Map/portal_beach.png" id="32_4f41a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("14_orh8k")
@@ -1119,6 +1122,14 @@ offset_left = 948.0
 offset_top = 137.0
 offset_right = 908.0
 offset_bottom = 97.0
+locations = Dictionary[int, Texture]({
+0: ExtResource("30_665xe"),
+1: ExtResource("31_h87jw"),
+2: ExtResource("32_4f41a"),
+3: ExtResource("32_4f41a"),
+4: ExtResource("31_h87jw"),
+5: ExtResource("30_665xe")
+})
 
 [node name="SeedRevealContainer" type="SubViewportContainer" parent="." unique_id=1439610339]
 unique_name_in_owner = true
