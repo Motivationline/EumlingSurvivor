@@ -8,7 +8,7 @@ func set_info(eumling: Eumling) -> void:
 	%Name.text = eumling.name
 	$Beruf.text = eumling.education
 	$BeschreibungText.text = eumling.info
-	$EumlingPreview.texture = eumling.image
+	$EumlingPageMask/EumlingPreview.texture = eumling.image
 	%ExternalLink.uri = eumling.url
 
 	%Taglines/Tagline1.texture = tags.get(eumling.type)
