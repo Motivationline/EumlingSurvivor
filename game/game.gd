@@ -10,6 +10,7 @@ var player: Player
 @onready var debug_view: CanvasLayer = $DebugView
 
 #signal requestMusic
+signal level_loaded
 
 var debug_run: bool = false
 
@@ -29,18 +30,18 @@ func continue_run():
 	_setup_player()
 	player._current_values = Data.game_data.player_upgrades.duplicate()
 	player.health = Data.game_data.player_health
-	_load_level()
+	await _load_level()
 
 func start_new_run():
 	Data.game_data.reset()
 	_setup_player()
-	_load_level()
+	await _load_level()
 
 func play_select_levels(levels):
 	Data.game_data.levels_to_load = levels
 	_setup_player()
 	debug_run = true
-	_load_level()
+	await _load_level()
 
 func _setup_player():
 	if (player):
@@ -92,7 +93,7 @@ func _load_level():
 		
 
 		currently_loaded_level = new_level
-	
+		level_loaded.emit()
 
 	get_tree().paused = false
 

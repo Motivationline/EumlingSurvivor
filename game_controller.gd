@@ -31,3 +31,10 @@ func load_scene(node: Node, delete_scene_when_done: bool = false):
 	delete_current_scene = delete_scene_when_done
 	add_child(node)
 	new_loading_screen._on_load_finished(null)
+
+func load_game(game: Game, delete_scene_when_done: bool = false):
+	var children = get_children()
+	add_child(game)
+	await game.level_loaded
+	_clear(children)
+	delete_current_scene = delete_scene_when_done
