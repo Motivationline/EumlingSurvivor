@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cvquwldvvv4ii" path="res://global/loading/loading_screen.gd" id="1_wy4fx"]
 [ext_resource type="Theme" uid="uid://u1iy4y0s7n01" path="res://assets/ui/base_theme.tres" id="2_1lco4"]
+[ext_resource type="SpriteFrames" uid="uid://db0vm8cf5godf" path="res://assets/ui/loading_screen/mini_a_run.tres" id="2_i3ypf"]
+[ext_resource type="SpriteFrames" uid="uid://dpd8hplxvyp4o" path="res://assets/ui/loading_screen/mini_c_run.tres" id="3_33hg4"]
 [ext_resource type="Texture2D" uid="uid://bxcht2kgiyaru" path="res://assets/ui/loading_screen/eumling_run.png" id="3_kh7x7"]
+[ext_resource type="SpriteFrames" uid="uid://c2t76daffhh17" path="res://assets/ui/loading_screen/mini_e_run.tres" id="4_4eo8e"]
 [ext_resource type="SpriteFrames" uid="uid://k0lgfs7cf3j3" path="res://assets/ui/loading_screen/mini_i_run.tres" id="4_n0gxb"]
 [ext_resource type="SpriteFrames" uid="uid://cd3gr6kk3u7pp" path="res://assets/ui/loading_screen/mini_r_run.tres" id="5_i3ypf"]
 [ext_resource type="SpriteFrames" uid="uid://d35g2wlx6iprd" path="res://assets/ui/loading_screen/mini_s_run.tres" id="6_33hg4"]
@@ -122,10 +125,22 @@ _data = {
 &"transition": SubResource("Animation_5lp6x")
 }
 
-[node name="LoadingScreen" type="CanvasLayer" unique_id=57493212 node_paths=PackedStringArray("animation_player")]
+[node name="LoadingScreen" type="CanvasLayer" unique_id=57493212 node_paths=PackedStringArray("loading_label", "eumling_sprite", "mini_sprites", "animation_player")]
 process_mode = 3
 layer = 100
 script = ExtResource("1_wy4fx")
+loading_texts = Array[String](["Auf Erkundungstour...", "Laden..."])
+loading_label = NodePath("Control/Label")
+mini_eumling_sprite_frames = Dictionary[int, SpriteFrames]({
+0: ExtResource("2_i3ypf"),
+1: ExtResource("3_33hg4"),
+2: ExtResource("4_4eo8e"),
+3: ExtResource("4_n0gxb"),
+4: ExtResource("5_i3ypf"),
+5: ExtResource("6_33hg4")
+})
+eumling_sprite = NodePath("Control/Eumling")
+mini_sprites = [NodePath("Control/Mini_1"), NodePath("Control/Mini_2"), NodePath("Control/Mini_3")]
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Control" type="Control" parent="." unique_id=1843206674]
@@ -180,9 +195,8 @@ frame_progress = 0.029561836
 [node name="Mini_1" type="AnimatedSprite2D" parent="Control" unique_id=1027176072]
 position = Vector2(605.9999, 590)
 scale = Vector2(0.832, 0.832)
-sprite_frames = ExtResource("4_n0gxb")
+sprite_frames = ExtResource("2_i3ypf")
 autoplay = "default"
-frame_progress = 0.05020805
 
 [node name="Mini_2" type="AnimatedSprite2D" parent="Control" unique_id=410894683]
 position = Vector2(376.99985, 590)
