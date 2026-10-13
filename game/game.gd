@@ -102,6 +102,7 @@ func level_finished():
 		upgrade_view.show_upgrades()
 		var chosen_upgrade: Upgrade = await upgrade_view.upgrade_chosen
 		player.add_upgrade(chosen_upgrade)
+		Data.add_riasec_progress(chosen_upgrade.path, 0)
 		var chosen_upgrades: Array = await display_big_update(chosen_upgrade)
 		for upgrade in chosen_upgrades:
 			player.add_upgrade(upgrade)
@@ -127,6 +128,7 @@ func level_ended():
 	_load_level()
 
 func end_run():
+	await run_end_riasec()
 	Data.end_game()
 	debug_run = false
 	return_to_main_menu()
@@ -160,3 +162,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func remove_loaded_level():
 	Utils.remove_all_children(level_wrapper)
+
+func run_end_riasec():
+	var riasec_progress: Array = []
+	for key in Data.game_data.riasec_progress.keys():
+		riasec_progress.append({type = key, value = Data.game_data.riasec_progress.get(key)})
+
+	riasec_progress.sort_custom(func(a, b): return a.value > b.value)
+	var riasec_types: Array[Enum.EUMLING_TYPE] = [];
+	for rp in riasec_progress:
+		riasec_types.append(rp.type)
+
+	var riasec_eumling = Data.find_eumling_based_on_riasec(riasec_types)
+	if not riasec_eumling: return
+	prints("riasec eumling", riasec_eumling)

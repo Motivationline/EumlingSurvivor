@@ -195,6 +195,7 @@ func unlock_mini_eumling():
 		eumling_type = AreaPicker.current_area.type
 	else:
 		eumling_type = Enum.EUMLING_TYPE.values().pick_random()
+	Data.add_riasec_progress(eumling_type, 2)
 	Data.unlocked_eumling(eumling_type)
 	var popup = EUMLING_CELEBRATION.instantiate()
 	GlobalMusicManager.request_music(SongList.TRACK.VICTORY_THEME,MusicTransition.instant(), true)

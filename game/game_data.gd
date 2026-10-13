@@ -9,7 +9,7 @@ var levels_to_load: Array = []
 var difficulty: int:
 	get():
 		return active_mini_eumlings.size()
-
+var riasec_progress: Dictionary[Enum.EUMLING_TYPE, float]
 
 func _init() -> void:
 	reload()
@@ -38,6 +38,9 @@ func reload() -> void:
 	if data.has("levels_to_load"): 
 		for level in data.levels_to_load:
 			levels_to_load.append(level)
+	if data.has("riasec_progress"): 
+		for key in data.riasec_progress.keys():
+			riasec_progress.set(float(key), data.riasec_progress[key])
 
 
 func save():
@@ -49,6 +52,7 @@ func save():
 			"active_mini_eumlings": active_mini_eumlings.duplicate(),
 			"upgrade_path_progress": upgrade_path_progress.duplicate(),
 			"levels_to_load": levels_to_load.duplicate(),
+			"riasec_progress": riasec_progress.duplicate(),
 		}
 	)
 
@@ -60,3 +64,4 @@ func reset():
 	upgrade_path_progress.clear()
 	total_upgrades = 0
 	levels_to_load.clear()
+	riasec_progress.clear()

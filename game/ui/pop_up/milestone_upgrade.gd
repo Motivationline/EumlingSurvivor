@@ -11,6 +11,7 @@ const UPGRADE_OPTION = preload("uid://b8nr8s04nxds6")
 var possible_upgrades: Array
 
 func setup(type: Enum.EUMLING_TYPE, level: int):
+	Data.add_riasec_progress(type, 1)
 	get_tree().paused = true
 	show()
 	if level < 2:

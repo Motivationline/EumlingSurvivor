@@ -128,3 +128,29 @@ func _sort_eumlings_to_unlock(a: Eumling, b: Eumling) -> bool:
 	return false
 
 #endregion
+
+#region RIASEC
+func add_riasec_progress(type: Enum.EUMLING_TYPE, level: int):
+	const riasec_values: Array[float] = [1, 10, 30]
+	if not Enum.EUMLING_TYPE.values().has(type): return
+	var progress = game_data.riasec_progress.get(type, 0)
+	progress += riasec_values[level]
+	game_data.riasec_progress.set(type, progress)
+	prints("riasec progress", game_data.riasec_progress)
+
+func find_eumling_based_on_riasec(types: Array[Enum.EUMLING_TYPE]) -> Eumling:
+	if types.size() == 0: return null
+	var candidates = eumlings.get(types[0])
+	if not candidates: return null
+	var fallbacks: Array[Eumling] = []
+	for candidate in candidates as Array[Eumling]:
+		if not candidate.type == types[0]: continue # should probably never happen anyways
+		if types.size() == 1:
+			fallbacks.append(candidate)
+		elif candidate.type_secondary == types[1]:
+			fallbacks.append(candidate) # this one has at least the first two correct
+			if types.size() > 2 and candidate.type_tertiary == types[2]:
+				return candidate # a perfect match, we can return it
+	return fallbacks.pick_random()
+
+#endregion
