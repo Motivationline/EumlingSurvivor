@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ba1dkd88d5m1t"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_c4v8v"]
+[ext_resource type="Texture2D" uid="uid://de2p48abgk71u" path="res://assets/characters/enemies/lizard/lizard_DefaultMaterial_Base_color.png" id="2_6a4tw"]
+
+[sub_resource type="Gradient" id="Gradient_qcjnr"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.4281525)
+colors = PackedColorArray(0.3553136, 0.35531354, 0.35531357, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0b61d"]
+gradient = SubResource("Gradient_qcjnr")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_c4v8v")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_6a4tw")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_0b61d")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_diffuse_smooth_attenuation = true

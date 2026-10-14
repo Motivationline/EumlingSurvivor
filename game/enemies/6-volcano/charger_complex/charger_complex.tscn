@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="8_m6bdr"]
 [ext_resource type="PackedScene" uid="uid://ciyhp1yy70dph" path="res://assets/characters/enemies/lizard/lizard_prefab.tscn" id="8_ot6q4"]
 [ext_resource type="PackedScene" uid="uid://8birmfvhix1s" path="res://game/aoes/charger_complex_aoe/charger_complex_aoe.tscn" id="9_hbhbl"]
+[ext_resource type="PackedScene" uid="uid://d0tdmdwk4bxvs" path="res://assets/characters/enemies/lizard/baby/baby_lizard.tscn" id="12_6sqlj"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="12_46o4k"]
 [ext_resource type="AudioStream" uid="uid://qq4wj771dm6p" path="res://assets/characters/enemies/lizard/sounds/death_1.wav" id="13_28i2k"]
 [ext_resource type="AudioStream" uid="uid://b7xco8ekbhrl8" path="res://assets/characters/enemies/lizard/sounds/death_2.wav" id="14_nt88r"]
@@ -143,6 +144,9 @@ entity_to_spawn = ExtResource("9_hbhbl")
 amount_of_spawns = 12
 time_between_entities = 0.1
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("12_6sqlj")
 
 [node name="RaycastEventEmitter" type="Node" parent="EventEmitters" parent_id_path=PackedInt32Array(1816335374) index="0" unique_id=780569777 node_paths=PackedStringArray("ray", "listeners")]
 script = ExtResource("7_hbhbl")
