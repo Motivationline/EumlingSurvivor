@@ -293,6 +293,7 @@ func die():
 	dead = true
 	anim_player.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	hurtbox.process_mode = Node.PROCESS_MODE_DISABLED
+	GlobalMusicManager.fade_out(4,0)
 	await get_tree().create_timer(2).timeout
 	died.emit()
 

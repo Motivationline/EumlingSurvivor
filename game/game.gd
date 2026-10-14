@@ -30,17 +30,20 @@ func continue_run():
 	_setup_player()
 	player._current_values = Data.game_data.player_upgrades.duplicate()
 	player.health = Data.game_data.player_health
+	GlobalMusicManager.fade_out(4.0,true)
 	await _load_level()
 
 func start_new_run():
 	Data.game_data.reset()
 	_setup_player()
+	GlobalMusicManager.fade_out(4.0,true)
 	await _load_level()
 
 func play_select_levels(levels):
 	Data.game_data.levels_to_load = levels
 	_setup_player()
 	debug_run = true
+	GlobalMusicManager.fade_out(4.0,true)
 	await _load_level()
 
 func _setup_player():
@@ -134,7 +137,7 @@ func end_run():
 	return_to_main_menu()
 
 func return_to_main_menu():
-	GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(2, 0))
+	GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.fade_and_start(3, 1))
 	Main.controller.load_scene(Main.controller.main_menu, false)
 
 func _unhandled_input(event: InputEvent) -> void:

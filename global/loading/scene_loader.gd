@@ -33,6 +33,7 @@ func load_scene(_scene_path: String) -> void:
 
 func start_load() -> void:
 	var state = ResourceLoader.load_threaded_request(scene_path, "", use_sub_threads)
+	#GlobalMusicManager.fade_out(1.0,true)
 	if state == OK:
 		set_process(true);
 	
