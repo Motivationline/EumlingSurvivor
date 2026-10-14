@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="14_5dmij"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="15_rgo27"]
 [ext_resource type="PackedScene" uid="uid://ko8u3dvlq1cu" path="res://assets/characters/enemies/boss_turtle/boss_turtle_prefab.tscn" id="17_4ly7v"]
+[ext_resource type="PackedScene" uid="uid://b7tl2dlcpjj3a" path="res://assets/characters/enemies/boss_turtle/baby/baby_boss_turtle_red.tscn" id="17_tkk3k"]
 [ext_resource type="Material" uid="uid://cbgxksh3umub" path="res://assets/characters/enemies/boss_turtle/material/cell_shader-boss_turtle_red.tres" id="18_0vbof"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="18_d0y4d"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="19_lgbnl"]
@@ -314,9 +315,12 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("17_tkk3k")
+
 [node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("17_4ly7v")]
 
-[node name="shell" parent="Visuals/boss_turtle/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1575923269, 2071725269) index="0" unique_id=1083326251]
+[node name="shell" parent="Visuals/boss_turtle/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1575923269, 728901535) index="0" unique_id=192907853]
 surface_material_override/0 = ExtResource("18_0vbof")
 
 [node name="Marker3D" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=2140617436]

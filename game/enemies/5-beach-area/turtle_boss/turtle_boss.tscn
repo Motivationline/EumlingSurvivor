@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://mycfudgv475a" path="res://state_machine/enemy/flee_from_player.gd" id="12_2wn3u"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="12_6p51q"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="14_7nljg"]
+[ext_resource type="PackedScene" uid="uid://bou3cdjtpg461" path="res://assets/characters/enemies/boss_turtle/baby/baby_boss_turtle.tscn" id="17_hisvg"]
 [ext_resource type="Material" uid="uid://b0n6j2o6h1iq3" path="res://assets/characters/enemies/boss_turtle/material/cell_shader-boss_turtle.tres" id="18_xpc6d"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="20_oe1bn"]
 [ext_resource type="AudioStream" uid="uid://tmat8rj8l6mt" path="res://assets/characters/enemies/boss_turtle/sounds/wind_up_1.wav" id="21_4dvdo"]
@@ -338,9 +339,12 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("17_hisvg")
+
 [node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("4_7yf88")]
 
-[node name="shell" parent="Visuals/boss_turtle/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1575923269, 2071725269) index="0" unique_id=1083326251]
+[node name="shell" parent="Visuals/boss_turtle/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1575923269, 728901535) index="0" unique_id=192907853]
 mesh = SubResource("ArrayMesh_6famx")
 
 [node name="Marker3D" type="Marker3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=2140617436]
