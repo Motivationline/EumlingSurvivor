@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c231kdrf5kuse"]
+
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="1_7jnwn"]
+[ext_resource type="Texture2D" uid="uid://1u44rtyjpuvf" path="res://assets/characters/enemies/friednly_animals/fish/fish_DefaultMaterial_2D_View.png" id="2_l4o07"]
+
+[sub_resource type="Gradient" id="Gradient_n43je"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.6392962, 0.8973607)
+colors = PackedColorArray(0, 0, 0, 1, 0.47007585, 0.47007585, 0.47007585, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eub6h"]
+gradient = SubResource("Gradient_n43je")
+
+[sub_resource type="Gradient" id="Gradient_7jnwn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7595308)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j7tki"]
+gradient = SubResource("Gradient_7jnwn")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7jnwn")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_l4o07")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_eub6h")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_j7tki")
+shader_parameter/rim_focus = 0.0
+shader_parameter/use_diffuse_smooth_attenuation = true

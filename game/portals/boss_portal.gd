@@ -7,4 +7,5 @@ func _ready() -> void:
 
 func player_entered(body: Node3D):
 	if body == Player.player:
+		GlobalMusicManager.fade_out(3,true)
 		entered.emit()

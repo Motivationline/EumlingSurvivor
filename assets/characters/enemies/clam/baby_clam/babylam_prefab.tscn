@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://ue2n5e8pxlqe"]
+
+[ext_resource type="PackedScene" uid="uid://3dskwqwxrfge" path="res://assets/characters/enemies/clam/baby_clam/baby_clam.glb" id="1_nmc7l"]
+
+[sub_resource type="Animation" id="Animation_nmc7l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby_clam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2w63i"]
+resource_name = "hop"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby_clam:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ytils"]
+_data = {
+&"RESET": SubResource("Animation_nmc7l"),
+&"hop": SubResource("Animation_2w63i")
+}
+
+[node name="baby_clam2" unique_id=994063715 instance=ExtResource("1_nmc7l")]
+transform = Transform3D(1.0143619, 0, 0, 0, 0.96648884, 0, 0, 0, 1.0188676, 0, 0.008653458, 0)
+
+[node name="Locomotion" type="AnimationPlayer" parent="." index="1" unique_id=719687458]
+libraries/ = SubResource("AnimationLibrary_ytils")
+autoplay = &"hop"

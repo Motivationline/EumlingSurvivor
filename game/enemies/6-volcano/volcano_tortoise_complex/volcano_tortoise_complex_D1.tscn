@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_s0pvf"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="9_o6qy1"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="13_3btfv"]
+[ext_resource type="PackedScene" uid="uid://brbmv1m5pmnel" path="res://assets/characters/enemies/volcano_tortoise/baby/baby_volcano_tortoise.tscn" id="16_ht8at"]
 [ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="17_a3mrn"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="17_twi3q"]
 [ext_resource type="AudioStream" uid="uid://jw80tpwtp2lw" path="res://assets/characters/enemies/volcano_tortoise/sounds/shake_1.wav" id="18_a3mrn"]
@@ -384,6 +385,9 @@ animation_trigger = Dictionary[String, Variant]({
 "parameters/hurt/request": 1
 })
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("16_ht8at")
 
 [node name="volcano_tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1249268255 instance=ExtResource("7_wvq5w")]
 
