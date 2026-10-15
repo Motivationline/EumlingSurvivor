@@ -16,12 +16,12 @@ signal spawn_finished
 
 ## Only for stuff that applies if the spawned entity is a projectile
 @export_category("Projectile Overrides")
-## how much damage should the projectile deal
-@export var damage: float = 20.0
-## how much range should the projectile have
-@export var max_distance: float = 2.0
-## how much range should the projectile have
-@export var lifetime: float = 120.0
+## how much damage should the projectile deal. If lower than 0, this override is ignored.
+@export var damage: float = -1.0
+## how much range should the projectile have. If lower than 0, this override is ignored.
+@export var max_distance: float = -1.0
+## how much range should the projectile have. If lower than 0, this override is ignored.
+@export var lifetime: float = -1.0
 
 @export_category("Difficulty Overrides")
 @export var difficulty_scaler: DifficultyScaler
@@ -104,7 +104,8 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 			printerr("%s attached to %s tried to spawn on the level but level not found." % [name, _parent.name])
 			return
 		var level = levels[0]
-		if (level): level.add_child(instance)
+		if (level): 
+			level.add_child(instance)
 		else:
 			printerr("%s attached to %s tried to spawn on the level but level not found." % [name, _parent.name])
 			return
@@ -129,9 +130,12 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 			_parent
 		)
 		if not _parent is Player:
-			instance.damage = damage
-			instance.max_distance = max_distance
-			instance.lifetime = lifetime
+			if damage > 0:
+				instance.damage = damage
+			if max_distance > 0:
+				instance.max_distance = max_distance
+			if lifetime > 0:
+				instance.lifetime = lifetime
 
 	elif (instance is Enemy):
 		instance.fix_visuals_and_root_rotation()
