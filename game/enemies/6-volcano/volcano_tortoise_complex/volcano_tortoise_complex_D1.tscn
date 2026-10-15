@@ -9,8 +9,10 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_xa3cl"]
 [ext_resource type="PackedScene" uid="uid://qpw2gi1joms5" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/animated_projectile.tscn" id="4_s0pvf"]
 [ext_resource type="Script" uid="uid://b0kknw1o07ha2" path="res://state_machine/enemy/decider/decide_distance.gd" id="4_sosfk"]
+[ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="5_0q3fv"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="5_j40q3"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="5_o6qy1"]
+[ext_resource type="Script" uid="uid://3q8mspcqcwpf" path="res://state_machine/interrupts/conditions/in_range.gd" id="6_0q7ou"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_m8pq2"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="6_v31ca"]
 [ext_resource type="PackedScene" uid="uid://c078nbg0qjgp5" path="res://assets/characters/enemies/volcano_tortoise/volcano_tortoise_prefab.tscn" id="7_wvq5w"]
@@ -302,7 +304,7 @@ speed = 0.4
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveRandomOnNavMeshState")
 
-[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=1274215185 node_paths=PackedStringArray("next_state")]
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=1274215185 node_paths=PackedStringArray("next_state", "interrupts")]
 script = ExtResource("2_qq1hq")
 wait_time = 0.0
 max_distance = 2.0
@@ -310,7 +312,19 @@ next_state = NodePath("../WaitAfterWalk")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
 })
+interrupts = [NodePath("Interrupt")]
 metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="Interrupt" type="Node" parent="StateMachine/MoveRandomOnNavMeshState" index="0" unique_id=1837570909 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("5_0q3fv")
+state_to_go_to = NodePath("../../Chase_and_Attack/MoveTowardsEntityState")
+condition = NodePath("InRangeToPlayerInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="InRangeToPlayerInterruptCondition" type="Node" parent="StateMachine/MoveRandomOnNavMeshState/Interrupt" index="0" unique_id=252060166]
+script = ExtResource("6_0q7ou")
+distance = 3.0
+metadata/_custom_type_script = "uid://3q8mspcqcwpf"
 
 [node name="WaitAfterWalk" type="Node" parent="StateMachine" index="1" unique_id=1918710380 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_3btfv")

@@ -7,6 +7,11 @@ class_name NotInterruptCondition extends InterruptCondition
 		condition = value
 		update_configuration_warnings()
 
+func setup(_parent: StateMachinePoweredEntity):
+	super(_parent)
+	if condition and condition != self: condition.setup(_parent)
+
+
 func start():
 	if condition and condition != self: condition.start()
 

@@ -7,6 +7,11 @@ class_name AnyOfInterruptCondition extends InterruptCondition
 		conditions = value
 		update_configuration_warnings()
 
+func setup(_parent: StateMachinePoweredEntity):
+	super(_parent)
+	for condition in conditions:
+		if condition and condition != self: condition.setup(_parent)
+
 func start():
 	for condition in conditions:
 		if condition and condition != self: condition.start()
