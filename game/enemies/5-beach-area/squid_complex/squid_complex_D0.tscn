@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="7_alqjo"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="8_drskb"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_jkmx4"]
+[ext_resource type="Script" uid="uid://ct3ystpgiu6c3" path="res://game/spawner/spawner_linker.gd" id="9_kkjg1"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_drskb"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_v0fvw"]
 [ext_resource type="AudioStream" uid="uid://bnxax3xh1ah3i" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_1.wav" id="14_kkjg1"]
@@ -186,6 +187,10 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="SpawnPos" type="Marker3D" parent="StateMachine/SpawnEntitiesState/spawnerMain" index="0" unique_id=69437972]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.4001038, 0)
+
+[node name="SpawnerLinker" type="Node" parent="StateMachine/SpawnEntitiesState/spawnerMain" index="1" unique_id=1818219317]
+script = ExtResource("9_kkjg1")
+metadata/_custom_type_script = "uid://ct3ystpgiu6c3"
 
 [node name="AttackCooldown" type="Node" parent="StateMachine" index="3" unique_id=1468352519 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
