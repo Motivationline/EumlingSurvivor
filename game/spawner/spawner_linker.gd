@@ -1,6 +1,6 @@
 @tool
 class_name SpawnerLinker extends Node
-##Attach to an EntitySpawner to link the spawned entities to the spawner. Linked entities will be destroyed if the spawner is destroyed.
+##Attach to an [EntitySpawner] to link the spawned entities to the spawner. Linked entities will be destroyed if the spawner is destroyed.
 
 var spawner:EntitySpawner
 var spawned_entities:Array[Node3D]
@@ -19,7 +19,7 @@ func _get_configuration_warnings():
 
 func _on_entity_spawned(_spawned_entity:Node3D) -> void:
 	spawned_entities.push_back(_spawned_entity)
-	print(spawned_entities)
+
 
 
 func _on_spawner_freed() -> void:
