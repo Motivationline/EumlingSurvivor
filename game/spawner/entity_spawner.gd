@@ -114,7 +114,6 @@ func spawn_entity(_parent: Node3D, _relative_to: Transform3D, _current: int, _to
 		_relative_to = spawn_position.global_transform
 	instance.global_position = _relative_to.origin
 	if !ignore_relative_rotation:
-		print(_relative_to.basis.get_euler())
 		instance.global_rotation = _relative_to.basis.get_euler()
 	if (target_strategy):
 		var target_position = target_strategy.get_target_position(_relative_to)
