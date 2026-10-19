@@ -4,7 +4,7 @@ class_name EntitySpawner
 
 signal burst_finished
 signal spawn_finished
-
+signal entity_spawned(_entity:Node3D)
 ## If set, spawns the entity as a child of the relevant parent, to the level otherwise.  
 ## [color=red]Does not affect the position or rotation, only the parent.[/color]
 ## If true, the spawned entity will move together with the parent entity
@@ -135,3 +135,5 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 
 	elif (instance is Enemy):
 		instance.fix_visuals_and_root_rotation()
+	
+	entity_spawned.emit(instance)
