@@ -64,6 +64,7 @@ func _notification(what: int) -> void:
 
 func spawn(_parent: Node3D, _relative_to: Node3D = null):
 	if (!_relative_to): _relative_to = _parent
+	var relative_transform = _relative_to.global_transform
 	for b in amount_of_bursts:
 		if not is_inside_tree(): return
 		if b != 0 && is_random_burst_delay:
@@ -73,11 +74,11 @@ func spawn(_parent: Node3D, _relative_to: Node3D = null):
 			var tree = get_tree()
 			if tree:
 				await tree.create_timer(time_between_bursts).timeout
-		await burst(_parent, _relative_to)
+		await burst(_parent, relative_transform)
 	
 	spawn_finished.emit()
 
-func burst(_parent: Node3D, _relative_to: Node3D):
+func burst(_parent: Node3D, _relative_to: Transform3D):
 	for i in amount_of_spawns:
 		if not is_inside_tree(): return
 		if i != 0 && is_random_delay:
@@ -88,7 +89,7 @@ func burst(_parent: Node3D, _relative_to: Node3D):
 		spawn_entity(_parent, _relative_to, i, amount_of_spawns)
 	burst_finished.emit()
 
-func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: int):
+func spawn_entity(_parent: Node3D, _relative_to: Transform3D, _current: int, _total: int):
 	if (!entity_to_spawn):
 		printerr("%s attached to %s tried to spawn nothing" % [name, _parent.name])
 		return
@@ -110,13 +111,13 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 			return
 	
 	if spawn_position:
-		_relative_to = spawn_position
-	instance.global_position = _relative_to.global_position
+		_relative_to = spawn_position.global_transform
+	instance.global_position = _relative_to.origin
 	if !ignore_relative_rotation:
-		instance.global_rotation = _relative_to.global_rotation
+		instance.global_rotation = _relative_to.basis.get_euler()
 	if (target_strategy):
 		var target_position = target_strategy.get_target_position(_relative_to)
-		target_position.y = _relative_to.global_position.y
+		target_position.y = _relative_to.origin.y
 		if (!instance.global_position.is_equal_approx(target_position)): instance.look_at(target_position)
 	if (rotation_strategy): rotation_strategy.apply_rotation(instance, _current, _total)
 
@@ -125,7 +126,7 @@ func spawn_entity(_parent: Node3D, _relative_to: Node3D, _current: int, _total: 
 	if (instance is Projectile):
 		instance.shooter = _parent
 		instance.setup(
-			target_strategy.get_target_position(_relative_to) if (target_strategy) else _relative_to.global_position - _relative_to.basis.z,
+			target_strategy.get_target_position(_relative_to) if (target_strategy) else _relative_to.origin - _relative_to.basis.z,
 			_parent
 		)
 		if not _parent is Player:
