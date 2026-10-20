@@ -9,7 +9,10 @@ class_name Projectile
 		damage = new_dmg
 		if (hit_box): hit_box.damage = new_dmg
 ## How far this projectile can move at most
-@export var max_distance: float = 2.0
+@export var max_distance: float = 2.0:
+	set(_value):
+		max_distance = _value
+		max_distance_squared = max_distance * max_distance
 var max_distance_squared: float
 var start_position: Vector3
 ## How long this projectile lives at most, in seconds
@@ -91,6 +94,9 @@ func setup(target_pos: Vector3, _owner: Node3D):
 	
 	_on_created()
 	creation_completed.emit()
+	
+	start_timer()
+	
 
 func setup_player(player: Player):
 	# speed
@@ -121,12 +127,12 @@ func setup_player(player: Player):
 	# criticals
 	critical_hit_chance = player.get_value(Enum.UPGRADE.CRIT_CHANCE)
 	critical_hit_damage_multiplier = player.get_value(Enum.UPGRADE.CRIT_DAMAGE_MULTIPLIER)
-
+	
 
 func _ready() -> void:
 	tree_exiting.connect(_on_remove)
 	max_distance_squared = max_distance * max_distance
-	start_timer()
+	
 
 var timer: Timer
 func start_timer():
