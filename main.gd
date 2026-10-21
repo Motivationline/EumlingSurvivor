@@ -20,3 +20,8 @@ func _shortcut_input(event: InputEvent) -> void:
 		get_tree().reload_current_scene()
 		tutorial = Tutorial.new()
 		add_child(tutorial)
+	if event.is_action_pressed("debug_unlock_eumlex"):
+		for type in Data._locked_eumlings:
+			for i in Data._locked_eumlings[type].size():
+				Data._unlock_eumling(type)
+				print(type)
