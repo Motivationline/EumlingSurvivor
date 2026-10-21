@@ -22,9 +22,10 @@ func _on_play_button_pressed() -> void:
 func _input(event):
 	if event.is_action_pressed("openPauseMenu") or (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT):
 		close_video()
-		GlobalMusicManager.request_music(SongList.TRACK.TITLE, MusicTransition.instant())
+		
 
 
 func close_video() -> void:
 	if video_instance:
 		video_instance.queue_free()
+		GlobalMusicManager.request_music(SongList.TRACK.TITLE, MusicTransition.instant())
