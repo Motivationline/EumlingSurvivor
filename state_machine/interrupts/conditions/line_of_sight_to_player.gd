@@ -10,8 +10,8 @@ func start():
 
 func evaluate() -> bool:
 	if !Player.player: return false
-	var origin = parent.global_position + Vector3.UP * 0.5
-	var player_position = Player.player.global_position + Vector3.UP * 0.5
+	var origin = parent.global_position + Vector3.UP * 0.2
+	var player_position = Player.player.global_position + Vector3.UP * 0.2
 	var query = PhysicsRayQueryParameters3D.create(origin, player_position)
 
 	var space_state = parent.get_world_3d().direct_space_state
