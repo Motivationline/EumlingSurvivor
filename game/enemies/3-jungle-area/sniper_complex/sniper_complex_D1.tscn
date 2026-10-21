@@ -8,9 +8,12 @@
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_x0qh6"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_hqxkc"]
 [ext_resource type="PackedScene" uid="uid://dtxcbfvali8ib" path="res://assets/characters/enemies/peacock/peacock_prefab.tscn" id="6_46ipm"]
+[ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="6_84u8h"]
 [ext_resource type="PackedScene" uid="uid://deylycbs8xlp0" path="res://game/enemies/3-jungle-area/sniper/sniper_projectile_enemy.tscn" id="6_x0qh6"]
+[ext_resource type="Script" uid="uid://dr4u5rsf5xoa6" path="res://state_machine/interrupts/conditions/not.gd" id="7_h0vxx"]
 [ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="7_hqxkc"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="7_ieebk"]
+[ext_resource type="Script" uid="uid://ctkt4x4xj18wn" path="res://state_machine/interrupts/conditions/line_of_sight_to_player.gd" id="8_pymno"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_46ipm"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_ieebk"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="12_0as1f"]
@@ -173,18 +176,41 @@ script = ExtResource("2_xdd6v")
 random = true
 min_wait_time = 0.5
 max_wait_time = 1.2
-next_state = NodePath("../LookAtPlayerState")
+next_state = NodePath("../LookAtPlayerAlways")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine" index="1" unique_id=131808892 node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerAlways" type="Node" parent="StateMachine" index="1" unique_id=131808892 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_vrikq")
-next_state = NodePath("../SpawnEntitiesState")
+wait_time = 0.4
+next_state = NodePath("../LookAtPlayerInterruptable")
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="2" unique_id=262795890 node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerInterruptable" type="Node" parent="StateMachine" index="2" unique_id=579685235 node_paths=PackedStringArray("next_state", "interrupts")]
+script = ExtResource("3_vrikq")
+wait_time = 0.6
+next_state = NodePath("../SpawnEntitiesState")
+interrupts = [NodePath("Interrupt")]
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="Interrupt" type="Node" parent="StateMachine/LookAtPlayerInterruptable" index="0" unique_id=1981010188 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("6_84u8h")
+state_to_go_to = NodePath("../../LookAtPlayerAlways")
+condition = NodePath("NotInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="NotInterruptCondition" type="Node" parent="StateMachine/LookAtPlayerInterruptable/Interrupt" index="0" unique_id=1266037000 node_paths=PackedStringArray("condition")]
+script = ExtResource("7_h0vxx")
+condition = NodePath("LineOfSightToPlayerInterruptCondition")
+metadata/_custom_type_script = "uid://dr4u5rsf5xoa6"
+
+[node name="LineOfSightToPlayerInterruptCondition" type="Node" parent="StateMachine/LookAtPlayerInterruptable/Interrupt/NotInterruptCondition" index="0" unique_id=882648227]
+script = ExtResource("8_pymno")
+metadata/_custom_type_script = "uid://ctkt4x4xj18wn"
+
+[node name="SpawnEntitiesState" type="Node" parent="StateMachine" index="3" unique_id=262795890 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_x0qh6")
 start_delay = 0.3
-next_state = NodePath("../WaitForTimeXState2")
+next_state = NodePath("../LookAtPlayerAfterShot")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/shoot/request": 1
 })
@@ -198,11 +224,11 @@ target_strategy = SubResource("Resource_5umyu")
 rotation_strategy = SubResource("Resource_46ipm")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
-[node name="WaitForTimeXState2" type="Node" parent="StateMachine" index="3" unique_id=1738208982 node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerAfterShot" type="Node" parent="StateMachine" index="4" unique_id=1738208982 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_xdd6v")
 random = true
 max_wait_time = 0.4
-next_state = NodePath("../LookAtPlayerState")
+next_state = NodePath("../LookAtPlayerAlways")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="peacock" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=918755390 instance=ExtResource("6_46ipm")]

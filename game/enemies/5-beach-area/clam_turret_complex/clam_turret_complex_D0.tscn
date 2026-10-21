@@ -16,8 +16,11 @@
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="8_myuco"]
 [ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="9_o76ae"]
 [ext_resource type="Script" uid="uid://pxcyq4sjjhtw" path="res://state_machine/enemy/multistate.gd" id="10_fd3e2"]
+[ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="13_1vave"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="13_onacd"]
+[ext_resource type="Script" uid="uid://dr4u5rsf5xoa6" path="res://state_machine/interrupts/conditions/not.gd" id="14_xmwtg"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="15_cxjil"]
+[ext_resource type="Script" uid="uid://ctkt4x4xj18wn" path="res://state_machine/interrupts/conditions/line_of_sight_to_player.gd" id="15_o8ak0"]
 [ext_resource type="PackedScene" uid="uid://ue2n5e8pxlqe" path="res://assets/characters/enemies/clam/baby_clam/babylam_prefab.tscn" id="15_vxwlt"]
 [ext_resource type="AudioStream" uid="uid://cyy015a80gd1s" path="res://assets/characters/enemies/clam/sounds/open_1.wav" id="16_jiy3g"]
 [ext_resource type="AudioStream" uid="uid://cw7xmflf22ncy" path="res://assets/characters/enemies/clam/sounds/open_2.wav" id="17_v4op6"]
@@ -208,7 +211,7 @@ hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("Attack/WaitForTimeXState")
+initial_state = NodePath("Close/GameStartWait")
 
 [node name="Open" type="Node" parent="StateMachine" index="0" unique_id=837134847]
 
@@ -268,7 +271,18 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Close" type="Node" parent="StateMachine" index="2" unique_id=1905264692]
 
-[node name="TriggerEventStateClosed" type="Node" parent="StateMachine/Close" index="0" unique_id=1383870932 node_paths=PackedStringArray("events", "next_state")]
+[node name="GameStartWait" type="Node" parent="StateMachine/Close" index="0" unique_id=785254469 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ma0s4")
+random = true
+min_wait_time = 1.0
+max_wait_time = 2.0
+next_state = NodePath("../MultistateState")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "idle_closed"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="TriggerEventStateClosed" type="Node" parent="StateMachine/Close" index="1" unique_id=1383870932 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("2_0ukvt")
 events = [NodePath("../../../Eventlisteners/AdjustAttributesClosed"), NodePath("../../../Eventlisteners/PlaySoundClose")]
 next_state = NodePath("../MultistateState")
@@ -277,15 +291,15 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
-[node name="MultistateState" type="Node" parent="StateMachine/Close" index="1" unique_id=58216497 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
+[node name="MultistateState" type="Node" parent="StateMachine/Close" index="2" unique_id=58216497 node_paths=PackedStringArray("states_to_execute", "states_that_need_to_finish", "next_state")]
 script = ExtResource("10_fd3e2")
 states_to_execute = [NodePath("../LookAtPlayerState"), NodePath("../WaitForTimeClosed")]
 states_that_need_to_finish = [NodePath("../WaitForTimeClosed")]
 which_states_need_to_finish = "any"
-next_state = NodePath("../../Open/TriggerEventStateOpened")
+next_state = NodePath("../AboutToShoot")
 metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
 
-[node name="LookAtPlayerState" type="Node" parent="StateMachine/Close" index="2" unique_id=596234552 node_paths=PackedStringArray("next_state")]
+[node name="LookAtPlayerState" type="Node" parent="StateMachine/Close" index="3" unique_id=596234552 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_0ukvt")
 infinite = true
 next_state = NodePath("../WaitForTimeClosed")
@@ -294,11 +308,44 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="WaitForTimeClosed" type="Node" parent="StateMachine/Close" index="3" unique_id=583543399 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeClosed" type="Node" parent="StateMachine/Close" index="4" unique_id=583543399 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_ma0s4")
 wait_time = 4.0
-next_state = NodePath("../../Open/TriggerEventStateOpened")
+random = true
+min_wait_time = 2.5
+max_wait_time = 3.5
+next_state = NodePath("../AboutToShoot")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="AboutToShoot" type="Node" parent="StateMachine/Close" index="5" unique_id=472508896 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_ma0s4")
+wait_time = 0.5
+min_wait_time = 3.0
+max_wait_time = 4.0
+next_state = NodePath("../LookAtPlayerInterruptable")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="LookAtPlayerInterruptable" type="Node" parent="StateMachine/Close" index="6" unique_id=1665180319 node_paths=PackedStringArray("next_state", "interrupts")]
+script = ExtResource("3_0ukvt")
+wait_time = 0.5
+next_state = NodePath("../../Open/TriggerEventStateOpened")
+interrupts = [NodePath("Interrupt")]
+metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
+
+[node name="Interrupt" type="Node" parent="StateMachine/Close/LookAtPlayerInterruptable" index="0" unique_id=971214737 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("13_1vave")
+state_to_go_to = NodePath("../../AboutToShoot")
+condition = NodePath("NotInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="NotInterruptCondition" type="Node" parent="StateMachine/Close/LookAtPlayerInterruptable/Interrupt" index="0" unique_id=1673315506 node_paths=PackedStringArray("condition")]
+script = ExtResource("14_xmwtg")
+condition = NodePath("LineOfSightToPlayerInterruptCondition")
+metadata/_custom_type_script = "uid://dr4u5rsf5xoa6"
+
+[node name="LineOfSightToPlayerInterruptCondition" type="Node" parent="StateMachine/Close/LookAtPlayerInterruptable/Interrupt/NotInterruptCondition" index="0" unique_id=340244045]
+script = ExtResource("15_o8ak0")
+metadata/_custom_type_script = "uid://ctkt4x4xj18wn"
 
 [node name="PlaySoundOpen" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=416212925 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("13_onacd")
