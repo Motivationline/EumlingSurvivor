@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="12_0as1f"]
 [ext_resource type="AudioStream" uid="uid://db05veivwt285" path="res://assets/characters/enemies/peacock/sounds/slash_1.wav" id="13_h3tpy"]
 [ext_resource type="AudioStream" uid="uid://pky3frkxp8hm" path="res://assets/characters/enemies/peacock/sounds/slash_2.wav" id="14_1cmvr"]
+[ext_resource type="PackedScene" uid="uid://cahha048nkmkj" path="res://assets/characters/enemies/peacock/baby/peacock_baby.tscn" id="14_h0vxx"]
 [ext_resource type="AudioStream" uid="uid://bqngr1fx2bqe" path="res://assets/characters/enemies/peacock/sounds/slash_3.wav" id="15_84u8h"]
 [ext_resource type="AudioStream" uid="uid://cmp20igs7cipi" path="res://assets/characters/enemies/peacock/sounds/slash_4.wav" id="16_h0vxx"]
 [ext_resource type="AudioStream" uid="uid://blt2iiuhvm43y" path="res://assets/characters/enemies/peacock/sounds/slash_5.wav" id="17_pymno"]
@@ -230,6 +231,9 @@ random = true
 max_wait_time = 0.4
 next_state = NodePath("../LookAtPlayerAlways")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("14_h0vxx")
 
 [node name="peacock" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=918755390 instance=ExtResource("6_46ipm")]
 
