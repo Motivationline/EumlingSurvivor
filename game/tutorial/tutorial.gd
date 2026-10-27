@@ -26,10 +26,12 @@ enum PROGRESS {
 	COMPLETED,
 }
 
+var loading_screen: PackedScene = preload("uid://d2kq1cxqiwbkm")
 var progress: PROGRESS = PROGRESS.NONE
 
 func save_progress():
 	SaveData.set_data("tutorial_progress", progress)
+
 
 
 func _ready() -> void:
@@ -54,6 +56,7 @@ var dialogue: DialogueResource
 var eumlex: PackedScene
 var eumlex_instance: Node
 var player: Player
+var player_scene:PackedScene = preload("uid://i26vdjehm6ll")
 var quest_overlay: Node
 var touch_joystick_overlay: CanvasLayer
 var pulse_animator: PackedScene
@@ -170,8 +173,7 @@ func run_start():
 	var pressed = func():
 		remove_child(main_menu_instance)
 		hide_quest()
-		load_level()
-		await get_tree().create_timer(1).timeout
+		await load_level()
 		await show_dialogue("training_intro")
 		run_move()
 	darken_input_highlight_element.call_deferred(button, pressed) # calling deferred for the button to be rendered correctly once first
@@ -266,6 +268,13 @@ func return_to_main_menu():
 	progress = PROGRESS.RETURN_EUMLEX
 	level_wrapper.queue_free()
 	player.queue_free()
+	
+	var new_loading_screen: LoadingScreen = loading_screen.instantiate()
+	Main.controller.add_child(new_loading_screen)
+	await new_loading_screen.loading_screen_ready
+	new_loading_screen._on_load_finished(null)
+	
+	
 	add_child(main_menu_instance)
 	GlobalMusicManager.set_environment_noise(SongList.ENVNOISE.NOTHING)
 	var btn: TextureButton = main_menu_instance.find_child("EumlexButton")
@@ -273,6 +282,7 @@ func return_to_main_menu():
 		eumlex_show_again()
 	)
 	complete_quest()
+	await  get_tree().create_timer(1).timeout
 	show_quest("Trage den Eumling ein")
 
 func eumlex_show_again():
@@ -303,7 +313,7 @@ func player_died():
 	await show_dialogue("training_failed")
 	progress = PROGRESS.START_RUN
 	hide_quest()
-	load_level()
+	await load_level()
 	await show_dialogue("training_intro")
 	run_move()
 
@@ -369,20 +379,30 @@ func completed():
 
 func load_level():
 	Utils.remove_all_children(level_wrapper)
+	
 
+	
+	SceneLoader.load_scene("uid://bwlbdn0hs3kcf")
+	await  SceneLoader.ready_to_load
+	
+	
 	if player:
 		player.queue_free()
-	player = load("uid://i26vdjehm6ll").instantiate()
+	player = player_scene.instantiate()
 	player.died.connect(player_died)
 	add_child(player)
 
-	tutorial_level = load("uid://bwlbdn0hs3kcf").instantiate()
+	var tutorial_level_scene = await SceneLoader.load_finished
+	tutorial_level = tutorial_level_scene.instantiate()
+	
 	tutorial_level.difficulty = 0
 	level_wrapper.add_child(tutorial_level)
 	tutorial_level.spawn_player(player)
 	
 	tutorial_level.level_ended.connect(run_cage_open)
-
+	
+	await  get_tree().create_timer(1).timeout
+	
 func show_dialogue(id: String, pause: bool = true):
 	if pause: get_tree().paused = true
 	DialogueManager.show_dialogue_balloon(dialogue, id)
