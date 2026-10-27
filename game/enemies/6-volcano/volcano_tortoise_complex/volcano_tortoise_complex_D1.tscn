@@ -323,7 +323,7 @@ metadata/_custom_type_script = "uid://dl3af38o4df2f"
 
 [node name="InRangeToPlayerInterruptCondition" type="Node" parent="StateMachine/MoveRandomOnNavMeshState/Interrupt" index="0" unique_id=252060166]
 script = ExtResource("6_0q7ou")
-distance = 3.0
+distance = 2.0
 metadata/_custom_type_script = "uid://3q8mspcqcwpf"
 
 [node name="WaitAfterWalk" type="Node" parent="StateMachine" index="1" unique_id=1918710380 node_paths=PackedStringArray("next_state")]
@@ -349,7 +349,7 @@ metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
 [node name="MoveTowardsEntityState" type="Node" parent="StateMachine/Chase_and_Attack" index="0" unique_id=1940144199 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_j40q3")
-wait_time = 0.5
+wait_time = 0.0
 stop_distance = 1.0
 max_follow_time = 3.0
 speed_override_active = true
@@ -370,7 +370,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="SpawnInnerRing" type="Node" parent="StateMachine/Chase_and_Attack" index="2" unique_id=1622876265 node_paths=PackedStringArray("next_state")]
 script = ExtResource("6_v31ca")
-end_delay = 1.0
+end_delay = 0.4
 next_state = NodePath("../../DecideDistanceState")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
