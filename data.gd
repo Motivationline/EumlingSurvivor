@@ -29,6 +29,7 @@ func reset():
 
 	_setup_eumlings()
 
+
 #region Eumlings
 
 signal active_eumlings_changed(active_mini_eumlings: Array[Enum.EUMLING_TYPE])
