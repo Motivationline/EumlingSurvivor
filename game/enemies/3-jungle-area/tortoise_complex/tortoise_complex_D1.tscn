@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="4_1inio"]
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="4_sxxkw"]
 [ext_resource type="PackedScene" uid="uid://c03op2rrwafaq" path="res://game/enemies/3-jungle-area/tortoise/tortoise_projectile.tscn" id="5_1inio"]
+[ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="5_ornr0"]
+[ext_resource type="Script" uid="uid://3q8mspcqcwpf" path="res://state_machine/interrupts/conditions/in_range.gd" id="6_fefgt"]
 [ext_resource type="PackedScene" uid="uid://d1dloljb16rae" path="res://game/aoes/tortoise_complex_aoe/jungle_tortoise_complex/tortoise_complex_aoe.tscn" id="6_uujif"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_vbkmk"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="8_2gkp5"]
@@ -330,7 +332,7 @@ speed = 0.4
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveRandomOnNavMeshState")
 
-[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=808056490 node_paths=PackedStringArray("next_state")]
+[node name="MoveRandomOnNavMeshState" type="Node" parent="StateMachine" index="0" unique_id=808056490 node_paths=PackedStringArray("next_state", "interrupts")]
 script = ExtResource("2_y4gxm")
 wait_time = 0.0
 max_distance = 2.0
@@ -338,7 +340,19 @@ next_state = NodePath("../WaitAfterWalk")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
 })
+interrupts = [NodePath("Interrupt")]
 metadata/_custom_type_script = "uid://dgi4gidx4vpsn"
+
+[node name="Interrupt" type="Node" parent="StateMachine/MoveRandomOnNavMeshState" index="0" unique_id=1275422271 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("5_ornr0")
+state_to_go_to = NodePath("../../Chase_and_Attack/MoveTowardsEntityState")
+condition = NodePath("InRangeToPlayerInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="InRangeToPlayerInterruptCondition" type="Node" parent="StateMachine/MoveRandomOnNavMeshState/Interrupt" index="0" unique_id=1252830937]
+script = ExtResource("6_fefgt")
+distance = 2.0
+metadata/_custom_type_script = "uid://3q8mspcqcwpf"
 
 [node name="WaitAfterWalk" type="Node" parent="StateMachine" index="1" unique_id=357579882 node_paths=PackedStringArray("next_state")]
 script = ExtResource("9_2gkp5")
@@ -364,7 +378,7 @@ metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
 [node name="MoveTowardsEntityState" type="Node" parent="StateMachine/Chase_and_Attack" index="0" unique_id=732944240 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_sxxkw")
-wait_time = 0.5
+wait_time = 0.0
 stop_distance = 1.5
 max_follow_time = 3.0
 speed_override_active = true
@@ -385,7 +399,7 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="SpawnInnerRing" type="Node" parent="StateMachine/Chase_and_Attack" index="2" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_l7fh3")
-end_delay = 1.0
+end_delay = 0.4
 next_state = NodePath("../../MoveRandomOnNavMeshState")
 metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 
