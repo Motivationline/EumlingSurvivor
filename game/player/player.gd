@@ -77,6 +77,10 @@ signal upgrade_added
 ## Limits to the upgradeable values. x is minimum, y is maximum. If not specified, values can go from 0 to infinity.
 @export var min_max_values: Dictionary[Enum.UPGRADE, Vector2] = {}
 
+##Maximum Distance for targets to be considered for auto aiming.
+@export var max_auto_target_distance:float = 5
+
+
 var anim_player: AnimationTree
 
 @onready var attack_spawner: EntitySpawner = $DefaultAttack/AttackSpawner
@@ -197,15 +201,15 @@ func _physics_process(_delta: float) -> void:
 	var look_direction_3d = Vector3(look_direction.x, 0, look_direction.y)
 	if camera:
 		look_direction_3d = look_direction_3d.rotated(Vector3.UP, camera.rotation.y)
-	if Input.is_action_pressed("fire") or Input.get_action_strength("fire_axis") > 0.5:
+	if Input.is_action_just_pressed("fire") or Input.get_action_strength("fire_axis") > 0.5:
 		if Data.is_on_mobile or not was_looking_somewhere:
 			# look at closest enemy to shoot
-			var enemies = get_tree().get_nodes_in_group("Enemy")
-			if enemies.size() > 0:
-				Utils.sort_array_by_distance(enemies, self )
-				eumling_visuals.look_at(enemies[0].global_position)
-				eumling_visuals.rotation.x = 0
+				var target = get_target()
+				if target:
+					eumling_visuals.look_at(target.global_position)
+					eumling_visuals.rotation.x = 0
 		shoot()
+
 	if look_direction.is_zero_approx():
 		if was_looking_somewhere and Data.is_on_mobile:
 			shoot()
@@ -219,6 +223,41 @@ func _physics_process(_delta: float) -> void:
 		%AttackVisual.show()
 		prev_direction = look_direction_3d
 	%AttackVisual.rotation.y = eumling_visuals.rotation.y
+
+
+func get_target() -> Node3D:
+	var target:Node3D
+	 
+	var targets:Array = get_tree().get_nodes_in_group("AutoAimTarget")
+	targets = filter_max_distance(targets, max_auto_target_distance)
+	targets = filter_to_highest_priority(targets)
+	Utils.sort_array_by_distance(targets, self )
+	if targets.size() > 0:
+
+
+		target = targets[0]
+		return target
+	else: return null
+	
+func filter_max_distance(_targets: Array, _max_distance:float) -> Array:
+	_targets = _targets.filter(func (a:Node3D):
+		if global_position.distance_to(a.global_position) <= _max_distance:
+			return true
+		else: return false
+		)
+	return _targets
+
+func filter_to_highest_priority(_targets: Array) -> Array:
+	_targets.sort_custom(func (a:AutoAimTarget,b:AutoAimTarget):
+		return a.priority > b.priority
+		)
+	_targets = _targets.filter(func (a:AutoAimTarget):
+		if a.priority == _targets[0].priority:
+			return true
+		else: return false
+		)
+	return _targets
+
 
 func _input(_event: InputEvent) -> void:
 	# if (_event.is_action_pressed("debug_test")):
