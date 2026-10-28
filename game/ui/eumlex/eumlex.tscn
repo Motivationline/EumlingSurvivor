@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://ch18yvwyg6mv2" path="res://assets/ui/Eumlex/EumlexBlank.png" id="8_3iwa0"]
 [ext_resource type="Texture2D" uid="uid://bcatobc2j03sb" path="res://assets/ui/Eumlex/IconA.png" id="9_48btb"]
 [ext_resource type="Texture2D" uid="uid://d1ajjlroi6yyx" path="res://assets/ui/Eumlex/EumlexScrollBackground.png" id="9_gqdvb"]
-[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="10_amahl"]
 [ext_resource type="Texture2D" uid="uid://sbq7w3rqne2i" path="res://assets/ui/Eumlex/IconS.png" id="11_665xe"]
 [ext_resource type="PackedScene" uid="uid://b6vj3geh4ibvg" path="res://game/ui/eumlex/eumling_button/eumlex_button.tscn" id="11_w24f0"]
 [ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="12_ikcm3"]
@@ -26,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="16_7mh0x"]
 [ext_resource type="PackedScene" uid="uid://djyl5v0duholv" path="res://game/ui/eumlex/eumlex_info_page_missing.tscn" id="16_17oye"]
 [ext_resource type="Texture2D" uid="uid://bvb4cns6l455k" path="res://assets/ui/Eumlex/TagBaseC.png" id="17_n58ek"]
+[ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="18_h87jw"]
 [ext_resource type="Texture2D" uid="uid://cjj03lo1voxow" path="res://assets/ui/Eumlex/TagBaseA.png" id="18_j2jup"]
 [ext_resource type="Texture2D" uid="uid://dwgh2hdeer32g" path="res://assets/ui/Eumlex/TagBaseI.png" id="19_wnors"]
 [ext_resource type="Texture2D" uid="uid://ch6804no7yieo" path="res://assets/ui/Eumlex/TagBaseE.png" id="20_kq6so"]
@@ -321,6 +321,7 @@ offset_bottom = 942.0
 layout_mode = 2
 
 [node name="OrangePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=358149256]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 2.0
@@ -334,11 +335,12 @@ offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
+theme_override_constants/separation = 12
 
 [node name="RealisticHeadline" type="Label" parent="Book/BookContainer/BookBG/OrangePage/RealisticText" unique_id=1148847126]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Realistische..."
 
@@ -346,8 +348,7 @@ text = "Realistische..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge sind sehr talentiert im Erforschen neuer Technologien."
 autowrap_mode = 2
@@ -463,11 +464,12 @@ offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
+theme_override_constants/separation = 12
 
 [node name="InvestigativeHeadline" type="Label" parent="Book/BookContainer/BookBG/GreenPage/InvestigativeText" unique_id=1212183052]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Investigative..."
 
@@ -475,8 +477,7 @@ text = "Investigative..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge sind absolute Wissens-Profis auf Ihrem Spezialgebiet."
 autowrap_mode = 2
@@ -592,11 +593,12 @@ offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
+theme_override_constants/separation = 12
 
 [node name="ArtisticHeadline" type="Label" parent="Book/BookContainer/BookBG/PurplePage/ArtisticText" unique_id=1396379585]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Artistische..."
 
@@ -604,8 +606,7 @@ text = "Artistische..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge bringen immer neue kreative Ideen und Projekte ein."
 autowrap_mode = 2
@@ -721,11 +722,12 @@ offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
+theme_override_constants/separation = 12
 
 [node name="SocialHeadline" type="Label" parent="Book/BookContainer/BookBG/YellowPage/SocialText" unique_id=966952137]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Soziale..."
 
@@ -733,8 +735,7 @@ text = "Soziale..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge sind empathisch und erkennen Situationen sofort."
 autowrap_mode = 2
@@ -850,11 +851,12 @@ offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
+theme_override_constants/separation = 12
 
 [node name="EnterprisingHeadline" type="Label" parent="Book/BookContainer/BookBG/RedPage/EnterprisingText" unique_id=712381558]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Enterprising..."
 
@@ -862,8 +864,7 @@ text = "Enterprising..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge sind stets auf der Suche nach Herausforderungen."
 autowrap_mode = 2
@@ -965,7 +966,6 @@ max_font_size = 32
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="BluePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1337237438]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 2.0
@@ -979,11 +979,12 @@ offset_left = 37.0
 offset_top = 17.0
 offset_right = 591.0
 offset_bottom = 234.0
+theme_override_constants/separation = 12
 
 [node name="ConventionalHeadline" type="Label" parent="Book/BookContainer/BookBG/BluePage/ConventionalText" unique_id=848115751]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Conventional..."
 
@@ -991,8 +992,7 @@ text = "Conventional..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge erledigen Aufgaben schnell und zuverlässig."
 autowrap_mode = 2

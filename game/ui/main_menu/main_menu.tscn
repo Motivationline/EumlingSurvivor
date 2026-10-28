@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cg73m83g0gu84" path="res://assets/models/3-Jungle/jungle_tree/jungel_tree_01.glb" id="13_o0d2s"]
 [ext_resource type="Texture2D" uid="uid://31sl2tycnpxy" path="res://assets/ui/Buttons/new_run_button.png" id="14_fkgrk"]
 [ext_resource type="PackedScene" uid="uid://m14qxh5fce8m" path="res://assets/models/3-Jungle/ObstacleStone/ObstacleStone.glb" id="14_orue0"]
+[ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="15_dmkvk"]
 [ext_resource type="Texture2D" uid="uid://bl41m3gtmqhmi" path="res://assets/ui/Buttons/continue_button.png" id="15_njswq"]
 [ext_resource type="Material" uid="uid://dcxlase0almr2" path="res://assets/models/3-Jungle/jungle_tree/jungel_tree_01_foliage_material_1.tres" id="16_lnduv"]
 [ext_resource type="Texture2D" uid="uid://ddc7l41e04xpn" path="res://assets/ui/logos/boostline_logo.png" id="17_alg0g"]
@@ -29,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="19_vt321"]
 [ext_resource type="PackedScene" uid="uid://dlxnvjne1irpy" path="res://game/ui/start_screen/area_picker.tscn" id="20_2f5e2"]
 [ext_resource type="PackedScene" uid="uid://b1dehhangi7ko" path="res://assets/characters/eumling/main_menu_eumling/main_menu_eumling.tscn" id="20_oup2s"]
+[ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="20_sp1m0"]
 [ext_resource type="PackedScene" uid="uid://b2gactr5k8m8l" path="res://assets/characters/eumling/main_menu_eumling/backpack/backpack_prop.tscn" id="21_jxl6k"]
 [ext_resource type="PackedScene" uid="uid://dnpkx1sg04yw3" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/main_menu/main_menu_sozial.tscn" id="23_hutre"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="23_vt321"]
@@ -520,16 +522,17 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -8.631512
-offset_top = 39.704445
-offset_right = -8.631531
-offset_bottom = 39.704437
+offset_left = -0.000113487244
+offset_top = 31.936188
+offset_right = -0.00012207031
+offset_bottom = 31.936188
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 0.094958134
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 37
-theme_override_fonts/font = ExtResource("4_m1bca")
+theme_override_fonts/font = ExtResource("15_dmkvk")
 theme_override_font_sizes/font_size = 70
 text = "Neu"
 horizontal_alignment = 1
@@ -553,16 +556,17 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -0.63151217
-offset_top = 20.704445
-offset_right = -0.63153076
-offset_bottom = 20.704437
+offset_left = 5.6186657
+offset_top = 22.522182
+offset_right = 5.618622
+offset_bottom = 22.522186
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 0.13203664
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 37
-theme_override_fonts/font = ExtResource("4_m1bca")
+theme_override_fonts/font = ExtResource("15_dmkvk")
 theme_override_font_sizes/font_size = 70
 text = "Weiter"
 horizontal_alignment = 1
@@ -609,6 +613,35 @@ mouse_filter = 2
 texture = ExtResource("18_i63cf")
 flip_h = true
 
+[node name="IntroButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1424059844]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 37.0
+offset_right = 527.0
+offset_bottom = 138.0
+scale = Vector2(1.2110778, 1.429054)
+texture_normal = ExtResource("20_sp1m0")
+
+[node name="Label" type="Label" parent="UIOverlay/StaticUI/IntroButton" unique_id=1993072979]
+layout_mode = 0
+offset_left = 15.688522
+offset_top = 12.59573
+offset_right = 214.6848
+offset_bottom = 83.97162
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15_dmkvk")
+text = "Intro "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=912012033]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 39.0
+offset_right = 176.0
+offset_bottom = 178.0
+texture_normal = ExtResource("13_0bhyy")
+
 [node name="EndGameButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=576263562]
 unique_name_in_owner = true
 visible = false
@@ -620,6 +653,7 @@ offset_bottom = 153.0
 texture_normal = ExtResource("19_vt321")
 
 [node name="AreaPicker" parent="UIOverlay" unique_id=1083536254 instance=ExtResource("20_2f5e2")]
+visible = false
 mouse_filter = 2
 
 [node name="Background_Tile" type="Node3D" parent="." unique_id=272850613]
