@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="9_82dyp"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="9_ycknn"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="10_0ett8"]
+[ext_resource type="Script" uid="uid://dr4u5rsf5xoa6" path="res://state_machine/interrupts/conditions/not.gd" id="10_trsfq"]
 [ext_resource type="PackedScene" uid="uid://dw0sq6p2ec161" path="res://game/projectiles/puffer_fish_projectile/puffer_fish_projectile.tscn" id="11_qc8ak"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_y2utl"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_p0112"]
@@ -119,7 +120,7 @@ metadata/_custom_type_script = "uid://pv70hoylokg6"
 [sub_resource type="Resource" id="Resource_cime2"]
 script = ExtResource("9_ycknn")
 attribute = "incoming_damage_multiplier"
-value = 0.7
+value = 0.5
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_y07py"]
@@ -279,7 +280,7 @@ metadata/_custom_type_script = "uid://dl3af38o4df2f"
 
 [node name="InRangeToPlayerInterruptCondition" type="Node" parent="StateMachine/RandomWalk/MoveRandomOnNavMeshState/InterruptDistance" index="0" unique_id=464271547]
 script = ExtResource("8_8adn0")
-distance = 3.0
+distance = 2.0
 metadata/_custom_type_script = "uid://3q8mspcqcwpf"
 
 [node name="ChasePlayer" type="Node" parent="StateMachine" index="3" unique_id=1920938586]
@@ -287,15 +288,31 @@ metadata/_custom_type_script = "uid://3q8mspcqcwpf"
 [node name="MoveTowardsEntityState" type="Node" parent="StateMachine/ChasePlayer" index="0" unique_id=530589196 node_paths=PackedStringArray("next_state", "interrupts")]
 script = ExtResource("5_mgxs6")
 wait_time = 0.0
-stop_distance = 1.0
+stop_distance = 0.7
 speed_override = 2.0
 speed_override_active = true
 next_state = NodePath("../../Inflate/ReduceDamageWhileInlfated")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "walk"
 })
-interrupts = [NodePath("../../OnDamage/InterruptOnHurt")]
+interrupts = [NodePath("../../OnDamage/InterruptOnHurt"), NodePath("InterruptDistance")]
 metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="InterruptDistance" type="Node" parent="StateMachine/ChasePlayer/MoveTowardsEntityState" index="0" unique_id=1986279556 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("41_6pew2")
+state_to_go_to = NodePath("../../../RandomWalk/MoveRandomOnNavMeshState")
+condition = NodePath("NotInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="NotInterruptCondition" type="Node" parent="StateMachine/ChasePlayer/MoveTowardsEntityState/InterruptDistance" index="0" unique_id=2139302538 node_paths=PackedStringArray("condition")]
+script = ExtResource("10_trsfq")
+condition = NodePath("InRangeToPlayerInterruptCondition")
+metadata/_custom_type_script = "uid://dr4u5rsf5xoa6"
+
+[node name="InRangeToPlayerInterruptCondition" type="Node" parent="StateMachine/ChasePlayer/MoveTowardsEntityState/InterruptDistance/NotInterruptCondition" index="0" unique_id=70590228]
+script = ExtResource("8_8adn0")
+distance = 2.6
+metadata/_custom_type_script = "uid://3q8mspcqcwpf"
 
 [node name="Inflate" type="Node" parent="StateMachine" index="4" unique_id=1727306305]
 
@@ -313,7 +330,6 @@ metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
 [node name="get_Big" type="Node" parent="StateMachine/Inflate" index="2" unique_id=1059184430 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_owfw2")
-wait_time = 4.5
 next_state = NodePath("../EnableAttackHitbox")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "get_big"
@@ -379,7 +395,7 @@ metadata/_custom_type_script = "uid://pxcyq4sjjhtw"
 
 [node name="get_Big_on_hit" type="Node" parent="StateMachine/OnDamage" index="3" unique_id=1404587102 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_owfw2")
-wait_time = 4.5
+wait_time = 1.2
 next_state = NodePath("../EnableAttackHitbox")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "get_big"

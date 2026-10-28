@@ -6,12 +6,22 @@
 
 [node name="puffer_fish_complex" unique_id=1898691 instance=ExtResource("1_jif07")]
 
+[node name="InRangeToPlayerInterruptCondition" parent="StateMachine/RandomWalk/MoveRandomOnNavMeshState/InterruptDistance" parent_id_path=PackedInt32Array(1245127493) index="0" unique_id=464271547]
+distance = 3.0
+
+[node name="InRangeToPlayerInterruptCondition" parent="StateMachine/ChasePlayer/MoveTowardsEntityState/InterruptDistance/NotInterruptCondition" parent_id_path=PackedInt32Array(2139302538) index="0" unique_id=70590228]
+distance = 3.5
+
+[node name="get_Big_on_hit" parent="StateMachine/OnDamage" parent_id_path=PackedInt32Array(1129289335) index="3" unique_id=1404587102]
+wait_time = 1.0
+
 [node name="spawnerMain" parent="StateMachine/OnDamage/SpawnEntitiesState" parent_id_path=PackedInt32Array(1242062148) index="0" unique_id=484682867]
 amount_of_spawns = 8
 
-[node name="pufferfish_model" parent="Visuals/Pufferfish/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1528906013, 934039303) index="0" unique_id=686826668]
+[node name="pufferfish_model" parent="Visuals/Pufferfish/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1528906013, 1204440569) index="0" unique_id=721173626]
 material_overlay = ExtResource("2_6lkdm")
 
 [node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1554862748 instance=ExtResource("3_78v1k")]
+transform = Transform3D(0.457, 0, 0, 0, 1, 0, 0, 0, 0.556, 0, 0, 0)
 
 [editable path="Visuals/Pufferfish"]
