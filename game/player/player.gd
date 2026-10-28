@@ -229,7 +229,7 @@ func get_target() -> Node3D:
 	var target:Node3D
 	 
 	var targets:Array = get_tree().get_nodes_in_group("AutoAimTarget")
-	targets = filter_max_distance(targets, max_auto_target_distance)
+	targets = filter_max_distance_and_disabled(targets, max_auto_target_distance)
 	targets = filter_to_highest_priority(targets)
 	Utils.sort_array_by_distance(targets, self )
 	if targets.size() > 0:
@@ -239,9 +239,9 @@ func get_target() -> Node3D:
 		return target
 	else: return null
 	
-func filter_max_distance(_targets: Array, _max_distance:float) -> Array:
+func filter_max_distance_and_disabled(_targets: Array, _max_distance:float) -> Array:
 	_targets = _targets.filter(func (a:Node3D):
-		if global_position.distance_to(a.global_position) <= _max_distance:
+		if global_position.distance_to(a.global_position) <= _max_distance and !a.disabled:
 			return true
 		else: return false
 		)

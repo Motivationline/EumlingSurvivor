@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_380mr"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="4_kyxhj"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_v47a7"]
+[ext_resource type="Script" uid="uid://cty6sd7qwk8j4" path="res://state_machine/enemy/set_targetable.gd" id="6_sivo7"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="6_uii50"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="9_5kvpg"]
 [ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="9_sivo7"]
@@ -208,10 +209,17 @@ metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 [node name="EnableHurtbox" type="Node" parent="StateMachine/attack" index="0" unique_id=996281842 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("6_uii50")
 enable = [NodePath("../../../Visuals/Hurtbox"), NodePath("../../../StatusVisuals3DEnemy")]
-next_state = NodePath("../AttackAim")
+next_state = NodePath("../ActivateTargetable")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="AttackAim" type="Node" parent="StateMachine/attack" index="1" unique_id=1650706798 node_paths=PackedStringArray("next_state")]
+[node name="ActivateTargetable" type="Node" parent="StateMachine/attack" index="1" unique_id=934785051 node_paths=PackedStringArray("auto_aim_target", "next_state")]
+script = ExtResource("6_sivo7")
+auto_aim_target = NodePath("../../../AutoAimTarget")
+disabled = null
+next_state = NodePath("../AttackAim")
+metadata/_custom_type_script = "uid://cty6sd7qwk8j4"
+
+[node name="AttackAim" type="Node" parent="StateMachine/attack" index="2" unique_id=1650706798 node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_kyxhj")
 next_state = NodePath("../WaitForTimeXState")
 animation_trigger = Dictionary[String, Variant]({
@@ -219,7 +227,7 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cxy0hm7s41xp3"
 
-[node name="WaitForTimeXState" type="Node" parent="StateMachine/attack" index="2" unique_id=352423571 node_paths=PackedStringArray("next_state")]
+[node name="WaitForTimeXState" type="Node" parent="StateMachine/attack" index="3" unique_id=352423571 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_v47a7")
 wait_time = 0.2
 next_state = NodePath("../EnableHitbox")
@@ -228,26 +236,26 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="EnableHitbox" type="Node" parent="StateMachine/attack" index="3" unique_id=13672933 node_paths=PackedStringArray("enable", "disable", "next_state")]
+[node name="EnableHitbox" type="Node" parent="StateMachine/attack" index="4" unique_id=13672933 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("6_uii50")
 enable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2")]
 disable = [NodePath("../../../Visuals/Hurtbox")]
 next_state = NodePath("../WaitForAnimation")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="WaitForAnimation" type="Node" parent="StateMachine/attack" index="4" unique_id=1061933523 node_paths=PackedStringArray("next_state")]
+[node name="WaitForAnimation" type="Node" parent="StateMachine/attack" index="5" unique_id=1061933523 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_v47a7")
 wait_time = 0.5
 next_state = NodePath("../DisableHitbox")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="DisableHitbox" type="Node" parent="StateMachine/attack" index="5" unique_id=710102785 node_paths=PackedStringArray("disable", "next_state")]
+[node name="DisableHitbox" type="Node" parent="StateMachine/attack" index="6" unique_id=710102785 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("6_uii50")
 disable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2"), NodePath("../../../StatusVisuals3DEnemy")]
 next_state = NodePath("../WaitForAnimationEnd")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="WaitForAnimationEnd" type="Node" parent="StateMachine/attack" index="6" unique_id=803979567 node_paths=PackedStringArray("next_state")]
+[node name="WaitForAnimationEnd" type="Node" parent="StateMachine/attack" index="7" unique_id=803979567 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_v47a7")
 wait_time = 3.0
 next_state = NodePath("../../Idle/HideWait")
@@ -333,5 +341,11 @@ volume_db = -7.0
 
 [node name="Retract" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="4" unique_id=760652464 instance=ExtResource("9_5kvpg")]
 stream = SubResource("AudioStreamRandomizer_gx50f")
+
+[node name="AutoAimTarget" parent="." index="7" unique_id=322948086]
+disabled = true
+
+[node name="WinCounterTracker" parent="." index="8" unique_id=1947437337]
+active = false
 
 [connection signal="play_sound" from="Visuals/squid_arm" to="SoundEffectManager" method="play_sound"]
