@@ -103,9 +103,10 @@ func _ready() -> void:
 	icon.position.y = -texture.get_height()/2.0
 	
 	if !Engine.is_editor_hint():
+		
 		_on_viewport_resized()
 		get_viewport().size_changed.connect(_on_viewport_resized)
-		camera = get_viewport().get_camera_3d()
+		camera = (get_tree().get_first_node_in_group("Level") as Level).find_child("GameCamera")
 		if is_on_screen():
 			process_mode = Node.PROCESS_MODE_DISABLED
 		else:
@@ -116,23 +117,21 @@ func _ready() -> void:
 
 
 func _physics_process(_delta:float) -> void:
-	if camera.is_inside_tree():
-		var screen_position:Vector2 = camera.unproject_position(global_position)
-		var icon_position:Vector2
-		
-		icon.rotation = viewport_center.direction_to(screen_position).angle() +  texture_pointing_direction.angle()
-		match margin_mode:
-			MARGIN_MODE.CIRCULAR:
-				icon_position = viewport_center + viewport_center.direction_to(screen_position) * radius
-			MARGIN_MODE.RECTANGULAR:
-				icon_position = viewport_center + viewport_center.direction_to(screen_position) * 1000
-				icon_position.x = clampf(icon_position.x, margin_horizontal, viewport_size.x - margin_horizontal)
-				icon_position.y = clampf(icon_position.y, margin_vertical, viewport_size.y - margin_vertical)
-		
-		print(viewport_center.direction_to(screen_position).angle())
-		icon.position = icon_position
-	else:
-		camera = get_viewport().get_camera_3d()
+
+	var screen_position:Vector2 = camera.unproject_position(global_position)
+	var icon_position:Vector2
+	
+	icon.rotation = viewport_center.direction_to(screen_position).angle() +  texture_pointing_direction.angle()
+	match margin_mode:
+		MARGIN_MODE.CIRCULAR:
+			icon_position = viewport_center + viewport_center.direction_to(screen_position) * radius
+		MARGIN_MODE.RECTANGULAR:
+			icon_position = viewport_center + viewport_center.direction_to(screen_position) * 1000
+			icon_position.x = clampf(icon_position.x, margin_horizontal, viewport_size.x - margin_horizontal)
+			icon_position.y = clampf(icon_position.y, margin_vertical, viewport_size.y - margin_vertical)
+	
+	icon.position = icon_position
+
 
 func _on_screen_entered():
 	icon.hide()
