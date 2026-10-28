@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://bo5kay8o1r3cy"]
+
+[ext_resource type="Script" uid="uid://cnlge2pwguoq4" path="res://game/ui/end_game/after_game.gd" id="1_2mn68"]
+[ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="4_21ups"]
+[ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="5_21ups"]
+[ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="6_m0551"]
+
+[node name="AfterGame" type="CanvasLayer" unique_id=736744720]
+layer = 200
+script = ExtResource("1_2mn68")
+
+[node name="BaseControl" type="Control" parent="." unique_id=782519571]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BaseControl" unique_id=1722698020]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.23529412)
+
+[node name="RIASECResultContainer" type="VBoxContainer" parent="BaseControl" unique_id=1115979542]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -485.0
+offset_top = -309.0
+offset_right = 485.0
+offset_bottom = 339.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="BaseControl" unique_id=121190696]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -347.0
+offset_top = 62.0
+offset_right = 347.0
+offset_bottom = 132.0
+grow_horizontal = 2
+text = "Das Ergebnis deines Abenteuers"
+
+[node name="NewEumlingInfo" type="Control" parent="BaseControl" unique_id=270910999]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EumlexInfoPage" parent="BaseControl/NewEumlingInfo" unique_id=1340831237 instance=ExtResource("4_21ups")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -374.0
+offset_top = 139.0
+offset_right = -374.0
+offset_bottom = 139.0
+grow_vertical = 1
+
+[node name="ContinueButton" type="TextureButton" parent="BaseControl/NewEumlingInfo" unique_id=1771217320]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -169.0
+offset_right = 185.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("5_21ups")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="BaseControl/NewEumlingInfo/ContinueButton" unique_id=622739454]
+custom_minimum_size = Vector2(290, 105)
+custom_maximum_size = Vector2(290, 105)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -52.5
+offset_right = 76.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 72
+text = "Weiter"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_m0551")
+label_size = Vector2i(290, 105)
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
+[node name="WorkInProgressLabel" type="Label" parent="." unique_id=1614086895]
+offset_left = 773.0
+offset_top = 1011.0
+offset_right = 1919.0
+offset_bottom = 1081.0
+text = "Work in Progress - Definitiv Nicht Finales Aussehen"
+
+[connection signal="pressed" from="BaseControl/NewEumlingInfo/ContinueButton" to="." method="_on_continue_button_pressed"]

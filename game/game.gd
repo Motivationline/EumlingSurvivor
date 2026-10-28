@@ -1,6 +1,7 @@
 extends Node3D
 class_name Game
 
+const AFTER_GAME: PackedScene = preload("uid://bo5kay8o1r3cy")
 var player_scene: PackedScene = preload("res://game/player/player.tscn")
 var player: Player
 @onready var level_wrapper: Node3D = $Level
@@ -167,15 +168,16 @@ func remove_loaded_level():
 	Utils.remove_all_children(level_wrapper)
 
 func run_end_riasec():
-	var riasec_progress: Array = []
-	for key in Data.game_data.riasec_progress.keys():
-		riasec_progress.append({type = key, value = Data.game_data.riasec_progress.get(key)})
-
-	riasec_progress.sort_custom(func(a, b): return a.value > b.value)
+	var riasec_progress = Data.game_data.get_riasec_progress_as_sorted_array()
+	
 	var riasec_types: Array[Enum.EUMLING_TYPE] = [];
 	for rp in riasec_progress:
 		riasec_types.append(rp.type)
 
 	var riasec_eumling = Data.find_eumling_based_on_riasec(riasec_types)
 	if not riasec_eumling: return
+	var end_game_screen = AFTER_GAME.instantiate()
+	add_child(end_game_screen)
+	end_game_screen.setup(riasec_eumling)
 	prints("riasec eumling", riasec_eumling)
+	await end_game_screen.closed

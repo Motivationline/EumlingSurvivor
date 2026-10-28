@@ -65,3 +65,12 @@ func reset():
 	total_upgrades = 0
 	levels_to_load.clear()
 	riasec_progress.clear()
+
+func get_riasec_progress_as_sorted_array() -> Array:
+	var riasec_progress_array: Array = []
+	for key in Data.game_data.riasec_progress.keys():
+		riasec_progress_array.append({type = key, value = Data.game_data.riasec_progress.get(key)})
+
+	riasec_progress_array.sort_custom(func(a, b): return a.value > b.value)
+
+	return riasec_progress_array

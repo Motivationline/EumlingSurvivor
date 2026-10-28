@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bg45qiq2skasq"]
+
+[ext_resource type="Script" uid="uid://daqwrsftg1y8o" path="res://game/ui/end_game/riasec_result.gd" id="1_rctf5"]
+[ext_resource type="Texture2D" uid="uid://bcatobc2j03sb" path="res://assets/ui/Eumlex/IconA.png" id="2_p1u4f"]
+[ext_resource type="Texture2D" uid="uid://b6bxybop5o8ks" path="res://assets/ui/Eumlex/IconC.png" id="3_fg61h"]
+[ext_resource type="Texture2D" uid="uid://dcumrupa7bvdu" path="res://assets/ui/Eumlex/IconE.png" id="4_xd6su"]
+[ext_resource type="Texture2D" uid="uid://dnatt3uej2715" path="res://assets/ui/Eumlex/IconI.png" id="5_vb6fc"]
+[ext_resource type="Texture2D" uid="uid://8gogno32qkaf" path="res://assets/ui/Eumlex/IconR.png" id="6_cjjev"]
+[ext_resource type="Texture2D" uid="uid://sbq7w3rqne2i" path="res://assets/ui/Eumlex/IconS.png" id="7_aieuj"]
+
+[node name="RIASEC_Result" type="Control" unique_id=886686473]
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 3
+script = ExtResource("1_rctf5")
+icons = Dictionary[int, Texture]({
+0: ExtResource("2_p1u4f"),
+1: ExtResource("3_fg61h"),
+2: ExtResource("4_xd6su"),
+3: ExtResource("5_vb6fc"),
+4: ExtResource("6_cjjev"),
+5: ExtResource("7_aieuj")
+})
+
+[node name="Icon" type="TextureRect" parent="." unique_id=476012440]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -43.5
+offset_right = 108.75
+offset_bottom = 43.5
+grow_vertical = 2
+texture = ExtResource("2_p1u4f")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=2016639980]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -826.0
+offset_top = -43.5
+offset_bottom = 43.5
+grow_horizontal = 0
+grow_vertical = 2
+show_percentage = false
