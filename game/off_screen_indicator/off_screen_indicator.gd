@@ -1,37 +1,43 @@
 @tool
-## Attach this to a 3D Node to create a ui element pointing at it when it is off screen.
+##Attach this to a 3D Node to create a ui element pointing at it when it is off screen.
 class_name OffScreenIndicator extends VisibleOnScreenNotifier3D
 
-@export var icon:TextureRect
-@export var texture:Texture2D
+@export var active: bool = false
+
+##The Node this icon points at. If empty, it defaults to its own position.
+@export var pointing_target: Node3D
+
+
+@export_category("Icon")
+@export var icon: TextureRect
+@export var texture: Texture2D
 
 ##The direction the texture is pointing at. Used to rotate it toward the object properly.
-@export var texture_pointing_direction:Vector2
-
+@export var texture_pointing_direction: Vector2
 
 
 @export_category("Margin")
 
-enum MARGIN_MODE {CIRCULAR,RECTANGULAR}
+enum MARGIN_MODE {CIRCULAR, RECTANGULAR}
 
 ##The way the the indicator moves around the screen. Can either be circular around the center or contained within a rectangular bounding box
-@export var margin_mode:MARGIN_MODE:
+@export var margin_mode: MARGIN_MODE:
 	set(value):
 		margin_mode = value
 		notify_property_list_changed()
 
 #Boundary info
-var margin_horizontal:int = 50
-var margin_vertical:int = 50
-var radius:float = 500.0
+var margin_horizontal: int = 200
+var margin_vertical: int = 200
+var radius: float = 500.0
 
 #Viewport info
-var viewport_center:Vector2
-var viewport_size:Vector2
-var camera:Camera3D
+var viewport_center: Vector2
+var viewport_size: Vector2
+var camera: Camera3D
 
 func _get_property_list():
-	var properties:Array[Dictionary] = []
+	var properties: Array[Dictionary] = []
 	
 	match margin_mode:
 		MARGIN_MODE.CIRCULAR:
@@ -96,14 +102,13 @@ func _property_get_revert(property):
 
 func _ready() -> void:
 	icon.texture = texture
-	icon.pivot_offset.x = texture.get_width()/2.0
-	icon.pivot_offset.y = texture.get_height()/2.0
-	
-	icon.position.x = -texture.get_width()/2.0
-	icon.position.y = -texture.get_height()/2.0
+	icon.offset_transform_position = - icon.size / 2.0
+
+
+	if !pointing_target:
+		pointing_target = self
 	
 	if !Engine.is_editor_hint():
-		
 		_on_viewport_resized()
 		get_viewport().size_changed.connect(_on_viewport_resized)
 		camera = (get_tree().get_first_node_in_group("Level") as Level).find_child("GameCamera")
@@ -115,18 +120,17 @@ func _ready() -> void:
 		notify_property_list_changed()
 		
 
-
-func _physics_process(_delta:float) -> void:
-
-	var screen_position:Vector2 = camera.unproject_position(global_position)
-	var icon_position:Vector2
+func _physics_process(_delta: float) -> void:
+	var screen_position: Vector2 = camera.unproject_position(pointing_target.global_position)
+	var icon_position: Vector2
 	
-	icon.rotation = viewport_center.direction_to(screen_position).angle() +  texture_pointing_direction.angle()
+	icon.rotation = viewport_center.direction_to(screen_position).angle() + texture_pointing_direction.angle()
+	
 	match margin_mode:
 		MARGIN_MODE.CIRCULAR:
 			icon_position = viewport_center + viewport_center.direction_to(screen_position) * radius
 		MARGIN_MODE.RECTANGULAR:
-			icon_position = viewport_center + viewport_center.direction_to(screen_position) * 1000
+			icon_position = viewport_center + viewport_center.direction_to(screen_position) * 5000
 			icon_position.x = clampf(icon_position.x, margin_horizontal, viewport_size.x - margin_horizontal)
 			icon_position.y = clampf(icon_position.y, margin_vertical, viewport_size.y - margin_vertical)
 	
@@ -139,8 +143,9 @@ func _on_screen_entered():
 
 
 func _on_screen_exited():
-	icon.show()
-	process_mode = Node.PROCESS_MODE_INHERIT
+	if active:
+		icon.show()
+		process_mode = Node.PROCESS_MODE_INHERIT
 	
 
 func _on_viewport_resized() -> void:
