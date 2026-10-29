@@ -105,7 +105,7 @@ func start() -> void:
 	var video_instance = video.instantiate()
 	progress = PROGRESS.INTRO_VIDEO
 	add_child(video_instance)
-	await video_instance.finished
+	#await video_instance.finished
 	GlobalMusicManager.request_music(SongList.TRACK.TUTORIAL,MusicTransition.fade_and_start(1),true,SongList.ENVNOISE.NOTHING)
 	add_child(main_menu_instance)
 	remove_child(video_instance)
@@ -171,9 +171,9 @@ func run_start():
 	var button = main_menu_instance.find_child("PlayButton")
 	button.show()
 	var pressed = func():
-		remove_child(main_menu_instance)
 		hide_quest()
 		await load_level()
+		
 		await show_dialogue("training_intro")
 		run_move()
 	darken_input_highlight_element.call_deferred(button, pressed) # calling deferred for the button to be rendered correctly once first
@@ -266,12 +266,12 @@ func run_cage_open():
 
 func return_to_main_menu():
 	progress = PROGRESS.RETURN_EUMLEX
-	level_wrapper.queue_free()
-	player.queue_free()
 	
 	var new_loading_screen: LoadingScreen = loading_screen.instantiate()
 	Main.controller.add_child(new_loading_screen)
 	await new_loading_screen.loading_screen_ready
+	level_wrapper.queue_free()
+	player.queue_free()
 	new_loading_screen._on_load_finished(null)
 	
 	
@@ -378,13 +378,14 @@ func completed():
 	queue_free()
 
 func load_level():
-	Utils.remove_all_children(level_wrapper)
 	
 
 	
 	SceneLoader.load_scene("uid://bwlbdn0hs3kcf")
 	await  SceneLoader.ready_to_load
-	
+	if (is_ancestor_of(main_menu_instance)):
+		remove_child(main_menu_instance)
+	Utils.remove_all_children(level_wrapper)
 	
 	if player:
 		player.queue_free()
