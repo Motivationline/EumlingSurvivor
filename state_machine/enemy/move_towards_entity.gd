@@ -124,5 +124,5 @@ func target_reached():
 func start_timer():
 	if max_follow_time < 0: return
 	await get_tree().create_timer(max_follow_time).timeout
-	if not done:
+	if not done and is_inside_tree():
 		target_reached()
