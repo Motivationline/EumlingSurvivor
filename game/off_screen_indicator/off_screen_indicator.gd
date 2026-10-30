@@ -130,10 +130,19 @@ func _physics_process(_delta: float) -> void:
 		MARGIN_MODE.CIRCULAR:
 			icon_position = viewport_center + viewport_center.direction_to(screen_position) * radius
 		MARGIN_MODE.RECTANGULAR:
-			icon_position = viewport_center + viewport_center.direction_to(screen_position) * 5000
-			icon_position.x = clampf(icon_position.x, margin_horizontal, viewport_size.x - margin_horizontal)
-			icon_position.y = clampf(icon_position.y, margin_vertical, viewport_size.y - margin_vertical)
-	
+			var a: Vector2 = Vector2(margin_horizontal, margin_vertical)
+			var b: Vector2 = Vector2(viewport_size.x - margin_horizontal, margin_vertical)
+			var c: Vector2 = Vector2(viewport_size.x - margin_horizontal, viewport_size.y - margin_vertical)
+			var d: Vector2 = Vector2(margin_horizontal, viewport_size.y - margin_vertical)
+			var corners = [a, b, c, d]
+			var intersection
+			for i in 2:
+				intersection = Geometry2D.segment_intersects_segment(corners[i], corners[i + 1], viewport_center, screen_position)
+				if intersection:
+					icon_position = intersection
+					break
+				
+
 	icon.position = icon_position
 
 
