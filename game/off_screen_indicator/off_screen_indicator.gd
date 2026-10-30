@@ -2,7 +2,13 @@
 ##Attach this to a 3D Node to create a ui element pointing at it when it is off screen.
 class_name OffScreenIndicator extends VisibleOnScreenNotifier3D
 
-@export var active: bool = false
+@export var active: bool = false:
+	set(value):
+		active = value
+		if value and !is_on_screen():
+			_on_screen_exited()
+		else:
+			_on_screen_entered()
 
 ##The Node this icon points at. If empty, it defaults to its own position.
 @export var pointing_target: Node3D
@@ -113,46 +119,48 @@ func _ready() -> void:
 		get_viewport().size_changed.connect(_on_viewport_resized)
 		camera = (get_tree().get_first_node_in_group("Level") as Level).find_child("GameCamera")
 		if is_on_screen():
-			process_mode = Node.PROCESS_MODE_DISABLED
+			_on_screen_entered()
 		else:
-			process_mode = Node.PROCESS_MODE_INHERIT
+			_on_screen_exited()
 	else:
 		notify_property_list_changed()
+		process_mode = Node.PROCESS_MODE_DISABLED
 		
 
 func _physics_process(_delta: float) -> void:
-	var screen_position: Vector2 = camera.unproject_position(pointing_target.global_position)
-	var icon_position: Vector2
-	
-	icon.rotation = viewport_center.direction_to(screen_position).angle() + texture_pointing_direction.angle()
-	
-	match margin_mode:
-		MARGIN_MODE.CIRCULAR:
-			icon_position = viewport_center + viewport_center.direction_to(screen_position) * radius
-		MARGIN_MODE.RECTANGULAR:
-			var a: Vector2 = Vector2(margin_horizontal, margin_vertical)
-			var b: Vector2 = Vector2(viewport_size.x - margin_horizontal, margin_vertical)
-			var c: Vector2 = Vector2(viewport_size.x - margin_horizontal, viewport_size.y - margin_vertical)
-			var d: Vector2 = Vector2(margin_horizontal, viewport_size.y - margin_vertical)
-			var corners = [a, b, c, d]
-			var intersection
-			for i in 2:
-				intersection = Geometry2D.segment_intersects_segment(corners[i], corners[i + 1], viewport_center, screen_position)
-				if intersection:
-					icon_position = intersection
-					break
-				
-
-	icon.position = icon_position
+	if !Engine.is_editor_hint():
+		var screen_position: Vector2 = camera.unproject_position(pointing_target.global_position)
+		var icon_position: Vector2
+		
+		icon.rotation = viewport_center.direction_to(screen_position).angle() + texture_pointing_direction.angle()
+		
+		match margin_mode:
+			MARGIN_MODE.CIRCULAR:
+				icon_position = viewport_center + viewport_center.direction_to(screen_position) * radius
+			MARGIN_MODE.RECTANGULAR:
+				var a: Vector2 = Vector2(margin_horizontal, margin_vertical)
+				var b: Vector2 = Vector2(viewport_size.x - margin_horizontal, margin_vertical)
+				var c: Vector2 = Vector2(viewport_size.x - margin_horizontal, viewport_size.y - margin_vertical)
+				var d: Vector2 = Vector2(margin_horizontal, viewport_size.y - margin_vertical)
+				var corners = [a, b, c, d]
+				var intersection
+				for i in 2:
+					intersection = Geometry2D.segment_intersects_segment(corners[i], corners[i + 1], viewport_center, screen_position)
+					if intersection:
+						icon_position = intersection
+						break
+		
+		icon.position = icon_position
 
 
 func _on_screen_entered():
-	icon.hide()
-	process_mode = Node.PROCESS_MODE_DISABLED
+	if icon:
+		icon.hide()
+		process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _on_screen_exited():
-	if active:
+	if active and icon:
 		icon.show()
 		process_mode = Node.PROCESS_MODE_INHERIT
 	
