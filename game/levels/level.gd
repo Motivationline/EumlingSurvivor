@@ -40,7 +40,7 @@ const MINI_EUMLING_R = preload("uid://ecxm5futmmj4")
 var PORTALS = [load("uid://css0jedfj0qmt"), load("uid://c5d58pjp1p4bh"), load("uid://bk5prj6enj3k8")]
 
 
-var tracked_enemy_coutner:int = 0
+var tracked_enemy_counter: int = 0
 
 ## it's a boss level and the cage has been spawned
 signal cage_spawned
@@ -64,13 +64,18 @@ func _ready() -> void:
 		boss = get_tree().get_first_node_in_group("Enemy")
 		boss_position = boss.global_position
 
+##Fetches all enemies and registers them.
 func _setup_win_condition() -> void:
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	for enemy in enemies:
-		var tracker = enemy.find_child("WinCounterTracker")
-		if tracker is WinCounterTracker and tracker.active:
-			enemy.tree_exited.connect(tracked_enemy_died.bind(enemy))
-			tracked_enemy_coutner += 1
+		_register_enemy(enemy)
+
+##Adds an enemy to be tracked for the level's win condition
+func _register_enemy(_enemy: Enemy) -> void:
+	var tracker = _enemy.find_child("WinCounterTracker")
+	if tracker is WinCounterTracker and tracker.active:
+		_enemy.tree_exited.connect(tracked_enemy_died.bind(_enemy))
+		tracked_enemy_counter += 1
 
 func spawn_player(_player: Player):
 	player = _player
@@ -82,7 +87,7 @@ func spawn_player(_player: Player):
 		spawn_mini_eumling(type)
 	
 	player.level_start()
-	GlobalMusicManager.request_music(music, MusicTransition.fade_and_start(4,0))
+	GlobalMusicManager.request_music(music, MusicTransition.fade_and_start(4, 0))
 
 func spawn_mini_eumling(type: Enum.EUMLING_TYPE):
 	# only spawn minis that need to follow player
@@ -150,12 +155,12 @@ func animate_cage():
 	caged_eumling.sound_effect_manager.play_sound("DrumRollEnd", false, true)
 	caged_eumling.sound_effect_manager.stop_sound("DrumRollLoop")
 
-func tracked_enemy_died(_enemy:Node) -> void:
-	tracked_enemy_coutner -= 1
-	if tracked_enemy_coutner == 0 and _enemy.is_queued_for_deletion() and state == LEVEL_STATE.PLAYING:
+func tracked_enemy_died(_enemy: Node) -> void:
+	tracked_enemy_counter -= 1
+	if tracked_enemy_counter == 0 and _enemy.is_queued_for_deletion() and state == LEVEL_STATE.PLAYING:
 		if is_boss_level:
 			spawn_cage()
-			GlobalMusicManager.request_music(SongList.TRACK.NOTHING,MusicTransition.instant(), true, GlobalMusicManager.current_noise)
+			GlobalMusicManager.request_music(SongList.TRACK.NOTHING, MusicTransition.instant(), true, GlobalMusicManager.current_noise)
 			GlobalMusicManager.request_incidental(SongList.INCIDENTAL.BOSS_DEFEATED, GlobalMusicManager.BUS_ID.MUSIC, 2)
 		else:
 			clear_level()
@@ -213,7 +218,7 @@ func unlock_mini_eumling():
 	Data.add_riasec_progress(eumling_type, 2)
 	Data.unlocked_eumling(eumling_type)
 	var popup = EUMLING_CELEBRATION.instantiate()
-	GlobalMusicManager.request_music(SongList.TRACK.VICTORY_THEME,MusicTransition.instant(), true)
+	GlobalMusicManager.request_music(SongList.TRACK.VICTORY_THEME, MusicTransition.instant(), true)
 	add_child(popup)
 	popup.setup(eumling_type)
 	await popup.done
