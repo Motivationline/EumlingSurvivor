@@ -78,7 +78,7 @@ signal upgrade_added
 @export var min_max_values: Dictionary[Enum.UPGRADE, Vector2] = {}
 
 ##Maximum Distance for targets to be considered for auto aiming.
-@export var max_auto_target_distance:float = 5
+@export var max_auto_target_distance: float = 5
 
 
 var anim_player: AnimationTree
@@ -226,21 +226,19 @@ func _physics_process(_delta: float) -> void:
 
 
 func get_target() -> Node3D:
-	var target:Node3D
+	var target: Node3D
 	 
-	var targets:Array = get_tree().get_nodes_in_group("AutoAimTarget")
+	var targets: Array = get_tree().get_nodes_in_group("AutoAimTarget")
 	targets = filter_max_distance_and_disabled(targets, max_auto_target_distance)
 	targets = filter_to_highest_priority(targets)
-	Utils.sort_array_by_distance(targets, self )
+	Utils.sort_array_by_distance(targets, self)
 	if targets.size() > 0:
-
-
 		target = targets[0]
 		return target
 	else: return null
 	
-func filter_max_distance_and_disabled(_targets: Array, _max_distance:float) -> Array:
-	_targets = _targets.filter(func (a:Node3D):
+func filter_max_distance_and_disabled(_targets: Array, _max_distance: float) -> Array:
+	_targets = _targets.filter(func(a: Node3D):
 		if global_position.distance_to(a.global_position) <= _max_distance and !a.disabled:
 			return true
 		else: return false
@@ -248,10 +246,10 @@ func filter_max_distance_and_disabled(_targets: Array, _max_distance:float) -> A
 	return _targets
 
 func filter_to_highest_priority(_targets: Array) -> Array:
-	_targets.sort_custom(func (a:AutoAimTarget,b:AutoAimTarget):
+	_targets.sort_custom(func(a: AutoAimTarget, b: AutoAimTarget):
 		return a.priority > b.priority
 		)
-	_targets = _targets.filter(func (a:AutoAimTarget):
+	_targets = _targets.filter(func(a: AutoAimTarget):
 		if a.priority == _targets[0].priority:
 			return true
 		else: return false
@@ -267,7 +265,7 @@ func _input(_event: InputEvent) -> void:
 	pass
 
 func spawn_bullet():
-	spawner.spawn(self , eumling_visuals)
+	spawner.spawn(self, eumling_visuals)
 
 
 func activate_shield() -> void:
@@ -332,7 +330,7 @@ func die():
 	dead = true
 	anim_player.set("parameters/DeathOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	hurtbox.process_mode = Node.PROCESS_MODE_DISABLED
-	GlobalMusicManager.fade_out(4,0)
+	GlobalMusicManager.fade_out(4, 0)
 	await get_tree().create_timer(2).timeout
 	died.emit()
 
@@ -359,7 +357,7 @@ func shoot():
 	anim_player.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	var cooldown = get_value(Enum.UPGRADE.ATTACK_COOLDOWN)
 	attack_cooldown.start(cooldown)
-	attack_spawner.spawn(self , eumling_visuals)
+	attack_spawner.spawn(self, eumling_visuals)
 	%AttackVisual.on_cooldown = true
 	attacked.emit()
 

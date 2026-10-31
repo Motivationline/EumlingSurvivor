@@ -1,7 +1,7 @@
-##Attach To an Object to make it auto targetable by the player
+##Attach To an object to make it auto targetable by the player
 class_name AutoAimTarget extends Node3D
 
-## Priority for tageting. Higher Number = Higher Priority
+## Priority for tageting. Higher number = Higher priority
 @export var priority = 0
 
 ## Disables auto targeting for this node
