@@ -1,9 +1,7 @@
 extends Node
 
-var step := 0.12
-
-var target_fps := 60.0
 var scale := 1.0
+var step := 0.12
 
 var panic_frames := 2
 var panic_counter := 0
@@ -15,11 +13,6 @@ var recovery_threshold := 0.75
 
 func _ready():
 	GraphicsSettings.setting_changed.connect(on_setting_changed)
-
-	target_fps = minf(DisplayServer.screen_get_refresh_rate(), 60.0)
-	if target_fps <= 0:
-		target_fps = 60.0
-
 	toggle(is_same(GraphicsSettings.get_setting(GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE), GraphicsSettings.DYNAMIC_RENDER_SCALE.ON))
 
 func _process(_delta):
@@ -30,7 +23,7 @@ func _process(_delta):
 	if gpu_frame_time <= 0.0:
 		return
 		
-	var target_frame_time := 1000 / target_fps
+	var target_frame_time := 1000 / float(GraphicsSettings.get_setting(GraphicsSettings.SETTING.MAX_FRAME_RATE))
 	
 	if gpu_frame_time > target_frame_time * panic_threshold:
 		panic_counter += 1
@@ -49,10 +42,11 @@ func _process(_delta):
 		set_scale(scale + scale * step)
 		recovery_counter = 0
 		
-	print("GPU: %.2f ms | FPS: %d | Scale: %.2f" % [
+	print("GPU: %.2f ms | FPS: %d | Scale: %.2f | Target Frame Time: %.2f" % [
 		gpu_frame_time,
 		Engine.get_frames_per_second(),
-		get_viewport().scaling_3d_scale
+		get_viewport().scaling_3d_scale,
+		target_frame_time
 	])
 
 func set_scale(value: float):
@@ -69,6 +63,8 @@ func on_setting_changed(setting, value) -> void:
 	match setting:
 		GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE:
 			toggle(is_same(value, GraphicsSettings.DYNAMIC_RENDER_SCALE.ON))
+		GraphicsSettings.SETTING.MAX_FRAME_RATE:
+			set_scale(GraphicsSettings.get_setting(GraphicsSettings.SETTING.RENDER_SCALE))
 
 func toggle(value: bool) -> void:
 	set_process(value)
@@ -76,7 +72,4 @@ func toggle(value: bool) -> void:
 		get_viewport().get_viewport_rid(),
 		value
 	)
-	if value:
-		set_scale(GraphicsSettings.get_setting(GraphicsSettings.SETTING.RENDER_SCALE))
-	else:
-		set_scale(1.0)
+	set_scale(GraphicsSettings.get_setting(GraphicsSettings.SETTING.RENDER_SCALE))
