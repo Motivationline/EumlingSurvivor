@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b0gfqqd18wdd2" path="res://assets/ui/gameOverlay/ProgressJungleBackdrop.png" id="1_kynds"]
 [ext_resource type="Script" uid="uid://bvplm1sceb3wf" path="res://game/ui/battle_overlay/battle_overlay.gd" id="1_wfgxb"]
 [ext_resource type="Texture2D" uid="uid://c25hfu5gdb5mo" path="res://assets/ui/textfenster/quest_haken.png" id="2_yc3jl"]
+[ext_resource type="Texture2D" uid="uid://cst5abbpxgam8" path="res://assets/ui/gameOverlay/boss_healtbar_background_unified.png" id="3_m2mtk"]
 [ext_resource type="Texture2D" uid="uid://b31bh35rs35er" path="res://assets/ui/Buttons/PauseButton.png" id="5_58y8o"]
 [ext_resource type="Texture2D" uid="uid://chlu42bsc22aa" path="res://assets/ui/gameOverlay/ProgressActive.png" id="5_vyndw"]
 
@@ -40,7 +41,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="ProgressBarBackdrop" type="TextureRect" parent="ProgressDisplay" unique_id=1222572439]
+layout_mode = 0
+offset_left = 143.0
+offset_top = -43.0
+offset_right = 1770.0349
+offset_bottom = 150.0
+texture = ExtResource("3_m2mtk")
+
 [node name="ProgressBackdrop" type="TextureRect" parent="ProgressDisplay" unique_id=152069809]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

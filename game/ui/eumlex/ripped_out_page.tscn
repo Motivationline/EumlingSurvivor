@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ccro7upfieua2"]
+
+[ext_resource type="Texture2D" uid="uid://tjj7bm2xypsc" path="res://assets/ui/Eumlex/EumlexPageBackdrop.png" id="1_hht24"]
+[ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="2_udumv"]
+
+[node name="CollectEumlexPage" type="Control" unique_id=1028725752]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=434536138]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_hht24")
+
+[node name="EumlexInfoPage" parent="." unique_id=1340831237 instance=ExtResource("2_udumv")]
+layout_mode = 1
+offset_left = 22.000002
+offset_top = 10.0
+offset_right = -1164.0
+offset_bottom = -228.0
+scale = Vector2(0.96401095, 0.96401095)

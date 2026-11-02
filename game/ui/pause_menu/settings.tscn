@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://54ec674jmwbg"]
+
+[ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="1_56xd6"]
+[ext_resource type="Texture2D" uid="uid://cgt1ocwb3ddwk" path="res://assets/ui/Buttons/tabellen_backdrop.png" id="2_j7yhf"]
+[ext_resource type="Texture2D" uid="uid://dfd8lhk8oxa8i" path="res://assets/ui/Buttons/tabellen_tab.png" id="3_lxw05"]
+[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_ovxw3"]
+[ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/start_screen/graphics_settings.tscn" id="5_tc4lx"]
+[ext_resource type="Script" uid="uid://ch5ysq2vooxck" path="res://game/ui/pause_menu/sound_settings.gd" id="6_n7cf7"]
+[ext_resource type="Theme" uid="uid://u1iy4y0s7n01" path="res://assets/ui/base_theme.tres" id="7_gt121"]
+[ext_resource type="Texture2D" uid="uid://cat8pebbs6orm" path="res://assets/ui/Eumlex/SquareFrame.png" id="8_xialn"]
+[ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="9_13vpv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_brhd5"]
+texture = ExtResource("2_j7yhf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6q4fc"]
+texture = ExtResource("3_lxw05")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+expand_margin_bottom = 10.0
+region_rect = Rect2(0, 0, 149, 56.81132)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wrs8w"]
+texture = ExtResource("3_lxw05")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2c6fv"]
+texture = ExtResource("3_lxw05")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+expand_margin_bottom = 10.0
+region_rect = Rect2(0, 0, 149, 57.17279)
+
+[sub_resource type="InputEventAction" id="InputEventAction_kko3x"]
+action = &"openPauseMenu"
+
+[sub_resource type="Shortcut" id="Shortcut_uv6iu"]
+events = [SubResource("InputEventAction_kko3x")]
+
+[node name="Settings" type="Control" unique_id=1695909775]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsTabContainer" type="TabContainer" parent="." unique_id=888222557]
+layout_mode = 0
+offset_left = 71.99994
+offset_top = 59.0
+offset_right = 859.89685
+offset_bottom = 776.0
+scale = Vector2(1.3567766, 1.3567766)
+theme_override_constants/side_margin = 30
+theme_override_constants/tab_separation = 33
+theme_override_fonts/font = ExtResource("1_56xd6")
+theme_override_font_sizes/font_size = 47
+theme_override_styles/panel = SubResource("StyleBoxTexture_brhd5")
+theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_6q4fc")
+theme_override_styles/tab_hovered = SubResource("StyleBoxTexture_wrs8w")
+theme_override_styles/tab_selected = SubResource("StyleBoxTexture_2c6fv")
+current_tab = 0
+
+[node name="Graphics" type="TabBar" parent="SettingsTabContainer" unique_id=937972443]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+theme_override_fonts/font = ExtResource("4_ovxw3")
+metadata/_tab_index = 0
+
+[node name="GraphicsSettings" parent="SettingsTabContainer/Graphics" unique_id=1082587673 instance=ExtResource("5_tc4lx")]
+layout_mode = 1
+offset_left = 74.44119
+offset_top = 44.23758
+offset_right = -521.55884
+offset_bottom = -572.76245
+scale = Vector2(0.9188551, 0.9188551)
+
+[node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=426099189 node_paths=PackedStringArray("pause_menu", "music_slider", "sfx_slider", "ambience_slider")]
+visible = false
+layout_mode = 2
+script = ExtResource("6_n7cf7")
+vol_min = -30.0
+vol_max = 2.0
+pause_menu = NodePath("")
+music_slider = NodePath("SliderContainer/MusicContainer/MusicSlider")
+sfx_slider = NodePath("SliderContainer/SFXContainer/SFXSlider")
+ambience_slider = NodePath("SliderContainer/AmbienceContainer/AmbienceSlider")
+metadata/_tab_index = 1
+
+[node name="SliderContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound" unique_id=1241287887]
+layout_mode = 0
+offset_left = 75.17822
+offset_top = 40.552505
+offset_right = 571.1782
+offset_bottom = 530.5524
+theme_override_constants/separation = 20
+
+[node name="MusicContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound/SliderContainer" unique_id=1759492201]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="SettingsTabContainer/Sound/SliderContainer/MusicContainer" unique_id=465499769]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsTabContainer/Sound/SliderContainer/MusicContainer" unique_id=1043143527]
+layout_mode = 2
+value = 50.0
+
+[node name="SFXContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound/SliderContainer" unique_id=759334467]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="SettingsTabContainer/Sound/SliderContainer/SFXContainer" unique_id=1022492361]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="SettingsTabContainer/Sound/SliderContainer/SFXContainer" unique_id=1701948139]
+layout_mode = 2
+theme = ExtResource("7_gt121")
+value = 100.0
+
+[node name="AmbienceContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound/SliderContainer" unique_id=1502827857]
+layout_mode = 2
+
+[node name="AmbienceLabel" type="Label" parent="SettingsTabContainer/Sound/SliderContainer/AmbienceContainer" unique_id=1021539045]
+layout_mode = 2
+text = "Ambience"
+
+[node name="AmbienceSlider" type="HSlider" parent="SettingsTabContainer/Sound/SliderContainer/AmbienceContainer" unique_id=730598819]
+layout_mode = 2
+theme = ExtResource("7_gt121")
+value = 100.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=878371569]
+layout_mode = 0
+offset_left = 1182.0
+offset_top = 152.0
+offset_right = 1862.0
+offset_bottom = 1023.0
+texture = ExtResource("8_xialn")
+
+[node name="PauseButton" type="TextureButton" parent="." unique_id=1931970425]
+layout_mode = 0
+offset_left = 1710.0
+offset_top = 36.0
+offset_right = 1850.0
+offset_bottom = 180.0
+shortcut = SubResource("Shortcut_uv6iu")
+texture_normal = ExtResource("9_13vpv")
+
+[connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/MusicContainer/MusicSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Music"]]
+[connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/SFXContainer/SFXSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" flags=3 binds= ["SFX"]]
+[connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/AmbienceContainer/AmbienceSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Ambience"]]
