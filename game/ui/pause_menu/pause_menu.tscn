@@ -179,23 +179,17 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_f4s3b")
 theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_yrhg1")
 theme_override_styles/tab_hovered = SubResource("StyleBoxTexture_ldpvg")
 theme_override_styles/tab_selected = SubResource("StyleBoxTexture_igmyq")
-current_tab = 1
+current_tab = 0
+tab_0/title = "Graphics"
 
-[node name="Graphics" type="TabBar" parent="SettingsTabContainer" unique_id=303924558]
-visible = false
+[node name="GraphicsSettings" parent="SettingsTabContainer" unique_id=1082587673 instance=ExtResource("7_w53bu")]
 layout_mode = 2
-theme_override_constants/h_separation = 4
-theme_override_fonts/font = ExtResource("6_7phrv")
+theme_override_constants/margin_bottom = 25
 metadata/_tab_index = 0
-
-[node name="GraphicsSettings" parent="SettingsTabContainer/Graphics" unique_id=1082587673 instance=ExtResource("7_w53bu")]
-layout_mode = 1
-offset_left = 76.0
-offset_top = 26.0
-offset_right = -520.0
-offset_bottom = -591.0
+metadata/_tab_name = "Graphics"
 
 [node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=288030327 node_paths=PackedStringArray("pause_menu", "music_slider", "sfx_slider", "ambience_slider", "sound_effect_manager", "slider_tick_stream_player")]
+visible = false
 layout_mode = 2
 script = ExtResource("9_utddp")
 vol_min = -30.0

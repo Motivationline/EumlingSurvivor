@@ -4,6 +4,7 @@ extends Control
 @export var global_illumination_options: OptionButton
 @export var shadow_options: OptionButton
 @export var depth_of_field_options: OptionButton
+@export var adaptive_resolution_options: OptionButton
 
 @export var save_button: Button
 @export var cancel_button: Button
@@ -35,6 +36,11 @@ func _ready() -> void:
 		depth_of_field_options.add_item("Medium", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.MEDIUM)
 		depth_of_field_options.add_item("High", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.HIGH)
 		depth_of_field_options.select(depth_of_field_options.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.DEPTH_OF_FIELD)))
+	
+	if adaptive_resolution_options:
+		adaptive_resolution_options.clear()
+		adaptive_resolution_options.add_item("On", GraphicsSettings.DYNAMIC_RENDER_SCALE.ON)
+		adaptive_resolution_options.add_item("Off", GraphicsSettings.DYNAMIC_RENDER_SCALE.OFF)
 
 	GraphicsSettings.setting_changed.connect(on_setting_changed)
 	update_buttons()
@@ -49,6 +55,8 @@ func on_setting_changed(setting, value) -> void:
 			shadow_options.select(shadow_options.get_item_index(value))
 		GraphicsSettings.SETTING.DEPTH_OF_FIELD:
 			depth_of_field_options.select(depth_of_field_options.get_item_index(value))
+		GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE:
+			adaptive_resolution_options.select(adaptive_resolution_options.get_item_index(value))
 	update_buttons()
 
 func update_buttons() -> void:
@@ -72,6 +80,9 @@ func _on_shadow_options_item_selected(index: int) -> void:
 func _on_depth_of_field_options_item_selected(index: int) -> void:
 	var option_value = depth_of_field_options.get_item_id(index)
 	GraphicsSettings.set_setting(GraphicsSettings.SETTING.DEPTH_OF_FIELD, option_value)
+
+func _on_adaptive_resolution_options_item_selected(index: int) -> void:
+	GraphicsSettings.set_setting(GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE, adaptive_resolution_options.get_item_id(index))
 
 func _on_save_button_pressed() -> void:
 	GraphicsSettings.save_settings()

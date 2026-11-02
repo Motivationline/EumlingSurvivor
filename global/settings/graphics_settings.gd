@@ -1,10 +1,11 @@
 extends Node
 
 enum SETTING {
-	GLOBAL_ILLUMINATION,
 	RENDER_SCALE,
+	DYNAMIC_RENDER_SCALE,
 	SHADOW,
-	DEPTH_OF_FIELD
+	DEPTH_OF_FIELD,
+	GLOBAL_ILLUMINATION,
 }
 
 enum SHADOW_OPTIONS {
@@ -26,6 +27,11 @@ enum GLOBAL_ILLUMINATION_OPTIONS {
 	SSAO
 }
 
+enum DYNAMIC_RENDER_SCALE {
+	ON,
+	OFF
+}
+
 signal setting_changed(setting_name, value)
 
 const SETTINGS_PATH := "user://settings.cfg"
@@ -33,6 +39,7 @@ const SECTION := "graphics"
 
 var settings := {
 	SETTING.RENDER_SCALE: 1.0,
+	SETTING.DYNAMIC_RENDER_SCALE: DYNAMIC_RENDER_SCALE.ON,
 	SETTING.SHADOW: SHADOW_OPTIONS.MEDIUM,
 	SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.LOW,
 	SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
@@ -44,7 +51,7 @@ func _ready():
 	load_settings()
 
 func set_setting(setting: SETTING, value):
-	if settings.get(setting) == value:
+	if is_same(settings.get(setting), value):
 		return
 
 	settings[setting] = value
@@ -112,8 +119,7 @@ func has_unsaved_changes() -> bool:
 		if not config.has_section_key(SECTION, string_key):
 			return true;
 
-		var saved_value = config.get_value(SECTION, string_key)
-		if saved_value != settings[key]:
+		if not is_same(config.get_value(SECTION, string_key), settings[key]):
 			return true
 
 	return false
