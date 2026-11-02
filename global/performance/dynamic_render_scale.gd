@@ -41,13 +41,6 @@ func _process(_delta):
 	elif recovery_counter >= recovery_frames:
 		set_scale(scale + scale * step)
 		recovery_counter = 0
-		
-	print("GPU: %.2f ms | FPS: %d | Scale: %.2f | Target Frame Time: %.2f" % [
-		gpu_frame_time,
-		Engine.get_frames_per_second(),
-		get_viewport().scaling_3d_scale,
-		target_frame_time
-	])
 
 func set_scale(value: float):
 	var max_scale: float = GraphicsSettings.get_setting(GraphicsSettings.SETTING.RENDER_SCALE)
