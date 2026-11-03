@@ -12,9 +12,53 @@
 [ext_resource type="PackedScene" uid="uid://pywy6q2jhxwo" path="res://assets/characters/eumling/mini_eumling/investigativ_forschend/mini_investigativ_forschend_visual.tscn" id="5_rnpr1"]
 [ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="6_mn3nd"]
 [ext_resource type="PackedScene" uid="uid://drn335i4omarh" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial_visual.tscn" id="7_j7bcv"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="8_amhc8"]
 [ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="13_lcb6e"]
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="14_rnpr1"]
 [ext_resource type="PackedScene" uid="uid://ccro7upfieua2" path="res://game/ui/eumlex/ripped_out_page.tscn" id="15_mn3nd"]
+[ext_resource type="Texture2D" uid="uid://c40q8petlro1j" path="res://assets/ui/Buttons/ButtonBook.png" id="16_j7bcv"]
+[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/rectangleStickerButtonFocused.png" id="17_amhc8"]
+[ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="18_6rghf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6rghf"]
+shader = ExtResource("8_amhc8")
+shader_parameter/blur_amount = 2.0
+
+[sub_resource type="Animation" id="Animation_hpwr3"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_fkgrk"]
+resource_name = "number_wiggle"
+length = 0.667
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.06666667, 0.22972122, 0.23561946, -0.1, -0.005898237, 0.2, -0.0017591268, -0.23561946, -0.19998057, 0.004759474, 0.10000002, -0.0023799685, 0, -0.06666666, -0.240069, 0.06666667, 0.0041391207),
+"times": PackedFloat32Array(0, 0.16666667, 0.5, 0.6666667)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d1hln"]
+_data = {
+&"RESET": SubResource("Animation_hpwr3"),
+&"number_wiggle": SubResource("Animation_fkgrk")
+}
 
 [node name="PickUpEumling" type="Control" unique_id=200048838 node_paths=PackedStringArray("eumling_text", "skill_text")]
 process_mode = 3
@@ -50,7 +94,14 @@ eumlings = Dictionary[int, PackedScene]({
 5: ExtResource("7_j7bcv")
 })
 
+[node name="Background_blurr" type="Panel" parent="." unique_id=1770344825]
+material = SubResource("ShaderMaterial_6rghf")
+layout_mode = 0
+offset_right = 1929.0
+offset_bottom = 1088.0
+
 [node name="background_glow" type="TextureRect" parent="." unique_id=447542799]
+visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -66,6 +117,7 @@ offset_bottom = 811.5245
 texture = ExtResource("2_fwfbe")
 
 [node name="fireworks" type="Node2D" parent="." unique_id=470280052]
+visible = false
 
 [node name="firework_particles" parent="fireworks" unique_id=2134858972 instance=ExtResource("1_372mq")]
 position = Vector2(588, 174)
@@ -81,6 +133,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -12.0
+offset_right = -643.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
@@ -89,7 +145,7 @@ stretch = true
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1920, 1080)
+size = Vector2i(1418, 1060)
 render_target_update_mode = 4
 
 [node name="MiniEumlingMarker" type="Marker3D" parent="SubViewportContainer/SubViewport" unique_id=2106805445]
@@ -103,6 +159,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, -5.7208172e-08, 0.75616133, 0.6543
 projection = 1
 
 [node name="Banner_side_left" type="TextureRect" parent="." unique_id=536918846]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -119,6 +176,7 @@ texture = ExtResource("4_rfacl")
 flip_h = true
 
 [node name="Banner_side_right" type="TextureRect" parent="." unique_id=779766755]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -134,6 +192,7 @@ grow_vertical = 2
 texture = ExtResource("4_rfacl")
 
 [node name="banner_base" type="TextureRect" parent="." unique_id=1998517802]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -305,7 +364,6 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ContinueButton" type="TextureButton" parent="." unique_id=80424771]
-visible = false
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
@@ -348,10 +406,66 @@ label_size = Vector2i(290, 105)
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="CollectEumlexPage" parent="." unique_id=1028725752 instance=ExtResource("15_mn3nd")]
-visible = false
 layout_mode = 1
 offset_left = 922.00006
 offset_top = 154.00002
 offset_right = 922.0
 offset_bottom = 154.0
 scale = Vector2(1.0512557, 1.0512557)
+
+[node name="EumlexButton" type="TextureButton" parent="." unique_id=147487937]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 790.00006
+offset_right = 329.0
+offset_bottom = 1017.00006
+scale = Vector2(0.7946278, 0.7946278)
+focus_neighbor_right = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../VBoxContainer/PlayButton")
+texture_normal = ExtResource("16_j7bcv")
+texture_focused = ExtResource("17_amhc8")
+
+[node name="NumberCircle" type="TextureRect" parent="EumlexButton" unique_id=1331999328]
+visible = false
+layout_mode = 0
+offset_left = 174.92467
+offset_top = -47.821133
+offset_right = 269.92468
+offset_bottom = 74.17886
+pivot_offset = Vector2(47, 61)
+offset_transform_enabled = true
+texture = ExtResource("18_6rghf")
+
+[node name="NumberCircleLabel3D" type="Label" parent="EumlexButton/NumberCircle" unique_id=1320867067]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(62, 82)
+custom_maximum_size = Vector2(62, 82)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.623238
+offset_top = -24.504951
+offset_right = 33.376762
+offset_bottom = 57.49505
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 52
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("14_rnpr1")
+label_size = Vector2i(62, 82)
+max_font_size = 52
+metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EumlexButton/NumberCircle" unique_id=2043012777]
+libraries/ = SubResource("AnimationLibrary_d1hln")
+autoplay = &"number_wiggle"
