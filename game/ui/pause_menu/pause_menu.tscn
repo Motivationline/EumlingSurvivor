@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://c25hfu5gdb5mo" path="res://assets/ui/textfenster/quest_haken.png" id="28_ufw0k"]
 [ext_resource type="Texture2D" uid="uid://chlu42bsc22aa" path="res://assets/ui/gameOverlay/ProgressActive.png" id="29_2s60i"]
 [ext_resource type="PackedScene" uid="uid://ccro7upfieua2" path="res://game/ui/eumlex/ripped_out_page.tscn" id="29_kq7qj"]
+[ext_resource type="Texture2D" uid="uid://balp1dnlnfddm" path="res://assets/ui/Buttons/ButtonSettings.png" id="31_3yawr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_edo3p"]
 shader = ExtResource("2_ob8pm")
@@ -477,6 +478,14 @@ offset_bottom = 132.0
 size_flags_horizontal = 6
 texture = ExtResource("29_2s60i")
 stretch_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1715319797]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 37.0
+offset_right = 428.0
+offset_bottom = 176.0
+texture_normal = ExtResource("31_3yawr")
 
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/MusicContainer/MusicSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Music"]]
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/SFXContainer/SFXSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" flags=3 binds= ["SFX"]]
