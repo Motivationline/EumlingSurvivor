@@ -1,6 +1,7 @@
 extends Control
 
 @export var render_scale_slider: HSlider
+@export var render_scale_output: Label
 @export var dynamic_render_scale_options: OptionButton
 @export var max_frame_rate_options: OptionButton
 @export var global_illumination_options: OptionButton
@@ -65,6 +66,7 @@ func on_setting_changed(setting, value) -> void:
 	match setting:
 		GraphicsSettings.SETTING.RENDER_SCALE:
 			render_scale_slider.value = value
+			render_scale_output.text = "%d%%" % (value * 100.0)
 		GraphicsSettings.SETTING.GLOBAL_ILLUMINATION:
 			global_illumination_options.select(global_illumination_options.get_item_index(value))
 		GraphicsSettings.SETTING.SHADOW:

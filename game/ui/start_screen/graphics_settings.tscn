@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://m8calhmgu23g" path="res://game/ui/start_screen/graphics_settings.gd" id="1_ukd82"]
 
-[node name="GraphicsSettings" type="MarginContainer" unique_id=590519214 node_paths=PackedStringArray("render_scale_slider", "dynamic_render_scale_options", "max_frame_rate_options", "global_illumination_options", "shadow_options", "depth_of_field_options", "save_button", "cancel_button")]
+[node name="GraphicsSettings" type="MarginContainer" unique_id=590519214 node_paths=PackedStringArray("render_scale_slider", "render_scale_output", "dynamic_render_scale_options", "max_frame_rate_options", "global_illumination_options", "shadow_options", "depth_of_field_options", "save_button", "cancel_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -16,6 +16,7 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("1_ukd82")
 render_scale_slider = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/RenderScaleSlider")
+render_scale_output = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/RenderScaleOutput")
 dynamic_render_scale_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DynamicRenderScaleOptions")
 max_frame_rate_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MaxFrameRateOptions")
 global_illumination_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GlobalIlluminationOptions")
@@ -44,9 +45,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RenderScaleLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=313040801]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1112764613]
 layout_mode = 2
+
+[node name="RenderScaleLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=313040801]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Render Scale"
+
+[node name="RenderScaleOutput" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1530046521]
+layout_mode = 2
+text = "100%"
 
 [node name="RenderScaleSlider" type="HSlider" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=398364305]
 custom_minimum_size = Vector2(0, 5)
