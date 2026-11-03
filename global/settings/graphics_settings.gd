@@ -1,10 +1,12 @@
 extends Node
 
 enum SETTING {
-	GLOBAL_ILLUMINATION,
 	RENDER_SCALE,
+	DYNAMIC_RENDER_SCALE,
 	SHADOW,
-	DEPTH_OF_FIELD
+	DEPTH_OF_FIELD,
+	GLOBAL_ILLUMINATION,
+	MAX_FRAME_RATE
 }
 
 enum SHADOW_OPTIONS {
@@ -26,16 +28,25 @@ enum GLOBAL_ILLUMINATION_OPTIONS {
 	SSAO
 }
 
+enum DYNAMIC_RENDER_SCALE {
+	ON,
+	OFF
+}
+
 signal setting_changed(setting_name, value)
+
+var MAX_REFRESH_RATE: int = int(DisplayServer.screen_get_refresh_rate()) if DisplayServer.screen_get_refresh_rate() > 0 else 60 # cache screen_get_refresh_rate as setting Engine.max_fps can affect refresh rate on some devices
 
 const SETTINGS_PATH := "user://settings.cfg"
 const SECTION := "graphics"
 
 var settings := {
 	SETTING.RENDER_SCALE: 1.0,
+	SETTING.DYNAMIC_RENDER_SCALE: DYNAMIC_RENDER_SCALE.ON,
 	SETTING.SHADOW: SHADOW_OPTIONS.MEDIUM,
 	SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.LOW,
 	SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
+	SETTING.MAX_FRAME_RATE: MAX_REFRESH_RATE
 }
 
 var config := ConfigFile.new()
@@ -44,7 +55,7 @@ func _ready():
 	load_settings()
 
 func set_setting(setting: SETTING, value):
-	if settings.get(setting) == value:
+	if is_same(settings.get(setting), value):
 		return
 
 	settings[setting] = value
@@ -85,6 +96,8 @@ func apply_setting(setting: SETTING, value):
 			
 			if (dof_quality > -1):
 				RenderingServer.camera_attributes_set_dof_blur_quality(dof_quality, ProjectSettings.get_setting("rendering/camera/depth_of_field/depth_of_field_use_jitter"))
+		SETTING.MAX_FRAME_RATE:
+			Engine.max_fps = value
 			
 func save_settings():
 	for key in settings:
@@ -112,8 +125,7 @@ func has_unsaved_changes() -> bool:
 		if not config.has_section_key(SECTION, string_key):
 			return true;
 
-		var saved_value = config.get_value(SECTION, string_key)
-		if saved_value != settings[key]:
+		if not is_same(config.get_value(SECTION, string_key), settings[key]):
 			return true
 
 	return false

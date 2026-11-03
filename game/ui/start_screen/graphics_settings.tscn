@@ -2,32 +2,53 @@
 
 [ext_resource type="Script" uid="uid://m8calhmgu23g" path="res://game/ui/start_screen/graphics_settings.gd" id="1_ukd82"]
 
-[node name="GraphicsSettings" type="Control" unique_id=1082587673 node_paths=PackedStringArray("render_scale_slider", "global_illumination_options", "shadow_options", "depth_of_field_options", "save_button", "cancel_button")]
-layout_mode = 3
+[node name="GraphicsSettings" type="MarginContainer" unique_id=590519214 node_paths=PackedStringArray("render_scale_slider", "dynamic_render_scale_options", "max_frame_rate_options", "global_illumination_options", "shadow_options", "depth_of_field_options", "save_button", "cancel_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1050.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 script = ExtResource("1_ukd82")
-render_scale_slider = NodePath("GridContainer/RenderScaleSlider")
-global_illumination_options = NodePath("GridContainer/GlobalIlluminationOptions")
-shadow_options = NodePath("GridContainer/ShadowOptions")
-depth_of_field_options = NodePath("GridContainer/DepthOfFieldOptions")
-save_button = NodePath("GridContainer/SaveButton")
-cancel_button = NodePath("GridContainer/CancelButton")
+render_scale_slider = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/RenderScaleSlider")
+dynamic_render_scale_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DynamicRenderScaleOptions")
+max_frame_rate_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MaxFrameRateOptions")
+global_illumination_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GlobalIlluminationOptions")
+shadow_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ShadowOptions")
+depth_of_field_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DepthOfFieldOptions")
+save_button = NodePath("VBoxContainer/HBoxContainer/SaveButton")
+cancel_button = NodePath("VBoxContainer/HBoxContainer/CancelButton")
 
-[node name="GridContainer" type="GridContainer" parent="." unique_id=777126205]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="RenderScaleLabel" type="Label" parent="GridContainer" unique_id=313040801]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=37603159]
 layout_mode = 2
-text = "3D Render Scale"
 
-[node name="RenderScaleSlider" type="HSlider" parent="GridContainer" unique_id=398364305]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=604899414]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer" unique_id=813098499]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer" unique_id=1417751993]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RenderScaleLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=313040801]
+layout_mode = 2
+text = "Render Scale"
+
+[node name="RenderScaleSlider" type="HSlider" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=398364305]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 offset_transform_position = Vector2(-19, 0)
@@ -37,41 +58,66 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="ShadowLabel" type="Label" parent="GridContainer" unique_id=1002264529]
+[node name="DynamicRenderScaleLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=519299031]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Dynamic Render Scale"
+
+[node name="DynamicRenderScaleOptions" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=128438708]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="MaxFrameRateLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1394033807]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Max Frame Rate"
+
+[node name="MaxFrameRateOptions" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=359744581]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="ShadowLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1002264529]
 layout_mode = 2
 text = "Shadow Quality"
 
-[node name="ShadowOptions" type="OptionButton" parent="GridContainer" unique_id=1047196321]
+[node name="ShadowOptions" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1047196321]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="DepthOfFieldLabel" type="Label" parent="GridContainer" unique_id=367807410]
+[node name="DepthOfFieldLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=367807410]
 layout_mode = 2
 text = "Depth of Field"
 
-[node name="DepthOfFieldOptions" type="OptionButton" parent="GridContainer" unique_id=240397707]
+[node name="DepthOfFieldOptions" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=240397707]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="GlobalIlluminationLabel" type="Label" parent="GridContainer" unique_id=946824771]
+[node name="GlobalIlluminationLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=946824771]
 layout_mode = 2
 text = "Global Illumination"
 
-[node name="GlobalIlluminationOptions" type="OptionButton" parent="GridContainer" unique_id=871023816]
+[node name="GlobalIlluminationOptions" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=871023816]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="SaveButton" type="Button" parent="GridContainer" unique_id=1141342688]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=882968710]
 layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1141342688]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Save"
 
-[node name="CancelButton" type="Button" parent="GridContainer" unique_id=885995504]
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=885995504]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Cancel"
 
-[connection signal="value_changed" from="GridContainer/RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
-[connection signal="item_selected" from="GridContainer/ShadowOptions" to="." method="_on_shadow_options_item_selected"]
-[connection signal="item_selected" from="GridContainer/DepthOfFieldOptions" to="." method="_on_depth_of_field_options_item_selected"]
-[connection signal="item_selected" from="GridContainer/GlobalIlluminationOptions" to="." method="_on_global_illumination_options_item_selected"]
-[connection signal="pressed" from="GridContainer/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="GridContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DynamicRenderScaleOptions" to="." method="_on_dynamic_render_scale_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MaxFrameRateOptions" to="." method="_on_max_frame_rate_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ShadowOptions" to="." method="_on_shadow_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DepthOfFieldOptions" to="." method="_on_depth_of_field_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GlobalIlluminationOptions" to="." method="_on_global_illumination_options_item_selected"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
