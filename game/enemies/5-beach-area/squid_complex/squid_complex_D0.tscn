@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_jkmx4"]
 [ext_resource type="Script" uid="uid://ct3ystpgiu6c3" path="res://game/spawner/spawner_linker.gd" id="9_kkjg1"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_drskb"]
+[ext_resource type="Script" uid="uid://cty6sd7qwk8j4" path="res://state_machine/enemy/set_targetable.gd" id="11_6t2u5"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_v0fvw"]
 [ext_resource type="AudioStream" uid="uid://bnxax3xh1ah3i" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_1.wav" id="14_kkjg1"]
 [ext_resource type="AudioStream" uid="uid://c0xnnjtum0jlc" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_2.wav" id="15_6t2u5"]
@@ -203,10 +204,17 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 [node name="DisableHitbox" type="Node" parent="StateMachine/onDamage" index="0" unique_id=173445153 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("6_b5djj")
 disable = [NodePath("../../../hitboxBase"), NodePath("../../../Hurtbox"), NodePath("../../../StatusVisuals3DEnemy")]
-next_state = NodePath("../HideWait")
+next_state = NodePath("../DisableTargetable")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="HideWait" type="Node" parent="StateMachine/onDamage" index="1" unique_id=1369659944 node_paths=PackedStringArray("next_state")]
+[node name="DisableTargetable" type="Node" parent="StateMachine/onDamage" index="1" unique_id=677099114 node_paths=PackedStringArray("auto_aim_target", "next_state")]
+script = ExtResource("11_6t2u5")
+auto_aim_target = NodePath("../../../AutoAimTarget")
+disabled = true
+next_state = NodePath("../HideWait")
+metadata/_custom_type_script = "uid://cty6sd7qwk8j4"
+
+[node name="HideWait" type="Node" parent="StateMachine/onDamage" index="2" unique_id=1369659944 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
 next_state = NodePath("../MarkerWait")
 animation_trigger = Dictionary[String, Variant]({
@@ -214,25 +222,32 @@ animation_trigger = Dictionary[String, Variant]({
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="MarkerWait" type="Node" parent="StateMachine/onDamage" index="2" unique_id=1256341859 node_paths=PackedStringArray("next_state")]
+[node name="MarkerWait" type="Node" parent="StateMachine/onDamage" index="3" unique_id=1256341859 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
 next_state = NodePath("../TeleportToOnNavMeshState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine/onDamage" index="3" unique_id=1900754059 node_paths=PackedStringArray("next_state")]
+[node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine/onDamage" index="4" unique_id=1900754059 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_alqjo")
 wait_time = 2.0
 target = 2
 next_state = NodePath("../EnableHitbox")
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
-[node name="EnableHitbox" type="Node" parent="StateMachine/onDamage" index="4" unique_id=384250231 node_paths=PackedStringArray("enable", "next_state")]
+[node name="EnableHitbox" type="Node" parent="StateMachine/onDamage" index="5" unique_id=384250231 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("6_b5djj")
 enable = [NodePath("../../../hitboxBase"), NodePath("../../../Hurtbox"), NodePath("../../../StatusVisuals3DEnemy")]
-next_state = NodePath("../ShowWait")
+next_state = NodePath("../EnableTargetable")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="ShowWait" type="Node" parent="StateMachine/onDamage" index="5" unique_id=445945042 node_paths=PackedStringArray("next_state")]
+[node name="EnableTargetable" type="Node" parent="StateMachine/onDamage" index="6" unique_id=1139575128 node_paths=PackedStringArray("auto_aim_target", "next_state")]
+script = ExtResource("11_6t2u5")
+auto_aim_target = NodePath("../../../AutoAimTarget")
+disabled = true
+next_state = NodePath("../ShowWait")
+metadata/_custom_type_script = "uid://cty6sd7qwk8j4"
+
+[node name="ShowWait" type="Node" parent="StateMachine/onDamage" index="7" unique_id=445945042 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
 wait_time = 2.0
 next_state = NodePath("../../LookAtPlayerState")

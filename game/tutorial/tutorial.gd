@@ -243,6 +243,7 @@ func run_aim():
 	# touch_joystick_overlay.find_child("TapButton").queue_free()
 	touch_joystick_overlay.find_child("AttackController").show()
 	var dummy = tutorial_level.find_child("Dummy", true, false)
+	tutorial_level._register_enemy(dummy)
 	dummy.died.connect(func():
 		complete_quest()
 		run_cage_drop()
@@ -250,6 +251,7 @@ func run_aim():
 
 
 func run_cage_drop():
+	tutorial_level.ready_to_end = true
 	await get_tree().create_timer(3.5).timeout
 	await show_dialogue("eumling_intro")
 	show_quest("Rette den Eumling")
