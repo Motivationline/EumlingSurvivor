@@ -194,11 +194,7 @@ func get_frame_rate_options(max_refresh_rate: int = int(DisplayServer.screen_get
 
 func detect_gpu_performance():
 	var benchmark = preload("res://global/performance/benchmark.tscn").instantiate()
-
 	add_child(benchmark)
-
-	var average_frame_time = await benchmark.benchmark_finished
-
-	print("GPU frame time: ", average_frame_time, " ms")
-
+	await benchmark.run()
+	print("GPU frame time: ", benchmark.average_frame_time, " ms")
 	benchmark.queue_free()
