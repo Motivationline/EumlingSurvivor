@@ -16,6 +16,7 @@ func _ready() -> void:
 		quality_preset_option.add_item("Medium", GraphicsSettings.QUALITY_PRESET.MEDIUM)
 		quality_preset_option.add_item("High", GraphicsSettings.QUALITY_PRESET.HIGH)
 		quality_preset_option.add_item("Custom", GraphicsSettings.QUALITY_PRESET.CUSTOM)
+		quality_preset_option.add_item("Retro", GraphicsSettings.QUALITY_PRESET.RETRO)
 		quality_preset_option.select(quality_preset_option.get_item_index(GraphicsSettings.get_quality_preset()))
 
 	if render_scale_slider:
