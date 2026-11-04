@@ -8,7 +8,7 @@ var selection_overlay: TextureRect;
 
 @export var tabs_and_containers: Dictionary[TextureButton, Panel]
 @export var eumling_type_and_container: Dictionary[Enum.EUMLING_TYPE, Container]
-@export var sound_effect_manager:SoundEffectManager
+@export var sound_effect_manager: SoundEffectManager
 signal eumling_revealed
 
 func _on_tab_pressed(tab: TextureButton):
@@ -60,6 +60,13 @@ func _update_buttons():
 		for eumling in category:
 			setup_button(eumling)
 
+func _shortcut_input(event) -> void:
+	if event.is_action_pressed("debug_unlock_eumlex"):
+		for type in Data._locked_eumlings:
+			for i in Data._locked_eumlings[type].size():
+				Data._unlock_eumling(type)
+				
+		update_visuals()
 
 func setup_button(eumling: Eumling):
 	var container = eumling_type_and_container.get(eumling.type)
@@ -95,13 +102,13 @@ func reveal_new_eumling(eumling: Eumling, btn: EumlingButton):
 	if not eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED: return
 	# $Book.hide();
 	%SeedRevealContainer.show()
-	GlobalMusicManager.fade_out(1.0,true)
+	GlobalMusicManager.fade_out(1.0, true)
 	var reveal = REVEAL_SEED.instantiate()
 	%SeedRevealViewport.add_child(reveal)
 	reveal.setup(eumling)
 	await reveal.completed
 	reveal.queue_free()
-	GlobalMusicManager.request_music(SongList.TRACK.MENU,MusicTransition.crossfade(1.0))
+	GlobalMusicManager.request_music(SongList.TRACK.MENU, MusicTransition.crossfade(1.0))
 	# _update_buttons()
 	eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.SEEN
 	btn.update_visuals()
