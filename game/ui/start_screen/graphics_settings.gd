@@ -21,6 +21,9 @@ func _ready() -> void:
 
 	if render_scale_slider:
 		render_scale_slider.value = GraphicsSettings.get_setting(GraphicsSettings.SETTING.RENDER_SCALE)
+	
+	if render_scale_output:
+		render_scale_output.text = "%d%%" % (GraphicsSettings.get_setting(GraphicsSettings.SETTING.RENDER_SCALE) * 100.0)
 
 	if global_illumination_option:
 		global_illumination_option.clear()
