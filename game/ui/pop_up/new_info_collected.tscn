@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://cp1ha3k058w81"]
+
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_3ptv8"]
+[ext_resource type="Texture2D" uid="uid://cge6re5ltogle" path="res://assets/ui/Buttons/Divider.png" id="2_prc2g"]
+[ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="3_oa77d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gmuld"]
+shader = ExtResource("1_3ptv8")
+shader_parameter/blur_amount = 2.0
+
+[node name="NewInfoCollected" type="Control" unique_id=563297542]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1597262303]
+material = SubResource("ShaderMaterial_gmuld")
+layout_mode = 0
+offset_right = 1921.0
+offset_bottom = 1079.0
+
+[node name="Divider" type="TextureRect" parent="." unique_id=1778854381]
+layout_mode = 0
+offset_left = 684.0
+offset_top = 379.0
+offset_right = 1260.0
+offset_bottom = 441.0
+texture = ExtResource("2_prc2g")
+
+[node name="Banner" type="TextureRect" parent="." unique_id=494834275]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 492.0
+offset_right = 1483.766
+offset_bottom = 702.0
+texture = ExtResource("3_oa77d")
+
+[node name="NeuesX" type="Label" parent="." unique_id=826870972]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 306.0
+offset_right = 1259.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Neues Areal betreten"
+horizontal_alignment = 1
+
+[node name="NameX" type="Label" parent="." unique_id=1500757848]
+layout_mode = 0
+offset_left = 534.0
+offset_top = 515.0
+offset_right = 1417.0
+offset_bottom = 647.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Crimson Desert"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="r_skill_text" type="Label" parent="." unique_id=1189864976]
+visible = false
+layout_mode = 0
+offset_left = 666.0
+offset_top = 717.0
+offset_right = 1279.0
+offset_bottom = 860.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Repariere den Roboter um ihn im Kampf zu nutzen."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="i_skill_text" type="Label" parent="." unique_id=2058503635]
+visible = false
+layout_mode = 0
+offset_left = 666.0
+offset_top = 717.0
+offset_right = 1279.0
+offset_bottom = 860.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Gegner haben jetzt kritische Trefferzonen."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="a_skill_text" type="Label" parent="." unique_id=37384406]
+visible = false
+layout_mode = 0
+offset_left = 666.0
+offset_top = 717.0
+offset_right = 1279.0
+offset_bottom = 860.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Male Linien zum Schutz und Kreise für Angriffsboni."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="s_skill_text" type="Label" parent="." unique_id=2146424950]
+visible = false
+layout_mode = 0
+offset_left = 666.0
+offset_top = 717.0
+offset_right = 1279.0
+offset_bottom = 860.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Gegner um dich herum werden besänftigt."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="e_skill_text" type="Label" parent="." unique_id=190412798]
+visible = false
+layout_mode = 0
+offset_left = 666.0
+offset_top = 717.0
+offset_right = 1279.0
+offset_bottom = 860.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Erhalte einen Mini Kämpfer an deiner Seite."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="c_skill_text" type="Label" parent="." unique_id=152303797]
+visible = false
+layout_mode = 0
+offset_left = 666.0
+offset_top = 717.0
+offset_right = 1279.0
+offset_bottom = 860.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Schließe Aufgaben ab um temporäre Boni zu erhalten."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

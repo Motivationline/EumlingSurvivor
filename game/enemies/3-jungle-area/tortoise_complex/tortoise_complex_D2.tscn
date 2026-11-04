@@ -12,6 +12,38 @@
 [ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="10_ebpng"]
 [ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="11_kj6pd"]
 
+[sub_resource type="Resource" id="Resource_6il4h"]
+script = ExtResource("4_gi7fd")
+attribute = "health"
+value = 450.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_xago8"]
+script = ExtResource("4_gi7fd")
+attribute = "health"
+value = 850.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_kj6pd"]
+script = ExtResource("4_gi7fd")
+attribute = "health"
+value = 250.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_cotbt"]
+script = ExtResource("4_gi7fd")
+attribute = "health"
+value = 600.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_ebpng"]
+script = ExtResource("5_f4g4a")
+introduction = Array[ExtResource("4_gi7fd")]([SubResource("Resource_kj6pd")])
+easy = Array[ExtResource("4_gi7fd")]([SubResource("Resource_6il4h")])
+medium = Array[ExtResource("4_gi7fd")]([SubResource("Resource_cotbt")])
+hard = Array[ExtResource("4_gi7fd")]([SubResource("Resource_xago8")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
 [sub_resource type="Resource" id="Resource_xicgf"]
 script = ExtResource("4_gi7fd")
 attribute = "damage"
@@ -115,6 +147,7 @@ _data = {
 }
 
 [node name="tortoise_complex_D2" unique_id=1898691 instance=ExtResource("1_o66bo")]
+difficulty_scaler = SubResource("Resource_ebpng")
 
 [node name="SpawnInnerRing" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(1333608283) index="2" unique_id=2001376711 node_paths=PackedStringArray("next_state")]
 next_state = NodePath("../Charging2")

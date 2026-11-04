@@ -2,9 +2,44 @@
 
 [ext_resource type="PackedScene" uid="uid://dqyhe73kt4b8c" path="res://game/enemies/5-beach-area/ninja_starfish_complex/ninja_starfish_complex_D0.tscn" id="1_t4hax"]
 [ext_resource type="Material" uid="uid://bl46tp3s7w71l" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.tres" id="2_hx07b"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_xe04g"]
 [ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="3_6g73k"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_p1csb"]
+
+[sub_resource type="Resource" id="Resource_rrosf"]
+script = ExtResource("2_xe04g")
+attribute = "health"
+value = 190.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_dvqce"]
+script = ExtResource("2_xe04g")
+attribute = "health"
+value = 300.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_a7exr"]
+script = ExtResource("2_xe04g")
+attribute = "health"
+value = 150.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_n1ng0"]
+script = ExtResource("2_xe04g")
+attribute = "health"
+value = 240.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_8yhni"]
+script = ExtResource("3_p1csb")
+introduction = Array[ExtResource("2_xe04g")]([SubResource("Resource_a7exr")])
+easy = Array[ExtResource("2_xe04g")]([SubResource("Resource_rrosf")])
+medium = Array[ExtResource("2_xe04g")]([SubResource("Resource_n1ng0")])
+hard = Array[ExtResource("2_xe04g")]([SubResource("Resource_dvqce")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [node name="ninja_starfish_complex" unique_id=1898691 instance=ExtResource("1_t4hax")]
+difficulty_scaler = SubResource("Resource_8yhni")
 
 [node name="MoveForwardState" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="5" unique_id=476224329]
 max_distance = 5.0
@@ -13,7 +48,7 @@ speed_override = 3.0
 [node name="BreakAfterAttack" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="9" unique_id=1243693146]
 wait_time = 1.0
 
-[node name="starfish_model" parent="Visuals/ninja_starfish/Armature/Skeleton3D" parent_id_path=PackedInt32Array(725910630, 593590379) index="1" unique_id=2114252530]
+[node name="starfish_model" parent="Visuals/ninja_starfish/Armature/Skeleton3D" parent_id_path=PackedInt32Array(725910630, 271266105) index="1" unique_id=535890906]
 material_overlay = ExtResource("2_hx07b")
 
 [node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=1554862748 instance=ExtResource("3_6g73k")]

@@ -13,13 +13,13 @@
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="5_j40q3"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="5_o6qy1"]
 [ext_resource type="Script" uid="uid://3q8mspcqcwpf" path="res://state_machine/interrupts/conditions/in_range.gd" id="6_0q7ou"]
-[ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="6_m8pq2"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="6_v31ca"]
 [ext_resource type="PackedScene" uid="uid://c078nbg0qjgp5" path="res://assets/characters/enemies/volcano_tortoise/volcano_tortoise_prefab.tscn" id="7_wvq5w"]
 [ext_resource type="PackedScene" uid="uid://h0rgp04p765l" path="res://game/aoes/tortoise_complex_aoe/volcano_tortoise_complex/volcano_tortoise_complex_aoe_D1.tscn" id="8_6avld"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="8_s0pvf"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="9_o6qy1"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="13_3btfv"]
+[ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="16_0q3fv"]
 [ext_resource type="PackedScene" uid="uid://brbmv1m5pmnel" path="res://assets/characters/enemies/volcano_tortoise/baby/baby_volcano_tortoise.tscn" id="16_ht8at"]
 [ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="17_a3mrn"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="17_twi3q"]
@@ -66,25 +66,25 @@
 [sub_resource type="Resource" id="Resource_6avld"]
 script = ExtResource("2_j40q3")
 attribute = "health"
-value = 650.0
+value = 380.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_rahc8"]
 script = ExtResource("2_j40q3")
 attribute = "health"
-value = 1370.0
+value = 720.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_xrks1"]
 script = ExtResource("2_j40q3")
 attribute = "health"
-value = 200.0
+value = 220.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_aeb5n"]
 script = ExtResource("2_j40q3")
 attribute = "health"
-value = 870.0
+value = 500.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_lax7o"]
@@ -131,9 +131,10 @@ metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 script = ExtResource("5_o6qy1")
 metadata/_custom_type_script = "uid://yd5ytc70xwp6"
 
-[sub_resource type="Resource" id="Resource_hec8f"]
-script = ExtResource("6_m8pq2")
-metadata/_custom_type_script = "uid://pv70hoylokg6"
+[sub_resource type="Resource" id="Resource_4s4l1"]
+script = ExtResource("16_0q3fv")
+max_positive = 360.0
+metadata/_custom_type_script = "uid://dpcp1l71hgqcc"
 
 [sub_resource type="Animation" id="Animation_6il4h"]
 resource_name = "ExtendIndicator"
@@ -388,9 +389,8 @@ script = ExtResource("3_xa3cl")
 ignore_relative_rotation = true
 difficulty_scaler = SubResource("Resource_2ntjt")
 entity_to_spawn = ExtResource("4_s0pvf")
-amount_of_spawns = 5
 target_strategy = SubResource("Resource_gnf5i")
-rotation_strategy = SubResource("Resource_hec8f")
+rotation_strategy = SubResource("Resource_4s4l1")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=1566656076]

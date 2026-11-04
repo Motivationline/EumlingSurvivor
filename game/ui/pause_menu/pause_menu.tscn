@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bcw4gmyo2mhym" path="res://assets/ui/Eumlex/ButtonStickerSquare.png" id="2_062ls"]
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="2_ob8pm"]
 [ext_resource type="Texture2D" uid="uid://8bqwxkcdktcv" path="res://assets/ui/Buttons/HomeButton.png" id="3_utddp"]
-[ext_resource type="Texture2D" uid="uid://dkppdxscctjp0" path="res://assets/ui/Buttons/LanguageButton.png" id="4_ob8pm"]
 [ext_resource type="Texture2D" uid="uid://b4puyhx8d2gim" path="res://assets/ui/Buttons/PlayButton.png" id="5_edo3p"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="6_7phrv"]
 [ext_resource type="PackedScene" uid="uid://dg7idf87kxejo" path="res://game/ui/start_screen/graphics_settings.tscn" id="7_w53bu"]
@@ -25,18 +24,19 @@
 [ext_resource type="AudioStream" uid="uid://cybo744j6vhtf" path="res://assets/sound/ui/pause/open.wav" id="23_1tpup"]
 [ext_resource type="AudioStream" uid="uid://dmw7tqg7s60xk" path="res://assets/sound/ui/pause/close.wav" id="24_7cjl0"]
 [ext_resource type="AudioStream" uid="uid://c4xw8a6a2lao0" path="res://assets/sound/ui/pause/slider_tick.wav" id="25_1cvb6"]
+[ext_resource type="Texture2D" uid="uid://crrugw36afvgj" path="res://assets/ui/Buttons/slider_button.png" id="25_kq7qj"]
+[ext_resource type="Texture2D" uid="uid://cst5abbpxgam8" path="res://assets/ui/gameOverlay/boss_healtbar_background_unified.png" id="26_3yawr"]
+[ext_resource type="Texture2D" uid="uid://b0gfqqd18wdd2" path="res://assets/ui/gameOverlay/ProgressJungleBackdrop.png" id="27_8k3x0"]
+[ext_resource type="Texture2D" uid="uid://c25hfu5gdb5mo" path="res://assets/ui/textfenster/quest_haken.png" id="28_ufw0k"]
+[ext_resource type="Texture2D" uid="uid://chlu42bsc22aa" path="res://assets/ui/gameOverlay/ProgressActive.png" id="29_2s60i"]
+[ext_resource type="PackedScene" uid="uid://ccro7upfieua2" path="res://game/ui/eumlex/ripped_out_page.tscn" id="29_kq7qj"]
+[ext_resource type="Texture2D" uid="uid://balp1dnlnfddm" path="res://assets/ui/Buttons/ButtonSettings.png" id="31_3yawr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_edo3p"]
 shader = ExtResource("2_ob8pm")
 shader_parameter/blur_amount = 4.00000019
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7phrv"]
-
-[sub_resource type="InputEventAction" id="InputEventAction_kko3x"]
-action = &"openPauseMenu"
-
-[sub_resource type="Shortcut" id="Shortcut_vyndw"]
-events = [SubResource("InputEventAction_kko3x")]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f4s3b"]
 texture = ExtResource("9_edo3p")
@@ -66,6 +66,12 @@ random_pitch = 1.2599211
 streams_count = 1
 stream_0/stream = ExtResource("25_1cvb6")
 
+[sub_resource type="InputEventAction" id="InputEventAction_kko3x"]
+action = &"openPauseMenu"
+
+[sub_resource type="Shortcut" id="Shortcut_vyndw"]
+events = [SubResource("InputEventAction_kko3x")]
+
 [node name="PauseMenu" type="Control" unique_id=1966773529 node_paths=PackedStringArray("sound_effect_manager")]
 layout_mode = 3
 anchors_preset = 15
@@ -93,79 +99,47 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -951.0
-offset_top = -411.0
-offset_right = 227.0
-offset_bottom = 452.0
+offset_left = -928.0
+offset_top = -365.0
+offset_right = 250.0
+offset_bottom = 587.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.0366423, 1.0366423)
+scale = Vector2(0.7309895, 0.7309895)
 texture = ExtResource("1_1rr57")
 
-[node name="EumlingeGrid" type="GridContainer" parent="." unique_id=1871950785]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -657.0
-offset_top = -146.99997
-offset_right = -188.0
-offset_bottom = 177.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.4155371, 1.4155371)
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 20
-columns = 3
-
-[node name="EumlingSticker1" type="TextureButton" parent="EumlingeGrid" unique_id=1925753235]
-layout_mode = 2
-texture_normal = ExtResource("2_062ls")
-
-[node name="EumlingSticker2" type="TextureButton" parent="EumlingeGrid" unique_id=963138109]
-layout_mode = 2
-texture_normal = ExtResource("2_062ls")
-
-[node name="EumlingSticker3" type="TextureButton" parent="EumlingeGrid" unique_id=2089497161]
-layout_mode = 2
-texture_normal = ExtResource("2_062ls")
-
-[node name="EumlingSticker4" type="TextureButton" parent="EumlingeGrid" unique_id=2141189077]
-layout_mode = 2
-texture_normal = ExtResource("2_062ls")
-
-[node name="EumlingSticker5" type="TextureButton" parent="EumlingeGrid" unique_id=465539317]
-layout_mode = 2
-texture_normal = ExtResource("2_062ls")
-
-[node name="EumlingSticker6" type="TextureButton" parent="EumlingeGrid" unique_id=1604060642]
-layout_mode = 2
-texture_normal = ExtResource("2_062ls")
-
-[node name="Buttons" type="HBoxContainer" parent="." unique_id=833906292]
+[node name="EumlingSticker1" type="TextureButton" parent="BackdropBackpack" unique_id=1925753235]
 layout_mode = 0
-offset_left = 1259.0
-offset_top = 115.0
-offset_right = 1859.0
-offset_bottom = 259.0
-theme_override_constants/separation = 90
+offset_left = 715.4686
+offset_top = 306.434
+offset_right = 858.4686
+offset_bottom = 458.43402
+rotation = 0.22211742
+scale = Vector2(1.6496216, 1.6496216)
+texture_normal = ExtResource("2_062ls")
 
-[node name="HomeButton" type="TextureButton" parent="Buttons" unique_id=816544524]
-layout_mode = 2
-texture_normal = ExtResource("3_utddp")
+[node name="EumlingSticker2" type="TextureButton" parent="BackdropBackpack" unique_id=963138109]
+layout_mode = 0
+offset_left = 361.1543
+offset_top = 102.60066
+offset_right = 504.15433
+offset_bottom = 254.60066
+rotation = 0.06379168
+scale = Vector2(1.6496218, 1.6496218)
+texture_normal = ExtResource("2_062ls")
 
-[node name="LanguageButton" type="TextureButton" parent="Buttons" unique_id=1331616518]
-layout_mode = 2
-texture_normal = ExtResource("4_ob8pm")
-
-[node name="PlayButton" type="TextureButton" parent="Buttons" unique_id=555258968]
-layout_mode = 2
-shortcut = SubResource("Shortcut_vyndw")
-texture_normal = ExtResource("5_edo3p")
+[node name="EumlingSticker3" type="TextureButton" parent="BackdropBackpack" unique_id=2089497161]
+layout_mode = 0
+offset_left = 253.08154
+offset_top = 533.5235
+offset_right = 396.08154
+offset_bottom = 685.52356
+rotation = -0.20999965
+scale = Vector2(1.6496218, 1.6496218)
+texture_normal = ExtResource("2_062ls")
 
 [node name="SettingsTabContainer" type="TabContainer" parent="." unique_id=1951920544]
+visible = false
 layout_mode = 0
 offset_left = 1263.0
 offset_top = 292.0
@@ -180,13 +154,19 @@ theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_yrhg1")
 theme_override_styles/tab_hovered = SubResource("StyleBoxTexture_ldpvg")
 theme_override_styles/tab_selected = SubResource("StyleBoxTexture_igmyq")
 current_tab = 0
-tab_0/title = "Graphics"
 
-[node name="GraphicsSettings" parent="SettingsTabContainer" unique_id=1082587673 instance=ExtResource("7_w53bu")]
+[node name="Graphics" type="TabBar" parent="SettingsTabContainer" unique_id=303924558]
 layout_mode = 2
-theme_override_constants/margin_bottom = 25
+theme_override_constants/h_separation = 4
+theme_override_fonts/font = ExtResource("6_7phrv")
 metadata/_tab_index = 0
-metadata/_tab_name = "Graphics"
+
+[node name="GraphicsSettings" parent="SettingsTabContainer/Graphics" unique_id=1082587673 instance=ExtResource("7_w53bu")]
+layout_mode = 1
+offset_left = 76.0
+offset_top = 26.0
+offset_right = -520.0
+offset_bottom = -591.0
 
 [node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=288030327 node_paths=PackedStringArray("pause_menu", "music_slider", "sfx_slider", "ambience_slider", "sound_effect_manager", "slider_tick_stream_player")]
 visible = false
@@ -379,8 +359,136 @@ volume_db = -8.0
 max_polyphony = 5
 bus = &"SFXUI"
 
-[connection signal="pressed" from="Buttons/HomeButton" to="." method="_on_home_button_pressed"]
-[connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_resume_button_pressed"]
+[node name="HomeButton" type="TextureButton" parent="." unique_id=816544524]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 36.0
+offset_right = 210.0
+offset_bottom = 180.0
+texture_normal = ExtResource("3_utddp")
+
+[node name="PlayButton" type="TextureButton" parent="." unique_id=555258968]
+layout_mode = 0
+offset_left = 1709.0
+offset_top = 36.0
+offset_right = 1841.0
+offset_bottom = 180.0
+shortcut = SubResource("Shortcut_vyndw")
+texture_normal = ExtResource("5_edo3p")
+
+[node name="right_arrow" type="TextureButton" parent="." unique_id=1292272712]
+layout_mode = 0
+offset_left = 1767.0
+offset_top = 490.0
+offset_right = 1838.0
+offset_bottom = 572.0
+texture_normal = ExtResource("25_kq7qj")
+
+[node name="left_arrow" type="TextureButton" parent="." unique_id=591294064]
+layout_mode = 0
+offset_left = 981.0
+offset_top = 490.0
+offset_right = 1052.0
+offset_bottom = 572.0
+texture_normal = ExtResource("25_kq7qj")
+flip_h = true
+
+[node name="ripped_out_page" parent="." unique_id=1028725752 instance=ExtResource("29_kq7qj")]
+layout_mode = 1
+offset_left = 1081.0
+offset_top = 174.0
+offset_right = 732.55566
+offset_bottom = -22.0
+scale = Vector2(0.8381038, 0.8381038)
+
+[node name="ProgressDisplay" type="Control" parent="." unique_id=2061562221]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 935.0
+offset_bottom = 935.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ProgressBarBackdrop" type="TextureRect" parent="ProgressDisplay" unique_id=191907365]
+layout_mode = 0
+offset_left = 143.0
+offset_top = -43.0
+offset_right = 1770.0349
+offset_bottom = 150.0
+texture = ExtResource("26_3yawr")
+
+[node name="ProgressBackdrop" type="TextureRect" parent="ProgressDisplay" unique_id=1720174270]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -689.0
+offset_top = 33.0
+offset_right = 689.0
+offset_bottom = 104.0
+grow_horizontal = 2
+texture = ExtResource("27_8k3x0")
+
+[node name="StageMarker" type="HBoxContainer" parent="ProgressDisplay" unique_id=811536136]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -665.0
+offset_top = 4.0
+offset_right = 658.0
+offset_bottom = 135.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="SymbolStage2" type="TextureRect" parent="ProgressDisplay/StageMarker" unique_id=900395615]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("28_ufw0k")
+stretch_mode = 2
+
+[node name="SymbolStage3" type="TextureRect" parent="ProgressDisplay/StageMarker" unique_id=2079134997]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("28_ufw0k")
+stretch_mode = 2
+
+[node name="SymbolStage4" type="TextureRect" parent="ProgressDisplay/StageMarker" unique_id=801148053]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("28_ufw0k")
+stretch_mode = 2
+
+[node name="CurrentMarker" type="TextureRect" parent="ProgressDisplay" unique_id=1336163906]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 0
+offset_left = -128.0
+offset_top = 1.0
+offset_bottom = 132.0
+size_flags_horizontal = 6
+texture = ExtResource("29_2s60i")
+stretch_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1715319797]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 37.0
+offset_right = 428.0
+offset_bottom = 176.0
+texture_normal = ExtResource("31_3yawr")
+
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/MusicContainer/MusicSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Music"]]
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/SFXContainer/SFXSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" flags=3 binds= ["SFX"]]
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/AmbienceContainer/AmbienceSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Ambience"]]
+[connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_resume_button_pressed"]

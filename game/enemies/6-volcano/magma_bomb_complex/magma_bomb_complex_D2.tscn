@@ -6,9 +6,12 @@
 [ext_resource type="Script" uid="uid://dmskxets4soyo" path="res://state_machine/enemy/move_towards_entity.gd" id="4_pquii"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="5_lmd8j"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="6_mlics"]
+[ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="7_i2tqu"]
 [ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="7_pdbl0"]
 [ext_resource type="PackedScene" uid="uid://b2rrc21uefymi" path="res://game/projectiles/magma_berry_projectile/magma_berry_projectile.tscn" id="7_uat0f"]
+[ext_resource type="Script" uid="uid://dr4u5rsf5xoa6" path="res://state_machine/interrupts/conditions/not.gd" id="8_ofbuq"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="8_pquii"]
+[ext_resource type="Script" uid="uid://3q8mspcqcwpf" path="res://state_machine/interrupts/conditions/in_range.gd" id="9_8njf6"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="10_mlics"]
 [ext_resource type="PackedScene" uid="uid://cir2gbm45aqte" path="res://assets/characters/enemies/bomberry/magma/magma_bomberry_prefab.tscn" id="10_uat0f"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="12_ax3or"]
@@ -44,13 +47,13 @@
 [sub_resource type="Resource" id="Resource_ax3or"]
 script = ExtResource("12_o5vot")
 attribute = "health"
-value = 200.0
+value = 190.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_o5vot"]
 script = ExtResource("12_o5vot")
 attribute = "health"
-value = 440.0
+value = 300.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_pdbl0"]
@@ -62,7 +65,7 @@ metadata/_custom_type_script = "uid://duef27t44qtoy"
 [sub_resource type="Resource" id="Resource_icgjh"]
 script = ExtResource("12_o5vot")
 attribute = "health"
-value = 290.0
+value = 240.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_ya0xm"]
@@ -227,6 +230,7 @@ script = ExtResource("2_7uuyb")
 wait_time = 0.5
 next_state = NodePath("../../DecideDistanceState")
 animation_trigger = Dictionary[String, Variant]({
+"parameters/Explode/request": 2,
 "parameters/Transition/transition_request": "idle"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
@@ -245,16 +249,33 @@ metadata/_custom_type_script = "uid://b0kknw1o07ha2"
 
 [node name="Chase" type="Node" parent="StateMachine" index="2" unique_id=1911763767]
 
-[node name="MoveTowardsEntityState" type="Node" parent="StateMachine/Chase" index="0" unique_id=1271237801 node_paths=PackedStringArray("next_state")]
+[node name="MoveTowardsEntityState" type="Node" parent="StateMachine/Chase" index="0" unique_id=1271237801 node_paths=PackedStringArray("next_state", "interrupts")]
 script = ExtResource("4_pquii")
 wait_time = 0.0
-stop_distance = 1.0
+stop_distance = 0.75
 next_state = NodePath("../../Explode/TriggerEventState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Explode/request": 3,
 "parameters/Transition/transition_request": "run"
 })
+interrupts = [NodePath("Interrupt")]
 metadata/_custom_type_script = "uid://dmskxets4soyo"
+
+[node name="Interrupt" type="Node" parent="StateMachine/Chase/MoveTowardsEntityState" index="0" unique_id=511510079 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("7_i2tqu")
+state_to_go_to = NodePath("../../../Idle/IdleWait")
+condition = NodePath("NotInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="NotInterruptCondition" type="Node" parent="StateMachine/Chase/MoveTowardsEntityState/Interrupt" index="0" unique_id=1749213749 node_paths=PackedStringArray("condition")]
+script = ExtResource("8_ofbuq")
+condition = NodePath("InRangeToPlayerInterruptCondition")
+metadata/_custom_type_script = "uid://dr4u5rsf5xoa6"
+
+[node name="InRangeToPlayerInterruptCondition" type="Node" parent="StateMachine/Chase/MoveTowardsEntityState/Interrupt/NotInterruptCondition" index="0" unique_id=1980547832]
+script = ExtResource("9_8njf6")
+distance = 3.0
+metadata/_custom_type_script = "uid://3q8mspcqcwpf"
 
 [node name="Explode" type="Node" parent="StateMachine" index="3" unique_id=2014446245]
 
@@ -267,7 +288,7 @@ metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 [node name="SpawnEntitiesState" type="Node" parent="StateMachine/Explode" index="1" unique_id=1262583709 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_lmd8j")
 start_delay = 1.55
-next_state = NodePath("../../Chase/MoveTowardsEntityState")
+next_state = NodePath("../../Idle/IdleWait")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Explode/request": 1
 })

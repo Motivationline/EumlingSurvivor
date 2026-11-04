@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://nkjs6gp505yc" path="res://game/healthbar/healthbar.gd" id="1_oxsi7"]
 [ext_resource type="Texture2D" uid="uid://duen8xsij08io" path="res://assets/ui/gameOverlay/HealthbarBackdrop.png" id="2_7l8d2"]
-[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="2_83wse"]
 [ext_resource type="Texture2D" uid="uid://dmqg2n75uracq" path="res://assets/ui/gameOverlay/HealthbarOutline.png" id="3_yv2xt"]
 [ext_resource type="Texture2D" uid="uid://fmaqnh8lu56h" path="res://assets/ui/gameOverlay/HealthbarPlayerFill.png" id="4_0is03"]
 [ext_resource type="Texture2D" uid="uid://b1pq3em4r1ape" path="res://assets/ui/gameOverlay/HealthbarDamage.png" id="4_r7s4s"]
+[ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="6_7l8d2"]
 
 [node name="Healthbar" type="Control" unique_id=1106465774]
 layout_mode = 3
@@ -21,9 +21,9 @@ script = ExtResource("1_oxsi7")
 z_index = 10
 layout_mode = 0
 offset_left = -3.0
-offset_top = 15.033324
+offset_top = 18.039993
 offset_right = 201.0
-offset_bottom = 55.033325
+offset_bottom = 58.039993
 step = 0.01
 value = 75.0
 texture_under = ExtResource("2_7l8d2")
@@ -34,9 +34,9 @@ texture_progress_offset = Vector2(5, 2)
 z_index = 10
 layout_mode = 0
 offset_left = -3.0
-offset_top = 15.033324
+offset_top = 18.039993
 offset_right = 201.0
-offset_bottom = 55.033325
+offset_bottom = 58.039993
 step = 0.01
 value = 50.0
 texture_over = ExtResource("3_yv2xt")
@@ -52,15 +52,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -4.0
-offset_top = -30.06665
+offset_top = -10.022216
 offset_right = 200.0
-offset_bottom = 39.93335
+offset_bottom = 59.977783
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 3
-theme_override_fonts/font = ExtResource("2_83wse")
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_7l8d2")
 text = "1000"
 horizontal_alignment = 1
 

@@ -13,22 +13,18 @@
 [ext_resource type="Texture2D" uid="uid://ch18yvwyg6mv2" path="res://assets/ui/Eumlex/EumlexBlank.png" id="8_3iwa0"]
 [ext_resource type="Texture2D" uid="uid://bcatobc2j03sb" path="res://assets/ui/Eumlex/IconA.png" id="9_48btb"]
 [ext_resource type="Texture2D" uid="uid://d1ajjlroi6yyx" path="res://assets/ui/Eumlex/EumlexScrollBackground.png" id="9_gqdvb"]
-[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="10_amahl"]
 [ext_resource type="Texture2D" uid="uid://sbq7w3rqne2i" path="res://assets/ui/Eumlex/IconS.png" id="11_665xe"]
 [ext_resource type="PackedScene" uid="uid://b6vj3geh4ibvg" path="res://game/ui/eumlex/eumling_button/eumlex_button.tscn" id="11_w24f0"]
 [ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="12_ikcm3"]
 [ext_resource type="Texture2D" uid="uid://dcumrupa7bvdu" path="res://assets/ui/Eumlex/IconE.png" id="13_h87jw"]
-[ext_resource type="Texture2D" uid="uid://be0ca3llwbdrf" path="res://assets/ui/Eumlex/TagBaseR.png" id="14_ikcm3"]
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="14_orh8k"]
 [ext_resource type="Texture2D" uid="uid://b6bxybop5o8ks" path="res://assets/ui/Eumlex/IconC.png" id="15_4f41a"]
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="15_xeq76"]
 [ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="15_y7di5"]
-[ext_resource type="Texture2D" uid="uid://defjsp1oea2uq" path="res://assets/ui/Eumlex/TagBaseS.png" id="16_7mh0x"]
 [ext_resource type="PackedScene" uid="uid://djyl5v0duholv" path="res://game/ui/eumlex/eumlex_info_page_missing.tscn" id="16_17oye"]
-[ext_resource type="Texture2D" uid="uid://bvb4cns6l455k" path="res://assets/ui/Eumlex/TagBaseC.png" id="17_n58ek"]
-[ext_resource type="Texture2D" uid="uid://cjj03lo1voxow" path="res://assets/ui/Eumlex/TagBaseA.png" id="18_j2jup"]
-[ext_resource type="Texture2D" uid="uid://dwgh2hdeer32g" path="res://assets/ui/Eumlex/TagBaseI.png" id="19_wnors"]
-[ext_resource type="Texture2D" uid="uid://ch6804no7yieo" path="res://assets/ui/Eumlex/TagBaseE.png" id="20_kq6so"]
+[ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="18_h87jw"]
+[ext_resource type="Texture2D" uid="uid://hx6s6q7vqpkq" path="res://assets/ui/Eumlex/eumlex_tracker_backdrop.png" id="20_bt128"]
+[ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="21_h87jw"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="24_xxm4k"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="25_eumhd"]
 [ext_resource type="AudioStream" uid="uid://cpfh1wlogcfm1" path="res://assets/sound/ui/eumlex/click_1.wav" id="26_7xmmu"]
@@ -132,11 +128,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -31.5
+offset_left = -23.5
 offset_top = 17.0
-offset_right = 33.5
+offset_right = 41.5
 offset_bottom = 69.0
 grow_horizontal = 2
+scale = Vector2(0.8609089, 0.8609089)
 texture = ExtResource("5_fmuvr")
 stretch_mode = 4
 
@@ -161,11 +158,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -30.5
-offset_top = 13.0
-offset_right = 34.5
-offset_bottom = 65.0
+offset_left = -24.5
+offset_top = 17.0
+offset_right = 40.5
+offset_bottom = 70.0
 grow_horizontal = 2
+scale = Vector2(0.92773294, 0.92773294)
 texture = ExtResource("7_q5hyn")
 stretch_mode = 4
 
@@ -190,14 +188,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -30.5
-offset_top = 13.0
-offset_right = 34.5
-offset_bottom = 65.0
+offset_left = -23.5
+offset_top = 16.0
+offset_right = 41.5
+offset_bottom = 69.0
 grow_horizontal = 2
+scale = Vector2(0.9260607, 0.9260607)
 texture = ExtResource("9_48btb")
 stretch_mode = 4
-flip_h = true
 
 [node name="YellowButton" type="TextureButton" parent="Book/TabPanel" unique_id=128397190]
 layout_mode = 0
@@ -220,10 +218,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -30.5
-offset_top = 13.0
-offset_right = 34.5
-offset_bottom = 65.0
+offset_left = -21.0
+offset_top = 16.0
+offset_right = 34.0
+offset_bottom = 60.0
 grow_horizontal = 2
 texture = ExtResource("11_665xe")
 stretch_mode = 4
@@ -249,11 +247,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -30.5
-offset_top = 12.0
-offset_right = 34.5
+offset_left = -23.5
+offset_top = 13.0
+offset_right = 40.25
 offset_bottom = 64.0
 grow_horizontal = 2
+scale = Vector2(0.87820536, 0.87820536)
 texture = ExtResource("13_h87jw")
 stretch_mode = 4
 
@@ -278,11 +277,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -32.5
-offset_top = 14.0
-offset_right = 32.5
-offset_bottom = 66.0
+offset_left = -26.5
+offset_top = 17.0
+offset_right = 36.0
+offset_bottom = 67.0
 grow_horizontal = 2
+scale = Vector2(0.94009435, 0.94009435)
 texture = ExtResource("15_4f41a")
 stretch_mode = 4
 
@@ -304,9 +304,9 @@ texture = ExtResource("8_3iwa0")
 [node name="ScrollBoxBackground" type="TextureRect" parent="Book" unique_id=1398345498]
 layout_mode = 0
 offset_left = 277.0
-offset_top = 396.0
+offset_top = 406.0
 offset_right = 859.0
-offset_bottom = 839.0
+offset_bottom = 849.0
 scale = Vector2(0.9899819, 1.1886014)
 texture = ExtResource("9_gqdvb")
 
@@ -331,14 +331,15 @@ offset_bottom = 792.0
 [node name="RealisticText" type="VBoxContainer" parent="Book/BookContainer/BookBG/OrangePage" unique_id=85724336]
 layout_mode = 0
 offset_left = 37.0
-offset_top = 17.0
+offset_top = -1.0
 offset_right = 591.0
-offset_bottom = 234.0
+offset_bottom = 216.0
+theme_override_constants/separation = 8
 
 [node name="RealisticHeadline" type="Label" parent="Book/BookContainer/BookBG/OrangePage/RealisticText" unique_id=1148847126]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Realistische..."
 
@@ -346,8 +347,7 @@ text = "Realistische..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge sind sehr talentiert im Erforschen neuer Technologien."
 autowrap_mode = 2
@@ -355,9 +355,9 @@ autowrap_mode = 2
 [node name="RealisticEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/OrangePage" unique_id=1045422179]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 261.0
+offset_top = 271.0
 offset_right = 583.0
-offset_bottom = 732.0
+offset_bottom = 742.0
 
 [node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/OrangePage/RealisticEumlingListings" unique_id=1410722368]
 layout_mode = 2
@@ -419,13 +419,23 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -185.0
-offset_top = 26.0
-offset_right = -36.080017
-offset_bottom = 93.377
+offset_left = -602.0
+offset_top = 166.0
+offset_right = -453.08002
+offset_bottom = 233.377
 grow_horizontal = 0
-texture = ExtResource("14_ikcm3")
+texture = ExtResource("20_bt128")
 stretch_mode = 5
+
+[node name="Seed2" type="TextureRect" parent="Book/BookContainer/BookBG/OrangePage/ImageCounter" unique_id=169853594]
+layout_mode = 0
+offset_left = -58.0
+offset_top = -11.464935
+offset_right = 37.0
+offset_bottom = 110.535065
+rotation = -0.21504882
+scale = Vector2(0.71698225, 0.71698225)
+texture = ExtResource("21_h87jw")
 
 [node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/OrangePage/ImageCounter" unique_id=121599223]
 custom_minimum_size = Vector2(149, 53)
@@ -434,11 +444,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 2.14
-offset_right = 1.5258789e-05
-offset_bottom = -12.0
+offset_left = -2.9999924
+offset_top = 16.999985
+offset_right = -2.919983
+offset_bottom = 2.6229858
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 32
 text = "0/20"
@@ -447,6 +459,26 @@ script = ExtResource("15_xeq76")
 label_size = Vector2i(149, 53)
 max_font_size = 32
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
+[node name="BuffWert" type="Label" parent="Book/BookContainer/BookBG/OrangePage" unique_id=381028118]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 180.0
+offset_right = 597.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "+X Angriff"
+
+[node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/OrangePage" unique_id=1076873674]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 180.0
+offset_right = 463.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Belohnung:"
 
 [node name="GreenPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1105283116]
 visible = false
@@ -460,14 +492,15 @@ offset_bottom = 792.0
 [node name="InvestigativeText" type="VBoxContainer" parent="Book/BookContainer/BookBG/GreenPage" unique_id=2006546044]
 layout_mode = 0
 offset_left = 37.0
-offset_top = 17.0
+offset_top = -1.0
 offset_right = 591.0
-offset_bottom = 234.0
+offset_bottom = 216.0
+theme_override_constants/separation = 8
 
 [node name="InvestigativeHeadline" type="Label" parent="Book/BookContainer/BookBG/GreenPage/InvestigativeText" unique_id=1212183052]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Investigative..."
 
@@ -475,8 +508,7 @@ text = "Investigative..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge sind absolute Wissens-Profis auf Ihrem Spezialgebiet."
 autowrap_mode = 2
@@ -484,9 +516,9 @@ autowrap_mode = 2
 [node name="InvestigativelEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/GreenPage" unique_id=825041844]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 261.0
+offset_top = 271.0
 offset_right = 583.0
-offset_bottom = 732.0
+offset_bottom = 742.0
 
 [node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/GreenPage/InvestigativelEumlingListings" unique_id=76025135]
 layout_mode = 2
@@ -548,13 +580,23 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -185.0
-offset_top = 26.0
-offset_right = -36.080017
-offset_bottom = 93.377
+offset_left = -601.0
+offset_top = 166.0
+offset_right = -452.08002
+offset_bottom = 233.377
 grow_horizontal = 0
-texture = ExtResource("16_7mh0x")
+texture = ExtResource("20_bt128")
 stretch_mode = 5
+
+[node name="Seed3" type="TextureRect" parent="Book/BookContainer/BookBG/GreenPage/ImageCounter" unique_id=1954825279]
+layout_mode = 0
+offset_left = -58.0
+offset_top = -11.464935
+offset_right = 37.0
+offset_bottom = 110.535065
+rotation = -0.21504882
+scale = Vector2(0.71698225, 0.71698225)
+texture = ExtResource("21_h87jw")
 
 [node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/GreenPage/ImageCounter" unique_id=1586621741]
 custom_minimum_size = Vector2(149, 53)
@@ -563,11 +605,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 2.14
-offset_right = 1.5258789e-05
-offset_bottom = -12.0
+offset_left = -3.9999924
+offset_top = 16.999985
+offset_right = -3.919983
+offset_bottom = 2.6229858
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 32
 text = "0/20"
@@ -576,6 +620,26 @@ script = ExtResource("15_xeq76")
 label_size = Vector2i(149, 53)
 max_font_size = 32
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
+[node name="BuffWert" type="Label" parent="Book/BookContainer/BookBG/GreenPage" unique_id=741476997]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 180.0
+offset_right = 597.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "+X Angriff"
+
+[node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/GreenPage" unique_id=2030204517]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 180.0
+offset_right = 463.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Belohnung:"
 
 [node name="PurplePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1768632314]
 visible = false
@@ -589,14 +653,15 @@ offset_bottom = 792.0
 [node name="ArtisticText" type="VBoxContainer" parent="Book/BookContainer/BookBG/PurplePage" unique_id=480818231]
 layout_mode = 0
 offset_left = 37.0
-offset_top = 17.0
+offset_top = -1.0
 offset_right = 591.0
-offset_bottom = 234.0
+offset_bottom = 216.0
+theme_override_constants/separation = 8
 
 [node name="ArtisticHeadline" type="Label" parent="Book/BookContainer/BookBG/PurplePage/ArtisticText" unique_id=1396379585]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Artistische..."
 
@@ -604,8 +669,7 @@ text = "Artistische..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge bringen immer neue kreative Ideen und Projekte ein."
 autowrap_mode = 2
@@ -613,9 +677,9 @@ autowrap_mode = 2
 [node name="ArtisticEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/PurplePage" unique_id=552418793]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 261.0
+offset_top = 271.0
 offset_right = 583.0
-offset_bottom = 732.0
+offset_bottom = 742.0
 
 [node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/PurplePage/ArtisticEumlingListings" unique_id=1095748783]
 layout_mode = 2
@@ -677,13 +741,23 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -185.0
-offset_top = 26.0
-offset_right = -36.080017
-offset_bottom = 93.377
+offset_left = -602.0
+offset_top = 166.0
+offset_right = -453.08002
+offset_bottom = 233.377
 grow_horizontal = 0
-texture = ExtResource("17_n58ek")
+texture = ExtResource("20_bt128")
 stretch_mode = 5
+
+[node name="Seed4" type="TextureRect" parent="Book/BookContainer/BookBG/PurplePage/ImageCounter" unique_id=793676301]
+layout_mode = 0
+offset_left = -58.0
+offset_top = -11.464935
+offset_right = 37.0
+offset_bottom = 110.535065
+rotation = -0.21504882
+scale = Vector2(0.71698225, 0.71698225)
+texture = ExtResource("21_h87jw")
 
 [node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/PurplePage/ImageCounter" unique_id=523338064]
 custom_minimum_size = Vector2(149, 53)
@@ -692,11 +766,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 2.14
-offset_right = 1.5258789e-05
-offset_bottom = -12.0
+offset_left = -2.9999924
+offset_top = 16.999985
+offset_right = -2.919983
+offset_bottom = 2.6229858
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 32
 text = "0/20"
@@ -705,6 +781,26 @@ script = ExtResource("15_xeq76")
 label_size = Vector2i(149, 53)
 max_font_size = 32
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
+[node name="BuffWert" type="Label" parent="Book/BookContainer/BookBG/PurplePage" unique_id=1835128468]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 180.0
+offset_right = 597.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "+X Angriff"
+
+[node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/PurplePage" unique_id=1576533019]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 180.0
+offset_right = 463.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Belohnung:"
 
 [node name="YellowPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=377975855]
 visible = false
@@ -718,14 +814,15 @@ offset_bottom = 792.0
 [node name="SocialText" type="VBoxContainer" parent="Book/BookContainer/BookBG/YellowPage" unique_id=927229064]
 layout_mode = 0
 offset_left = 37.0
-offset_top = 17.0
+offset_top = -1.0
 offset_right = 591.0
-offset_bottom = 234.0
+offset_bottom = 216.0
+theme_override_constants/separation = 8
 
 [node name="SocialHeadline" type="Label" parent="Book/BookContainer/BookBG/YellowPage/SocialText" unique_id=966952137]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Soziale..."
 
@@ -733,8 +830,7 @@ text = "Soziale..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge sind empathisch und erkennen Situationen sofort."
 autowrap_mode = 2
@@ -742,9 +838,9 @@ autowrap_mode = 2
 [node name="SocialEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/YellowPage" unique_id=24653794]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 261.0
+offset_top = 271.0
 offset_right = 583.0
-offset_bottom = 732.0
+offset_bottom = 742.0
 
 [node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/YellowPage/SocialEumlingListings" unique_id=840082658]
 layout_mode = 2
@@ -806,13 +902,23 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -185.0
-offset_top = 26.0
-offset_right = -36.080017
-offset_bottom = 93.377
+offset_left = -602.0
+offset_top = 166.0
+offset_right = -453.08002
+offset_bottom = 233.377
 grow_horizontal = 0
-texture = ExtResource("18_j2jup")
+texture = ExtResource("20_bt128")
 stretch_mode = 5
+
+[node name="Seed5" type="TextureRect" parent="Book/BookContainer/BookBG/YellowPage/ImageCounter" unique_id=1675672629]
+layout_mode = 0
+offset_left = -58.0
+offset_top = -11.464935
+offset_right = 37.0
+offset_bottom = 110.535065
+rotation = -0.21504882
+scale = Vector2(0.71698225, 0.71698225)
+texture = ExtResource("21_h87jw")
 
 [node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/YellowPage/ImageCounter" unique_id=1533016367]
 custom_minimum_size = Vector2(149, 53)
@@ -821,11 +927,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 2.14
-offset_right = 1.5258789e-05
-offset_bottom = -12.0
+offset_left = -2.9999924
+offset_top = 16.999985
+offset_right = -2.919983
+offset_bottom = 2.6229858
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 32
 text = "0/20"
@@ -834,6 +942,26 @@ script = ExtResource("15_xeq76")
 label_size = Vector2i(149, 53)
 max_font_size = 32
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
+[node name="BuffWert" type="Label" parent="Book/BookContainer/BookBG/YellowPage" unique_id=588754556]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 180.0
+offset_right = 597.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "+X Angriff"
+
+[node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/YellowPage" unique_id=2079770093]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 180.0
+offset_right = 463.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Belohnung:"
 
 [node name="RedPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=914606313]
 visible = false
@@ -847,14 +975,15 @@ offset_bottom = 792.0
 [node name="EnterprisingText" type="VBoxContainer" parent="Book/BookContainer/BookBG/RedPage" unique_id=1229978569]
 layout_mode = 0
 offset_left = 37.0
-offset_top = 17.0
+offset_top = -1.0
 offset_right = 591.0
-offset_bottom = 234.0
+offset_bottom = 216.0
+theme_override_constants/separation = 8
 
 [node name="EnterprisingHeadline" type="Label" parent="Book/BookContainer/BookBG/RedPage/EnterprisingText" unique_id=712381558]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Enterprising..."
 
@@ -862,8 +991,7 @@ text = "Enterprising..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge sind stets auf der Suche nach Herausforderungen."
 autowrap_mode = 2
@@ -871,9 +999,9 @@ autowrap_mode = 2
 [node name="EnterprisingEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/RedPage" unique_id=318761745]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 261.0
+offset_top = 271.0
 offset_right = 583.0
-offset_bottom = 732.0
+offset_bottom = 742.0
 
 [node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/RedPage/EnterprisingEumlingListings" unique_id=1060497401]
 layout_mode = 2
@@ -935,13 +1063,23 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -185.0
-offset_top = 26.0
-offset_right = -36.080017
-offset_bottom = 93.377
+offset_left = -605.0
+offset_top = 166.0
+offset_right = -456.08002
+offset_bottom = 233.377
 grow_horizontal = 0
-texture = ExtResource("19_wnors")
+texture = ExtResource("20_bt128")
 stretch_mode = 5
+
+[node name="Seed6" type="TextureRect" parent="Book/BookContainer/BookBG/RedPage/ImageCounter" unique_id=935915890]
+layout_mode = 0
+offset_left = -53.0
+offset_top = -11.464935
+offset_right = 42.0
+offset_bottom = 110.535065
+rotation = -0.21504882
+scale = Vector2(0.71698225, 0.71698225)
+texture = ExtResource("21_h87jw")
 
 [node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/RedPage/ImageCounter" unique_id=461230787]
 custom_minimum_size = Vector2(149, 53)
@@ -950,11 +1088,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 2.14
-offset_right = 1.5258789e-05
-offset_bottom = -12.0
+offset_top = 16.999985
+offset_right = 0.08001709
+offset_bottom = 2.6229858
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 32
 text = "0/20"
@@ -963,6 +1102,26 @@ script = ExtResource("15_xeq76")
 label_size = Vector2i(149, 53)
 max_font_size = 32
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
+[node name="BuffWert" type="Label" parent="Book/BookContainer/BookBG/RedPage" unique_id=1687953070]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 180.0
+offset_right = 597.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "+X Angriff"
+
+[node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/RedPage" unique_id=355885421]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 180.0
+offset_right = 463.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Belohnung:"
 
 [node name="BluePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1337237438]
 visible = false
@@ -976,14 +1135,15 @@ offset_bottom = 792.0
 [node name="ConventionalText" type="VBoxContainer" parent="Book/BookContainer/BookBG/BluePage" unique_id=1394469914]
 layout_mode = 0
 offset_left = 37.0
-offset_top = 17.0
+offset_top = -1.0
 offset_right = 591.0
-offset_bottom = 234.0
+offset_bottom = 216.0
+theme_override_constants/separation = 8
 
 [node name="ConventionalHeadline" type="Label" parent="Book/BookContainer/BookBG/BluePage/ConventionalText" unique_id=848115751]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 60
 text = "Conventional..."
 
@@ -991,18 +1151,37 @@ text = "Conventional..."
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -6
-theme_override_fonts/font = ExtResource("10_amahl")
+theme_override_fonts/font = ExtResource("18_h87jw")
 theme_override_font_sizes/font_size = 35
 text = "... Eumlinge erledigen Aufgaben schnell und zuverlässig."
 autowrap_mode = 2
 
+[node name="BuffWert" type="Label" parent="Book/BookContainer/BookBG/BluePage" unique_id=471561520]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 180.0
+offset_right = 597.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "+X Angriff"
+
+[node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/BluePage" unique_id=1365249810]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 180.0
+offset_right = 463.0
+offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Belohnung:"
+
 [node name="ConventionalEumlingListings" type="ScrollContainer" parent="Book/BookContainer/BookBG/BluePage" unique_id=1342908041]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 261.0
+offset_top = 271.0
 offset_right = 583.0
-offset_bottom = 732.0
+offset_bottom = 742.0
 
 [node name="GridContainer" type="GridContainer" parent="Book/BookContainer/BookBG/BluePage/ConventionalEumlingListings" unique_id=25113821]
 layout_mode = 2
@@ -1064,13 +1243,23 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -185.0
-offset_top = 26.0
-offset_right = -36.080017
-offset_bottom = 93.377
+offset_left = -605.0
+offset_top = 166.0
+offset_right = -456.08002
+offset_bottom = 233.377
 grow_horizontal = 0
-texture = ExtResource("20_kq6so")
+texture = ExtResource("20_bt128")
 stretch_mode = 5
+
+[node name="Seed" type="TextureRect" parent="Book/BookContainer/BookBG/BluePage/ImageCounter" unique_id=2086652076]
+layout_mode = 0
+offset_left = -53.0
+offset_top = -11.464935
+offset_right = 42.0
+offset_bottom = 110.535065
+rotation = -0.21504882
+scale = Vector2(0.71698225, 0.71698225)
+texture = ExtResource("21_h87jw")
 
 [node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/BluePage/ImageCounter" unique_id=1628471596]
 custom_minimum_size = Vector2(149, 53)
@@ -1079,11 +1268,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 2.14
-offset_right = 1.5258789e-05
-offset_bottom = -12.0
+offset_top = 16.999985
+offset_right = 0.08001709
+offset_bottom = 2.6229858
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 32
 text = "0/20"
@@ -1110,10 +1300,11 @@ offset_bottom = 40.0
 
 [node name="EumlexInfoPage" parent="Book/EumlexInfo" unique_id=1340831237 instance=ExtResource("12_ikcm3")]
 layout_mode = 1
-offset_left = 948.0
-offset_top = 137.0
-offset_right = 908.0
-offset_bottom = 97.0
+offset_left = 952.0
+offset_top = 140.0
+offset_right = 912.0
+offset_bottom = 100.0
+scale = Vector2(0.967259, 0.953021)
 offset_transform_enabled = true
 
 [node name="EumlexInfoPageMissing" parent="Book/EumlexInfo" unique_id=1308399789 instance=ExtResource("16_17oye")]

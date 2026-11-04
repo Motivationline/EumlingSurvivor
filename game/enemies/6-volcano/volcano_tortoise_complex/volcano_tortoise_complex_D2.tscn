@@ -1,13 +1,47 @@
 [gd_scene format=3 uid="uid://dimh4wgth5dwg"]
 
 [ext_resource type="PackedScene" uid="uid://dgwms5uw0wfje" path="res://game/enemies/6-volcano/volcano_tortoise_complex/volcano_tortoise_complex_D1.tscn" id="1_47h1v"]
+[ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_0s60r"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="2_1kv34"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="2_wtdsf"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="3_nk278"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_tbqn5"]
 [ext_resource type="PackedScene" uid="uid://6l31g58hjjpt" path="res://game/aoes/tortoise_complex_aoe/volcano_tortoise_complex/volcano_tortoise_complex_aoe_D2.tscn" id="4_wtdsf"]
 [ext_resource type="Material" uid="uid://bl46tp3s7w71l" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.tres" id="6_huuul"]
 [ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="6_xg3pc"]
 [ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="8_x0m6m"]
+
+[sub_resource type="Resource" id="Resource_axaol"]
+script = ExtResource("2_0s60r")
+attribute = "health"
+value = 450.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_xxi41"]
+script = ExtResource("2_0s60r")
+attribute = "health"
+value = 850.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_olwvt"]
+script = ExtResource("2_0s60r")
+attribute = "health"
+value = 250.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_6xq6h"]
+script = ExtResource("2_0s60r")
+attribute = "health"
+value = 600.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_44nd5"]
+script = ExtResource("3_tbqn5")
+introduction = Array[ExtResource("2_0s60r")]([SubResource("Resource_olwvt")])
+easy = Array[ExtResource("2_0s60r")]([SubResource("Resource_axaol")])
+medium = Array[ExtResource("2_0s60r")]([SubResource("Resource_6xq6h")])
+hard = Array[ExtResource("2_0s60r")]([SubResource("Resource_xxi41")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="Animation" id="Animation_6il4h"]
 resource_name = "ExtendIndicator"
@@ -71,6 +105,7 @@ _data = {
 }
 
 [node name="volcano_tortoise_complex_D2" unique_id=1898691 instance=ExtResource("1_47h1v")]
+difficulty_scaler = SubResource("Resource_44nd5")
 
 [node name="SpawnInnerRing" parent="StateMachine/Chase_and_Attack" parent_id_path=PackedInt32Array(137836916) index="2" unique_id=1622876265 node_paths=PackedStringArray("next_state")]
 next_state = NodePath("../Charging2")
@@ -94,6 +129,9 @@ metadata/_custom_type_script = "uid://c1j50itv0hwo2"
 script = ExtResource("3_nk278")
 entity_to_spawn = ExtResource("4_wtdsf")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="spawnerSecondary" parent="Eventlisteners/SpawnEntitiesEventStrategy" parent_id_path=PackedInt32Array(1719796949) index="0" unique_id=1773892809]
+amount_of_spawns = 2
 
 [node name="Tortoise" parent="Visuals/volcano_tortoise/Armature_Tortoise/Skeleton3D" parent_id_path=PackedInt32Array(1249268255, 295853015) index="0" unique_id=1398239775]
 material_overlay = ExtResource("6_huuul")

@@ -1,12 +1,60 @@
 [gd_scene format=3 uid="uid://str6141ebpsg"]
 
 [ext_resource type="PackedScene" uid="uid://bxly2vy152dwb" path="res://game/levels/3-Jxx-Jungle/base/J20.tscn" id="1_t8i6x"]
-[ext_resource type="PackedScene" uid="uid://b865xrtojih3l" path="res://game/enemies/3-jungle-area/sniper/sniper_enemy.tscn" id="2_7x56c"]
+[ext_resource type="PackedScene" uid="uid://7j4iua7gg3cu" path="res://game/enemies/3-jungle-area/sniper_complex/sniper_complex_D1.tscn" id="2_7x56c"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_le8ll"]
+viewport_path = NodePath("OffscreenViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crgdn"]
+resource_local_to_scene = true
+specular_mode = 2
+albedo_texture = SubResource("ViewportTexture_le8ll")
 
 [node name="Level" unique_id=1578328013 instance=ExtResource("1_t8i6x")]
 
-[node name="SniperEnemy" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1534333626 instance=ExtResource("2_7x56c")]
+[node name="FloorOffscreen" parent="Env" parent_id_path=PackedInt32Array(1339304514) index="1" unique_id=1806350818]
+material_override = SubResource("StandardMaterial3D_crgdn")
+
+[node name="sniper_complex_D1" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="1" unique_id=1898691 instance=ExtResource("2_7x56c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5552452, 0, 0.6064985)
 
-[node name="SniperEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1736252345 instance=ExtResource("2_7x56c")]
+[node name="sniper_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(1090473868) index="2" unique_id=1514536999 instance=ExtResource("2_7x56c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6665306, 0, -3.6035318)
+
+[editable path="Enemies/Traps/SpikeTrap2"]
+[editable path="Enemies/Traps/SpikeTrap3"]
+[editable path="Enemies/Traps/SpikeTrap4"]
+[editable path="Enemies/Traps/SpikeTrap5"]
+[editable path="Enemies/Traps/SpikeTrap6"]
+[editable path="Enemies/Traps/SpikeTrap7"]
+[editable path="Enemies/Traps/SpikeTrap8"]
+[editable path="Enemies/Traps/SpikeTrap9"]
+[editable path="Enemies/Traps/SpikeTrap10"]
+[editable path="Enemies/Traps/SpikeTrap11"]
+[editable path="Enemies/Traps/SpikeTrap12"]
+[editable path="Enemies/Traps/SpikeTrap13"]
+[editable path="Enemies/Traps/SpikeTrap14"]
+[editable path="Enemies/Traps/SpikeTrap15"]
+[editable path="Enemies/Traps/SpikeTrap16"]
+[editable path="Enemies/Traps/SpikeTrap17"]
+[editable path="Enemies/Traps/SpikeTrap18"]
+[editable path="Enemies/Traps/SpikeTrap19"]
+[editable path="Enemies/Traps/SpikeTrap20"]
+[editable path="Enemies/Traps/SpikeTrap21"]
+[editable path="Enemies/Traps/SpikeTrap22"]
+[editable path="Enemies/Traps/SpikeTrap23"]
+[editable path="Enemies/Traps/SpikeTrap24"]
+[editable path="Enemies/Traps/SpikeTrap25"]
+[editable path="Enemies/Traps/SpikeTrap26"]
+[editable path="Enemies/Traps/SpikeTrap27"]
+[editable path="Enemies/Traps/SpikeTrap28"]
+[editable path="Enemies/Traps/SpikeTrap29"]
+[editable path="Enemies/Traps/SpikeTrap30"]
+[editable path="Enemies/Traps/SpikeTrap31"]
+[editable path="Enemies/Traps/SpikeTrap32"]
+[editable path="Enemies/Traps/SpikeTrap33"]
+[editable path="Enemies/Traps/SpikeTrap34"]
+[editable path="Enemies/Traps/SpikeTrap35"]
+[editable path="Enemies/Traps/SpikeTrap36"]
+[editable path="OffscreenViewport"]

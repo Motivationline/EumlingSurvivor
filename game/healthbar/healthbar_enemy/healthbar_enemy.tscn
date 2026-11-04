@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://nkjs6gp505yc" path="res://game/healthbar/healthbar.gd" id="1_68gid"]
 [ext_resource type="Texture2D" uid="uid://duen8xsij08io" path="res://assets/ui/gameOverlay/HealthbarBackdrop.png" id="2_b1hv6"]
-[ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="2_ehdlf"]
 [ext_resource type="Texture2D" uid="uid://b1pq3em4r1ape" path="res://assets/ui/gameOverlay/HealthbarDamage.png" id="3_vbxmx"]
 [ext_resource type="Texture2D" uid="uid://dmqg2n75uracq" path="res://assets/ui/gameOverlay/HealthbarOutline.png" id="4_aljdp"]
 [ext_resource type="Texture2D" uid="uid://bfulg2fhvtcxs" path="res://assets/ui/gameOverlay/HealthbarEnemyFill.png" id="5_x6kv2"]
+[ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="6_b1hv6"]
 
 [node name="Healthbar" type="Control" unique_id=763297352]
 z_index = 1
@@ -47,10 +47,11 @@ texture_progress_offset = Vector2(5, 2)
 z_index = 11
 layout_mode = 0
 offset_left = -1.0
-offset_top = -21.0
+offset_top = -4.0
 offset_right = 202.0
-offset_bottom = 49.0
-theme_override_fonts/font = ExtResource("2_ehdlf")
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_b1hv6")
 text = "1000"
 horizontal_alignment = 1
 
