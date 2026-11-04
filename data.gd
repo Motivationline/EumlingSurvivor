@@ -33,6 +33,7 @@ func reset():
 #region Eumlings
 
 signal active_eumlings_changed(active_mini_eumlings: Array[Enum.EUMLING_TYPE])
+signal eumling_unlocked(eumling: Eumling)
 	
 const EUMLING_PATH = "res://game/eumlings/"
 
@@ -76,31 +77,22 @@ func unlocked_eumling(type: Enum.EUMLING_TYPE):
 	game_data.active_mini_eumlings.push_back(type)
 	active_eumlings_changed.emit(game_data.active_mini_eumlings)
 
-	_unlock_eumling(type)
+	var eumling = _unlock_eumling(type)
+	eumling_unlocked.emit(eumling)
 
 func _unlock_eumling(type: Enum.EUMLING_TYPE) -> Eumling:
-	var types: Array[Enum.EUMLING_TYPE] = [
-		Enum.EUMLING_TYPE.ARTISTIC,
-		Enum.EUMLING_TYPE.CONVENTIONAL,
-		Enum.EUMLING_TYPE.ENTERPRISING,
-		Enum.EUMLING_TYPE.INVESTIGATIVE,
-		Enum.EUMLING_TYPE.REALISTIC,
-		Enum.EUMLING_TYPE.SOCIAL,
-	]
-	types.remove_at(types.find(type))
-	types.shuffle()
-	types.push_front(type)
-
-	for t in types:
-		if _locked_eumlings[t].size() > 0:
-			_locked_eumlings[t].shuffle()
-			_locked_eumlings[t].sort_custom(_sort_eumlings_to_unlock) # TODO: remove this before shipping, this is only for demo purposes
-			var eumling = _locked_eumlings[t].pop_front()
-			eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED
-			_unlocked_eumlings.push_back(eumling.id)
-			SaveData.set_data("unlocked_eumlings", _unlocked_eumlings)
-			return eumling
-	return null
+	# there are still eumlings to unlock
+	if _locked_eumlings[type].size() > 0:
+		_locked_eumlings[type].shuffle()
+		_locked_eumlings[type].sort_custom(_sort_eumlings_to_unlock) # TODO: remove this before shipping, this is only for demo purposes
+		var eumling = _locked_eumlings[type].pop_front()
+		eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED
+		_unlocked_eumlings.push_back(eumling.id)
+		SaveData.set_data("unlocked_eumlings", _unlocked_eumlings)
+		return eumling
+	
+	# we've already unlocked all eumlings of this category
+	return Data.eumlings.get(type).pick_random()
 
 func reveal_eumling(eumling: Eumling):
 	var uIndex = _unlocked_eumlings.find(eumling.id)

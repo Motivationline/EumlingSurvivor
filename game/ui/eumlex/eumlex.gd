@@ -1,5 +1,4 @@
 extends CanvasLayer
-const REVEAL_SEED = preload("uid://8jbavxhvd2hx")
 
 const EUMLING_BUTTON = preload("uid://b6vj3geh4ibvg")
 const SELECTION_OVERLAY = preload("uid://kny1jc4mmgwc")
@@ -9,7 +8,7 @@ var selection_overlay: TextureRect;
 @export var tabs_and_containers: Dictionary[TextureButton, Panel]
 @export var eumling_type_and_container: Dictionary[Enum.EUMLING_TYPE, Container]
 @export var sound_effect_manager:SoundEffectManager
-signal eumling_revealed
+signal eumling_clicked(eumling:Eumling)
 
 func _on_tab_pressed(tab: TextureButton):
 	if not tab: return
@@ -86,29 +85,13 @@ func select_eumling(btn: EumlingButton, eumling: Eumling):
 		%EumlexInfo/EumlexInfoPageMissing.hide()
 
 	if eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED:
-		reveal_new_eumling(eumling, btn)
+		# reveal_new_eumling(eumling, btn)
+		eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.SEEN;
 		Data.reveal_eumling(eumling)
+		_update_type_counters_and_new_markings()
+		btn.update_visuals()
 
-
-func reveal_new_eumling(eumling: Eumling, btn: EumlingButton):
-	if not eumling: return
-	if not eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED: return
-	# $Book.hide();
-	%SeedRevealContainer.show()
-	GlobalMusicManager.fade_out(1.0,true)
-	var reveal = REVEAL_SEED.instantiate()
-	%SeedRevealViewport.add_child(reveal)
-	reveal.setup(eumling)
-	await reveal.completed
-	reveal.queue_free()
-	GlobalMusicManager.request_music(SongList.TRACK.MENU,MusicTransition.crossfade(1.0))
-	# _update_buttons()
-	eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.SEEN
-	btn.update_visuals()
-	# $Book.show();
-	%SeedRevealContainer.hide()
-	_update_type_counters_and_new_markings()
-	eumling_revealed.emit()
+	eumling_clicked.emit(eumling)
 
 
 # func _unhandled_key_input(event: InputEvent) -> void:

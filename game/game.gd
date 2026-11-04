@@ -3,6 +3,8 @@ class_name Game
 
 const AFTER_GAME: PackedScene = preload("uid://bo5kay8o1r3cy")
 var player_scene: PackedScene = preload("res://game/player/player.tscn")
+const REVEAL_SEED = preload("uid://dk321b3pqkfei")
+const EUMLING_CELEBRATION = preload("uid://b1frhjc1hws4k")
 var player: Player
 @onready var level_wrapper: Node3D = $Level
 @onready var upgrade_view: CanvasLayer = $UpgradeView
@@ -22,6 +24,7 @@ func _ready() -> void:
 	# remove mobile overlay if not on mobile
 	if not Data.is_on_mobile:
 		touch_joystick_overlay.queue_free()
+	Data.eumling_unlocked.connect(eumling_unlocked)
 
 var currently_loaded_level: Level
 var currently_loaded_level_info: Dictionary
@@ -181,3 +184,21 @@ func run_end_riasec():
 	end_game_screen.setup(riasec_eumling)
 	prints("riasec eumling", riasec_eumling)
 	await end_game_screen.closed
+
+func eumling_unlocked(eumling: Eumling):
+	get_tree().paused = true
+
+
+	GlobalMusicManager.fade_out(1.0,true)
+	var reveal = REVEAL_SEED.instantiate()
+	$UI.add_child(reveal)
+	reveal.setup(eumling)
+	await reveal.completed
+	reveal.queue_free()
+	get_tree().paused = false
+	
+	var popup = EUMLING_CELEBRATION.instantiate()
+	GlobalMusicManager.request_music(SongList.TRACK.VICTORY_THEME,MusicTransition.instant(), true)
+	add_child(popup)
+	popup.setup(eumling.type)
+	await popup.done

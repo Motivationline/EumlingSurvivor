@@ -60,6 +60,8 @@ var pulse_animator: PackedScene
 
 var level_wrapper: Node
 
+var reveal_seed_instance: SubViewportContainer
+
 func initialize() -> void:
 	video = load("uid://bhtcrhderikbh")
 	dialogue_overlay = load("uid://bgv7vexjse7or")
@@ -95,14 +97,17 @@ func initialize() -> void:
 	quest_timer.process_mode = PROCESS_MODE_ALWAYS
 	quest_timer.timeout.connect(hide_quest)
 	add_child(quest_timer)
+	
+	reveal_seed_instance = load("uid://dk321b3pqkfei").instantiate()
+	Data.eumling_unlocked.connect(run_show_eumling)
 
 func start() -> void:
 	
 	progress = PROGRESS.NONE
 	var video_instance = video.instantiate()
 	progress = PROGRESS.INTRO_VIDEO
-	add_child(video_instance)
-	await video_instance.finished
+	# add_child(video_instance)
+	# await video_instance.finished
 	GlobalMusicManager.request_music(SongList.TRACK.TUTORIAL,MusicTransition.fade_and_start(1),true,SongList.ENVNOISE.NOTHING)
 	add_child(main_menu_instance)
 	remove_child(video_instance)
@@ -258,8 +263,22 @@ func run_cage_drop():
 func run_cage_open():
 	progress = PROGRESS.RUN_CAGE_OPEN
 	complete_quest()
-	await show_dialogue("eumling_rescued")
 	Data.unlocked_eumling(Enum.EUMLING_TYPE.REALISTIC)
+
+func run_show_eumling(eumling: Eumling):
+	
+	blocking_overlay_light.hide()
+	get_tree().paused = true
+	GlobalMusicManager.fade_out(1.0,true)
+	add_child(reveal_seed_instance)
+	reveal_seed_instance.setup(eumling)
+	await reveal_seed_instance.completed
+	reveal_seed_instance.queue_free()
+	get_tree().paused = false
+	blocking_overlay_light.show()
+
+
+	await show_dialogue("eumling_rescued")
 	return_to_main_menu()
 
 func return_to_main_menu():
@@ -273,7 +292,8 @@ func return_to_main_menu():
 		eumlex_show_again()
 	)
 	complete_quest()
-	show_quest("Trage den Eumling ein")
+	show_quest("Schau dir den Eumling im Eumlex an")
+	GlobalMusicManager.request_music(SongList.TRACK.TUTORIAL,MusicTransition.instant(),true, SongList.ENVNOISE.NOTHING)
 
 func eumlex_show_again():
 	progress = PROGRESS.RETURN_EUMLEX
@@ -284,16 +304,12 @@ func eumlex_show_again():
 	var button = container.get_child(0)
 	darken_input_highlight_element(button, func():
 		button.pressed.emit()
-		blocking_overlay_light.hide()
-		await eumlex_instance.eumling_revealed
-		blocking_overlay_light.show()
 		eumlex_completed()
 	)
 
 
 func eumlex_completed():
 	complete_quest()
-	GlobalMusicManager.request_music(SongList.TRACK.TUTORIAL,MusicTransition.instant(),true, SongList.ENVNOISE.NOTHING)
 	await get_tree().create_timer(2).timeout
 	await show_dialogue("tutorial_completed")
 	completed()
