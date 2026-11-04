@@ -6,8 +6,7 @@
 [ext_resource type="Material" uid="uid://dcqrokbtanxgb" path="res://game/levels/5-Bxx-Beach/materials2/beach_sand_material.tres" id="4_eyygh"]
 [ext_resource type="Texture2D" uid="uid://da1o8f63lwgyl" path="res://assets/vfx/particle_pack/scorch_03.png" id="5_4eacr"]
 [ext_resource type="ArrayMesh" uid="uid://creytde6ihqed" path="res://assets/models/Tilemaps/base_floor/base_floor_10x10.tres" id="5_tcjkn"]
-[ext_resource type="Script" uid="uid://bftcfposg3qyf" path="res://game/cameras/game_camera.gd" id="6_n7ths"]
-[ext_resource type="Script" uid="uid://du18mum64y03k" path="res://game/cameras/behaviours/normal_behaviour.gd" id="7_66g43"]
+[ext_resource type="PackedScene" uid="uid://dd58l40c5jnhw" path="res://game/cameras/game_camera.tscn" id="7_f2gdq"]
 [ext_resource type="PackedScene" uid="uid://di4857pgk1je4" path="res://assets/models/5-beach/islands/base_island.tscn" id="8_c8p5i"]
 [ext_resource type="Script" uid="uid://b12g0nyew0m0i" path="res://global/settings/graphics_settings_component_shadow.gd" id="8_xepbt"]
 [ext_resource type="PackedScene" uid="uid://bb6f45cgpgqwg" path="res://assets/models/5-beach/crate/crate_v_2.tscn" id="9_eyygh"]
@@ -262,10 +261,6 @@ albedo_texture = SubResource("ViewportTexture_4stgv")
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2l1w"]
 size = Vector3(10, 1, 10)
 
-[sub_resource type="Resource" id="Resource_4usp2"]
-script = ExtResource("7_66g43")
-metadata/_custom_type_script = "uid://du18mum64y03k"
-
 [sub_resource type="Gradient" id="Gradient_eyygh"]
 offsets = PackedFloat32Array(0.25613078, 0.3133515, 0.373297)
 colors = PackedColorArray(0.32156864, 0.46666667, 0.58431375, 1, 0.68235296, 0.7372549, 0.7882353, 1, 0.6292534, 0.85100484, 0.81591386, 1)
@@ -443,17 +438,8 @@ shape = SubResource("BoxShape3D_p2l1w")
 [node name="PlayerSpawnMarker" type="Marker3D" parent="." unique_id=1024321425]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
 
-[node name="GameCamera" type="Camera3D" parent="." unique_id=383163677]
-transform = Transform3D(0.7071066, -0.6123725, 0.3535537, 0, 0.5000003, 0.86602527, -0.70710695, -0.61237216, 0.35355353, 4.5242615, 11.085632, 4.2108154)
-projection = 1
-current = true
-fov = 45.0
-size = 5.5
-near = 0.1
-far = 30.0
-script = ExtResource("6_n7ths")
-behaviour = SubResource("Resource_4usp2")
-metadata/_custom_type_script = "uid://bftcfposg3qyf"
+[node name="GameCamera" parent="." unique_id=652286553 instance=ExtResource("7_f2gdq")]
+transform = Transform3D(0.7071066, -0.61237246, 0.35355368, 0, 0.5000003, 0.86602527, -0.70710695, -0.61237216, 0.3535535, 4.5242615, 11.085632, 4.2108154)
 
 [node name="Environment" type="Node3D" parent="." unique_id=1399907702]
 
