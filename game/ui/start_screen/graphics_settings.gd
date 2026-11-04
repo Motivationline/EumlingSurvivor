@@ -4,15 +4,10 @@ extends Control
 @export var render_scale_slider: HSlider
 @export var render_scale_output: Label
 @export var dynamic_render_scale_option: OptionButton
-@export var max_frame_rate_option: OptionButton
+@export var target_frame_rate_option: OptionButton
 @export var global_illumination_option: OptionButton
 @export var shadow_option: OptionButton
 @export var depth_of_field_option: OptionButton
-
-@export var save_button: Button
-@export var cancel_button: Button
-
-var pending_changes := {}
 
 func _ready() -> void:
 	if quality_preset_option:
@@ -54,15 +49,14 @@ func _ready() -> void:
 		dynamic_render_scale_option.add_item("Off", GraphicsSettings.DYNAMIC_RENDER_SCALE.OFF)
 		dynamic_render_scale_option.select(dynamic_render_scale_option.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE)))
 
-	if max_frame_rate_option:
-		max_frame_rate_option.clear()
-		for frame_rate in GraphicsSettings.frame_rate_options:
-			max_frame_rate_option.add_item(str(frame_rate), frame_rate);
+	if target_frame_rate_option:
+		target_frame_rate_option.clear()
+		for frame_rate in GraphicsSettings.FRAME_RATE_OPTIONS:
+			target_frame_rate_option.add_item("%d FPS" % frame_rate, frame_rate);
 			
-		max_frame_rate_option.select(max_frame_rate_option.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.MAX_FRAME_RATE)))
+		target_frame_rate_option.select(target_frame_rate_option.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.TARGET_FRAME_RATE)))
 
 	GraphicsSettings.setting_changed.connect(on_setting_changed)
-	update_buttons()
 
 func on_setting_changed(setting, value) -> void:
 	match setting:
@@ -77,47 +71,31 @@ func on_setting_changed(setting, value) -> void:
 			depth_of_field_option.select(depth_of_field_option.get_item_index(value))
 		GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE:
 			dynamic_render_scale_option.select(dynamic_render_scale_option.get_item_index(value))
-		GraphicsSettings.SETTING.MAX_FRAME_RATE:
-			max_frame_rate_option.select(max_frame_rate_option.get_item_index(value))
+		GraphicsSettings.SETTING.TARGET_FRAME_RATE:
+			target_frame_rate_option.select(target_frame_rate_option.get_item_index(value))
 
 	quality_preset_option.select(quality_preset_option.get_item_index(GraphicsSettings.get_quality_preset()))
-	update_buttons()
 
-func update_buttons() -> void:
-	var has_unsaved_changes = GraphicsSettings.has_unsaved_changes()
-	if cancel_button:
-		cancel_button.disabled = not has_unsaved_changes
-	if save_button:
-		save_button.disabled = not has_unsaved_changes
-
-func _on_quality_preset_option_button_item_selected(index: int) -> void:
+func _on_quality_preset_option_item_selected(index: int) -> void:
 	GraphicsSettings.set_quality_preset(quality_preset_option.get_item_id(index))
 
 func _on_render_scale_slider_value_changed(value: float) -> void:
 	GraphicsSettings.set_setting(GraphicsSettings.SETTING.RENDER_SCALE, value)
 
-func _on_global_illumination_options_item_selected(index: int) -> void:
-	var option_value = global_illumination_option.get_item_id(index)
-	GraphicsSettings.set_setting(GraphicsSettings.SETTING.GLOBAL_ILLUMINATION, option_value)
+func _on_dynamic_render_scale_option_item_selected(index: int) -> void:
+	GraphicsSettings.set_setting(GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE, dynamic_render_scale_option.get_item_id(index))
+	
+func _on_target_frame_rate_option_item_selected(index: int) -> void:
+	GraphicsSettings.set_setting(GraphicsSettings.SETTING.TARGET_FRAME_RATE, target_frame_rate_option.get_item_id(index))
 
-func _on_shadow_options_item_selected(index: int) -> void:
+func _on_shadow_option_item_selected(index: int) -> void:
 	var option_value = shadow_option.get_item_id(index)
 	GraphicsSettings.set_setting(GraphicsSettings.SETTING.SHADOW, option_value)
 
-func _on_depth_of_field_options_item_selected(index: int) -> void:
+func _on_depth_of_field_option_item_selected(index: int) -> void:
 	var option_value = depth_of_field_option.get_item_id(index)
 	GraphicsSettings.set_setting(GraphicsSettings.SETTING.DEPTH_OF_FIELD, option_value)
 
-func _on_dynamic_render_scale_options_item_selected(index: int) -> void:
-	GraphicsSettings.set_setting(GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE, dynamic_render_scale_option.get_item_id(index))
-	
-func _on_max_frame_rate_options_item_selected(index: int) -> void:
-	GraphicsSettings.set_setting(GraphicsSettings.SETTING.MAX_FRAME_RATE, max_frame_rate_option.get_item_id(index))
-
-func _on_save_button_pressed() -> void:
-	GraphicsSettings.save_settings()
-	update_buttons()
-
-func _on_cancel_button_pressed() -> void:
-	GraphicsSettings.load_settings()
-	update_buttons()
+func _on_global_illumination_option_item_selected(index: int) -> void:
+	var option_value = global_illumination_option.get_item_id(index)
+	GraphicsSettings.set_setting(GraphicsSettings.SETTING.GLOBAL_ILLUMINATION, option_value)

@@ -23,6 +23,8 @@ func close():
 	get_tree().paused = false
 	visible = false
 	is_open = false
+	if GraphicsSettings.has_unsaved_changes():
+		GraphicsSettings.save_settings()
 
 
 func _on_resume_button_pressed() -> void:

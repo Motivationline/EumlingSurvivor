@@ -23,7 +23,7 @@ func _process(_delta):
 	if gpu_frame_time <= 0.0:
 		return
 		
-	var target_frame_time := 1000 / float(GraphicsSettings.get_setting(GraphicsSettings.SETTING.MAX_FRAME_RATE))
+	var target_frame_time := 1000 / float(GraphicsSettings.get_setting(GraphicsSettings.SETTING.TARGET_FRAME_RATE))
 	
 	if gpu_frame_time > target_frame_time * panic_threshold:
 		panic_counter += 1
@@ -56,7 +56,7 @@ func on_setting_changed(setting, value) -> void:
 	match setting:
 		GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE:
 			toggle(is_same(value, GraphicsSettings.DYNAMIC_RENDER_SCALE.ON))
-		GraphicsSettings.SETTING.MAX_FRAME_RATE:
+		GraphicsSettings.SETTING.TARGET_FRAME_RATE:
 			set_scale(GraphicsSettings.get_setting(GraphicsSettings.SETTING.RENDER_SCALE))
 
 func toggle(value: bool) -> void:
