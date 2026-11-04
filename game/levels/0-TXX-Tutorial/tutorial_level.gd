@@ -7,6 +7,7 @@ func _process(_delta: float) -> void:
 	
 func spawn_cage():
 	super()
+	caged_eumling.set_mini(Enum.EUMLING_TYPE.REALISTIC)
 	is_boss_level = false
 
 func animate_cage():
@@ -17,4 +18,6 @@ func animate_cage():
 	tween.tween_property(caged_eumling, "global_position", goal_area.global_position, 1)
 	tween.tween_callback(func():
 		goal_area.process_mode = goal_process_mode
+		caged_eumling.sound_effect_manager.play_sound("DrumRollEnd", false, true)
+		caged_eumling.sound_effect_manager.stop_sound("DrumRollLoop")
 	) 

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://68x8xf3b1pio" path="res://assets/thumbnails/artistisch_kreativ/kreativ_base.PNG" id="3_3fhvo"]
 [ext_resource type="Texture2D" uid="uid://c07ob06tikvex" path="res://assets/ui/Eumlex/ButtonStickerSquareMask.png" id="3_6lpgm"]
 [ext_resource type="Texture2D" uid="uid://ec8y4dsfst65" path="res://assets/ui/Eumlex/button_sticker_missing_a.png" id="6_2632e"]
+[ext_resource type="Texture2D" uid="uid://dbqxunehgsecx" path="res://assets/ui/Eumlex/RedDop.png" id="6_imwm8"]
 [ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="7_imwm8"]
 
 [sub_resource type="Animation" id="Animation_hpwr3"]
@@ -89,7 +90,15 @@ offset_right = 143.0
 offset_bottom = 152.0
 texture = ExtResource("6_2632e")
 
-[node name="NewMarker" type="TextureRect" parent="." unique_id=1875442348]
+[node name="NewMarker" type="TextureRect" parent="." unique_id=1130588859]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 116.0
+offset_right = 154.0
+offset_bottom = 158.0
+texture = ExtResource("6_imwm8")
+
+[node name="SeedMarker" type="TextureRect" parent="." unique_id=1875442348]
 visible = false
 layout_mode = 0
 offset_left = 24.000002
@@ -100,6 +109,6 @@ scale = Vector2(0.80485076, 0.80485076)
 pivot_offset = Vector2(47, 61)
 texture = ExtResource("7_imwm8")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="NewMarker" unique_id=1659994347]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SeedMarker" unique_id=1659994347]
 libraries/ = SubResource("AnimationLibrary_imwm8")
 autoplay = &"number_wiggle"

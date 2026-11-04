@@ -13,7 +13,7 @@ func update_visuals():
 			$NewMarker.hide()
 			$MissingOverlay.show()
 		Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED:
-			$MissingOverlay.show()
+			$MissingOverlay.hide()
 			$NewMarker.show()
 		_:
 			$MissingOverlay.hide()

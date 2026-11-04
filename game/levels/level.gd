@@ -33,7 +33,6 @@ var boss: Enemy
 var boss_position: Vector3
 
 const CAGED_MINI_EUMLING = preload("uid://6lim36lw260g")
-const EUMLING_CELEBRATION = preload("uid://b1frhjc1hws4k")
 const MINI_EUMLING_E = preload("uid://cd212gh71k5cn")
 const MINI_EUMLING_R = preload("uid://ecxm5futmmj4")
 
@@ -197,11 +196,6 @@ func unlock_mini_eumling():
 		eumling_type = Enum.EUMLING_TYPE.values().pick_random()
 	Data.add_riasec_progress(eumling_type, 2)
 	Data.unlocked_eumling(eumling_type)
-	var popup = EUMLING_CELEBRATION.instantiate()
-	GlobalMusicManager.request_music(SongList.TRACK.VICTORY_THEME,MusicTransition.instant(), true)
-	add_child(popup)
-	popup.setup(eumling_type)
-	await popup.done
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
