@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://m8calhmgu23g" path="res://game/ui/start_screen/graphics_settings.gd" id="1_ukd82"]
 
-[node name="GraphicsSettings" type="MarginContainer" unique_id=590519214 node_paths=PackedStringArray("render_scale_slider", "render_scale_output", "dynamic_render_scale_options", "max_frame_rate_options", "global_illumination_options", "shadow_options", "depth_of_field_options", "save_button", "cancel_button")]
+[node name="GraphicsSettings" type="MarginContainer" unique_id=590519214 node_paths=PackedStringArray("quality_preset_option", "render_scale_slider", "render_scale_output", "dynamic_render_scale_option", "max_frame_rate_option", "global_illumination_option", "shadow_option", "depth_of_field_option", "save_button", "cancel_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,13 +15,14 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("1_ukd82")
+quality_preset_option = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/QualityPresetOption")
 render_scale_slider = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/RenderScaleSlider")
 render_scale_output = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/RenderScaleOutput")
-dynamic_render_scale_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DynamicRenderScaleOptions")
-max_frame_rate_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MaxFrameRateOptions")
-global_illumination_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GlobalIlluminationOptions")
-shadow_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ShadowOptions")
-depth_of_field_options = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DepthOfFieldOptions")
+dynamic_render_scale_option = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/DynamicRenderScaleOption")
+max_frame_rate_option = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/MaxFrameRateOption")
+global_illumination_option = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/GlobalIlluminationOption")
+shadow_option = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/ShadowOption")
+depth_of_field_option = NodePath("VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/DepthOfFieldOption")
 save_button = NodePath("VBoxContainer/HBoxContainer/SaveButton")
 cancel_button = NodePath("VBoxContainer/HBoxContainer/CancelButton")
 
@@ -45,6 +46,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="QualityPresetLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=78552604]
+layout_mode = 2
+text = "Quality Preset"
+
+[node name="QualityPresetOption" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1862224995]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1112764613]
 layout_mode = 2
 
@@ -67,45 +76,52 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="DynamicRenderScaleLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=519299031]
+[node name="FoldableContainer" type="FoldableContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1825410795]
+layout_mode = 2
+title = "Advanced Options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer" unique_id=558300593]
+layout_mode = 2
+
+[node name="DynamicRenderScaleLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=519299031]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Dynamic Render Scale"
 
-[node name="DynamicRenderScaleOptions" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=128438708]
+[node name="DynamicRenderScaleOption" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=128438708]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="MaxFrameRateLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1394033807]
+[node name="MaxFrameRateLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=1394033807]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Max Frame Rate"
 
-[node name="MaxFrameRateOptions" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=359744581]
+[node name="MaxFrameRateOption" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=359744581]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="ShadowLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1002264529]
+[node name="ShadowLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=1002264529]
 layout_mode = 2
 text = "Shadow Quality"
 
-[node name="ShadowOptions" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1047196321]
+[node name="ShadowOption" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=1047196321]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="DepthOfFieldLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=367807410]
+[node name="DepthOfFieldLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=367807410]
 layout_mode = 2
 text = "Depth of Field"
 
-[node name="DepthOfFieldOptions" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=240397707]
+[node name="DepthOfFieldOption" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=240397707]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="GlobalIlluminationLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=946824771]
+[node name="GlobalIlluminationLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=946824771]
 layout_mode = 2
 text = "Global Illumination"
 
-[node name="GlobalIlluminationOptions" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=871023816]
+[node name="GlobalIlluminationOption" type="OptionButton" parent="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=871023816]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
@@ -122,11 +138,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Cancel"
 
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/QualityPresetOption" to="." method="_on_quality_preset_option_button_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
-[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DynamicRenderScaleOptions" to="." method="_on_dynamic_render_scale_options_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MaxFrameRateOptions" to="." method="_on_max_frame_rate_options_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ShadowOptions" to="." method="_on_shadow_options_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/DepthOfFieldOptions" to="." method="_on_depth_of_field_options_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/GlobalIlluminationOptions" to="." method="_on_global_illumination_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/DynamicRenderScaleOption" to="." method="_on_dynamic_render_scale_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/MaxFrameRateOption" to="." method="_on_max_frame_rate_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/ShadowOption" to="." method="_on_shadow_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/DepthOfFieldOption" to="." method="_on_depth_of_field_options_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/GlobalIlluminationOption" to="." method="_on_global_illumination_options_item_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

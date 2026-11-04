@@ -14,6 +14,12 @@ axis_stretch_vertical = 1
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tljjm"]
 bg_color = Color(0.6627046, 0.4965092, 0.932826, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uu71a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfygk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oa6i2"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tljjm"]
 atlas = ExtResource("2_vf4fy")
 
@@ -58,6 +64,11 @@ COMMON/base_type = &"PanelContainer"
 COMMON/styles/panel = SubResource("StyleBoxFlat_srpco")
 EPIC/base_type = &"PanelContainer"
 EPIC/styles/panel = SubResource("StyleBoxFlat_tljjm")
+FoldableContainer/font_sizes/font_size = 48
+FoldableContainer/fonts/font = ExtResource("4_oa6i2")
+FoldableContainer/styles/panel = SubResource("StyleBoxEmpty_uu71a")
+FoldableContainer/styles/title_collapsed_panel = SubResource("StyleBoxEmpty_qfygk")
+FoldableContainer/styles/title_panel = SubResource("StyleBoxEmpty_oa6i2")
 HSlider/constants/center_grabber = 10
 HSlider/icons/grabber = ExtResource("1_srpco")
 HSlider/icons/grabber_disabled = ExtResource("1_srpco")
@@ -72,7 +83,11 @@ Label/fonts/font = ExtResource("4_oa6i2")
 LineEdit/colors/font_color = Color(0.10374334, 0.10374365, 0.10374341, 1)
 LineEdit/colors/font_placeholder_color = Color(0.08855977, 0.08855999, 0.088559784, 0.6)
 LineEdit/styles/normal = SubResource("StyleBoxFlat_f0rfe")
+OptionButton/font_sizes/font_size = 48
+OptionButton/fonts/font = ExtResource("4_oa6i2")
 PanelContainer/styles/panel = null
+PopupMenu/font_sizes/font_size = 48
+PopupMenu/fonts/font = ExtResource("4_oa6i2")
 RARE/base_type = &"PanelContainer"
 RARE/styles/panel = SubResource("StyleBoxFlat_p80ec")
 UNCOMMON/base_type = &"PanelContainer"

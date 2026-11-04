@@ -9,6 +9,13 @@ enum SETTING {
 	MAX_FRAME_RATE
 }
 
+enum QUALITY_PRESET {
+	LOW,
+	MEDIUM,
+	HIGH,
+	CUSTOM
+}
+
 enum SHADOW_OPTIONS {
 	OFF,
 	LOW,
@@ -33,9 +40,10 @@ enum DYNAMIC_RENDER_SCALE {
 	OFF
 }
 
-signal setting_changed(setting_name, value)
+signal setting_changed(setting, value)
 
 var MAX_REFRESH_RATE: int = int(DisplayServer.screen_get_refresh_rate()) if DisplayServer.screen_get_refresh_rate() > 0 else 60 # cache screen_get_refresh_rate as setting Engine.max_fps can affect refresh rate on some devices
+var frame_rate_options: Array[int] = get_frame_rate_options(MAX_REFRESH_RATE);
 
 const SETTINGS_PATH := "user://settings.cfg"
 const SECTION := "graphics"
@@ -46,13 +54,52 @@ var settings := {
 	SETTING.SHADOW: SHADOW_OPTIONS.MEDIUM,
 	SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.LOW,
 	SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
-	SETTING.MAX_FRAME_RATE: MAX_REFRESH_RATE
+	SETTING.MAX_FRAME_RATE: frame_rate_options[0]
+}
+
+var quality_presets := {
+	QUALITY_PRESET.LOW: {
+		SETTING.RENDER_SCALE: 0.75,
+		SETTING.DYNAMIC_RENDER_SCALE: DYNAMIC_RENDER_SCALE.ON,
+		SETTING.SHADOW: SHADOW_OPTIONS.LOW,
+		SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.LOW,
+		SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
+		SETTING.MAX_FRAME_RATE: frame_rate_options[-1]
+	},
+	QUALITY_PRESET.MEDIUM: {
+		SETTING.RENDER_SCALE: 1.0,
+		SETTING.DYNAMIC_RENDER_SCALE: DYNAMIC_RENDER_SCALE.ON,
+		SETTING.SHADOW: SHADOW_OPTIONS.MEDIUM,
+		SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.MEDIUM,
+		SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
+		SETTING.MAX_FRAME_RATE: frame_rate_options[1] if frame_rate_options.size() > 2 else frame_rate_options[0]
+	},
+	QUALITY_PRESET.HIGH: {
+		SETTING.RENDER_SCALE: 1.0,
+		SETTING.DYNAMIC_RENDER_SCALE: DYNAMIC_RENDER_SCALE.OFF,
+		SETTING.SHADOW: SHADOW_OPTIONS.HIGH,
+		SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.HIGH,
+		SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
+		SETTING.MAX_FRAME_RATE: frame_rate_options[0]
+	},
+	QUALITY_PRESET.CUSTOM: {}
 }
 
 var config := ConfigFile.new()
 
 func _ready():
 	load_settings()
+	
+func get_quality_preset() -> QUALITY_PRESET:
+	for preset in quality_presets:
+		if settings == quality_presets[preset]:
+			return preset
+
+	return QUALITY_PRESET.CUSTOM
+
+func set_quality_preset(preset: QUALITY_PRESET) -> void:
+	for key in quality_presets[preset]:
+		set_setting(key, quality_presets[preset][key])
 
 func set_setting(setting: SETTING, value):
 	if is_same(settings.get(setting), value):
@@ -129,3 +176,17 @@ func has_unsaved_changes() -> bool:
 			return true
 
 	return false
+
+func get_frame_rate_options(max_refresh_rate: int) -> Array[int]:
+	var new_frame_rate_options: Array[int] = []
+	for divisor in [1, 2, 3, 4]:
+		if max_refresh_rate % divisor != 0:
+			continue
+		
+		var frame_rate: int =  max_refresh_rate / divisor
+		if frame_rate < 30:
+			continue
+		
+		new_frame_rate_options.push_back(frame_rate)
+
+	return new_frame_rate_options

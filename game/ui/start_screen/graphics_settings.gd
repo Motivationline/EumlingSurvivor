@@ -1,12 +1,13 @@
 extends Control
 
+@export var quality_preset_option: OptionButton
 @export var render_scale_slider: HSlider
 @export var render_scale_output: Label
-@export var dynamic_render_scale_options: OptionButton
-@export var max_frame_rate_options: OptionButton
-@export var global_illumination_options: OptionButton
-@export var shadow_options: OptionButton
-@export var depth_of_field_options: OptionButton
+@export var dynamic_render_scale_option: OptionButton
+@export var max_frame_rate_option: OptionButton
+@export var global_illumination_option: OptionButton
+@export var shadow_option: OptionButton
+@export var depth_of_field_option: OptionButton
 
 @export var save_button: Button
 @export var cancel_button: Button
@@ -14,50 +15,51 @@ extends Control
 var pending_changes := {}
 
 func _ready() -> void:
+	if quality_preset_option:
+		quality_preset_option.clear()
+		quality_preset_option.add_item("Low", GraphicsSettings.QUALITY_PRESET.LOW)
+		quality_preset_option.add_item("Medium", GraphicsSettings.QUALITY_PRESET.MEDIUM)
+		quality_preset_option.add_item("High", GraphicsSettings.QUALITY_PRESET.HIGH)
+		quality_preset_option.add_item("Custom", GraphicsSettings.QUALITY_PRESET.CUSTOM)
+		quality_preset_option.select(quality_preset_option.get_item_index(GraphicsSettings.get_quality_preset()))
+
 	if render_scale_slider:
 		render_scale_slider.value = GraphicsSettings.get_setting(GraphicsSettings.SETTING.RENDER_SCALE)
 
-	if global_illumination_options:
-		global_illumination_options.clear()
-		global_illumination_options.add_item("Off", GraphicsSettings.GLOBAL_ILLUMINATION_OPTIONS.OFF)
-		global_illumination_options.add_item("SSAO", GraphicsSettings.GLOBAL_ILLUMINATION_OPTIONS.SSAO)
-		global_illumination_options.select(GraphicsSettings.get_setting(GraphicsSettings.SETTING.GLOBAL_ILLUMINATION))
+	if global_illumination_option:
+		global_illumination_option.clear()
+		global_illumination_option.add_item("Off", GraphicsSettings.GLOBAL_ILLUMINATION_OPTIONS.OFF)
+		global_illumination_option.add_item("SSAO", GraphicsSettings.GLOBAL_ILLUMINATION_OPTIONS.SSAO)
+		global_illumination_option.select(global_illumination_option.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.GLOBAL_ILLUMINATION)))
 
-	if shadow_options:
-		shadow_options.clear()
-		shadow_options.add_item("Off", GraphicsSettings.SHADOW_OPTIONS.OFF)
-		shadow_options.add_item("Low", GraphicsSettings.SHADOW_OPTIONS.LOW)
-		shadow_options.add_item("Medium", GraphicsSettings.SHADOW_OPTIONS.MEDIUM)
-		shadow_options.add_item("High", GraphicsSettings.SHADOW_OPTIONS.HIGH)
-		shadow_options.select(shadow_options.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.SHADOW)))
+	if shadow_option:
+		shadow_option.clear()
+		shadow_option.add_item("Off", GraphicsSettings.SHADOW_OPTIONS.OFF)
+		shadow_option.add_item("Low", GraphicsSettings.SHADOW_OPTIONS.LOW)
+		shadow_option.add_item("Medium", GraphicsSettings.SHADOW_OPTIONS.MEDIUM)
+		shadow_option.add_item("High", GraphicsSettings.SHADOW_OPTIONS.HIGH)
+		shadow_option.select(shadow_option.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.SHADOW)))
 
-	if depth_of_field_options:
-		depth_of_field_options.clear()
-		depth_of_field_options.add_item("Off", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.OFF)
-		depth_of_field_options.add_item("Low", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.LOW)
-		depth_of_field_options.add_item("Medium", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.MEDIUM)
-		depth_of_field_options.add_item("High", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.HIGH)
-		depth_of_field_options.select(depth_of_field_options.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.DEPTH_OF_FIELD)))
+	if depth_of_field_option:
+		depth_of_field_option.clear()
+		depth_of_field_option.add_item("Off", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.OFF)
+		depth_of_field_option.add_item("Low", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.LOW)
+		depth_of_field_option.add_item("Medium", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.MEDIUM)
+		depth_of_field_option.add_item("High", GraphicsSettings.DEPTH_OF_FIELD_OPTIONS.HIGH)
+		depth_of_field_option.select(depth_of_field_option.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.DEPTH_OF_FIELD)))
 	
-	if dynamic_render_scale_options:
-		dynamic_render_scale_options.clear()
-		dynamic_render_scale_options.add_item("On", GraphicsSettings.DYNAMIC_RENDER_SCALE.ON)
-		dynamic_render_scale_options.add_item("Off", GraphicsSettings.DYNAMIC_RENDER_SCALE.OFF)
-		dynamic_render_scale_options.select(dynamic_render_scale_options.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE)))
+	if dynamic_render_scale_option:
+		dynamic_render_scale_option.clear()
+		dynamic_render_scale_option.add_item("On", GraphicsSettings.DYNAMIC_RENDER_SCALE.ON)
+		dynamic_render_scale_option.add_item("Off", GraphicsSettings.DYNAMIC_RENDER_SCALE.OFF)
+		dynamic_render_scale_option.select(dynamic_render_scale_option.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE)))
 
-	if max_frame_rate_options:
-		max_frame_rate_options.clear()
-		for divisor in [1, 2, 3, 4]:
-			if GraphicsSettings.MAX_REFRESH_RATE % divisor != 0:
-				continue
+	if max_frame_rate_option:
+		max_frame_rate_option.clear()
+		for frame_rate in GraphicsSettings.frame_rate_options:
+			max_frame_rate_option.add_item(str(frame_rate), frame_rate);
 			
-			var frame_rate: int =  GraphicsSettings.MAX_REFRESH_RATE / divisor
-			if frame_rate < 30:
-				continue
-				
-			max_frame_rate_options.add_item(str(frame_rate), frame_rate);
-			
-		max_frame_rate_options.select(max_frame_rate_options.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.MAX_FRAME_RATE)))
+		max_frame_rate_option.select(max_frame_rate_option.get_item_index(GraphicsSettings.get_setting(GraphicsSettings.SETTING.MAX_FRAME_RATE)))
 
 	GraphicsSettings.setting_changed.connect(on_setting_changed)
 	update_buttons()
@@ -68,15 +70,17 @@ func on_setting_changed(setting, value) -> void:
 			render_scale_slider.value = value
 			render_scale_output.text = "%d%%" % (value * 100.0)
 		GraphicsSettings.SETTING.GLOBAL_ILLUMINATION:
-			global_illumination_options.select(global_illumination_options.get_item_index(value))
+			global_illumination_option.select(global_illumination_option.get_item_index(value))
 		GraphicsSettings.SETTING.SHADOW:
-			shadow_options.select(shadow_options.get_item_index(value))
+			shadow_option.select(shadow_option.get_item_index(value))
 		GraphicsSettings.SETTING.DEPTH_OF_FIELD:
-			depth_of_field_options.select(depth_of_field_options.get_item_index(value))
+			depth_of_field_option.select(depth_of_field_option.get_item_index(value))
 		GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE:
-			dynamic_render_scale_options.select(dynamic_render_scale_options.get_item_index(value))
+			dynamic_render_scale_option.select(dynamic_render_scale_option.get_item_index(value))
 		GraphicsSettings.SETTING.MAX_FRAME_RATE:
-			max_frame_rate_options.select(max_frame_rate_options.get_item_index(value))
+			max_frame_rate_option.select(max_frame_rate_option.get_item_index(value))
+
+	quality_preset_option.select(quality_preset_option.get_item_index(GraphicsSettings.get_quality_preset()))
 	update_buttons()
 
 func update_buttons() -> void:
@@ -86,26 +90,29 @@ func update_buttons() -> void:
 	if save_button:
 		save_button.disabled = not has_unsaved_changes
 
+func _on_quality_preset_option_button_item_selected(index: int) -> void:
+	GraphicsSettings.set_quality_preset(quality_preset_option.get_item_id(index))
+
 func _on_render_scale_slider_value_changed(value: float) -> void:
 	GraphicsSettings.set_setting(GraphicsSettings.SETTING.RENDER_SCALE, value)
 
 func _on_global_illumination_options_item_selected(index: int) -> void:
-	var option_value = global_illumination_options.get_item_id(index)
+	var option_value = global_illumination_option.get_item_id(index)
 	GraphicsSettings.set_setting(GraphicsSettings.SETTING.GLOBAL_ILLUMINATION, option_value)
 
 func _on_shadow_options_item_selected(index: int) -> void:
-	var option_value = shadow_options.get_item_id(index)
+	var option_value = shadow_option.get_item_id(index)
 	GraphicsSettings.set_setting(GraphicsSettings.SETTING.SHADOW, option_value)
 
 func _on_depth_of_field_options_item_selected(index: int) -> void:
-	var option_value = depth_of_field_options.get_item_id(index)
+	var option_value = depth_of_field_option.get_item_id(index)
 	GraphicsSettings.set_setting(GraphicsSettings.SETTING.DEPTH_OF_FIELD, option_value)
 
 func _on_dynamic_render_scale_options_item_selected(index: int) -> void:
-	GraphicsSettings.set_setting(GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE, dynamic_render_scale_options.get_item_id(index))
+	GraphicsSettings.set_setting(GraphicsSettings.SETTING.DYNAMIC_RENDER_SCALE, dynamic_render_scale_option.get_item_id(index))
 	
 func _on_max_frame_rate_options_item_selected(index: int) -> void:
-	GraphicsSettings.set_setting(GraphicsSettings.SETTING.MAX_FRAME_RATE, max_frame_rate_options.get_item_id(index))
+	GraphicsSettings.set_setting(GraphicsSettings.SETTING.MAX_FRAME_RATE, max_frame_rate_option.get_item_id(index))
 
 func _on_save_button_pressed() -> void:
 	GraphicsSettings.save_settings()
