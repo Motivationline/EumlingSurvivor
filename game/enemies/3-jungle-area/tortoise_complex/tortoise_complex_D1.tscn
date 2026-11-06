@@ -19,9 +19,9 @@
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="9_2gkp5"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="9_h6n4k"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="12_2gkp5"]
-[ext_resource type="PackedScene" uid="uid://oorc7j3w0ua5" path="res://assets/characters/enemies/tortoise/baby/baby_tortoise.tscn" id="15_pb0va"]
 [ext_resource type="PackedScene" uid="uid://ck6rqcinpytv1" path="res://game/shared/target_indicators/circular_mesh_textureless/circular_target_indicator.tscn" id="16_gnrjs"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="17_b4sxt"]
+[ext_resource type="PackedScene" uid="uid://cxgocpi7sblwb" path="res://game/enemies/3-jungle-area/tortoise/baby_spawn_tortoise.tscn" id="17_ornr0"]
 [ext_resource type="AudioStream" uid="uid://cq74ndddkno7h" path="res://assets/characters/enemies/tortoise/sounds/shake_1.wav" id="18_3krlo"]
 [ext_resource type="AudioStream" uid="uid://dyx8o67l68hd0" path="res://assets/characters/enemies/tortoise/sounds/shake_2.wav" id="19_2urcv"]
 [ext_resource type="AudioStream" uid="uid://dihxorvypi2is" path="res://assets/characters/enemies/tortoise/sounds/shake_3.wav" id="20_84ubv"]
@@ -434,7 +434,7 @@ animation_trigger = Dictionary[String, Variant]({
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
 
 [node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
-entity_to_spawn = ExtResource("15_pb0va")
+entity_to_spawn = ExtResource("17_ornr0")
 
 [node name="tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=2050981297 instance=ExtResource("2_j0ork")]
 

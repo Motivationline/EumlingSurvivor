@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="2_vpg24"]
 [ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="3_jtyyr"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="4_jtyyr"]
-[ext_resource type="PackedScene" uid="uid://bqhc8xapvpcdc" path="res://assets/characters/enemies/friednly_animals/fish/fish_.tscn" id="5_v4jiu"]
 
 [sub_resource type="Resource" id="Resource_v4jiu"]
 script = ExtResource("2_vpg24")
@@ -31,11 +30,8 @@ rotation_strategy = SubResource("Resource_ehgpu")
 [node name="WaitForTimeXState" parent="StateMachine/Attack/SpawnEntitiesState" parent_id_path=PackedInt32Array(376748780) index="1" unique_id=1064029527]
 wait_time = 1.0
 
-[node name="WaitForTimeClosed" parent="StateMachine/Close" parent_id_path=PackedInt32Array(1905264692) index="3" unique_id=583543399]
+[node name="WaitForTimeClosed" parent="StateMachine/Close" parent_id_path=PackedInt32Array(1905264692) index="4" unique_id=583543399]
 wait_time = 3.0
 
 [node name="AdjustAttributesClosed" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=935578213]
 changes = Array[ExtResource("4_jtyyr")]([SubResource("Resource_cwp2s")])
-
-[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
-entity_to_spawn = ExtResource("5_v4jiu")

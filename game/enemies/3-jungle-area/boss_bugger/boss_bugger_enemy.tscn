@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://di7u4dovf5ps2" path="res://game/enemies/3-jungle-area/boss_bugger/boss_bugger_projectile_sniper.tscn" id="10_i8bx7"]
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="12_csjgc"]
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="13_c2xk5"]
+[ext_resource type="PackedScene" uid="uid://bbkgb67jbgdly" path="res://game/enemies/3-jungle-area/boss_bugger/baby_spawn_bugger.tscn" id="15_teup8"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="18_jtynk"]
 [ext_resource type="AudioStream" uid="uid://oq4qaex1werm" path="res://assets/characters/enemies/bossbugger/sounds/death_1.wav" id="18_per2j"]
 [ext_resource type="AudioStream" uid="uid://bpb0fhuxytiwm" path="res://assets/characters/enemies/bossbugger/sounds/death_2.wav" id="19_sxkrg"]
@@ -384,6 +385,9 @@ amount_of_spawns = 10
 target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("15_teup8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1675406726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)

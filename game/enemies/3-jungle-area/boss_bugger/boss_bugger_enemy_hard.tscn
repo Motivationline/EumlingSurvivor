@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="12_aywxq"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="14_4d6kv"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="15_85lgk"]
+[ext_resource type="PackedScene" uid="uid://bbkgb67jbgdly" path="res://game/enemies/3-jungle-area/boss_bugger/baby_spawn_bugger.tscn" id="16_a1bwh"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="16_ekuuj"]
 [ext_resource type="Shader" uid="uid://5x2ftmf5e728" path="res://game/shared/lquid_shader/liquid_shader.gdshader" id="17_61ew2"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="20_5vwgk"]
@@ -112,7 +113,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(0.09990812, 0.004285687)
+shader_parameter/wobble = Vector2(0.026803216, 0.096341)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l4iyu"]
 streams_count = 5
@@ -426,6 +427,9 @@ target_strategy = SubResource("Resource_4qoll")
 rotation_strategy = SubResource("Resource_ha4n7")
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("16_a1bwh")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=711175495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)
 shape = SubResource("CapsuleShape3D_fngux")
@@ -457,7 +461,7 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=604116715 instance=ExtResource("16_ekuuj")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(604116715, 503767807) index="0" unique_id=1872909236]
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(604116715, 1355750367) index="0" unique_id=1826052820]
 bones/19/rotation = Quaternion(-0.52084875, 0.5621063, -0.47125188, -0.4366633)
 bones/22/rotation = Quaternion(-0.39565715, 0.65627927, -0.5502035, -0.33170652)
 

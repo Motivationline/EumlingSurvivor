@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dgi4gidx4vpsn" path="res://state_machine/enemy/move_random_nav_mesh.gd" id="3_gykbi"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="3_ybqk6"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_gykbi"]
+[ext_resource type="PackedScene" uid="uid://b0fft6v6hkb26" path="res://game/enemies/5-beach-area/ninja_starfish/baby_spawn_starfish.tscn" id="7_c2cnu"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="8_5s5xb"]
 [ext_resource type="AudioStream" uid="uid://b18c4mfuks8ox" path="res://assets/characters/enemies/ninja_starfish/sounds/attack_1.wav" id="9_euktn"]
 [ext_resource type="AudioStream" uid="uid://dmgmp1fcpyika" path="res://assets/characters/enemies/ninja_starfish/sounds/attack_2.wav" id="10_xi1ew"]
@@ -234,6 +235,9 @@ animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "end_spin"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("7_c2cnu")
 
 [node name="ninja_starfish" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=725910630 instance=ExtResource("2_jg36m")]
 

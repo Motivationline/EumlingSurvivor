@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://dc4vqy0krqtu1" path="res://assets/characters/enemies/pufferfish/sounds/inflate_3.wav" id="21_4pcr6"]
 [ext_resource type="AudioStream" uid="uid://dj4w0fstjou3r" path="res://assets/characters/enemies/pufferfish/sounds/inflate_4.wav" id="22_6pew2"]
 [ext_resource type="AudioStream" uid="uid://wf6brilybvno" path="res://assets/characters/enemies/pufferfish/sounds/inflate_5.wav" id="23_8adn0"]
+[ext_resource type="PackedScene" uid="uid://dyyldg67y5ps3" path="res://game/enemies/5-beach-area/puffer_fish/baby_spawn_pufferfish.tscn" id="23_g45vs"]
 [ext_resource type="AudioStream" uid="uid://b6oyi2h8elolt" path="res://assets/characters/enemies/pufferfish/sounds/inflate_6.wav" id="24_trsfq"]
 [ext_resource type="AudioStream" uid="uid://dj6uquaxom31f" path="res://assets/characters/enemies/pufferfish/sounds/death_1.wav" id="25_g45vs"]
 [ext_resource type="AudioStream" uid="uid://bdtsy530u0ucd" path="res://assets/characters/enemies/pufferfish/sounds/death_2.wav" id="26_8uu8e"]
@@ -488,6 +489,9 @@ script = ExtResource("13_qc8ak")
 state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/OnDamage/ReduceDamage")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("23_g45vs")
 
 [node name="Pufferfish" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1528906013 instance=ExtResource("6_agfvd")]
 
