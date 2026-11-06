@@ -42,6 +42,9 @@ var viewport_center: Vector2
 var viewport_size: Vector2
 var camera: Camera3D
 
+#used to store show() command so it doesn't jump from an old position to the new one when it becomes visible before that calculation is finished
+var queue_visible:bool = false
+
 func _get_property_list():
 	var properties: Array[Dictionary] = []
 	
@@ -144,25 +147,29 @@ func _physics_process(_delta: float) -> void:
 				var d: Vector2 = Vector2(margin_horizontal, viewport_size.y - margin_vertical)
 				var corners = [a, b, c, d]
 				var intersection
-				for i in 2:
-					intersection = Geometry2D.segment_intersects_segment(corners[i], corners[i + 1], viewport_center, screen_position)
+				for i in 4:
+					intersection = Geometry2D.segment_intersects_segment(corners[i], corners[(i + 1) % 4], viewport_center, screen_position)
+					
 					if intersection:
 						icon_position = intersection
 						break
 		
 		icon.position = icon_position
+		if queue_visible:
+			icon.show()
+			queue_visible = false
 
 
 func _on_screen_entered():
 	if icon:
-		icon.hide()
 		process_mode = Node.PROCESS_MODE_DISABLED
+		icon.hide()
 
 
 func _on_screen_exited():
 	if active and icon:
-		icon.show()
 		process_mode = Node.PROCESS_MODE_INHERIT
+		queue_visible = true
 	
 
 func _on_viewport_resized() -> void:
