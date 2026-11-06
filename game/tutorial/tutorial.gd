@@ -106,11 +106,14 @@ func start() -> void:
 	progress = PROGRESS.NONE
 	var video_instance = video.instantiate()
 	progress = PROGRESS.INTRO_VIDEO
-	# add_child(video_instance)
-	# await video_instance.finished
+	add_child(video_instance)
+	await video_instance.finished
 	GlobalMusicManager.request_music(SongList.TRACK.TUTORIAL,MusicTransition.fade_and_start(1),true,SongList.ENVNOISE.NOTHING)
 	add_child(main_menu_instance)
 	remove_child(video_instance)
+	main_menu_instance.find_child("IntroButton").hide()
+	main_menu_instance.find_child("Settings").hide()
+	main_menu_instance.find_child("EndGameButton").hide()
 	progress = PROGRESS.INTRO_TEXT
 	await show_dialogue("welcome", false)
 	intro_eumlex()
