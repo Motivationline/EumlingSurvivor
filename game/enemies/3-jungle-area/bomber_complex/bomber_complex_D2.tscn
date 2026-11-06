@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://qba3i6xxa5r1" path="res://game/enemies/3-jungle-area/bomber_complex/projectiles/bomber_complex_projetile_v1.tscn" id="5_db2pv"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_odqct"]
 [ext_resource type="PackedScene" uid="uid://dtxt86h42fqcx" path="res://game/enemies/3-jungle-area/bomber_complex/projectiles/bomber_complex_projectile_v2.tscn" id="6_adlmm"]
+[ext_resource type="PackedScene" uid="uid://b4isq6ptpyclc" path="res://game/enemies/3-jungle-area/bomber/baby_spawn_hog.tscn" id="10_rrg6h"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="11_3eptw"]
 [ext_resource type="Material" uid="uid://bl46tp3s7w71l" path="res://assets/vfx/buffed_assets/buffed_overlay_shader.tres" id="11_byg6t"]
 [ext_resource type="AudioStream" uid="uid://dniu2l5tq00nv" path="res://assets/characters/enemies/cactushog/sounds/shoot_1.wav" id="12_papk1"]
@@ -241,13 +242,16 @@ max_wait_time = 0.5
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("10_rrg6h")
+
 [node name="cactushog" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=83265788 instance=ExtResource("2_aaw30")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Visuals/cactushog/HogAramture" parent_id_path=PackedInt32Array(83265788, 327550094) index="0" unique_id=1308099066]
-bones/0/scale = Vector3(1.0170604, 0.96673405, 1.0170603)
+[node name="Skeleton3D" parent="Visuals/cactushog/HogAramture" parent_id_path=PackedInt32Array(83265788, 1764306681) index="0" unique_id=219718840]
+bones/0/scale = Vector3(1.0089618, 0.9823511, 1.0089617)
 
-[node name="hog_mesh" parent="Visuals/cactushog/HogAramture/Skeleton3D" index="0" unique_id=625727530]
+[node name="hog_mesh" parent="Visuals/cactushog/HogAramture/Skeleton3D" index="0" unique_id=1258257635]
 material_overlay = ExtResource("11_byg6t")
 
 [node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1554862748 instance=ExtResource("12_rrg6h")]

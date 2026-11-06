@@ -6,9 +6,12 @@
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2886076, 1), 0.0, 0.0, 0, 0, Vector2(0.7987342, 0.684), -1.7555559, -1.7555559, 0, 0, Vector2(1, 0), -5.0560093, 0.0, 0, 0]
 point_count = 4
 
-[node name="BabyController" type="Node3D" unique_id=1648963440 node_paths=PackedStringArray("timer")]
+[node name="BabyController" type="Node3D" unique_id=1648963440 node_paths=PackedStringArray("visuals", "timer")]
 script = ExtResource("1_1mxo6")
+visuals = NodePath("Visuals")
 shrink_curve = SubResource("Curve_s4u8b")
 timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="." unique_id=618415049]
+
+[node name="Visuals" type="Node3D" parent="." unique_id=1922312297]

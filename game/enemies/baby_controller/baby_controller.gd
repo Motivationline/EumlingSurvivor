@@ -1,8 +1,6 @@
 class_name BabyController extends Node3D
 ##Container for a enemy to be spawned by an [EntitySpawner]
 
-##The visuals to spawn
-@export var visuals: Node3D
 ##The time it takes for the visuals to shrink
 @export var timeout: float = 4.0
 ##The movement speed of the baby
@@ -11,6 +9,8 @@ class_name BabyController extends Node3D
 @export var shrink_curve: Curve
 ##Timer node
 @export var timer: Timer
+##Container for 3D Model. Add the model as a child of this
+@export var visuals: Node3D
 
 ##The movement direction, decided at random
 var direction: Vector3 = Vector3.FORWARD

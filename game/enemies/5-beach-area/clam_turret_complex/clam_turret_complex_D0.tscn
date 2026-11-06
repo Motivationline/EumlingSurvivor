@@ -21,9 +21,9 @@
 [ext_resource type="Script" uid="uid://dr4u5rsf5xoa6" path="res://state_machine/interrupts/conditions/not.gd" id="14_xmwtg"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="15_cxjil"]
 [ext_resource type="Script" uid="uid://ctkt4x4xj18wn" path="res://state_machine/interrupts/conditions/line_of_sight_to_player.gd" id="15_o8ak0"]
-[ext_resource type="PackedScene" uid="uid://ue2n5e8pxlqe" path="res://assets/characters/enemies/clam/baby_clam/babylam_prefab.tscn" id="15_vxwlt"]
 [ext_resource type="AudioStream" uid="uid://cyy015a80gd1s" path="res://assets/characters/enemies/clam/sounds/open_1.wav" id="16_jiy3g"]
 [ext_resource type="AudioStream" uid="uid://cw7xmflf22ncy" path="res://assets/characters/enemies/clam/sounds/open_2.wav" id="17_v4op6"]
+[ext_resource type="PackedScene" uid="uid://p6ebsny0w8gx" path="res://game/enemies/5-beach-area/clam_turret/baby_spawn_clam.tscn" id="18_1vave"]
 [ext_resource type="AudioStream" uid="uid://p3cx84ld3bg4" path="res://assets/characters/enemies/clam/sounds/open_3.wav" id="18_7tfva"]
 [ext_resource type="AudioStream" uid="uid://chty70ige8wnv" path="res://assets/characters/enemies/clam/sounds/open_4.wav" id="19_mmi0r"]
 [ext_resource type="AudioStream" uid="uid://bsdq53vggafb1" path="res://assets/characters/enemies/clam/sounds/open_5.wav" id="20_j8ic7"]
@@ -370,7 +370,7 @@ changes = Array[ExtResource("8_myuco")]([SubResource("Resource_l6trl")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
 [node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
-entity_to_spawn = ExtResource("15_vxwlt")
+entity_to_spawn = ExtResource("18_1vave")
 
 [node name="clam" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=553851633 instance=ExtResource("2_j40wc")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)

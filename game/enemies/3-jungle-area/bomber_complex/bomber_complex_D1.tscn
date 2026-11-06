@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://el7nans1vkam" path="res://assets/characters/enemies/cactushog/cactushog_prefab.tscn" id="6_e5qk8"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="7_fvuh5"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="8_q8x75"]
+[ext_resource type="PackedScene" uid="uid://b4isq6ptpyclc" path="res://game/enemies/3-jungle-area/bomber/baby_spawn_hog.tscn" id="9_ko0vc"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="10_djdpi"]
 [ext_resource type="AudioStream" uid="uid://dniu2l5tq00nv" path="res://assets/characters/enemies/cactushog/sounds/shoot_1.wav" id="11_ko0vc"]
 [ext_resource type="AudioStream" uid="uid://c3ir1vg3hckvl" path="res://assets/characters/enemies/cactushog/sounds/shoot_2.wav" id="12_2o1t4"]
@@ -191,6 +192,9 @@ random = true
 max_wait_time = 0.5
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("9_ko0vc")
 
 [node name="Visuals" parent="." index="4" unique_id=110309936]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)

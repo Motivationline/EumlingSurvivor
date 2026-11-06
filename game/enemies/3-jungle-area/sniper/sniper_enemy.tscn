@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="6_yptkn"]
 [ext_resource type="Script" uid="uid://2ncl5gd1yn5a" path="res://strategies/event/activate.gd" id="7_yk45h"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="8_58a1e"]
+[ext_resource type="PackedScene" uid="uid://bg2ixjtjn3unu" path="res://game/enemies/3-jungle-area/sniper/baby_spawn_peacock.tscn" id="11_0pcbd"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_q1m8v"]
 [ext_resource type="AudioStream" uid="uid://db05veivwt285" path="res://assets/characters/enemies/peacock/sounds/slash_1.wav" id="13_vshav"]
 [ext_resource type="AudioStream" uid="uid://pky3frkxp8hm" path="res://assets/characters/enemies/peacock/sounds/slash_2.wav" id="14_llpgw"]
@@ -213,6 +214,9 @@ animation_trigger = Dictionary[String, Variant]({
 "parameters/Hurt/request": 1
 })
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("11_0pcbd")
 
 [node name="HurtBox" type="Area3D" parent="." index="4" unique_id=1067109364]
 collision_layer = 64
