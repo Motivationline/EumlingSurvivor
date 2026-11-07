@@ -4,6 +4,7 @@ class_name InputMethodDetector extends Node
 ##The texture placed in the [param texture_focused] of a Button displayed when a controller is hovering it.
 @export var button_icon_layer: Texture2D
 
+
 const CONTROLLER_SENS_THRESHOLD: float = 0.1
 
 var sensitive_nodes: Array[Node] = []
@@ -13,6 +14,7 @@ enum INPUT_METHOD {MOBILE, CONTROLLER, KEYBOARD}
 var current_input_method: INPUT_METHOD
 
 func _ready() -> void:
+	deactivate_button_icons()
 	if Data.is_on_mobile:
 		switch_input_method(INPUT_METHOD.MOBILE)
 		# queue_free()
@@ -46,10 +48,20 @@ func switch_input_method(_new_method: INPUT_METHOD) -> void:
 func activate_button_icons() -> void:
 	for node in sensitive_nodes:
 		if node is TextureButton:
-			node.texture_focused = button_icon_layer
+			node.texture_focused = crop_button_texture(node.texture_normal)
 
 
 func deactivate_button_icons() -> void:
 	for node in sensitive_nodes:
 		if node is TextureButton:
 			node.texture_focused = null
+
+
+func crop_button_texture(_reference: Texture2D) -> Texture2D:
+	var cropped: AtlasTexture = AtlasTexture.new()
+	cropped.atlas = button_icon_layer
+	cropped.region.size = Vector2(_reference.get_width(), _reference.get_height())
+	cropped.region.position = Vector2(button_icon_layer.get_width() - _reference.get_width(), button_icon_layer.get_height() - _reference.get_height())
+
+	
+	return cropped
