@@ -50,28 +50,28 @@ const SECTION := "graphics"
 
 var quality_presets: Dictionary = {
 	QUALITY_PRESET.LOW: {
-		SETTING.RENDER_SCALE: 0.75,
+		SETTING.RENDER_SCALE: 0.6,
 		SETTING.DYNAMIC_RENDER_SCALE: DYNAMIC_RENDER_SCALE.ON,
 		SETTING.SHADOW: SHADOW_OPTIONS.LOW,
 		SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.LOW,
 		SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
-		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[-1]
+		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[0]
 	},
 	QUALITY_PRESET.MEDIUM: {
-		SETTING.RENDER_SCALE: 1.0,
+		SETTING.RENDER_SCALE: 0.8,
 		SETTING.DYNAMIC_RENDER_SCALE: DYNAMIC_RENDER_SCALE.ON,
 		SETTING.SHADOW: SHADOW_OPTIONS.MEDIUM,
 		SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.MEDIUM,
 		SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
-		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[1] if FRAME_RATE_OPTIONS.size() > 2 else FRAME_RATE_OPTIONS[0]
+		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[-2] if FRAME_RATE_OPTIONS.size() > 2 else FRAME_RATE_OPTIONS[0]
 	},
 	QUALITY_PRESET.HIGH: {
 		SETTING.RENDER_SCALE: 1.0,
-		SETTING.DYNAMIC_RENDER_SCALE: DYNAMIC_RENDER_SCALE.OFF,
+		SETTING.DYNAMIC_RENDER_SCALE: DYNAMIC_RENDER_SCALE.ON,
 		SETTING.SHADOW: SHADOW_OPTIONS.HIGH,
 		SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.HIGH,
 		SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
-		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[0]
+		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[-1]
 	},
 	QUALITY_PRESET.CUSTOM: {},
 	QUALITY_PRESET.RETRO: {
@@ -80,7 +80,7 @@ var quality_presets: Dictionary = {
 		SETTING.SHADOW: SHADOW_OPTIONS.OFF,
 		SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.OFF,
 		SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.SSAO,
-		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[-1]
+		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[0]
 	}
 }
 
@@ -180,7 +180,7 @@ func has_unsaved_changes() -> bool:
 
 func get_frame_rate_options(max_refresh_rate: int = int(DisplayServer.screen_get_refresh_rate()) if DisplayServer.screen_get_refresh_rate() > 0 else 60) -> Array[int]:
 	var new_frame_rate_options: Array[int] = []
-	for divisor in [1, 2, 3, 4]:
+	for divisor in [4, 3, 2, 1]:
 		if max_refresh_rate % divisor != 0:
 			continue
 		
@@ -192,9 +192,25 @@ func get_frame_rate_options(max_refresh_rate: int = int(DisplayServer.screen_get
 
 	return new_frame_rate_options
 
-func detect_gpu_performance():
+func detect_settings():
 	var benchmark = preload("res://global/performance/benchmark.tscn").instantiate()
 	add_child(benchmark)
 	await benchmark.run()
-	print("GPU frame time: ", benchmark.average_frame_time, " ms")
 	benchmark.queue_free()
+	
+	# maximum settings
+	set_setting(SETTING.RENDER_SCALE, 1.0)
+	set_setting(SETTING.DYNAMIC_RENDER_SCALE, DYNAMIC_RENDER_SCALE.OFF)
+	set_setting(SETTING.TARGET_FRAME_RATE, FRAME_RATE_OPTIONS[-1])
+
+	var average_frame_time = benchmark.average_frame_time
+	var target_frame_time = 1000.0 / FRAME_RATE_OPTIONS[-1]
+
+	var score = target_frame_time / average_frame_time
+	
+	if score > 3.0:
+		set_quality_preset(QUALITY_PRESET.HIGH)
+	elif score > 2.0:
+		set_quality_preset(QUALITY_PRESET.MEDIUM)
+	else:
+		set_quality_preset(QUALITY_PRESET.LOW)
