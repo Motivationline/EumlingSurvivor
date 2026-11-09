@@ -6,7 +6,7 @@ var spawner:EntitySpawner
 var spawned_entities:Array[Node3D]
 
 func _ready():
-	if get_parent() is EntitySpawner:
+	if get_parent() is EntitySpawner and !Engine.is_editor_hint():
 		spawner = get_parent()
 		spawner.entity_spawned.connect(_on_entity_spawned)
 		spawner.tree_exited.connect(_on_spawner_freed)
