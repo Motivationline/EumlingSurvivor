@@ -43,14 +43,17 @@ size_flags_vertical = 3
 
 [node name="QualityPresetLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=78552604]
 layout_mode = 2
+mouse_filter = 1
 text = "Quality Preset"
 
 [node name="QualityPresetOption" type="OptionButton" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1862224995]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="FoldableContainer" type="FoldableContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1825410795]
 layout_mode = 2
+mouse_filter = 1
 folded = true
 title = "Advanced Options"
 
@@ -64,10 +67,12 @@ layout_mode = 2
 [node name="RenderScaleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=313040801]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Render Scale"
 
 [node name="RenderScaleOutput" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/HBoxContainer" unique_id=1530046521]
 layout_mode = 2
+mouse_filter = 1
 text = "100%"
 
 [node name="RenderScaleSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=398364305]
@@ -75,6 +80,7 @@ custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 offset_transform_position = Vector2(-19, 0)
 offset_transform_scale = Vector2(0.9, 0.9)
+mouse_filter = 1
 min_value = 0.1
 max_value = 1.0
 step = 0.01
@@ -83,44 +89,54 @@ value = 1.0
 [node name="DynamicRenderScaleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=519299031]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Dynamic Render Scale"
 
 [node name="DynamicRenderScaleOption" type="OptionButton" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=128438708]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="TargetFrameRateLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=1394033807]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Target Frame Rate"
 
 [node name="TargetFrameRateOption" type="OptionButton" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=359744581]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="ShadowLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=1002264529]
 layout_mode = 2
+mouse_filter = 1
 text = "Shadow Quality"
 
 [node name="ShadowOption" type="OptionButton" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=1047196321]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="DepthOfFieldLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=367807410]
 layout_mode = 2
+mouse_filter = 1
 text = "Depth of Field"
 
 [node name="DepthOfFieldOption" type="OptionButton" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=240397707]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="GlobalIlluminationLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=946824771]
 layout_mode = 2
+mouse_filter = 1
 text = "Global Illumination"
 
 [node name="GlobalIlluminationOption" type="OptionButton" parent="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer" unique_id=871023816]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+mouse_filter = 1
 
 [connection signal="item_selected" from="ScrollContainer/MarginContainer/VBoxContainer/QualityPresetOption" to="." method="_on_quality_preset_option_item_selected"]
 [connection signal="value_changed" from="ScrollContainer/MarginContainer/VBoxContainer/FoldableContainer/VBoxContainer/RenderScaleSlider" to="." method="_on_render_scale_slider_value_changed"]
