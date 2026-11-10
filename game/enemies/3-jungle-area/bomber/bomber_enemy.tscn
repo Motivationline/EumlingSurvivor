@@ -6,9 +6,10 @@
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="2_pj1a8"]
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_ldbtp"]
 [ext_resource type="Script" uid="uid://c1j50itv0hwo2" path="res://state_machine/enemy/spawn_entities.gd" id="4_7jdl2"]
-[ext_resource type="PackedScene" uid="uid://ufivfi4021l7" path="res://game/enemies/3-jungle/bomber/projectile/bomber_projectile.tscn" id="5_qg7p4"]
+[ext_resource type="PackedScene" uid="uid://ufivfi4021l7" path="res://game/enemies/3-jungle-area/bomber/projectile/bomber_projectile.tscn" id="5_qg7p4"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="5_rkcej"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="8_ldbtp"]
+[ext_resource type="PackedScene" uid="uid://caw2spurc7rc6" path="res://assets/characters/enemies/cactushog/baby/baby_hog.tscn" id="9_q3m47"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="10_trurq"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="11_pgmq4"]
 [ext_resource type="AudioStream" uid="uid://cwx0xunov8ayx" path="res://assets/sound/hit_sfx/death_1.wav" id="12_ldbtp"]
@@ -236,6 +237,9 @@ random = true
 max_wait_time = 0.5
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("9_q3m47")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=628781066]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329481, 0)

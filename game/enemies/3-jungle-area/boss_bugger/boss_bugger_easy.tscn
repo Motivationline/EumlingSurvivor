@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://pv70hoylokg6" path="res://game/spawner/strategies/rotation/circle.gd" id="12_ps3lq"]
 [ext_resource type="Script" uid="uid://b327yqkxkrliq" path="res://game/hurtbox/hurtbox.gd" id="14_iwrf2"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="15_ekbei"]
+[ext_resource type="PackedScene" uid="uid://vubslyum34fe" path="res://assets/characters/enemies/bossbugger/baby/bugger_baby.tscn" id="16_8ufe6"]
 [ext_resource type="PackedScene" uid="uid://cvbt5bpffucle" path="res://assets/characters/enemies/bossbugger/boss_bugger_prefab.tscn" id="16_ofchx"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="17_7htsj"]
 [ext_resource type="Material" uid="uid://7fxx5esg7ltf" path="res://assets/characters/enemies/bossbugger/biss_cell_shader.tres" id="17_8h61i"]
@@ -197,7 +198,7 @@ shader_parameter/rim_emission_intensity = 0.814000038665
 shader_parameter/rim_exponent = 3.0
 shader_parameter/emission_intensity = 0.1
 shader_parameter/liquid_surface_gradient_size = 0.1
-shader_parameter/wobble = Vector2(-0.09131061, -0.040211603)
+shader_parameter/wobble = Vector2(0.030353112, -0.09528216)
 
 [sub_resource type="Gradient" id="Gradient_qqlxf"]
 offsets = PackedFloat32Array(0.5364583, 0.71875, 0.7760417)
@@ -572,6 +573,9 @@ time_between_bursts = 0.2
 amount_of_bursts = 2
 metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("16_8ufe6")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1675406726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6593018, 0)
 shape = SubResource("CapsuleShape3D_fngux")
@@ -603,7 +607,7 @@ shape = SubResource("CapsuleShape3D_0vw1d")
 
 [node name="BossBugger" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=113844681 instance=ExtResource("16_ofchx")]
 
-[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 1089246375) index="0" unique_id=189157085]
+[node name="Skeleton3D" parent="Visuals/BossBugger/Armature_001" parent_id_path=PackedInt32Array(113844681, 175304683) index="0" unique_id=2084372737]
 bones/19/rotation = Quaternion(-0.49805066, 0.5375024, -0.4991323, -0.4624973)
 bones/22/rotation = Quaternion(-0.37833884, 0.6275533, -0.5827548, -0.35133108)
 
@@ -611,7 +615,7 @@ bones/22/rotation = Quaternion(-0.37833884, 0.6275533, -0.5827548, -0.35133108)
 material_override = SubResource("ShaderMaterial_urikr")
 liquid_height = 0.0
 
-[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=504410357]
+[node name="Bugger" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="1" unique_id=392353922]
 mesh = SubResource("ArrayMesh_30o50")
 
 [node name="BoneAttachment3D2" parent="Visuals/BossBugger/Armature_001/Skeleton3D" index="2" unique_id=525651175]

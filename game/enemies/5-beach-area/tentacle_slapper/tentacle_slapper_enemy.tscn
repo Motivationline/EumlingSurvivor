@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cobx6obdkk5ja" path="res://assets/characters/enemies/squid/squid/squid_prefab.tscn" id="7_8scmy"]
 [ext_resource type="Script" uid="uid://ce61jighdgsby" path="res://strategies/event/enemy/trigger_state.gd" id="7_ehia0"]
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="7_f2r6p"]
+[ext_resource type="PackedScene" uid="uid://brfrayqy1toa" path="res://assets/characters/enemies/squid/baby/squid_baby.tscn" id="12_4menl"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_52e3t"]
 [ext_resource type="AudioStream" uid="uid://bnxax3xh1ah3i" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_1.wav" id="14_03chf"]
 [ext_resource type="AudioStream" uid="uid://c0xnnjtum0jlc" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_2.wav" id="15_n8f8l"]
@@ -238,6 +239,9 @@ script = ExtResource("7_ehia0")
 state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/OnHit/ActivatorState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("12_4menl")
 
 [node name="squid" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=697439437 instance=ExtResource("7_8scmy")]
 

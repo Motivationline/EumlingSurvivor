@@ -67,12 +67,11 @@ stream_1/stream = ExtResource("20_ctrhr")
 stream_2/stream = ExtResource("21_m33lt")
 stream_3/stream = ExtResource("22_2a76r")
 
-[node name="2x1Stone" unique_id=1837394296 node_paths=PackedStringArray("hurtbox", "on_death", "on_hurt") instance=ExtResource("1_o3rha")]
-health = 150.0
+[node name="2x1Stone" unique_id=1837394296 node_paths=PackedStringArray("hurtbox", "on_hurt") instance=ExtResource("1_o3rha")]
+health = 90.0
 death_effect = ExtResource("10_77s2v")
 ignore_enemy_in_level = true
 hurtbox = NodePath("Hurtbox")
-on_death = [NodePath("Eventlisteners/PlaySoundDeath")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundEnemyHurtEventStrategy"), NodePath("Eventlisteners/TriggerHurt")]
 speed = 0.0
 
@@ -118,6 +117,9 @@ script = ExtResource("6_r8n3v")
 state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/DecideValueState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("10_77s2v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1738398887]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
