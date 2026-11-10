@@ -9,6 +9,9 @@
 [ext_resource type="Theme" uid="uid://u1iy4y0s7n01" path="res://assets/ui/base_theme.tres" id="7_gt121"]
 [ext_resource type="Texture2D" uid="uid://cat8pebbs6orm" path="res://assets/ui/Eumlex/SquareFrame.png" id="8_xialn"]
 [ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="9_13vpv"]
+[ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="10_n7cf7"]
+[ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="11_gt121"]
+[ext_resource type="AudioStream" uid="uid://c4xw8a6a2lao0" path="res://assets/sound/ui/pause/slider_tick.wav" id="14_brhd5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_brhd5"]
 texture = ExtResource("2_j7yhf")
@@ -36,6 +39,11 @@ action = &"openPauseMenu"
 [sub_resource type="Shortcut" id="Shortcut_uv6iu"]
 events = [SubResource("InputEventAction_kko3x")]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6q4fc"]
+random_pitch = 1.2599211
+streams_count = 1
+stream_0/stream = ExtResource("14_brhd5")
+
 [node name="Settings" type="Control" unique_id=1695909775]
 layout_mode = 3
 anchors_preset = 15
@@ -59,9 +67,10 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_brhd5")
 theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_6q4fc")
 theme_override_styles/tab_hovered = SubResource("StyleBoxTexture_wrs8w")
 theme_override_styles/tab_selected = SubResource("StyleBoxTexture_2c6fv")
-current_tab = 0
+current_tab = 1
 
 [node name="Graphics" type="TabBar" parent="SettingsTabContainer" unique_id=937972443]
+visible = false
 layout_mode = 2
 theme_override_constants/h_separation = 4
 theme_override_fonts/font = ExtResource("4_ovxw3")
@@ -75,15 +84,17 @@ offset_right = -31.187927
 offset_bottom = -14.644409
 scale = Vector2(0.9188551, 0.9188551)
 
-[node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=426099189 node_paths=PackedStringArray("music_slider", "sfx_slider", "ambience_slider")]
-visible = false
+[node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=426099189 node_paths=PackedStringArray("pause_menu", "music_slider", "sfx_slider", "ambience_slider", "sound_effect_manager", "slider_tick_stream_player")]
 layout_mode = 2
 script = ExtResource("6_n7cf7")
 vol_min = -30.0
 vol_max = 2.0
+pause_menu = NodePath("../..")
 music_slider = NodePath("SliderContainer/MusicContainer/MusicSlider")
 sfx_slider = NodePath("SliderContainer/SFXContainer/SFXSlider")
 ambience_slider = NodePath("SliderContainer/AmbienceContainer/AmbienceSlider")
+sound_effect_manager = NodePath("../../SoundEffectManager")
+slider_tick_stream_player = NodePath("../../SoundEffectManager/SliderTick")
 metadata/_tab_index = 1
 
 [node name="SliderContainer" type="VBoxContainer" parent="SettingsTabContainer/Sound" unique_id=1241287887]
@@ -145,6 +156,17 @@ offset_right = 1850.0
 offset_bottom = 180.0
 shortcut = SubResource("Shortcut_uv6iu")
 texture_normal = ExtResource("9_13vpv")
+
+[node name="SoundEffectManager" type="Node3D" parent="." unique_id=312119658]
+process_mode = 2
+script = ExtResource("10_n7cf7")
+metadata/_custom_type_script = "uid://fxqs1lioec3e"
+
+[node name="SliderTick" parent="SoundEffectManager" unique_id=353005461 instance=ExtResource("11_gt121")]
+stream = SubResource("AudioStreamRandomizer_6q4fc")
+volume_db = -8.0
+max_polyphony = 5
+bus = &"SFXUI"
 
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/MusicContainer/MusicSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Music"]]
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/SFXContainer/SFXSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" flags=3 binds= ["SFX"]]

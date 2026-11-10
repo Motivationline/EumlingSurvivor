@@ -20,7 +20,7 @@ func _ready():
 
 
 func on_slider_changed(value:float, source:String) -> void:
-	if pause_menu.is_open:
+	if pause_menu.visible:
 		var volume:float
 		if value == 0 :
 			volume = -100
