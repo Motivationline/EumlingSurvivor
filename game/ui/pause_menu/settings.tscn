@@ -67,10 +67,9 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_brhd5")
 theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_6q4fc")
 theme_override_styles/tab_hovered = SubResource("StyleBoxTexture_wrs8w")
 theme_override_styles/tab_selected = SubResource("StyleBoxTexture_2c6fv")
-current_tab = 1
+current_tab = 0
 
 [node name="Graphics" type="TabBar" parent="SettingsTabContainer" unique_id=937972443]
-visible = false
 layout_mode = 2
 theme_override_constants/h_separation = 4
 theme_override_fonts/font = ExtResource("4_ovxw3")
@@ -85,6 +84,7 @@ offset_bottom = -14.644409
 scale = Vector2(0.9188551, 0.9188551)
 
 [node name="Sound" type="TabBar" parent="SettingsTabContainer" unique_id=426099189 node_paths=PackedStringArray("pause_menu", "music_slider", "sfx_slider", "ambience_slider", "sound_effect_manager", "slider_tick_stream_player")]
+visible = false
 layout_mode = 2
 script = ExtResource("6_n7cf7")
 vol_min = -30.0
@@ -148,7 +148,7 @@ offset_right = 1862.0
 offset_bottom = 1023.0
 texture = ExtResource("8_xialn")
 
-[node name="PauseButton" type="TextureButton" parent="." unique_id=1931970425]
+[node name="CloseButton" type="TextureButton" parent="." unique_id=1931970425]
 layout_mode = 0
 offset_left = 1710.0
 offset_top = 36.0
@@ -171,3 +171,4 @@ bus = &"SFXUI"
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/MusicContainer/MusicSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Music"]]
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/SFXContainer/SFXSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" flags=3 binds= ["SFX"]]
 [connection signal="value_changed" from="SettingsTabContainer/Sound/SliderContainer/AmbienceContainer/AmbienceSlider" to="SettingsTabContainer/Sound" method="on_slider_changed" binds= ["Ambience"]]
+[connection signal="pressed" from="CloseButton" to="." method="hide"]
