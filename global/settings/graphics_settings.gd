@@ -192,25 +192,23 @@ func get_frame_rate_options(max_refresh_rate: int = int(DisplayServer.screen_get
 
 	return new_frame_rate_options
 
+## Detect and adjust the graphics settings. This runs a short benchmark in the background.
 func detect_settings():
-	var benchmark = preload("res://global/performance/benchmark.tscn").instantiate()
+	var benchmark = preload("uid://crtsudpatsbsm").instantiate()
 	add_child(benchmark)
 	await benchmark.run()
 	benchmark.queue_free()
-	
-	# maximum settings
+
 	set_setting(SETTING.RENDER_SCALE, 1.0)
 	set_setting(SETTING.DYNAMIC_RENDER_SCALE, DYNAMIC_RENDER_SCALE.OFF)
 	set_setting(SETTING.TARGET_FRAME_RATE, FRAME_RATE_OPTIONS[-1])
 
-	var average_frame_time = benchmark.average_frame_time
-	var target_frame_time = 1000.0 / FRAME_RATE_OPTIONS[-1]
+	var average_frame_time: float = benchmark.average_frame_time
+	var target_frame_time := 1000.0 / FRAME_RATE_OPTIONS[-1]
 
-	var score = target_frame_time / average_frame_time
+	var score := target_frame_time / average_frame_time
+	var preset := int(clamp(score, 1.0, 3.0)) as QUALITY_PRESET
 	
-	if score > 3.0:
-		set_quality_preset(QUALITY_PRESET.HIGH)
-	elif score > 2.0:
-		set_quality_preset(QUALITY_PRESET.MEDIUM)
-	else:
-		set_quality_preset(QUALITY_PRESET.LOW)
+	print_rich("[color=cyan][b]Detect Settings[/b][/color] | Average Frame Time: [color=green]%0.2f ms[/color] | Score: [color=yellow]%d[/color] | Preset: [color=magenta][b]%s[/b][/color]" % [average_frame_time, score, preset])
+
+	set_quality_preset(preset)

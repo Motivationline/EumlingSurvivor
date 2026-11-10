@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://crtsudpatsbsm"]
 
 [ext_resource type="Script" uid="uid://bggq1dl2vv6lq" path="res://global/performance/benchmark.gd" id="1_hj6pl"]
+[ext_resource type="Texture2D" uid="uid://chwvommc5koug" path="res://assets/ui/startScreen/splash_screen.png" id="2_8dfjx"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qfygk"]
 
@@ -10,23 +11,74 @@
 transparency = 1
 albedo_color = Color(1, 0, 0, 0.31764707)
 
-[node name="Benchmark" type="SubViewport" unique_id=1793162978]
-script = ExtResource("1_hj6pl")
+[sub_resource type="GDScript" id="GDScript_8dfjx"]
+script/source = "@tool
+extends ColorRect
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=299798681]
+func _ready() -> void:
+	color = ProjectSettings.get_setting(\"application/boot_splash/bg_color\")
+"
+
+[sub_resource type="GDScript" id="GDScript_0ccqx"]
+script/source = "@tool
+extends TextureRect
+
+func _ready() -> void:
+	texture = load(ProjectSettings.get_setting(\"application/boot_splash/image\"))
+"
+
+[node name="Benchmark" type="Node" unique_id=2056964360 node_paths=PackedStringArray("sub_viewport")]
+script = ExtResource("1_hj6pl")
+sub_viewport = NodePath("SubViewport")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=660570129]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=299798681]
 projection = 1
 current = true
 far = 10.0
 
-[node name="Background" type="MeshInstance3D" parent="." unique_id=580411433]
+[node name="Background" type="MeshInstance3D" parent="SubViewport" unique_id=580411433]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.75983334)
 mesh = SubResource("PlaneMesh_qfygk")
 surface_material_override/0 = SubResource("StandardMaterial3D_y2nvm")
 
-[node name="Transparent" type="MeshInstance3D" parent="." unique_id=448633057]
+[node name="Transparent" type="MeshInstance3D" parent="SubViewport" unique_id=448633057]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.49322027)
 mesh = SubResource("PlaneMesh_qfygk")
 surface_material_override/0 = SubResource("StandardMaterial3D_budnn")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=849459529]
-transform = Transform3D(0.8660254, -0.25, 0.4330127, 0, 0.8660254, 0.5, -0.5, -0.4330127, 0.74999994, 0.9309212, 1.0749352, 1.6124027)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=849459529]
+transform = Transform3D(0.8660254, -0.25, 0.4330127, 0, 0.8660254, 0.5, -0.5, -0.4330127, 0.75, 0.9309212, 1.0749352, 1.6124027)
+
+[node name="SplashScreen" type="CanvasLayer" parent="." unique_id=1115441373]
+
+[node name="ColorRect" type="ColorRect" parent="SplashScreen" unique_id=517975571]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.20400001, 0.6239001, 0.85, 1)
+script = SubResource("GDScript_8dfjx")
+
+[node name="TextureRect" type="TextureRect" parent="SplashScreen" unique_id=474611452]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8dfjx")
+stretch_mode = 5
+script = SubResource("GDScript_0ccqx")
