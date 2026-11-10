@@ -6,10 +6,10 @@
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_4dlsx"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="3_susxk"]
 [ext_resource type="Script" uid="uid://d0gb2bgiuvhd7" path="res://state_machine/enemy/teleport_to_on_nav_mesh.gd" id="3_vyctp"]
-[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="4_380mr"]
 [ext_resource type="Script" uid="uid://cxy0hm7s41xp3" path="res://state_machine/enemy/look_at_player.gd" id="4_kyxhj"]
 [ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="5_v47a7"]
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="6_uii50"]
+[ext_resource type="Script" uid="uid://dj632w22te1th" path="res://state_machine/enemy/kill_self.gd" id="8_sivo7"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="9_5kvpg"]
 [ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="9_sivo7"]
 [ext_resource type="AudioStream" uid="uid://dns62sj3ohg2s" path="res://assets/characters/enemies/squid/squid_arm/sounds/tentacle_appear_1.wav" id="10_jakvp"]
@@ -101,13 +101,9 @@ metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 radius = 0.2006836
 height = 1.6103516
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vyctp"]
-radius = 0.41845703
-height = 1.6103516
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kyxhj"]
-radius = 0.28808594
-height = 1.6103516
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uii50"]
+radius = 0.2006836
+height = 0.4017334
 
 [sub_resource type="Animation" id="Animation_sivo7"]
 length = 0.001
@@ -126,7 +122,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_osc0l"]
 resource_name = "indicator_grow"
-length = 0.6
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -134,10 +130,10 @@ tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.6, 0.6118519, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1, 0), Vector3(0.25, 1, 0.25)]
+"values": [Vector3(0, 1, 0), Vector3(0.25, 1, 0.25), Vector3(0.25, 1, 0.25), Vector3(0, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dfe6k"]
@@ -173,12 +169,12 @@ stream_3/stream = ExtResource("25_guumo")
 stream_4/stream = ExtResource("26_wi2qq")
 stream_5/stream = ExtResource("27_wac7o")
 
-[node name="BaseEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hurtboxes", "on_death") instance=ExtResource("1_easpj")]
-health = 100.0
+[node name="BaseEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox", "additional_hitboxes", "on_death") instance=ExtResource("1_easpj")]
+health = 1.0
 difficulty_scaler = SubResource("Resource_2woi3")
+ignore_enemy_in_level = true
 hitbox = NodePath("Visuals/hitboxBase")
-hurtbox = NodePath("Visuals/Hurtbox")
-additional_hurtboxes = [NodePath("Visuals/Hurtbox2")]
+additional_hitboxes = [NodePath("Visuals/hitboxCenter")]
 on_death = [NodePath("Eventlisteners/PlaySoundDeath")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
@@ -188,28 +184,28 @@ initial_state = NodePath("moveToPlayer/DisableHitbox")
 
 [node name="DisableHitbox" type="Node" parent="StateMachine/moveToPlayer" index="0" unique_id=262334975 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("6_uii50")
-disable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox"), NodePath("../../../Visuals/Hurtbox2")]
+disable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/hitboxCenter")]
 next_state = NodePath("../TeleportToOnNavMeshState")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine/moveToPlayer" index="1" unique_id=1194296361 node_paths=PackedStringArray("next_state")]
 script = ExtResource("3_vyctp")
-wait_time = 0.0
+wait_time = 0.6
 y_offset_override = true
 y_offset_override_value = 0.5
 max_radius = 10.0
 next_state = NodePath("../../attack/EnableHurtbox")
-animation_trigger = Dictionary[String, Variant]({
-"parameters/Transition/transition_request": "show"
-})
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
 [node name="attack" type="Node" parent="StateMachine" index="1" unique_id=1953983034]
 
 [node name="EnableHurtbox" type="Node" parent="StateMachine/attack" index="0" unique_id=996281842 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("6_uii50")
-enable = [NodePath("../../../Visuals/Hurtbox"), NodePath("../../../StatusVisuals3DEnemy")]
+enable = [NodePath("../../../StatusVisuals3DEnemy"), NodePath("../../../Visuals/hitboxCenter")]
 next_state = NodePath("../AttackAim")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "show"
+})
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="AttackAim" type="Node" parent="StateMachine/attack" index="1" unique_id=1650706798 node_paths=PackedStringArray("next_state")]
@@ -231,8 +227,8 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="EnableHitbox" type="Node" parent="StateMachine/attack" index="3" unique_id=13672933 node_paths=PackedStringArray("enable", "disable", "next_state")]
 script = ExtResource("6_uii50")
-enable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2")]
-disable = [NodePath("../../../Visuals/Hurtbox")]
+enable = [NodePath("../../../Visuals/hitboxBase")]
+disable = [NodePath("../../../Visuals/hitboxCenter")]
 next_state = NodePath("../WaitForAnimation")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
@@ -244,34 +240,39 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="DisableHitbox" type="Node" parent="StateMachine/attack" index="5" unique_id=710102785 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("6_uii50")
-disable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../Visuals/Hurtbox2"), NodePath("../../../StatusVisuals3DEnemy")]
+disable = [NodePath("../../../Visuals/hitboxBase"), NodePath("../../../StatusVisuals3DEnemy")]
 next_state = NodePath("../WaitForAnimationEnd")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
 [node name="WaitForAnimationEnd" type="Node" parent="StateMachine/attack" index="6" unique_id=803979567 node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_v47a7")
-wait_time = 3.0
-next_state = NodePath("../../Idle/HideWait")
+wait_time = 1.5
+next_state = NodePath("../../Idle/KillSelfState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="Idle" type="Node" parent="StateMachine" index="2" unique_id=1235022100]
 
-[node name="HideWait" type="Node" parent="StateMachine/Idle" index="0" unique_id=252497271 node_paths=PackedStringArray("next_state", "interrupts")]
+[node name="KillSelfState" type="Node" parent="StateMachine/Idle" index="0" unique_id=99657882 node_paths=PackedStringArray("next_state")]
+script = ExtResource("8_sivo7")
+next_state = NodePath(".")
+metadata/_custom_type_script = "uid://dj632w22te1th"
+
+[node name="HideWait" type="Node" parent="StateMachine/Idle" index="1" unique_id=252497271 node_paths=PackedStringArray("next_state", "interrupts")]
 script = ExtResource("5_v47a7")
 next_state = NodePath(".")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "leave"
 })
-interrupts = [NodePath("../Interrupt")]
+interrupts = [NodePath("Interrupt")]
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="Interrupt" type="Node" parent="StateMachine/Idle" index="1" unique_id=356304684 node_paths=PackedStringArray("state_to_go_to", "condition")]
+[node name="Interrupt" type="Node" parent="StateMachine/Idle/HideWait" index="0" unique_id=356304684 node_paths=PackedStringArray("state_to_go_to", "condition")]
 script = ExtResource("9_sivo7")
-state_to_go_to = NodePath("../../attack/EnableHurtbox")
+state_to_go_to = NodePath("../../../attack/EnableHurtbox")
 condition = NodePath("InRangeToPlayerInterruptCondition")
 metadata/_custom_type_script = "uid://dl3af38o4df2f"
 
-[node name="InRangeToPlayerInterruptCondition" type="Node" parent="StateMachine/Idle/Interrupt" index="0" unique_id=1142471285]
+[node name="InRangeToPlayerInterruptCondition" type="Node" parent="StateMachine/Idle/HideWait/Interrupt" index="0" unique_id=1142471285]
 script = ExtResource("10_osc0l")
 distance = 2.0
 metadata/_custom_type_script = "uid://3q8mspcqcwpf"
@@ -281,6 +282,7 @@ metadata/_custom_type_script = "uid://3q8mspcqcwpf"
 [node name="hitboxBase" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1403634002 instance=ExtResource("3_susxk")]
 collision_layer = 32
 collision_mask = 8
+individual_hit_limit = 1
 attached_to = 6
 can_hit = 4
 difficulty_scaler = SubResource("Resource_dfe6k")
@@ -290,29 +292,20 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 shape = SubResource("CapsuleShape3D_xclxu")
 debug_color = Color(0.9325174, 0.2046122, 0.4158566, 0.41960785)
 
-[node name="Hurtbox" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=2005433755 instance=ExtResource("4_380mr")]
-collision_layer = 64
-collision_mask = 4
-attached_to = 7
-can_be_hit_by = 3
+[node name="hitboxCenter" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="2" unique_id=296721105 instance=ExtResource("3_susxk")]
+collision_layer = 32
+collision_mask = 8
+individual_hit_limit = 1
+attached_to = 6
+can_hit = 4
+difficulty_scaler = SubResource("Resource_dfe6k")
 
-[node name="CollisionHurtbox" type="CollisionShape3D" parent="Visuals/Hurtbox" index="0" unique_id=394894327]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83434725, 0.212)
-shape = SubResource("CapsuleShape3D_vyctp")
-debug_color = Color(0.22829187, 0.5333263, 0.92587966, 0.41960785)
+[node name="CollisionHitbox" type="CollisionShape3D" parent="Visuals/hitboxCenter" index="0" unique_id=590948847]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.37185338, -0.06414795)
+shape = SubResource("CapsuleShape3D_uii50")
+debug_color = Color(0.9325174, 0.2046122, 0.4158566, 0.41960785)
 
-[node name="Hurtbox2" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1802650048 instance=ExtResource("4_380mr")]
-collision_layer = 64
-collision_mask = 4
-attached_to = 7
-can_be_hit_by = 3
-
-[node name="CollisionHurtbox2" type="CollisionShape3D" parent="Visuals/Hurtbox2" index="0" unique_id=255846824]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3718534, -0.66845703)
-shape = SubResource("CapsuleShape3D_kyxhj")
-debug_color = Color(0.6511781, 0.51925045, 0.06683234, 0.41960785)
-
-[node name="CircularTargetIndicatorMesh" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=311462860 instance=ExtResource("13_uii50")]
+[node name="CircularTargetIndicatorMesh" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=311462860 instance=ExtResource("13_uii50")]
 transform = Transform3D(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.07379812, 0)
 instance_shader_parameters/arc = 1.0
 instance_shader_parameters/color = Color(0.9843137, 0.13725491, 0, 0.8)

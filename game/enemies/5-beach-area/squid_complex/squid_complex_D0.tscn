@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_v0fvw"]
 [ext_resource type="AudioStream" uid="uid://bnxax3xh1ah3i" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_1.wav" id="14_kkjg1"]
 [ext_resource type="AudioStream" uid="uid://c0xnnjtum0jlc" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_2.wav" id="15_6t2u5"]
+[ext_resource type="PackedScene" uid="uid://dre6lji2yjnh1" path="res://game/shared/target_indicators/circular_mesh/circular_target_indicator_mesh.tscn" id="15_q6i1w"]
 [ext_resource type="AudioStream" uid="uid://bl24xl52qj4xf" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_3.wav" id="16_q6i1w"]
 [ext_resource type="AudioStream" uid="uid://b4xhv3hdenp5l" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_4.wav" id="17_eakys"]
 [ext_resource type="AudioStream" uid="uid://c0jh64k78dmi2" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_5.wav" id="18_pec5e"]
@@ -45,25 +46,25 @@
 [sub_resource type="Resource" id="Resource_lk1l6"]
 script = ExtResource("2_riax5")
 attribute = "health"
-value = 10.0
+value = 220.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_kkfk7"]
 script = ExtResource("2_riax5")
 attribute = "health"
-value = 10.0
+value = 444.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_24qky"]
 script = ExtResource("2_riax5")
 attribute = "health"
-value = 10.0
+value = 125.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_b68b6"]
 script = ExtResource("2_riax5")
 attribute = "health"
-value = 10.0
+value = 350.0
 metadata/_custom_type_script = "uid://duef27t44qtoy"
 
 [sub_resource type="Resource" id="Resource_8adn0"]
@@ -73,6 +74,62 @@ easy = Array[ExtResource("2_riax5")]([SubResource("Resource_lk1l6")])
 medium = Array[ExtResource("2_riax5")]([SubResource("Resource_b68b6")])
 hard = Array[ExtResource("2_riax5")]([SubResource("Resource_kkfk7")])
 metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eakys"]
+
+[sub_resource type="Animation" id="Animation_sivo7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_osc0l"]
+resource_name = "indicator_grow"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0.25, 1, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_pec5e"]
+resource_name = "squid indic grow"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.6333333, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0.4, 1, 0.4), Vector3(0.4, 1, 0.4), Vector3(0, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ywakq"]
+_data = {
+&"RESET": SubResource("Animation_sivo7"),
+&"indicator_grow": SubResource("Animation_osc0l"),
+&"squid indic grow": SubResource("Animation_pec5e")
+}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ejpfb"]
 streams_count = 6
@@ -149,6 +206,7 @@ radius = 0.5125733
 radius = 0.74622554
 
 [node name="squid_complex" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "on_hurt") instance=ExtResource("1_u582v")]
+health = 100.0
 difficulty_scaler = SubResource("Resource_8adn0")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
@@ -160,7 +218,8 @@ initial_state = NodePath("SpawnWait")
 [node name="SpawnWait" type="Node" parent="StateMachine" index="0" unique_id=2015877462 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
 random = true
-min_wait_time = 0.5
+min_wait_time = 0.3
+max_wait_time = 0.5
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
@@ -196,46 +255,58 @@ metadata/_custom_type_script = "uid://ct3ystpgiu6c3"
 [node name="AttackCooldown" type="Node" parent="StateMachine" index="3" unique_id=1468352519 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
 wait_time = 8.0
+random = true
+min_wait_time = 2.0
+max_wait_time = 4.0
 next_state = NodePath("../LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="onDamage" type="Node" parent="StateMachine" index="4" unique_id=1307904039]
 
-[node name="DisableHitbox" type="Node" parent="StateMachine/onDamage" index="0" unique_id=173445153 node_paths=PackedStringArray("disable", "next_state")]
+[node name="WaitUntilHide" type="Node" parent="StateMachine/onDamage" index="0" unique_id=1910601086 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_i4ho2")
+wait_time = 0.2
+next_state = NodePath("../DisableHitbox")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="DisableHitbox" type="Node" parent="StateMachine/onDamage" index="1" unique_id=173445153 node_paths=PackedStringArray("disable", "next_state")]
 script = ExtResource("6_b5djj")
 disable = [NodePath("../../../hitboxBase"), NodePath("../../../Hurtbox"), NodePath("../../../StatusVisuals3DEnemy")]
 next_state = NodePath("../HideWait")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="HideWait" type="Node" parent="StateMachine/onDamage" index="1" unique_id=1369659944 node_paths=PackedStringArray("next_state")]
+[node name="HideWait" type="Node" parent="StateMachine/onDamage" index="2" unique_id=1369659944 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
-next_state = NodePath("../MarkerWait")
+wait_time = 0.3
+next_state = NodePath("../TeleportToOnNavMeshState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "hide"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
-[node name="MarkerWait" type="Node" parent="StateMachine/onDamage" index="2" unique_id=1256341859 node_paths=PackedStringArray("next_state")]
-script = ExtResource("2_i4ho2")
-next_state = NodePath("../TeleportToOnNavMeshState")
-metadata/_custom_type_script = "uid://cd6d7qdolbapn"
-
 [node name="TeleportToOnNavMeshState" type="Node" parent="StateMachine/onDamage" index="3" unique_id=1900754059 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_alqjo")
-wait_time = 2.0
+wait_time = 0.1
 target = 2
-next_state = NodePath("../EnableHitbox")
+max_radius = 2.0
+next_state = NodePath("../MarkerWait")
 metadata/_custom_type_script = "uid://d0gb2bgiuvhd7"
 
-[node name="EnableHitbox" type="Node" parent="StateMachine/onDamage" index="4" unique_id=384250231 node_paths=PackedStringArray("enable", "next_state")]
+[node name="MarkerWait" type="Node" parent="StateMachine/onDamage" index="4" unique_id=1256341859 node_paths=PackedStringArray("next_state")]
+script = ExtResource("2_i4ho2")
+wait_time = 0.6
+max_wait_time = 0.1
+next_state = NodePath("../EnableHitbox")
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="EnableHitbox" type="Node" parent="StateMachine/onDamage" index="5" unique_id=384250231 node_paths=PackedStringArray("enable", "next_state")]
 script = ExtResource("6_b5djj")
 enable = [NodePath("../../../hitboxBase"), NodePath("../../../Hurtbox"), NodePath("../../../StatusVisuals3DEnemy")]
 next_state = NodePath("../ShowWait")
 metadata/_custom_type_script = "uid://bwy4tebxadp1y"
 
-[node name="ShowWait" type="Node" parent="StateMachine/onDamage" index="5" unique_id=445945042 node_paths=PackedStringArray("next_state")]
+[node name="ShowWait" type="Node" parent="StateMachine/onDamage" index="6" unique_id=445945042 node_paths=PackedStringArray("next_state")]
 script = ExtResource("2_i4ho2")
-wait_time = 2.0
 next_state = NodePath("../../LookAtPlayerState")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "show"
@@ -245,13 +316,25 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 [node name="TriggerStateEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1994101922 node_paths=PackedStringArray("state_machine", "state_to_execute")]
 script = ExtResource("8_drskb")
 state_machine = NodePath("../../StateMachine")
-state_to_execute = NodePath("../../StateMachine/onDamage/DisableHitbox")
+state_to_execute = NodePath("../../StateMachine/onDamage/WaitUntilHide")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
 
 [node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
 entity_to_spawn = ExtResource("13_6t2u5")
 
 [node name="squid" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=697439437 instance=ExtResource("2_1qui8")]
+
+[node name="CircularTargetIndicatorMesh" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=311462860 instance=ExtResource("15_q6i1w")]
+transform = Transform3D(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.07379812, 0)
+instance_shader_parameters/arc = 1.0
+instance_shader_parameters/color = Color(0.9843137, 0.13725491, 0, 0.8)
+instance_shader_parameters/edge = 1.0
+instance_shader_parameters/edge_color = Color(0.9843137, 0.13725491, 0, 0.8)
+instance_shader_parameters/fade = 0.0
+mesh = SubResource("PlaneMesh_eakys")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/CircularTargetIndicatorMesh" index="0" unique_id=681804730]
+libraries/ = SubResource("AnimationLibrary_ywakq")
 
 [node name="Appear" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=1553656196 instance=ExtResource("13_v0fvw")]
 stream = SubResource("AudioStreamRandomizer_ejpfb")
@@ -292,4 +375,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36569136, 0)
 shape = SubResource("SphereShape3D_jkmx4")
 debug_color = Color(0.8051653, 0.41541824, 0.082558624, 0.41960785)
 
+[connection signal="entered" from="StateMachine/onDamage/MarkerWait" to="Visuals/CircularTargetIndicatorMesh/AnimationPlayer" method="play" binds= ["squid indic grow"]]
 [connection signal="play_sound" from="Visuals/squid" to="SoundEffectManager" method="play_sound"]
