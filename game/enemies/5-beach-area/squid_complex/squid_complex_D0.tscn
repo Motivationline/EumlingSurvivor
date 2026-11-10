@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="9_jkmx4"]
 [ext_resource type="Script" uid="uid://ct3ystpgiu6c3" path="res://game/spawner/spawner_linker.gd" id="9_kkjg1"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="10_drskb"]
+[ext_resource type="PackedScene" uid="uid://brfrayqy1toa" path="res://assets/characters/enemies/squid/baby/squid_baby.tscn" id="13_6t2u5"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="13_v0fvw"]
 [ext_resource type="AudioStream" uid="uid://bnxax3xh1ah3i" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_1.wav" id="14_kkjg1"]
 [ext_resource type="AudioStream" uid="uid://c0xnnjtum0jlc" path="res://assets/characters/enemies/squid/squid/sounds/head_appear_2.wav" id="15_6t2u5"]
@@ -246,6 +247,9 @@ script = ExtResource("8_drskb")
 state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/onDamage/DisableHitbox")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("13_6t2u5")
 
 [node name="squid" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=697439437 instance=ExtResource("2_1qui8")]
 

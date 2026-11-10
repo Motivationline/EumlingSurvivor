@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_hj5ly"]
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_7q364"]
 [ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="3_78v1k"]
+[ext_resource type="PackedScene" uid="uid://d15vjhbwonfmp" path="res://assets/characters/enemies/pufferfish/baby/baby_pufferfish.tscn" id="4_7q364"]
 
 [sub_resource type="Resource" id="Resource_fkysg"]
 script = ExtResource("2_hj5ly")
@@ -53,7 +54,10 @@ wait_time = 1.0
 [node name="spawnerMain" parent="StateMachine/OnDamage/SpawnEntitiesState" parent_id_path=PackedInt32Array(1242062148) index="0" unique_id=484682867]
 amount_of_spawns = 8
 
-[node name="pufferfish_model" parent="Visuals/Pufferfish/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1528906013, 1023752271) index="0" unique_id=1523461372]
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("4_7q364")
+
+[node name="pufferfish_model" parent="Visuals/Pufferfish/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1528906013, 1204440569) index="0" unique_id=721173626]
 material_overlay = ExtResource("2_6lkdm")
 
 [node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1554862748 instance=ExtResource("3_78v1k")]

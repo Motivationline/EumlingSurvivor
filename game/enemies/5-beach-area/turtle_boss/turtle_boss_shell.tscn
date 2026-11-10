@@ -79,10 +79,11 @@ _data = {
 &"SpawnEnabler": SubResource("Animation_418st")
 }
 
-[node name="Shell" unique_id=1898691 node_paths=PackedStringArray("node_with_animation_tree") groups=["Shell"] instance=ExtResource("1_4mvb8")]
+[node name="Shell" unique_id=1898691 node_paths=PackedStringArray("on_death", "node_with_animation_tree") groups=["Shell"] instance=ExtResource("1_4mvb8")]
 collision_layer = 0
 collision_mask = 769
 ignore_enemy_in_level = true
+on_death = [NodePath("Eventlisteners/PlaySoundDeath")]
 node_with_animation_tree = NodePath("Visuals/boss_turtle")
 speed = 6.0
 
@@ -141,6 +142,9 @@ script = ExtResource("6_55h62")
 sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = Array[String](["Rebound"])
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = null
 
 [node name="boss_turtle" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1575923269 instance=ExtResource("2_4d1ke")]
 visible = false

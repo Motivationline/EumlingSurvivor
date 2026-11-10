@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dv8qpd35frx2n"]
 
 [ext_resource type="PackedScene" uid="uid://coe5ikmtqyvx" path="res://game/enemies/5-beach-area/puffer_fish_complex/puffer_fish_complex_D0.tscn" id="1_wips1"]
+[ext_resource type="PackedScene" uid="uid://d15vjhbwonfmp" path="res://assets/characters/enemies/pufferfish/baby/baby_pufferfish.tscn" id="2_tdobr"]
 
 [node name="puffer_fish_complex" unique_id=1898691 instance=ExtResource("1_wips1")]
 
@@ -15,3 +16,6 @@ wait_time = 1.1
 
 [node name="spawnerMain" parent="StateMachine/OnDamage/SpawnEntitiesState" parent_id_path=PackedInt32Array(1242062148) index="0" unique_id=484682867]
 amount_of_spawns = 6
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("2_tdobr")

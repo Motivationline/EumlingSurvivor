@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://qpw2gi1joms5" path="res://game/enemies/6-volcano/magma_toad/animated_projectile/animated_projectile.tscn" id="11_676d1"]
 [ext_resource type="Script" uid="uid://dpcp1l71hgqcc" path="res://game/spawner/strategies/rotation/random_rotation.gd" id="11_oluu1"]
 [ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="12_iihc2"]
+[ext_resource type="PackedScene" uid="uid://brbmv1m5pmnel" path="res://assets/characters/enemies/volcano_tortoise/baby/baby_volcano_tortoise.tscn" id="13_ofdnl"]
 [ext_resource type="PackedScene" uid="uid://c078nbg0qjgp5" path="res://assets/characters/enemies/volcano_tortoise/volcano_tortoise_prefab.tscn" id="14_754gg"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="15_b5a6k"]
 [ext_resource type="AudioStream" uid="uid://jw80tpwtp2lw" path="res://assets/characters/enemies/volcano_tortoise/sounds/shake_1.wav" id="18_b2c2y"]
@@ -275,7 +276,7 @@ health = 320.0
 difficulty_scaler = SubResource("Resource_ofdnl")
 hitbox = NodePath("hitboxBase")
 hurtbox = NodePath("Hurtbox")
-on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), NodePath("Eventlisteners/PlaySoundHurt")]
+on_hurt = [NodePath("Eventlisteners/PlayAnimationEventStrategy"), NodePath("Eventlisteners/SpawnEntitiesEventStrategy"), null]
 speed = 0.4
 
 [node name="StatusVisuals3DEnemy" parent="." index="0" unique_id=691291944]
@@ -331,6 +332,9 @@ animation_trigger = Dictionary[String, Variant]({
 "parameters/hurt/request": 1
 })
 metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("13_ofdnl")
 
 [node name="hitboxBase" parent="." index="3" unique_id=1203355617 instance=ExtResource("7_o104n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35191, 0)

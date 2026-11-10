@@ -173,12 +173,13 @@ stream_3/stream = ExtResource("25_guumo")
 stream_4/stream = ExtResource("26_wi2qq")
 stream_5/stream = ExtResource("27_wac7o")
 
-[node name="BaseEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hurtboxes") instance=ExtResource("1_easpj")]
+[node name="BaseEnemy" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hurtboxes", "on_death") instance=ExtResource("1_easpj")]
 health = 100.0
 difficulty_scaler = SubResource("Resource_2woi3")
 hitbox = NodePath("Visuals/hitboxBase")
 hurtbox = NodePath("Visuals/Hurtbox")
 additional_hurtboxes = [NodePath("Visuals/Hurtbox2")]
+on_death = [NodePath("Eventlisteners/PlaySoundDeath")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("moveToPlayer/DisableHitbox")

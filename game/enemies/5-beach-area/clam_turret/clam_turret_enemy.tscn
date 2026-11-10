@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://yd5ytc70xwp6" path="res://game/spawner/strategies/target/target_direction.gd" id="11_03rla"]
 [ext_resource type="Script" uid="uid://b3cqskctjdm21" path="res://game/spawner/strategies/rotation/uniform_rotation.gd" id="12_c0y2a"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="13_v2g38"]
+[ext_resource type="PackedScene" uid="uid://ue2n5e8pxlqe" path="res://assets/characters/enemies/clam/baby_clam/babylam_prefab.tscn" id="13_ymqfl"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="14_xh8fh"]
 [ext_resource type="PackedScene" uid="uid://df82hw04o3dnn" path="res://assets/characters/enemies/clam/clam_prefab.tscn" id="15_lbi0c"]
 
@@ -266,6 +267,9 @@ animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "idle_open"
 })
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("13_ymqfl")
 
 [node name="hitboxBase" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1487053104 instance=ExtResource("13_v2g38")]
 collision_layer = 32

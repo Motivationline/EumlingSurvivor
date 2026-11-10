@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bwy4tebxadp1y" path="res://state_machine/enemy/activator.gd" id="8_c8qu1"]
 [ext_resource type="PackedScene" uid="uid://b7i8simxasxfx" path="res://assets/characters/enemies/pufferfish/pufferfish_prefab.tscn" id="9_fuc5l"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="10_hspxw"]
+[ext_resource type="PackedScene" uid="uid://d15vjhbwonfmp" path="res://assets/characters/enemies/pufferfish/baby/baby_pufferfish.tscn" id="11_s8fsg"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="14_8612x"]
 [ext_resource type="AudioStream" uid="uid://dxdpsrkjdan6r" path="res://assets/characters/enemies/pufferfish/sounds/inflate_1.wav" id="15_p5481"]
 [ext_resource type="AudioStream" uid="uid://dbfeulclxgnsf" path="res://assets/characters/enemies/pufferfish/sounds/inflate_2.wav" id="16_brclq"]
@@ -279,6 +280,9 @@ script = ExtResource("10_hspxw")
 sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = Array[String](["Deflate"])
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("11_s8fsg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1443080195]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
