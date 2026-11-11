@@ -48,7 +48,7 @@ func _get_property_list():
 
 func _set(property, value):
 	match property:
-		"atrack":
+		"track":
 			next_track = value
 			return true
 		"transition":
