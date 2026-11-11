@@ -14,10 +14,11 @@ enum INPUT_METHOD {MOBILE, CONTROLLER, KEYBOARD}
 var current_input_method: INPUT_METHOD
 
 func _ready() -> void:
-	deactivate_button_icons()
 	if Data.is_on_mobile:
 		switch_input_method(INPUT_METHOD.MOBILE)
 		# queue_free()
+	else:
+		switch_input_method(INPUT_METHOD.KEYBOARD)
 		
 
 func _input(event):
