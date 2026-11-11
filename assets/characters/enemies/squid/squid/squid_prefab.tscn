@@ -42,29 +42,26 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lie6o"]
-graph_offset = Vector2(-612.2791, -81.20172)
+graph_offset = Vector2(-679.1633, -68.43965)
 nodes/output/position = Vector2(660, 60)
 nodes/Transition/node = SubResource("AnimationNodeTransition_jp825")
-nodes/Transition/position = Vector2(-40, 60)
+nodes/Transition/position = Vector2(0, 60)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_77ug8")
-nodes/Animation/position = Vector2(-340, 20)
+nodes/Animation/position = Vector2(-420, -80)
 nodes/attack/node = SubResource("AnimationNodeOneShot_f5exk")
 nodes/attack/position = Vector2(360, 60)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_4hem0")
 "nodes/Animation 2/position" = Vector2(180, 240)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_bo2a4")
-"nodes/Animation 3/position" = Vector2(-340, 200)
+"nodes/Animation 3/position" = Vector2(-420, 180)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_jupt2")
-"nodes/Animation 4/position" = Vector2(-340, 380)
+"nodes/Animation 4/position" = Vector2(-420, 400)
 "nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_lf34c")
-"nodes/Animation 5/position" = Vector2(-320, 560)
+"nodes/Animation 5/position" = Vector2(-440, 640)
 node_connections = [&"output", 0, &"attack", &"Transition", 0, &"Animation", &"Transition", 1, &"Animation 3", &"Transition", 2, &"Animation 4", &"Transition", 3, &"Animation 5", &"attack", 0, &"Transition", &"attack", 1, &"Animation 2"]
 
 [node name="squid" unique_id=697439437 instance=ExtResource("1_4hem0")]
 script = ExtResource("2_bo2a4")
-
-[node name="SquidObject" parent="Squid_Armature/Skeleton3D" parent_id_path=PackedInt32Array(1206733926) index="0" unique_id=538000028]
-skeleton = NodePath("..")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1743052987]
 tree_root = SubResource("AnimationNodeBlendTree_lie6o")
