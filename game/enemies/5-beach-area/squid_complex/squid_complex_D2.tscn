@@ -6,6 +6,9 @@
 
 [node name="squid_complex" unique_id=1898691 instance=ExtResource("1_nkpm3")]
 
+[node name="SpawnEntitiesState" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="2" unique_id=386062104 node_paths=PackedStringArray("next_state")]
+next_state = NodePath("../onDamage/WaitUntilHide")
+
 [node name="AttackCooldown" parent="StateMachine" parent_id_path=PackedInt32Array(2093753398) index="3" unique_id=1468352519]
 wait_time = 4.0
 min_wait_time = 1.0
@@ -14,6 +17,11 @@ max_wait_time = 2.0
 [node name="TeleportToOnNavMeshState" parent="StateMachine/onDamage" parent_id_path=PackedInt32Array(1307904039) index="3" unique_id=1900754059]
 min_radius = 2.0
 max_radius = 3.0
+
+[node name="ShowWait" parent="StateMachine/onDamage" parent_id_path=PackedInt32Array(1307904039) index="6" unique_id=445945042]
+random = true
+min_wait_time = 0.6
+max_wait_time = 1.2
 
 [node name="SquidObject" parent="Visuals/squid/Squid_Armature/Skeleton3D" parent_id_path=PackedInt32Array(697439437, 1611285341) index="0" unique_id=1981094079]
 material_overlay = ExtResource("2_v2vbu")
