@@ -3,11 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://cu1ucgco815t4" path="res://game/enemies/base_enemy.tscn" id="1_ryjt0"]
 [ext_resource type="Script" uid="uid://dsnnhkc4wtj0a" path="res://state_machine/enemy/move_horizontal_vertical.gd" id="2_y0rwk"]
 [ext_resource type="Script" uid="uid://bgmrgul0qr2n1" path="res://state_machine/enemy/trigger_event.gd" id="3_1nf4a"]
-[ext_resource type="Script" uid="uid://dp24h8qvxnoq7" path="res://strategies/event/enemy/play_animation.gd" id="4_qc744"]
+[ext_resource type="Script" uid="uid://dl3af38o4df2f" path="res://state_machine/interrupts/interrupt.gd" id="3_bm6wf"]
+[ext_resource type="Script" uid="uid://dk7d2sr3lcg2s" path="res://state_machine/interrupts/conditions/ray_interrupt.gd" id="4_7tj2v"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="4_wq8og"]
 [ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="5_o0lhv"]
+[ext_resource type="Script" uid="uid://pxk1n7k8c8pw" path="res://state_machine/enemy/rotate.gd" id="6_b8bvm"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="6_m6bdr"]
-[ext_resource type="Script" uid="uid://y7luksnh2gwr" path="res://strategies/event_emitter/raycast_event_emitter.gd" id="7_hbhbl"]
+[ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="7_gckgk"]
+[ext_resource type="Script" uid="uid://cd6d7qdolbapn" path="res://state_machine/enemy/wait_for_time_x.gd" id="7_mly75"]
 [ext_resource type="Script" uid="uid://cpx1eq3gu268a" path="res://strategies/event/spawn_entities.gd" id="7_o0lhv"]
 [ext_resource type="Script" uid="uid://6312uopesj43" path="res://strategies/event/enemy/stop_sound.gd" id="8_6knsg"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="8_m6bdr"]
@@ -85,56 +88,126 @@ stream_2/stream = ExtResource("35_t3sli")
 stream_3/stream = ExtResource("36_ancvi")
 stream_4/stream = ExtResource("37_mly75")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_igf3p"]
+height = 1.0
+radius = 0.22851563
+
 [node name="BaseEnemy" unique_id=1898691 instance=ExtResource("1_ryjt0")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
-initial_state = NodePath("MoveHorizontalVerticalState")
+initial_state = NodePath("MoveNormally/MoveHorizontalVerticalState")
 
-[node name="MoveHorizontalVerticalState" type="Node" parent="StateMachine" index="0" unique_id=368636028 node_paths=PackedStringArray("distance_check_ray", "next_state")]
+[node name="MoveNormally" type="Node" parent="StateMachine" index="0" unique_id=1993213161]
+
+[node name="MoveHorizontalVerticalState" type="Node" parent="StateMachine/MoveNormally" index="0" unique_id=368636028 node_paths=PackedStringArray("distance_check_ray", "next_state", "interrupts")]
 script = ExtResource("2_y0rwk")
-distance_check_ray = NodePath("../../Visuals/CollisionCenter")
-next_state = NodePath("../TriggerEventState")
+distance_check_ray = NodePath("../../../Visuals/CollisionCenter")
+next_state = NodePath(".")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "run_slow"
 })
+interrupts = [NodePath("InterruptForward"), NodePath("InterruptLeft"), NodePath("InterruptRight")]
 metadata/_custom_type_script = "uid://dsnnhkc4wtj0a"
 
-[node name="TriggerEventState" type="Node" parent="StateMachine" index="1" unique_id=523936482 node_paths=PackedStringArray("events", "next_state")]
+[node name="InterruptForward" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState" index="0" unique_id=816597343 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("3_bm6wf")
+state_to_go_to = NodePath("../../../Run/SetupRun")
+condition = NodePath("RayInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="RayInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptForward" index="0" unique_id=1647929968 node_paths=PackedStringArray("ray")]
+script = ExtResource("4_7tj2v")
+ray = NodePath("../../../../../Visuals/VisionRayCenter")
+metadata/_custom_type_script = "uid://dk7d2sr3lcg2s"
+
+[node name="InterruptLeft" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState" index="1" unique_id=2129760524 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("3_bm6wf")
+state_to_go_to = NodePath("../../../Run/Rotate/RotateLeftState")
+condition = NodePath("RayInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="RayInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptLeft" index="0" unique_id=1757495501 node_paths=PackedStringArray("ray")]
+script = ExtResource("4_7tj2v")
+ray = NodePath("../../../../../Visuals/VisionRayLeft")
+metadata/_custom_type_script = "uid://dk7d2sr3lcg2s"
+
+[node name="InterruptRight" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState" index="2" unique_id=1328343831 node_paths=PackedStringArray("state_to_go_to", "condition")]
+script = ExtResource("3_bm6wf")
+state_to_go_to = NodePath("../../../Run/Rotate/RotateRightState")
+condition = NodePath("RayInterruptCondition")
+metadata/_custom_type_script = "uid://dl3af38o4df2f"
+
+[node name="RayInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptRight" index="0" unique_id=768474322 node_paths=PackedStringArray("ray")]
+script = ExtResource("4_7tj2v")
+ray = NodePath("../../../../../Visuals/VisionRayRight")
+metadata/_custom_type_script = "uid://dk7d2sr3lcg2s"
+
+[node name="Run" type="Node" parent="StateMachine" index="1" unique_id=335514140]
+
+[node name="Rotate" type="Node" parent="StateMachine/Run" index="0" unique_id=1638187476]
+
+[node name="RotateRightState" type="Node" parent="StateMachine/Run/Rotate" index="0" unique_id=731501877 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_b8bvm")
+degrees = -90.0
+next_state = NodePath("../../SetupRun")
+
+[node name="RotateLeftState" type="Node" parent="StateMachine/Run/Rotate" index="1" unique_id=1349474000 node_paths=PackedStringArray("next_state")]
+script = ExtResource("6_b8bvm")
+degrees = 90.0
+next_state = NodePath("../../SetupRun")
+
+[node name="SetupRun" type="Node" parent="StateMachine/Run" index="1" unique_id=979955769 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("3_1nf4a")
-events = [NodePath("../../Eventlisteners/SlowEvent"), NodePath("../../Eventlisteners/StopSoundDash")]
-next_state = NodePath("../MoveHorizontalVerticalState")
+events = [NodePath("../../../Eventlisteners/FastEvent"), NodePath("../../../Eventlisteners/PlaySoundDash"), NodePath("../../../Eventlisteners/SpawnEntitiesEventStrategy")]
+next_state = NodePath("../WaitForAnimation")
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
-[node name="PlayAnimationEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=934404383]
-script = ExtResource("4_qc744")
+[node name="WaitForAnimation" type="Node" parent="StateMachine/Run" index="2" unique_id=1821595811 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_mly75")
+wait_time = 1.5
+next_state = NodePath("../RunForward")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/Transition/transition_request": "discover"
+})
+metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="RunForward" type="Node" parent="StateMachine/Run" index="3" unique_id=691377598 node_paths=PackedStringArray("next_state")]
+script = ExtResource("7_gckgk")
+next_state = NodePath("../EndRun")
 animation_trigger = Dictionary[String, Variant]({
 "parameters/Transition/transition_request": "run_fast"
 })
-metadata/_custom_type_script = "uid://dp24h8qvxnoq7"
+metadata/_custom_type_script = "uid://cjkeo3brnvde2"
 
-[node name="FastEvent" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=1249519995]
+[node name="EndRun" type="Node" parent="StateMachine/Run" index="4" unique_id=535291080 node_paths=PackedStringArray("events", "next_state")]
+script = ExtResource("3_1nf4a")
+events = [NodePath("../../../Eventlisteners/SlowEvent"), NodePath("../../../Eventlisteners/StopSoundDash")]
+next_state = NodePath("../../MoveNormally/MoveHorizontalVerticalState")
+metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
+
+[node name="FastEvent" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="2" unique_id=1249519995]
 script = ExtResource("5_o0lhv")
 changes = Array[ExtResource("6_m6bdr")]([SubResource("Resource_bfwf6")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
-[node name="PlaySoundDash" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=242430721 node_paths=PackedStringArray("sound_manager")]
+[node name="PlaySoundDash" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="3" unique_id=242430721 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("4_wq8og")
 sound_manager = NodePath("../../SoundEffectManager")
 sound_to_play = Array[String](["DashStart", "DashLoop"])
 metadata/_custom_type_script = "uid://dc33apjfi7s6v"
 
-[node name="SlowEvent" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="5" unique_id=1717129574]
+[node name="SlowEvent" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="4" unique_id=1717129574]
 script = ExtResource("5_o0lhv")
 changes = Array[ExtResource("6_m6bdr")]([SubResource("Resource_tkqte")])
 metadata/_custom_type_script = "uid://bqcuq0n5ff3do"
 
-[node name="StopSoundDash" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="6" unique_id=1055346402 node_paths=PackedStringArray("sound_manager")]
+[node name="StopSoundDash" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="5" unique_id=1055346402 node_paths=PackedStringArray("sound_manager")]
 script = ExtResource("8_6knsg")
 sound_manager = NodePath("../../SoundEffectManager")
 sound_to_stop = Array[String](["DashLoop"])
 metadata/_custom_type_script = "uid://6312uopesj43"
 
-[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="7" unique_id=839321480]
+[node name="SpawnEntitiesEventStrategy" type="Node" parent="Eventlisteners" parent_id_path=PackedInt32Array(1073347732) index="6" unique_id=839321480]
 script = ExtResource("7_o0lhv")
 metadata/_custom_type_script = "uid://cpx1eq3gu268a"
 
@@ -147,13 +220,6 @@ metadata/_custom_type_script = "uid://1e84fd3xrrff"
 
 [node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
 entity_to_spawn = ExtResource("12_6sqlj")
-
-[node name="RaycastEventEmitter" type="Node" parent="EventEmitters" parent_id_path=PackedInt32Array(1816335374) index="0" unique_id=780569777 node_paths=PackedStringArray("ray", "listeners")]
-script = ExtResource("7_hbhbl")
-ray = NodePath("../../Visuals/RayCenter")
-trigger_mode = "repeating"
-listeners = [NodePath("../../Eventlisteners/PlayAnimationEventStrategy"), NodePath("../../Eventlisteners/FastEvent"), NodePath("../../Eventlisteners/PlaySoundDash"), NodePath("../../Eventlisteners/SpawnEntitiesEventStrategy")]
-metadata/_custom_type_script = "uid://y7luksnh2gwr"
 
 [node name="lizard" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1314517611 instance=ExtResource("8_ot6q4")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
@@ -173,17 +239,17 @@ transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -
 target_position = Vector3(0, -0.5, 0)
 collision_mask = 529
 
-[node name="RayCenter" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=923822135]
+[node name="VisionRayCenter" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=923822135]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.24929065, 0)
 target_position = Vector3(0, -8, 0)
 collision_mask = 2
 
-[node name="RayRight" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="5" unique_id=540772098]
+[node name="VisionRayRight" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="5" unique_id=540772098]
 transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0.24929065, -0.2111001)
 target_position = Vector3(0, -8, 0)
 collision_mask = 2
 
-[node name="RayLeft" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="6" unique_id=1094394570]
+[node name="VisionRayLeft" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="6" unique_id=1094394570]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0.24929065, -0.2118422)
 target_position = Vector3(0, -8, 0)
 collision_mask = 2
@@ -204,5 +270,9 @@ volume_db = 21.88
 
 [node name="DashLoop" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="6" unique_id=195469090 instance=ExtResource("12_46o4k")]
 stream = ExtResource("25_8hflu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7" unique_id=1475062940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_igf3p")
 
 [connection signal="play_sound" from="Visuals/lizard" to="SoundEffectManager" method="play_sound"]
