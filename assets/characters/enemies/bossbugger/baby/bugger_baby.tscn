@@ -2,8 +2,157 @@
 
 [ext_resource type="PackedScene" uid="uid://1ph5jv3e81k4" path="res://assets/characters/enemies/bossbugger/baby/bugger_baby.glb" id="1_j30lo"]
 [ext_resource type="Material" uid="uid://7fxx5esg7ltf" path="res://assets/characters/enemies/bossbugger/biss_cell_shader.tres" id="2_vbody"]
+[ext_resource type="Texture2D" uid="uid://dvtouo6w5iri0" path="res://assets/characters/enemies/bossbugger/wings.png" id="3_vbody"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_url60"]
+atlas = ExtResource("3_vbody")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuq3u"]
+atlas = ExtResource("3_vbody")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r72m3"]
+atlas = ExtResource("3_vbody")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir37v"]
+atlas = ExtResource("3_vbody")
+region = Rect2(0, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4i13"]
+atlas = ExtResource("3_vbody")
+region = Rect2(128, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gch53"]
+atlas = ExtResource("3_vbody")
+region = Rect2(256, 64, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_52arp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_url60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuq3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r72m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir37v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4i13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gch53")
+}],
+"loop": 1,
+"name": &"wings",
+"speed": 30.0
+}]
+
+[sub_resource type="Animation" id="Animation_or5ue"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.34843278, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("baby:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.075049154, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8yt4n"]
+resource_name = "fly"
+length = 2.3000000000000003
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.79999995, 1.2, 1.5666667, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.34843278, 0), Vector3(0, 0.21028966, 0), Vector3(0, 0.34843278, 0), Vector3(0, 0.21028966, 0), Vector3(0, 0.34843278, 0), Vector3(0, 0.21028966, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("baby:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.7333335),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.075049154, 0, 0), Vector3(0.075049154, 0, 0), Vector3(-0.075049154, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w66su"]
+_data = {
+&"RESET": SubResource("Animation_or5ue"),
+&"fly": SubResource("Animation_8yt4n")
+}
 
 [node name="bugger_baby" unique_id=267609872 instance=ExtResource("1_j30lo")]
 
 [node name="baby" parent="." index="0" unique_id=989933221]
+transform = Transform3D(1, 0, 0, 0, 0.9971851, 0.074978724, 0, -0.074978724, 0.9971851, 0, 0.34843278, 0)
 material_override = ExtResource("2_vbody")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="baby" index="0" unique_id=816079636]
+transform = Transform3D(-0.23970002, 0.008413555, -0.07052036, 0.034414858, -0.20338699, -0.14124218, -0.062125064, -0.14513078, 0.19384924, -0.28315955, 0.3216161, 0.07327682)
+layers = 2
+sprite_frames = SubResource("SpriteFrames_52arp")
+animation = &"wings"
+autoplay = "wings"
+frame_progress = 0.4903087
+
+[node name="AnimatedSprite3D2" type="AnimatedSprite3D" parent="baby" index="1" unique_id=1519068285]
+transform = Transform3D(-0.31484875, -0.38765916, -0.024302747, 0.24153003, -0.1708974, -0.4030599, 0.30419326, -0.2655455, 0.2948764, -0.2844946, 0.5461433, 0.3041392)
+layers = 2
+sprite_frames = SubResource("SpriteFrames_52arp")
+animation = &"wings"
+autoplay = "wings"
+frame_progress = 0.78097486
+
+[node name="AnimatedSprite3D3" type="AnimatedSprite3D" parent="baby" index="2" unique_id=513008557]
+transform = Transform3D(0.39290884, -0.27519113, -0.14104074, 0.1637991, 0.37864554, -0.28248435, 0.2622833, 0.17577648, 0.38769853, 0.3119867, 0.476673, 0.30552474)
+layers = 2
+sprite_frames = SubResource("SpriteFrames_52arp")
+animation = &"wings"
+autoplay = "wings"
+frame_progress = 0.5089704
+
+[node name="AnimatedSprite3D4" type="AnimatedSprite3D" parent="baby" index="3" unique_id=919675854]
+transform = Transform3D(0.24611548, -0.042184394, -0.012151399, 0.015271163, 0.14714779, -0.20152995, 0.04115788, 0.19765629, 0.1474382, 0.2767476, 0.33843976, 0.06649019)
+layers = 2
+sprite_frames = SubResource("SpriteFrames_52arp")
+animation = &"wings"
+autoplay = "wings"
+frame_progress = 0.8963494
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1555844007]
+libraries/ = SubResource("AnimationLibrary_w66su")

@@ -3,7 +3,74 @@
 [ext_resource type="PackedScene" uid="uid://cqipdhi1alihi" path="res://assets/characters/enemies/toad/baby/toad_baby.glb" id="1_7j33a"]
 [ext_resource type="Material" uid="uid://cruy8n63gbmu1" path="res://assets/characters/enemies/toad/toad_cel_shader.tres" id="2_we8bd"]
 
+[sub_resource type="Animation" id="Animation_we8bd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("baby:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.07, 0.935, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_viomp"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.4398892, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("baby:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20000002),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.07, 0.935, 1), Vector3(0.94, 1.115, 0.91)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kp13p"]
+_data = {
+&"RESET": SubResource("Animation_we8bd"),
+&"idle": SubResource("Animation_viomp")
+}
+
 [node name="toad_baby" unique_id=227064147 instance=ExtResource("1_7j33a")]
 
 [node name="baby" parent="." index="0" unique_id=1390136319]
+transform = Transform3D(1.07, 0, 0, 0, 0.935, 0, 0, 0, 1, 0, 0, 0)
 material_override = ExtResource("2_we8bd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1281828639]
+libraries/ = SubResource("AnimationLibrary_kp13p")
+autoplay = &"idle"

@@ -3,7 +3,19 @@
 [ext_resource type="PackedScene" uid="uid://fofeo17giny8" path="res://assets/characters/enemies/tortoise/baby/baby_tortoise.glb" id="1_kf7dw"]
 [ext_resource type="Material" uid="uid://bqbbh2idsokrk" path="res://assets/characters/enemies/volcano_tortoise/shader/volcano_tortoise_cell_shader.tres" id="2_kf7dw"]
 
+[sub_resource type="Animation" id="Animation_kf7dw"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ki4l"]
+_data = {
+&"idle": SubResource("Animation_kf7dw")
+}
+
 [node name="baby_tortoise" unique_id=1295512985 instance=ExtResource("1_kf7dw")]
 
 [node name="baby_rotoise" parent="." index="0" unique_id=468336925]
 material_override = ExtResource("2_kf7dw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=524925701]
+libraries/ = SubResource("AnimationLibrary_8ki4l")
+autoplay = &"idle"
