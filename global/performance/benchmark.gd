@@ -45,3 +45,5 @@ func run():
 	
 	# restore aspect ratio
 	get_tree().root.content_scale_aspect = stretch_mode
+	
+	sub_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
