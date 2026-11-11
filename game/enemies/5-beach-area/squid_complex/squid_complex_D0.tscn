@@ -267,6 +267,9 @@ metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 script = ExtResource("2_i4ho2")
 wait_time = 0.2
 next_state = NodePath("../DisableHitbox")
+animation_trigger = Dictionary[String, Variant]({
+"parameters/attack/request": 3
+})
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
 
 [node name="DisableHitbox" type="Node" parent="StateMachine/onDamage" index="1" unique_id=173445153 node_paths=PackedStringArray("disable", "next_state")]
