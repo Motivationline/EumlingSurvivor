@@ -30,6 +30,7 @@ func move(_delta: float) -> void:
 		direction = direction.rotated(Vector3.UP, randf_range(0, 2 * PI))
 	else:
 		direction = global_position.normalized()
+		direction.y = 0
 	visuals.global_position += direction * speed * _delta
 	print(global_position.normalized())
 	visuals.look_at(visuals.global_position + direction)
