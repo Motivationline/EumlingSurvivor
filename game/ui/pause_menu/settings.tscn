@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://54ec674jmwbg"]
 
 [ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="1_56xd6"]
+[ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_tc4lx"]
 [ext_resource type="Texture2D" uid="uid://cgt1ocwb3ddwk" path="res://assets/ui/Buttons/tabellen_backdrop.png" id="2_j7yhf"]
 [ext_resource type="Texture2D" uid="uid://dfd8lhk8oxa8i" path="res://assets/ui/Buttons/tabellen_tab.png" id="3_lxw05"]
 [ext_resource type="FontFile" uid="uid://lxs3304evxr3" path="res://assets/ui/fonts/CherryBombOne-Regular.ttf" id="4_ovxw3"]
@@ -12,6 +13,10 @@
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="10_n7cf7"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="11_gt121"]
 [ext_resource type="AudioStream" uid="uid://c4xw8a6a2lao0" path="res://assets/sound/ui/pause/slider_tick.wav" id="14_brhd5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n7cf7"]
+shader = ExtResource("1_tc4lx")
+shader_parameter/blur_amount = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_brhd5"]
 texture = ExtResource("2_j7yhf")
@@ -52,6 +57,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Blurr" type="Panel" parent="." unique_id=817766911]
+material = SubResource("ShaderMaterial_n7cf7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="SettingsTabContainer" type="TabContainer" parent="." unique_id=888222557]
 layout_mode = 0
 offset_left = 71.99994
@@ -68,6 +82,7 @@ theme_override_styles/tab_unselected = SubResource("StyleBoxTexture_6q4fc")
 theme_override_styles/tab_hovered = SubResource("StyleBoxTexture_wrs8w")
 theme_override_styles/tab_selected = SubResource("StyleBoxTexture_2c6fv")
 current_tab = 0
+tabs_rearrange_group = 0
 
 [node name="Graphics" type="TabBar" parent="SettingsTabContainer" unique_id=937972443]
 layout_mode = 2

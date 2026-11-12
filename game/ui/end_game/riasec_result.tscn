@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dnatt3uej2715" path="res://assets/ui/Eumlex/IconI.png" id="5_vb6fc"]
 [ext_resource type="Texture2D" uid="uid://8gogno32qkaf" path="res://assets/ui/Eumlex/IconR.png" id="6_cjjev"]
 [ext_resource type="Texture2D" uid="uid://sbq7w3rqne2i" path="res://assets/ui/Eumlex/IconS.png" id="7_aieuj"]
+[ext_resource type="Texture2D" uid="uid://bap27mbaoeso7" path="res://assets/ui/Buttons/progress_bar_endscreen_backdrop.png" id="8_aieuj"]
+[ext_resource type="Texture2D" uid="uid://ucuqs21dxaw4" path="res://assets/ui/Buttons/progress_bar_endscreen_frame.png" id="9_d74w0"]
+[ext_resource type="Texture2D" uid="uid://xm468it100he" path="res://assets/ui/Buttons/progress_bar_endscreen.png" id="10_gabra"]
+[ext_resource type="Texture2D" uid="uid://cu4ddi8m1m5i3" path="res://assets/ui/Buttons/circle_backdrop.png" id="11_ku6mo"]
 
 [node name="RIASEC_Result" type="Control" unique_id=886686473]
 layout_mode = 3
@@ -22,20 +26,9 @@ icons = Dictionary[int, Texture]({
 5: ExtResource("7_aieuj")
 })
 
-[node name="Icon" type="TextureRect" parent="." unique_id=476012440]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -43.5
-offset_right = 108.75
-offset_bottom = 43.5
-grow_vertical = 2
-texture = ExtResource("2_p1u4f")
-
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=2016639980]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -48,3 +41,38 @@ offset_bottom = 43.5
 grow_horizontal = 0
 grow_vertical = 2
 show_percentage = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=443250041]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 1.0
+offset_right = 666.0
+offset_bottom = 100.0
+texture_under = ExtResource("8_aieuj")
+texture_over = ExtResource("9_d74w0")
+texture_progress = ExtResource("10_gabra")
+
+[node name="circle_backdrop" type="TextureRect" parent="." unique_id=1535804919]
+layout_mode = 0
+offset_top = 1.0000019
+offset_right = 132.0
+offset_bottom = 130.0
+scale = Vector2(0.7567114, 0.7567114)
+texture = ExtResource("11_ku6mo")
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="." unique_id=476012440]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.000002
+offset_top = 22.0
+offset_right = 78.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0907913, 1.0907913)
+texture = ExtResource("2_p1u4f")
+stretch_mode = 2
