@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="16_ru4a0"]
 [ext_resource type="Script" uid="uid://6312uopesj43" path="res://strategies/event/enemy/stop_sound.gd" id="17_q445x"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="20_jddde"]
+[ext_resource type="PackedScene" uid="uid://d37sn7up02c3h" path="res://assets/characters/enemies/boss_shark/baby/baby_shark_dudududu.tscn" id="20_oba3r"]
 [ext_resource type="AudioStream" uid="uid://ewl2of0m4ulh" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_1.wav" id="21_dch67"]
 [ext_resource type="AudioStream" uid="uid://bwcwstecykw3f" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_2.wav" id="22_n7nk8"]
 [ext_resource type="AudioStream" uid="uid://cnq1av5iqgo7h" path="res://assets/characters/enemies/boss_shark/sounds/charge_start_3.wav" id="23_yomc5"]
@@ -476,6 +477,9 @@ script = ExtResource("17_q445x")
 sound_manager = NodePath("../../SoundEffectManager")
 sound_to_stop = Array[String](["SwimLoop"])
 metadata/_custom_type_script = "uid://6312uopesj43"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("20_oba3r")
 
 [node name="BossShark" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=566136492 instance=ExtResource("2_3ft0s")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.002074957, 0.0035419464, 0.0012545586)

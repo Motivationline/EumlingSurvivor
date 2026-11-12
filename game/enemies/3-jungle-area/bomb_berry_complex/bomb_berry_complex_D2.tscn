@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://bakryhmuuibrf" path="res://assets/characters/enemies/bomberry/sounds/death_2.wav" id="16_ofpyh"]
 [ext_resource type="AudioStream" uid="uid://djwcj0n4etxuv" path="res://assets/characters/enemies/bomberry/sounds/death_3.wav" id="17_o4uqy"]
 [ext_resource type="AudioStream" uid="uid://bg18bentgbs6a" path="res://assets/characters/enemies/bomberry/sounds/death_4.wav" id="18_f4ncd"]
+[ext_resource type="PackedScene" uid="uid://dduxth1vqow7" path="res://assets/characters/enemies/bomberry/baby/baby_bomberry.tscn" id="18_iwyf5"]
 [ext_resource type="AudioStream" uid="uid://cy53vxdclxn5v" path="res://assets/characters/enemies/bomberry/sounds/death_5.wav" id="19_ga85s"]
 [ext_resource type="AudioStream" uid="uid://ddoke46qg8u4h" path="res://assets/characters/enemies/bomberry/sounds/death_6.wav" id="20_arbnp"]
 [ext_resource type="AudioStream" uid="uid://gux8h75ckcwo" path="res://assets/characters/enemies/bomberry/sounds/charge_1.wav" id="21_arbnp"]
@@ -320,6 +321,9 @@ metadata/_custom_type_script = "uid://ce61jighdgsby"
 script = ExtResource("10_vk06u")
 strategies_to_deactivate = [NodePath("../TriggerStateEventStrategy")]
 metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("18_iwyf5")
 
 [node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("10_106dg")]
 
