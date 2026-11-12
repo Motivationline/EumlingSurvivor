@@ -1,16 +1,26 @@
 [gd_scene format=3 uid="uid://bavi1xes8q3o1"]
 
 [ext_resource type="PackedScene" uid="uid://bfhgy8o26y15k" path="res://game/levels/6-Vxx-Volcano/V20.tscn" id="1_cromk"]
-[ext_resource type="PackedScene" uid="uid://bfi1hkkxrugg8" path="res://game/enemies/6-volcano/charger/charger_enemy.tscn" id="2_kud51"]
+[ext_resource type="PackedScene" uid="uid://bk30dpa20li5b" path="res://game/enemies/6-volcano/charger_complex/charger_complex.tscn" id="2_qdfms"]
 [ext_resource type="PackedScene" uid="uid://ctnbl58qp2b3d" path="res://game/enemies/6-volcano/magma_toad_complex/magma_toad_complex_D2.tscn" id="3_qdfms"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_j6fai"]
+viewport_path = NodePath("OffscreenViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ctjh"]
+resource_local_to_scene = true
+specular_mode = 2
+albedo_texture = SubResource("ViewportTexture_j6fai")
 
 [node name="Level" unique_id=1973423689 instance=ExtResource("1_cromk")]
 
-[node name="TortoiseEnemy" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1961314702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3317704, 0, 1.4835)
+[node name="FloorOffscreen" parent="NavigationRegion3D/StaticBody3D" parent_id_path=PackedInt32Array(2126814094) index="1" unique_id=1090963421]
+material_override = SubResource("StandardMaterial3D_5ctjh")
 
-[node name="Charger4" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1565415736 instance=ExtResource("2_kud51")]
+[node name="Charger_Complex" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1898691 instance=ExtResource("2_qdfms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.150216, 0, -0.4960668)
 
-[node name="magma_toad_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1898691 instance=ExtResource("3_qdfms")]
+[node name="magma_toad_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1349309543 instance=ExtResource("3_qdfms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3571873, 0, -2.328278)
+
+[editable path="OffscreenViewport"]

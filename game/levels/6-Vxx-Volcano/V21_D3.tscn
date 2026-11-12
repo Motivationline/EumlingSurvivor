@@ -1,13 +1,26 @@
 [gd_scene format=3 uid="uid://crv0inwm70m8u"]
 
 [ext_resource type="PackedScene" uid="uid://cu61do245snrs" path="res://game/levels/6-Vxx-Volcano/V21.tscn" id="1_2s0gq"]
-[ext_resource type="PackedScene" uid="uid://bfi1hkkxrugg8" path="res://game/enemies/6-volcano/charger/charger_enemy.tscn" id="3_bf06p"]
+[ext_resource type="PackedScene" uid="uid://bk30dpa20li5b" path="res://game/enemies/6-volcano/charger_complex/charger_complex.tscn" id="2_r8is5"]
 [ext_resource type="PackedScene" uid="uid://dimh4wgth5dwg" path="res://game/enemies/6-volcano/volcano_tortoise_complex/volcano_tortoise_complex_D2.tscn" id="3_r8is5"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bf06p"]
+viewport_path = NodePath("OffscreenViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfhqj"]
+resource_local_to_scene = true
+specular_mode = 2
+albedo_texture = SubResource("ViewportTexture_bf06p")
 
 [node name="Level" unique_id=1973423689 instance=ExtResource("1_2s0gq")]
 
-[node name="Charger2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1917291400 instance=ExtResource("3_bf06p")]
+[node name="FloorOffscreen" parent="NavigationRegion3D/StaticBody3D" parent_id_path=PackedInt32Array(2126814094) index="1" unique_id=1090963421]
+material_override = SubResource("StandardMaterial3D_wfhqj")
+
+[node name="Charger_Complex" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1898691 instance=ExtResource("2_r8is5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8579519, 0, -3.8401227)
 
-[node name="volcano_tortoise_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=1898691 instance=ExtResource("3_r8is5")]
+[node name="volcano_tortoise_complex_D2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=398311626 instance=ExtResource("3_r8is5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.325175, 0, -0.97179407)
+
+[editable path="OffscreenViewport"]

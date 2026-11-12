@@ -1,12 +1,25 @@
 [gd_scene format=3 uid="uid://i5d2pbmqya4m"]
 
 [ext_resource type="PackedScene" uid="uid://cu61do245snrs" path="res://game/levels/6-Vxx-Volcano/V21.tscn" id="1_jf4nf"]
-[ext_resource type="PackedScene" uid="uid://bfi1hkkxrugg8" path="res://game/enemies/6-volcano/charger/charger_enemy.tscn" id="2_o3uhp"]
+[ext_resource type="PackedScene" uid="uid://bk30dpa20li5b" path="res://game/enemies/6-volcano/charger_complex/charger_complex.tscn" id="2_o3uhp"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_17dfe"]
+viewport_path = NodePath("OffscreenViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtv17"]
+resource_local_to_scene = true
+specular_mode = 2
+albedo_texture = SubResource("ViewportTexture_17dfe")
 
 [node name="Level" unique_id=1973423689 instance=ExtResource("1_jf4nf")]
 
-[node name="Charger" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1898691 instance=ExtResource("2_o3uhp")]
+[node name="FloorOffscreen" parent="NavigationRegion3D/StaticBody3D" parent_id_path=PackedInt32Array(2126814094) index="1" unique_id=1090963421]
+material_override = SubResource("StandardMaterial3D_wtv17")
+
+[node name="Charger_Complex" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="1" unique_id=1898691 instance=ExtResource("2_o3uhp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7471957, 0, 0)
 
-[node name="Charger2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=240230101 instance=ExtResource("2_o3uhp")]
+[node name="Charger_Complex2" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="2" unique_id=742959924 instance=ExtResource("2_o3uhp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28127, 0, -3.368942)
+
+[editable path="OffscreenViewport"]

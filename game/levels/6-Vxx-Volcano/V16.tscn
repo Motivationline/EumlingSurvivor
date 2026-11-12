@@ -4,8 +4,8 @@
 [ext_resource type="MeshLibrary" uid="uid://b6oqc16j58w4r" path="res://level/tilemap/obstale_tilemap.tres" id="2_aseb8"]
 [ext_resource type="PackedScene" uid="uid://dip1bn417csc2" path="res://game/exit_area/exit_area_volcano.tscn" id="3_cprg4"]
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/obstalce_stone/ObstacleStone_Volcano_Material_Base_color.png" id="3_xkuqr"]
-[ext_resource type="PackedScene" uid="uid://bfi1hkkxrugg8" path="res://game/enemies/6-volcano/charger/charger_enemy.tscn" id="5_ujrvj"]
-[ext_resource type="PackedScene" uid="uid://b1l2qwlh68hvn" path="res://game/enemies/box/DestructibleBox.tscn" id="6_85vni"]
+[ext_resource type="PackedScene" uid="uid://bk30dpa20li5b" path="res://game/enemies/6-volcano/charger_complex/charger_complex.tscn" id="5_ujrvj"]
+[ext_resource type="PackedScene" uid="uid://dyyhy5suplkkk" path="res://game/enemies/box/DestructibleBox2x1.tscn" id="6_ujrvj"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_aujah"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_aseb8"]
@@ -14,6 +14,14 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 agent_radius = 0.25
 agent_max_climb = 0.0
 edge_max_error = 0.25
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_aujah"]
+viewport_path = NodePath("OffscreenViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xkbml"]
+resource_local_to_scene = true
+specular_mode = 2
+albedo_texture = SubResource("ViewportTexture_aujah")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n85fk"]
 albedo_texture = ExtResource("3_xkuqr")
@@ -98,6 +106,9 @@ _surfaces = [{
 [node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
 navigation_mesh = SubResource("NavigationMesh_aseb8")
 
+[node name="FloorOffscreen" parent="NavigationRegion3D/StaticBody3D" parent_id_path=PackedInt32Array(2126814094) index="1" unique_id=1090963421]
+material_override = SubResource("StandardMaterial3D_xkbml")
+
 [node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" index="2" unique_id=885539183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = ExtResource("2_aseb8")
@@ -112,14 +123,13 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6)
 parent = NodePath("..")
 
-[node name="Charger" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("5_ujrvj")]
+[node name="Charger_Complex" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("5_ujrvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0381231, 0, -3.737115)
 
-[node name="Box" parent="Breakables" parent_id_path=PackedInt32Array(1453732535) index="0" unique_id=312823626 instance=ExtResource("6_85vni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24058592, 0, -1.7376021)
-
-[node name="Box2" parent="Breakables" parent_id_path=PackedInt32Array(1453732535) index="1" unique_id=1071511948 instance=ExtResource("6_85vni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25562277, 0, -1.7376021)
+[node name="2x1Stone" parent="Breakables" parent_id_path=PackedInt32Array(1453732535) index="0" unique_id=1837394296 instance=ExtResource("6_ujrvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.75)
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(614762836) index="0" unique_id=1814085372 instance=ExtResource("8_aujah")]
 transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, 3.8544312, 0, 1.06504)
+
+[editable path="OffscreenViewport"]
