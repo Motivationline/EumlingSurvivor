@@ -1,14 +1,9 @@
 [gd_scene format=3 uid="uid://b1frhjc1hws4k"]
 
-[ext_resource type="PackedScene" uid="uid://mdgxtmddpnfr" path="res://assets/ui/pop_up/firework_particles.tscn" id="1_372mq"]
 [ext_resource type="Script" uid="uid://b2i51gcr0x8k7" path="res://game/ui/pop_up/pick_up_eumling.gd" id="1_fwfbe"]
-[ext_resource type="Texture2D" uid="uid://ec8y4dsfst65" path="res://assets/ui/Eumlex/button_sticker_missing_a.png" id="2_fwfbe"]
 [ext_resource type="PackedScene" uid="uid://xx1ogf8cudcr" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/mini_eumling_artistisch_kreativ_visual.tscn" id="2_ywg43"]
 [ext_resource type="PackedScene" uid="uid://bdx5nmy7mmesh" path="res://assets/characters/eumling/mini_eumling/conventional_logik/mini_conventional_logik_visual.tscn" id="3_bk87j"]
-[ext_resource type="Texture2D" uid="uid://dj5fnsnkj3y2a" path="res://assets/ui/pop_up/win_strahlen.png" id="3_fwfbe"]
 [ext_resource type="PackedScene" uid="uid://w0h1g2ngldyl" path="res://assets/characters/eumling/mini_eumling/entrepreneurual_ehrgeiz/mini_eumling_entrep_ehrgeiz_visual.tscn" id="4_lcb6e"]
-[ext_resource type="Texture2D" uid="uid://ct0dwwb0l0w2p" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayoutBack.png" id="4_rfacl"]
-[ext_resource type="Texture2D" uid="uid://cls17fca8iawc" path="res://assets/ui/UpgradeCards/Icons/BannerBaseLayout.png" id="5_qvilx"]
 [ext_resource type="PackedScene" uid="uid://pywy6q2jhxwo" path="res://assets/characters/eumling/mini_eumling/investigativ_forschend/mini_investigativ_forschend_visual.tscn" id="5_rnpr1"]
 [ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="6_mn3nd"]
 [ext_resource type="PackedScene" uid="uid://drn335i4omarh" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial_visual.tscn" id="7_j7bcv"]
@@ -18,47 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://ccro7upfieua2" path="res://game/ui/eumlex/ripped_out_page.tscn" id="15_mn3nd"]
 [ext_resource type="Texture2D" uid="uid://c40q8petlro1j" path="res://assets/ui/Buttons/ButtonBook.png" id="16_j7bcv"]
 [ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/rectangleStickerButtonFocused.png" id="17_amhc8"]
-[ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="18_6rghf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6rghf"]
 shader = ExtResource("8_amhc8")
 shader_parameter/blur_amount = 2.0
-
-[sub_resource type="Animation" id="Animation_hpwr3"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_fkgrk"]
-resource_name = "number_wiggle"
-length = 0.667
-loop_mode = 1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 2, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.06666667, 0.22972122, 0.23561946, -0.1, -0.005898237, 0.2, -0.0017591268, -0.23561946, -0.19998057, 0.004759474, 0.10000002, -0.0023799685, 0, -0.06666666, -0.240069, 0.06666667, 0.0041391207),
-"times": PackedFloat32Array(0, 0.16666667, 0.5, 0.6666667)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_d1hln"]
-_data = {
-&"RESET": SubResource("Animation_hpwr3"),
-&"number_wiggle": SubResource("Animation_fkgrk")
-}
 
 [node name="PickUpEumling" type="Control" unique_id=200048838 node_paths=PackedStringArray("eumling_text", "skill_text")]
 process_mode = 3
@@ -70,20 +28,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fwfbe")
 eumling_text = {
-0: NodePath("a_eumling_text"),
-1: NodePath("c_eumling_text"),
-2: NodePath("e_eumling_text"),
-3: NodePath("i_eumling_text"),
-4: NodePath("r_eumling_text"),
-5: NodePath("s_eumling_text")
+0: NodePath(""),
+1: NodePath(""),
+2: NodePath(""),
+3: NodePath(""),
+4: NodePath(""),
+5: NodePath("")
 }
 skill_text = {
-0: NodePath("a_skill_text"),
-1: NodePath("c_skill_text"),
-2: NodePath("e_skill_text"),
-3: NodePath("i_skill_text"),
-4: NodePath("r_skill_text"),
-5: NodePath("s_skill_text")
+0: NodePath(""),
+1: NodePath(""),
+2: NodePath(""),
+3: NodePath(""),
+4: NodePath(""),
+5: NodePath("")
 }
 eumlings = Dictionary[int, PackedScene]({
 0: ExtResource("2_ywg43"),
@@ -99,34 +57,6 @@ material = SubResource("ShaderMaterial_6rghf")
 layout_mode = 0
 offset_right = 1929.0
 offset_bottom = 1088.0
-
-[node name="background_glow" type="TextureRect" parent="." unique_id=447542799]
-visible = false
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("3_fwfbe")
-
-[node name="eumling_placeholder" type="TextureRect" parent="." unique_id=906340904]
-visible = false
-layout_mode = 0
-offset_left = 687.0
-offset_top = 296.0
-offset_right = 1172.0
-offset_bottom = 811.5245
-texture = ExtResource("2_fwfbe")
-
-[node name="fireworks" type="Node2D" parent="." unique_id=470280052]
-visible = false
-
-[node name="firework_particles" parent="fireworks" unique_id=2134858972 instance=ExtResource("1_372mq")]
-position = Vector2(588, 174)
-
-[node name="firework_particles2" parent="fireworks" unique_id=369735308 instance=ExtResource("1_372mq")]
-position = Vector2(1505, 284)
-
-[node name="firework_particles3" parent="fireworks" unique_id=1424378926 instance=ExtResource("1_372mq")]
-position = Vector2(393, 797)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1484812198]
 layout_mode = 1
@@ -157,209 +87,6 @@ transform = Transform3D(1, 0, 0, 0, 0.0004475872, 0.99999994, 0, -0.99999994, 0.
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1263976116]
 transform = Transform3D(-1, 0, -8.742278e-08, -5.7208172e-08, 0.75616133, 0.6543852, 6.610573e-08, 0.6543852, -0.75616133, -5.9206994e-17, 0.8124004, -0.54282486)
 projection = 1
-
-[node name="Banner_side_left" type="TextureRect" parent="." unique_id=536918846]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -387.0
-offset_top = 215.5
-offset_right = -305.0
-offset_bottom = 388.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_rfacl")
-flip_h = true
-
-[node name="Banner_side_right" type="TextureRect" parent="." unique_id=779766755]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 301.0
-offset_top = 214.5
-offset_right = 383.0
-offset_bottom = 387.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_rfacl")
-
-[node name="banner_base" type="TextureRect" parent="." unique_id=1998517802]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -340.0
-offset_top = 186.0
-offset_right = 340.0
-offset_bottom = 396.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_qvilx")
-
-[node name="r_eumling_text" type="Label" parent="." unique_id=2135929434]
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Du hast einen Geschick-Eumling befreit!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="i_eumling_text" type="Label" parent="." unique_id=1946788000]
-visible = false
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Du hast einen Forschungs-Eumling befreit!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="a_eumling_text" type="Label" parent="." unique_id=1373299851]
-visible = false
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Du hast einen Artistischen-Eumling befreit!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="s_eumling_text" type="Label" parent="." unique_id=212360585]
-visible = false
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Du hast einen Sozialen-Eumling befreit!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="e_eumling_text" type="Label" parent="." unique_id=1954273012]
-visible = false
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Du hast einen Ehrgeiz-Eumling befreit!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="c_eumling_text" type="Label" parent="." unique_id=770172916]
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Du hast einen Logik-Eumling befreit!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="r_skill_text" type="Label" parent="." unique_id=1434157797]
-visible = false
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Repariere den Roboter um ihn im Kampf zu nutzen."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="i_skill_text" type="Label" parent="." unique_id=564999408]
-visible = false
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Gegner haben jetzt kritische Trefferzonen."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="a_skill_text" type="Label" parent="." unique_id=1710532615]
-visible = false
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Male Linien zum Schutz und Kreise für Angriffsboni."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="s_skill_text" type="Label" parent="." unique_id=1078234769]
-visible = false
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Gegner um dich herum werden besänftigt."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="e_skill_text" type="Label" parent="." unique_id=1772682428]
-visible = false
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Erhalte einen Mini Kämpfer an deiner Seite."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="c_skill_text" type="Label" parent="." unique_id=2075640426]
-visible = false
-layout_mode = 0
-offset_left = 653.0
-offset_top = 742.0
-offset_right = 1266.0
-offset_bottom = 885.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Schließe Aufgaben ab um temporäre Boni zu erhalten."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
 
 [node name="ContinueButton" type="TextureButton" parent="." unique_id=80424771]
 layout_mode = 0
@@ -411,6 +138,8 @@ offset_right = 922.0
 offset_bottom = 154.0
 scale = Vector2(1.0512557, 1.0512557)
 
+[node name="PageAnimationPlayer" type="AnimationPlayer" parent="CollectEumlexPage" unique_id=1155675008]
+
 [node name="EumlexButton" type="TextureButton" parent="." unique_id=147487937]
 layout_mode = 0
 offset_left = 63.0
@@ -423,47 +152,3 @@ focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../VBoxContainer/PlayButton")
 texture_normal = ExtResource("16_j7bcv")
 texture_focused = ExtResource("17_amhc8")
-
-[node name="NumberCircle" type="TextureRect" parent="EumlexButton" unique_id=1331999328]
-visible = false
-layout_mode = 0
-offset_left = 174.92467
-offset_top = -47.821133
-offset_right = 269.92468
-offset_bottom = 74.17886
-pivot_offset = Vector2(47, 61)
-offset_transform_enabled = true
-texture = ExtResource("18_6rghf")
-
-[node name="NumberCircleLabel3D" type="Label" parent="EumlexButton/NumberCircle" unique_id=1320867067]
-unique_name_in_owner = true
-visible = false
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(62, 82)
-custom_maximum_size = Vector2(62, 82)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -28.623238
-offset_top = -24.504951
-offset_right = 33.376762
-offset_bottom = 57.49505
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 52
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("14_rnpr1")
-label_size = Vector2i(62, 82)
-max_font_size = 52
-metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="EumlexButton/NumberCircle" unique_id=2043012777]
-libraries/ = SubResource("AnimationLibrary_d1hln")
-autoplay = &"number_wiggle"

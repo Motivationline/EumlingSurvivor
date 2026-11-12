@@ -23,6 +23,9 @@ func _click() -> void:
 	elif progress == results.size():
 		# show eumling page result
 		%NewEumlingInfo.show()
+		%ContinueButton.show()
+		%Stats.hide()
+		%Stats/Arrow.show()
 	progress += 1
 
 var active_press: bool = false
@@ -44,3 +47,11 @@ func setup(eumling: Eumling):
 func _on_continue_button_pressed() -> void:
 	queue_free()
 	closed.emit()
+
+func _on_forward_arrow_pressed() -> void:
+	%NewEumlingInfo.show()
+	%Stats.hide()
+
+func _on_back_arrow_pressed() -> void:
+	%NewEumlingInfo.hide()
+	%Stats.show()
