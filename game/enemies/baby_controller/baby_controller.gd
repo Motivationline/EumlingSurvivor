@@ -12,14 +12,8 @@ class_name BabyController extends Node3D
 ##Container for 3D Model. Add the model as a child of this
 @export var visuals: Node3D
 
-##The movement direction, decided at random
-var direction: Vector3 = Vector3.FORWARD
-
 
 func _ready() -> void:
-	direction = direction.rotated(Vector3.UP, randf_range(0, 2 * PI))
-	visuals.look_at(direction)
-
 	timer.wait_time = timeout
 	timer.timeout.connect(queue_free)
 	timer.start()
@@ -31,7 +25,15 @@ func _physics_process(_delta: float) -> void:
 	
 ##Moves the visuals forward
 func move(_delta: float) -> void:
+	var direction:Vector3
+	if global_position == Vector3.ZERO:
+		direction = direction.rotated(Vector3.UP, randf_range(0, 2 * PI))
+	else:
+		direction = global_position.normalized()
+		direction.y = 0
 	visuals.global_position += direction * speed * _delta
+	print(global_position.normalized())
+	visuals.look_at(visuals.global_position + direction)
 
 ##Shrinks the visuals based on the curve and time3
 func shrink() -> void:
