@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cp1ha3k058w81"]
 
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_3ptv8"]
+[ext_resource type="Script" uid="uid://c4jwgmyo0hivm" path="res://game/ui/pop_up/info_popup.gd" id="1_prc2g"]
 [ext_resource type="Texture2D" uid="uid://cge6re5ltogle" path="res://assets/ui/Buttons/Divider.png" id="2_prc2g"]
 [ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="3_oa77d"]
 
@@ -8,13 +9,38 @@
 shader = ExtResource("1_3ptv8")
 shader_parameter/blur_amount = 2.0
 
-[node name="NewInfoCollected" type="Control" unique_id=563297542]
+[node name="NewInfoCollected" type="Control" unique_id=563297542 node_paths=PackedStringArray("eumling_headline", "area_headline", "eumling_text", "skill_text", "area")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_prc2g")
+min_wait_time = 0.5
+eumling_headline = NodePath("neuer_eumling")
+area_headline = NodePath("neues_areal")
+eumling_text = {
+0: NodePath("a_eumling_text"),
+1: NodePath("c_eumling_text"),
+2: NodePath("e_eumling_text"),
+3: NodePath("i_eumling_text"),
+4: NodePath("r_eumling_text"),
+5: NodePath("s_eumling_text")
+}
+skill_text = {
+0: NodePath("a_skill_text"),
+1: NodePath("c_skill_text"),
+2: NodePath("e_skill_text"),
+3: NodePath("i_skill_text"),
+4: NodePath("r_skill_text"),
+5: NodePath("s_skill_text")
+}
+area = {
+"Beach": NodePath("beach"),
+"Jungle": NodePath("jungle"),
+"Volcano": NodePath("vulcano")
+}
 
 [node name="Background_blurr" type="Panel" parent="." unique_id=1597262303]
 material = SubResource("ShaderMaterial_gmuld")
@@ -51,7 +77,7 @@ theme_override_font_sizes/font_size = 50
 text = "Neuen Eumling gerettet"
 horizontal_alignment = 1
 
-[node name="r_eumling" type="Label" parent="." unique_id=1500757848]
+[node name="r_eumling_text" type="Label" parent="." unique_id=1500757848]
 visible = false
 layout_mode = 0
 offset_left = 534.0
@@ -220,6 +246,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="neues_areal" type="Label" parent="." unique_id=74186680]
+visible = false
 layout_mode = 0
 offset_left = 632.0
 offset_top = 274.0

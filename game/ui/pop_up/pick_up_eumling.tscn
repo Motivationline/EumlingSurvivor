@@ -18,6 +18,90 @@
 shader = ExtResource("8_amhc8")
 shader_parameter/blur_amount = 2.0
 
+[sub_resource type="Animation" id="Animation_ywg43"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1398.0001, 577.00006)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.0512557, 1.0512557)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bk87j"]
+resource_name = "to_eumlex"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1398.0001, 577.00006), Vector2(172, 873)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.0512557, 1.0512557), Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.1815879]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lcb6e"]
+_data = {
+&"RESET": SubResource("Animation_ywg43"),
+&"to_eumlex": SubResource("Animation_bk87j")
+}
+
 [node name="PickUpEumling" type="Control" unique_id=200048838 node_paths=PackedStringArray("eumling_text", "skill_text")]
 process_mode = 3
 layout_mode = 3
@@ -28,20 +112,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fwfbe")
 eumling_text = {
-0: NodePath(""),
-1: NodePath(""),
-2: NodePath(""),
-3: NodePath(""),
-4: NodePath(""),
-5: NodePath("")
+0: null,
+1: null,
+2: null,
+3: null,
+4: null,
+5: null
 }
 skill_text = {
-0: NodePath(""),
-1: NodePath(""),
-2: NodePath(""),
-3: NodePath(""),
-4: NodePath(""),
-5: NodePath("")
+0: null,
+1: null,
+2: null,
+3: null,
+4: null,
+5: null
 }
 eumlings = Dictionary[int, PackedScene]({
 0: ExtResource("2_ywg43"),
@@ -89,6 +173,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, -5.7208172e-08, 0.75616133, 0.6543
 projection = 1
 
 [node name="ContinueButton" type="TextureButton" parent="." unique_id=80424771]
+unique_name_in_owner = true
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
@@ -131,14 +216,21 @@ label_size = Vector2i(290, 105)
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="CollectEumlexPage" parent="." unique_id=1028725752 instance=ExtResource("15_mn3nd")]
+unique_name_in_owner = true
 layout_mode = 1
-offset_left = 922.00006
-offset_top = 154.00002
-offset_right = 922.0
-offset_bottom = 154.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -521.9999
+offset_top = 37.00006
+offset_right = -521.9999
+offset_bottom = 37.00006
+grow_horizontal = 0
 scale = Vector2(1.0512557, 1.0512557)
 
 [node name="PageAnimationPlayer" type="AnimationPlayer" parent="CollectEumlexPage" unique_id=1155675008]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_lcb6e")
 
 [node name="EumlexButton" type="TextureButton" parent="." unique_id=147487937]
 layout_mode = 0
@@ -152,3 +244,5 @@ focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../VBoxContainer/PlayButton")
 texture_normal = ExtResource("16_j7bcv")
 texture_focused = ExtResource("17_amhc8")
+
+[connection signal="pressed" from="ContinueButton" to="." method="next"]

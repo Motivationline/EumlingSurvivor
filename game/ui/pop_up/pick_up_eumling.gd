@@ -6,43 +6,25 @@ extends Control
 
 signal done
 
-var progress: int = 0
-var eumling: Enum.EUMLING_TYPE
 var currently_visible_text: Label
 
-func _input(event: InputEvent) -> void:
-	if event.is_pressed() and (event is InputEventScreenTouch or event.is_action_pressed("ui_accept")):
-		if progress == 1:
-			next()
-		elif progress == 3:
-			completed()
 
-
-func setup(type: Enum.EUMLING_TYPE):
-	eumling = type
+func setup(eumling: Eumling):
 	get_tree().paused = true
-	var text = eumling_text.get(type)
-	if (text):
-		currently_visible_text = text
-		text.show()
-	var eumling_scene = eumlings.get(type)
+	var eumling_scene = eumlings.get(eumling.type)
 	if eumling_scene:
 		var instance = eumling_scene.instantiate()
 		%MiniEumlingMarker.add_child(instance)
 		var anim_tree = Utils.find_first_animation_tree(instance)
 		if anim_tree:
 			anim_tree.set("parameters/Transition/transition_request", "celebrate")
-	await get_tree().create_timer(1).timeout
-	progress = 1
+	%CollectEumlexPage.find_child("EumlexInfoPage").set_info(eumling)
 
 func next():
-	progress = 2
-	currently_visible_text.hide()
-	var text = skill_text.get(eumling)
-	if (text):
-		text.show()
-	await get_tree().create_timer(1).timeout
-	progress = 3
+	%ContinueButton.hide()
+	%PageAnimationPlayer.play("to_eumlex")
+	await %PageAnimationPlayer.animation_finished
+	completed()
 
 func completed():
 	get_tree().paused = false

@@ -5,6 +5,7 @@ const AFTER_GAME: PackedScene = preload("uid://bo5kay8o1r3cy")
 var player_scene: PackedScene = preload("res://game/player/player.tscn")
 const REVEAL_SEED = preload("uid://dk321b3pqkfei")
 const EUMLING_CELEBRATION = preload("uid://b1frhjc1hws4k")
+const EUMLING_INFO = preload("uid://cp1ha3k058w81")
 var player: Player
 @onready var level_wrapper: Node3D = $Level
 @onready var upgrade_view: CanvasLayer = $UpgradeView
@@ -197,8 +198,13 @@ func eumling_unlocked(eumling: Eumling):
 	reveal.queue_free()
 	get_tree().paused = false
 	
-	var popup = EUMLING_CELEBRATION.instantiate()
+	var popup_eumling = EUMLING_CELEBRATION.instantiate()
 	GlobalMusicManager.request_music(SongList.TRACK.VICTORY_THEME,MusicTransition.instant(), true)
-	add_child(popup)
-	popup.setup(eumling.type)
-	await popup.done
+	%UI.add_child(popup_eumling)
+	popup_eumling.setup(eumling)
+	await popup_eumling.done
+
+	var popup_info = EUMLING_INFO.instantiate()
+	%UI.add_child(popup_info)
+	popup_info.setup_eumling(eumling.type)
+	await popup_info.done
