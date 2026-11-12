@@ -94,6 +94,14 @@ func _unlock_eumling(type: Enum.EUMLING_TYPE) -> Eumling:
 	# we've already unlocked all eumlings of this category
 	return Data.eumlings.get(type).pick_random()
 
+func unlock_specific_eumling(eumling: Eumling): 
+	var candidates = _locked_eumlings.get(eumling.type) as Array
+	if not candidates.has(eumling): return
+	candidates.erase(eumling)
+	_unlocked_eumlings.push_back(eumling.id)
+	SaveData.set_data("unlocked_eumlings", _unlocked_eumlings)
+	eumling.progress = Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED
+
 func reveal_eumling(eumling: Eumling):
 	var uIndex = _unlocked_eumlings.find(eumling.id)
 	if uIndex >= 0: _unlocked_eumlings.remove_at(uIndex)

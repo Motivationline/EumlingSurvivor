@@ -181,10 +181,10 @@ func run_end_riasec():
 
 	var riasec_eumling = Data.find_eumling_based_on_riasec(riasec_types)
 	if not riasec_eumling: return
+	Data.unlock_specific_eumling(riasec_eumling)
 	var end_game_screen = AFTER_GAME.instantiate()
 	add_child(end_game_screen)
 	end_game_screen.setup(riasec_eumling)
-	prints("riasec eumling", riasec_eumling)
 	await end_game_screen.closed
 
 func eumling_unlocked(eumling: Eumling):
