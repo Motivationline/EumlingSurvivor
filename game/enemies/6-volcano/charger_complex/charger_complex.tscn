@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dk7d2sr3lcg2s" path="res://state_machine/interrupts/conditions/ray_interrupt.gd" id="4_7tj2v"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="4_wq8og"]
 [ext_resource type="Script" uid="uid://bqcuq0n5ff3do" path="res://strategies/event/adjust_attributes/adjust_attributes.gd" id="5_o0lhv"]
+[ext_resource type="Script" uid="uid://jb6vr75ssep" path="res://state_machine/interrupts/conditions/all_of.gd" id="6_8x0lx"]
 [ext_resource type="Script" uid="uid://pxk1n7k8c8pw" path="res://state_machine/enemy/rotate.gd" id="6_b8bvm"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="6_m6bdr"]
 [ext_resource type="Script" uid="uid://cjkeo3brnvde2" path="res://state_machine/enemy/move_forward.gd" id="7_gckgk"]
@@ -15,6 +16,7 @@
 [ext_resource type="Script" uid="uid://6312uopesj43" path="res://strategies/event/enemy/stop_sound.gd" id="8_6knsg"]
 [ext_resource type="Script" uid="uid://1e84fd3xrrff" path="res://game/spawner/entity_spawner.gd" id="8_m6bdr"]
 [ext_resource type="PackedScene" uid="uid://ciyhp1yy70dph" path="res://assets/characters/enemies/lizard/lizard_prefab.tscn" id="8_ot6q4"]
+[ext_resource type="Script" uid="uid://ctkt4x4xj18wn" path="res://state_machine/interrupts/conditions/line_of_sight_to_player.gd" id="8_vyq3n"]
 [ext_resource type="PackedScene" uid="uid://8birmfvhix1s" path="res://game/aoes/charger_complex_aoe/charger_complex_aoe.tscn" id="9_hbhbl"]
 [ext_resource type="PackedScene" uid="uid://cbyfcasw18rhm" path="res://game/enemies/6-volcano/charger/baby_spawn_lizard.tscn" id="12_6sqlj"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="12_46o4k"]
@@ -41,6 +43,41 @@
 [ext_resource type="AudioStream" uid="uid://cb2mb5v8roivr" path="res://assets/characters/enemies/lizard/sounds/run_3.wav" id="35_t3sli"]
 [ext_resource type="AudioStream" uid="uid://dhohya7e5nnwk" path="res://assets/characters/enemies/lizard/sounds/run_4.wav" id="36_ancvi"]
 [ext_resource type="AudioStream" uid="uid://dx1vqur2rh67u" path="res://assets/characters/enemies/lizard/sounds/run_5.wav" id="37_mly75"]
+[ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="42_b8bvm"]
+[ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="43_gckgk"]
+[ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="44_8x0lx"]
+
+[sub_resource type="Resource" id="Resource_b8bvm"]
+script = ExtResource("6_m6bdr")
+attribute = "health"
+value = 240.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_gckgk"]
+script = ExtResource("6_m6bdr")
+attribute = "health"
+value = 420.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_8x0lx"]
+script = ExtResource("6_m6bdr")
+attribute = "health"
+value = 170.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_awt1o"]
+script = ExtResource("6_m6bdr")
+attribute = "health"
+value = 320.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_jdal5"]
+script = ExtResource("43_gckgk")
+introduction = Array[ExtResource("6_m6bdr")]([SubResource("Resource_8x0lx")])
+easy = Array[ExtResource("6_m6bdr")]([SubResource("Resource_b8bvm")])
+medium = Array[ExtResource("6_m6bdr")]([SubResource("Resource_awt1o")])
+hard = Array[ExtResource("6_m6bdr")]([SubResource("Resource_gckgk")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 
 [sub_resource type="Resource" id="Resource_bfwf6"]
 script = ExtResource("6_m6bdr")
@@ -89,10 +126,54 @@ stream_3/stream = ExtResource("36_ancvi")
 stream_4/stream = ExtResource("37_mly75")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_igf3p"]
-height = 1.0
-radius = 0.22851563
+height = 0.81884766
+radius = 0.24414063
 
-[node name="BaseEnemy" unique_id=1898691 instance=ExtResource("1_ryjt0")]
+[sub_resource type="Resource" id="Resource_ewb6w"]
+script = ExtResource("6_m6bdr")
+attribute = "damage"
+value = 70.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_fnnys"]
+script = ExtResource("6_m6bdr")
+attribute = "damage"
+value = 145.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_iulfk"]
+script = ExtResource("6_m6bdr")
+attribute = "damage"
+value = 55.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_6a4c0"]
+script = ExtResource("6_m6bdr")
+attribute = "damage"
+value = 100.0
+metadata/_custom_type_script = "uid://duef27t44qtoy"
+
+[sub_resource type="Resource" id="Resource_vyq3n"]
+script = ExtResource("43_gckgk")
+introduction = Array[ExtResource("6_m6bdr")]([SubResource("Resource_iulfk")])
+easy = Array[ExtResource("6_m6bdr")]([SubResource("Resource_ewb6w")])
+medium = Array[ExtResource("6_m6bdr")]([SubResource("Resource_6a4c0")])
+hard = Array[ExtResource("6_m6bdr")]([SubResource("Resource_fnnys")])
+metadata/_custom_type_script = "uid://bmyfqqx031w5a"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_awt1o"]
+radius = 0.2175806
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jdal5"]
+radius = 0.29232824
+
+[node name="Charger_Complex" unique_id=1898691 node_paths=PackedStringArray("hitbox", "hurtbox", "additional_hurtboxes") instance=ExtResource("1_ryjt0")]
+collision_mask = 513
+health = 250.0
+difficulty_scaler = SubResource("Resource_jdal5")
+hitbox = NodePath("hitboxBase")
+hurtbox = NodePath("Hurtbox")
+additional_hurtboxes = [NodePath("Hurtbox")]
 
 [node name="StateMachine" parent="." index="1" unique_id=2093753398 node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("MoveNormally/MoveHorizontalVerticalState")
@@ -112,35 +193,62 @@ metadata/_custom_type_script = "uid://dsnnhkc4wtj0a"
 [node name="InterruptForward" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState" index="0" unique_id=816597343 node_paths=PackedStringArray("state_to_go_to", "condition")]
 script = ExtResource("3_bm6wf")
 state_to_go_to = NodePath("../../../Run/SetupRun")
-condition = NodePath("RayInterruptCondition")
+condition = NodePath("AllOfInterruptCondition")
 metadata/_custom_type_script = "uid://dl3af38o4df2f"
 
-[node name="RayInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptForward" index="0" unique_id=1647929968 node_paths=PackedStringArray("ray")]
+[node name="AllOfInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptForward" index="0" unique_id=1739568408 node_paths=PackedStringArray("conditions")]
+script = ExtResource("6_8x0lx")
+conditions = [NodePath("RayInterruptCondition"), NodePath("LineOfSightToPlayerInterruptCondition")]
+metadata/_custom_type_script = "uid://jb6vr75ssep"
+
+[node name="RayInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptForward/AllOfInterruptCondition" index="0" unique_id=1647929968 node_paths=PackedStringArray("ray")]
 script = ExtResource("4_7tj2v")
-ray = NodePath("../../../../../Visuals/VisionRayCenter")
+ray = NodePath("../../../../../../Visuals/VisionRayCenter")
 metadata/_custom_type_script = "uid://dk7d2sr3lcg2s"
+
+[node name="LineOfSightToPlayerInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptForward/AllOfInterruptCondition" index="1" unique_id=2050081001]
+script = ExtResource("8_vyq3n")
+metadata/_custom_type_script = "uid://ctkt4x4xj18wn"
 
 [node name="InterruptLeft" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState" index="1" unique_id=2129760524 node_paths=PackedStringArray("state_to_go_to", "condition")]
 script = ExtResource("3_bm6wf")
 state_to_go_to = NodePath("../../../Run/Rotate/RotateLeftState")
-condition = NodePath("RayInterruptCondition")
+condition = NodePath("AllOfInterruptCondition")
 metadata/_custom_type_script = "uid://dl3af38o4df2f"
 
-[node name="RayInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptLeft" index="0" unique_id=1757495501 node_paths=PackedStringArray("ray")]
+[node name="AllOfInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptLeft" index="0" unique_id=2040693177 node_paths=PackedStringArray("conditions")]
+script = ExtResource("6_8x0lx")
+conditions = [NodePath("RayInterruptCondition"), NodePath("LineOfSightToPlayerInterruptCondition")]
+metadata/_custom_type_script = "uid://jb6vr75ssep"
+
+[node name="RayInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptLeft/AllOfInterruptCondition" index="0" unique_id=36338791 node_paths=PackedStringArray("ray")]
 script = ExtResource("4_7tj2v")
-ray = NodePath("../../../../../Visuals/VisionRayLeft")
+ray = NodePath("../../../../../../Visuals/VisionRayLeft")
 metadata/_custom_type_script = "uid://dk7d2sr3lcg2s"
+
+[node name="LineOfSightToPlayerInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptLeft/AllOfInterruptCondition" index="1" unique_id=1863158809]
+script = ExtResource("8_vyq3n")
+metadata/_custom_type_script = "uid://ctkt4x4xj18wn"
 
 [node name="InterruptRight" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState" index="2" unique_id=1328343831 node_paths=PackedStringArray("state_to_go_to", "condition")]
 script = ExtResource("3_bm6wf")
 state_to_go_to = NodePath("../../../Run/Rotate/RotateRightState")
-condition = NodePath("RayInterruptCondition")
+condition = NodePath("AllOfInterruptCondition")
 metadata/_custom_type_script = "uid://dl3af38o4df2f"
 
-[node name="RayInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptRight" index="0" unique_id=768474322 node_paths=PackedStringArray("ray")]
+[node name="AllOfInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptRight" index="0" unique_id=1192561437 node_paths=PackedStringArray("conditions")]
+script = ExtResource("6_8x0lx")
+conditions = [NodePath("RayInterruptCondition"), NodePath("LineOfSightToPlayerInterruptCondition")]
+metadata/_custom_type_script = "uid://jb6vr75ssep"
+
+[node name="RayInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptRight/AllOfInterruptCondition" index="0" unique_id=314159541 node_paths=PackedStringArray("ray")]
 script = ExtResource("4_7tj2v")
-ray = NodePath("../../../../../Visuals/VisionRayRight")
+ray = NodePath("../../../../../../Visuals/VisionRayRight")
 metadata/_custom_type_script = "uid://dk7d2sr3lcg2s"
+
+[node name="LineOfSightToPlayerInterruptCondition" type="Node" parent="StateMachine/MoveNormally/MoveHorizontalVerticalState/InterruptRight/AllOfInterruptCondition" index="1" unique_id=2069512546]
+script = ExtResource("8_vyq3n")
+metadata/_custom_type_script = "uid://ctkt4x4xj18wn"
 
 [node name="Run" type="Node" parent="StateMachine" index="1" unique_id=335514140]
 
@@ -158,7 +266,7 @@ next_state = NodePath("../../SetupRun")
 
 [node name="SetupRun" type="Node" parent="StateMachine/Run" index="1" unique_id=979955769 node_paths=PackedStringArray("events", "next_state")]
 script = ExtResource("3_1nf4a")
-events = [NodePath("../../../Eventlisteners/FastEvent"), NodePath("../../../Eventlisteners/PlaySoundDash"), NodePath("../../../Eventlisteners/SpawnEntitiesEventStrategy")]
+events = [NodePath("../../../Eventlisteners/FastEvent"), NodePath("../../../Eventlisteners/PlaySoundDash")]
 next_state = NodePath("../WaitForAnimation")
 metadata/_custom_type_script = "uid://bgmrgul0qr2n1"
 
@@ -241,17 +349,17 @@ collision_mask = 529
 
 [node name="VisionRayCenter" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="4" unique_id=923822135]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.24929065, 0)
-target_position = Vector3(0, -8, 0)
+target_position = Vector3(0, -5, 0)
 collision_mask = 2
 
 [node name="VisionRayRight" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="5" unique_id=540772098]
 transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0, 0.24929065, -0.2111001)
-target_position = Vector3(0, -8, 0)
+target_position = Vector3(0, -5, 0)
 collision_mask = 2
 
 [node name="VisionRayLeft" type="RayCast3D" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="6" unique_id=1094394570]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0.24929065, -0.2118422)
-target_position = Vector3(0, -8, 0)
+target_position = Vector3(0, -5, 0)
 collision_mask = 2
 
 [node name="DeathSpecific" parent="SoundEffectManager" parent_id_path=PackedInt32Array(212820490) index="2" unique_id=2133692736 instance=ExtResource("12_46o4k")]
@@ -272,7 +380,31 @@ volume_db = 21.88
 stream = ExtResource("25_8hflu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7" unique_id=1475062940]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40942383, 0)
 shape = SubResource("CylinderShape3D_igf3p")
+
+[node name="hitboxBase" parent="." index="8" unique_id=1403634002 instance=ExtResource("42_b8bvm")]
+collision_layer = 32
+collision_mask = 8
+damage = 50.0
+damage_cooldown = 1.0
+attached_to = 6
+can_hit = 4
+difficulty_scaler = SubResource("Resource_vyq3n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxBase" index="0" unique_id=352236520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004000306, 0.388, -0.103108734)
+shape = SubResource("SphereShape3D_awt1o")
+debug_color = Color(0.9993934, 0, 0.12844995, 0.41960785)
+
+[node name="Hurtbox" parent="." index="9" unique_id=2005433755 instance=ExtResource("44_8x0lx")]
+collision_layer = 64
+collision_mask = 4
+attached_to = 7
+can_be_hit_by = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" index="0" unique_id=762025997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3277039, 0)
+shape = SubResource("SphereShape3D_jdal5")
 
 [connection signal="play_sound" from="Visuals/lizard" to="SoundEffectManager" method="play_sound"]
