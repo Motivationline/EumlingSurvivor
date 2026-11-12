@@ -40,6 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://54ec674jmwbg" path="res://game/ui/pause_menu/settings.tscn" id="24_a6ejo"]
 [ext_resource type="Texture2D" uid="uid://sniqi7s4m1r0" path="res://assets/vfx/particle_pack/flame_05.png" id="25_nekgt"]
 [ext_resource type="Texture2D" uid="uid://bu8auxyk3gmp4" path="res://assets/vfx/fireball/flare.png" id="25_w4r1y"]
+[ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="40_a6ejo"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0bhyy"]
 dof_blur_far_distance = 54.35
@@ -430,7 +431,7 @@ theme_override_fonts/font = ExtResource("4_m1bca")
 theme_override_font_sizes/font_size = 30
 text = "Projekt BOoSTline©"
 
-[node name="EumlexButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1883851251]
+[node name="EumlexButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1883851251 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 63.0
 offset_top = 790.00006
@@ -487,7 +488,7 @@ metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 libraries/ = SubResource("AnimationLibrary_njswq")
 autoplay = &"number_wiggle"
 
-[node name="SettingsButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1014587333]
+[node name="SettingsButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1014587333 groups=["InputMethodSensitive"]]
 visible = false
 layout_mode = 0
 offset_left = 311.0
@@ -510,7 +511,7 @@ offset_bottom = 930.0
 scale = Vector2(1.1585608, 1.1585608)
 theme_override_constants/separation = -19
 
-[node name="PlayButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=877629100]
+[node name="PlayButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=877629100 groups=["InputMethodSensitive"]]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../SettingsButton")
@@ -541,7 +542,7 @@ theme_override_font_sizes/font_size = 70
 text = "Neu"
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=1797591909]
+[node name="ContinueButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=1797591909 groups=["InputMethodSensitive"]]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -617,7 +618,7 @@ mouse_filter = 2
 texture = ExtResource("18_i63cf")
 flip_h = true
 
-[node name="IntroButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1424059844 node_paths=PackedStringArray("video_parent")]
+[node name="IntroButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1424059844 node_paths=PackedStringArray("video_parent") groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 292.0
 offset_top = 37.0
@@ -640,7 +641,7 @@ text = "Intro "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Settings" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=912012033]
+[node name="Settings" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=912012033 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 39.0
@@ -648,7 +649,7 @@ offset_right = 209.0
 offset_bottom = 178.0
 texture_normal = ExtResource("13_0bhyy")
 
-[node name="EndGameButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=576263562]
+[node name="EndGameButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=576263562 groups=["InputMethodSensitive"]]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1713.0
@@ -923,6 +924,11 @@ transform = Transform3D(-0.4885124, -0.34995764, 0.7993032, 0.027202994, 0.90949
 
 [node name="main_menu_sozial" parent="." unique_id=451026336 instance=ExtResource("23_hutre")]
 transform = Transform3D(0.46461144, 0, -0.18475986, 0, 0.5, 0, 0.18475986, 0, 0.46461144, 9.027449, 0.0061601102, 1.9727275)
+
+[node name="InputMethodDetector" type="Node" parent="." unique_id=2058164604]
+script = ExtResource("40_a6ejo")
+button_icon_layer = ExtResource("11_egypv")
+metadata/_custom_type_script = "uid://0ev8qorbgey0"
 
 [connection signal="tree_entered" from="." to="UIOverlay/StaticUI/VBoxContainer/PlayButton" method="grab_focus" flags=3 binds= [false]]
 [connection signal="pressed" from="UIOverlay/StaticUI/EumlexButton" to="." method="_on_eumlex_button_pressed"]
