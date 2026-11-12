@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://c5qctkhg7xh2"]
+
+[ext_resource type="Shader" uid="uid://77pgxah8gtgw" path="res://game/ui/battle_overlay/vignette/vignette.gdshader" id="1_3iowj"]
+[ext_resource type="Script" uid="uid://h7iefarqr7nu" path="res://game/ui/battle_overlay/vignette/damage_vignette.gd" id="1_7k22s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7k22s"]
+shader = ExtResource("1_3iowj")
+shader_parameter/color = Color(0.8611212, 1.5883148e-06, 5.7756904e-07, 1)
+shader_parameter/alpha = 0.0
+shader_parameter/inner_radius = 0.42
+shader_parameter/outer_radius = 1.44
+
+[sub_resource type="Animation" id="Animation_cvjr2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_kpy1q"]
+resource_name = "damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 1),
+"transitions": PackedFloat32Array(1, 1, 2.0705302),
+"update": 0,
+"values": [0.0, 0.3, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h575y"]
+_data = {
+&"RESET": SubResource("Animation_cvjr2"),
+&"damage": SubResource("Animation_kpy1q")
+}
+
+[node name="DamageVignette" type="Control" unique_id=366484943 node_paths=PackedStringArray("anim_player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7k22s")
+animation_speed = 6.0
+anim_player = NodePath("AnimationPlayer")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=488352656]
+material = SubResource("ShaderMaterial_7k22s")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1265070371]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_h575y")

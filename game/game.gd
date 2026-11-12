@@ -21,7 +21,7 @@ var debug_run: bool = false
 func _ready() -> void:
 	# connect to home signal
 	$GameUI/PauseMenu.return_home.connect(return_to_main_menu)
-
+	
 	# remove mobile overlay if not on mobile
 	if not Data.is_on_mobile:
 		touch_joystick_overlay.queue_free()
@@ -57,6 +57,7 @@ func _setup_player():
 	player = player_scene.instantiate()
 	add_child(player)
 	player.died.connect(end_run)
+	player.hurt.connect(%DamageVignette.on_damage)
 
 func _load_level():
 	if player.dead:
