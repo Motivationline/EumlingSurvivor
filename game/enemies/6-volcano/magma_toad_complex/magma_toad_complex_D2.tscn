@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://dhj41c6f3q7xe" path="res://assets/characters/enemies/toad/sounds/death_1.wav" id="16_5yy20"]
 [ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="16_e60ta"]
 [ext_resource type="AudioStream" uid="uid://6vdufmbcl37m" path="res://assets/characters/enemies/toad/sounds/death_2.wav" id="17_3ntgq"]
+[ext_resource type="PackedScene" uid="uid://cfncie03lkyhd" path="res://assets/characters/enemies/toad/baby/toad_baby.tscn" id="17_pia2t"]
 [ext_resource type="AudioStream" uid="uid://vlq3ry4emg84" path="res://assets/characters/enemies/toad/sounds/death_3.wav" id="18_e60ta"]
 [ext_resource type="AudioStream" uid="uid://ckp5qw3vlg43t" path="res://assets/characters/enemies/toad/sounds/death_4.wav" id="19_ium2c"]
 [ext_resource type="AudioStream" uid="uid://dkxeflfjttqol" path="res://assets/characters/enemies/toad/sounds/death_5.wav" id="20_antwl"]
@@ -291,6 +292,9 @@ script = ExtResource("3_s5vfd")
 wait_time = 0.1
 next_state = NodePath("../../Attack/LookAtPlayerState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("17_pia2t")
 
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("12_ons1q")]
 

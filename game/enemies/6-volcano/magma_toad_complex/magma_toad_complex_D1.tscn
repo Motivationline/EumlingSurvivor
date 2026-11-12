@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c0stg7vcqnxrc" path="res://assets/characters/enemies/toad/toad_prefab.tscn" id="9_ug13t"]
 [ext_resource type="PackedScene" uid="uid://cmvibss2u7woe" path="res://game/hitbox/hitbox.tscn" id="10_ug13t"]
 [ext_resource type="PackedScene" uid="uid://cii4n42sv8t0e" path="res://game/hurtbox/hurtbox.tscn" id="11_3i7kj"]
+[ext_resource type="PackedScene" uid="uid://cfncie03lkyhd" path="res://assets/characters/enemies/toad/baby/toad_baby.tscn" id="11_xxkaf"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="12_jnb76"]
 [ext_resource type="AudioStream" uid="uid://dhj41c6f3q7xe" path="res://assets/characters/enemies/toad/sounds/death_1.wav" id="13_dlkr6"]
 [ext_resource type="AudioStream" uid="uid://6vdufmbcl37m" path="res://assets/characters/enemies/toad/sounds/death_2.wav" id="14_37r8w"]
@@ -218,6 +219,9 @@ random = true
 max_wait_time = 0.5
 next_state = NodePath("../WaitForTimeXState")
 metadata/_custom_type_script = "uid://cd6d7qdolbapn"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("11_xxkaf")
 
 [node name="Toad" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=1388801067 instance=ExtResource("9_ug13t")]
 
