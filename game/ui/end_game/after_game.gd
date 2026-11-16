@@ -26,6 +26,8 @@ func _click() -> void:
 		%ContinueButton.show()
 		%Stats.hide()
 		%Stats/Arrow.show()
+		await get_tree().create_timer(1).timeout
+		%ContinueButton.grab_focus()
 	progress += 1
 
 var active_press: bool = false
@@ -51,7 +53,9 @@ func _on_continue_button_pressed() -> void:
 func _on_forward_arrow_pressed() -> void:
 	%NewEumlingInfo.show()
 	%Stats.hide()
+	%NewEumlingInfo/Arrow.grab_focus()
 
 func _on_back_arrow_pressed() -> void:
 	%NewEumlingInfo.hide()
 	%Stats.show()
+	%Stats/Arrow.grab_focus()

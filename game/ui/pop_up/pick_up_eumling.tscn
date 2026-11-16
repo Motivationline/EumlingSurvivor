@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://drn335i4omarh" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial_visual.tscn" id="7_j7bcv"]
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="8_amhc8"]
 [ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="13_lcb6e"]
+[ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="14_bk87j"]
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="14_rnpr1"]
 [ext_resource type="PackedScene" uid="uid://ccro7upfieua2" path="res://game/ui/eumlex/ripped_out_page.tscn" id="15_mn3nd"]
 [ext_resource type="Texture2D" uid="uid://c40q8petlro1j" path="res://assets/ui/Buttons/ButtonBook.png" id="16_j7bcv"]
@@ -172,7 +173,7 @@ transform = Transform3D(1, 0, 0, 0, 0.0004475872, 0.99999994, 0, -0.99999994, 0.
 transform = Transform3D(-1, 0, -8.742278e-08, -5.7208172e-08, 0.75616133, 0.6543852, 6.610573e-08, 0.6543852, -0.75616133, -5.9206994e-17, 0.8124004, -0.54282486)
 projection = 1
 
-[node name="ContinueButton" type="TextureButton" parent="." unique_id=80424771]
+[node name="ContinueButton" type="TextureButton" parent="." unique_id=80424771 groups=["InputMethodSensitive"]]
 unique_name_in_owner = true
 layout_mode = 0
 anchor_left = 0.5
@@ -245,4 +246,10 @@ focus_previous = NodePath("../VBoxContainer/PlayButton")
 texture_normal = ExtResource("16_j7bcv")
 texture_focused = ExtResource("17_amhc8")
 
+[node name="InputMethodDetector" type="Node" parent="." unique_id=1651867480]
+script = ExtResource("14_bk87j")
+button_icon_layer = ExtResource("17_amhc8")
+metadata/_custom_type_script = "uid://0ev8qorbgey0"
+
 [connection signal="pressed" from="ContinueButton" to="." method="next"]
+[connection signal="visibility_changed" from="ContinueButton" to="ContinueButton" method="grab_focus"]

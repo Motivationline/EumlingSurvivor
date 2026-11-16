@@ -41,6 +41,8 @@
 [ext_resource type="AudioStream" uid="uid://dfu861o1m18xx" path="res://assets/sound/ui/eumlex/click_6.wav" id="31_bt128"]
 [ext_resource type="Texture2D" uid="uid://x3fv7l135fu0" path="res://assets/ui/Map/portal_lava.png" id="31_h87jw"]
 [ext_resource type="Texture2D" uid="uid://c4ldmcilt2tlp" path="res://assets/ui/Map/portal_beach.png" id="32_4f41a"]
+[ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="42_q5hyn"]
+[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/focus_button.png" id="43_48btb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("14_orh8k")
@@ -1283,7 +1285,7 @@ label_size = Vector2i(149, 53)
 max_font_size = 32
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
-[node name="CloseButton" type="TextureButton" parent="Book" unique_id=86270587]
+[node name="CloseButton" type="TextureButton" parent="Book" unique_id=86270587 groups=["InputMethodSensitive"]]
 z_index = 2
 layout_mode = 0
 offset_left = 1664.0
@@ -1341,6 +1343,11 @@ volume_db = -4.0
 [node name="Close" parent="SoundEffectManager" unique_id=597591076 instance=ExtResource("25_eumhd")]
 stream = ExtResource("30_7xmmu")
 volume_db = -4.0
+
+[node name="InputMethodDetector" type="Node" parent="." unique_id=960954201]
+script = ExtResource("42_q5hyn")
+button_icon_layer = ExtResource("43_48btb")
+metadata/_custom_type_script = "uid://0ev8qorbgey0"
 
 [connection signal="pressed" from="Book/TabPanel/OrangeButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/GreenButton" to="." method="_on_tab_pressed" flags=18]

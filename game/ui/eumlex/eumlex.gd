@@ -4,6 +4,7 @@ const EUMLING_BUTTON = preload("uid://b6vj3geh4ibvg")
 const SELECTION_OVERLAY = preload("uid://kny1jc4mmgwc")
 
 var selection_overlay: TextureRect;
+signal closed
 
 @export var tabs_and_containers: Dictionary[TextureButton, Panel]
 @export var eumling_type_and_container: Dictionary[Enum.EUMLING_TYPE, Container]
@@ -43,11 +44,13 @@ func _ready() -> void:
 func _on_close_button_pressed() -> void:
 	sound_effect_manager.play_sound("Close")
 	hide()
+	closed.emit()
 
 func update_visuals():
 	sound_effect_manager.play_sound("Open")
 	_update_buttons()
 	_update_type_counters_and_new_markings()
+	$Book/CloseButton.grab_focus()
 
 func _update_buttons():
 	if selection_overlay and selection_overlay.get_parent():
