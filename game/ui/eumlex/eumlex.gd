@@ -8,8 +8,8 @@ signal closed
 
 @export var tabs_and_containers: Dictionary[TextureButton, Panel]
 @export var eumling_type_and_container: Dictionary[Enum.EUMLING_TYPE, Container]
-@export var sound_effect_manager:SoundEffectManager
-signal eumling_clicked(eumling:Eumling)
+@export var sound_effect_manager: SoundEffectManager
+signal eumling_clicked(eumling: Eumling)
 
 func _on_tab_pressed(tab: TextureButton):
 	if not tab: return
@@ -62,6 +62,13 @@ func _update_buttons():
 		for eumling in category:
 			setup_button(eumling)
 
+func _shortcut_input(event) -> void:
+	if event.is_action_pressed("debug_unlock_eumlex"):
+		for type in Data._locked_eumlings:
+			for i in Data._locked_eumlings[type].size():
+				Data._unlock_eumling(type)
+				
+		update_visuals()
 
 func setup_button(eumling: Eumling):
 	var container = eumling_type_and_container.get(eumling.type)
@@ -95,7 +102,6 @@ func select_eumling(btn: EumlingButton, eumling: Eumling):
 		btn.update_visuals()
 
 	eumling_clicked.emit(eumling)
-
 
 # func _unhandled_key_input(event: InputEvent) -> void:
 # 	if event.is_action_pressed("debug_gamble"):
