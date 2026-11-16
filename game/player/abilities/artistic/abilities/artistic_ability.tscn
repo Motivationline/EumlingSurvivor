@@ -1,11 +1,27 @@
 [gd_scene format=3 uid="uid://b2ndvg1scbgak"]
 
 [ext_resource type="Script" uid="uid://l7xv2px3hlep" path="res://game/player/abilities/artistic/abilities/artistic_ability.gd" id="1_c7pbk"]
+[ext_resource type="Script" uid="uid://bk3te1ounou82" path="res://game/player/abilities/artistic/abilities/mesh_polygon_3d.gd" id="2_mmry2"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mmry2"]
+_surfaces = [{
+"aabb": AABB(-0.75, 0, -0.5, 1.5, 1e-05, 1.25),
+"format": 34359742465,
+"index_count": 9,
+"index_data": PackedByteArray(4, 0, 0, 0, 1, 0, 1, 0, 2, 0, 3, 0, 3, 0, 4, 0, 1, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 191, 0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 128, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 128, 62)
+}]
 
 [node name="ArtisticAbility" type="Node3D" unique_id=148235146 node_paths=PackedStringArray("polygons")]
 script = ExtResource("1_c7pbk")
-polygons = [NodePath("VisiblePolygon")]
+polygons = [NodePath("MeshPolygon3D")]
 
-[node name="VisiblePolygon" type="CSGPolygon3D" parent="." unique_id=1412836692]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-depth = 0.2
+[node name="MeshPolygon3D" type="MeshInstance3D" parent="." unique_id=713443864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("ArrayMesh_mmry2")
+script = ExtResource("2_mmry2")
+polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, 0.75, 0.25, 0, 0.75, -0.75, 0.25)
+metadata/_custom_type_script = "uid://bk3te1ounou82"

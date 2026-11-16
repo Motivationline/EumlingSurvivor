@@ -2,7 +2,7 @@ class_name ArtisticAbility extends Node3D
 
 @export var color: Color
 
-@export var polygons: Array[CSGPolygon3D]
+@export var polygons: Array[MeshPolygon3D]
 @export var collisions: Array[CollisionPolygon3D]
 @export var duration: float = 3.0
 

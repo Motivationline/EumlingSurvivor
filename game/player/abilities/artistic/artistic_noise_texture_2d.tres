@@ -1,0 +1,14 @@
+[gd_resource type="NoiseTexture2D" format=3 uid="uid://o352yekeke8b"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ej5me"]
+fractal_type = 3
+fractal_octaves = 2
+fractal_lacunarity = 0.5
+fractal_gain = 2.0
+fractal_ping_pong_strength = 1.5
+domain_warp_type = 2
+
+[resource]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ej5me")
+seamless = true

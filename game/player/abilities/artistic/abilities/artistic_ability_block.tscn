@@ -1,21 +1,39 @@
 [gd_scene format=3 uid="uid://dg100dij26do3"]
 
 [ext_resource type="PackedScene" uid="uid://b2ndvg1scbgak" path="res://game/player/abilities/artistic/abilities/artistic_ability.tscn" id="1_worht"]
+[ext_resource type="Shader" uid="uid://cvmafaj1d4afb" path="res://game/player/abilities/artistic/artistic_shader.gdshader" id="2_rq4nd"]
+[ext_resource type="Texture2D" uid="uid://o352yekeke8b" path="res://game/player/abilities/artistic/artistic_noise_texture_2d.tres" id="3_5r0ur"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_worht"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwnxv"]
+render_priority = 0
+shader = ExtResource("2_rq4nd")
+shader_parameter/paint_color = Color(0.33600003, 0.59893334, 0.8, 1)
+shader_parameter/paint_texture = ExtResource("3_5r0ur")
+shader_parameter/paint_scale = 0.4
+shader_parameter/paint_offset = Vector2(7.6386266, 4.6408687)
+shader_parameter/polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, 0.75, 0.25, 0, 0.75, -0.75, 0.25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/polygon_size = 5
+shader_parameter/fade = 0.15
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rq4nd"]
-transparency = 1
-blend_mode = 1
-albedo_color = Color(0, 0, 1, 0.52156866)
+[sub_resource type="ArrayMesh" id="ArrayMesh_bm8kl"]
+_surfaces = [{
+"aabb": AABB(-0.75, 0, -0.5, 1.5, 1e-05, 1.25),
+"format": 34359742465,
+"index_count": 9,
+"index_data": PackedByteArray(4, 0, 0, 0, 1, 0, 1, 0, 2, 0, 3, 0, 3, 0, 4, 0, 1, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 191, 0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 128, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 128, 62)
+}]
 
 [node name="ArtisticAbilityBlock" unique_id=148235146 node_paths=PackedStringArray("collisions") instance=ExtResource("1_worht")]
 color = Color(0, 0.14509805, 1, 0.6509804)
 collisions = [NodePath("StaticBody3D/CollisionPolygon3D")]
 
-[node name="VisiblePolygon" parent="." index="0" unique_id=1412836692]
-material_override = SubResource("StandardMaterial3D_worht")
-material = SubResource("StandardMaterial3D_rq4nd")
+[node name="MeshPolygon3D" parent="." index="0" unique_id=713443864]
+material_override = SubResource("ShaderMaterial_hwnxv")
+mesh = SubResource("ArrayMesh_bm8kl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1124239728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
