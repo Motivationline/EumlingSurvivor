@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bxpogqajum68j" path="res://assets/models/6-volcano/portal/portal_volcano_c.glb" id="1_wi6yw"]
 [ext_resource type="Texture2D" uid="uid://xhwkbpsdwste" path="res://assets/vfx/portal/vornoi.png" id="2_42ssq"]
 [ext_resource type="ArrayMesh" uid="uid://5so6uqwin7g3" path="res://assets/vfx/portal/portal_mesh.res" id="3_jwrbh"]
-[ext_resource type="PackedScene" uid="uid://cps3kdcef7kl1" path="res://assets/characters/eumling/mini_eumling/conventional_logik/reveal/mini_conventional_logik_reveal.tscn" id="4_jwrbh"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_2ngya"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
@@ -85,6 +84,3 @@ shader_parameter/Texture2DParameter = ExtResource("2_42ssq")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=1553474290]
 material_override = SubResource("ShaderMaterial_qqie1")
 mesh = ExtResource("3_jwrbh")
-
-[node name="mini_conventional_logik" parent="." index="2" unique_id=828876606 instance=ExtResource("4_jwrbh")]
-transform = Transform3D(0.40739277, 0, -0.91325307, 0, 1, 0, 0.91325307, 0, 0.40739277, 0.015985012, 1.75058, -0.6640509)
