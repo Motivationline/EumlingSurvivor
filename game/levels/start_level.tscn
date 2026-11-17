@@ -254,8 +254,8 @@ item/4/preview = SubResource("ImageTexture_dira7")
 
 [node name="Level" unique_id=824724976 node_paths=PackedStringArray("portals", "portal_positions") instance=ExtResource("1_45xys")]
 script = ExtResource("2_3gvfh")
-portals = [NodePath(""), NodePath(""), NodePath("")]
-portal_positions = [NodePath("Portals/Marker3D"), NodePath("Portals/Marker3D2")]
+portals = [null, null, null]
+portal_positions = [NodePath("Portals/Marker3D"), NodePath("Portals/Marker3D3")]
 music = 13
 
 [node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" parent_id_path=PackedInt32Array(141977342) index="1" unique_id=2056955841]
@@ -279,12 +279,9 @@ current = true
 [node name="Portals" type="Node3D" parent="." index="8" unique_id=237722859]
 
 [node name="Marker3D" type="Marker3D" parent="Portals" index="0" unique_id=312409220]
-transform = Transform3D(-4.3711385e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.3711385e-08, 3, 0.5, -2.053349)
+transform = Transform3D(-4.3711385e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.3711385e-08, 1.5, 0.5, -3.553349)
 
-[node name="Marker3D2" type="Marker3D" parent="Portals" index="1" unique_id=1195922904]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5, -3.053349)
-
-[node name="Marker3D3" type="Marker3D" parent="Portals" index="2" unique_id=1817860546]
-transform = Transform3D(-4.3711385e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.3711385e-08, -2.9999998, 0.5, -2.053349)
+[node name="Marker3D3" type="Marker3D" parent="Portals" index="1" unique_id=1817860546]
+transform = Transform3D(-4.3711385e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.3711385e-08, -1.4999998, 0.5, -3.553349)
 
 [editable path="Environment/grass/grass__v2"]
