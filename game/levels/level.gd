@@ -36,7 +36,7 @@ const CAGED_MINI_EUMLING = preload("uid://6lim36lw260g")
 const MINI_EUMLING_E = preload("uid://cd212gh71k5cn")
 const MINI_EUMLING_R = preload("uid://ecxm5futmmj4")
 
-var PORTALS = [load("uid://css0jedfj0qmt"), load("uid://c5d58pjp1p4bh"), load("uid://bk5prj6enj3k8")]
+var PORTALS: Dictionary[String, String] = {"Jungle" = "uid://css0jedfj0qmt", "Volcano" = "uid://c5d58pjp1p4bh", "Beach" = "uid://bk5prj6enj3k8"}
 
 
 ## it's a boss level and the cage has been spawned
@@ -70,7 +70,7 @@ func spawn_player(_player: Player):
 		spawn_mini_eumling(type)
 	
 	player.level_start()
-	GlobalMusicManager.request_music(music, MusicTransition.fade_and_start(4,0))
+	GlobalMusicManager.request_music(music, MusicTransition.fade_and_start(4, 0))
 
 func spawn_mini_eumling(type: Enum.EUMLING_TYPE):
 	# only spawn minis that need to follow player
@@ -94,7 +94,7 @@ func _process(_delta: float) -> void:
 		if (enemies.size() <= 0):
 			if is_boss_level:
 				spawn_cage()
-				GlobalMusicManager.request_music(SongList.TRACK.NOTHING,MusicTransition.instant(), true, GlobalMusicManager.current_noise)
+				GlobalMusicManager.request_music(SongList.TRACK.NOTHING, MusicTransition.instant(), true, GlobalMusicManager.current_noise)
 				GlobalMusicManager.request_incidental(SongList.INCIDENTAL.BOSS_DEFEATED, GlobalMusicManager.BUS_ID.MUSIC, 2)
 			else:
 				clear_level()
@@ -168,17 +168,22 @@ func spawn_portals_or_end():
 
 
 func spawn_portals():
-	for p_index in PORTALS.size():
-		if portal_positions.size() < p_index: break
-		var portal = PORTALS[p_index].instantiate() as Node3D
-		var pos = portal_positions[p_index]
+	var areas: Array = AreaPicker.get_potential_areas()
+	areas.shuffle()
+	areas = areas.slice(0, 2)
+	for index in areas.size():
+		if portal_positions.size() < index: break
+		var area = areas[index]
+		var portal = load(PORTALS.get(area.name)).instantiate() as BossPortal
+		var pos = portal_positions[index]
+		portal.setup(area.type)
 		add_child(portal)
 		portal.global_position = pos.global_position
 		portal.global_rotation = pos.global_rotation
-		portal.entered.connect(entered_portal.bind(p_index))
+		portal.entered.connect(entered_portal.bind(area))
 
-func entered_portal(id: int):
-	Data.game_data.levels_to_load = AreaPicker.choose_area_levels_from_index(id)
+func entered_portal(area):
+	Data.game_data.levels_to_load = AreaPicker.choose_area_levels(area)
 	end_level()
 
 

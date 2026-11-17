@@ -16,13 +16,13 @@ height = 1.5
 
 [node name="BossPortal" type="Node3D" unique_id=564679602]
 script = ExtResource("1_uqlhb")
-mini_eumlinge = Dictionary[String, PackedScene]({
-"A": ExtResource("2_uqlhb"),
-"C": ExtResource("7_dmcye"),
-"E": ExtResource("6_ejpd8"),
-"I": ExtResource("3_vqiq0"),
-"R": ExtResource("2_rpyn0"),
-"S": ExtResource("5_lx5mc")
+eumlings = Dictionary[int, PackedScene]({
+0: ExtResource("2_uqlhb"),
+1: ExtResource("7_dmcye"),
+2: ExtResource("6_ejpd8"),
+3: ExtResource("3_vqiq0"),
+4: ExtResource("2_rpyn0"),
+5: ExtResource("5_lx5mc")
 })
 
 [node name="ExitArea" type="Area3D" parent="." unique_id=1873846579]
@@ -45,5 +45,5 @@ shape = SubResource("CylinderShape3D_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -1)
 shape = SubResource("CylinderShape3D_g4v7s")
 
-[node name="mini_eumling_parent" type="Node3D" parent="." unique_id=1284548403]
+[node name="MiniEumlingParent" type="Node3D" parent="." unique_id=1284548403]
 transform = Transform3D(0.17073223, 0, -0.98531747, 0, 1, 0, 0.98531747, 0, 0.17073223, 0.014624417, 1.764204, -0.6474045)

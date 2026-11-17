@@ -5,9 +5,7 @@ extends Level
 
 func _ready() -> void:
 	super()
-	for index in portals.size():
-		var portal = portals[index]
-		portal.entered.connect(entered_portal.bind(index)) 
+	spawn_portals()
 
 func _process(_delta: float) -> void:
 	if (Engine.is_editor_hint()): return
