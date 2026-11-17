@@ -1,5 +1,8 @@
 class_name BossPortal extends Node3D
 
+
+@export var mini_eumlinge:Dictionary[String,PackedScene]
+
 signal entered
 
 func _ready() -> void:
