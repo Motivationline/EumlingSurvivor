@@ -352,7 +352,7 @@ albedo_texture = ExtResource("9_cxf2i")
 script = ExtResource("1_eloi7")
 player_spawn = NodePath("PlayerSpawnMarker")
 goal_area = NodePath("GoalArea")
-portal_positions = [NodePath("Portals/Marker3D"), NodePath("Portals/Marker3D2"), NodePath("Portals/Marker3D3")]
+portal_positions = [NodePath("Portals/Marker3D"), NodePath("Portals/Marker3D2")]
 music = 1
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=974191959]
@@ -618,13 +618,10 @@ multimesh = SubResource("MultiMesh_6iiev")
 [node name="Portals" type="Node3D" parent="." unique_id=2056166030]
 
 [node name="Marker3D" type="Marker3D" parent="Portals" unique_id=131678905]
-transform = Transform3D(0.49999997, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.49999997, -2.6821852, 0, 0)
+transform = Transform3D(0.49999997, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.49999997, -2, 0, 0)
 
 [node name="Marker3D2" type="Marker3D" parent="Portals" unique_id=1968600119]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-
-[node name="Marker3D3" type="Marker3D" parent="Portals" unique_id=626995210]
-transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.50000006, 3.253746, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0, 0)
 
 [node name="OffscreenViewport" parent="." unique_id=966040994 instance=ExtResource("15_cbctn")]
 size = Vector2i(512, 512)
