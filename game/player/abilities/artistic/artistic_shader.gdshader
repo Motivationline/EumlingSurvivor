@@ -1,9 +1,13 @@
 shader_type spatial;
 
+render_mode specular_disabled;
+
 uniform vec4 paint_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform sampler2D paint_texture;
 uniform float paint_scale = 1.0;
 uniform vec2 paint_offset;
+
+uniform sampler2D normal_texture : hint_normal;
 
 const int MAX_VERTICES = 32;
 uniform vec2 polygon[MAX_VERTICES];
@@ -44,15 +48,13 @@ float unsigned_distance() {
 void fragment() {
     vec2 uv = (polygon_pos + paint_offset) * paint_scale;
 
-	vec4 sample = texture(paint_texture, uv);
-	float paint = sample.r;
-
 	float d = unsigned_distance();
-	float d_random = d + sample.g * -0.3;
+	float d_random = d + texture(paint_texture, uv).r * -0.3;
 
 	float masked = step(fade, d);
 	float masked_smooth = smoothstep(0.0, fade, d_random);
 
     ALBEDO = paint_color.rgb;
 	ALPHA = paint_color.a * masked_smooth;
+	NORMAL_MAP = texture(normal_texture, uv).xyz;
 }

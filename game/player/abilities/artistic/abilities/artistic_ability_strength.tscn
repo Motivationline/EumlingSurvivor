@@ -5,29 +5,19 @@
 [ext_resource type="Script" uid="uid://bt7pqq53wsp6o" path="res://game/upgrade_area/upgrade_area.gd" id="2_rl5fb"]
 [ext_resource type="Texture2D" uid="uid://o352yekeke8b" path="res://game/player/abilities/artistic/artistic_noise_texture_2d.tres" id="3_na0fo"]
 [ext_resource type="Script" uid="uid://b1unwehw2gxjk" path="res://game/upgrade/upgrade.gd" id="3_nlb1a"]
+[ext_resource type="Texture2D" uid="uid://dnqx06qq85pvi" path="res://game/player/abilities/artistic/artistic_normal_texture_2d.tres" id="3_pgdww"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hwnxv"]
 render_priority = 0
 shader = ExtResource("2_nlb1a")
-shader_parameter/paint_color = Color(0.8, 0.3592, 0.33600003, 1)
+shader_parameter/paint_color = Color(0.65, 0.2855667, 0.273, 1)
 shader_parameter/paint_texture = ExtResource("3_na0fo")
 shader_parameter/paint_scale = 0.4
-shader_parameter/paint_offset = Vector2(2.8057845, 1.8432407)
-shader_parameter/polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, 0.75, 0.25, 0, 0.75, -0.75, 0.25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/paint_offset = Vector2(4.4650617, 9.174279)
+shader_parameter/normal_texture = ExtResource("3_pgdww")
+shader_parameter/polygon = PackedVector2Array(-0.7, -0.5, 0.5, -0.5, 0.75, 0.25, 0, 0.75, -0.75, 0.25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/polygon_size = 5
 shader_parameter/fade = 0.15
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_nlb1a"]
-_surfaces = [{
-"aabb": AABB(-0.75, 0, -0.5, 1.5, 1e-05, 1.25),
-"format": 34359742465,
-"index_count": 9,
-"index_data": PackedByteArray(4, 0, 0, 0, 1, 0, 1, 0, 2, 0, 3, 0, 3, 0, 4, 0, 1, 0),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 5,
-"vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 191, 0, 0, 64, 63, 0, 0, 0, 0, 0, 0, 128, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 63, 0, 0, 64, 191, 0, 0, 0, 0, 0, 0, 128, 62)
-}]
 
 [sub_resource type="Resource" id="Resource_na0fo"]
 script = ExtResource("3_nlb1a")
@@ -41,7 +31,7 @@ color = Color(1, 0, 0, 0.7058824)
 
 [node name="MeshPolygon3D" parent="." index="0" unique_id=713443864]
 material_override = SubResource("ShaderMaterial_hwnxv")
-mesh = SubResource("ArrayMesh_nlb1a")
+polygon = PackedVector2Array(-0.7, -0.5, 0.5, -0.5, 0.75, 0.25, 0, 0.75, -0.75, 0.25)
 
 [node name="UpgradeArea" type="Area3D" parent="." index="1" unique_id=1699440403]
 collision_layer = 256

@@ -7,7 +7,7 @@ const MAX_VERTICES := 32
 var polygon: PackedVector2Array = PackedVector2Array([Vector2(-0.5, -0.5), Vector2(0.5, -0.5), Vector2(0.75, 0.25), Vector2(0.0, 0.75), Vector2(-0.75, 0.25)]):
 	set(value):
 		polygon = value
-		mesh = create_polygon_mesh_3d(value)
+		mesh = create_polygon_mesh_3d(polygon)
 		update_shader_parameters()
 
 var polygon_uniform: PackedVector2Array
@@ -15,6 +15,12 @@ var polygon_uniform: PackedVector2Array
 func _init() -> void:
 	polygon_uniform = PackedVector2Array()
 	polygon_uniform.resize(MAX_VERTICES)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_EDITOR_PRE_SAVE:
+		mesh = null
+	elif what == NOTIFICATION_EDITOR_POST_SAVE:
+		mesh = create_polygon_mesh_3d(polygon)
 
 func update_shader_parameters() -> void:
 	assert(polygon.size() <= MAX_VERTICES, "Polygon cannot have more than %d vertices." % MAX_VERTICES)
@@ -32,13 +38,22 @@ static func create_polygon_mesh_3d(points: PackedVector2Array) -> ArrayMesh:
 	var indices: PackedInt32Array = Geometry2D.triangulate_polygon(points)
 	
 	var vertices := PackedVector3Array()
-	
+	var normals := PackedVector3Array()
+	var uvs := PackedVector2Array()
+	var tangents := PackedFloat32Array()
+
 	for p in points:
 		vertices.append(Vector3(p.x, 0.0, p.y))
+		normals.append(Vector3.UP)
+		uvs.append(p)
+		tangents.append_array([1.0, 0.0, 0.0, 1.0])
 	
 	var surface_array := []
 	surface_array.resize(Mesh.ARRAY_MAX)
 	surface_array[Mesh.ARRAY_VERTEX] = vertices
+	surface_array[Mesh.ARRAY_NORMAL] = normals
+	surface_array[Mesh.ARRAY_TEX_UV] = uvs
+	surface_array[Mesh.ARRAY_TANGENT] = tangents
 	surface_array[Mesh.ARRAY_INDEX] = indices
 	
 	var arr_mesh := ArrayMesh.new()
