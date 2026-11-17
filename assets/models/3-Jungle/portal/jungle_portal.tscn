@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ck4wb0raq0lk0" path="res://assets/models/3-Jungle/portal/jungle_portal.glb" id="1_slb6d"]
 [ext_resource type="Texture2D" uid="uid://xhwkbpsdwste" path="res://assets/vfx/portal/vornoi.png" id="2_dhalo"]
 [ext_resource type="ArrayMesh" uid="uid://5so6uqwin7g3" path="res://assets/vfx/portal/portal_mesh.res" id="3_dhalo"]
+[ext_resource type="PackedScene" uid="uid://drxv2fntob1we" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/reveal/mini_eumling_artistisch_reveal.tscn" id="4_ppbbf"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_2ngya"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
@@ -84,3 +85,6 @@ shader_parameter/Texture2DParameter = ExtResource("2_dhalo")
 [node name="portal" type="MeshInstance3D" parent="." index="1" unique_id=927279063]
 material_override = SubResource("ShaderMaterial_dhalo")
 mesh = ExtResource("3_dhalo")
+
+[node name="mini_eumling_var1" parent="." index="2" unique_id=752790786 instance=ExtResource("4_ppbbf")]
+transform = Transform3D(0.46232992, 0, -0.88670796, 0, 1, 0, 0.88670796, 0, 0.46232992, -0.167143, 1.6171297, -0.5629279)
