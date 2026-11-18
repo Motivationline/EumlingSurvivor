@@ -82,6 +82,8 @@ func update_mesh() -> void:
 	vertices[-1] += end_direction * half_width
 
 	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
+	mesh.surface_set_normal(Vector3.UP)
+	mesh.surface_set_tangent(Plane(1.0, 0.0, 0.0, 1.0))
 
 	for i in range(0, vertices.size() - 2, 2):
 		var a := vertices[i]

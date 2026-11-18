@@ -44,20 +44,17 @@ static func create_polygon_mesh_3d(points: PackedVector2Array) -> ArrayMesh:
 	
 	var vertices := PackedVector3Array()
 	var normals := PackedVector3Array()
-	var uvs := PackedVector2Array()
 	var tangents := PackedFloat32Array()
 
 	for p in points:
 		vertices.append(Vector3(p.x, 0.0, p.y))
 		normals.append(Vector3.UP)
-		uvs.append(p)
 		tangents.append_array([1.0, 0.0, 0.0, 1.0])
 	
 	var surface_array := []
 	surface_array.resize(Mesh.ARRAY_MAX)
 	surface_array[Mesh.ARRAY_VERTEX] = vertices
 	surface_array[Mesh.ARRAY_NORMAL] = normals
-	surface_array[Mesh.ARRAY_TEX_UV] = uvs
 	surface_array[Mesh.ARRAY_TANGENT] = tangents
 	surface_array[Mesh.ARRAY_INDEX] = indices
 	
@@ -65,14 +62,14 @@ static func create_polygon_mesh_3d(points: PackedVector2Array) -> ArrayMesh:
 	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, surface_array)
 	return arr_mesh
 
-static func enlarge_polygon(polygon: PackedVector2Array, offset: float) -> PackedVector2Array:
+static func enlarge_polygon(p_polygon: PackedVector2Array, offset: float) -> PackedVector2Array:
 	var centroid := Vector2.ZERO
-	for point in polygon:
+	for point in p_polygon:
 		centroid += point
-	centroid /= polygon.size()
+	centroid /= p_polygon.size()
 
 	var enlarged := PackedVector2Array()
-	for point in polygon:
+	for point in p_polygon:
 		var direction = (point - centroid).normalized()
 		enlarged.append(point + direction * offset)
 

@@ -24,9 +24,6 @@ varying vec2 world_pos;
 void vertex() {
 	local_pos = VERTEX.xz;
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xz;
-	NORMAL = vec3(0.0, 1.0, 0.0);
-	TANGENT = vec3(1.0, 0.0, 0.0);
-	BINORMAL = vec3(0.0, 0.0, 1.0);
 }
 
 float segment_distance(vec2 p, vec2 a, vec2 b) {
