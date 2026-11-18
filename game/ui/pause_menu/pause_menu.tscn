@@ -8,9 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b4puyhx8d2gim" path="res://assets/ui/Buttons/PlayButton.png" id="5_edo3p"]
 [ext_resource type="Texture2D" uid="uid://bsh5cti8q2hqs" path="res://assets/ui/pauseMenu/PaperRectangleInfo.png" id="10_6rxva"]
 [ext_resource type="PackedScene" uid="uid://54ec674jmwbg" path="res://game/ui/pause_menu/settings.tscn" id="20_qd2kc"]
-[ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="21_bwtpp"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="21_huhjg"]
-[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/focus_button.png" id="22_41g3d"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="22_nmosl"]
 [ext_resource type="AudioStream" uid="uid://cybo744j6vhtf" path="res://assets/sound/ui/pause/open.wav" id="23_1tpup"]
 [ext_resource type="AudioStream" uid="uid://dmw7tqg7s60xk" path="res://assets/sound/ui/pause/close.wav" id="24_7cjl0"]
@@ -76,7 +74,7 @@ grow_vertical = 2
 scale = Vector2(0.7309895, 0.7309895)
 texture = ExtResource("1_1rr57")
 
-[node name="EumlingSticker1" type="TextureButton" parent="BackdropBackpack" unique_id=1925753235]
+[node name="EumlingSticker1" type="TextureButton" parent="BackdropBackpack" unique_id=1925753235 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 715.4686
 offset_top = 306.434
@@ -84,9 +82,12 @@ offset_right = 858.4686
 offset_bottom = 458.43402
 rotation = 0.22211742
 scale = Vector2(1.6496216, 1.6496216)
+focus_neighbor_left = NodePath("../EumlingSticker3")
+focus_neighbor_top = NodePath("../EumlingSticker2")
+focus_neighbor_right = NodePath("../../left_arrow")
 texture_normal = ExtResource("2_062ls")
 
-[node name="EumlingSticker2" type="TextureButton" parent="BackdropBackpack" unique_id=963138109]
+[node name="EumlingSticker2" type="TextureButton" parent="BackdropBackpack" unique_id=963138109 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 361.1543
 offset_top = 102.60066
@@ -94,9 +95,12 @@ offset_right = 504.15433
 offset_bottom = 254.60066
 rotation = 0.06379168
 scale = Vector2(1.6496218, 1.6496218)
+focus_neighbor_top = NodePath("../../SettingsButton")
+focus_neighbor_right = NodePath("../EumlingSticker1")
+focus_neighbor_bottom = NodePath("../EumlingSticker3")
 texture_normal = ExtResource("2_062ls")
 
-[node name="EumlingSticker3" type="TextureButton" parent="BackdropBackpack" unique_id=2089497161]
+[node name="EumlingSticker3" type="TextureButton" parent="BackdropBackpack" unique_id=2089497161 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 253.08154
 offset_top = 533.5235
@@ -104,6 +108,8 @@ offset_right = 396.08154
 offset_bottom = 685.52356
 rotation = -0.20999965
 scale = Vector2(1.6496218, 1.6496218)
+focus_neighbor_top = NodePath("../EumlingSticker2")
+focus_neighbor_right = NodePath("../EumlingSticker1")
 texture_normal = ExtResource("2_062ls")
 
 [node name="InfoEumling" type="TextureRect" parent="." unique_id=686867953]
@@ -148,6 +154,8 @@ offset_left = 78.0
 offset_top = 36.0
 offset_right = 210.0
 offset_bottom = 180.0
+focus_neighbor_right = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../BackdropBackpack/EumlingSticker2")
 texture_normal = ExtResource("3_utddp")
 
 [node name="PlayButton" type="TextureButton" parent="." unique_id=555258968 groups=["InputMethodSensitive"]]
@@ -156,23 +164,30 @@ offset_left = 1709.0
 offset_top = 36.0
 offset_right = 1841.0
 offset_bottom = 180.0
+focus_neighbor_left = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../right_arrow")
 shortcut = SubResource("Shortcut_vyndw")
 texture_normal = ExtResource("5_edo3p")
 
-[node name="right_arrow" type="TextureButton" parent="." unique_id=1292272712]
+[node name="right_arrow" type="TextureButton" parent="." unique_id=1292272712 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 1767.0
 offset_top = 490.0
 offset_right = 1838.0
 offset_bottom = 572.0
+focus_neighbor_left = NodePath("../left_arrow")
+focus_neighbor_top = NodePath("../PlayButton")
 texture_normal = ExtResource("25_kq7qj")
 
-[node name="left_arrow" type="TextureButton" parent="." unique_id=591294064]
+[node name="left_arrow" type="TextureButton" parent="." unique_id=591294064 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 981.0
 offset_top = 490.0
 offset_right = 1052.0
 offset_bottom = 572.0
+focus_neighbor_left = NodePath("../BackdropBackpack/EumlingSticker1")
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_right = NodePath("../right_arrow")
 texture_normal = ExtResource("25_kq7qj")
 flip_h = true
 
@@ -268,19 +283,17 @@ offset_left = 296.0
 offset_top = 37.0
 offset_right = 428.0
 offset_bottom = 176.0
+focus_neighbor_left = NodePath("../HomeButton")
+focus_neighbor_right = NodePath("../PlayButton")
 texture_normal = ExtResource("31_3yawr")
 
 [node name="Settings" parent="." unique_id=1695909775 instance=ExtResource("20_qd2kc")]
+unique_name_in_owner = true
 visible = false
 z_index = 2
 layout_mode = 1
 
-[node name="InputMethodDetector" type="Node" parent="." unique_id=947817077]
-script = ExtResource("21_bwtpp")
-button_icon_layer = ExtResource("22_41g3d")
-metadata/_custom_type_script = "uid://0ev8qorbgey0"
-
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_resume_button_pressed"]
 [connection signal="visibility_changed" from="PlayButton" to="PlayButton" method="grab_focus"]
-[connection signal="pressed" from="SettingsButton" to="Settings" method="show"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

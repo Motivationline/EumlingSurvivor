@@ -1,8 +1,8 @@
-class_name InputMethodDetector extends Node
-##Place in a ui scene to get elements in the InputMethodSensitive group and enable/disable stuff based on the currently detected Input method.
+extends Node
+
 
 ##The texture placed in the [param texture_focused] of a Button displayed when a controller is hovering it.
-@export var button_icon_layer: Texture2D
+var button_icon_layer: Texture2D
 
 
 const CONTROLLER_SENS_THRESHOLD: float = 0.1
@@ -14,9 +14,10 @@ enum INPUT_METHOD {MOBILE, CONTROLLER, KEYBOARD}
 var current_input_method: INPUT_METHOD
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	button_icon_layer = preload("uid://rvydbyntrvex")
 	if Data.is_on_mobile:
 		switch_input_method(INPUT_METHOD.MOBILE)
-		# queue_free()
 	else:
 		switch_input_method(INPUT_METHOD.KEYBOARD)
 		
@@ -30,20 +31,26 @@ func _input(event):
 		switch_input_method(INPUT_METHOD.CONTROLLER)
 		# print(event)
 
+func refresh_sensitive_nodes() -> void:
+	sensitive_nodes = get_tree().get_nodes_in_group("InputMethodSensitive")
+	if current_input_method == INPUT_METHOD.CONTROLLER:
+		activate_button_icons()
+	else:
+		deactivate_button_icons()
+
 
 func switch_input_method(_new_method: INPUT_METHOD) -> void:
 	current_input_method = _new_method
-	sensitive_nodes = get_tree().get_nodes_in_group("InputMethodSensitive")
 	match _new_method:
 		INPUT_METHOD.MOBILE:
 			deactivate_button_icons()
-			# print("switching to mobile")
+			#print("switching to mobile")
 		INPUT_METHOD.CONTROLLER:
 			activate_button_icons()
-			# print("switching to controller")
+			#print("switching to controller")
 		INPUT_METHOD.KEYBOARD:
 			deactivate_button_icons()
-			# print("switching to keyboard and mouse")
+			#print("switching to keyboard and mouse")
 
 
 func activate_button_icons() -> void:
@@ -53,6 +60,7 @@ func activate_button_icons() -> void:
 
 
 func deactivate_button_icons() -> void:
+	sensitive_nodes = get_tree().get_nodes_in_group("InputMethodSensitive")
 	for node in sensitive_nodes:
 		if node is TextureButton:
 			node.texture_focused = null

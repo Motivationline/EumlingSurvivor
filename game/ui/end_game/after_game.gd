@@ -7,6 +7,7 @@ var progress: int = 0
 signal closed
 
 func _ready() -> void:
+	InputMethodDetector.refresh_sensitive_nodes()
 	var riasec_progress = Data.game_data.get_riasec_progress_as_sorted_array()
 	var max_value = riasec_progress.reduce(func(accum, obj): return max(accum, obj.value), 0)
 	for obj in riasec_progress:

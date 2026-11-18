@@ -9,11 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://drn335i4omarh" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial_visual.tscn" id="7_j7bcv"]
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="8_amhc8"]
 [ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="13_lcb6e"]
-[ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="14_bk87j"]
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="14_rnpr1"]
 [ext_resource type="PackedScene" uid="uid://ccro7upfieua2" path="res://game/ui/eumlex/ripped_out_page.tscn" id="15_mn3nd"]
 [ext_resource type="Texture2D" uid="uid://c40q8petlro1j" path="res://assets/ui/Buttons/ButtonBook.png" id="16_j7bcv"]
-[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/focus_button.png" id="17_amhc8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6rghf"]
 shader = ExtResource("8_amhc8")
@@ -233,7 +231,7 @@ scale = Vector2(1.0512557, 1.0512557)
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_lcb6e")
 
-[node name="EumlexButton" type="TextureButton" parent="." unique_id=147487937]
+[node name="EumlexButton" type="TextureButton" parent="." unique_id=147487937 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 63.0
 offset_top = 790.00006
@@ -244,12 +242,6 @@ focus_neighbor_right = NodePath("../SettingsButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../VBoxContainer/PlayButton")
 texture_normal = ExtResource("16_j7bcv")
-texture_focused = ExtResource("17_amhc8")
-
-[node name="InputMethodDetector" type="Node" parent="." unique_id=1651867480]
-script = ExtResource("14_bk87j")
-button_icon_layer = ExtResource("17_amhc8")
-metadata/_custom_type_script = "uid://0ev8qorbgey0"
 
 [connection signal="pressed" from="ContinueButton" to="." method="next"]
 [connection signal="visibility_changed" from="ContinueButton" to="ContinueButton" method="grab_focus"]

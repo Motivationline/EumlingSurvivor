@@ -40,7 +40,6 @@
 [ext_resource type="PackedScene" uid="uid://54ec674jmwbg" path="res://game/ui/pause_menu/settings.tscn" id="24_a6ejo"]
 [ext_resource type="Texture2D" uid="uid://sniqi7s4m1r0" path="res://assets/vfx/particle_pack/flame_05.png" id="25_nekgt"]
 [ext_resource type="Texture2D" uid="uid://bu8auxyk3gmp4" path="res://assets/vfx/fireball/flare.png" id="25_w4r1y"]
-[ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="40_a6ejo"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0bhyy"]
 dof_blur_far_distance = 54.35
@@ -442,7 +441,6 @@ focus_neighbor_right = NodePath("../SettingsButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../VBoxContainer/PlayButton")
 texture_normal = ExtResource("11_orue0")
-texture_focused = ExtResource("11_egypv")
 
 [node name="NumberCircle" type="TextureRect" parent="UIOverlay/StaticUI/EumlexButton" unique_id=1441941658]
 visible = false
@@ -519,7 +517,6 @@ focus_neighbor_top = NodePath("../../EndGameButton")
 focus_next = NodePath("../../EumlexButton")
 focus_previous = NodePath("../../SettingsButton")
 texture_normal = ExtResource("14_fkgrk")
-texture_focused = ExtResource("11_egypv")
 stretch_mode = 5
 
 [node name="Play" type="Label" parent="UIOverlay/StaticUI/VBoxContainer/PlayButton" unique_id=1330015026]
@@ -925,11 +922,6 @@ transform = Transform3D(-0.4885124, -0.34995764, 0.7993032, 0.027202994, 0.90949
 
 [node name="main_menu_sozial" parent="." unique_id=451026336 instance=ExtResource("23_hutre")]
 transform = Transform3D(0.46461144, 0, -0.18475986, 0, 0.5, 0, 0.18475986, 0, 0.46461144, 9.027449, 0.0061601102, 1.9727275)
-
-[node name="InputMethodDetector" type="Node" parent="." unique_id=2058164604]
-script = ExtResource("40_a6ejo")
-button_icon_layer = ExtResource("11_egypv")
-metadata/_custom_type_script = "uid://0ev8qorbgey0"
 
 [connection signal="tree_entered" from="." to="UIOverlay/StaticUI/VBoxContainer/PlayButton" method="grab_focus" flags=3 binds= [false]]
 [connection signal="pressed" from="UIOverlay/StaticUI/EumlexButton" to="." method="_on_eumlex_button_pressed"]

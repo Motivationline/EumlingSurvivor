@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="5_21ups"]
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="6_m0551"]
 [ext_resource type="Texture2D" uid="uid://crrugw36afvgj" path="res://assets/ui/Buttons/slider_button.png" id="8_k4jjj"]
-[ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="9_ahwhd"]
-[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/focus_button.png" id="10_j7gi6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j7gi6"]
 shader = ExtResource("2_m0551")
@@ -178,11 +176,6 @@ offset_top = 1011.0
 offset_right = 1919.0
 offset_bottom = 1081.0
 text = "Work in Progress - Definitiv Nicht Finales Aussehen"
-
-[node name="InputMethodDetector" type="Node" parent="." unique_id=464069215]
-script = ExtResource("9_ahwhd")
-button_icon_layer = ExtResource("10_j7gi6")
-metadata/_custom_type_script = "uid://0ev8qorbgey0"
 
 [connection signal="pressed" from="BaseControl/Stats/Arrow" to="." method="_on_forward_arrow_pressed"]
 [connection signal="pressed" from="BaseControl/NewEumlingInfo/Arrow" to="." method="_on_back_arrow_pressed"]

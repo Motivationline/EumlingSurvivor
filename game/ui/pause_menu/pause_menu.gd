@@ -14,6 +14,7 @@ func _process(_delta):
 			open()
 
 func open():
+	InputMethodDetector.refresh_sensitive_nodes()
 	sound_effect_manager.play_sound("Open")
 	visible = true
 	is_open = true
@@ -36,3 +37,7 @@ func _on_resume_button_pressed() -> void:
 func _on_home_button_pressed() -> void:
 	close()
 	return_home.emit()
+
+func _on_settings_button_pressed() -> void:
+	%Settings.show()
+	%Settings.grab_focus()

@@ -12,7 +12,9 @@ var eumlingclopedia = EUMLINGCLOPEDIA.instantiate()
 func _ready():
 	if not Data.is_on_mobile:
 		end_game_button.show()
+	get_focus()
 	eumlingclopedia.closed.connect(get_focus)
+	InputMethodDetector.refresh_sensitive_nodes()
 
 func _enter_tree() -> void:
 	update_eumlex_number()

@@ -10,6 +10,7 @@ var currently_visible_text: Label
 
 
 func setup(eumling: Eumling):
+	InputMethodDetector.refresh_sensitive_nodes()
 	get_tree().paused = true
 	var eumling_scene = eumlings.get(eumling.type)
 	if eumling_scene:
