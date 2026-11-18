@@ -6,13 +6,15 @@ extends Ability
 
 @export var tail_particles: Node3D
 
-@onready var tail_curve: Curve3D = $Tail.curve
+@onready var tail: MeshPolygonLine3D = $Tail
 
 var damage: float = 1.0
 
 var points: PackedVector3Array = []
 var points_2d: PackedVector2Array = []
 var times: PackedFloat32Array = []
+
+var paint_offset = Vector2()
 
 @export var strength_ability: PackedScene
 var strength_ability_instance: ArtisticAbility
@@ -30,6 +32,7 @@ var level: Level
 func level_start() -> void:
 	clear_points()
 	strength_ability_instance = strength_ability.instantiate()
+	tail.set_paint_color(strength_ability_instance.mesh_polygon.get_paint_color())
 	level = get_tree().get_first_node_in_group("Level")
 
 func _update():
@@ -55,14 +58,21 @@ func _process(delta: float) -> void:
 			points = points.slice(i)
 			points_2d = points_2d.slice(i)
 			for k in i:
-				tail_curve.remove_point(0)
+				tail.line.remove_at(0);
+				tail.dirty = true
 			break
+	if points.size() == 0:
+		paint_offset = Vector2(randf_range(0,10), randf_range(0,10))
+		tail.set_paint_offset(paint_offset)
+		tail.global_position.y = owner.global_position.y + 0.03
 	if prev_point.distance_squared_to(owner.global_position) > squared_distance_to_check or points.size() == 0:
 		prev_point = owner.global_position
+		var prev_point_2d = Vector2(prev_point.x, prev_point.z)
 		times.append(current_time)
 		points.append(prev_point)
-		points_2d.append(Vector2(prev_point.x, prev_point.z))
-		tail_curve.add_point(prev_point)
+		points_2d.append(prev_point_2d)
+		tail.line.append(prev_point_2d)
+		tail.dirty = true
 
 	# check if we have an overlap to trigger the ability
 	# the way it works for now (probably could be improved a lot) is that it checks whether there is a close point in the list that's not the latest point
@@ -94,10 +104,12 @@ func clear_points():
 	points.clear()
 	points_2d.clear()
 	times.clear()
-	tail_curve.clear_points()
+	tail.line.clear()
+	tail.dirty = true
 
 func update_area(area: ArtisticAbility, polygon_points: PackedVector2Array):
-	area.polygon = polygon_points
+	area.set_polygon(MeshPolygon3D.enlarge_polygon(polygon_points, 0.3)) # slightly enlarge the polygon as to account for the artistic shaders and line width
+	area.mesh_polygon.set_paint_offset(paint_offset)
 	if level:
 		if level != strength_ability_instance.get_parent():
 			level.add_child(strength_ability_instance)

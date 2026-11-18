@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://b2ndvg1scbgak"]
 
 [ext_resource type="Script" uid="uid://l7xv2px3hlep" path="res://game/player/abilities/artistic/abilities/artistic_ability.gd" id="1_c7pbk"]
-[ext_resource type="Script" uid="uid://bk3te1ounou82" path="res://game/player/abilities/artistic/abilities/mesh_polygon_3d.gd" id="2_mmry2"]
+[ext_resource type="Script" uid="uid://bk3te1ounou82" path="res://game/player/abilities/artistic/mesh_polygon_3d.gd" id="2_mmry2"]
 
-[node name="ArtisticAbility" type="Node3D" unique_id=148235146 node_paths=PackedStringArray("polygons")]
+[node name="ArtisticAbility" type="Node3D" unique_id=148235146 node_paths=PackedStringArray("mesh_polygon")]
 script = ExtResource("1_c7pbk")
-polygons = [NodePath("MeshPolygon3D")]
+mesh_polygon = NodePath("MeshPolygon3D")
 
 [node name="MeshPolygon3D" type="MeshInstance3D" parent="." unique_id=713443864]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

@@ -6,6 +6,8 @@ uniform vec4 paint_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform sampler2D paint_texture;
 uniform float paint_scale = 1.0;
 uniform vec2 paint_offset;
+/** Controls how much the paint_texture erodes or roughs up the edges of the object. */
+uniform float paint_roughness = 0.1;
 
 uniform sampler2D normal_texture : hint_normal;
 
@@ -15,10 +17,12 @@ uniform int polygon_size = 0;
 
 uniform float fade = 0.05;
 
-varying vec2 polygon_pos;
+varying vec2 local_pos;
+varying vec2 world_pos;
 
 void vertex() {
-	polygon_pos = VERTEX.xz;
+	local_pos = VERTEX.xz;
+	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xz;
 }
 
 float segment_distance(vec2 p, vec2 a, vec2 b) {
@@ -36,7 +40,7 @@ float unsigned_distance() {
 		int j = (i + 1) % polygon_size;
 
 		d = min(d, segment_distance(
-		    polygon_pos,
+		    local_pos,
 		    polygon[i],
 		    polygon[j]
 		));
@@ -46,15 +50,13 @@ float unsigned_distance() {
 }
 
 void fragment() {
-    vec2 uv = (polygon_pos + paint_offset) * paint_scale;
+    vec2 uv = (world_pos + paint_offset) * paint_scale;
 
 	float d = unsigned_distance();
-	float d_random = d + texture(paint_texture, uv).r * -0.3;
-
-	float masked = step(fade, d);
-	float masked_smooth = smoothstep(0.0, fade, d_random);
-
+	float edge = texture(paint_texture, uv).r * paint_roughness;
+	float mask = smoothstep(edge, edge + fade, d);
+	
     ALBEDO = paint_color.rgb;
-	ALPHA = paint_color.a * masked_smooth;
+	ALPHA = paint_color.a * mask;
 	NORMAL_MAP = texture(normal_texture, uv).xyz;
 }

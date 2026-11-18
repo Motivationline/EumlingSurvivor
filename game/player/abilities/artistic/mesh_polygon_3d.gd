@@ -32,7 +32,12 @@ func update_shader_parameters() -> void:
 		
 	material_override.set_shader_parameter("polygon", polygon_uniform)
 	material_override.set_shader_parameter("polygon_size", polygon.size())
-	material_override.set_shader_parameter("paint_offset", Vector2(randf_range(0,10),randf_range(0,10)))
+
+func set_paint_offset(offset: Vector2):
+	material_override.set_shader_parameter("paint_offset", offset)
+	
+func get_paint_color() -> Color:
+	return material_override.get_shader_parameter("paint_color")
 
 static func create_polygon_mesh_3d(points: PackedVector2Array) -> ArrayMesh:
 	var indices: PackedInt32Array = Geometry2D.triangulate_polygon(points)
@@ -59,3 +64,16 @@ static func create_polygon_mesh_3d(points: PackedVector2Array) -> ArrayMesh:
 	var arr_mesh := ArrayMesh.new()
 	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, surface_array)
 	return arr_mesh
+
+static func enlarge_polygon(polygon: PackedVector2Array, offset: float) -> PackedVector2Array:
+	var centroid := Vector2.ZERO
+	for point in polygon:
+		centroid += point
+	centroid /= polygon.size()
+
+	var enlarged := PackedVector2Array()
+	for point in polygon:
+		var direction = (point - centroid).normalized()
+		enlarged.append(point + direction * offset)
+
+	return enlarged
