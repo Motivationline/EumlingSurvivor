@@ -65,7 +65,7 @@ func _ready() -> void:
 func on_setting_changed(setting, value) -> void:
 	match setting:
 		GraphicsSettings.SETTING.RENDER_SCALE:
-			render_scale_slider.value = value
+			render_scale_slider.set_value_no_signal(value)
 			render_scale_output.text = "%d%%" % (value * 100.0)
 		GraphicsSettings.SETTING.GLOBAL_ILLUMINATION:
 			global_illumination_option.select(global_illumination_option.get_item_index(value))

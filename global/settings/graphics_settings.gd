@@ -63,7 +63,7 @@ var quality_presets: Dictionary = {
 		SETTING.SHADOW: SHADOW_OPTIONS.MEDIUM,
 		SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.MEDIUM,
 		SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
-		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[-2] if FRAME_RATE_OPTIONS.size() > 2 else FRAME_RATE_OPTIONS[0]
+		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[-2] if FRAME_RATE_OPTIONS.size() > 2 else FRAME_RATE_OPTIONS[-1]
 	},
 	QUALITY_PRESET.HIGH: {
 		SETTING.RENDER_SCALE: 1.0,
@@ -73,7 +73,6 @@ var quality_presets: Dictionary = {
 		SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.OFF,
 		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[-1]
 	},
-	QUALITY_PRESET.CUSTOM: {},
 	QUALITY_PRESET.RETRO: {
 		SETTING.RENDER_SCALE: 0.1,
 		SETTING.DYNAMIC_RENDER_SCALE: DYNAMIC_RENDER_SCALE.OFF,
@@ -81,7 +80,8 @@ var quality_presets: Dictionary = {
 		SETTING.DEPTH_OF_FIELD: DEPTH_OF_FIELD_OPTIONS.OFF,
 		SETTING.GLOBAL_ILLUMINATION: GLOBAL_ILLUMINATION_OPTIONS.SSAO,
 		SETTING.TARGET_FRAME_RATE: FRAME_RATE_OPTIONS[0]
-	}
+	},
+	QUALITY_PRESET.CUSTOM: {},
 }
 
 var settings: Dictionary = quality_presets[QUALITY_PRESET.MEDIUM].duplicate()
@@ -207,8 +207,9 @@ func detect_settings():
 	var target_frame_time := 1000.0 / FRAME_RATE_OPTIONS[-1]
 
 	var score := target_frame_time / average_frame_time
-	var preset := int(clamp(score, 1.0, 3.0)) as QUALITY_PRESET
+	var preset := int(clamp(score, 1.0, 3.0)) - 1 as QUALITY_PRESET
 	
 	print_rich("[color=cyan][b]Detect Settings[/b][/color] | Average Frame Time: [color=green]%0.2f ms[/color] | Score: [color=yellow]%d[/color] | Preset: [color=magenta][b]%s[/b][/color]" % [average_frame_time, score, preset])
 
 	set_quality_preset(preset)
+	save_settings()

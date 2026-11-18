@@ -1,12 +1,24 @@
 [gd_scene format=3 uid="uid://d08n738tgoam4"]
 
 [ext_resource type="PackedScene" uid="uid://b2ndvg1scbgak" path="res://game/player/abilities/artistic/abilities/artistic_ability.tscn" id="1_l6lea"]
+[ext_resource type="Shader" uid="uid://cvmafaj1d4afb" path="res://game/player/abilities/artistic/artistic_shader.gdshader" id="2_nlb1a"]
 [ext_resource type="Script" uid="uid://bt7pqq53wsp6o" path="res://game/upgrade_area/upgrade_area.gd" id="2_rl5fb"]
+[ext_resource type="Texture2D" uid="uid://o352yekeke8b" path="res://game/player/abilities/artistic/artistic_noise_texture_2d.tres" id="3_na0fo"]
 [ext_resource type="Script" uid="uid://b1unwehw2gxjk" path="res://game/upgrade/upgrade.gd" id="3_nlb1a"]
+[ext_resource type="Texture2D" uid="uid://dnqx06qq85pvi" path="res://game/player/abilities/artistic/artistic_normal_texture_2d.tres" id="3_pgdww"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6lea"]
-transparency = 1
-albedo_color = Color(1, 0, 0, 0.5294118)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwnxv"]
+render_priority = 0
+shader = ExtResource("2_nlb1a")
+shader_parameter/paint_color = Color(0.65, 0.2855667, 0.273, 1)
+shader_parameter/paint_texture = ExtResource("3_na0fo")
+shader_parameter/paint_scale = 0.4
+shader_parameter/paint_offset = Vector2(0, 0)
+shader_parameter/paint_roughness = 0.3
+shader_parameter/normal_texture = ExtResource("3_pgdww")
+shader_parameter/polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, 0.75, 0.25, 0, 0.75, -0.75, 0.25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/polygon_size = 5
+shader_parameter/fade = 0.15
 
 [sub_resource type="Resource" id="Resource_na0fo"]
 script = ExtResource("3_nlb1a")
@@ -15,12 +27,11 @@ method = 1
 value = 1.5
 metadata/_custom_type_script = "uid://b1unwehw2gxjk"
 
-[node name="ArtisticAbilityStrength" unique_id=148235146 node_paths=PackedStringArray("collisions") instance=ExtResource("1_l6lea")]
-color = Color(1, 0, 0, 0.7058824)
-collisions = [NodePath("UpgradeArea/CollisionPolygon3D")]
+[node name="ArtisticAbilityStrength" unique_id=148235146 node_paths=PackedStringArray("collision_polygon") instance=ExtResource("1_l6lea")]
+collision_polygon = NodePath("UpgradeArea/CollisionPolygon3D")
 
-[node name="VisiblePolygon" parent="." index="0" unique_id=1412836692]
-material = SubResource("StandardMaterial3D_l6lea")
+[node name="MeshPolygon3D" parent="." index="0" unique_id=713443864]
+material_override = SubResource("ShaderMaterial_hwnxv")
 
 [node name="UpgradeArea" type="Area3D" parent="." index="1" unique_id=1699440403]
 collision_layer = 256

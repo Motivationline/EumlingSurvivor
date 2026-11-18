@@ -38,9 +38,13 @@
 [ext_resource type="AudioStream" uid="uid://n4386f22n746" path="res://assets/characters/eumling/V2/sounds/walk_6.wav" id="45_5ik15"]
 [ext_resource type="Script" uid="uid://cfdcthqwyqi3l" path="res://game/shared/scaler/eumling_scaler.gd" id="45_od043"]
 [ext_resource type="AudioStream" uid="uid://fhjbibcyr3sc" path="res://assets/characters/eumling/V2/sounds/walk_7.wav" id="46_gs6ky"]
+[ext_resource type="Shader" uid="uid://xk2lbsi25opx" path="res://game/player/abilities/artistic/artistic_line_shader.gdshader" id="47_0jq7b"]
+[ext_resource type="Script" uid="uid://0vxo282u42yf" path="res://game/player/abilities/artistic/mesh_line_3d.gd" id="47_3p3em"]
 [ext_resource type="AudioStream" uid="uid://bd1pdp5nkt7rs" path="res://assets/characters/eumling/V2/sounds/walk_8.wav" id="47_ipfdr"]
 [ext_resource type="Texture2D" uid="uid://byltvibidc8y" path="res://assets/ui/textfenster/conventioneller_eumling_marker_text.png" id="48_2qewa"]
+[ext_resource type="Texture2D" uid="uid://dnqx06qq85pvi" path="res://game/player/abilities/artistic/artistic_normal_texture_2d.tres" id="48_d76hv"]
 [ext_resource type="AudioStream" uid="uid://ckt1wmdh0i2s5" path="res://assets/characters/eumling/V2/sounds/walk_9.wav" id="48_wxabu"]
+[ext_resource type="Texture2D" uid="uid://o352yekeke8b" path="res://game/player/abilities/artistic/artistic_noise_texture_2d.tres" id="49_6ynhj"]
 [ext_resource type="Texture2D" uid="uid://cbg63rgvhxjya" path="res://assets/ui/gameOverlay/LowerBarBackdrop.png" id="49_40jwy"]
 [ext_resource type="AudioStream" uid="uid://bdu6vr8x2yl1f" path="res://assets/characters/eumling/V2/sounds/walk_10.wav" id="49_snb7b"]
 [ext_resource type="Texture2D" uid="uid://cgou6yjv471k6" path="res://assets/ui/gameOverlay/LowerBarOutline.png" id="50_kqpmw"]
@@ -167,16 +171,21 @@ two = Array[ExtResource("44_ddimf")]([SubResource("Resource_3p3em")])
 three = Array[ExtResource("44_ddimf")]([SubResource("Resource_fdpga")])
 metadata/_custom_type_script = "uid://cfdcthqwyqi3l"
 
-[sub_resource type="Curve3D" id="Curve3D_6ynhj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n7rj1"]
+render_priority = 1
+shader = ExtResource("47_0jq7b")
+shader_parameter/paint_color = Color(1, 1, 1, 1)
+shader_parameter/paint_texture = ExtResource("49_6ynhj")
+shader_parameter/paint_scale = 0.4
+shader_parameter/paint_offset = Vector2(0, 0)
+shader_parameter/paint_roughness = 0.15
+shader_parameter/normal_texture = ExtResource("48_d76hv")
+shader_parameter/line = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/line_size = 0
+shader_parameter/line_width = 0.5
+shader_parameter/fade = 0.15
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlda6"]
-transparency = 1
-blend_mode = 1
-albedo_color = Color(0, 0.1500001, 1, 0.101960786)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btnkn"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0)
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_d76hv"]
 
 [sub_resource type="Resource" id="Resource_2qewa"]
 script = ExtResource("66_40jwy")
@@ -403,43 +412,11 @@ tail_particles = NodePath("../../Eumling_v2/TailParticles")
 strength_ability = ExtResource("44_a55ai")
 eumling_scaler = SubResource("Resource_0jq7b")
 
-[node name="Tail" type="Path3D" parent="SpecialAbilities/Artistic" unique_id=231072559]
-curve = SubResource("Curve3D_6ynhj")
-
-[node name="TailVisuals" type="CSGPolygon3D" parent="SpecialAbilities/Artistic/Tail" unique_id=400713749]
-collision_layer = 1024
-collision_mask = 0
-polygon = PackedVector2Array(-0.1, 0, -0.1, 0.1, 0.1, 0.1, 0.1, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 0
-path_interval = 0.05
-path_simplify_angle = 0.0
-path_rotation = 1
-path_rotation_accurate = false
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.0
-path_joined = false
-material = SubResource("StandardMaterial3D_tlda6")
-
-[node name="TailCollision" type="CSGPolygon3D" parent="SpecialAbilities/Artistic/Tail" unique_id=1950933900]
-use_collision = true
-collision_layer = 1024
-collision_mask = 0
-polygon = PackedVector2Array(-0.1, 0, -0.1, 2, 0.1, 2, 0.1, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 0
-path_interval = 0.05
-path_simplify_angle = 0.0
-path_rotation = 1
-path_rotation_accurate = false
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.0
-path_joined = false
-material = SubResource("StandardMaterial3D_btnkn")
+[node name="Tail" type="MeshInstance3D" parent="SpecialAbilities/Artistic" unique_id=301258177]
+material_override = SubResource("ShaderMaterial_n7rj1")
+mesh = SubResource("ImmediateMesh_d76hv")
+script = ExtResource("47_3p3em")
+width = 0.5
 
 [node name="Conventional" type="Node3D" parent="SpecialAbilities" unique_id=1450601977]
 script = ExtResource("62_5en5a")
@@ -504,7 +481,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 47
+theme_override_font_sizes/font_size = 53
 text = "Attack Something"
 horizontal_alignment = 1
 vertical_alignment = 1

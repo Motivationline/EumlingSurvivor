@@ -24,6 +24,7 @@ func clear_eumlings():
 		m.queue_free()
 
 func add_eumling(type: Enum.EUMLING_TYPE):
+	close()
 	Data.unlocked_eumling(type)
 	var level = get_tree().get_first_node_in_group("Level")
 	if level:

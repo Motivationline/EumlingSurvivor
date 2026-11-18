@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_u2dxy"]
 [ext_resource type="Script" uid="uid://cfdcthqwyqi3l" path="res://game/shared/scaler/eumling_scaler.gd" id="3_hcaoq"]
 [ext_resource type="Script" uid="uid://b1unwehw2gxjk" path="res://game/upgrade/upgrade.gd" id="3_u2dxy"]
+[ext_resource type="Shader" uid="uid://cvmafaj1d4afb" path="res://game/player/abilities/artistic/artistic_shader.gdshader" id="4_x1lyr"]
+[ext_resource type="Texture2D" uid="uid://dnqx06qq85pvi" path="res://game/player/abilities/artistic/artistic_normal_texture_2d.tres" id="5_hlpxc"]
+[ext_resource type="Texture2D" uid="uid://o352yekeke8b" path="res://game/player/abilities/artistic/artistic_noise_texture_2d.tres" id="5_x1lyr"]
 
 [sub_resource type="Resource" id="Resource_x1lyr"]
 script = ExtResource("2_u2dxy")
@@ -18,9 +21,18 @@ types = Array[int]([0])
 one = Array[ExtResource("2_u2dxy")]([SubResource("Resource_x1lyr")])
 metadata/_custom_type_script = "uid://cfdcthqwyqi3l"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0oti"]
-transparency = 1
-albedo_color = Color(0.9411765, 0.85882354, 0, 0.63529414)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwnxv"]
+render_priority = 0
+shader = ExtResource("4_x1lyr")
+shader_parameter/paint_color = Color(0.65, 0.56203336, 0.273, 1)
+shader_parameter/paint_texture = ExtResource("5_x1lyr")
+shader_parameter/paint_scale = 0.4
+shader_parameter/paint_offset = Vector2(0, 0)
+shader_parameter/paint_roughness = 0.3
+shader_parameter/normal_texture = ExtResource("5_hlpxc")
+shader_parameter/polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, 0.75, 0.25, 0, 0.75, -0.75, 0.25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/polygon_size = 5
+shader_parameter/fade = 0.15
 
 [sub_resource type="Resource" id="Resource_hcaoq"]
 script = ExtResource("3_u2dxy")
@@ -28,13 +40,12 @@ method = 1
 value = 1.25
 metadata/_custom_type_script = "uid://b1unwehw2gxjk"
 
-[node name="ArtisticAbilitySpeed" unique_id=148235146 node_paths=PackedStringArray("collisions") instance=ExtResource("1_v0oti")]
-color = Color(0.9843137, 0.8862745, 0, 0.7176471)
-collisions = [NodePath("UpgradeArea/CollisionPolygon3D"), NodePath("UpgradeArea/CollisionPolygon3D")]
+[node name="ArtisticAbilitySpeed" unique_id=148235146 node_paths=PackedStringArray("collision_polygon") instance=ExtResource("1_v0oti")]
+collision_polygon = NodePath("UpgradeArea/CollisionPolygon3D")
 eumling_scaler = SubResource("Resource_hlpxc")
 
-[node name="VisiblePolygon" parent="." index="0" unique_id=1412836692]
-material = SubResource("StandardMaterial3D_v0oti")
+[node name="MeshPolygon3D" parent="." index="0" unique_id=713443864]
+material_override = SubResource("ShaderMaterial_hwnxv")
 
 [node name="UpgradeArea" type="Area3D" parent="." index="1" unique_id=643616693]
 collision_layer = 256
