@@ -23,14 +23,14 @@ func _ready() -> void:
 	enter_timer.timeout.connect(_on_entered_timer_completed)
 	exit_timer.timeout.connect(_on_exited_timer_completed)
 
-func _on_body_entered(body: CharacterBody3D):
+func _on_body_entered(body: Node3D):
 	if not body is Player: return
 	if enter_delay > 0:
 		enter_timer.start(enter_delay)
 	else:
 		_on_entered_timer_completed()
 
-func _on_body_exited(body: CharacterBody3D):
+func _on_body_exited(body: Node3D):
 	if not body is Player: return
 	if not enter_timer.is_stopped():
 		enter_timer.stop()
