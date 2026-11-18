@@ -41,6 +41,9 @@ func get_paint_color() -> Color:
 
 static func create_polygon_mesh_3d(points: PackedVector2Array) -> ArrayMesh:
 	var indices: PackedInt32Array = Geometry2D.triangulate_polygon(points)
+	if indices.is_empty():
+		push_error("Polygon triangulation failed.")
+		return ArrayMesh.new()
 	
 	var vertices := PackedVector3Array()
 	var normals := PackedVector3Array()
