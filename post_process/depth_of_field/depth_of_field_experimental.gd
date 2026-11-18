@@ -212,7 +212,7 @@ func _initialize_compute() -> void:
 
 
 # Called by the rendering thread every frame.
-func _render_callback(p_effect_callback_type: EffectCallbackType, p_render_data: RenderData) -> void:
+func _render_callback(_p_effect_callback_type: EffectCallbackType, p_render_data: RenderData) -> void:
 	if not rd:
 		return
 
