@@ -3,7 +3,49 @@
 [ext_resource type="PackedScene" uid="uid://xs1rayfbth4" path="res://assets/characters/enemies/cactushog/baby/baby_hog.glb" id="1_e68wd"]
 [ext_resource type="Material" uid="uid://83vywe1d4268" path="res://assets/characters/enemies/cactushog/hog_cell_shader.tres" id="2_cfthv"]
 
+[sub_resource type="Animation" id="Animation_e68wd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cfthv"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.18879518, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvmdn"]
+_data = {
+&"RESET": SubResource("Animation_e68wd"),
+&"idle": SubResource("Animation_cfthv")
+}
+
 [node name="baby_hog" unique_id=2109610247 instance=ExtResource("1_e68wd")]
 
 [node name="baby" parent="." index="0" unique_id=2062075615]
 material_override = ExtResource("2_cfthv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1628277042]
+libraries/ = SubResource("AnimationLibrary_qvmdn")
+autoplay = &"idle"

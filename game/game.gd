@@ -5,6 +5,7 @@ const AFTER_GAME: PackedScene = preload("uid://bo5kay8o1r3cy")
 var player_scene: PackedScene = preload("res://game/player/player.tscn")
 const REVEAL_SEED = preload("uid://dk321b3pqkfei")
 const EUMLING_CELEBRATION = preload("uid://b1frhjc1hws4k")
+const EUMLING_INFO = preload("uid://cp1ha3k058w81")
 var player: Player
 @onready var level_wrapper: Node3D = $Level
 @onready var upgrade_view: CanvasLayer = $UpgradeView
@@ -20,7 +21,7 @@ var debug_run: bool = false
 func _ready() -> void:
 	# connect to home signal
 	$GameUI/PauseMenu.return_home.connect(return_to_main_menu)
-
+	
 	# remove mobile overlay if not on mobile
 	if not Data.is_on_mobile:
 		touch_joystick_overlay.queue_free()
@@ -56,6 +57,7 @@ func _setup_player():
 	player = player_scene.instantiate()
 	add_child(player)
 	player.died.connect(end_run)
+	player.hurt.connect(%DamageVignette.on_damage)
 
 func _load_level():
 	if player.dead:
@@ -179,10 +181,10 @@ func run_end_riasec():
 
 	var riasec_eumling = Data.find_eumling_based_on_riasec(riasec_types)
 	if not riasec_eumling: return
+	Data.unlock_specific_eumling(riasec_eumling)
 	var end_game_screen = AFTER_GAME.instantiate()
 	add_child(end_game_screen)
 	end_game_screen.setup(riasec_eumling)
-	prints("riasec eumling", riasec_eumling)
 	await end_game_screen.closed
 
 func eumling_unlocked(eumling: Eumling):
@@ -197,8 +199,13 @@ func eumling_unlocked(eumling: Eumling):
 	reveal.queue_free()
 	get_tree().paused = false
 	
-	var popup = EUMLING_CELEBRATION.instantiate()
+	var popup_eumling = EUMLING_CELEBRATION.instantiate()
 	GlobalMusicManager.request_music(SongList.TRACK.VICTORY_THEME,MusicTransition.instant(), true)
-	add_child(popup)
-	popup.setup(eumling.type)
-	await popup.done
+	%UI.add_child(popup_eumling)
+	popup_eumling.setup(eumling)
+	await popup_eumling.done
+
+	var popup_info = EUMLING_INFO.instantiate()
+	%UI.add_child(popup_info)
+	popup_info.setup_eumling(eumling.type)
+	await popup_info.done

@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b4puyhx8d2gim" path="res://assets/ui/Buttons/PlayButton.png" id="5_edo3p"]
 [ext_resource type="Texture2D" uid="uid://bsh5cti8q2hqs" path="res://assets/ui/pauseMenu/PaperRectangleInfo.png" id="10_6rxva"]
 [ext_resource type="PackedScene" uid="uid://54ec674jmwbg" path="res://game/ui/pause_menu/settings.tscn" id="20_qd2kc"]
+[ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="21_bwtpp"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="21_huhjg"]
+[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/focus_button.png" id="22_41g3d"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="22_nmosl"]
 [ext_resource type="AudioStream" uid="uid://cybo744j6vhtf" path="res://assets/sound/ui/pause/open.wav" id="23_1tpup"]
 [ext_resource type="AudioStream" uid="uid://dmw7tqg7s60xk" path="res://assets/sound/ui/pause/close.wav" id="24_7cjl0"]
@@ -140,7 +142,7 @@ volume_db = -8.0
 max_polyphony = 5
 bus = &"SFXUI"
 
-[node name="HomeButton" type="TextureButton" parent="." unique_id=816544524]
+[node name="HomeButton" type="TextureButton" parent="." unique_id=816544524 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 36.0
@@ -148,7 +150,7 @@ offset_right = 210.0
 offset_bottom = 180.0
 texture_normal = ExtResource("3_utddp")
 
-[node name="PlayButton" type="TextureButton" parent="." unique_id=555258968]
+[node name="PlayButton" type="TextureButton" parent="." unique_id=555258968 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 1709.0
 offset_top = 36.0
@@ -176,10 +178,10 @@ flip_h = true
 
 [node name="ripped_out_page" parent="." unique_id=1028725752 instance=ExtResource("29_kq7qj")]
 layout_mode = 1
-offset_left = 1081.0
-offset_top = 174.0
-offset_right = 732.55566
-offset_bottom = -22.0
+offset_left = 432.00012
+offset_top = 19.000061
+offset_right = 432.00012
+offset_bottom = 19.000061
 scale = Vector2(0.8381038, 0.8381038)
 
 [node name="ProgressDisplay" type="Control" parent="." unique_id=2061562221]
@@ -260,7 +262,7 @@ size_flags_horizontal = 6
 texture = ExtResource("29_2s60i")
 stretch_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=1715319797]
+[node name="SettingsButton" type="TextureButton" parent="." unique_id=1715319797 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 296.0
 offset_top = 37.0
@@ -273,6 +275,12 @@ visible = false
 z_index = 2
 layout_mode = 1
 
+[node name="InputMethodDetector" type="Node" parent="." unique_id=947817077]
+script = ExtResource("21_bwtpp")
+button_icon_layer = ExtResource("22_41g3d")
+metadata/_custom_type_script = "uid://0ev8qorbgey0"
+
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="TextureButton" to="Settings" method="show"]
+[connection signal="visibility_changed" from="PlayButton" to="PlayButton" method="grab_focus"]
+[connection signal="pressed" from="SettingsButton" to="Settings" method="show"]

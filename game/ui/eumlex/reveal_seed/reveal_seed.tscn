@@ -9,7 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://drxv2fntob1we" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/reveal/mini_eumling_artistisch_reveal.tscn" id="5_j7odg"]
 [ext_resource type="PackedScene" uid="uid://cps3kdcef7kl1" path="res://assets/characters/eumling/mini_eumling/conventional_logik/reveal/mini_conventional_logik_reveal.tscn" id="6_5lndm"]
 [ext_resource type="PackedScene" uid="uid://b4dado5k8g86y" path="res://assets/characters/eumling/mini_eumling/entrepreneurual_ehrgeiz/reveal/mini_entre_ehrgeiz_reveal.tscn" id="7_6d64s"]
+[ext_resource type="PackedScene" uid="uid://g65bnmg6ukk" path="res://assets/models/cage/cage_v_2.tscn" id="7_p7fna"]
+[ext_resource type="ArrayMesh" uid="uid://ccswmciktyf4a" path="res://assets/models/cage/mini_eumling_dummy/mini_eumling_model.res" id="8_1tt6i"]
 [ext_resource type="PackedScene" uid="uid://dbw22bdgvggej" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/reveal/mini_realistisch_geschick_reveal.tscn" id="8_p1l2k"]
+[ext_resource type="Texture2D" uid="uid://bn5m02sm5jjm2" path="res://assets/vfx/particle_pack/smoke_08.png" id="9_07dsn"]
 [ext_resource type="PackedScene" uid="uid://ck5j8i6y6430r" path="res://assets/characters/eumling/mini_eumling/investigativ_forschend/reveal/mini_investigativ_forschend_reveal.tscn" id="9_8cg7f"]
 [ext_resource type="PackedScene" uid="uid://8psix5aubo38" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/reveal/mini_sozial_sozial_reveal.tscn" id="10_gqyl1"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="12_gqyl1"]
@@ -143,6 +146,92 @@ shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_5lndm")
 shader_parameter/rim_ramp = SubResource("GradientTexture1D_hk45w")
 shader_parameter/rim_focus = 0.5370000255075
 shader_parameter/use_diffuse_smooth_attenuation = true
+
+[sub_resource type="Gradient" id="Gradient_07dsn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.033407573, 0.74610245, 0.9242762)
+colors = PackedColorArray(0, 0, 0, 1, 0.12955841, 0.1295585, 0.12955844, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d0u6y"]
+gradient = SubResource("Gradient_07dsn")
+
+[sub_resource type="Gradient" id="Gradient_fke71"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.63697106, 0.83073497)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1tt6i"]
+gradient = SubResource("Gradient_fke71")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_57qmd"]
+render_priority = 0
+shader = ExtResource("4_j7odg")
+shader_parameter/albedo_color = Color(2.3570642, 1.5595075, 0, 1)
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_d0u6y")
+shader_parameter/rim_ramp = SubResource("GradientTexture1D_1tt6i")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_diffuse_smooth_attenuation = true
+
+[sub_resource type="Animation" id="Animation_fke71"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bskc6"]
+resource_name = "eumling_rotation"
+length = 3.0000000000000004
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 3.1415927, 0), Vector3(0, -3.1415927, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_alngp"]
+_data = {
+&"RESET": SubResource("Animation_fke71"),
+&"eumling_rotation": SubResource("Animation_bskc6")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("9_07dsn")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_yf5fn")
+
+[sub_resource type="Curve" id="Curve_57qmd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.9332666, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_d0u6y"]
+offsets = PackedFloat32Array(0.38784066, 1)
+colors = PackedColorArray(1.1171248, 0.69468844, 0.41306415, 1, 0.94, 0.53674, 0.3196, 0.90588236)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6d64s"]
 transparency = 1
@@ -290,6 +379,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [ExtResource("5_4mi4i")]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Wood:emitting")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_j7odg"]
 resource_name = "click_01"
@@ -403,6 +504,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("13_a2ni4")]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Wood:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_5lndm"]
@@ -518,6 +631,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [ExtResource("14_j1fo5")]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Wood:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ey80x"]
 resource_name = "click_03"
@@ -631,6 +756,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("15_q5eef")]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Wood:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_hk45w"]
@@ -804,9 +941,45 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, -0.098, 
 
 [node name="Seed" type="MeshInstance3D" parent="Seed_Anchor" unique_id=1157114145]
 transform = Transform3D(1, 0, 0, 0, 0.8285004, 0.55998844, 0, -0.55998844, 0.8285004, 0, 0, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_6d64s")
 mesh = ExtResource("4_h88u7")
 skeleton = NodePath("../..")
+
+[node name="cage_v3" parent="Seed_Anchor" unique_id=2009709590 instance=ExtResource("7_p7fna")]
+transform = Transform3D(0.75, 0, 0, 0, 0.6335939, 0.4013213, 0, -0.4013213, 0.6335939, 0, -0.07310105, 0.027924541)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Seed_Anchor/cage_v3" unique_id=1494250339]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.08416756, 0)
+material_override = SubResource("ShaderMaterial_57qmd")
+mesh = ExtResource("8_1tt6i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Seed_Anchor/cage_v3/MeshInstance3D" unique_id=444064062]
+libraries/ = SubResource("AnimationLibrary_alngp")
+autoplay = &"eumling_rotation"
+
+[node name="Wood" type="CPUParticles3D" parent="Seed_Anchor" unique_id=473783481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41945338, 0.29009554)
+emitting = false
+amount = 16
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.82
+mesh = SubResource("QuadMesh_g4v7s")
+direction = Vector3(0, -1, 1)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+damping_min = 0.2
+damping_max = 2.0
+angle_min = -681.8
+angle_max = 624.4
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_57qmd")
+color_ramp = SubResource("Gradient_d0u6y")
 
 [node name="Mini_Eumling_Anchor" type="Marker3D" parent="." unique_id=1257452568]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.109184384, 0)

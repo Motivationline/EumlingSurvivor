@@ -41,6 +41,8 @@
 [ext_resource type="AudioStream" uid="uid://dfu861o1m18xx" path="res://assets/sound/ui/eumlex/click_6.wav" id="31_bt128"]
 [ext_resource type="Texture2D" uid="uid://x3fv7l135fu0" path="res://assets/ui/Map/portal_lava.png" id="31_h87jw"]
 [ext_resource type="Texture2D" uid="uid://c4ldmcilt2tlp" path="res://assets/ui/Map/portal_beach.png" id="32_4f41a"]
+[ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="42_q5hyn"]
+[ext_resource type="Texture2D" uid="uid://rvydbyntrvex" path="res://assets/ui/Buttons/focus_button.png" id="43_48btb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("14_orh8k")
@@ -114,15 +116,6 @@ offset_right = 109.0
 offset_bottom = 148.0
 texture_normal = ExtResource("2_as5su")
 
-[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/OrangeButton" unique_id=1704269811]
-visible = false
-layout_mode = 0
-offset_left = 63.0
-offset_top = -7.0
-offset_right = 109.0
-offset_bottom = 35.0
-texture = ExtResource("3_as5su")
-
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/OrangeButton" unique_id=2104983446]
 layout_mode = 1
 anchors_preset = 5
@@ -137,14 +130,7 @@ scale = Vector2(0.8609089, 0.8609089)
 texture = ExtResource("5_fmuvr")
 stretch_mode = 4
 
-[node name="GreenButton" type="TextureButton" parent="Book/TabPanel" unique_id=565872638]
-layout_mode = 0
-offset_left = 118.0
-offset_right = 215.0
-offset_bottom = 148.0
-texture_normal = ExtResource("3_orh8k")
-
-[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/GreenButton" unique_id=1442297553]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/OrangeButton" unique_id=1704269811]
 visible = false
 layout_mode = 0
 offset_left = 63.0
@@ -152,6 +138,13 @@ offset_top = -7.0
 offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
+
+[node name="GreenButton" type="TextureButton" parent="Book/TabPanel" unique_id=565872638]
+layout_mode = 0
+offset_left = 118.0
+offset_right = 215.0
+offset_bottom = 148.0
+texture_normal = ExtResource("3_orh8k")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/GreenButton" unique_id=497545965]
 layout_mode = 1
@@ -167,14 +160,7 @@ scale = Vector2(0.92773294, 0.92773294)
 texture = ExtResource("7_q5hyn")
 stretch_mode = 4
 
-[node name="PurpleButton" type="TextureButton" parent="Book/TabPanel" unique_id=1068037442]
-layout_mode = 0
-offset_left = 224.0
-offset_right = 321.0
-offset_bottom = 148.0
-texture_normal = ExtResource("4_y7di5")
-
-[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/PurpleButton" unique_id=415654524]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/GreenButton" unique_id=1442297553]
 visible = false
 layout_mode = 0
 offset_left = 63.0
@@ -182,6 +168,13 @@ offset_top = -7.0
 offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
+
+[node name="PurpleButton" type="TextureButton" parent="Book/TabPanel" unique_id=1068037442]
+layout_mode = 0
+offset_left = 224.0
+offset_right = 321.0
+offset_bottom = 148.0
+texture_normal = ExtResource("4_y7di5")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/PurpleButton" unique_id=1191177753]
 layout_mode = 1
@@ -197,14 +190,7 @@ scale = Vector2(0.9260607, 0.9260607)
 texture = ExtResource("9_48btb")
 stretch_mode = 4
 
-[node name="YellowButton" type="TextureButton" parent="Book/TabPanel" unique_id=128397190]
-layout_mode = 0
-offset_left = 331.0
-offset_right = 427.0
-offset_bottom = 148.0
-texture_normal = ExtResource("5_17oye")
-
-[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/YellowButton" unique_id=1687514714]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/PurpleButton" unique_id=415654524]
 visible = false
 layout_mode = 0
 offset_left = 63.0
@@ -212,6 +198,13 @@ offset_top = -7.0
 offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
+
+[node name="YellowButton" type="TextureButton" parent="Book/TabPanel" unique_id=128397190]
+layout_mode = 0
+offset_left = 331.0
+offset_right = 427.0
+offset_bottom = 148.0
+texture_normal = ExtResource("5_17oye")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/YellowButton" unique_id=946420858]
 layout_mode = 1
@@ -226,14 +219,7 @@ grow_horizontal = 2
 texture = ExtResource("11_665xe")
 stretch_mode = 4
 
-[node name="RedButton" type="TextureButton" parent="Book/TabPanel" unique_id=570840646]
-layout_mode = 0
-offset_left = 435.0
-offset_right = 532.0
-offset_bottom = 148.0
-texture_normal = ExtResource("6_71i0l")
-
-[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/RedButton" unique_id=345684567]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/YellowButton" unique_id=1687514714]
 visible = false
 layout_mode = 0
 offset_left = 63.0
@@ -241,6 +227,13 @@ offset_top = -7.0
 offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
+
+[node name="RedButton" type="TextureButton" parent="Book/TabPanel" unique_id=570840646]
+layout_mode = 0
+offset_left = 435.0
+offset_right = 532.0
+offset_bottom = 148.0
+texture_normal = ExtResource("6_71i0l")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/RedButton" unique_id=1609913383]
 layout_mode = 1
@@ -256,14 +249,7 @@ scale = Vector2(0.87820536, 0.87820536)
 texture = ExtResource("13_h87jw")
 stretch_mode = 4
 
-[node name="BlueButton" type="TextureButton" parent="Book/TabPanel" unique_id=1096261708]
-layout_mode = 0
-offset_left = 540.0
-offset_right = 637.0
-offset_bottom = 147.0
-texture_normal = ExtResource("7_jyuqq")
-
-[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/BlueButton" unique_id=1466301265]
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/RedButton" unique_id=345684567]
 visible = false
 layout_mode = 0
 offset_left = 63.0
@@ -271,6 +257,13 @@ offset_top = -7.0
 offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
+
+[node name="BlueButton" type="TextureButton" parent="Book/TabPanel" unique_id=1096261708]
+layout_mode = 0
+offset_left = 540.0
+offset_right = 637.0
+offset_bottom = 147.0
+texture_normal = ExtResource("7_jyuqq")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/BlueButton" unique_id=1249381863]
 layout_mode = 1
@@ -285,6 +278,15 @@ grow_horizontal = 2
 scale = Vector2(0.94009435, 0.94009435)
 texture = ExtResource("15_4f41a")
 stretch_mode = 4
+
+[node name="NewMarker" type="TextureRect" parent="Book/TabPanel/BlueButton" unique_id=1466301265]
+visible = false
+layout_mode = 0
+offset_left = 63.0
+offset_top = -7.0
+offset_right = 109.0
+offset_bottom = 35.0
+texture = ExtResource("3_as5su")
 
 [node name="BackdropEumlex" type="TextureRect" parent="Book" unique_id=236310539]
 layout_mode = 1
@@ -321,6 +323,7 @@ offset_bottom = 942.0
 layout_mode = 2
 
 [node name="OrangePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=358149256]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 2.0
@@ -452,7 +455,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 0
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -481,7 +484,6 @@ theme_override_font_sizes/font_size = 35
 text = "Belohnung:"
 
 [node name="GreenPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1105283116]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 2.0
@@ -613,7 +615,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 0
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -628,8 +630,9 @@ offset_top = 180.0
 offset_right = 597.0
 offset_bottom = 229.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "+X Angriff"
+theme_override_font_sizes/font_size = 18
+text = "+X% Kritische Trefferchance"
+vertical_alignment = 1
 
 [node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/GreenPage" unique_id=2030204517]
 layout_mode = 0
@@ -774,7 +777,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 0
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -789,8 +792,9 @@ offset_top = 180.0
 offset_right = 597.0
 offset_bottom = 229.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "+X Angriff"
+theme_override_font_sizes/font_size = 25
+text = "+X Geschwindigkeit"
+vertical_alignment = 1
 
 [node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/PurplePage" unique_id=1576533019]
 layout_mode = 0
@@ -935,7 +939,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 0
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -951,7 +955,7 @@ offset_right = 597.0
 offset_bottom = 229.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-text = "+X Angriff"
+text = "+X Leben"
 
 [node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/YellowPage" unique_id=2079770093]
 layout_mode = 0
@@ -1095,7 +1099,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 0
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -1111,7 +1115,7 @@ offset_right = 597.0
 offset_bottom = 229.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
-text = "+X Angriff"
+text = "+X Reichweite"
 
 [node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/RedPage" unique_id=355885421]
 layout_mode = 0
@@ -1163,8 +1167,9 @@ offset_top = 180.0
 offset_right = 597.0
 offset_bottom = 229.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "+X Angriff"
+theme_override_font_sizes/font_size = 19
+text = "+X Angriffsgeschwindigkeit"
+vertical_alignment = 1
 
 [node name="Belohnung" type="Label" parent="Book/BookContainer/BookBG/BluePage" unique_id=1365249810]
 layout_mode = 0
@@ -1275,7 +1280,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 0
 text = "0/20"
 horizontal_alignment = 1
 script = ExtResource("15_xeq76")
@@ -1283,7 +1288,7 @@ label_size = Vector2i(149, 53)
 max_font_size = 32
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
-[node name="CloseButton" type="TextureButton" parent="Book" unique_id=86270587]
+[node name="CloseButton" type="TextureButton" parent="Book" unique_id=86270587 groups=["InputMethodSensitive"]]
 z_index = 2
 layout_mode = 0
 offset_left = 1664.0
@@ -1341,6 +1346,11 @@ volume_db = -4.0
 [node name="Close" parent="SoundEffectManager" unique_id=597591076 instance=ExtResource("25_eumhd")]
 stream = ExtResource("30_7xmmu")
 volume_db = -4.0
+
+[node name="InputMethodDetector" type="Node" parent="." unique_id=960954201]
+script = ExtResource("42_q5hyn")
+button_icon_layer = ExtResource("43_48btb")
+metadata/_custom_type_script = "uid://0ev8qorbgey0"
 
 [connection signal="pressed" from="Book/TabPanel/OrangeButton" to="." method="_on_tab_pressed" flags=18]
 [connection signal="pressed" from="Book/TabPanel/GreenButton" to="." method="_on_tab_pressed" flags=18]

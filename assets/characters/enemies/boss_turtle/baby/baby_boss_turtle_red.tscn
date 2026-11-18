@@ -3,7 +3,50 @@
 [ext_resource type="PackedScene" uid="uid://de2b7mwrw0hiy" path="res://assets/characters/enemies/boss_turtle/baby/baby_boss_turtle.glb" id="1_2jcbp"]
 [ext_resource type="Material" uid="uid://cbgxksh3umub" path="res://assets/characters/enemies/boss_turtle/material/cell_shader-boss_turtle_red.tres" id="2_2jcbp"]
 
+[sub_resource type="Animation" id="Animation_2jcbp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby_turtle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5h66m"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby_turtle:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.14709768, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75vgp"]
+_data = {
+&"RESET": SubResource("Animation_2jcbp"),
+&"idle": SubResource("Animation_5h66m")
+}
+
 [node name="baby_boss_turtle" unique_id=1860999239 instance=ExtResource("1_2jcbp")]
 
 [node name="baby_turtle" parent="." index="0" unique_id=2095308530]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 material_override = ExtResource("2_2jcbp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=840320521]
+libraries/ = SubResource("AnimationLibrary_75vgp")
+autoplay = &"idle"

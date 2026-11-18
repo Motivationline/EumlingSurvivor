@@ -96,6 +96,7 @@ MiniEumling=""
 ShaderPrecompiler="Only for entities that reside inside the shader precompiler"
 Interactable=""
 EnvironmentTrap=""
+InputMethodSensitive="For GUI Nodes that need to change something when switching input methods"
 
 [gui]
 
@@ -250,6 +251,11 @@ debug_reset_and_restart={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":true,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+debug_unlock_eumlex={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":true,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194336,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
 
 [input_devices]
 
@@ -284,7 +290,6 @@ locale/translations_pot_files=PackedStringArray("res://assets/ui/tutorial/tutori
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 
 [shader_globals]
 

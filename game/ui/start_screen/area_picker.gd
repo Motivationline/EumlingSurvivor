@@ -9,7 +9,7 @@ static var areas = [
 	{
 		name = "Jungle",
 		folder = "3-Jxx-Jungle",
-		type = Enum.EUMLING_TYPE.ARTISTIC,
+		types = [Enum.EUMLING_TYPE.ARTISTIC, Enum.EUMLING_TYPE.SOCIAL],
 		levels = {
 			0: ["J01_D0", "J02_D0", "J04_D0", "J05_D0", "J07_D0", "J10_D0", "J11_D0", "J12_D0", "J13_D0", "J14_D0", "J15_D0", "J16_D0", "J19_D0"],
 			1: ["J01_D1", "J02_D1", "J04_D1", "J05_D1", "J07_D1", "J10_D1", "J15_D1", "J16_D1", "J17_D1", "J18_D1", "J19_D1", "J20_D1"],
@@ -26,7 +26,7 @@ static var areas = [
 	{
 		name = "Volcano",
 		folder = "6-Vxx-Volcano",
-		type = Enum.EUMLING_TYPE.CONVENTIONAL,
+		types = [Enum.EUMLING_TYPE.CONVENTIONAL, Enum.EUMLING_TYPE.REALISTIC],
 		levels = {
 			0: ["V01", "V02", "V06", "V07", "V13", "V14", "V15", "V16", "V18", "V05", "V20", "V21"],
 			1: ["V01_D1", "V02_D1", "V06_D1", "V07_D1", "V08", "V09", "V11", "V12", "V13_D1", "V14_D1", "V17", "V18_D1", "V22", "V23", "V05_D1", "V20_D1", "V21_D1"],
@@ -44,7 +44,7 @@ static var areas = [
 	{
 		name = "Beach",
 		folder = "5-Bxx-Beach",
-		type = Enum.EUMLING_TYPE.SOCIAL,
+		types = [Enum.EUMLING_TYPE.ENTERPRISING, Enum.EUMLING_TYPE.INVESTIGATIVE],
 		levels = {
 			0: ["B01_D0", "B02_D0", "B03_D0", "B04_D0", "B05_D0", "B06_D0", "B07_D0", "B08_D0", "B09_D0", "B10_D0", "B12_D0", "B13_D0", "B15_D0", "B16_D0", "B17_D0", "B19_D0", "B20_D0"],
 			1: ["B01_D1", "B02_D1", "B03_D1", "B04_D1", "B05_D1", "B06_D1", "B07_D1", "B08_D1", "B09_D1", "B10_D1", "B12_D1", "B13_D1", "B15_D1", "B16_D1", "B17_D1",  "B19_D1", "B20_D1"],
@@ -82,9 +82,25 @@ static var current_area
 static func choose_area_levels_from_index(index: int) -> Array:
 	return choose_area_levels(AreaPicker.areas[index])
 
+static func get_potential_areas() -> Array:
+	var blacklist = Data.game_data.active_mini_eumlings
+	var candidate_types: Array = Enum.EUMLING_TYPE.values()
+	for black in blacklist:
+		if candidate_types.has(black):
+			candidate_types.erase(black)
+
+	var candidate_areas: Array = []
+	for area in areas:
+		for candidate in candidate_types:
+			if area.types.has(candidate):
+				var area_duplicate = area.duplicate()
+				area_duplicate.type = candidate
+				candidate_areas.append(area_duplicate)
+
+	return candidate_areas
+
 static func choose_area_levels(area) -> Array:
 	current_area = area
-	current_area.type = Enum.EUMLING_TYPE.values().pick_random() # TODO remove this when all 6 areas are in game
 	var level_names: Array = []
 	var difficulty: int = Data.game_data.difficulty
 	var amount_levels = difficulty + 3

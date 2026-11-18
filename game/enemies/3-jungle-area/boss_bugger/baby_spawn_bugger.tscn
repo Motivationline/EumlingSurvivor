@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://bbkgb67jbgdly"]
 
 [ext_resource type="PackedScene" uid="uid://dlorku08ifcha" path="res://game/enemies/baby_controller/baby_controller.tscn" id="1_1kxn5"]
+[ext_resource type="Script" uid="uid://c87x2hwvlslpe" path="res://game/enemies/3-jungle-area/boss_bugger/baby_spawn_bugger.gd" id="2_6cwl8"]
 [ext_resource type="PackedScene" uid="uid://vubslyum34fe" path="res://assets/characters/enemies/bossbugger/baby/bugger_baby.tscn" id="2_iidy8"]
 
 [node name="BabyController" unique_id=1648963440 instance=ExtResource("1_1kxn5")]
+script = ExtResource("2_6cwl8")
+speed = 3.0
 
 [node name="bugger_baby" parent="Visuals" parent_id_path=PackedInt32Array(1922312297) index="0" unique_id=267609872 instance=ExtResource("2_iidy8")]

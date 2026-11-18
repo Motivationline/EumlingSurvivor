@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://bakryhmuuibrf" path="res://assets/characters/enemies/bomberry/sounds/death_2.wav" id="17_tcjfl"]
 [ext_resource type="AudioStream" uid="uid://djwcj0n4etxuv" path="res://assets/characters/enemies/bomberry/sounds/death_3.wav" id="18_k8nwx"]
 [ext_resource type="AudioStream" uid="uid://bg18bentgbs6a" path="res://assets/characters/enemies/bomberry/sounds/death_4.wav" id="19_in5dv"]
+[ext_resource type="PackedScene" uid="uid://dduxth1vqow7" path="res://assets/characters/enemies/bomberry/baby/baby_bomberry.tscn" id="19_ny2cy"]
 [ext_resource type="AudioStream" uid="uid://cy53vxdclxn5v" path="res://assets/characters/enemies/bomberry/sounds/death_5.wav" id="20_lo3ug"]
 [ext_resource type="AudioStream" uid="uid://ddoke46qg8u4h" path="res://assets/characters/enemies/bomberry/sounds/death_6.wav" id="21_aypav"]
 [ext_resource type="AudioStream" uid="uid://gux8h75ckcwo" path="res://assets/characters/enemies/bomberry/sounds/charge_1.wav" id="22_aypav"]
@@ -320,6 +321,9 @@ script = ExtResource("11_no3rs")
 state_machine = NodePath("../../StateMachine")
 state_to_execute = NodePath("../../StateMachine/Chase Player/MoveTowardsEntityState")
 metadata/_custom_type_script = "uid://ce61jighdgsby"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("19_ny2cy")
 
 [node name="bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("8_3bceb")]
 

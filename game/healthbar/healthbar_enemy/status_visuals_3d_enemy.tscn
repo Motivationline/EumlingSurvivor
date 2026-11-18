@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://drjnmtx3s4y78" path="res://assets/ui/gameOverlay/boss_healthbar.png" id="9_4omxj"]
 [ext_resource type="Texture2D" uid="uid://d23tkhmitttx3" path="res://assets/ui/gameOverlay/turtle_backdrop_unified.png" id="10_5ff46"]
 [ext_resource type="Texture2D" uid="uid://ctinxp05crr3l" path="res://assets/ui/gameOverlay/mosquito_trunk_unified.png" id="11_i0vrw"]
+[ext_resource type="Texture2D" uid="uid://b31bh35rs35er" path="res://assets/ui/Buttons/PauseButton.png" id="11_q3mxh"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_2fanj"]
 viewport_path = NodePath("SubViewport")
@@ -26,6 +27,12 @@ billboard_mode = 1
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_o76um"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="InputEventAction" id="InputEventAction_kko3x"]
+action = &"openPauseMenu"
+
+[sub_resource type="Shortcut" id="Shortcut_rpe6w"]
+events = [SubResource("InputEventAction_kko3x")]
 
 [node name="StatusVisuals3D" type="Node3D" unique_id=757580856]
 script = ExtResource("1_kvfwc")
@@ -74,11 +81,12 @@ hide_initially = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 174.0
-offset_top = 112.0
-offset_right = -172.0
-offset_bottom = 156.0
+offset_left = 155.0
+offset_top = 100.0
+offset_right = -191.0
+offset_bottom = 144.0
 grow_horizontal = 2
+scale = Vector2(0.88858414, 0.88858414)
 nine_patch_stretch = true
 stretch_margin_left = 12
 stretch_margin_top = 12
@@ -92,11 +100,12 @@ texture_progress_offset = Vector2(0, 0)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 174.0
-offset_top = 112.0
-offset_right = -172.0
-offset_bottom = 156.0
+offset_left = 155.0
+offset_top = 100.0
+offset_right = -191.0
+offset_bottom = 144.0
 grow_horizontal = 2
+scale = Vector2(0.88858414, 0.88858414)
 nine_patch_stretch = true
 stretch_margin_left = 12
 stretch_margin_top = 12
@@ -110,11 +119,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -116.0
-offset_top = -161.0
-offset_right = 122.0
-offset_bottom = -18.0
+offset_left = -211.99994
+offset_top = -173.0
+offset_right = 26.000061
+offset_bottom = -30.0
 grow_horizontal = 2
+scale = Vector2(0.88858414, 0.88858414)
 theme_override_font_sizes/font_size = 64
 
 [node name="Backdrop" type="TextureRect" parent="UIOverlay/Healthbar" unique_id=2006166573]
@@ -124,6 +134,7 @@ z_index = 9
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 227.75171
+scale = Vector2(0.88858414, 0.88858414)
 texture = ExtResource("10_5ff46")
 
 [node name="Overlay" type="TextureRect" parent="UIOverlay/Healthbar" unique_id=661459489]
@@ -133,6 +144,16 @@ z_index = 11
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 227.75171
+scale = Vector2(0.88858414, 0.88858414)
 texture = ExtResource("11_i0vrw")
+
+[node name="PauseButton" type="TextureButton" parent="UIOverlay/Healthbar" unique_id=1333835364]
+layout_mode = 0
+offset_left = 1710.0
+offset_top = 36.0
+offset_right = 1850.0
+offset_bottom = 180.0
+shortcut = SubResource("Shortcut_rpe6w")
+texture_normal = ExtResource("11_q3mxh")
 
 [editable path="UIOverlay/Healthbar"]

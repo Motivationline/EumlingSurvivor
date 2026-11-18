@@ -12,6 +12,7 @@ var eumlingclopedia = EUMLINGCLOPEDIA.instantiate()
 func _ready():
 	if not Data.is_on_mobile:
 		end_game_button.show()
+	eumlingclopedia.closed.connect(get_focus)
 
 func _enter_tree() -> void:
 	update_eumlex_number()
@@ -56,3 +57,6 @@ func _on_end_game_button_pressed() -> void:
 func _on_debug_level_chosen(levels) -> void:
 	Main.controller.load_game(game, false)
 	game.play_select_levels(levels)
+
+func get_focus():
+	$UIOverlay/StaticUI/VBoxContainer/PlayButton.grab_focus()

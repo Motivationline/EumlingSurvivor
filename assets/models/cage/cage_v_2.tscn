@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://g65bnmg6ukk"]
+
+[ext_resource type="PackedScene" uid="uid://ten686vwhhhr" path="res://assets/models/cage/cage_v2.glb" id="1_a37mb"]
+[ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="2_g5j01"]
+[ext_resource type="Texture2D" uid="uid://48h7trjuwpyi" path="res://assets/models/cage/cage_v2_DefaultMaterial_2D_View.png" id="3_4qdah"]
+
+[sub_resource type="Gradient" id="Gradient_2s5gv"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5256125)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yvy54"]
+gradient = SubResource("Gradient_2s5gv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qcuuy"]
+render_priority = 0
+shader = ExtResource("2_g5j01")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("3_4qdah")
+shader_parameter/diffuse_ramp = SubResource("GradientTexture1D_yvy54")
+shader_parameter/rim_focus = 0.5
+shader_parameter/use_diffuse_smooth_attenuation = true
+
+[node name="cage_v2" unique_id=2009709590 instance=ExtResource("1_a37mb")]
+
+[node name="eumling_cage" parent="." index="0" unique_id=1563828135]
+material_override = SubResource("ShaderMaterial_qcuuy")

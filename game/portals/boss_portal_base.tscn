@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://b4t8js0g7qyur"]
 
 [ext_resource type="Script" uid="uid://b5mrygkh5wuav" path="res://game/portals/boss_portal.gd" id="1_uqlhb"]
+[ext_resource type="PackedScene" uid="uid://dbw22bdgvggej" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/reveal/mini_realistisch_geschick_reveal.tscn" id="2_rpyn0"]
+[ext_resource type="PackedScene" uid="uid://drxv2fntob1we" path="res://assets/characters/eumling/mini_eumling/artistisch_kreativ/reveal/mini_eumling_artistisch_reveal.tscn" id="2_uqlhb"]
+[ext_resource type="PackedScene" uid="uid://ck5j8i6y6430r" path="res://assets/characters/eumling/mini_eumling/investigativ_forschend/reveal/mini_investigativ_forschend_reveal.tscn" id="3_vqiq0"]
+[ext_resource type="PackedScene" uid="uid://8psix5aubo38" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/reveal/mini_sozial_sozial_reveal.tscn" id="5_lx5mc"]
+[ext_resource type="PackedScene" uid="uid://b4dado5k8g86y" path="res://assets/characters/eumling/mini_eumling/entrepreneurual_ehrgeiz/reveal/mini_entre_ehrgeiz_reveal.tscn" id="6_ejpd8"]
+[ext_resource type="PackedScene" uid="uid://cps3kdcef7kl1" path="res://assets/characters/eumling/mini_eumling/conventional_logik/reveal/mini_conventional_logik_reveal.tscn" id="7_dmcye"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(0.3779297, 1.8508301, 1)
@@ -10,6 +16,14 @@ height = 1.5
 
 [node name="BossPortal" type="Node3D" unique_id=564679602]
 script = ExtResource("1_uqlhb")
+eumlings = Dictionary[int, PackedScene]({
+0: ExtResource("2_uqlhb"),
+1: ExtResource("7_dmcye"),
+2: ExtResource("6_ejpd8"),
+3: ExtResource("3_vqiq0"),
+4: ExtResource("2_rpyn0"),
+5: ExtResource("5_lx5mc")
+})
 
 [node name="ExitArea" type="Area3D" parent="." unique_id=1873846579]
 collision_layer = 0
@@ -30,3 +44,6 @@ shape = SubResource("CylinderShape3D_g4v7s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PillarRight" unique_id=1641254210]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -1)
 shape = SubResource("CylinderShape3D_g4v7s")
+
+[node name="MiniEumlingParent" type="Node3D" parent="." unique_id=1284548403]
+transform = Transform3D(0.17073223, 0, -0.98531747, 0, 1, 0, 0.98531747, 0, 0.17073223, 0.014624417, 1.764204, -0.6474045)

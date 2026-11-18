@@ -3,7 +3,49 @@
 [ext_resource type="PackedScene" uid="uid://bukufar1aa8wt" path="res://assets/characters/enemies/ninja_starfish/baby/baby_starfish.glb" id="1_kqpmj"]
 [ext_resource type="Material" uid="uid://c61at2yo4g6s1" path="res://assets/characters/enemies/ninja_starfish/material/starfish_cell_shader.tres" id="2_frhq1"]
 
+[sub_resource type="Animation" id="Animation_frhq1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kqpmj"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("baby:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.28385824, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_frhq1"]
+_data = {
+&"RESET": SubResource("Animation_frhq1"),
+&"idle": SubResource("Animation_kqpmj")
+}
+
 [node name="baby_starfish" unique_id=542327202 instance=ExtResource("1_kqpmj")]
 
 [node name="baby" parent="." index="0" unique_id=1665084381]
 material_override = ExtResource("2_frhq1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1152382691]
+libraries/ = SubResource("AnimationLibrary_frhq1")
+autoplay = &"idle"

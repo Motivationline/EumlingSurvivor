@@ -33,7 +33,7 @@ func setup_visuals() -> void:
 	for s in mini_sprites:
 		s.hide()
 
-	for i in mini_eumlings.size():
+	for i in clampi(mini_eumlings.size(),0,3):
 		var frames = mini_eumling_sprite_frames.get(mini_eumlings[i])
 		if not frames: continue
 		var sprite = mini_sprites[i]

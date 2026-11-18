@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c303aeoqvcrbk" path="res://assets/models/6-volcano/obstalce_stone/ObstacleStone_Volcano_Material_Base_color.png" id="3_gomhc"]
 [ext_resource type="PackedScene" uid="uid://ctpdnwxhrhuts" path="res://game/enemies/6-volcano/environment/magma_tiles.tscn" id="4_fv7po"]
 [ext_resource type="PackedScene" uid="uid://cm8xm0j7ly1d" path="res://game/enemies/6-volcano/magma_toad/magma_toad.tscn" id="5_0b1uq"]
+[ext_resource type="PackedScene" uid="uid://dyyhy5suplkkk" path="res://game/enemies/box/DestructibleBox2x1.tscn" id="6_80g8m"]
 [ext_resource type="PackedScene" uid="uid://6yrxe41rhgei" path="res://game/player/abilities/realistic/robot.tscn" id="8_80g8m"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_fv7po"]
@@ -14,6 +15,14 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 agent_radius = 0.25
 agent_max_climb = 0.0
 edge_max_error = 0.25
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ohyvy"]
+viewport_path = NodePath("OffscreenViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2d0y"]
+resource_local_to_scene = true
+specular_mode = 2
+albedo_texture = SubResource("ViewportTexture_ohyvy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n85fk"]
 albedo_texture = ExtResource("3_gomhc")
@@ -218,6 +227,9 @@ _surfaces = [{
 [node name="NavigationRegion3D" parent="." index="0" unique_id=1440811827]
 navigation_mesh = SubResource("NavigationMesh_fv7po")
 
+[node name="FloorOffscreen" parent="NavigationRegion3D/StaticBody3D" parent_id_path=PackedInt32Array(2126814094) index="1" unique_id=1090963421]
+material_override = SubResource("StandardMaterial3D_y2d0y")
+
 [node name="ObstacleGridMap" type="GridMap" parent="NavigationRegion3D" index="2" unique_id=1974733826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh_library = ExtResource("2_irt7t")
@@ -309,6 +321,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.75, -0.25)
 [node name="magma_tiles41" parent="Obstacles" index="24" unique_id=436820647 instance=ExtResource("4_fv7po")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.75, -0.25)
 
+[node name="2x1Stone" parent="Obstacles" index="25" unique_id=1837394296 instance=ExtResource("6_80g8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -1.25)
+
+[node name="2x1Stone2" parent="Obstacles" index="26" unique_id=1188925868 instance=ExtResource("6_80g8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, -2.75)
+
 [node name="MagmaToad" parent="Enemies" parent_id_path=PackedInt32Array(2012922691) index="0" unique_id=1898691 instance=ExtResource("5_0b1uq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1423173, 0, -0.882202)
 
@@ -320,3 +338,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8541563, 0, -3.89541)
 
 [node name="MiniEumlingRobot" parent="Robot" parent_id_path=PackedInt32Array(614762836) index="0" unique_id=1814085372 instance=ExtResource("8_80g8m")]
 transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, 4.045894, 0, -3.7237823)
+
+[editable path="OffscreenViewport"]

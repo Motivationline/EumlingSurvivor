@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://b4cjsuw0w7wgq" path="res://assets/vfx/buffed_assets/buffed_vfx.tscn" id="15_rnlhm"]
 [ext_resource type="PackedScene" uid="uid://cpbr8uxxklmxm" path="res://game/sound/sfx/sound_presets/enemy_preset.tscn" id="16_rkhve"]
 [ext_resource type="AudioStream" uid="uid://cimc7bjb75lhq" path="res://assets/characters/enemies/bomberry/magma/sounds/charge_1.wav" id="17_cebrb"]
+[ext_resource type="PackedScene" uid="uid://dnwqyv06h2kwg" path="res://assets/characters/enemies/bomberry/baby/baby_bomberry_volcano.tscn" id="17_ofbuq"]
 [ext_resource type="AudioStream" uid="uid://dqnmd6svmtq0l" path="res://assets/characters/enemies/bomberry/magma/sounds/charge_2.wav" id="18_465ce"]
 [ext_resource type="AudioStream" uid="uid://bnn5kx05xjipk" path="res://assets/characters/enemies/bomberry/magma/sounds/charge_3.wav" id="19_ofp6b"]
 [ext_resource type="AudioStream" uid="uid://bcivb054legwl" path="res://assets/characters/enemies/bomberry/magma/sounds/charge_4.wav" id="20_4ebql"]
@@ -320,6 +321,9 @@ metadata/_custom_type_script = "uid://ce61jighdgsby"
 script = ExtResource("13_rnlhm")
 strategies_to_deactivate = [NodePath("../TriggerStateEventStrategy")]
 metadata/_custom_type_script = "uid://d13s0cgbc5iq0"
+
+[node name="EntitySpawner" parent="Eventlisteners/SpawnFriendlyMob" parent_id_path=PackedInt32Array(935622948) index="0" unique_id=2045474360]
+entity_to_spawn = ExtResource("17_ofbuq")
 
 [node name="magma_bomberry" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=642251939 instance=ExtResource("10_uat0f")]
 

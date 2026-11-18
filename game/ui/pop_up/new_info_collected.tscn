@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cp1ha3k058w81"]
 
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="1_3ptv8"]
+[ext_resource type="Script" uid="uid://c4jwgmyo0hivm" path="res://game/ui/pop_up/info_popup.gd" id="1_prc2g"]
 [ext_resource type="Texture2D" uid="uid://cge6re5ltogle" path="res://assets/ui/Buttons/Divider.png" id="2_prc2g"]
 [ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="3_oa77d"]
 
@@ -8,15 +9,40 @@
 shader = ExtResource("1_3ptv8")
 shader_parameter/blur_amount = 2.0
 
-[node name="NewInfoCollected" type="Control" unique_id=563297542]
+[node name="NewInfoCollected" type="Control" unique_id=563297542 node_paths=PackedStringArray("eumling_headline", "area_headline", "eumling_text", "skill_text", "area")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_prc2g")
+min_wait_time = 0.5
+eumling_headline = NodePath("neuer_eumling")
+area_headline = NodePath("neues_areal")
+eumling_text = {
+0: NodePath("a_eumling_text"),
+1: NodePath("c_eumling_text"),
+2: NodePath("e_eumling_text"),
+3: NodePath("i_eumling_text"),
+4: NodePath("r_eumling_text"),
+5: NodePath("s_eumling_text")
+}
+skill_text = {
+0: NodePath("a_skill_text"),
+1: NodePath("c_skill_text"),
+2: NodePath("e_skill_text"),
+3: NodePath("i_skill_text"),
+4: NodePath("r_skill_text"),
+5: NodePath("s_skill_text")
+}
+area = {
+"Beach": NodePath("beach"),
+"Jungle": NodePath("jungle"),
+"Volcano": NodePath("vulcano")
+}
 
-[node name="Panel" type="Panel" parent="." unique_id=1597262303]
+[node name="Background_blurr" type="Panel" parent="." unique_id=1597262303]
 material = SubResource("ShaderMaterial_gmuld")
 layout_mode = 0
 offset_right = 1921.0
@@ -24,10 +50,10 @@ offset_bottom = 1079.0
 
 [node name="Divider" type="TextureRect" parent="." unique_id=1778854381]
 layout_mode = 0
-offset_left = 684.0
-offset_top = 379.0
-offset_right = 1260.0
-offset_bottom = 441.0
+offset_left = 669.0
+offset_top = 361.0
+offset_right = 1282.1614
+offset_bottom = 427.0
 texture = ExtResource("2_prc2g")
 
 [node name="Banner" type="TextureRect" parent="." unique_id=494834275]
@@ -38,18 +64,21 @@ offset_right = 1483.766
 offset_bottom = 702.0
 texture = ExtResource("3_oa77d")
 
-[node name="NeuesX" type="Label" parent="." unique_id=826870972]
+[node name="neuer_eumling" type="Label" parent="." unique_id=826870972]
+visible = false
 layout_mode = 0
-offset_left = 688.0
-offset_top = 306.0
-offset_right = 1259.0
-offset_bottom = 357.0
+offset_left = 632.0
+offset_top = 274.0
+offset_right = 1203.0
+offset_bottom = 325.0
+scale = Vector2(1.1856649, 1.1856649)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "Neues Areal betreten"
+text = "Neuen Eumling gerettet"
 horizontal_alignment = 1
 
-[node name="NameX" type="Label" parent="." unique_id=1500757848]
+[node name="r_eumling_text" type="Label" parent="." unique_id=1500757848]
+visible = false
 layout_mode = 0
 offset_left = 534.0
 offset_top = 515.0
@@ -57,17 +86,83 @@ offset_right = 1417.0
 offset_bottom = 647.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 70
-text = "Crimson Desert"
+text = "Geschick-Eumling"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="i_eumling_text" type="Label" parent="." unique_id=862994471]
+visible = false
+layout_mode = 0
+offset_left = 534.0
+offset_top = 515.0
+offset_right = 1417.0
+offset_bottom = 647.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Forschungs-Eumling"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="a_eumling_text" type="Label" parent="." unique_id=2001009533]
+visible = false
+layout_mode = 0
+offset_left = 534.0
+offset_top = 515.0
+offset_right = 1417.0
+offset_bottom = 647.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Artistischen-Eumling"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="s_eumling_text" type="Label" parent="." unique_id=1836135395]
+visible = false
+layout_mode = 0
+offset_left = 534.0
+offset_top = 515.0
+offset_right = 1417.0
+offset_bottom = 647.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Sozialen-Eumling"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="e_eumling_text" type="Label" parent="." unique_id=576145854]
+visible = false
+layout_mode = 0
+offset_left = 534.0
+offset_top = 515.0
+offset_right = 1417.0
+offset_bottom = 647.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Ehrgeiz-Eumling"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="c_eumling_text" type="Label" parent="." unique_id=1042044226]
+visible = false
+layout_mode = 0
+offset_left = 534.0
+offset_top = 515.0
+offset_right = 1417.0
+offset_bottom = 647.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Logik-Eumling"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="r_skill_text" type="Label" parent="." unique_id=1189864976]
 visible = false
 layout_mode = 0
-offset_left = 666.0
-offset_top = 717.0
-offset_right = 1279.0
-offset_bottom = 860.0
+offset_left = 610.0
+offset_top = 709.0
+offset_right = 1223.0
+offset_bottom = 852.0
+scale = Vector2(1.1856649, 1.1856649)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Repariere den Roboter um ihn im Kampf zu nutzen."
@@ -78,10 +173,11 @@ autowrap_mode = 3
 [node name="i_skill_text" type="Label" parent="." unique_id=2058503635]
 visible = false
 layout_mode = 0
-offset_left = 666.0
-offset_top = 717.0
-offset_right = 1279.0
-offset_bottom = 860.0
+offset_left = 610.0
+offset_top = 709.0
+offset_right = 1223.0
+offset_bottom = 852.0
+scale = Vector2(1.1856649, 1.1856649)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Gegner haben jetzt kritische Trefferzonen."
@@ -92,10 +188,11 @@ autowrap_mode = 3
 [node name="a_skill_text" type="Label" parent="." unique_id=37384406]
 visible = false
 layout_mode = 0
-offset_left = 666.0
-offset_top = 717.0
-offset_right = 1279.0
-offset_bottom = 860.0
+offset_left = 610.0
+offset_top = 709.0
+offset_right = 1223.0
+offset_bottom = 852.0
+scale = Vector2(1.1856649, 1.1856649)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Male Linien zum Schutz und Kreise für Angriffsboni."
@@ -106,10 +203,11 @@ autowrap_mode = 3
 [node name="s_skill_text" type="Label" parent="." unique_id=2146424950]
 visible = false
 layout_mode = 0
-offset_left = 666.0
-offset_top = 717.0
-offset_right = 1279.0
-offset_bottom = 860.0
+offset_left = 610.0
+offset_top = 709.0
+offset_right = 1223.0
+offset_bottom = 852.0
+scale = Vector2(1.1856649, 1.1856649)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Gegner um dich herum werden besänftigt."
@@ -120,10 +218,11 @@ autowrap_mode = 3
 [node name="e_skill_text" type="Label" parent="." unique_id=190412798]
 visible = false
 layout_mode = 0
-offset_left = 666.0
-offset_top = 717.0
-offset_right = 1279.0
-offset_bottom = 860.0
+offset_left = 610.0
+offset_top = 709.0
+offset_right = 1223.0
+offset_bottom = 852.0
+scale = Vector2(1.1856649, 1.1856649)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Erhalte einen Mini Kämpfer an deiner Seite."
@@ -134,13 +233,66 @@ autowrap_mode = 3
 [node name="c_skill_text" type="Label" parent="." unique_id=152303797]
 visible = false
 layout_mode = 0
-offset_left = 666.0
-offset_top = 717.0
-offset_right = 1279.0
-offset_bottom = 860.0
+offset_left = 610.0
+offset_top = 709.0
+offset_right = 1223.0
+offset_bottom = 852.0
+scale = Vector2(1.1856649, 1.1856649)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Schließe Aufgaben ab um temporäre Boni zu erhalten."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="neues_areal" type="Label" parent="." unique_id=74186680]
+visible = false
+layout_mode = 0
+offset_left = 632.0
+offset_top = 274.0
+offset_right = 1203.0
+offset_bottom = 325.0
+scale = Vector2(1.1856649, 1.1856649)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Neues Areal betreten"
+horizontal_alignment = 1
+
+[node name="vulcano" type="Label" parent="." unique_id=1560068049]
+visible = false
+layout_mode = 0
+offset_left = 534.0
+offset_top = 515.0
+offset_right = 1417.0
+offset_bottom = 647.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Vulkan Schlund"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="jungle" type="Label" parent="." unique_id=941302740]
+visible = false
+layout_mode = 0
+offset_left = 534.0
+offset_top = 515.0
+offset_right = 1417.0
+offset_bottom = 647.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Wald Eingang"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="beach" type="Label" parent="." unique_id=1094132263]
+visible = false
+layout_mode = 0
+offset_left = 534.0
+offset_top = 515.0
+offset_right = 1417.0
+offset_bottom = 647.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Meeres Bucht"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cu1ucgco815t4"]
 
 [ext_resource type="Script" uid="uid://ywmn15exh3c6" path="res://game/enemies/enemy.gd" id="1_axhys"]
-[ext_resource type="PackedScene" uid="uid://b8tq2f11ytj2p" path="res://game/enemies/enemy_death_vfx.tscn" id="2_l5jqn"]
+[ext_resource type="PackedScene" uid="uid://bbbupkvta2wkk" path="res://game/vfx/death_particles/death_particle_smoke.tscn" id="2_tbsjp"]
 [ext_resource type="Script" uid="uid://cio21hucnk80k" path="res://state_machine/state_machine.gd" id="3_3pmql"]
 [ext_resource type="PackedScene" uid="uid://cary3jj8sadl7" path="res://game/healthbar/healthbar_enemy/status_visuals_3d_enemy.tscn" id="3_qbujc"]
 [ext_resource type="Script" uid="uid://dc33apjfi7s6v" path="res://strategies/event/enemy/play_sound.gd" id="5_4ghmt"]
@@ -78,7 +78,7 @@ stream_9/stream = ExtResource("34_cf8mh")
 collision_layer = 16
 script = ExtResource("1_axhys")
 health = 10.0
-death_effect = ExtResource("2_l5jqn")
+death_effect = ExtResource("2_tbsjp")
 status_visuals = NodePath("StatusVisuals3DEnemy")
 on_death = [NodePath("Eventlisteners/PlaySoundDeath"), NodePath("Eventlisteners/SpawnFriendlyMob")]
 on_hurt = [NodePath("Eventlisteners/PlaySoundEnemyHurtEventStrategy")]
