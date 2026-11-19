@@ -466,7 +466,7 @@ shape = SubResource("SphereShape3D_wvq5w")
 debug_color = Color(0.883413, 0.262783, 0.530975, 0.42)
 
 [connection signal="entered" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator" method="set_visible" binds= [true]]
+[connection signal="entered" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
 [connection signal="exited" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator" method="set_visible" binds= [false]]
 [connection signal="play_sound" from="Visuals/volcano_tortoise" to="SoundEffectManager" method="play_sound"]
 [connection signal="stop_sound" from="Visuals/volcano_tortoise" to="SoundEffectManager" method="stop_sound"]
-[connection signal="visibility_changed" from="Visuals/CircularTargetIndicator" to="Visuals/CircularTargetIndicator/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
