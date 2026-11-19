@@ -114,17 +114,15 @@ func _update_type_counters_and_new_markings():
 		var number: Label = page.find_child("NumberCounter")
 		var typed_eumlings: Array = Data.eumlings.get(type)
 		var total: int = typed_eumlings.size()
-		var count: int = typed_eumlings.reduce(func(accum, eumling):
-			if eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.SEEN:
-				accum += 1
-			return accum
-		, 0)
+		var count_locked: int = Data.get_eumling_amount(type, Enum.EUMLING_UNLOCK_PROGRESS.LOCKED)
+		var count = total - count_locked
 		number.text = "%s/%s" % [count, total]
 
-		var new_eumlings_in_tab: int = typed_eumlings.reduce(func(accum, eumling):
-			if eumling.progress == Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED:
-				accum += 1
-			return accum
-		, 0)
+		var new_eumlings_in_tab: int = Data.get_eumling_amount(type, Enum.EUMLING_UNLOCK_PROGRESS.UNLOCKED)
 		var new_eumlings_marker = tabs_and_containers.keys()[tabs_and_containers.values().find(page)]
-		new_eumlings_marker.get_child(0).visible = new_eumlings_in_tab > 0
+		new_eumlings_marker.find_child("NewMarker").visible = new_eumlings_in_tab > 0
+
+		var bonus: Label = page.find_child("BuffWert")
+		var bonus_upgrade: Upgrade = Data.eumling_boni.get(type).duplicate()
+		bonus_upgrade.value *= count
+		bonus.text = bonus_upgrade._to_string()

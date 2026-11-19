@@ -59,6 +59,17 @@ func _setup_player():
 	player.died.connect(end_run)
 	player.hurt.connect(%DamageVignette.on_damage)
 
+	for type in Data.eumling_boni.keys():
+		var total: int = Data.eumlings.get(type).size()
+		var locked_amount: int = Data.get_eumling_amount(type, Enum.EUMLING_UNLOCK_PROGRESS.LOCKED)
+		var amount: int = total - locked_amount
+		if amount <= 0:
+			continue
+		var upgrade: Upgrade = Data.eumling_boni.get(type)
+		upgrade.milestone = true # we're doing this so it doesn't count as an upgrade. I know it's stupid and hacky, but there is no time for a proper solution atm.
+		for i in amount:
+			player.add_upgrade(upgrade)
+
 func _load_level():
 	if player.dead:
 		return

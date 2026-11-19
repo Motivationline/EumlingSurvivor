@@ -3,6 +3,16 @@ extends Node
 var game_data: GameData
 var is_on_mobile: bool = false
 
+## What upgrade bonuses does the player get for each collected mini eumling
+var eumling_boni: Dictionary[Enum.EUMLING_TYPE, Upgrade] = {
+	Enum.EUMLING_TYPE.ARTISTIC: Upgrade.new(Enum.UPGRADE.MOVEMENT_SPEED, Enum.UPGRADE_METHOD.ABSOLUTE, 0.03, "%+.1f Geschwindigkeit", 10),
+	Enum.EUMLING_TYPE.CONVENTIONAL: Upgrade.new(Enum.UPGRADE.ATTACK_COOLDOWN, Enum.UPGRADE_METHOD.MULTIPLIER, 0.99, "%+d Angriffstempo", 10),
+	Enum.EUMLING_TYPE.ENTERPRISING: Upgrade.new(Enum.UPGRADE.RANGE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.03, "%+.1f Reichweite", 10),
+	Enum.EUMLING_TYPE.INVESTIGATIVE: Upgrade.new(Enum.UPGRADE.CRIT_CHANCE, Enum.UPGRADE_METHOD.ABSOLUTE, 0.01, "%+d%% Kritische Trefferchance", 100),
+	Enum.EUMLING_TYPE.REALISTIC: Upgrade.new(Enum.UPGRADE.DAMAGE, Enum.UPGRADE_METHOD.ABSOLUTE, 2, "%+d Schaden"),
+	Enum.EUMLING_TYPE.SOCIAL: Upgrade.new(Enum.UPGRADE.HEALTH, Enum.UPGRADE_METHOD.ABSOLUTE, 5, "%+d Leben"),
+}
+
 func _ready() -> void:
 	is_on_mobile = OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios")
 	_setup_eumlings()
@@ -48,8 +58,8 @@ func _setup_eumlings():
 		eumlings.set(type, [])
 		_locked_eumlings.set(type, [])
 
-	_unlocked_eumlings = SaveData.get_data("unlocked_eumlings", []  )
-	_seen_eumlings = SaveData.get_data("seen_eumlings", [] )
+	_unlocked_eumlings = SaveData.get_data("unlocked_eumlings", [])
+	_seen_eumlings = SaveData.get_data("seen_eumlings", [])
 	_load_eumlings()
 
 func _load_eumlings(current_path: String = ""):
@@ -94,7 +104,7 @@ func _unlock_eumling(type: Enum.EUMLING_TYPE) -> Eumling:
 	# we've already unlocked all eumlings of this category
 	return Data.eumlings.get(type).pick_random()
 
-func unlock_specific_eumling(eumling: Eumling): 
+func unlock_specific_eumling(eumling: Eumling):
 	var candidates = _locked_eumlings.get(eumling.type) as Array
 	if not candidates.has(eumling): return
 	candidates.erase(eumling)
@@ -127,6 +137,14 @@ func _sort_eumlings_to_unlock(a: Eumling, b: Eumling) -> bool:
 	if a.unlock_priority and not b.unlock_priority:
 		return true
 	return false
+
+func get_eumling_amount(type: Enum.EUMLING_TYPE, progress: Enum.EUMLING_UNLOCK_PROGRESS) -> int:
+	var eumlings_with_type = eumlings.get(type)
+	return eumlings_with_type.reduce(func(accum, eumling):
+		if eumling.progress == progress:
+			accum += 1
+		return accum
+	, 0)
 
 #endregion
 
