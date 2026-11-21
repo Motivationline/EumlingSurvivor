@@ -3,7 +3,7 @@ extends CanvasLayer
 const EUMLING_BUTTON = preload("uid://b6vj3geh4ibvg")
 const SELECTION_OVERLAY = preload("uid://kny1jc4mmgwc")
 
-var selection_overlay: TextureRect;
+var selection_overlay: TextureRect
 signal closed
 
 @export var tabs_and_containers: Dictionary[TextureButton, Panel]
@@ -11,14 +11,23 @@ signal closed
 @export var sound_effect_manager: SoundEffectManager
 signal eumling_clicked(eumling: Eumling)
 
+var close_button: TextureButton
+var current_tab: TextureButton
+
+var close_button_neighbours: Array[EumlingButton]
+
+
 func _on_tab_pressed(tab: TextureButton):
 	if not tab: return
+	current_tab = tab
 	var panel = tabs_and_containers.get(tab)
 	if not panel: return
 	highlight_marker(tab)
 	show_page(panel)
 	sound_effect_manager.play_sound("TurnPage")
+	panel.find_child("GridContainer").get_child(0).grab_focus()
 
+	
 # Display active page
 func show_page(active_page):
 	for page in tabs_and_containers.values():
@@ -33,12 +42,17 @@ func highlight_marker(active_button):
 	active_button.position.y = -30
 
 func _ready() -> void:
+	close_button = %CloseButton
+	current_tab = tabs_and_containers.keys()[0]
 	_update_buttons()
-	$Book/TabPanel/OrangeButton.pressed.emit()
 	%EumlexInfo.hide()
 	# unlock_new_eumlings([randi_range(0, 4), randi_range(0, 4)])
 	selection_overlay = SELECTION_OVERLAY.instantiate()
 	_update_type_counters_and_new_markings()
+	$Book/TabPanel/OrangeButton.pressed.emit.call_deferred()
+	
+	close_button.focus_entered.connect(selection_overlay.hide)
+	InputMethodDetector.refresh_sensitive_nodes()
 
 
 func _on_close_button_pressed() -> void:
@@ -62,6 +76,11 @@ func _update_buttons():
 		for eumling in category:
 			setup_button(eumling)
 
+	for btn in close_button_neighbours:
+		if not btn.hidden:
+			close_button.focus_neighbor_bottom = btn.get_path()
+			close_button.focus_neighbor_left = btn.get_path()
+
 func _shortcut_input(event) -> void:
 	if event.is_action_pressed("debug_unlock_eumlex"):
 		for type in Data._locked_eumlings:
@@ -70,18 +89,39 @@ func _shortcut_input(event) -> void:
 				
 		update_visuals()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if visible:
+		if event.is_action_pressed("cycle_ui_left"):
+			cycle_page(-1)
+		elif event.is_action_pressed("cycle_ui_right"):
+			cycle_page(1)
+
+func cycle_page(_count: int) -> void:
+	var current_index: int = tabs_and_containers.keys().find(current_tab)
+	var next_tab: TextureButton = tabs_and_containers.keys()[(current_index + _count) % tabs_and_containers.size()]
+	_on_tab_pressed(next_tab)
+
+
 func setup_button(eumling: Eumling):
-	var container = eumling_type_and_container.get(eumling.type)
+	var container: GridContainer = eumling_type_and_container.get(eumling.type)
 	if not container: return
-	var btn = EUMLING_BUTTON.instantiate()
+	var btn: EumlingButton = EUMLING_BUTTON.instantiate()
 	btn.eumling = eumling
 	container.add_child(btn)
-	btn.pressed.connect(select_eumling.bind(btn, eumling))
+
+	var child_id: int = container.get_children().find(btn)
+	if child_id < container.columns:
+		btn.focus_neighbor_top = close_button.get_path()
+	if child_id % container.columns == 2:
+		btn.focus_neighbor_right = close_button.get_path()
+		
+	btn.focus_entered.connect(select_eumling.bind(btn, eumling))
 
 func select_eumling(btn: EumlingButton, eumling: Eumling):
 	if (selection_overlay.get_parent()):
 		selection_overlay.get_parent().remove_child(selection_overlay)
 	btn.add_child(selection_overlay)
+	selection_overlay.show()
 	sound_effect_manager.play_sound("SelectEumling")
 
 	%EumlexInfo.show()

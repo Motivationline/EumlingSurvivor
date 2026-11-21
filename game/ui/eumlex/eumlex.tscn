@@ -22,8 +22,13 @@
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="15_xeq76"]
 [ext_resource type="Texture2D" uid="uid://c2gddpasfcois" path="res://assets/ui/Buttons/close_button.png" id="15_y7di5"]
 [ext_resource type="PackedScene" uid="uid://djyl5v0duholv" path="res://game/ui/eumlex/eumlex_info_page_missing.tscn" id="16_17oye"]
+[ext_resource type="Script" uid="uid://0665lxypw0is" path="res://game/ui/input_method_sensitive_control/input_method_shifter.gd" id="16_fmuvr"]
+[ext_resource type="Texture2D" uid="uid://cetpofujnqhqm" path="res://assets/ui/Buttons/placeholder/LeftTriggerBeauty.png" id="17_q5hyn"]
+[ext_resource type="Texture2D" uid="uid://clpliefscbbvm" path="res://assets/ui/Buttons/placeholder/QKeyBeauty.png" id="18_48btb"]
 [ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="18_h87jw"]
+[ext_resource type="Texture2D" uid="uid://c012atik3mviw" path="res://assets/ui/Buttons/placeholder/RightTriggerBeauty.png" id="19_665xe"]
 [ext_resource type="Texture2D" uid="uid://hx6s6q7vqpkq" path="res://assets/ui/Eumlex/eumlex_tracker_backdrop.png" id="20_bt128"]
+[ext_resource type="Texture2D" uid="uid://dspdnc6h36xsy" path="res://assets/ui/Buttons/placeholder/EKeyBeauty.png" id="20_h87jw"]
 [ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="21_h87jw"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="24_xxm4k"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="25_eumhd"]
@@ -112,6 +117,7 @@ layout_mode = 0
 offset_left = 12.0
 offset_right = 109.0
 offset_bottom = 148.0
+focus_mode = 0
 texture_normal = ExtResource("2_as5su")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/OrangeButton" unique_id=2104983446]
@@ -142,6 +148,7 @@ layout_mode = 0
 offset_left = 118.0
 offset_right = 215.0
 offset_bottom = 148.0
+focus_mode = 0
 texture_normal = ExtResource("3_orh8k")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/GreenButton" unique_id=497545965]
@@ -172,6 +179,7 @@ layout_mode = 0
 offset_left = 224.0
 offset_right = 321.0
 offset_bottom = 148.0
+focus_mode = 0
 texture_normal = ExtResource("4_y7di5")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/PurpleButton" unique_id=1191177753]
@@ -202,6 +210,7 @@ layout_mode = 0
 offset_left = 331.0
 offset_right = 427.0
 offset_bottom = 148.0
+focus_mode = 0
 texture_normal = ExtResource("5_17oye")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/YellowButton" unique_id=946420858]
@@ -231,6 +240,7 @@ layout_mode = 0
 offset_left = 435.0
 offset_right = 532.0
 offset_bottom = 148.0
+focus_mode = 0
 texture_normal = ExtResource("6_71i0l")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/RedButton" unique_id=1609913383]
@@ -261,6 +271,7 @@ layout_mode = 0
 offset_left = 540.0
 offset_right = 637.0
 offset_bottom = 147.0
+focus_mode = 0
 texture_normal = ExtResource("7_jyuqq")
 
 [node name="Icon" type="TextureRect" parent="Book/TabPanel/BlueButton" unique_id=1249381863]
@@ -285,6 +296,70 @@ offset_top = -7.0
 offset_right = 109.0
 offset_bottom = 35.0
 texture = ExtResource("3_as5su")
+
+[node name="LeftCycleButtonIcon" type="Control" parent="Book/TabPanel" unique_id=1485930053 node_paths=PackedStringArray("controller_nodes", "mouse_keyboard_nodes", "mobile_nodes")]
+anchors_preset = 0
+offset_left = -48.0
+offset_top = 11.0
+offset_right = -8.0
+offset_bottom = 51.0
+script = ExtResource("16_fmuvr")
+controller_nodes = NodePath("Controller")
+mouse_keyboard_nodes = NodePath("Keyboard")
+mobile_nodes = NodePath("Mobile")
+
+[node name="Controller" type="TextureRect" parent="Book/TabPanel/LeftCycleButtonIcon" unique_id=784238238]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 55.0
+texture = ExtResource("17_q5hyn")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Mobile" type="Control" parent="Book/TabPanel/LeftCycleButtonIcon" unique_id=632257707]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Keyboard" type="TextureRect" parent="Book/TabPanel/LeftCycleButtonIcon" unique_id=2051006631]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 55.0
+texture = ExtResource("18_48btb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RightCycleButtonIcon" type="Control" parent="Book/TabPanel" unique_id=985580188 node_paths=PackedStringArray("controller_nodes", "mouse_keyboard_nodes", "mobile_nodes")]
+anchors_preset = 0
+offset_left = 647.0
+offset_top = 11.0
+offset_right = 687.0
+offset_bottom = 51.0
+script = ExtResource("16_fmuvr")
+controller_nodes = NodePath("Controller")
+mouse_keyboard_nodes = NodePath("Keyboard")
+mobile_nodes = NodePath("Mobile")
+
+[node name="Controller" type="TextureRect" parent="Book/TabPanel/RightCycleButtonIcon" unique_id=491291621]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 55.0
+texture = ExtResource("19_665xe")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Mobile" type="Control" parent="Book/TabPanel/RightCycleButtonIcon" unique_id=1157781611]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Keyboard" type="TextureRect" parent="Book/TabPanel/RightCycleButtonIcon" unique_id=423248518]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 55.0
+texture = ExtResource("20_h87jw")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="BackdropEumlex" type="TextureRect" parent="Book" unique_id=236310539]
 layout_mode = 1
@@ -1287,6 +1362,7 @@ max_font_size = 32
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
 [node name="CloseButton" type="TextureButton" parent="Book" unique_id=86270587 groups=["InputMethodSensitive"]]
+unique_name_in_owner = true
 z_index = 2
 layout_mode = 0
 offset_left = 1664.0

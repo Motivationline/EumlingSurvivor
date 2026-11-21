@@ -51,7 +51,13 @@ func switch_input_method(_new_method: INPUT_METHOD) -> void:
 		INPUT_METHOD.KEYBOARD:
 			deactivate_button_icons()
 			#print("switching to keyboard and mouse")
+	update_shifters()
 
+
+func update_shifters() -> void:
+	for node in sensitive_nodes:
+		if node is InputMethodShifter:
+			node.shift(current_input_method)
 
 func activate_button_icons() -> void:
 	for node in sensitive_nodes:
