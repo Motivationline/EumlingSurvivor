@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ylf5tr1haxpu" path="res://assets/characters/eumling/mini_eumling/realistisch_geschick/mini_realistisch_geschick_visual.tscn" id="6_mn3nd"]
 [ext_resource type="PackedScene" uid="uid://drn335i4omarh" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/mini_sozial_sozial_visual.tscn" id="7_j7bcv"]
 [ext_resource type="Shader" uid="uid://hbik3r043k2r" path="res://assets/ui/pauseMenueBlurr.gdshader" id="8_amhc8"]
+[ext_resource type="Script" uid="uid://bvuab5udah8xt" path="res://game/ui/buttons/animated_button.gd" id="11_lcb6e"]
 [ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="13_lcb6e"]
 [ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="14_bk87j"]
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="14_rnpr1"]
@@ -215,6 +216,10 @@ vertical_alignment = 1
 script = ExtResource("14_rnpr1")
 label_size = Vector2i(290, 105)
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
+[node name="AnimatedButton" type="Node" parent="ContinueButton" unique_id=102493117]
+script = ExtResource("11_lcb6e")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="CollectEumlexPage" parent="." unique_id=1028725752 instance=ExtResource("15_mn3nd")]
 unique_name_in_owner = true

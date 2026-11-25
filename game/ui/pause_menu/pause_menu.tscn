@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://8bqwxkcdktcv" path="res://assets/ui/Buttons/HomeButton.png" id="3_utddp"]
 [ext_resource type="Texture2D" uid="uid://b4puyhx8d2gim" path="res://assets/ui/Buttons/PlayButton.png" id="5_edo3p"]
 [ext_resource type="Texture2D" uid="uid://bsh5cti8q2hqs" path="res://assets/ui/pauseMenu/PaperRectangleInfo.png" id="10_6rxva"]
+[ext_resource type="Script" uid="uid://bvuab5udah8xt" path="res://game/ui/buttons/animated_button.gd" id="12_sfmqp"]
 [ext_resource type="PackedScene" uid="uid://54ec674jmwbg" path="res://game/ui/pause_menu/settings.tscn" id="20_qd2kc"]
 [ext_resource type="Script" uid="uid://0ev8qorbgey0" path="res://game/ui/input_method_detector/input_method_detector.gd" id="21_bwtpp"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="21_huhjg"]
@@ -314,6 +315,10 @@ offset_right = 210.0
 offset_bottom = 180.0
 texture_normal = ExtResource("3_utddp")
 
+[node name="AnimatedButton" type="Node" parent="HomeButton" unique_id=2057409802]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 [node name="PlayButton" type="TextureButton" parent="." unique_id=555258968 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 1709.0
@@ -323,6 +328,10 @@ offset_bottom = 180.0
 shortcut = SubResource("Shortcut_vyndw")
 texture_normal = ExtResource("5_edo3p")
 
+[node name="AnimatedButton" type="Node" parent="PlayButton" unique_id=356671733]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 [node name="right_arrow" type="TextureButton" parent="." unique_id=1292272712]
 layout_mode = 0
 offset_left = 1767.0
@@ -330,6 +339,10 @@ offset_top = 490.0
 offset_right = 1838.0
 offset_bottom = 572.0
 texture_normal = ExtResource("25_kq7qj")
+
+[node name="AnimatedButton" type="Node" parent="right_arrow" unique_id=1383075594]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="left_arrow" type="TextureButton" parent="." unique_id=591294064]
 layout_mode = 0
@@ -339,6 +352,10 @@ offset_right = 1052.0
 offset_bottom = 572.0
 texture_normal = ExtResource("25_kq7qj")
 flip_h = true
+
+[node name="AnimatedButton" type="Node" parent="left_arrow" unique_id=1154368121]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="ripped_out_page" parent="." unique_id=1028725752 instance=ExtResource("29_kq7qj")]
 layout_mode = 1
@@ -433,6 +450,10 @@ offset_top = 37.0
 offset_right = 428.0
 offset_bottom = 176.0
 texture_normal = ExtResource("31_3yawr")
+
+[node name="AnimatedButton" type="Node" parent="SettingsButton" unique_id=391459793]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="Settings" parent="." unique_id=1695909775 instance=ExtResource("20_qd2kc")]
 visible = false

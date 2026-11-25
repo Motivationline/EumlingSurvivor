@@ -25,6 +25,7 @@
 [ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="18_h87jw"]
 [ext_resource type="Texture2D" uid="uid://hx6s6q7vqpkq" path="res://assets/ui/Eumlex/eumlex_tracker_backdrop.png" id="20_bt128"]
 [ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="21_h87jw"]
+[ext_resource type="Script" uid="uid://bvuab5udah8xt" path="res://game/ui/buttons/animated_button.gd" id="24_48btb"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="24_xxm4k"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="25_eumhd"]
 [ext_resource type="AudioStream" uid="uid://cpfh1wlogcfm1" path="res://assets/sound/ui/eumlex/click_1.wav" id="26_7xmmu"]
@@ -1296,6 +1297,10 @@ offset_top = 63.0
 offset_right = 1796.0
 offset_bottom = 202.0
 texture_normal = ExtResource("15_y7di5")
+
+[node name="AnimatedButton" type="Node" parent="Book/CloseButton" unique_id=476819471]
+script = ExtResource("24_48btb")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="EumlexInfo" type="Control" parent="Book" unique_id=650374454]
 unique_name_in_owner = true

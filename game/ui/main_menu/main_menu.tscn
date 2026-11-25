@@ -489,6 +489,10 @@ metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 libraries/ = SubResource("AnimationLibrary_njswq")
 autoplay = &"number_wiggle"
 
+[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/EumlexButton" unique_id=1475173124]
+script = ExtResource("22_u8d3k")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 [node name="SettingsButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=1014587333 groups=["InputMethodSensitive"]]
 visible = false
 layout_mode = 0
@@ -502,6 +506,10 @@ focus_next = NodePath("../VBoxContainer/PlayButton")
 focus_previous = NodePath("../EumlexButton")
 texture_normal = ExtResource("13_0bhyy")
 texture_focused = ExtResource("11_egypv")
+
+[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/SettingsButton" unique_id=928686971]
+script = ExtResource("22_u8d3k")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIOverlay/StaticUI" unique_id=615637375]
 layout_mode = 0
@@ -544,6 +552,10 @@ theme_override_font_sizes/font_size = 70
 text = "Neu"
 horizontal_alignment = 1
 
+[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/VBoxContainer/PlayButton" unique_id=1980195207]
+script = ExtResource("22_u8d3k")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 [node name="ContinueButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=1797591909 groups=["InputMethodSensitive"]]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
@@ -577,6 +589,10 @@ theme_override_fonts/font = ExtResource("15_dmkvk")
 theme_override_font_sizes/font_size = 70
 text = "Weiter"
 horizontal_alignment = 1
+
+[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/VBoxContainer/ContinueButton" unique_id=406284952]
+script = ExtResource("22_u8d3k")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="logo_ml" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1254517399]
 layout_mode = 0
@@ -655,6 +671,10 @@ offset_right = 209.0
 offset_bottom = 178.0
 texture_normal = ExtResource("13_0bhyy")
 
+[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/Settings" unique_id=689746913]
+script = ExtResource("22_u8d3k")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 [node name="EndGameButton" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=576263562 groups=["InputMethodSensitive"]]
 unique_name_in_owner = true
 layout_mode = 0
@@ -663,6 +683,10 @@ offset_top = 40.0
 offset_right = 1845.0
 offset_bottom = 179.0
 texture_normal = ExtResource("19_vt321")
+
+[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/EndGameButton" unique_id=2138430891]
+script = ExtResource("22_u8d3k")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="AreaPicker" parent="UIOverlay" unique_id=1083536254 instance=ExtResource("20_2f5e2")]
 mouse_filter = 2
