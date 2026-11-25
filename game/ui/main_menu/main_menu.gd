@@ -14,6 +14,7 @@ func _ready():
 		end_game_button.show()
 	get_focus()
 	eumlingclopedia.closed.connect(get_focus)
+	%Settings.hidden.connect(get_focus)
 	InputMethodDetector.refresh_sensitive_nodes()
 
 func _enter_tree() -> void:
