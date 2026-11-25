@@ -12,6 +12,9 @@ func _process(_delta):
 			close()
 		else:
 			open()
+	if Input.is_action_just_pressed("close_menu"):
+		if is_open:
+			close()
 
 func open():
 	InputMethodDetector.refresh_sensitive_nodes()

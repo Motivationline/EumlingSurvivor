@@ -95,6 +95,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			cycle_page(-1)
 		elif event.is_action_pressed("cycle_ui_right"):
 			cycle_page(1)
+		if event.is_action_pressed("close_menu"):
+			_on_close_button_pressed()
 
 func cycle_page(_count: int) -> void:
 	var current_index: int = tabs_and_containers.keys().find(current_tab)
