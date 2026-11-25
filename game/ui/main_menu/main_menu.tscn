@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="20_sp1m0"]
 [ext_resource type="PackedScene" uid="uid://b2gactr5k8m8l" path="res://assets/characters/eumling/main_menu_eumling/backpack/backpack_prop.tscn" id="21_jxl6k"]
 [ext_resource type="Script" uid="uid://s85xvdt2wnta" path="res://game/ui/main_menu/video_play_button.gd" id="21_m70ot"]
+[ext_resource type="Script" uid="uid://bvuab5udah8xt" path="res://game/ui/buttons/animated_button.gd" id="22_u8d3k"]
 [ext_resource type="PackedScene" uid="uid://dnpkx1sg04yw3" path="res://assets/characters/eumling/mini_eumling/sozial_sozial/main_menu/main_menu_sozial.tscn" id="23_hutre"]
 [ext_resource type="Shader" uid="uid://chp5vkln2tukv" path="res://game/shared/cel_shader.gdshader" id="23_vt321"]
 [ext_resource type="Texture2D" uid="uid://dgo3oufhob4xs" path="res://assets/models/3-Jungle/jungle_tree/jungel_tree_01_Tree_Base_color.png" id="24_2f5e2"]
@@ -641,6 +642,10 @@ theme_override_fonts/font = ExtResource("15_dmkvk")
 text = "Intro "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/IntroButton" unique_id=1679818484]
+script = ExtResource("22_u8d3k")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="Settings" type="TextureButton" parent="UIOverlay/StaticUI" unique_id=912012033 groups=["InputMethodSensitive"]]
 layout_mode = 0

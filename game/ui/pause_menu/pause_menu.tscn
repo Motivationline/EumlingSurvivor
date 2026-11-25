@@ -29,6 +29,164 @@ shader_parameter/blur_amount = 4.00000019
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7phrv"]
 
+[sub_resource type="Animation" id="Animation_41g3d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EumlingSticker1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(361.15442, 143.64084)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EumlingSticker1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.06379168]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EumlingSticker2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(715.46857, 288.6499)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EumlingSticker2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.22211742]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EumlingSticker3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(243.5055, 573.1957)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EumlingSticker3:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.20999965]
+}
+
+[sub_resource type="Animation" id="Animation_sfmqp"]
+resource_name = "animation_stickers"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EumlingSticker1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2666667, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(361.15442, 143.64084), Vector2(361.15427, 88.92049), Vector2(361.15442, 143.64084)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EumlingSticker1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.6666666, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.06379168, -0.037260063, 0.121413544, 0.06379168]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EumlingSticker2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(715.46857, 288.6499), Vector2(715.4686, 343.37018), Vector2(715.46857, 288.6499)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EumlingSticker2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.6333333, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.22211742, 0.0146109015, 0.22211742]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EumlingSticker3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(243.5055, 573.1957), Vector2(311.14642, 505.55566), Vector2(243.5055, 573.1957)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EumlingSticker3:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6333333, 1.6, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.20999965, -0.14719266, -0.2828035, -0.20999965]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8i6dt"]
+_data = {
+&"RESET": SubResource("Animation_41g3d"),
+&"animation_stickers": SubResource("Animation_sfmqp")
+}
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_huhjg"]
 random_pitch = 1.2599211
 streams_count = 1
@@ -76,35 +234,41 @@ grow_vertical = 2
 scale = Vector2(0.7309895, 0.7309895)
 texture = ExtResource("1_1rr57")
 
-[node name="EumlingSticker1" type="TextureButton" parent="BackdropBackpack" unique_id=1925753235]
+[node name="EumlingSticker1" type="TextureButton" parent="BackdropBackpack" unique_id=963138109]
 layout_mode = 0
-offset_left = 715.4686
-offset_top = 306.434
-offset_right = 858.4686
-offset_bottom = 458.43402
-rotation = 0.22211742
-scale = Vector2(1.6496216, 1.6496216)
-texture_normal = ExtResource("2_062ls")
-
-[node name="EumlingSticker2" type="TextureButton" parent="BackdropBackpack" unique_id=963138109]
-layout_mode = 0
-offset_left = 361.1543
-offset_top = 102.60066
-offset_right = 504.15433
-offset_bottom = 254.60066
+offset_left = 361.15442
+offset_top = 143.64084
+offset_right = 504.15445
+offset_bottom = 295.64984
 rotation = 0.06379168
 scale = Vector2(1.6496218, 1.6496218)
 texture_normal = ExtResource("2_062ls")
 
+[node name="EumlingSticker2" type="TextureButton" parent="BackdropBackpack" unique_id=1925753235]
+layout_mode = 0
+offset_left = 715.46857
+offset_top = 288.6499
+offset_right = 858.46857
+offset_bottom = 440.64996
+rotation = 0.22211742
+scale = Vector2(1.6496216, 1.6496216)
+texture_normal = ExtResource("2_062ls")
+
 [node name="EumlingSticker3" type="TextureButton" parent="BackdropBackpack" unique_id=2089497161]
 layout_mode = 0
-offset_left = 253.08154
-offset_top = 533.5235
-offset_right = 396.08154
-offset_bottom = 685.52356
+offset_left = 243.5055
+offset_top = 573.1957
+offset_right = 386.5055
+offset_bottom = 725.2021
 rotation = -0.20999965
 scale = Vector2(1.6496218, 1.6496218)
 texture_normal = ExtResource("2_062ls")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=778095160]
+root_node = NodePath("../BackdropBackpack")
+libraries/ = SubResource("AnimationLibrary_8i6dt")
+autoplay = &"animation_stickers"
+speed_scale = 0.488
 
 [node name="InfoEumling" type="TextureRect" parent="." unique_id=686867953]
 visible = false
@@ -178,10 +342,10 @@ flip_h = true
 
 [node name="ripped_out_page" parent="." unique_id=1028725752 instance=ExtResource("29_kq7qj")]
 layout_mode = 1
-offset_left = 432.00012
-offset_top = 19.000061
-offset_right = 432.00012
-offset_bottom = 19.000061
+offset_left = 451.00012
+offset_top = 19.0
+offset_right = 451.00012
+offset_bottom = 19.0
 scale = Vector2(0.8381038, 0.8381038)
 
 [node name="ProgressDisplay" type="Control" parent="." unique_id=2061562221]
