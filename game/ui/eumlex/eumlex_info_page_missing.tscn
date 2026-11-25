@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://b4wy7vt8llog" path="res://assets/ui/Map/JungleIsland.png" id="17_bby07"]
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="18_657gf"]
 [ext_resource type="Texture2D" uid="uid://6itd87mqu01y" path="res://assets/ui/Eumlex/eumlex_zuletzt_gesehen.png" id="18_ccn3p"]
+[ext_resource type="Script" uid="uid://cdan1jdi30uor" path="res://game/ui/buttons/static_ui_animated_button.gd" id="18_lo168"]
 [ext_resource type="Texture2D" uid="uid://coka5lrauhsno" path="res://assets/ui/Eumlex/eumlex_fragezeichen.png" id="19_kmscr"]
 
 [node name="EumlexInfoPageMissing" type="Control" unique_id=1340831237]
@@ -120,16 +121,44 @@ texture = ExtResource("17_bby07")
 
 [node name="LastSeen" type="TextureRect" parent="." unique_id=869850450]
 layout_mode = 0
-offset_left = 69.0
-offset_top = 203.0
-offset_right = 375.0
-offset_bottom = 421.0
+offset_left = 35.0
+offset_top = 369.0
+offset_right = 341.0
+offset_bottom = 459.0
 texture = ExtResource("18_ccn3p")
 
 [node name="Questionmark" type="TextureRect" parent="." unique_id=1822530843]
+visible = false
 layout_mode = 0
 offset_left = 403.0
 offset_top = 194.0
 offset_right = 688.0
 offset_bottom = 683.0
 texture = ExtResource("19_kmscr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=2018013182]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 243.99998
+offset_right = 374.0
+offset_bottom = 376.0
+rotation = -0.08878547
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("12_1yhuf")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[wave]ZULETZT 
+GESEHEN[/wave]"
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=2054427933]
+layout_mode = 0
+offset_left = 405.0
+offset_top = 198.0
+offset_right = 690.0
+offset_bottom = 687.0
+rotation = 0.08198973
+texture_normal = ExtResource("19_kmscr")
+
+[node name="StaticUiAnimatedButton" type="Node" parent="TextureButton" unique_id=1407138086]
+script = ExtResource("18_lo168")
+metadata/_custom_type_script = "uid://cdan1jdi30uor"
