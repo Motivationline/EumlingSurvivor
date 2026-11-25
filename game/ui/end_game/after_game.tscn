@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dr3up4v422lgg" path="res://game/ui/eumlex/eumlex_info_page.tscn" id="4_21ups"]
 [ext_resource type="Texture2D" uid="uid://dbulvb5v50egi" path="res://assets/ui/Eumlex/BannerShort.png" id="4_ahwhd"]
 [ext_resource type="Texture2D" uid="uid://c6i871d8wksoa" path="res://assets/ui/Buttons/rectangleButton.png" id="5_21ups"]
+[ext_resource type="Script" uid="uid://bvuab5udah8xt" path="res://game/ui/buttons/animated_button.gd" id="6_6ekap"]
 [ext_resource type="Script" uid="uid://ciiwsqka3sxfa" path="res://game/ui/auto_size_labels/auto_size_label.gd" id="6_m0551"]
 [ext_resource type="Texture2D" uid="uid://crrugw36afvgj" path="res://assets/ui/Buttons/slider_button.png" id="8_k4jjj"]
 
@@ -94,6 +95,10 @@ offset_right = 1838.0
 offset_bottom = 572.0
 texture_normal = ExtResource("8_k4jjj")
 
+[node name="AnimatedButton" type="Node" parent="BaseControl/Stats/Arrow" unique_id=2117571590]
+script = ExtResource("6_6ekap")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 [node name="NewEumlingInfo" type="Control" parent="BaseControl" unique_id=270910999]
 unique_name_in_owner = true
 layout_mode = 1
@@ -124,6 +129,10 @@ offset_right = 849.0
 offset_bottom = 572.0
 texture_normal = ExtResource("8_k4jjj")
 flip_h = true
+
+[node name="AnimatedButton" type="Node" parent="BaseControl/NewEumlingInfo/Arrow" unique_id=1836947568]
+script = ExtResource("6_6ekap")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="ContinueButton" type="TextureButton" parent="BaseControl" unique_id=1771217320 groups=["InputMethodSensitive"]]
 unique_name_in_owner = true
@@ -168,6 +177,10 @@ vertical_alignment = 1
 script = ExtResource("6_m0551")
 label_size = Vector2i(290, 105)
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
+
+[node name="AnimatedButton" type="Node" parent="BaseControl/ContinueButton" unique_id=732913281]
+script = ExtResource("6_6ekap")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="WorkInProgressLabel" type="Label" parent="." unique_id=1614086895]
 visible = false

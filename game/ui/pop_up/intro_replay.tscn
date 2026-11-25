@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="2_jcaq7"]
 [ext_resource type="Texture2D" uid="uid://b31bh35rs35er" path="res://assets/ui/Buttons/PauseButton.png" id="3_rl2hr"]
 [ext_resource type="VideoStream" uid="uid://dg40q5nb6esi1" path="res://assets/ui/tutorial/intro_video/IntroVideo.ogv" id="4_qmqhc"]
+[ext_resource type="Script" uid="uid://bvuab5udah8xt" path="res://game/ui/buttons/animated_button.gd" id="5_rl2hr"]
 
 [node name="IntroReplay" type="Control" unique_id=1260862634]
 layout_mode = 3
@@ -42,6 +43,10 @@ theme_override_fonts/font = ExtResource("2_jcaq7")
 text = "Skip"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimatedButton" type="Node" parent="skip_Button" unique_id=1142563550]
+script = ExtResource("5_rl2hr")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="pause_video" type="TextureButton" parent="." unique_id=1872018721]
 visible = false

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c4e8dv2l1561n" path="res://game/aoes/base_aoe.tscn" id="1_25yf7"]
 [ext_resource type="Script" uid="uid://duef27t44qtoy" path="res://strategies/event/adjust_attributes/adjust_attributes_element.gd" id="2_87okx"]
 [ext_resource type="Script" uid="uid://bmyfqqx031w5a" path="res://game/shared/scaler/difficulty_scaler.gd" id="3_m43pj"]
+[ext_resource type="Shader" uid="uid://bbjrgegu7wpoi" path="res://game/enemies/6-volcano/magma_toad/shader/magma_ball_shader.tres" id="4_21gmh"]
 [ext_resource type="PackedScene" uid="uid://c7w2p50ncukck" path="res://game/vfx/standard_explosion/vfx_explosion.tscn" id="4_m43pj"]
 
 [sub_resource type="Resource" id="Resource_21gmh"]
@@ -40,8 +41,14 @@ metadata/_custom_type_script = "uid://bmyfqqx031w5a"
 [sub_resource type="SphereShape3D" id="SphereShape3D_xau2s"]
 radius = 0.9611559
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53408"]
-albedo_color = Color(0.84297395, 0.29357073, 0, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_elnmg"]
+render_priority = 0
+shader = ExtResource("4_21gmh")
+shader_parameter/speed = 0.22
+shader_parameter/WaveHeight = 0.2
+shader_parameter/BaseColor = Color(1, 0.18333334, 0, 1)
+shader_parameter/FrenselPower = 1.0
+shader_parameter/RimLight = Color(2.055, 1.2216667, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7xfjr"]
 
@@ -135,9 +142,9 @@ tracks/0/path = NodePath("Visuals/MeshInstance3D:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 0, 2),
+"handle_modes": PackedInt32Array(2, 2, 2, 0, 0),
 "points": PackedFloat32Array(2.186636, 0, 0, 0.011111112, -0.054004453, 1.6543818, -0.011111112, 0.00034709772, 0.03333334, -0.0010412933, 2.266982, -0.022222226, -0.05821377, 0.01111111, 0.029106878, 2.1783056, -0.25, 0, 0.25, 0, 0.56468415, -0.03333334, 0.26893693, 0, 0),
-"times": PackedFloat32Array(0, 0.06666667, 0.20000002, 0.4, 0.6)
+"times": PackedFloat32Array(0, 0.06666667, 0.20000002, 0.5, 0.7)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -146,9 +153,9 @@ tracks/1/path = NodePath("Visuals/MeshInstance3D:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 0, 2),
+"handle_modes": PackedInt32Array(2, 2, 2, 0, 0),
 "points": PackedFloat32Array(0.89339596, 0, 0, 0.011111112, 0.11509661, 1.3260603, -0.011111112, 0.019982805, 0.03333334, -0.059948422, 0.21079992, -0.022222226, 0.101361305, 0.01111111, -0.05068064, 0.41380864, -0.25, 0, 0.25, 0, 0.21570908, -0.03333334, 0.033016596, 0, 0),
-"times": PackedFloat32Array(0, 0.06666667, 0.20000002, 0.4, 0.6)
+"times": PackedFloat32Array(0, 0.06666667, 0.20000002, 0.5, 0.7)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -157,9 +164,9 @@ tracks/2/path = NodePath("Visuals/MeshInstance3D:scale:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 0, 2),
+"handle_modes": PackedInt32Array(2, 2, 2, 0, 0),
 "points": PackedFloat32Array(2.186636, 0, 0, 0.011111112, -0.054004453, 1.6543818, -0.011111112, 0.00034709772, 0.03333334, -0.0010412933, 2.266982, -0.022222226, -0.05821377, 0.01111111, 0.029106878, 2.1783056, -0.25, 0, 0.25, 0, 0.56468415, -0.03333334, 0.26893693, 0, 0),
-"times": PackedFloat32Array(0, 0.06666667, 0.20000002, 0.4, 0.6)
+"times": PackedFloat32Array(0, 0.06666667, 0.20000002, 0.5, 0.7)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -168,9 +175,9 @@ tracks/3/path = NodePath("Visuals/MeshInstance3D:position:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2, 2),
+"handle_modes": PackedInt32Array(0, 2, 2, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.005555556, 0, 0.005555556, 0, 0, -0.011111112, 0, 0, 0, 0, -0.0888889, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.6)
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.7)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -179,9 +186,9 @@ tracks/4/path = NodePath("Visuals/MeshInstance3D:position:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2, 2),
+"handle_modes": PackedInt32Array(0, 2, 2, 0),
 "points": PackedFloat32Array(-0.29904652, -0.25, 0, 0.25, 0, -0.1706574, -0.005555556, -0.02491178, 0.005555556, 0.02491178, -0.000105172396, -0.011111112, -0.04982356, 0, 0, -0.2626069, -0.0888889, 0.04375029, 0, 0),
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.6)
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.7)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -190,9 +197,9 @@ tracks/5/path = NodePath("Visuals/MeshInstance3D:position:z")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2, 2),
+"handle_modes": PackedInt32Array(0, 2, 2, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.005555556, 0, 0.005555556, 0, 0, -0.011111112, 0, 0, 0, 0, -0.0888889, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.6)
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.7)
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -230,7 +237,7 @@ disabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" parent_id_path=PackedInt32Array(312663566) index="0" unique_id=1358798065]
 transform = Transform3D(2.1783056, 0, 0, 0, 0.41380864, 0, 0, 0, 2.1783056, 0, -0.29904652, 0)
-material_overlay = SubResource("StandardMaterial3D_53408")
+material_override = SubResource("ShaderMaterial_elnmg")
 mesh = SubResource("SphereMesh_7xfjr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=1992424776]

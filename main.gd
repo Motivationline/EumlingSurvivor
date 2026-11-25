@@ -8,9 +8,9 @@ func _ready() -> void:
 	if Data.is_on_mobile:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
-	if !SaveData.get_data("graphics_settings_deteced", false):
+	if not SaveData.get_data("graphics_settings_deteced", false):
 		await GraphicsSettings.detect_settings()
-		#SaveData.set_data("graphics_settings_deteced", true)
+		SaveData.set_data("graphics_settings_deteced", true)
 
 	add_child(tutorial)
 

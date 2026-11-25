@@ -196,7 +196,7 @@ autoplay = &"ExtendIndicator"
 [node name="BuffedVFX" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="3" unique_id=1554862748 instance=ExtResource("11_kj6pd")]
 
 [connection signal="entered" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig" method="set_visible" binds= [true]]
+[connection signal="entered" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
 [connection signal="exited" from="StateMachine/Chase_and_Attack/Charging2" to="Visuals/CircularTargetIndicatorBig" method="set_visible" binds= [false]]
-[connection signal="visibility_changed" from="Visuals/CircularTargetIndicatorBig" to="Visuals/CircularTargetIndicatorBig/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
 
 [editable path="Visuals/tortoise"]

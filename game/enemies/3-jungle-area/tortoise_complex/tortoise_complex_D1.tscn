@@ -439,7 +439,7 @@ entity_to_spawn = ExtResource("17_ornr0")
 [node name="tortoise" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="0" unique_id=2050981297 instance=ExtResource("2_j0ork")]
 
 [node name="CircularTargetIndicator" parent="Visuals" parent_id_path=PackedInt32Array(110309936) index="1" unique_id=1351910490 instance=ExtResource("16_gnrjs")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0.03, 0)
 visible = false
 instance_shader_parameters/arc = 0.0
 instance_shader_parameters/arc_fade = 0.250000011875
@@ -501,7 +501,7 @@ debug_color = Color(0.911452, 0.08323508, 0.69264156, 0.41960785)
 [node name="Marker3D" type="Marker3D" parent="." index="9" unique_id=571452532]
 
 [connection signal="entered" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator" method="set_visible" binds= [true]]
+[connection signal="entered" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]
 [connection signal="exited" from="StateMachine/Chase_and_Attack/Charging" to="Visuals/CircularTargetIndicator" method="set_visible" binds= [false]]
 [connection signal="play_sound" from="Visuals/tortoise" to="SoundEffectManager" method="play_sound"]
 [connection signal="stop_sound" from="Visuals/tortoise" to="SoundEffectManager" method="stop_sound"]
-[connection signal="visibility_changed" from="Visuals/CircularTargetIndicator" to="Visuals/CircularTargetIndicator/AnimationPlayer" method="play" binds= ["ExtendIndicator"]]

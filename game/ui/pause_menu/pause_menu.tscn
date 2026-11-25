@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://8bqwxkcdktcv" path="res://assets/ui/Buttons/HomeButton.png" id="3_utddp"]
 [ext_resource type="Texture2D" uid="uid://b4puyhx8d2gim" path="res://assets/ui/Buttons/PlayButton.png" id="5_edo3p"]
 [ext_resource type="Texture2D" uid="uid://bsh5cti8q2hqs" path="res://assets/ui/pauseMenu/PaperRectangleInfo.png" id="10_6rxva"]
+[ext_resource type="Script" uid="uid://bvuab5udah8xt" path="res://game/ui/buttons/animated_button.gd" id="12_sfmqp"]
 [ext_resource type="PackedScene" uid="uid://54ec674jmwbg" path="res://game/ui/pause_menu/settings.tscn" id="20_qd2kc"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="21_huhjg"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="22_nmosl"]
@@ -26,6 +27,164 @@ shader = ExtResource("2_ob8pm")
 shader_parameter/blur_amount = 4.00000019
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7phrv"]
+
+[sub_resource type="Animation" id="Animation_41g3d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EumlingSticker1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(361.15442, 143.64084)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EumlingSticker1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.06379168]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EumlingSticker2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(715.46857, 288.6499)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EumlingSticker2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.22211742]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EumlingSticker3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(243.5055, 573.1957)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EumlingSticker3:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.20999965]
+}
+
+[sub_resource type="Animation" id="Animation_sfmqp"]
+resource_name = "animation_stickers"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EumlingSticker1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2666667, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(361.15442, 143.64084), Vector2(361.15427, 88.92049), Vector2(361.15442, 143.64084)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EumlingSticker1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.6666666, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.06379168, -0.037260063, 0.121413544, 0.06379168]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EumlingSticker2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(715.46857, 288.6499), Vector2(715.4686, 343.37018), Vector2(715.46857, 288.6499)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EumlingSticker2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.6333333, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.22211742, 0.0146109015, 0.22211742]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EumlingSticker3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.1333333, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(243.5055, 573.1957), Vector2(311.14642, 505.55566), Vector2(243.5055, 573.1957)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EumlingSticker3:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6333333, 1.6, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.20999965, -0.14719266, -0.2828035, -0.20999965]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8i6dt"]
+_data = {
+&"RESET": SubResource("Animation_41g3d"),
+&"animation_stickers": SubResource("Animation_sfmqp")
+}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_huhjg"]
 random_pitch = 1.2599211
@@ -74,12 +233,22 @@ grow_vertical = 2
 scale = Vector2(0.7309895, 0.7309895)
 texture = ExtResource("1_1rr57")
 
-[node name="EumlingSticker1" type="TextureButton" parent="BackdropBackpack" unique_id=1925753235 groups=["InputMethodSensitive"]]
+[node name="EumlingSticker1" type="TextureButton" parent="BackdropBackpack" unique_id=963138109 groups=["InputMethodSensitive"]]
 layout_mode = 0
-offset_left = 715.4686
-offset_top = 306.434
-offset_right = 858.4686
-offset_bottom = 458.43402
+offset_left = 361.15442
+offset_top = 143.64084
+offset_right = 504.15445
+offset_bottom = 295.64984
+rotation = 0.06379168
+scale = Vector2(1.6496218, 1.6496218)
+texture_normal = ExtResource("2_062ls")
+
+[node name="EumlingSticker2" type="TextureButton" parent="BackdropBackpack" unique_id=1925753235]
+layout_mode = 0
+offset_left = 715.46857
+offset_top = 288.6499
+offset_right = 858.46857
+offset_bottom = 440.64996
 rotation = 0.22211742
 scale = Vector2(1.6496216, 1.6496216)
 focus_neighbor_left = NodePath("../EumlingSticker3")
@@ -102,15 +271,21 @@ texture_normal = ExtResource("2_062ls")
 
 [node name="EumlingSticker3" type="TextureButton" parent="BackdropBackpack" unique_id=2089497161 groups=["InputMethodSensitive"]]
 layout_mode = 0
-offset_left = 253.08154
-offset_top = 533.5235
-offset_right = 396.08154
-offset_bottom = 685.52356
+offset_left = 243.5055
+offset_top = 573.1957
+offset_right = 386.5055
+offset_bottom = 725.2021
 rotation = -0.20999965
 scale = Vector2(1.6496218, 1.6496218)
 focus_neighbor_top = NodePath("../EumlingSticker2")
 focus_neighbor_right = NodePath("../EumlingSticker1")
 texture_normal = ExtResource("2_062ls")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=778095160]
+root_node = NodePath("../BackdropBackpack")
+libraries/ = SubResource("AnimationLibrary_8i6dt")
+autoplay = &"animation_stickers"
+speed_scale = 0.488
 
 [node name="InfoEumling" type="TextureRect" parent="." unique_id=686867953]
 visible = false
@@ -158,6 +333,10 @@ focus_neighbor_right = NodePath("../SettingsButton")
 focus_neighbor_bottom = NodePath("../BackdropBackpack/EumlingSticker2")
 texture_normal = ExtResource("3_utddp")
 
+[node name="AnimatedButton" type="Node" parent="HomeButton" unique_id=2057409802]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 [node name="PlayButton" type="TextureButton" parent="." unique_id=555258968 groups=["InputMethodSensitive"]]
 layout_mode = 0
 offset_left = 1709.0
@@ -169,7 +348,16 @@ focus_neighbor_bottom = NodePath("../right_arrow")
 shortcut = SubResource("Shortcut_vyndw")
 texture_normal = ExtResource("5_edo3p")
 
+[node name="AnimatedButton" type="Node" parent="PlayButton" unique_id=356671733]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
+[node name="AnimatedButton" type="Node" parent="PlayButton" unique_id=356671733]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 [node name="right_arrow" type="TextureButton" parent="." unique_id=1292272712 groups=["InputMethodSensitive"]]
+
 layout_mode = 0
 offset_left = 1767.0
 offset_top = 490.0
@@ -178,6 +366,15 @@ offset_bottom = 572.0
 focus_neighbor_left = NodePath("../left_arrow")
 focus_neighbor_top = NodePath("../PlayButton")
 texture_normal = ExtResource("25_kq7qj")
+
+[node name="AnimatedButton" type="Node" parent="right_arrow" unique_id=1383075594]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
+[node name="AnimatedButton" type="Node" parent="right_arrow" unique_id=1383075594]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 
 [node name="left_arrow" type="TextureButton" parent="." unique_id=591294064 groups=["InputMethodSensitive"]]
 layout_mode = 0
@@ -191,12 +388,16 @@ focus_neighbor_right = NodePath("../right_arrow")
 texture_normal = ExtResource("25_kq7qj")
 flip_h = true
 
+[node name="AnimatedButton" type="Node" parent="left_arrow" unique_id=1154368121]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 [node name="ripped_out_page" parent="." unique_id=1028725752 instance=ExtResource("29_kq7qj")]
 layout_mode = 1
-offset_left = 432.00012
-offset_top = 19.000061
-offset_right = 432.00012
-offset_bottom = 19.000061
+offset_left = 451.00012
+offset_top = 19.0
+offset_right = 451.00012
+offset_bottom = 19.0
 scale = Vector2(0.8381038, 0.8381038)
 
 [node name="ProgressDisplay" type="Control" parent="." unique_id=2061562221]
@@ -286,6 +487,10 @@ offset_bottom = 176.0
 focus_neighbor_left = NodePath("../HomeButton")
 focus_neighbor_right = NodePath("../PlayButton")
 texture_normal = ExtResource("31_3yawr")
+
+[node name="AnimatedButton" type="Node" parent="SettingsButton" unique_id=391459793]
+script = ExtResource("12_sfmqp")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
 [node name="Settings" parent="." unique_id=1695909775 instance=ExtResource("20_qd2kc")]
 unique_name_in_owner = true
