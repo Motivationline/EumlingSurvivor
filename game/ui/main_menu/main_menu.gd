@@ -59,4 +59,4 @@ func _on_debug_level_chosen(levels) -> void:
 	game.play_select_levels(levels)
 
 func get_focus():
-	$UIOverlay/StaticUI/paperOverlay/VBoxContainer/PlayButton.grab_focus()
+	$UIOverlay/StaticUI/VBoxContainer/PlayButton.grab_focus()
