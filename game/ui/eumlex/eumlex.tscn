@@ -25,6 +25,7 @@
 [ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="18_h87jw"]
 [ext_resource type="Texture2D" uid="uid://hx6s6q7vqpkq" path="res://assets/ui/Eumlex/eumlex_tracker_backdrop.png" id="20_bt128"]
 [ext_resource type="Texture2D" uid="uid://backy0aoyrp2r" path="res://assets/ui/gameOverlay/SeedMarker.png" id="21_h87jw"]
+[ext_resource type="Script" uid="uid://cdan1jdi30uor" path="res://game/ui/buttons/static_ui_animated_button.gd" id="22_665xe"]
 [ext_resource type="Script" uid="uid://bvuab5udah8xt" path="res://game/ui/buttons/animated_button.gd" id="24_48btb"]
 [ext_resource type="Script" uid="uid://fxqs1lioec3e" path="res://game/sound/sfx/manager/sound_effect_manager.gd" id="24_xxm4k"]
 [ext_resource type="PackedScene" uid="uid://cfg3tmkhe5wqn" path="res://game/sound/sfx/sound_presets/ui_preset.tscn" id="25_eumhd"]
@@ -324,7 +325,6 @@ offset_bottom = 942.0
 layout_mode = 2
 
 [node name="OrangePage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=358149256]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 2.0
@@ -432,6 +432,7 @@ texture = ExtResource("20_bt128")
 stretch_mode = 5
 
 [node name="Seed2" type="TextureRect" parent="Book/BookContainer/BookBG/OrangePage/ImageCounter" unique_id=169853594]
+visible = false
 layout_mode = 0
 offset_left = -58.0
 offset_top = -11.464935
@@ -440,6 +441,20 @@ offset_bottom = 110.535065
 rotation = -0.21504882
 scale = Vector2(0.71698225, 0.71698225)
 texture = ExtResource("21_h87jw")
+
+[node name="SeedAnim" type="TextureButton" parent="Book/BookContainer/BookBG/OrangePage/ImageCounter" unique_id=637634446]
+layout_mode = 0
+offset_left = -57.0
+offset_top = -12.0
+offset_right = 38.0
+offset_bottom = 110.0
+rotation = -0.17843236
+scale = Vector2(0.7128614, 0.7128614)
+texture_normal = ExtResource("21_h87jw")
+
+[node name="StaticUiAnimatedButton" type="Node" parent="Book/BookContainer/BookBG/OrangePage/ImageCounter/SeedAnim" unique_id=179982069]
+script = ExtResource("22_665xe")
+metadata/_custom_type_script = "uid://cdan1jdi30uor"
 
 [node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/OrangePage/ImageCounter" unique_id=121599223]
 custom_minimum_size = Vector2(149, 53)
@@ -485,6 +500,7 @@ theme_override_font_sizes/font_size = 35
 text = "Belohnung:"
 
 [node name="GreenPage" type="Panel" parent="Book/BookContainer/BookBG" unique_id=1105283116]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 2.0
@@ -583,15 +599,30 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -601.0
+offset_left = -602.0
 offset_top = 166.0
-offset_right = -452.08002
+offset_right = -453.08002
 offset_bottom = 233.377
 grow_horizontal = 0
 texture = ExtResource("20_bt128")
 stretch_mode = 5
 
+[node name="SeedAnim2" type="TextureButton" parent="Book/BookContainer/BookBG/GreenPage/ImageCounter" unique_id=446435653]
+layout_mode = 0
+offset_left = -57.0
+offset_top = -12.0
+offset_right = 38.0
+offset_bottom = 110.0
+rotation = -0.17843236
+scale = Vector2(0.7128614, 0.7128614)
+texture_normal = ExtResource("21_h87jw")
+
+[node name="StaticUiAnimatedButton" type="Node" parent="Book/BookContainer/BookBG/GreenPage/ImageCounter/SeedAnim2" unique_id=378392876]
+script = ExtResource("22_665xe")
+metadata/_custom_type_script = "uid://cdan1jdi30uor"
+
 [node name="Seed3" type="TextureRect" parent="Book/BookContainer/BookBG/GreenPage/ImageCounter" unique_id=1954825279]
+visible = false
 layout_mode = 0
 offset_left = -58.0
 offset_top = -11.464935
@@ -608,9 +639,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.9999924
+offset_left = -2.9999924
 offset_top = 16.999985
-offset_right = -3.919983
+offset_right = -2.919983
 offset_bottom = 2.6229858
 grow_horizontal = 2
 grow_vertical = 2
@@ -753,7 +784,22 @@ grow_horizontal = 0
 texture = ExtResource("20_bt128")
 stretch_mode = 5
 
+[node name="SeedAnim3" type="TextureButton" parent="Book/BookContainer/BookBG/PurplePage/ImageCounter" unique_id=1793631200]
+layout_mode = 0
+offset_left = -57.0
+offset_top = -12.0
+offset_right = 38.0
+offset_bottom = 110.0
+rotation = -0.17843236
+scale = Vector2(0.7128614, 0.7128614)
+texture_normal = ExtResource("21_h87jw")
+
+[node name="StaticUiAnimatedButton" type="Node" parent="Book/BookContainer/BookBG/PurplePage/ImageCounter/SeedAnim3" unique_id=1751697888]
+script = ExtResource("22_665xe")
+metadata/_custom_type_script = "uid://cdan1jdi30uor"
+
 [node name="Seed4" type="TextureRect" parent="Book/BookContainer/BookBG/PurplePage/ImageCounter" unique_id=793676301]
+visible = false
 layout_mode = 0
 offset_left = -58.0
 offset_top = -11.464935
@@ -915,7 +961,22 @@ grow_horizontal = 0
 texture = ExtResource("20_bt128")
 stretch_mode = 5
 
+[node name="SeedAnim4" type="TextureButton" parent="Book/BookContainer/BookBG/YellowPage/ImageCounter" unique_id=500306347]
+layout_mode = 0
+offset_left = -57.0
+offset_top = -12.0
+offset_right = 38.0
+offset_bottom = 110.0
+rotation = -0.17843236
+scale = Vector2(0.7128614, 0.7128614)
+texture_normal = ExtResource("21_h87jw")
+
+[node name="StaticUiAnimatedButton" type="Node" parent="Book/BookContainer/BookBG/YellowPage/ImageCounter/SeedAnim4" unique_id=47550192]
+script = ExtResource("22_665xe")
+metadata/_custom_type_script = "uid://cdan1jdi30uor"
+
 [node name="Seed5" type="TextureRect" parent="Book/BookContainer/BookBG/YellowPage/ImageCounter" unique_id=1675672629]
+visible = false
 layout_mode = 0
 offset_left = -58.0
 offset_top = -11.464935
@@ -1068,15 +1129,16 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -605.0
+offset_left = -602.0
 offset_top = 166.0
-offset_right = -456.08002
+offset_right = -453.08002
 offset_bottom = 233.377
 grow_horizontal = 0
 texture = ExtResource("20_bt128")
 stretch_mode = 5
 
 [node name="Seed6" type="TextureRect" parent="Book/BookContainer/BookBG/RedPage/ImageCounter" unique_id=935915890]
+visible = false
 layout_mode = 0
 offset_left = -53.0
 offset_top = -11.464935
@@ -1086,6 +1148,20 @@ rotation = -0.21504882
 scale = Vector2(0.71698225, 0.71698225)
 texture = ExtResource("21_h87jw")
 
+[node name="SeedAnim5" type="TextureButton" parent="Book/BookContainer/BookBG/RedPage/ImageCounter" unique_id=938747942]
+layout_mode = 0
+offset_left = -57.0
+offset_top = -12.0
+offset_right = 38.0
+offset_bottom = 110.0
+rotation = -0.17843236
+scale = Vector2(0.7128614, 0.7128614)
+texture_normal = ExtResource("21_h87jw")
+
+[node name="StaticUiAnimatedButton" type="Node" parent="Book/BookContainer/BookBG/RedPage/ImageCounter/SeedAnim5" unique_id=82258299]
+script = ExtResource("22_665xe")
+metadata/_custom_type_script = "uid://cdan1jdi30uor"
+
 [node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/RedPage/ImageCounter" unique_id=461230787]
 custom_minimum_size = Vector2(149, 53)
 custom_maximum_size = Vector2(149, 53)
@@ -1093,8 +1169,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -3.0
 offset_top = 16.999985
-offset_right = 0.08001709
+offset_right = -2.919983
 offset_bottom = 2.6229858
 grow_horizontal = 2
 grow_vertical = 2
@@ -1249,15 +1326,16 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -605.0
+offset_left = -602.0
 offset_top = 166.0
-offset_right = -456.08002
+offset_right = -453.08002
 offset_bottom = 233.377
 grow_horizontal = 0
 texture = ExtResource("20_bt128")
 stretch_mode = 5
 
 [node name="Seed" type="TextureRect" parent="Book/BookContainer/BookBG/BluePage/ImageCounter" unique_id=2086652076]
+visible = false
 layout_mode = 0
 offset_left = -53.0
 offset_top = -11.464935
@@ -1267,6 +1345,20 @@ rotation = -0.21504882
 scale = Vector2(0.71698225, 0.71698225)
 texture = ExtResource("21_h87jw")
 
+[node name="SeedAnim6" type="TextureButton" parent="Book/BookContainer/BookBG/BluePage/ImageCounter" unique_id=585399323]
+layout_mode = 0
+offset_left = -57.0
+offset_top = -12.0
+offset_right = 38.0
+offset_bottom = 110.0
+rotation = -0.17843236
+scale = Vector2(0.7128614, 0.7128614)
+texture_normal = ExtResource("21_h87jw")
+
+[node name="StaticUiAnimatedButton" type="Node" parent="Book/BookContainer/BookBG/BluePage/ImageCounter/SeedAnim6" unique_id=1089622391]
+script = ExtResource("22_665xe")
+metadata/_custom_type_script = "uid://cdan1jdi30uor"
+
 [node name="NumberCounter" type="Label" parent="Book/BookContainer/BookBG/BluePage/ImageCounter" unique_id=1628471596]
 custom_minimum_size = Vector2(149, 53)
 custom_maximum_size = Vector2(149, 53)
@@ -1274,8 +1366,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -3.0
 offset_top = 16.999985
-offset_right = 0.08001709
+offset_right = -2.919983
 offset_bottom = 2.6229858
 grow_horizontal = 2
 grow_vertical = 2

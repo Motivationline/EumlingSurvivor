@@ -24,6 +24,8 @@
 [ext_resource type="FontFile" uid="uid://b80a7ar2n5nde" path="res://assets/ui/fonts/EumlingeFont.otf" id="19_r5f10"]
 [ext_resource type="Texture2D" uid="uid://ca4s6k3b885wn" path="res://assets/ui/Eumlex/ausbildung_stempel.png" id="20_b400u"]
 [ext_resource type="Texture2D" uid="uid://cyy0gdmxc6a36" path="res://assets/ui/Eumlex/studium_stempel.png" id="21_vptb8"]
+[ext_resource type="Script" uid="uid://bvuab5udah8xt" path="res://game/ui/buttons/animated_button.gd" id="24_bnjd6"]
+[ext_resource type="Script" uid="uid://cdan1jdi30uor" path="res://game/ui/buttons/static_ui_animated_button.gd" id="25_1lnmy"]
 
 [node name="EumlexInfoPage" type="Control" unique_id=1340831237]
 layout_mode = 3
@@ -216,6 +218,18 @@ offset_top = 728.0
 offset_right = 722.0
 offset_bottom = 807.0
 
+[node name="TextureButton" type="TextureButton" parent="ExternalLink" unique_id=1536352682]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("11_2f624")
+
+[node name="AnimatedButton" type="Node" parent="ExternalLink/TextureButton" unique_id=580373055]
+script = ExtResource("24_bnjd6")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
 [node name="TextureRect" type="TextureRect" parent="ExternalLink" unique_id=718854059]
 z_index = -1
 layout_mode = 0
@@ -242,22 +256,30 @@ script = ExtResource("10_5qkcb")
 label_size = Vector2i(157, 52)
 metadata/_custom_type_script = "uid://ciiwsqka3sxfa"
 
-[node name="StampApprenticeship" type="TextureRect" parent="." unique_id=579591905]
+[node name="StampApprenticeship" type="TextureButton" parent="." unique_id=1800907247]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 626.0
 offset_top = 73.0
-offset_right = 795.00006
-offset_bottom = 244.0
-scale = Vector2(0.6828434, 0.6828434)
-texture = ExtResource("20_b400u")
+offset_right = 666.0
+offset_bottom = 113.0
+scale = Vector2(0.6701819, 0.6701819)
+texture_normal = ExtResource("20_b400u")
 
-[node name="StampUniversity" type="TextureRect" parent="." unique_id=286624613]
+[node name="StaticUiAnimatedButton" type="Node" parent="StampApprenticeship" unique_id=1894950664]
+script = ExtResource("25_1lnmy")
+metadata/_custom_type_script = "uid://cdan1jdi30uor"
+
+[node name="StampUniversity" type="TextureButton" parent="." unique_id=239044394]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 626.0
 offset_top = 73.0
-offset_right = 795.00006
-offset_bottom = 244.0
-scale = Vector2(0.6828434, 0.6828434)
-texture = ExtResource("21_vptb8")
+offset_right = 666.0
+offset_bottom = 113.0
+scale = Vector2(0.6701819, 0.6701819)
+texture_normal = ExtResource("21_vptb8")
+
+[node name="StaticUiAnimatedButton" type="Node" parent="StampUniversity" unique_id=1604035213]
+script = ExtResource("25_1lnmy")
+metadata/_custom_type_script = "uid://cdan1jdi30uor"

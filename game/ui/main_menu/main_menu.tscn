@@ -53,6 +53,91 @@ dof_blur_amount = 0.55
 blend_mode = 1
 light_mode = 1
 
+[sub_resource type="Animation" id="Animation_u8d3k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arrowOverlay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1479, 28)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("arrowOverlay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("paperOverlay:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3a4p5"]
+resource_name = "arrow_shooting"
+length = 1.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arrowOverlay:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333334, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1923, -299), Vector2(1479, 28)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("arrowOverlay:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.06666667, 0.93333334),
+"transitions": PackedFloat32Array(0.42044818, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.41960785), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("paperOverlay:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.46666667, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1uij5"]
+_data = {
+&"RESET": SubResource("Animation_u8d3k"),
+&"arrow_shooting": SubResource("Animation_3a4p5")
+}
+
 [sub_resource type="Animation" id="Animation_hpwr3"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -360,53 +445,141 @@ offset_bottom = 1019.0
 texture = ExtResource("8_1r6yo")
 stretch_mode = 2
 
-[node name="arrowOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=2026483528]
+[node name="VBoxContainer" type="VBoxContainer" parent="UIOverlay/StaticUI/paperOverlay" unique_id=615637375]
 layout_mode = 0
-offset_left = 1479.0
-offset_top = 28.0
-offset_right = 1914.0
-offset_bottom = 374.0
-texture = ExtResource("9_egypv")
-stretch_mode = 2
+offset_left = -16.999878
+offset_top = 89.0
+offset_right = 546.0001
+offset_bottom = 682.0
+scale = Vector2(1.1585608, 1.1585608)
+theme_override_constants/separation = -19
 
-[node name="logo_blurr" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1930892714]
+[node name="PlayButton" type="TextureButton" parent="UIOverlay/StaticUI/paperOverlay/VBoxContainer" unique_id=877629100 groups=["InputMethodSensitive"]]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../SettingsButton")
+focus_neighbor_top = NodePath("../../../EndGameButton")
+focus_next = NodePath("../../../EumlexButton")
+focus_previous = NodePath("../../../SettingsButton")
+texture_normal = ExtResource("14_fkgrk")
+texture_focused = ExtResource("11_egypv")
+stretch_mode = 5
+
+[node name="Play" type="Label" parent="UIOverlay/StaticUI/paperOverlay/VBoxContainer/PlayButton" unique_id=1330015026]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.000113487244
+offset_top = 31.936188
+offset_right = -0.00012207031
+offset_bottom = 31.936188
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.094958134
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 37
+theme_override_fonts/font = ExtResource("15_dmkvk")
+theme_override_font_sizes/font_size = 70
+text = "Neu"
+horizontal_alignment = 1
+
+[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/paperOverlay/VBoxContainer/PlayButton" unique_id=1980195207]
+script = ExtResource("22_u8d3k")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
+[node name="ContinueButton" type="TextureButton" parent="UIOverlay/StaticUI/paperOverlay/VBoxContainer" unique_id=1797591909 groups=["InputMethodSensitive"]]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(-15, 0)
+focus_neighbor_left = NodePath("../../../SettingsButton")
+focus_next = NodePath("../../../EumlexButton")
+focus_previous = NodePath("../../../SettingsButton")
+texture_normal = ExtResource("15_njswq")
+texture_focused = ExtResource("11_egypv")
+stretch_mode = 5
+
+[node name="Continue" type="Label" parent="UIOverlay/StaticUI/paperOverlay/VBoxContainer/ContinueButton" unique_id=1001584278]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.6186657
+offset_top = 22.522182
+offset_right = 5.618622
+offset_bottom = 22.522186
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.13203664
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 37
+theme_override_fonts/font = ExtResource("15_dmkvk")
+theme_override_font_sizes/font_size = 70
+text = "Weiter"
+horizontal_alignment = 1
+
+[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/paperOverlay/VBoxContainer/ContinueButton" unique_id=406284952]
+script = ExtResource("22_u8d3k")
+metadata/_custom_type_script = "uid://bvuab5udah8xt"
+
+[node name="eumlingLogo2" type="TextureRect" parent="UIOverlay/StaticUI/paperOverlay" unique_id=451272343]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 54.0
+offset_top = 437.99994
+offset_right = 1032.3569
+offset_bottom = 849.68945
+rotation = 0.14376397
+scale = Vector2(0.4962722, 0.4962722)
+texture = ExtResource("7_o0d2s")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="eumlingLogo" type="TextureRect" parent="UIOverlay/StaticUI/paperOverlay" unique_id=1054500430]
+modulate = Color(1, 0.6166667, 0, 1)
+layout_mode = 0
+offset_left = 60.0
+offset_top = 437.0
+offset_right = 1012.12256
+offset_bottom = 837.65015
+rotation = 0.14376397
+scale = Vector2(0.4962722, 0.4962722)
+texture = ExtResource("7_o0d2s")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="logo_blurr" type="TextureRect" parent="UIOverlay/StaticUI/paperOverlay" unique_id=1930892714]
 modulate = Color(1.8989718, 1.6171429, 0.36172387, 0.07450981)
 material = SubResource("CanvasItemMaterial_0bhyy")
 layout_mode = 0
-offset_left = 1013.7167
-offset_top = 496.0
-offset_right = 3571.7168
-offset_bottom = 1576.0
+offset_left = -169.28333
+offset_top = 248.0
+offset_right = 2388.7168
+offset_bottom = 1328.0
 rotation = 0.14376397
 scale = Vector2(0.45163268, 0.45163268)
 texture = ExtResource("7_0bhyy")
 expand_mode = 1
 
-[node name="eumlingLogo2" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=451272343]
-modulate = Color(0, 0, 0, 1)
+[node name="arrowOverlay" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=2026483528]
 layout_mode = 0
-offset_left = 1237.0
-offset_top = 685.99994
-offset_right = 2215.357
-offset_bottom = 1097.6895
-rotation = 0.14376397
-scale = Vector2(0.4962722, 0.4962722)
-texture = ExtResource("7_o0d2s")
-expand_mode = 5
-stretch_mode = 5
+offset_left = 1479.0
+offset_top = 28.0
+offset_right = 1913.977
+offset_bottom = 374.0
+texture = ExtResource("9_egypv")
+stretch_mode = 2
 
-[node name="eumlingLogo" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=1054500430]
-modulate = Color(1, 0.6166667, 0, 1)
-layout_mode = 0
-offset_left = 1243.0
-offset_top = 685.0
-offset_right = 2195.1226
-offset_bottom = 1085.6501
-rotation = 0.14376397
-scale = Vector2(0.4962722, 0.4962722)
-texture = ExtResource("7_o0d2s")
-expand_mode = 5
-stretch_mode = 5
+[node name="AnimationPlayerEnter" type="AnimationPlayer" parent="UIOverlay/StaticUI" unique_id=1853370819]
+libraries/ = SubResource("AnimationLibrary_1uij5")
+autoplay = &"arrow_shooting"
+speed_scale = 1.461
 
 [node name="motivationlineLogo" type="Label" parent="UIOverlay/StaticUI" unique_id=309874239]
 visible = false
@@ -441,7 +614,7 @@ offset_bottom = 1017.00006
 scale = Vector2(0.7946278, 0.7946278)
 focus_neighbor_right = NodePath("../SettingsButton")
 focus_next = NodePath("../SettingsButton")
-focus_previous = NodePath("../VBoxContainer/PlayButton")
+focus_previous = NodePath("../paperOverlay/VBoxContainer/PlayButton")
 texture_normal = ExtResource("11_orue0")
 texture_focused = ExtResource("11_egypv")
 
@@ -501,96 +674,13 @@ offset_top = 821.0
 offset_right = 443.0
 offset_bottom = 960.0
 focus_neighbor_left = NodePath("../EumlexButton")
-focus_neighbor_right = NodePath("../VBoxContainer/PlayButton")
-focus_next = NodePath("../VBoxContainer/PlayButton")
+focus_neighbor_right = NodePath("../paperOverlay/VBoxContainer/PlayButton")
+focus_next = NodePath("../paperOverlay/VBoxContainer/PlayButton")
 focus_previous = NodePath("../EumlexButton")
 texture_normal = ExtResource("13_0bhyy")
 texture_focused = ExtResource("11_egypv")
 
 [node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/SettingsButton" unique_id=928686971]
-script = ExtResource("22_u8d3k")
-metadata/_custom_type_script = "uid://bvuab5udah8xt"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UIOverlay/StaticUI" unique_id=615637375]
-layout_mode = 0
-offset_left = 1166.0001
-offset_top = 337.0
-offset_right = 1729.0001
-offset_bottom = 930.0
-scale = Vector2(1.1585608, 1.1585608)
-theme_override_constants/separation = -19
-
-[node name="PlayButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=877629100 groups=["InputMethodSensitive"]]
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-focus_neighbor_left = NodePath("../../SettingsButton")
-focus_neighbor_top = NodePath("../../EndGameButton")
-focus_next = NodePath("../../EumlexButton")
-focus_previous = NodePath("../../SettingsButton")
-texture_normal = ExtResource("14_fkgrk")
-texture_focused = ExtResource("11_egypv")
-stretch_mode = 5
-
-[node name="Play" type="Label" parent="UIOverlay/StaticUI/VBoxContainer/PlayButton" unique_id=1330015026]
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -0.000113487244
-offset_top = 31.936188
-offset_right = -0.00012207031
-offset_bottom = 31.936188
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.094958134
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 37
-theme_override_fonts/font = ExtResource("15_dmkvk")
-theme_override_font_sizes/font_size = 70
-text = "Neu"
-horizontal_alignment = 1
-
-[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/VBoxContainer/PlayButton" unique_id=1980195207]
-script = ExtResource("22_u8d3k")
-metadata/_custom_type_script = "uid://bvuab5udah8xt"
-
-[node name="ContinueButton" type="TextureButton" parent="UIOverlay/StaticUI/VBoxContainer" unique_id=1797591909 groups=["InputMethodSensitive"]]
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-size_flags_horizontal = 4
-offset_transform_enabled = true
-offset_transform_position = Vector2(-15, 0)
-focus_neighbor_left = NodePath("../../SettingsButton")
-focus_next = NodePath("../../EumlexButton")
-focus_previous = NodePath("../../SettingsButton")
-texture_normal = ExtResource("15_njswq")
-texture_focused = ExtResource("11_egypv")
-stretch_mode = 5
-
-[node name="Continue" type="Label" parent="UIOverlay/StaticUI/VBoxContainer/ContinueButton" unique_id=1001584278]
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.6186657
-offset_top = 22.522182
-offset_right = 5.618622
-offset_bottom = 22.522186
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.13203664
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 37
-theme_override_fonts/font = ExtResource("15_dmkvk")
-theme_override_font_sizes/font_size = 70
-text = "Weiter"
-horizontal_alignment = 1
-
-[node name="AnimatedButton" type="Node" parent="UIOverlay/StaticUI/VBoxContainer/ContinueButton" unique_id=406284952]
 script = ExtResource("22_u8d3k")
 metadata/_custom_type_script = "uid://bvuab5udah8xt"
 
@@ -617,10 +707,10 @@ stretch_mode = 4
 [node name="TextureRect" type="TextureRect" parent="UIOverlay/StaticUI" unique_id=795901332]
 modulate = Color(1, 0.92333335, 0.53999996, 1)
 layout_mode = 0
-offset_left = 822.0
-offset_top = -340.0
-offset_right = 2624.0
-offset_bottom = 1462.0
+offset_left = 821.0
+offset_top = -341.0
+offset_right = 2623.0
+offset_bottom = 1461.0
 mouse_filter = 2
 texture = ExtResource("18_i63cf")
 
@@ -960,10 +1050,10 @@ script = ExtResource("40_a6ejo")
 button_icon_layer = ExtResource("11_egypv")
 metadata/_custom_type_script = "uid://0ev8qorbgey0"
 
-[connection signal="tree_entered" from="." to="UIOverlay/StaticUI/VBoxContainer/PlayButton" method="grab_focus" flags=3 binds= [false]]
+[connection signal="tree_entered" from="." to="UIOverlay/StaticUI/paperOverlay/VBoxContainer/PlayButton" method="grab_focus" flags=3 binds= [false]]
+[connection signal="pressed" from="UIOverlay/StaticUI/paperOverlay/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="UIOverlay/StaticUI/paperOverlay/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="UIOverlay/StaticUI/EumlexButton" to="." method="_on_eumlex_button_pressed"]
-[connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="UIOverlay/StaticUI/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="UIOverlay/StaticUI/Settings" to="UIOverlay/Settings" method="show"]
 [connection signal="pressed" from="UIOverlay/StaticUI/EndGameButton" to="." method="_on_end_game_button_pressed"]
 [connection signal="area_chosen" from="UIOverlay/AreaPicker" to="." method="_on_debug_level_chosen"]
